@@ -1,4 +1,4 @@
-= Руководство пользователя Celesta
+= План курса
 :lang: ru
 :is-main-doc:
 include::_doc_general_attributes.adoc[]
@@ -9,7 +9,7 @@ include::_doc_general_attributes.adoc[]
 :source-highlighter: highlightjs
 :toc: left
 
-== Лекция 1. Экосистема Java крупным планом
+== Лекция 1. Экосистема Java
 .	История платформы Java, распространенность языка Java, современные применения платформы и языка Java (desktop, server-side backend, mobile).
 .	JVM и предоставляемые ей сервисы: 
 ..	Byte code, интерпретация и JIT-компиляция.
