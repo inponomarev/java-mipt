@@ -10,7 +10,7 @@ include::_doc_general_attributes.adoc[]
 :toc: left
 
 == Лекция 1. Экосистема Java
-.	История платформы Java, распространенность языка Java, современные применения платформы и языка Java (desktop, server-side backend, mobile).
+.	История платформы Java, https://www.tiobe.com/tiobe-index/[распространенность языка Java], современные применения платформы и языка Java (desktop, server-side backend, mobile).
 .	JVM и предоставляемые ей сервисы: 
 ..	Byte code, интерпретация и JIT-компиляция.
 ..	Garbage Collection
