@@ -1,0 +1,24 @@
+---
+sudo: required
+
+language: java
+jdk: openjdk8
+
+cache:
+  directories:
+  - $HOME/.m2
+
+
+before_install:
+  - sudo apt-get install -y graphviz
+
+script:
+  - mvn generate-resources -pl :plan
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  local_dir: plan/target/generated-docs
+  on:
+    branch: master
