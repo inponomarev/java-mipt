@@ -249,5 +249,10 @@ image::images/lambdas.png[width=350]
 1.	Spring DI. Конфигурации
 2.	Паттерн Proxy. AOP (Aspect-oriented programming)
 
+== Список литературы
+
+. *Raoul-Gabriel Urma et al.* Modern Java in Action
+. *J. Bloch* Effective Java
+. *B. Goetz et al.* Java Concurrency in Practice 
 
 
