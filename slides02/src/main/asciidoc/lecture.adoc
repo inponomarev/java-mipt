@@ -1,0 +1,736 @@
+= Core Java: Курс лекций. Лекция 2
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Демо
+
+* Hello, World!
+
+* New Maven Project
+* New package
+* New class
+* psvm -- sout
+* Манифест (runnable jar) 
+
+== Ключевые слова языка
+
+[source]
+----
+ abstract     exports (Java 9)    new                 throws
+ assert       extends             package             transient
+ boolean      final               private             try
+ break        finally             protected           var (Java 10)
+ byte         float               public              void
+ case         for                 requires (Java 9)   volatile
+ catch        if                  return              while
+ char         implements          short               
+ class        import              static              true
+ continue     instanceof          strictfp            null
+ default      int                 super               false
+ do           interface           switch              
+ double       long                synchronized        const
+ else         module (Java 9)     this                goto
+----
+
+== Комментарии
+
+[source,java]
+----
+/**
+ * This is the first sample program in Core Java Chapter 3
+ * @version 1.01 1997-03-22
+ * @author Gary Cornell
+ */
+public class FirstSample
+{
+  public static void main(String[] args)
+  {
+  /*multiline
+  comment*/
+  System
+    .out //single-line comment
+    .println("We will not use 'Hello, World!'");
+  }
+}
+----
+
+== Типы
+
+* Примитивные
+** `byte`, `short`, `int`, `long`
+** `char`
+** `float`, `double`,
+** `boolean`
+* Массивы
+* Объекты
+
+== Целочисленные типы
+
+[cols="20a,20a,60a"] 
+|===
+|Type |Storage |Range
+|`byte` | 1 byte | –128 to 127
+|`short` | 2 bytes | –32,768 to 32,767
+|`int` | 4 bytes | –2,147,483,648 to 2,147,483, 647
+|`long` |8 bytes | –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+|===
+
+== Демо 2: Разновидности целочисленных литералов
+
+
+* Long `L`
+* Underscores
+* Hexadecimal `0xCAFEBABE`
+* Binary `0b0101`
+* Octal `010`
+
+== Типы с плавающей запятой
+
+[cols="20a,20a,60a"] 
+|===
+|Type |Storage |Range
+|`float` | 4 bytes | Approximately ±3.40282347E+38F (6–7 significant
+decimal digits)
+|`double` | 8 bytes | Approximately ±1.79769313486231570E+308
+(15 significant decimal digits)
+|===
+
+== Нет unsigned значений!
+
+* Пользуемся `int`-ом для `byte` и `short`.
+* Пользуемся `long`-ом для `int`.
+
+== Демо 3: Литералы для типов с плавающей запятой
+
+* `2.998e8`
+* `1.0` (`1.`)
+* `3.14F`
+* `0x1.0p-3` (0.125, 2 в минус третьей степени)
+* `Double.POSITIVE_INFINITY`
+* `Double.NEGATIVE_INFINITY`
+* `Double.NaN`
+
+== Осторожней с плавающей запятой!
+
+* `System.out.println(2.0 - 1.1)` выводит 0.8999999999999999
+* *НИКОГДА НЕ СЧИТАЙТЕ ДЕНЬГИ DOUBLE-ОМ!*
+* `System.out.println(2.0 / 0.0)` выводит 'Infinity` (но 2 / 0 -- divizion by zero)
+* `System.out.println(0.0 / 0.0)` выводит 'NaN`
+* Сравнение с бесконечностью и `NaN` не работает, надо проверять с помощью `Double.isNaN`, `Double.isInfinite`.
+* `strictfp`
+
+== Приводимость числовых типов
+
+[graphviz, "casting.png"]
+-----
+digraph G {
+ graph [ dpi = 150 ]; 
+ rankdir="LR";
+  byte -> short;
+  short -> int;
+  int -> long;
+  char -> int;
+  int -> double;
+  float -> double;
+  int -> float [style=dashed];
+  long -> float [style=dashed];
+  long -> double [style=dashed];
+}
+-----
+
+== Явное приведение типов
+
+[source,java]
+----
+double x = 9.997F; //float в double неявно
+int nx = (int) x; //9
+nx = (int) Math.round(x); //10
+----
+
+== Тип char
+
+* 16 bit
+* code unit in the UTF-16 encoding
+* Не всегда целый символ (хотя почти всегда)!
+* Осторожней с Unicode, используйте `String`
+
+== Демо: Литералы
+
+* `'ы'`
+* `'\u03C0'` (греческая π)
+* `'\''` (escaped single quote)
+* Ловушка Unicode Escape: `// Look inside c:\users`
+
+== Escape sequences
+
+[cols="20a,40a,20a"] 
+|===
+|Escape sequence | Name | Unicode Value
+|`\b`| Backspace |\u0008
+|`\t`| Tab |\u0009
+|`\n`| Linefeed |\u000a
+|`\r`| Carriage return| \u000d
+|`\"`| Double quote| \u0022
+|`\'`| Single quote| \u0027
+|`\\`| Backslash| \u005c
+|===
+
+== Тип boolean
+
+* `true` и `false`
+* В отличие от C и многих других языков, целые числа не сводятся автоматически к `boolean`
+* Избегаем ошибок вида `if (x = 0) {...`
+
+== Определение переменных и их область видимости
+
+[source,java]
+----
+// декларация
+double salary;
+int vacationDays;
+long earthPopulation;
+boolean done;
+
+// не очень приветствуется
+int i, j;
+
+// технически можно, но . . .
+int суммаНДФЛ;
+----
+
+== Инициализация переменных
+
+[source,java]
+----
+int vacationDays;
+System.out.println(vacationDays); //COMPILATION ERROR
+  // variable not initialized
+----
+
+Возможные способы инициализации:
+[source,java]
+----
+int vacationDays;
+vacationDays = 12;
+----
+
+[source,java]
+----
+int vacationDays = 12;
+----
+
+== Ключевое слово final (константы)
+
+* `final` используется в двух смыслах:
+** запрещает изменять значение
+** запрещает переопределять методы/классы
+
+[source,java]
+----
+final int a;
+...
+a = 42; // инициализация
+
+...
+a = 43; // compilation error: 
+  // variable a might already have been initialized
+
+----
+
+== Область видимости
+
+* Место определения: класс, метод, блок
+* Нет ничего за пределами класса ("глобальных" переменных)!
+
+[source,java]
+----
+int n;
+. . .
+{
+  int k;
+  int n; // Error--can't redefine n in inner block
+  . . .
+} // k is only defined up to here
+----
+
+== Вывод типов (type inference) при создании переменных (Java 11)
+
+[source,java]
+----
+var i = 1; // i is of int type
+----
+
+== Вывод типов
+
+[source,java]
+----
+//BEFORE JAVA 10
+URL codefx = new URL("http://codefx.org");
+URLConnection connection = codefx.openConnection();
+Reader reader = new BufferedReader(
+    new InputStreamReader(connection.getInputStream()));
+----
+
+[source,java]
+----
+//AFTER JAVA 10
+var codefx = new URL("http://codefx.org");
+var connection = codefx.openConnection();
+var reader = new BufferedReader(
+    new InputStreamReader(connection.getInputStream()));
+----
+
+//https://blog.codefx.org/java/java-10-var-type-inference/
+
+== Арифметические операторы
+
+* Арифметические: `+`, `-`, `*`, `/`, `%`
+* Деление работает как целочисленное, если оба аргумента целочисленные
+* Унарные `+` и `-`.
+
+== Сдвиги
+
+* `5 << 1 == 10`
+* `5 >> 1 == 2`
+* `-5 << 1 == -10`
+* `-5 >> 1 == -3` старший (знаковый) бит сохраняется
+* `-5 >>> 1 == 2147483645` старший (знаковый) бит заполняется нулём
+
+== Не перемудрите со сдвигами!!
+
+`5 >> 32 == 5`
+
+== Побитовые операторы
+
+* `&`, `|`, `^`, `~`
+
+== Операторы сравнения
+
+* `<` `+<=+` `>` `>=` `instanceof`
+* `==` `!=`
+
+== Булевские операторы
+
+* Без короткого замыкания: `&`, `|`, `^`, `!`  (вместо тильды -- восклицательный знак!)
+
+* С коротким замыканием `&&`, `||`.
+
+
+[source,java]
+----
+x != 0 && 1 / x > x + y // no division by 0
+----
+
+
+== Оператор присвоения
+
+[source,java]
+----
+int x;
+System.out.println(x = 42); //печатает 42
+----
+
+Пример использования:
+
+[source,java]
+----
+while ((n = readValue()) != null)
+  ... //делаем что-то с n
+----
+== Пре/пост инкремент/декремент, присвоение с изменением
+
+* `a{plus}{plus}`, `{plus}{plus}a`
+* `a--`, `--a`
+* `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `+<<=+`, `>>=`, `>>>=`
+* ВНИМАНИЕ: может показаться, что эти операции атомарны. Но это не так.
+
+
+== Тернарный оператор
+
+[source,java]
+----
+x < y ? x : y
+----
+
+== Операторы в порядке убывания приоритета
+
+[cols="80a,20a"] 
+|===
+| *Operators* | *Associativity*
+| `[]` `.` `()` (method call) | Left to right
+| `!` `~` `{plus}{plus}` `--` `+` (unary) `-` (unary) `()` (cast) `new` | Right to left
+| `*` `/` `%` | Left to right
+| `+` `-` | Left to right
+| `<<` `>>` `>>>` | Left to right
+| `<` `+<=+` `>` `>=` `instanceof` | Left to right
+| `==` `!=` | Left to right
+|===
+
+
+== Операторы в порядке убывания приоритета (продолжение)
+
+[cols="80a,20a"] 
+|===
+| *Operators* | *Associativity*
+| `&` | Left to right
+| `^` | Left to right
+| `\|` | Left to right
+| `&&` | Left to right
+| `\|\|` | Left to right
+|===
+[source, java]
+----
+//У конъюнкции выше приоритет, чем у дизъюнкции, поэтому
+a || b && c
+// есть по сути
+a || (b && c)
+----
+
+
+== Операторы в порядке убывания приоритета (продолжение)
+
+[cols="80a,20a"] 
+|===
+| *Operators* | *Associativity*
+| `? :` | Right to left
+| `=` `+=` `-=` `*=` `/=` `%=` `&=` `\|=` `^=` `+<<=+` `>>=` `>>>=` | Right to left
+|===
+
+[source,java]
+----
+//Since += associates right to left, the expression
+a += b += c
+//means
+a += (b += c)
+//That is, the value of b += c 
+// (which is the value of b after the addition) 
+//is added to a.
+----
+
+== А как же оператор "запятая"?
+
+* А его нет!
+* Можно несколько statement-ов перечислить через запятую в блоке `for(...)`, или в блоке `try(...)`
+
+== Конструкции if, if/else и тернарный оператор
+[source,java]
+----
+if (yourSales >= target)
+  performance = "Satisfactory";
+----
+
+== if + block
+[source,java]
+----
+if (yourSales >= target)
+{
+  performance = "Satisfactory";
+  bonus = 100;
+}
+----
+
+== if + block + else
+[source,java]
+----
+if (yourSales >= target) {
+  performance = "Satisfactory";
+  bonus = 100 + 0.01 * (yourSales - target);
+} else {
+  performance = "Unsatisfactory";
+  bonus = 0;
+}
+----
+
+== else группируется с ближайшим if
+
+[source,java]
+----
+// Лучше добавить фигурные скобки!!
+if (x <= 0) 
+  if (x == 0) 
+    sign = 0; 
+  else 
+    sign = -1;
+----
+
+== Цепочки else-if
+
+[source,java]
+----
+if (yourSales >= 2 * target) {
+  performance = "Excellent";
+  bonus = 1000;
+} else if (yourSales >= 1.5 * target) {
+  performance = "Fine";
+  bonus = 500;
+} else if (yourSales >= target) {
+performance = "Satisfactory";
+  bonus = 100;
+} else {
+  System.out.println("You're fired");
+}
+----
+
+== switch
+
+Та же ерунда, что и в C/C++:
+
+[source,java]
+----
+switch (choice)
+{
+  case 1:
+    . . .
+    break;
+  case 2:
+    . . .
+    break;
+  default:
+    . . .
+    break;
+}
+----
+
+== switch-case особенности:
+
+* Не забываем `break`-и (утилиты типа Checkstyle напоминают), иначе выполняем всё до конца `switch`, как в C!
+* switch бывает: по целому, по `char`-у, по `String`-у (Java 7+) и по `enum`-у.
+
+== Массивы
+
+* Из любого типа можно построить массив данного типа.
+* Длина массива может быть определена в runtime, но после создания не может быть изменена.
+* Массив аллоцируется в куче и передаётся по ссылке.
+* Массивы проверяют тип данных (`ArrayStoreException`) и границы (`ArrayIndexOutOfBoundsException`) в run-time.
+* Правда жизни: скорее всего, вы не будете использовать массивы в современном коде.
+
+== Декларирование и инициализация массива
+
+* Два варианта:
+** `int[] a` 
+**  `int a[]` -- не делайте так
+
+* Инициализация:
+** `int[] a = new int[100];`
+** `int[] a = {1, 3, 5};`
+** анонимный массив: `foo(new int[] {2, 4, 6});`
+
+== Массивы передаются по ссылке
+
+[source,java]
+----
+int[] luckyNumbers = smallPrimes;
+luckyNumbers[5] = 12; // теперь smallPrimes[5] тоже 12
+
+luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
+//теперь luckyNumbers это отдельный массив
+//и он стал в два раза длиннее
+----
+
+
+
+== Массивы ковариантны
+
+[source,java]
+----
+ String[] a = new String[1];
+ //компилируется. ведь строка это объект,
+ //и потому почему б не считать массив строк массивом объектов?
+ Object[] b = a;
+ //runtime ArrayStoreException
+ b[0] = 5;
+----
+
+(Всё это страшно не совместимо с дженериками и коллекциями, которые пытаются ловить ошибки типов во время компиляции, но об этом речь впереди.)
+
+== "Многомерные" массивы
+
+На самом деле их нет, но есть массивы массивов
+
+[source,java]
+----
+int[][] magicSquare =
+{
+ {16, 3, 2, 13},
+ {5, 10, 11, 8},
+ {9, 6, 7, 12},
+ {4, 15, 14, 1}
+};
+
+//magicSquare[1][2] == 11
+----
+
+== Треугольные матрицы
+
+[source,java]
+----
+int[][] odds = new int[NMAX + 1][];
+for (int n = 0; n <= NMAX; n++)
+  odds[n] = new int[n + 1];
+
+for (int n = 0; n < odds.length; n++)
+  for (int k = 0; k < odds[n].length; k++) {
+    // compute lotteryOdds
+    . . .
+    odds[n][k] = lotteryOdds;
+  }
+----
+== Циклы while и do/while
+
+То же, что и в C
+[source, java]
+----
+while (balance < goal) {
+  balance += payment;
+  double interest = balance * interestRate / 100;
+  balance += interest;
+  years++;
+}
+System.out.println(years + " years.");
+----
+
+== То же, да не то же!
+
+[source, java]
+----
+final boolean flag = false;
+. . .
+while (flag) {
+   . . . //не скомпилируется, unreachable code
+}
+----
+
+==  do-while: цикл с постусловием
+[source, java]
+----
+do {
+  balance += payment;
+  double interest = balance * interestRate / 100;
+  balance += interest;
+  year++;
+  // print current balance
+  . . .
+  // ask if ready to retire and get input
+  . . .
+} while (input.equals("N"));
+----
+
+Правда жизни: они никогда не нужны.
+
+== Циклы for
+
+Снова всё то же, что и в C (по сути, сокращение цикла `while`):
+
+[source,java]
+----
+for (int i = 1; i <= 10; i++)
+  System.out.println(i);
+----
+
+И даже, хотя оператора "запятая" нет, можно так (но не нужно):
+[source,java]
+----
+for (int i = 1; i <= 10; i++, j++)
+  System.out.println(i);
+----
+
+== Видимость переменной цикла
+
+[source,java]
+----
+for (int i = 1; i <= 10; i++)
+{
+. . .
+}
+// i no longer defined here
+----
+
+[source,java]
+----
+int i;
+for (i = 1; i <= 10; i++)
+{
+. . .
+}
+// i is still defined here
+----
+
+== Использование break и continue
+
+Прерывание цикла целиком:
+
+[source,java]
+----
+while (years <= 100) {
+  balance += payment;
+  double interest = balance * interestRate / 100;
+  balance += interest;
+  if (balance >= goal) break;
+  years++;
+}
+----
+
+Переход к следующему циклу:
+[source,java]
+----
+Scanner in = new Scanner(System.in);
+while (sum < goal) {
+  System.out.print("Enter a number: ");
+  n = in.nextInt();
+  if (n < 0) continue;
+  sum += n; // not executed if n < 0
+}
+----
+
+== У нас нет goto, но есть метки для break и continue!
+
+[source,java]
+----
+Scanner in = new Scanner(System.in);
+int n;
+// label is here!
+read_data: while (. . .) {
+  . . .
+  for (. . .) {
+    System.out.print("Enter a number >= 0: ");
+    n = in.nextInt();
+    if (n < 0) 
+      break read_data;
+      // break out of read_data loop
+    . . .
+   }
+}
+if (n < 0) {
+  // deal with bad situation
+} else {
+  // carry out normal processing
+}
+----
