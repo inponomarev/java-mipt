@@ -10,6 +10,9 @@ include::_doc_general_attributes.adoc[]
 :toc: left
 
 == Лекция 1. Экосистема Java
+
+телеграм-чат, GitLab / напоминалка про гит
+
 .	История платформы Java, https://www.tiobe.com/tiobe-index/[распространенность языка Java], современные применения платформы и языка Java (desktop, server-side backend, mobile).
 .	JVM и предоставляемые ей сервисы: 
 ..	Byte code, интерпретация и JIT-компиляция.
@@ -148,6 +151,9 @@ image::images/thethreewords.jpg[width=340]
 .	DateTime API
 ..	`LocalDate`, `LocalTime`, `LocalDateTime`, `Instant`, `Period`, `Duration`, `TemporalUnit`
 ..	Текстовое представление даты и времени
+
+
+# добавить про взаимодействие с базой данных
 
 ==  Лекция 5. Generics (параметризованные классы), Lambdas & Method References
 ===	Generics

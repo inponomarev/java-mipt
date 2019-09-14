@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>slides</module>
+        <module>slides01</module>
         <module>plan</module>
     </modules>
 

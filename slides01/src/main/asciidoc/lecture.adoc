@@ -1,0 +1,425 @@
+= Core Java: Курс лекций
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+[%notitle]
+== Кто я такой
+
+[cols="30a,70a"]
+|===
+.^|image::me.jpg[]
+.^|
+* Tech Lead at KURS
+* ERP systems & Java background
+* Speaker at JPoint, Devoops, Heisenbug, JUG.MSK, PermDevDay, DevopsForum, Стачка etc.
+* Twitter @inponomarev
+|===
+
+== Как будет проходить курс?
+
+* Лекции
+* Семинарские занятия
+* Домашние работы
+* Экзамен (?)
+* Баллы за сдачу ДЗ определяют финальную оценку
+
+== Полезные ссылки
+
+* https://github.com/inponomarev/java-mipt
+* (регистрируйтесь в гитхабе)
+* Telegram MIPT. Java-2019
+* http://inponomarev.ru
+
+== Полезные книги
+
+* *Cay S. Horstmann.* Core Java vol 1 & 2
+* *Raoul-Gabriel Urma, Mario Fusco, Alan Mycroft.* Modern Java in Action
+
+[%notitle]
+== What is Java?
+image::indonesia.png[canvas, size=cover]
+
+[%notitle]
+== Ещё про острова
+image::kotlin.png[canvas, size=cover]
+
+== TIOBE Index
+
+[%step]
+* number of search engine results for queries containing the name of the language
+* covers searches in Google, Google Blogs, MSN, Yahoo!, Baidu, Wikipedia and YouTube
+* reflects the number of skilled engineers, courses and jobs worldwide
+
+
+[%notitle]
+== TIOBE
+
+image::tiobe.png[canvas, size=cover]
+
+
+== RedMonk Index
+
+* GitHub & StackOverflow
+
+[%notitle]
+== RedMonk
+
+image::redmonk2019.png[canvas, size=cover]
+
+== 24 года Джавы
+
+[source]
+----
+JDK 1.0 (January 23, 1996)
+JDK 1.1 (February 19, 1997)
+J2SE 1.2 (December 8, 1998)
+J2SE 1.3 (May 8, 2000)
+J2SE 1.4 (February 6, 2002)
+J2SE 5.0 (September 30, 2004)
+Java SE 6 (December 11, 2006)
+--- Sun acquisition by Oracle
+Java SE 7 (July 28, 2011)
+Java SE 8 (March 18, 2014)
+Java SE 9 (September 21, 2017)
+Java SE 10 (March 20, 2018)
+Java SE 11 (September 25, 2018)
+Java SE 12 (March 19, 2019)
+----
+
+== Истоки
+
+[cols="30a,70a"]
+|===
+.^|
+.James Gosling
+image::gosling.jpg[]
+.^|
+* Язык для приставок кабельного телевидения
+* Вдохновлён C++ 
+* *WORA*
+* Было и другое, но WORA -- самое главное
+|===
+
+== Вопрос
+
+Как бы вы реализовали WORA?
+
+* Endianness...
+* Размер регистров...
+
+== Продолжение
+
+* Апплеты
+* Built-in security
+* Но Security сделать оказалось непросто 
+* Апплеты не пошли (победил JavaScript)
+
+== Сегодняшний день
+
+* Desktop
+* Server-side (backend)
+* Mobile Devices (Android) -- отдельная история (see Google vs. Oracle case)
+
+== Безопасность в design-time и в run-time
+
+image::rtvscompiletime.png[]
+
+== Виртуальная машина
+
+WORA + Две взаимосвязанные задачи:
+
+* Безопасность
+* Исключение фатальных сбоев на сервере 
+
+[.fragment]
+Генерируем байт-код, верифицируем и исполняем его в безопасной среде
+
+== Runtime-ошибки не катастрофичны
+
+* NullPointerException
+* ArrayIndexOutOfBoundsException
+
+
+== Виртуальные машины Java
+
+Reference implementation: Oracle HotSpot
+
+https://en.wikipedia.org/wiki/List_of_Java_virtual_machines
+
+~ 20 реализаций
+
+== Сервисы виртуальной машины и платформы
+
+[%step]
+* Byte code, интерпретация и JIT-компиляция.
+* Garbage Collection
+* MultiThreading & Memory Model
+* Загрузка и исполнение кода в runtime
+* Рефлексия
+* Стандартная библиотека
+
+== Верификация байт-кода
+
+https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.10
+
+* There are no operand stack overflows or underflows.
+
+* All local variable uses and stores are valid.
+
+* The arguments to all the Java Virtual Machine instructions are of valid types.
+
+== Интерпретация и JIT-компиляция
+
+image::java-bytecode-exec.jpg[]
+
+//https://advancedweb.hu/2016/05/27/jvm_jit_optimization_techniques/
+
+== Оптимизация "на лету"
+
+image::codecache.png[{image-50-width}]
+
+
+== Garbage Collection
+
+[%step]
+* Разработчику не нужно заботиться о высвобождении памяти
+* Ссылкок на объект нет? -- garbage collection
+* Достоинства:
+** Меньше кода 
+** Не бывает некорректных ссылок (на разрушенный объект)
+** Меньше утечек памяти
+* Недостатки:
+** Не контролируем время работы GC
+** STW-паузы (бывает, в неподходящий момент)
+
+== Как может быть устроен GC?
+
+* Reference counting -- циклы?
+
+* Mark & sweep
+
+* Гипотеза поколений
+
+== Гипотеза поколений
+
+image::generations.png[{image-50-width}]
+
+== Типы коллекторов
+
+* Serial (for single-threaded, client environments) 
+* Parallel (default)
+* CMS (Concurrent mark and Sweep -- shorter pauses, share processor resources)
+* G1 (Garbage First -- big heaps)
+* Shenandoah (submillisecond pauses)
+* Epsilon (no GC)
+
+
+== Latency vs. Throughput tradeoff
+
+image::seesaw.jpg[{image-40-width}]
+
+== Модель памяти
+
+* Memory Model: часть спецификации VM: модель того, как работает хранилище данных
+
+* Отвечает на вопрос: "какие значения может прочитать конкретный read в программе?"
+
+== Вопрос
+
+[source,java]
+----
+int i = 2;
+i = ++i + ++i + ++i;
+----
+
+[.fragment]
+Java -- 12, C -- undefined behaviour )https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
+
+== Access Atomicity
+
+image::access-atomicity.png[]
+//https://shipilev.net/talks/narnia-2555-jmm-pragmatics-ru.pdf
+
+
+== Многопоточность 
+
+* Возможность запуска параллельных потоков выполнения встроена в язык с первой версии (`Thread`, `Runnable` etc)
+
+* В версии 1.5 существенные дополнения (executor, semaphore, mutex, barrier, latches, concurrent collections,  blocking queues)
+
+// https://howtodoinjava.com/java/multi-threading/java-multi-threading-evolution-and-topics/
+
+== Загрузка и исполнение кода в runtime
+
+* Скомпилированный байт-код класса может быть доставлен на любую систему в runtime (чаще всего "подкладыванием файла" на файловую систему).
+
+* Пересборка/линковка не требуется.
+
+== Сериализация объектов, встроенная в язык
+
+* Идея, в начале казавшаяся очень хорошей!
+
+== Рефлексия
+
+* Исследование информации о классах, полях, методах и т. д. во время выполнения 
+
+* Чтение/модификация полей (в том числе private!) и динамический вызов методов (в том числе private!)
+
+* Proxy и AOP
+
+== Стандартная библиотека
+
+image::lib-evolution.png[{image-50-width}]
+
+== Стандартная библиотека
+
+[%step]
+* Независимая от системы часть 
+** Структуры данных
+** Математика
+* Зависимая от системы часть
+** Дата и время
+** Доступ к файловой системе
+** Доступ к сети
+** Пользовательский интерфейс
+
+== Обратная совместимость
+
+[%step]
+* Любой, как угодно давно скомпилированный .jar-файл может быть запущен на любой современной JVM
+* Дар или проклятие?
+
+[%notitle]
+== Критика языка и платформы Джава
+
+image::javasirs.jpg[{image-40-width}]
+
+== Развитие языка, начиная с восьмой версии
+
+[%step]
+* lambdas & functional programming, 
+* modules, 
+* compact strings, 
+* type inference.
+
+== Битва за новые возможности
+
+* Алексей Шипилёв — The Lord of the Strings: Two Scours
+* Тагир Валеев — Pattern matching и его воображаемые друзья
+
+== Когда ждать Pattern Matching?
+
+.Т. Валеев, "Pattern Matching и его воображаемые друзья" 
+image::whenmatching.png[]
+
+[%notitle]
+== Языки
+
+image::pirates.png[canvas, size=cover]
+
+== Разнообразие языков для джава-машины
+
+* Есть виртуальная машина -- можно компилировать из любого языка!
+
+* https://en.wikipedia.org/wiki/List_of_JVM_languages
+
+* 20-30 языков
+
+** Специально созданные: Groovy, Scala, Kotlin...
+** Реимплементация для JVM: JRuby, Nashorn/Graal.js... 
+
+* https://jaxenter.com/wp-content/uploads/2017/03/Pirates-of-the-JVM-JAXenter-768x4245.png
+
+== Важнейшие элементы экосистемы
+
+* Бибилиотеки и фреймворки (в т. ч. для тестирования)
+* Среды разработки
+* Системы сборки
+* CI
+
+== JUnit
+
+модульное тестирование и автоматизация тестов
+
+image::junit5.jpg[]
+
+== JMH
+
+microbenchmarking 
+
+== Spring Framework
+
+
+DI container and application framework, 
+
+image::springframework.png[]
+
+== Project Lombok
+
+уменьшение boilerplate-кода
+
+== Selenium
+
+
+автоматизация браузера
+
+image::selenium.png[]
+
+== Среды разработки
+
+* IDEA (proprietary, JetBrains)
+* Eclipse (Eclipse Foundation)
+* NetBeans (ASF / Oracle)
+
+== Системы сборки
+
+* Maven -- XML-конфигурация, Maven project layout, Maven Central 
+* Gradle -- Groovy/Kotlin DSL
+
+== Jenkins CI
+
+image::jenkins-logo-title.png[]
+
+== Java community
+
+* JUGs (Москва, Санкт-Петербург, Новосибирск)
+* Conferences (Joker, JPoint)
+* Приходите на московский JUG!
+
+image::jugmsk.jpg[]
+
+== Oracle certification exams
+
+* OCA/OCP
+
+== Hello, world!
+
+Cборка и запуск jar-файла
