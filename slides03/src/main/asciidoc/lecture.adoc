@@ -1,0 +1,851 @@
+= Core Java: Курс лекций. Лекция 3
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+[%notitle]
+== Три главных слова
+image::thethreewords.jpg[{image-80-width}]
+
+== Всё есть класс
+
+* Любой код -- метод некоторого класса
+* Любые данные хранятся в полях некоторого класса
+* Любые типы данных (исключая примитивные, но включая массивы) -- наследники класса `Object`
+
+== Классы помещаются в пакеты
+
+* `edu.phystech.foo`
+* `edu.phystech.foo.bar`
+* Каждый .java-файл начинается с объявления пакета: +
+`package edu.phystech.hello;`
+* В корне пакета может быть `package-info.java`, не содержащий классы, а только JavaDoc над ключевым словом `package`.
+
+* <Имя пакета>.<имя класса> задаёт полный идентификатор любого класса, доступного в исходном коде или через библиотеки (например, `edu.phystech.hello.App`)
+* Вложенные пакеты -- это _разные_ пакеты с точки зрения Java (package-private классы одного пакета не будут видны в другом)
+
+== Структура класса: переменные, конструкторы и методы
+
+[source, java]
+----
+class ClassName
+{
+   field1
+   field2
+   . . .
+   constructor1
+   constructor2
+   . . .
+   method1
+   method2
+   . . .
+}
+----
+
+== Определяем класс
+
+[source,java]
+----
+package org.megacompany.staff;
+class Employee {
+  // instance fields
+  private String name;
+  private double salary;
+  private LocalDate hireDay;
+  // constructor
+  public Employee(String n, double s, int year, int month, int day) {
+    name = n;
+    salary = s;
+    hireDay = LocalDate.of(year, month, day);
+  }
+  // a method
+  public String getName() {
+    return name;
+  }
+  // more methods
+  . . .
+}
+----
+
+== Создаём и используем экземпляры класса
+
+[source,java]
+----
+//При необходимости, импортируем
+import org.megacompany.staff.Employee;
+
+//где-то в теле метода
+. . .
+Employee hacker = new Employee("Harry Hacker", 50000, 1989, 10, 1);
+Employee tester = new Employee("Tommy Tester", 40000, 1990, 3, 15);
+
+hacker.getName(); //returns "Harry Hacker"
+----
+
+== Про инициализацию полей
+
+* В отличие от локальных переменных, поля можно не инициализировать явно.
+
+* В этом случае примитивные типы получают значение по умолчанию (`0`, `false`), а поля со ссылками -- значение `null`.
+
+* Проинициализировать поле по месту его определения не возбраняется: +
+`int a = 42` или даже `int a = getValue()`. 
+
+== Поле this
+
+[source,java]
+----
+{ ...
+
+  int value;
+  
+  setValue(int value) {
+    //поле перекрыто аргументом
+    this.value = value;
+  }
+
+  registerMe(Registrator r) {
+    //нужна ссылка на себя
+    r.register(this); 
+  }
+}
+
+----
+
+
+== Объект передаётся по ссылке!
+
+[source,java]
+----
+public class Employee {
+    int age = 18;
+
+    public static void main(String[] args) {
+        Employee e = new Employee();
+        int a = 1;
+        foo(e, a);
+        System.out.printf("%d - %d", e.age, a);
+        //prints 42 - 1
+    }
+
+    static void foo(Employee e, int a) {
+        //e passed by reference, a passed by value
+        e.age = 42;
+        a = 5;
+    }
+}
+----
+
+== Рождение, жизнь и смерть объекта
+
+* Создание: `new Employee(..)`
+* Присвоение ссылки: `Employee hacker = ...`
+* Потеря ссылки
+* Сборка мусора
+
+
+== Области видимости
+
+[cols="40a,60a"]
+|===
+| *Область видимости* | *Кому доступно*
+| `private`       | только классу
+| package-private | только пакету (по умолчанию)
+| `protected`     | классу, пакету, и классам-наследникам
+| `public`        | всем
+|===
+ 
+== Файлы с исходным кодом и классы
+
+* В одном .java файле может быть один публичный класс, названный так же, как и .java-файл (`public class Foo` в файле `Foo.java`).
+* Может быть сколько угодно package-private-классов, но это скорее плохая практика.
+
+== Наследование
+
+[plantuml, employeemanager, png]
+----
+@startuml
+skinparam dpi 200 
+Employee <|- Manager
+@enduml
+----
+
+[source,java]
+----
+public class Manager extends Employee {
+  private double bonus;
+  . . .
+  public void setBonus(double bonus) {
+    this.bonus = bonus;
+  }
+}
+----
+
+== Наследование
+
+[source,java]
+----
+// construct a Manager object
+Manager boss = new Manager("Carl Cracker", 80000, 1987, 12, 15);
+boss.setBonus(5000);
+Employee[] staff = new Employee[3];
+staff[0] = boss;
+staff[1] = new Employee("Harry Hacker", 50000, 1989, 10, 1);
+staff[2] = new Employee("Tommy Tester", 40000, 1990, 3, 15);
+
+for (Employee e : staff)
+  System.out.println("name=" + e.getName() + ",salary=" + e.getSalary());
+----
+
+== Наследование: единственный родительский класс
+
+[plantuml, columnclasses, png]
+----
+@startuml
+skinparam dpi 200 
+Employee <|-- Manager
+Employee <|-- Secretary
+Employee <|-- Programmer
+Manager  <|-- Executive
+@enduml
+----
+
+== Тип ссылки и тип объекта
+
+[plantuml, employeemanagerex, png]
+----
+@startuml
+skinparam dpi 200 
+Employee <|- Manager 
+Manager <|- Executive
+@enduml
+----
+
+[source,java]
+----
+  Executive ex = new Executive (...);
+  //для ex доступны члены, объявленные в Manager, Employee и Executive
+  Manager m = ex;
+  //для m доступны члены, объявленные в Employee и Manager
+  Employee e = e;
+  //для e доступны члены, объявленные только в Employee
+----
+
+== Eщё раз про ковариантность массивов
+
+[source,java]
+----
+Manager[] managers = new Manager[10];
+Employee[] staff = managers;
+staff[0] = new Employee("Harry Hacker", . . .); //ArrayStoreException.
+----
+
+Правда жизни: массивы -- низкоуровневая возможность языка и в промышленном коде не используются
+
+== Переопределение (overriding) методов
+
+[source,java]
+----
+class Employee {
+  private int salary;
+  public int getSalary() {
+    return salary;
+  }
+  public int getTotalPayout(){
+    return getSalary();
+  }
+}
+
+class Manager extends Employee {
+  private int bonus;
+  @Override //не обязательная, но крайне желательная штука
+  public int getTotalPayout() {
+    return getSalary() + bonus;
+  }
+}
+----
+
+== Вариант
+
+[source,java]
+----
+class Manager extends Employee {
+  private int bonus;
+  @Override 
+  public int getTotalPayout() {
+    return super.getTotalPayout() + bonus;
+  }
+}
+----
+
+== final-классы и методы
+
+* Ключевое слово `final`:
+** на уровне класса запрещает наследование класса
+** на уровне метода запрещает наследование метода 
+* Зачем это нужно?
+** Паттерн "Шаблонный метод"
+** J. Bloch: 'Design and document for inheritance, or else prohibit it'
+
+
+== Перегрузка (overloading) методов
+
+Сигнатура метода определяется его названием и типами аргументов:
+[source,java]
+----
+//org.junit.jupiter.api.Assertions
+void assertEquals(short expected, short actual)
+void assertEquals(short expected, short actual, String message)
+void assertEquals(short expected, short actual, Supplier<String> messageSupplier)
+void assertEquals(byte expected, byte actual)
+void assertEquals(byte expected, byte actual, String message)
+void assertEquals(byte expected, byte actual, Supplier<String> messageSupplier)
+void assertEquals(int expected, int actual)
+void assertEquals(int expected, int actual, String message)
+void assertEquals(int expected, int actual, Supplier<String> messageSupplier)
+. . .
+----
+
+== Статические поля и методы
+
+Данные, общие для всех экземпляров класса:
+[source,java]
+----
+class Employee {
+  /*WARNING: данный пример
+  не работает при многопоточном исполнении*/
+  private static int nextId = 1;
+  private int id;
+  . . .
+  public void setId() {
+    id = nextId;
+    nextId++;
+  }
+}
+----
+
+
+== Статические константы
+
+Выделяем память один раз
+[source,java]
+----
+public class Math {
+   . . .
+   public static final double PI = 3.14159265358979323846;
+   . . .
+}
+
+
+. . .
+
+Math.PI // возвращает 3.14...
+----
+
+== Статические методы
+
+Статическим методам доступны только статические переменные и вызовы других статических методов
+[source,java]
+----
+class Employee {
+  
+  private static int nextId = 1;
+  private int id;
+  . . .
+  public static int getNextId() {
+    return nextId; // returns static field
+  }
+}
+
+. . .
+Employee.nextId() //имя класса вместо объекта
+  
+----
+
+== psvm
+
+Теперь мы понимаем: метод main доступен всем и не требует инстанцирования объекта:
+[source,java]
+----
+public class App {
+  public static void main(String... args) {
+     System.out.println("Hello, world!");
+  }
+}
+----
+
+== Конструкторы: ДЕМО
+
+* Конструктор _обязан_ быть.
+
+* Если мы 1) явно не написали конструктор, 2) родительский класс имеет конструктор без аргументов -- то неявным образом у класса появляется публичный конструктор без аргументов по умолчанию.
+
+* Если мы явно написали хотя бы один конструктор,  конструктор по умолчанию _исчезает_.
+
+* Если в родительском классе нет конструктора без аргументов, конструктор по умолчанию _не создаётся_.
+
+* Конструктор _не обязан быть публичным_.
+
+== Переопределение конструкторов при наследовании классов: ДЕМО
+
+* Если у суперкласса нет конструктора без аргументов, первым вызовом должен быть `super(...)`. 
+
+== Перегрузка конструкторов: ДЕМО
+
+* Вызов `this(...)`
+
+
+== Секции инициализации
+[source,java]
+----
+class Employee {
+  private static int nextId;
+  private int id;
+  
+  // static initialization block
+  static {
+    nextId = ThreadLocalRandom.current().nextInt(10000);
+  }
+
+  // object initialization block
+  {
+    id = nextId;
+    nextId++;
+  }
+}
+----
+
+== А как же деструктор?
+
+* А его нет!
+* Даже не пытайтесь переопределять `finalize`
+* Почему метод `finalize` оказался плохой идеей
+
+== Абстрактные классы и методы
+
+[plantuml, abstractsample, png]
+----
+@startuml
+skinparam dpi 120 
+abstract class Person
+
+Person <|-- Student
+Person <|-- Employee
+@enduml
+----
+
+[source,java]
+----
+public abstract class Person
+{
+  public Person(String name) {
+    this.name = name;
+  }
+  public String getName() {
+    return name;
+  }
+  public abstract String getDescription();
+}
+----
+
+== Реализация абстрактного класса
+[source,java]
+----
+public class Student extends Person
+{
+  private String major;
+  public Student(String name, String major) {
+    super(name);
+    this.major = major;
+  }
+  @Override
+  public String getDescription() {
+    return "a student majoring in " + major;
+  }
+}
+----
+
+== Правила
+
+* Класс, в котором хотя бы один из методов не реализован, должен быть помечен как `abstract`
+* Нереализованные методы в классе возникают двумя способами:
+** явно объявлены как `abstract`
+** унаследованы из абстрактных классов или интерфейсов и не переопределены.
+* Абстрактные классы нельзя инстанцировать через new.
+** `new Person("John Doe");` -- ошибка компиляции: 'Person is abstract, cannot be intantiated'.
+
+
+== Интерфейсы
+
+[source,java]
+----
+//его нельзя инстацировать!
+public interface Prism
+{
+   //это --- final-переменная!
+   double PI = 3.14;
+   
+   //это --- публичные абстрактные методы!
+   double getArea();
+   double getHeight();
+   
+   //этот метод может вызывать другие и читать final-поля
+   default double getVolume() {
+      return getArea() * getHeight();
+   }
+}
+----
+
+== Реализация интерфейса
+
+[source,java]
+----
+puplic class Parallelepiped implements Prism {
+    private double a;
+    private double b;
+    private double h;
+    @Override
+    public double getArea() {
+        return a * b;
+    }
+
+    @Override
+    public double getHeight() {
+        return h;
+    }
+}
+----
+Если какой-то из методов интерфейса не будет переопределён, класс нужно пометить как abstract.
+
+== Чем интерфейсы отличаются от абстрактных классов?
+
+* Нет внутреннего состояния и конструкторов
+* Можно наследоваться (`extends`) только от одного класса, но реализовывать (`implements`) сколько угодно интерфейсов -- _множественное наследование_.
+* Поэтому как абстракция, интерфейс предпочтительнее.
+
+
+== Оператор instanceof
+
+[plantuml, instanceof, png]
+----
+@startuml
+skinparam dpi 150 
+class C1
+class C2
+class C3
+interface I1
+C1 <|-- C2
+I1 <|.. C2
+@enduml
+----
+[source,java]
+----
+C1 c1; C2 c2; C3 c3; I1 i1;
+
+x instanceof A //  false, если x == null
+c1 instanceof С2 // true или false
+I1 instanceof C2 // true или false 
+c2 instanceof C1 // всегда возвращает true
+с3 instanceof C2 // не скомпилируется
+----
+
+== Приведение типов
+
+
+[source,java]
+----
+Person p = . . .;
+if (p instanceof Student) {
+    //если не защитить instanceof, возможен ClassCastException
+    Student s = (Student) p;
+    . . .
+}
+----
+
+== Небольшое отступление про Pattern Matching
+
+Слайд из доклада Т. Валеева "Pattern Matching и его воображаемые друзья"
+
+image::patternmatching.png[]
+
+== В Котлине так
+
+[source,kotlin]
+----
+fun demo(x: Any) {
+    if (x is String) {
+        print(x.length) // x is automatically cast to String
+    }
+}
+----
+
+
+== Вложенные классы
+
+[source, java]
+----
+class Outer { 
+   int field = 42; 
+   class Inner { 
+      public void show() { 
+           //есть доступ к состоянию внешнего класса!
+           System.out.println(field);
+           //печатает 42
+      } 
+   } 
+   void initInner(){
+     //инициализация вложенного класса внутри
+     new Inner();
+   }
+} 
+
+//инициализация вложенного класса извне
+Outer.Inner in = new Outer().new Inner(); 
+----
+
+== Вложенные классы
+
+Каждый экземпляр `Inner` имеет неявную ссылку на `Outer`.
+
+[plantuml, inner, png]
+----
+@startuml
+skinparam dpi 200 
+class Outer
+class Inner
+Outer *-- Inner
+@enduml
+----
+
+== Вложенные классы
+
+[source, java]
+----
+class Outer { 
+   int field = 42; 
+   class Inner { 
+      //поле вложенного класса перекрывает поле внешнего класса 
+      int field = 18;
+      public void show() {
+           System.out.println(field);
+           //печатает 18
+      } 
+   } 
+} 
+----
+
+== Вложенные классы
+
+[source, java]
+----
+class Outer { 
+   int field = 42; 
+   class Inner { 
+      //поле вложенного класса перекрывает поле внешнего класса 
+      int field = 18;
+      public void show() {
+           System.out.println(Outer.this.field);
+           //печатает 42!
+      } 
+   } 
+} 
+----
+
+== Локальные вложенные классы
+
+[source,java]
+----
+class Outer { 
+   void outerMethod() { 
+      //final (или effectively final) тут существенно
+      final int x = 98; 
+      System.out.println("inside outerMethod"); 
+      class Inner { 
+         void innerMethod() { 
+            System.out.println("x = " + x); 
+         } 
+      } 
+      Inner y = new Inner(); 
+      y.innerMethod(); 
+   } 
+}
+----
+
+== Вложенные статические классы
+
+По сути, ничем не отличаются от просто классов:
+
+[source,java]
+----
+class Outer { 
+   private static void outerMethod() { 
+     System.out.println("inside outerMethod"); 
+   } 
+   static class Inner { 
+     public static void main(String[] args) { 
+        System.out.println("inside inner class Method"); 
+        outerMethod(); 
+     } 
+   }
+}
+. . .
+Outer.Inner x = new Outer.Inner();
+// в отличие от не статического: new Outer().new Inner();
+----
+
+== Анонимные классы
+
+[source,java]
+----
+class Demo {
+    void show() {
+        System.out.println("superclass");
+    }
+}
+class Flavor1Demo {
+    public static void main(String[] args){
+        Demo d = new Demo() {
+            void show() {
+                super.show();
+                System.out.println("subclass");
+            }
+        };
+        d.show();
+    }
+}
+----
+
+== Использование анонимных классов
+
+* Чаще всего -- как реализация абстрактных классов и интерфейсов "по месту"
+* Анонимный класс -- вложенный класс, поэтому до появления лямбд и ссылок на методы это был единственный способ организовать коллбэк
+
+[source,java]
+----
+. . . 
+button.onMouseClick(new EventListener(){
+  void onClick(Event e) {
+     //здесь у нас доступ ко всем внешним полям
+     //и effectively final-переменным 
+  }
+});
+
+----
+
+== Object: the Cosmic Superclass
+
+* Любой класс в Java является наследником `Object`
+* Писать `class Employee extends Object` не надо
+* В этом классе определены важные методы
+** `equals` и `hashCode`
+** `toString`
+
+== Контракты equals() и hashCode()
+
+* `boolean equals(Object other)` возвращает `true` т. и т. т., когда внутреннее состояние совпадает
+* `int hashCode()` возвращает целое значение, которое обязано совпадать для объектов с одинаковым внутренним состоянием
+* Реализация на уровне `Object` работает только для совпадающих объектов
+* понятие _одинаковости внутреннего состояния_ должно совпадать для `equals` и `hashCode`.
+* На самом деле это нужно для хеш-таблиц (и, пожалуй, является протекшей абстракцией)
+
+
+== Генерация equals-hashCode
+
+[source,java]
+----
+public class Person {
+    private String name;
+    private int age;
+    @Override
+    public boolean equals(Object o) {
+       // никогда, НИКОГДА не пытайтесь писать эту ерунду сами
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+}
+----
+
+== Или, если у нас Lombok
+
+[source,java]
+----
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
+public class Person {
+    private  int age;
+    private  String name;
+}
+----
+
+
+== Переопределение toString
+
+[source,java]
+----
+public class Person {
+    private String name;
+    private int age;
+    . . .
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+
+
+. . .
+Person person = . . .
+System.out.println(person);
+----
+
+== Или, если у нас Lombok
+
+[source,java]
+----
+import lombok.ToString;
+
+@ToString
+public class Person {
+    private  int age;
+    private  String name;
+}
+----

@@ -1,0 +1,81 @@
+= Core Java: Курс лекций. Лекция 4
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Enumeration Classes
+
+[source,java]
+----
+public enum Size 
+  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
+  
+. . .
+
+Size s = Size.MEDIUM;
+
+for (Size s: Size.values()) . . .
+
+switch (s) {
+  case SMALL: . . .
+  case LARGE: . . .
+}
+----
+
+== Поля, методы и конструкторы для перечислений
+[source,java]
+----
+public enum Size
+{
+   SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
+   private final String abbreviation;
+   private Size(String abbreviation) {
+     this.abbreviation = abbreviation; 
+   }
+   public String getAbbreviation() { 
+     return abbreviation; 
+   }
+}
+
+. . .
+
+Size s = . . .
+s.getAbbreviation(); // вернёт S, M, L или XL
+----
+
+== Базовые принципы проектирования классов
+
+* Минимизируйте область видимости (`private` всё, что только можно)
+
+* Минимизируйте мутабельность (`final` на всём, что только можно)
+
+* Документируйте точки расширения через наследование, или запрещайте  наследование (`final`)
+
+
