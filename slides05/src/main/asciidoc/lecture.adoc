@@ -1,0 +1,519 @@
+= Core Java: Курс лекций. Лекция 5
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Класс String
+
+[source,java]
+----
+String e = ""; // an empty string
+String java = "Java\u2122"; //Java™
+----
+
+== Строка -- иммутабельный объект.
+
+Нужна другая строка? Сооружаем новую:
+
+[source,java]
+----
+String greeting = "Hello!"
+greeting = greeting.substring(0, 3) + "p!"; //Help!
+----
+
+Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!
+
+== Внутреннее представление строк
+
+* До Java 9 -- `char[]`
+* После Java 9 -- `byte[]` и `byte coder`
+* Latin1/UTF-16
+
+== Пул строковых констант
+
+[cols="35a,65a"]
+|====
+.^a|
+
+[source,java]
+----
+String name1 = "John Doe";
+String name2 = "John Doe";
+/* DO NOT DO THIS!!*/
+String name3 
+  = new String("John Doe");
+----
+^.^a|
+[graphviz, "stringpool.png"]
+----
+digraph G {
+  node [shape="rectangle"]
+  graph [ dpi = 180 ];
+  rankdir="LR";
+  
+      subgraph cluster_s2{
+          subgraph cluster_s3 {
+            o1[label="John Doe"; style=filled; fillcolor="#ffffcc"]
+            label="String Constant Pool"
+          }
+        o2[label="John Doe"; style=filled; fillcolor="#ffffcc"]
+        
+        label="Memory Heap"
+      }
+  name1->o1
+  name2->o1
+  name3->o2
+}
+----
+|====
+
+== Сравнение строк
+
+[%step]
+* `if (a == "John Doe")` -- *неправильно*, ошибка новичка.
+* `if (a.equals("John Doe"))` -- плохо, получим NPE, если `a == null`.
+* `if ("John Doe".equals(a))` -- так делают  серьёзные ребята.
+* `if ("John Doe".equalsIgnoreCase(a))` -- сравнение без учёта регистра.
+* `if(str != null && !str.trim().isEmpty())` -- в этой строке что-то есть!
+
+== Конкатенация строк
+
+[source,java]
+----
+String foo = "foo";
+String bar = "bar";
+
+System.out.println(foo + bar); //foobar
+----
+
+Ситуация такова:
+
+* Пользовательской перегрузки операторов в Java не предусмотрено.
+* Оператор `+` для строк перегружен на уровне языка.
+* Оператор `==` для строк не перегружен, хоть его неперегруженная версия для строк и не имеет смысла :-(
+
+== Конкатенация строк: проблема производительности
+
+[source,java]
+----
+//Плохая производительность, не делайте так!
+String result = "";
+for (int i = 0; i < numItems(); i++)
+  result += lineForItem(i);
+return result;
+----
+
+
+== Конкатенация строк: используйте StringBuilder!
+
+[source,java]
+----
+//Заранее можно аллоцировать приблизительное кол-во символов
+StringBuilder b = new StringBuilder(numItems() * LINE_WIDTH);
+//А можно и по умолчанию: new StringBuilder() (16 chars)
+for (int i = 0; i < numItems(); i++)
+  b.append(lineForItem(i));
+return b.toString();
+----
+
+== Длина строки
+
+Длина строки в UTF-16 code units:
+
+[source,java]
+----
+String greeting = "Hello";
+int n = greeting.length(); // is 5.
+----
+
+"Реальная" длина строки в code points:
+[source,java]
+----
+int cpCount = greeting.codePointCount(0, greeting.length());
+----
+
+== Символ на i-й позиции
+
+[source,java]
+----
+
+//работает за время O(1)
+char first = greeting.charAt(0); // first is 'H'
+char last = greeting.charAt(4); // last is 'o'
+----
+
+Если нужны code points:
+
+[source,java]
+----
+int[] codePoints = str.codePoints().toArray();
+----
+
+== Полезные методы 
+
+[source,java]
+----
+int length()
+char charAt(int index)
+int compareTo(String other)
+boolean equals(Object other)
+boolean  equalsIgnoreCase(Object other)
+boolean startWith(String prefix) 
+boolean endsWith(String prefix)
+String toLowerCase() / String toUpperCase()
+String trim()
+String join(CharSequence delimiter, CharSequence... elements)
+----
+
+== Вредные методы 
+
+* `indexOf..` / `lastIndexOf..`
+* `replace..`
+* `split..` 
+
+В комбинации c `substring` и конкатенацией их используют для извлечения данных / преобразования строк.
+
+_Не делайте так. Это путь к бесконечным багам, бесконечной боли и бесконечному стыду. Используйте конечные автоматы или регулярные выражения._
+
+== Регулярные выражения
+
+[source,java]
+String input = "11:59 am";
+Pattern pattern =
+  Pattern.compile("([1-9]|1[0-2])\\s*:\\s*([0-5][0-9])\\s*([ap]m)");
+Matcher matcher = pattern.matcher(input);
+if (matcher.matches()) {
+    String hours = matcher.group(1); //11
+    String minutes = matcher.group(2); //59
+    String period = matcher.group(3); //am
+}
+
+== Регулярные выражения
+
+[%step]
+* Достоинства
+** Проверяют формат строки
+** Гибкие к необязательным/незначащим разделителям, "мусору" и т. п.
+** Группы -- мощнейший инструмент выделения данных из строки
+* Цена, которую мы платим
+** Нужно учиться пользоваться (написаны целые книги)
+** Нужно учиться грамотно пользоваться (есть возможность просадить производетельность)
+** Выглядят уродливо и непонятно
+
+== Конечные автоматы
+
+Как разобрать строку вида?
+
+[source]
+----
+  Название,Товары и услуги
+  ООО "Рога и Копыта","рога, копыта"
+  "OOO ""Берёзка""",веники берёзовые
+----
+
+== Конечный автомат!
+
+[graphviz, "dfa.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  rankdir="LR";
+  START -> QUOTED_BODY [label="quote"];
+  QUOTED_BODY -> QUOTE_READ [label="quote"];
+  QUOTED_BODY -> QUOTED_BODY [label = ""];
+  QUOTE_READ -> QUOTED_BODY [label="quote"];
+  START -> UNQUOTED_BODY;
+  UNQUOTED_BODY -> UNQUOTED_BODY;
+  QUOTE_READ -> START [xlabel="delimiter"]
+  UNQUOTED_BODY -> START [label="delimiter"]
+}
+----
+
+== Реализация
+
+[source,java]
+----
+enum State {START, QUOTED_BODY, QUOTE_READ, UNQUOTED_BODY}
+List<String> parse(String line) {
+    State state = State.START;
+    List<String> result = new ArrayList<>();
+    StringBuilder fieldValue = new StringBuilder();
+    for (char c : line.toCharArray()) {
+        switch (state) {
+            case START: . . .
+            case QUOTED_BODY: . . .
+            case QUOTE_READ: . . .
+            case UNQUOTED_BODY: . . .
+        }
+    }
+    result.add(fieldValue.toString());
+    return result;
+}
+----
+
+[transition="none"]
+== Начали читать поле
+[graphviz, "start.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  rankdir="LR";
+  START [style="filled",color="yellow", fillcolor="yellow"]
+  START -> QUOTED_BODY [label="quote", color="red"];
+  QUOTED_BODY -> QUOTE_READ [label="quote"];
+  QUOTED_BODY -> QUOTED_BODY [label = ""];
+  QUOTE_READ -> QUOTED_BODY [label="quote"];
+  START -> UNQUOTED_BODY [color="red"];
+  UNQUOTED_BODY -> UNQUOTED_BODY;
+  QUOTE_READ -> START [xlabel="delimiter"]
+  UNQUOTED_BODY -> START [label="delimiter"]
+}
+----
+
+
+[source,java]
+----
+case START:
+    fieldValue = new StringBuilder();
+    if (c == '"')
+        state = State.QUOTED_BODY;
+    else {
+        fieldValue.append(c);
+        state = State.UNQUOTED_BODY;
+    }
+    break;
+----
+
+[transition="none"]
+== Закавыченное значение
+[graphviz, "quoted_body.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  rankdir="LR";
+  START -> QUOTED_BODY [label="quote"];
+  QUOTED_BODY [style="filled",color="yellow", fillcolor="yellow"]
+  QUOTED_BODY -> QUOTE_READ [label="quote", color="red"];
+  QUOTED_BODY -> QUOTED_BODY [label = "", color="red"];
+  QUOTE_READ -> QUOTED_BODY [label="quote"];
+  START -> UNQUOTED_BODY;
+  UNQUOTED_BODY -> UNQUOTED_BODY;
+  QUOTE_READ -> START [xlabel="delimiter"]
+  UNQUOTED_BODY -> START [label="delimiter"]
+}
+----
+
+[source,java]
+----
+case QUOTED_BODY:
+    if (c == '"')
+        state = State.QUOTE_READ;
+    else {
+        fieldValue.append(c);
+        state = State.QUOTED_BODY;
+    }
+    break;
+----
+
+[transition="none"]
+== Встретилась кавычка
+[graphviz, "quote_read.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  rankdir="LR";
+  START -> QUOTED_BODY [label="quote"];
+  QUOTED_BODY -> QUOTE_READ [label="quote"];
+  QUOTE_READ [style="filled",color="yellow", fillcolor="yellow"]
+  QUOTED_BODY -> QUOTED_BODY [label = ""];
+  QUOTE_READ -> QUOTED_BODY [label="quote", color="red"];
+  START -> UNQUOTED_BODY;
+  UNQUOTED_BODY -> UNQUOTED_BODY;
+  QUOTE_READ -> START [xlabel="delimiter", color="red"]
+  UNQUOTED_BODY -> START [label="delimiter"]
+}
+----
+
+
+[source,java]
+----
+case QUOTE_READ:
+    if (c == '"') {
+        fieldValue.append(c);
+        state = State.QUOTED_BODY;
+    } else if (c == ',') {
+        result.add(fieldValue.toString());
+        state = State.START;
+    } else { //invalid input format
+        throw new IllegalStateException();
+    } break;
+----
+
+[transition="none"]
+== Незакавыченное значение
+[graphviz, "unquoted_body.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  rankdir="LR";
+  START -> QUOTED_BODY [label="quote"];
+  QUOTED_BODY -> QUOTE_READ [label="quote"];
+  QUOTED_BODY -> QUOTED_BODY [label = ""];
+  QUOTE_READ -> QUOTED_BODY [label="quote"];
+  START -> UNQUOTED_BODY;
+  UNQUOTED_BODY [style="filled",color="yellow", fillcolor="yellow"]
+  UNQUOTED_BODY -> UNQUOTED_BODY [color="red"];
+  QUOTE_READ -> START [xlabel="delimiter"]
+  UNQUOTED_BODY -> START [label="delimiter", color="red"]
+}
+----
+
+[source,java]
+----
+case UNQUOTED_BODY:
+    if (c == ',') {
+        result.add(fieldValue.toString());
+        state = State.START;
+    } else {
+        fieldValue.append(c);
+    }
+    break;
+----
+
+== В завершение
+
+* Математический факт: Каждый ДКА может быть сконвертирован в регулярное выражение, и наоборот.
+* При обработке строк регулярки и ДКА -- наше всё.
+
+== Wrapper Types
+
+Примитивные типы несовместимы с объектами. Поэтому есть Wrapper Classes:
+[cols="50a,50a"]
+|===
+| `byte`, `short`, `int`, `long` | `Byte`, `Short`, `Integer`, `Long`
+|     `char`               | `Character`
+|    `float`, `double`       | `Float`, `Double`
+|     `boolean`            | `Boolean`
+|===
+
+== Кэширование (object pool)
+
+[cols="35a,65a"]
+|====
+.^a|
+
+[source,java]
+----
+Integer five1 = Integer.valueOf(5);
+Integer five2 = Integer.valueOf(5);
+/* DO NOT DO THIS!!*/
+Integer five3 
+  = new Integer(5);
+----
+^.^a|
+[graphviz, "ipool.png"]
+-----
+digraph G {
+  node [shape="rectangle"]
+  graph [ dpi = 140 ];
+  rankdir="LR";
+  
+      subgraph cluster_s2{
+          subgraph cluster_s3 {
+            
+            o1[label="5"; shape="circle"; style=filled; fillcolor="#ffffcc"]
+            
+            c1[label="3"; shape="circle"; style=filled; fillcolor="#ffffcc"]
+            c2[label="7"; shape="circle"; style=filled; fillcolor="#ffffcc"]
+            label="Integer Object Pool"
+            c3[label="-1"; shape="rectangle"; style=invis; ]
+            label="Integer Object Pool"
+            
+            o1 -> c1 [style="invis"]
+            o1 -> c2 [style="invis"]
+            
+          }
+        o2[label="5"; shape="circle"; style=filled; fillcolor="#ffffcc"]
+        
+        label="Memory Heap"
+      }
+  five1->o1
+  five2->o1
+  five3->o2
+}
+-----
+|====
+
+== Wrapper-типы похожи на строки
+
+* Объекты иммутабельные. Если нужен новый -- создаём новый.
+* Проверка равенства -- только по `equals`!
+
+== Превращение числа из строки и в строку
+
+Статические методы:
+
+* `Integer.parseInt(value, radix)`
+* `Integer.toString(value, radix)`
+* `Double.parseDouble(value)`
+* `Double.toString(value)`
+
+== Autoboxing & unboxing
+
+[source,java]
+----
+ArrayList<Integer> list = new ArrayList<>();
+
+//autoboxing :-)
+list.add(3);
+//without autoboxing :-(
+list.add(Integer.valueOf(3));
+
+//unboxing :-)
+int n = list.get(i);
+//with no automatic unboxing :-(
+int n = list.get(i).intValue();
+----
+
+== Не всегда всё так очевидно с автобоксингом
+
+[source,java]
+----
+Integer n = 3;
+//unbox - increment - box.
+//not so effective!!
+n++;
+
+Integer a = 1000;
+Integer b = 1000;
+if (a == b) . . . //NO! THIS WILL FAIL!
+
+----
+
