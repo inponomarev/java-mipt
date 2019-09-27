@@ -78,4 +78,470 @@ s.getAbbreviation(); // вернёт S, M, L или XL
 
 * Документируйте точки расширения через наследование, или запрещайте  наследование (`final`)
 
+== Исключительные ситуации
 
+* Программные ошибки (баги): null pointer dereference, выход за границы массива, некорректное приведение типов, деление на ноль и т. п.
+
+* Некорректные входные данные
+
+* Железо и сеть: невозможность открыть файл, нехватка памяти / места на диске и т. п.
+
+Исключение -- способ _недвусмысленно_ сообщить о том, что вызов функции завершился неудачей (в отличие от return codes и т. п.).
+
+== Иерархия классов исключений
+
+[plantuml, exceptionclasses, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class Throwable {
+  + getMessage(): String
+  + getCause(): Throwable
+  + getStackTrace(): StackTraceElement[]
+}
+
+Throwable <|-- Error
+Throwable <|-- Exception
+Exception <|-- RuntimeException
+
+
+RuntimeException <|-- ClassCastException
+RuntimeException <|-- IndexOutOfBoundsException
+
+Exception <|-- IOException
+
+
+@enduml
+----
+
+
+== Что делаем?
+
+* `Error` и наследники -- не обрабатываем (что-то катастрофическое случилось).
+* `RuntimeException` и наследники -- их быть не должно (по идее, но не всё так просто).
+* Checked exceptions -- их обрабатываем.
+
+== Декларирование checked-исключений
+
+[source,java]
+----
+public FileInputStream(String name) throws FileNotFoundException
+----
+
+== Декларирование более чем одного исключения
+[source,java]
+----
+class MyAnimation {
+. . .
+  public Image loadImage(String s) throws FileNotFoundException, EOFException {
+    . . .
+  }
+}
+----
+* Не надо декларировать unchecked exceptions
+* Не надо декларировать исключения, если одно -- подтип другого
+* Правда жизни: вам поможет IDE
+
+== Выбрасывание исключений
+
+
+[source,java]
+----
+throw new EOFException();
+----
+
+(Если мы выбрасываем checked exception, компилятор позволит это сделать либо если оно задекларировано, либо если оно обрабатывается в самом методе.)
+
+== Выбрасывание исключений
+
+_Не следует_ выбрасывать явно
+
+* `Exception`
+* `RuntimeException`
+* `Throwable`
+* `Error`
+
+(J. Bloch, Effective Java, Item 72)
+
+== Откуда наследовать своё собственное исключение? Вот в чём вопрос
+
+* Если наследовать от Exception -- надо быть готовым, что его придётся декларировать или ловить всюду. Хорошо это или плохо?
+
+* Можно унаследоваться от RuntimeException. И забыть его поймать.
+
+* В эпоху лямбд и стримов checked exceptions это скорее головная боль.
+
+* Споры не прекращаются.
+
+== Как поймать исключение: try-catch блок
+
+[source,java]
+----
+try {
+  code
+  more code
+  more code
+} catch (ExceptionType e) {
+  handler for this type
+  //use e object to extract the data!
+}
+----
+
+== Как поймать несколько типов исключений
+
+[plantuml, iomultiple, png]
+----
+@startuml
+
+skinparam dpi 180 
+ 
+IOException <|-- FileNotFoundException
+
+IOException <|-- UnknownHostException
+@enduml
+----
+
+[source,java]
+----
+try {
+  //code that might throw exceptions
+} catch (FileNotFoundException e) {
+  //emergency action for missing files
+} catch (UnknownHostException e) {
+  // emergency action for unknown hosts
+} catch (IOException e) {
+  // emergency action for all other I/O problems
+}
+----
+
+== try-multicatch
+
+[source,java]
+----
+try {
+  //code that might throw exceptions
+} catch (FileNotFoundException | UnknownHostException e) {
+  //emergency action for missing files or unknown hosts
+} 
+----
+
+== Перевыбрасывание исключений 
+
+[source,java]
+----
+. . . throws SQLException . . .
+
+try {
+  access the database
+} catch (Exception e) {
+  logger.log(level, message, e);
+  //хотя Exception есть тип более широкий,
+  //чем задекларирован в методе, компилятор поймёт,
+  //что всё ок
+  throw e;
+}
+----
+
+== Обёртывание исключений
+
+[source,java]
+----
+. . . throws ServletException . . .
+
+try {
+  access the database
+} catch (SQLException e) {
+  ServletException se = new ServletException("database error");
+  //сохраняем информацию о первопричине
+  se.initCause(e);
+  throw se;
+}
+----
+
+== Переопределение методов с исключениями
+
+
+[plantuml, overriding, png]
+----
+@startuml
+
+skinparam dpi 200 
+
+class Foo {
+    + foo() throws FooException 
+}
+ 
+Foo <|-- Bar
+
+class Bar {
+    + foo() throws BarException
+}
+ 
+
+FooException <|-- BarException
+
+Foo . FooException
+Bar . BarException
+@enduml
+----
+
+* Исключение может быть того же типа или субтипа
+* Не возбраняется, если его не будет вообще
+
+== Стандартные типы переиспользуемых unchecked-exceptions
+
+J.{nbsp}Bloch 'Effective Java', Item 72:
+
+[cols="30a,70a"]
+|===
+`InvalidArgumentException` | неправильный, ненулевой параметр метода
+|`InvalidStateException`| внутреннее состояние объекта не подходит для запуска метода
+|`NullPointerException`| передан `null` в метод, не ожидающий `null` в качестве параметра 
+|`IndexOutOfBoundsException`| Индексный параметр выходит за допустимый диапазон
+|===
+
+== Вам будет очень хотеться сделать так...
+
+[source,java]
+----
+try {
+ ...
+} catch (Exception e) {
+ e.printStackTrace();
+ //И компилятор счастлив!
+ //(но коллега во время код-ревью -- нет)
+}
+
+----
+
+...*но так делать не надо!* 
+
+== Если не понятно, что делать с исключением 
+
+* Задекларируйте checked exception в методе
+* Оберните в unchecked exception (`InvalidStateException`, например)
+* Lobmok's `@SneakyThrows`
+
+== Общее правило
+
+* _Throw early, catch late._
+* Не откладывайте выбрасывание исключения, как только стала ясна причина ошибки.
+* Не спешите обрабатывать исключение, пока вам не стал полностью ясен механизм обработки.
+
+== finally-блок
+
+[source,java]
+----
+InputStream in = new FileInputStream(. . .);
+try {
+  // исключение может возникнуть здесь
+  code that might throw exceptions
+  // и даже возврат из метода вызовет блок finally! 
+  if (...) 
+    return;
+} catch (IOException e) {
+  // бывает, исключение возникает во время
+  // обработки исключений
+  show error message
+} finally {
+  // в любом случае сработает finally-блок!
+  in.close();
+}
+----
+
+== Беда с finally-block
+
+Иногда finally-блок сам может вызвать исключение
+
+[source,java]
+----
+//К счастью, после Java 7 всего этого делать не надо
+InputStream in = . . .;
+try {
+  try {
+    code that might throw exceptions
+  } catch (Exception e) {
+    . . .
+  }
+} finally {
+  try {
+    in.close();
+  } catch (Exception e) {
+    . . .
+  }
+}
+----
+
+
+== try-with-resources-блок
+
+Общая схема
+[source,java]
+----
+try (Resource res = . . .) {
+  work with res
+}
+----
+
+Пример:
+[source,java]
+----
+try (Scanner in = new Scanner(
+    new FileInputStream("/usr/share/dict/words")), "UTF-8") {
+  while (in.hasNext())
+    System.out.println(in.next());
+}
+----
+
+== Множество ресурсов
+
+[source,java]
+----
+try (Scanner in = new Scanner(
+     new FileInputStream("/usr/share/dict/words"), "UTF-8");
+     PrintWriter out = new PrintWriter("out.txt")) {
+  while (in.hasNext())
+    out.println(in.next().toUpperCase());
+}
+----
+
+== Интерфейсы Closeable и AutoCloseable
+
+[plantuml, closeable, png]
+----
+@startuml
+
+skinparam dpi 200 
+
+interface AutoCloseable {
+    + close() throws Exception 
+}
+ 
+AutoCloseable <|-- Closeable
+
+interface Closeable {
+    + close() throws IOException
+}
+ 
+
+Exception <|-- IOException
+
+Closeable . IOException
+AutoCloseable . Exception
+@enduml
+----
+
+== Исключения -- для исключительных случаев!
+
+[source,java]
+----
+//ЧУДОВИЩНО. НЕ ДЕЛАЙТЕ ТАК
+try {
+  int i = 0;
+  while (true)
+    range[i++].climb();
+} catch (ArrayIndexOutOfBoundsException e) {
+}
+
+//ДЕЛАЙТЕ ТАК!!
+for (Mountain m: range) 
+  m.climb();
+----
+
+
+
+== Исключения -- для исключительных случаев!
+
+
+[source,java]
+----
+//ЧУДОВИЩНО. НЕ ДЕЛАЙТЕ ТАК
+try {
+  Iterator<Foo> i = collection.iterator();
+  while (true)
+    Foo foo = i.next();
+} catch (NoSuchElementException e) {
+}
+
+//ДЕЛАЙТЕ ТАК!!
+for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {
+    Foo foo = i.next();
+    . . .
+}
+----
+
+== Не используйте исключения для контроля выполнения
+
+* Это *маскирует* настоящие ошибки и делает код трудным для поддержки.
+* Это *затратно* по ресурсам (исключения несут в себе Stack Trace).
+* Это *медленно*: компилятор не оптимизирует под исключения.
+
+== Исключение вылезло в production. Что делать?
+
+  2019-08-24 11:14:55.545 ERROR 30413 --- [0.1-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+  java.lang.NullPointerException: null
+	at guess.service.AnswerServiceImpl.setAnswer(AnswerServiceImpl.java:37) ~[classes!/:na]
+	at guess.controller.AnswerController.addAnswer(AnswerController.java:31) ~[classes!/:na]
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_222]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_222]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_222]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_222]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.21.jar!/:9.0.21]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_222]
+
+== Analyze -> Analyze Stack Trace...
+
+image::analyzestacktrace.png[]
+
+
+== Исследуем стек вызовов
+image::stacktracereading.png[]
