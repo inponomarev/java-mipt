@@ -545,3 +545,27 @@ image::analyzestacktrace.png[]
 
 == Исследуем стек вызовов
 image::stacktracereading.png[]
+
+== Здесь мы делаем паузу в изучении особенностей языка ради изучения библиотеки
+
+* J. Bloch, 'Effective Java': 'By using a standard library, you take advantage of the knowledge of the experts who wrote it and the experience of those who used it before you... Numerous features are added to the libraries in every major release, and it pays to keep abreast of these additions.'
+* Наряду с актуальными, "свежими" классами в библиотеках есть много старых классов, оставленных для обратной совместимости.
+* Вы встретите `Vector`, `Date`, `File`, `StringBuffer`, `Random`, _о которых я не буду рассказывать на лекциях_.
+* Будьте внимательны: использование устаревших классов в существующем коде, в примерах в интернете и т. п. не оправдывает их использование в новом коде. 
+
+== Отдельный пример из книги Effective Java: ThreadLocalRandom
+
+[source,java]
+----
+//Плохо: сид выбирается при каждом вызове. НЕТ!!
+double rnd = (new Random()).nextDouble();
+
+//До Java 7+ так было нормально, но теперь НЕТ!!
+static final Random r = new Random();
+static int random() {
+  return r.nextDouble();
+}
+
+//ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее
+int rnd = ThreadLocalRandom.current().nextDouble();
+----
