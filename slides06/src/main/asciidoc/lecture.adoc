@@ -261,7 +261,7 @@ class Pair {
 |
 [source,java]
 ----
-class Pair<T extends Employee> {
+class Pair<T extends Employee>{
   private T first;
   private T second;
   Pair(T first, 
@@ -349,15 +349,16 @@ Manager buddy =
 [source,java]
 ----
 class DateInterval extends 
-  Pair<LocalDate> {
+ Pair<LocalDate> {
   
-  @Override
-  void setSecond(LocalDate second) {
-    if (second
-      .compareTo(getFirst()) >= 0) {
-        super.setSecond(second);
-    }
+ @Override
+ void setSecond(
+        LocalDate second){
+  if (second
+   .compareTo(getFirst())>=0){
+      super.setSecond(second);
   }
+ }
 }
 ----
 |
@@ -365,18 +366,19 @@ class DateInterval extends
 ----
 class DateInterval extends Pair {
   
-  void setSecond(LocalDate second) {
-    if (second
-      .compareTo(getFirst()) >= 0) {
-        super.setSecond(second);
-    }
+ void setSecond(
+        LocalDate second){
+  if (second
+   .compareTo(getFirst())>=0){
+      super.setSecond(second);
   }
+ }
   
-  //bridge method!!
-  @Override
-  void setSecond(Object second) {
-    setSecond((LocalDate) second);
-  }
+ //bridge method!!
+ @Override
+ void setSecond(Object second){
+   setSecond((LocalDate) second);
+ }
 }
 ----
 |===
@@ -619,16 +621,16 @@ Container<Bar>.getValue();
 [source,java]
 ----
 class Employee implements
-  Comparable<Employee> {
+  Comparable<Employee>{
   @Override
-  int compareTo(Employee e) {
+  int compareTo(Employee e){
     ...
   }
 }
 class Manager implements
   Comparable<Manager> {
   @Override
-  int compareTo(Manager m) {
+  int compareTo(Manager m){
     ...
   }
 }
@@ -637,7 +639,7 @@ class Manager implements
 [source,java]
 ----
 class Manager implements
-  Comparable {
+  Comparable{
   
   //bridge method for Employee
   int compareTo(Object m) {
@@ -655,3 +657,128 @@ class Manager implements
 ----
 |===
 
+== Ковариантность массивов vs инвариантность дженериков
+
+[plantuml, manemp, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class Employee {
+
+}
+
+class Manager {
+
+}
+
+Employee <|- Manager
+
+@enduml
+----
+
+[cols="50a,50a"]
+|===
+
+a|
+
+[plantuml, covariance, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class "Employee[]" as E {
+} 
+
+note "Контроль типов\nв рантайме" as ArrayNote
+
+E .. ArrayNote
+
+class "Manager[]" as M {
+
+}
+
+E <\|- M
+@enduml
+----
+
+[source,java]
+----
+Manager[] managers = ...
+Employee lowlyEmployee = ...
+Employee[] e = managers;
+/*ArrayStoreException in runtime*/
+e[0] = lowlyEmployee;
+----
+a|
+[plantuml, invariance, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+
+class "List<Employee>"{
+}
+
+class "List<Manager>"{ 
+}
+
+note "Не связаны\nнаследованием!" as Note
+
+"List<Employee>" .. Note
+"List<Manager>" .. Note
+@enduml
+----
+
+[source,java]
+----
+List<Manager> managers = ...
+Employee lowlyEmployee = ...
+/*Тупо не скомпилируется*/
+List<Employee> e = managers;
+----
+|===
+
+
+== Реальная картина 
+
+[plantuml, realpicture, png]
+----
+@startuml
+
+skinparam dpi 170 
+
+class "ArrayList<Employee>"{
+}
+
+class "ArrayList<Manager>"{ 
+}
+
+class "ArrayList" {
+}
+
+interface "List<Employee>"{
+}
+
+interface "List<Manager>"{ 
+}
+
+interface "List"{
+}
+
+note "Сырые типы.\ninstanceof можно,\nиспользовать нельзя!" as Note
+
+"List<Employee>" <|.. "ArrayList<Employee>"  
+"List<Manager>" <|.. "ArrayList<Manager>"  
+"ArrayList" <|-- "ArrayList<Employee>"  
+"ArrayList" <|-- "ArrayList<Manager>"  
+"List" <|-- "List<Employee>"
+"List" <|-- "List<Manager>"
+
+Note."List"
+Note.."ArrayList"
+@enduml
+----
