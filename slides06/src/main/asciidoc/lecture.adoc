@@ -1,0 +1,657 @@
+= Core Java: Курс лекций. Лекция 5
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+
+== До появления дженериков
+
+[source,java]
+----
+Manager ceo = ...;
+Manager cto = ...;
+Employee cleaner = ...;
+List managers = new ArrayList();
+managers.add(ceo);
+managers.add(cto);
+
+//bug!!
+managers.add(cleaner);
+
+//typecast with runtime exception -- too late!
+Manager m = (Manager) managers.get(2); 
+----
+
+[%notitle]
+== Runtime vs Compile Time Errors
+
+image::rtvscompiletime.png[]
+
+== После появления дженериков
+
+[source,java]
+----
+Manager ceo = ...;
+Manager cto = ...;
+Employee cleaner = ...;
+List<Manager> managers = new ArrayList<>();
+
+managers.add(ceo);
+managers.add(cto);
+// не скомпилируется!
+// managers.add(cleaner);
+
+// приводить тип не нужно!
+Manager m = managers.get(1); 
+----
+
+== Определяем собственный параметризованный класс
+
+[source,java]
+----
+public class Pair<T> {
+  private T first;
+  private T second;
+  public Pair() { first = null; second = null; }
+  public Pair(T first, T second) { 
+    this.first = first; 
+    this.second = second; 
+  }
+  public T getFirst() { return first; }
+  public T getSecond() { return second; }
+  public void setFirst(T newValue) { first = newValue; }
+  public void setSecond(T newValue) { second = newValue; }
+}
+----
+
+== Определение и использование
+
+[source,java]
+----
+Pair<String> pair = ...
+
+//ЧТО ЭКВИВАЛЕНТНО ЗАМЕНЕ T НА String
+Pair(String, String)
+String getFirst()
+String getSecond()
+void setFirst(String)
+void setSecond(String)
+
+----
+
+== Generic methods
+
+[source,java]
+----
+public <T> T getRandomItem(T... items) {
+  return items[ThreadLocalRandom.current().nextInt(items.length)];
+}
+
+String s = getRandomItem("A", "B", "C");
+Manager m = getRandomItem(ceo, cto, cfo);
+----
+
+== Другой пример
+
+[source,java]
+----
+public <T> T getRandomItem(List<T> items) {
+  T result = 
+    items.get(
+      ThreadLocalRandom.current().nextInt(items.size()));
+  return result;
+}
+----
+
+== Промежуточные выводы
+
+* Использование параметризованных классов -- простое (просто укажите параметры, `List<Manager>`)
+* Использование параметризованных методов -- ещё проще: type inference: `Manager m = getRandomItem(...);`
+* Написание собственных параметризованных классов и методов -- задачка более сложная.
+
+== Bounded types
+
+[source,java]
+----
+public <T extends Person> String getRandomPersonName(List<T> items) {
+  Person result = //можно написать и T result = 
+    items.get(ThreadLocalRandom.current().nextInt(items.size()));
+  
+  return result.getName();
+}
+----
+
+== Intersection types
+
+[plantuml, intersections, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+
+class Employee {
+
+}
+
+class Retiree {
+
+}
+
+class Person {
+  + getName(): String
+}
+
+interface Payable {
+  + getMonthPayment: BigDecimal
+}
+
+
+Payable <|.. Employee
+Payable <|.. Retiree
+Person <|-- Employee 
+Person <|-- Retiree
+Person <|-- Visitor
+@enduml
+----
+
+
+[source,java]
+----
+//через амперсанд сколько угодно интерфейсов, 
+//но не более одного класса
+public <T extends Person & Payable> 
+  String getRandomNameAndPayment(List<T> items) {
+  T result =
+    items.get(
+        ThreadLocalRandom.current().nextInt(items.size()));
+    return result.getName() //из Person! 
+         + result.getPayment(); //из Payable!
+}
+----
+
+== Реализация дженериков
+* Появились в Java 5
+* Стояла задача обратной совместимости
+* Generics -- возможность языка, а не платформы
+* Type Erasure, будь он неладен!
+
+== Сырые типы
+
+[cols="45a,55a"]
+|===
+^|*Generic Type (source)*
+^|*Raw Type (compiled)*
+|
+[source,java]
+----
+class Pair<T> {
+  private T first;
+  private T second;
+  Pair(T first, 
+       T second)
+   {this.first = first; 
+    this.second = second;}
+  T getFirst() 
+   {return first; }
+  T getSecond() 
+   {return second; }
+  void setFirst(T newValue)
+   {first = newValue;}
+  void setSecond(T newValue)
+   {second = newValue;}
+}
+----
+|
+[source,java]
+----
+class Pair {
+  private Object first;
+  private Object second;
+  Pair(Object first, 
+       Object second)
+   {this.first = first; 
+    this.second = second;}
+  Object getFirst() 
+   {return first; }
+  Object getSecond() 
+   {return second; }
+  void setFirst(Object newValue)
+   {first = newValue;}
+  void setSecond(Object newValue)
+   {second = newValue;}
+}
+----
+|===
+
+
+== Ограниченные типы вместо Object
+
+[cols="45a,55a"]
+|===
+^|*Generic Type (source)*
+^|*Raw Type (compiled)*
+|
+[source,java]
+----
+class Pair<T extends Employee> {
+  private T first;
+  private T second;
+  Pair(T first, 
+       T second)
+   {this.first = first; 
+    this.second = second;}
+  T getFirst() 
+   {return first; }
+  T getSecond() 
+   {return second; }
+  void setFirst(T newValue)
+   {first = newValue;}
+  void setSecond(T newValue)
+   {second = newValue;}
+}
+----
+|
+[source,java]
+----
+class Pair {
+  private Employee first;
+  private Employee second;
+  Pair(Employee first, 
+       Employee second)
+   {this.first = first; 
+    this.second = second;}
+  Employee getFirst() 
+   {return first; }
+  Employee getSecond() 
+   {return second; }
+  void setFirst(Employee newValue)
+   {first = newValue;}
+  void setSecond(Employee newValue)
+   {second = newValue;}
+}
+----
+|===
+
+== Вызовы методов
+
+
+[cols="50a,50a"]
+|===
+^|*Source code*
+^|*Compiled*
+|
+[source,java]
+----
+Pair<Manager> buddies = 
+  new Pair<>();
+
+/*контроль типов --
+на этапе компиляции*/
+buddies.setFirst(cfo);
+buddies.setSecond(cto);
+
+/*type cast не нужен*/
+Manager buddy = 
+  buddies.getFirst();
+----
+|
+[source,java]
+----
+Pair buddies = 
+  new Pair();
+
+/*контроль типов не нужен --
+на этапе компиляции проверили!*/
+buddies.setFirst(cfo);
+buddies.setSecond(cto);
+
+/*type cast вставлен компилятором*/
+Manager buddy = 
+  (Manager) buddies.getFirst();
+----
+|===
+
+== Bridge methods для сохранения полиморфизма
+
+[cols="50a,50a"]
+|===
+^|*Source code*
+^|*Compiled*
+|
+[source,java]
+----
+class DateInterval extends 
+  Pair<LocalDate> {
+  
+  @Override
+  void setSecond(LocalDate second) {
+    if (second
+      .compareTo(getFirst()) >= 0) {
+        super.setSecond(second);
+    }
+  }
+}
+----
+|
+[source,java]
+----
+class DateInterval extends Pair {
+  
+  void setSecond(LocalDate second) {
+    if (second
+      .compareTo(getFirst()) >= 0) {
+        super.setSecond(second);
+    }
+  }
+  
+  //bridge method!!
+  @Override
+  void setSecond(Object second) {
+    setSecond((LocalDate) second);
+  }
+}
+----
+|===
+
+== Итог: как это работает
+* Параметризованных классов в JVM нет, только обычные классы и методы.
+* Типовые параметры заменяются на Object или на свою границу.
+* Для сохранения полиморфизма добавляются связывающие методы (bridge methods).
+* Сведение типов добавляется по мере необходимости.
+
+== Никогда не употребляйте сырые типы
+
+* Возможность назначать переменным сырые типы оставлена для обратной совместимости с кодом, написанным до Java5.
+* Java5 вышла в 2004 году.
+
+[source,java]
+----
+List<Manager> a = new ArrayList<>();
+//Употребили сырой тип.
+List b = a;
+//Компилируется и выполняется, список испорчен!
+b.add("manager");
+//Выполняется: мы list.get вернул Object
+System.out.println(b.get(0));
+//ClassCastException при выполнении
+Manager m = a.get(0);
+----
+
+[%notitle]
+== Понимание дженериков в Джаве
+
+_Понимание дженериков в Джаве -- это не про то, что с ними делать можно, а про то, что с ними делать нельзя._
+
+
+== Стирание типов -> невозможность определить параметр типа в Runtime
+
+[plantuml, rawtype, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+
+class Pair {
+(raw type)
+---
+}
+
+class "Pair<String>" {
+
+}
+
+class "Pair<Manager>" {
+
+}
+
+
+
+Pair <|-- "Pair<String>"
+
+Pair <|-- "Pair<Manager>"
+
+@enduml
+----
+
+[source,java]
+----
+//ошибка компиляции! не знаем мы в рантайме параметр типа!
+if (a instanceof Pair<String>) ...
+
+//вот так -- получится...
+if (a instanceof Pair<?>) ...
+----
+
+== Стирание типов до Object -> невозможность использовать примитивные типы в качестве параметров
+
+[source,java]
+----
+//увы, невозможно!
+List<int>  integers = ... //ошибка компиляции!
+
+List<Integer> integers = ...
+integers.add(42); /*под капотом будет autoboxing:
+integers.add(Integer.valueOf(42);*/
+int v = integers.get(0); /*под капотом будет
+unboxing: v = integers.get(0).intValue();*/
+----
+
+Нужна производительность? Пишем специальные реализации.
+
+== Нельзя инстанцировать типы-параметры
+
+[source,java]
+----
+
+class Pair<T> {
+
+    T newValue {
+      return new T(); //увы, ошибка компиляции!
+    }
+}
+----
+
+== Решается с помощью метакласса и рефлекции (о которой речь впереди)
+
+[source,java]
+----
+class Container<T> {
+  //bounded wildcard type, речь впереди
+  Class<? extends T> clazz;
+
+  Container(Class<? extends T> clazz) {
+    this.clazz = clazz;
+  }
+
+  T newInstance() throws ReflectiveOperationException {
+   //если нашёлся открытый конструктор без параметров!
+    return clazz.getConstructor().newInstance();
+  }
+}
+
+Container<Employee> container1 = new Container<>(Employee.class);
+----
+
+== Тем более нельзя инстанцировать массив типа-параметра
+
+[source,java]
+----
+public T[] toArray(){
+    //Не скомпилируется
+    return new T[size];
+}
+----
+
+Решается передачей параметра, например, в ArrayList:
+
+[source,java]
+----
+/* Если массив достаточных размеров -- используе м его,
+если недостаточных -- конструируем новый через рефлексию*/
+public <T> T[] toArray(T[] a)
+----
+
+== Массивы и дженерики -- лютые враги
+
+[source,java]
+----
+//Не скомпилируется: Generic Array Creation.
+List<String>[] a = new ArrayList<String>[10];
+//...ведь такой массив не будет иметь 
+//полную информацию о своих элементах!
+----
+
+== Забьём значения кувалдой и устроим heap pollution
+[source,java]
+----
+List<String>[] a = (List<String>[])new List<?>[10];
+Object[] objArray = a;
+
+objArray[0] = (List<String>) Arrays.asList("foo");
+//a[1] не пропустит в compile-time
+//но objArray[1] пропустит и в compile-time, и в run-time
+objArray[1] = (List<Manager>) Arrays.asList(new Manager());
+
+
+//Runtime error: Manager cannot be cast to String
+String s = a[1].get(0);
+//...это и называется heap pollution.
+----
+
+== Varargs -- всё равно массив...
+
+Тот же heap pollution, что и в прошлом примере:
+[source,java]
+----
+static void dangerous(List<String>... stringLists){
+  List<Integer> intList = new ArrayList<Integer>() {{add(42);}};
+  Object[] objects = stringLists;
+  objects[0] = intList;
+  //ClassCastException
+  String s = stringLists[0].get(0);
+}
+
+dangerous(new ArrayList<>());
+----
+
+== Компилятор что-то предчувствует...
+
+image::varargswarning.png[{image-100-width}]
+
+Чтобы успокоить компилятор, надо поставить аннотацию `@SafeVarargs`:
+[source,java]
+----
+/*Я даю честное слово, что не буду 
+устраивать heap pollution!*/
+@SafeVarargs
+static void dangerous(List<String>... 
+----
+
+...и компилятор успокоится.
+
+== Зачем?!
+
+* Всё потому, что иметь varargs с параметризованными типами удобно!..
+** `Arrays.asList(T... a)`
+** `Collections.addAll(Collection<? super T> c, T... elements)`
+** `EnumSet.of(E first, E... rest)`
+* Если вести себя хорошо, можно ставить @SafeVarargs, и всё будет хорошо:
+** Не записывать ничего в элементы массива,
+** Не раздавать ссылку на массив параметров наружу.
+
+== Нельзя параметризовать исключения
+
+Тут всё понятно: 
+
+* ловля исключений -- это проверка их типов
+* дальше сырых типов мы в рантайме проверить не можем.
+
+== Параметры типов нельзя использовать в статическом контексте
+
+[source,java]
+----
+public class Container<T> {
+    private static T value; //не скомпилируется.
+    public static T getValue(); //не скомпилируется
+}
+
+//Статический контекст ОДИН НА ВСЕХ
+Container<Foo>.getValue();
+Container<Bar>.getValue();
+----
+
+== Нельзя реализовывать разные параметризации одного и того же интерфейса
+
+[cols="50a,50a"]
+|===
+^|*Source code*
+^|*Compiled*
+|
+[source,java]
+----
+class Employee implements
+  Comparable<Employee> {
+  @Override
+  int compareTo(Employee e) {
+    ...
+  }
+}
+class Manager implements
+  Comparable<Manager> {
+  @Override
+  int compareTo(Manager m) {
+    ...
+  }
+}
+----
+|
+[source,java]
+----
+class Manager implements
+  Comparable {
+  
+  //bridge method for Employee
+  int compareTo(Object m) {
+    return compareTo((Manager) m); 
+  }
+  
+  //bridge method for Manager
+  int compareTo(Object e) {
+    return compareTo((Employee) e); 
+  }
+  
+  //CLASH!!!
+}
+
+----
+|===
+
