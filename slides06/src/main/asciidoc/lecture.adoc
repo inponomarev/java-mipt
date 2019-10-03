@@ -496,7 +496,7 @@ class Container<T> {
 
   T newInstance() throws ReflectiveOperationException {
    //если нашёлся открытый конструктор без параметров!
-    return clazz.getConstructor().newInstance();
+    return clazz.newInstance();
   }
 }
 
@@ -590,12 +590,14 @@ static void dangerous(List<String>...
 ** Не записывать ничего в элементы массива,
 ** Не раздавать ссылку на массив параметров наружу.
 
-== Нельзя параметризовать исключения
+== Нельзя параметризовать
 
-Тут всё понятно: 
-
-* ловля исключений -- это проверка их типов
-* дальше сырых типов мы в рантайме проверить не можем.
+* Исключения
+** ловля исключений -- это проверка их типов,
+** дальше сырых типов мы в рантайме проверить не можем.
+* Анонимные классы 
+** Инстанцируется по месту, не может быть несколько классов, параметризованных по-разному.
+* Enum-ы.
 
 == Параметры типов нельзя использовать в статическом контексте
 
@@ -769,7 +771,7 @@ interface "List<Manager>"{
 interface "List"{
 }
 
-note "Сырые типы.\ninstanceof можно,\nиспользовать нельзя!" as Note
+note "Сырые типы.\nИспользовать нельзя!" as Note
 
 "List<Employee>" <|.. "ArrayList<Employee>"  
 "List<Manager>" <|.. "ArrayList<Manager>"  
@@ -782,3 +784,255 @@ Note."List"
 Note.."ArrayList"
 @enduml
 ----
+
+== Как быть, если хочется такого?
+
+[plantuml, manempperson, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class Person {
+
+}
+
+class Employee {
+
+}
+
+class Manager {
+
+}
+
+Person <|- Employee
+
+Employee <|- Manager
+
+@enduml
+----
+
+[source,java]
+----
+List<Manager> managers = ...
+List<Employee> employees = ...
+
+//Допустимые варианты, хотим чтоб компилировалось!
+employees.addAllFrom(managers);
+managers.addAllTo(employees);
+
+//Недопустимые варианты, не хотим чтоб компилировалось!
+managers.addAllFrom(employees);
+employees.addAllTo(managers);
+
+----
+
+== Так не получится...
+
+[source,java]
+----
+//можно переносить только одинаково типизированные списки
+class List<E> {
+    void addAllFrom (List<E> list){
+       for (Е item: list)
+         add(item);
+    }
+    
+    void addAllTo (List<E> list){
+       for (E item: this)
+         list.add(item);
+    }
+}
+----
+
+== Wildcard Types
+
+[plantuml, wildext, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class "List<? extends Employee>" {
+}
+
+
+class "List<Employee>" {
+
+}
+
+class "List<Manager>" {
+
+}
+
+"List<? extends Employee>" <|-- "List<Employee>"
+
+"List<? extends Employee>" <|-- "List<Manager>"
+
+@enduml
+----
+
+[source,java]
+----
+class List<E> {
+    //для List<Employee> "пролезет" List<Manager>!!
+    void addAllFrom (List<? extends E> list){
+       for (Е item: list)
+         add(item);
+    }
+}
+----
+
+== Что можно сделать с объектом, типизированным `? extends`?
+
+[source,java]
+----
+List<? extends E> list = ...
+
+//это понятно
+E e1 = list.get(...);
+
+E e2 = ...;
+//не скомпилируется! ПОЧЕМУ??
+list.add(e2);
+//скомпилируется. ПОЧЕМУ??
+list.add(null); 
+----
+
+В общем, `addAllTo` реализовать не получится...
+
+== В обратную сторону
+
+[plantuml, wildsup, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class "List<? super Employee>" {
+}
+
+
+class "List<Employee>" {
+
+}
+
+class "List<Person>" {
+
+}
+
+"List<? super Employee>" <|-- "List<Person>"
+
+"List<? super Employee>" <|-- "List<Employee>"
+
+@enduml
+----
+
+[source,java]
+----
+class List<E> {
+    //для List<Employee> "пролезет" List<Person>!!
+    void addAllTo (List<? super E> list){
+       for (Е item: this)
+         list.add(item);
+    }
+}
+----
+
+== Что можно сделать с объектом, типизированным `? super`?
+
+[source,java]
+----
+List<? super E> list = ...
+
+E e1 = ...;
+//скомпилируется!
+list.add(e1);
+list.add(null);
+
+//Только Object. ПОЧЕМУ??
+Object e2 = list.get(...);
+----
+
+== Unbounded wildcard
+
+* `List<?>` -- это то же, что `List<? extends Object>`. (Вопрос: почему не `<? super Object>`?)
+* Брать элементы можем, но тип только `Object`.
+* Класть можем только null.
+
+== Мнемоническое правило
+
+[large]
+*PECS*
+
+*Producer Extends, Consumer Super*
+
+[source,java]
+----
+public static <T> max (Collection<? extends T> coll,
+                       Comparator<? super T> comp)
+                       
+Collections.max(List<Integer>, Comparator<Number>)
+
+Collections.max(List<String>, Comparator<Object>)
+----
+
+== Правила использования wildcard-типов
+
+* Используются в аргументах методов и локальных переменных.
+* Невидимы пользователю API, не должны возвращаться.
+* Их цель -- принимать те аргументы, которые надо принимать, и отвергать те аргументы, которые надо отвергать.
+* Должны быть используемы в API, иначе API будет слишком "жёстким" и непригодным для использования.
+
+== Wildcard Capture
+
+[source,java]
+----
+public static void swap(Pair<?> p) {
+  Object f = p.getFirst();
+  Object s = p.getSecond();
+  //УУУППС!! 
+  // (мы знаем, что они правильного типа, 
+  //  но ничего не можем поделать)
+  p.setFirst(...);
+  p.setSecond(...);
+}
+
+----
+
+== Метод с type capture
+
+[source,java]
+----
+public static void swap(Pair<?> p) {
+  return swapHelper(p);
+}
+
+private static <T> void swapHelper(Pair<T> p) {
+  T f = p.getFirst();
+  p.setFirst(p.getSecond());
+  p.setSecond(f);
+}
+----
+
+
+== Recursive Generics
+
+[source,java]
+----
+class Holder<E, SELF extends Holder<E, SELF>>{
+    E value;
+    SELF setValue(E value){
+        this.value = value;
+        return (SELF) this;
+    }
+}
+
+class StringHolder extends Holder<String, StringHolder> {
+
+}
+
+StringHolder h = new StringHolder().setValue("aaa");
+----
+
+
