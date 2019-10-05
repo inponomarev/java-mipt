@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 5
+= Core Java: Курс лекций. Лекция 6
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css
@@ -901,7 +901,7 @@ list.add(null);
 
 В общем, `addAllTo` реализовать не получится...
 
-== В обратную сторону
+== В обратную сторону (контравариантные типы)
 
 [plantuml, wildsup, png]
 ----
@@ -962,7 +962,6 @@ Object e2 = list.get(...);
 
 == Мнемоническое правило
 
-[large]
 *PECS*
 
 *Producer Extends, Consumer Super*
@@ -1035,4 +1034,16 @@ class StringHolder extends Holder<String, StringHolder> {
 StringHolder h = new StringHolder().setValue("aaa");
 ----
 
+== Что почитать-посмотреть
+
+* Полезное
+** J. Bloch, Effective Java, 3rd ed. Chapter 5 -- Generics. Addison-Wesley, 2018
+
+** https://www.youtube.com/watch?v=_0c9Fd9FacU[Александр Маторин — Неочевидные Дженерики. JPoint 2016]
+
+* Дичь
+
+** https://dev.to/rosstate/java-is-unsound-the-industry-perspective[Ross Tate. Java is Unsound: The Industry Perspective] (2017-01-24).
+
+** https://habr.com/ru/post/330724/[Иван Бессонов. Тьюринг-полнота Generic типов Java] (2017-08-24, на базе публикации от ноября 2016).
 
