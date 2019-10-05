@@ -1,0 +1,619 @@
+= Core Java: Курс лекций. Лекция 7
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Коллекции: Разделение интерфейсов и реализаций
+
+[plantuml, colintf, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+interface Map<K,V> {
+V get(Object key)
+V put(K key, V value)
+V remove(Object key)
+void clear()
+...
+--default methods--
+V getOrDefault(Object key, V defaultValue)
+default V putIfAbsent(K key, V value)
+...
+}
+
+interface NavigableMap<K,V> {
+K lowerKey(K key);
+K floorKey(K key);
+K ceilingKey(K key);
+K higherKey(K key);
+--
+...
+}
+
+class HashMap<K,V> {
+}
+
+class LinkedHashMap<K,V> {
+}
+
+
+
+class TreeMap<K,V> {
+
+}
+
+class IdentityHashMap<K,V> {
+}
+
+class ConcurrentSkipListMap<K,V> {
+}
+
+
+Map <|.. TreeMap
+Map <|.. HashMap
+Map <|.. LinkedHashMap
+Map <|.. IdentityHashMap
+Map <|.. ConcurrentSkipListMap
+
+Map <|- NavigableMap
+
+NavigableMap <|.. TreeMap
+NavigableMap <|.. ConcurrentSkipListMap
+
+@enduml
+----
+
+== Интерфейсы коллекций: потомки Collection
+
+[plantuml,intf-coll,png]
+----
+@startuml
+
+skinparam dpi 200
+
+interface Iterable {
+}
+
+interface Collection {
+}
+
+interface List {
+}
+
+interface Set {
+}
+
+interface SortedSet {
+
+}
+
+interface NavigableSet {
+
+}
+
+interface Queue {
+
+}
+
+interface Deque {
+
+}
+
+Iterable <|. Collection
+Collection <|.. List
+Collection <|.. Set
+Set <|.. SortedSet
+SortedSet <|. NavigableSet
+Collection <|.. Queue
+Queue <|.. Deque
+@enduml
+----
+
+== Iterable: интерфейс, умеющий участвовать в for loop
+[plantuml,iterable,png]
+----
+@startuml
+
+skinparam dpi 160
+
+interface Iterable<T> {
+    Iterator<T> iterator()
+}
+
+interface Iterator<E> {
+  boolean hasNext()
+  E next()
+  default void remove()
+}
+
+Iterable . Iterator
+@enduml
+----
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+Iterable<T> collection = ...
+for (T e: collection) {
+  ...
+}
+----
+|
+[source,java]
+----
+Iterable<T> collection = ...
+Iterator<T> i = collection.iterator();
+while (i.hasNext()) {
+  T e = i.next();
+  if (e...)
+    i.remove();
+}
+----
+|===
+== ListIterator: расширение для List
+[plantuml,listiter,png]
+----
+@startuml
+
+skinparam dpi 220
+
+interface List<E> {
+  ListIterator<E> listIterator()
+}
+
+interface Iterator<E> {
+}
+
+interface ListIterator<E> {
+  boolean hasPrevious()
+  E previous()
+  int nextIndex()
+  int previousIndex()
+  void set(E e)
+  void add(E e)
+}
+
+
+List .L ListIterator
+Iterator <|. ListIterator
+@enduml
+----
+
+== Интерфейсы коллекций: потомки Map
+
+[plantuml,intf-map,png]
+----
+@startuml
+
+skinparam dpi 220
+
+interface Map {
+  Set<K> keySet()
+  Set<Map.Entry<K, V>> entrySet()
+  
+}
+
+interface SortedMap {
+}
+
+interface NavigableMap {
+}
+
+Map <|. SortedMap
+SortedMap <|. NavigableMap
+@enduml
+----
+
+==  Comparable и Comparator
+[source,java]
+----
+public interface Comparable<T>{
+/**
+ * @param  o the object to be compared.
+ * @return a negative integer, zero, or a positive integer as this object
+ *         is less than, equal to, or greater than the specified object.
+ */
+ int compareTo(T o);
+}
+
+/*Применяется в случае, если сравниваемые объекты 
+не реализуют Comparable*/
+public interface Comparator<T> {
+  int compare(T o1, T o2);
+}
+----
+
+== Его Величество ArrayList
+
+[source,java]
+----
+List<String> list = new ArrayList<>();
+list.add("foo"); list.add("bar"); list.add("baz");
+----
+
+[graphviz, "arraylist-inside.png"]
+-----
+digraph Java {
+graph [ dpi = 180 ];
+n356573597[label="ArrayList|{size: 3}",shape=record];
+n356573597 -> n325040804[label="elementData",fontsize=12];
+n325040804[shape=record, label="foo|bar|baz|null|null|null|null|null|null|null"];
+}
+-----
+
+== Свойства `ArrayList`
+* `get(int index)` is *O(1)*  <- *main benefit of `ArrayList<E>`*
+* `add(E element)` is *O(1)* amortized, but *O(n)* worst-case since the array must be resized and copied
+* `add(int index, E element)` is *O(n)* (with *n/2* steps on average)
+* `remove(int index)` is *O(n)* (with *n/2* steps on average)
+* `Iterator.remove()` is *O(n)* (with *n/2* steps on average)
+* `ListIterator.add(E element)` is *O(n)* (with *n/2* steps on average)
+
+== LinkedList
+
+[source,java]
+----
+List<String> list = new LinkedList<>();
+list.add("foo"); list.add("bar"); list.add("baz");
+----
+
+[graphviz, "linkedlist-inside.png"]
+-----
+digraph Java {
+    rankdir="LR";
+    graph [ dpi = 150 ];
+n356573597[label="LinkedList|{size: 3}",shape=record];
+n356573597 -> n1173230247[label="first",fontsize=12];
+n1173230247[label="Node|{item: foo|prev: null}",shape=record];
+n1173230247 -> n856419764[label="next",fontsize=12];
+n856419764[label="Node|{item: bar}",shape=record];
+n856419764 -> n621009875[label="next",fontsize=12];
+n621009875[label="Node|{item: baz|next: null}",shape=record];
+n621009875 -> n856419764[label="prev",fontsize=12];
+n856419764 -> n1173230247[label="prev",fontsize=12];
+n356573597 -> n621009875[label="last",fontsize=12];
+}
+-----
+
+== Свойства `LinkedList`
+
+* Implements `List` and `Deque`
+* `get(int index)` is *O(n)* (with *n/4* steps on average)
+* `add(E element)` is *O(1)*
+* `add(int index, E element)` is *O(n)* (with *n/4* steps on average),
+but *O(1)* when `index = 0`  <- *main benefit of `LinkedList<E>`*
+* `remove(int index)` is *O(n)* (with *n/4* steps on average)
+* `Iterator.remove()` is *O(1)* <- *main benefit of `LinkedList<E>`*
+* `ListIterator.add(E element)` is *O(1)*  This is one of the main benefits of `LinkedList<E>`
+
+== А если всё-таки нужен Deque?
+
+* `ArrayDeque`
+* Circular array
+* Более быстрый, чем `LinkedList`.
+
+[graphviz, "arraydeque-inside.png"]
+-----
+digraph Java {
+graph [ dpi = 180 ];
+n356573597[label="ArrayDeque|{head: 0|tail: 3}",shape=record];
+n356573597 -> n325040804[label="elements",fontsize=12];
+n325040804[shape=record, label="foo|bar|baz|null|null|null|null|null|null|null|null|null|null|null|null|null"];
+}
+-----
+
+== PriorityQueue
+
+* Постановка в очередь с сортировкой по приоритету за счёт `Comparable` или `Comparator`.
+* Balanced binary heap: "the two children of `queue[n]` are `queue[2*n+1]` and `queue[2*(n+1)]`"
+
+[source,java]
+----
+PriorityQueue<String> q = new PriorityQueue<>();
+q.add("foo"); q.add("bar"); q.add("baz");
+----
+
+[graphviz, "priority-inside.png"]
+-----
+digraph Java {
+graph [ dpi = 180 ];
+n1735600054[label="PriorityQueue|{size: 3}",shape=record];
+n1735600054 -> n856419764[label="queue",fontsize=12];
+n856419764[shape=record, label="bar|foo|baz|null|null|null|null|null|null|null|null"];
+}
+-----
+
+[%notitle]
+== Does anyone use LinkedList?
+
+image::blochonlinkedlist.png[{image-70-width}]
+
+== Выводы
+
+* Теоретическая асимптотика не полностью описывает пригодность той или иной структуры данных: вмешивается ряд обстоятельств, таких как 
+** частные "удачные" случаи и частота их использования,
+** эффективность использования кэша,
+** количество производимого "мусора" 
+** и т. п.
+
+* `ArrayList` и `ArrayDeque` являются предпочтительным выбором реализации `List` и `Deque` в подавляющем большинстве случаев.
+
+== Его Величество HashMap
+
+[source,java]
+----
+Map<String, Integer> map = new HashMap<>();
+map.put("foo", 1); map.put("bar", 2); map.put("baz", 3);
+----
+
+[graphviz, "hm-nocollisions.png"]
+----
+digraph Java {
+n1735600054[label="HashMap|{entrySet: null|size: 3|threshold: 12|loadFactor: 0.75|keySet: null|values: null}",shape=record];
+n1735600054 -> n1265094477[label="table",fontsize=12];
+n1265094477[label="<f0>|<f1>|<f2>|<f3>|<f4>|<f5>|<f6>|<f7>|<f8>|<f9>|<f10>|<f11>|<f12>|<f13>|<f14>|<f15>",shape=record];
+n1265094477:f2 -> n1554874502[label="2",fontsize=12];
+n1554874502[label="Node|{hash: 97298|key: bar|value: 2|next: null}",shape=record];
+n1265094477:f7 -> n1846274136[label="7",fontsize=12];
+n1846274136[label="Node|{hash: 101575|key: foo|value: 1|next: null}",shape=record];
+n1265094477:f10 -> n1639705018[label="10",fontsize=12];
+n1639705018[label="Node|{hash: 97306|key: baz|value: 3|next: null}",shape=record];
+}
+
+----
+
+== Коллизии хэша
+
+[cols="60a,40a"]
+|===
+^|
+[graphviz, "hm-collisions.png"]
+----
+digraph Java {
+n1735600054[label="HashMap\|{entrySet: null\|size: 3\|threshold: 12\|loadFactor: 0.75\|keySet: null\|values: null}",shape=record];
+n1735600054 -> n1265094477[label="table",fontsize=12];
+n1265094477[label="<f0>\|<f1>\|<f2>\|<f3>\|<f4>\|<f5>\|<f6>\|<f7>\|<f8>\|<f9>\|<f10>\|<f11>\|<f12>\|<f13>\|<f14>\|<f15>",shape=record];
+n1265094477:f0 -> n1554874502[label="0",fontsize=12];
+n1554874502[label="Node\|{hash: 2112\|key: Aa\|value: 2}",shape=record];
+n1554874502 -> n1846274136[label="next",fontsize=12];
+n1846274136[label="Node\|{hash: 2112\|key: BB\|value: 3\|next: null}",shape=record];
+n1265094477:f7 -> n1639705018[label="7",fontsize=12];
+n1639705018[label="Node\|{hash: 101575\|key: foo\|value: 1\|next: null}",shape=record];
+}
+----
+|
+[source,java]
+----
+Map<String, 
+  Integer> map 
+  = new HashMap<>();
+map.put("foo", 1);
+map.put("Aa", 2);
+map.put("BB", 3);
+----
+
+* При большом кол-ве коллизий на одной ячейке, если значение реализует `Comparable`, связный список заменяется на дерево.
+* Реализуйте `Comparable`!!
+|===
+
+== LinkedHashMap
+
+[cols="60a,40a"]
+|===
+^|
+[graphviz, "hm-lhm.png"]
+----
+digraph Java {
+n1735600054[label="LinkedHashMap\|{size: 3\|threshold: 12\|loadFactor: 0.75}",shape=record];
+n1735600054 -> n1554874502[label="head",fontsize=12];
+n1554874502[label="Entry\|{before: null\|key: foo\|value: 1\|next: null}",shape=record];
+n1554874502 -> n1846274136[label="after",fontsize=12];
+n1846274136[label="Entry\|{key: bar\|value: 2\|next: null}",shape=record];
+n1846274136 -> n1554874502[label="before",fontsize=12];
+n1846274136 -> n1639705018[label="after",fontsize=12];
+n1639705018[label="Entry\|{after: null\|key: baz\|value: 3\|next: null}",shape=record];
+n1639705018 -> n1846274136[label="before",fontsize=12];
+n1735600054 -> n1639705018[label="tail",fontsize=12];
+n1735600054 -> n1627674070[label="table",fontsize=12];
+n1627674070[label="<f0>\|<f1>\|<f2>\|<f3>\|<f4>\|<f5>\|<f6>\|<f7>\|<f8>\|<f9>\|<f10>\|<f11>\|<f12>\|<f13>\|<f14>\|<f15>",shape=record];
+n1627674070:f2 -> n1846274136[label="2",fontsize=12];
+n1627674070:f7 -> n1554874502[label="7",fontsize=12];
+n1627674070:f10 -> n1639705018[label="10",fontsize=12];
+}
+----
+|
+[source,java]
+----
+Map<String, 
+  Integer> map =  
+  new LinkedHashMap<>();
+map.put("foo", 1); 
+map.put("bar", 2); 
+map.put("baz", 3);
+----
+* Помнит порядок вставки элементов.
+* Хорош для хранения настроек вида "ключ-значение", задаваемых текстом.
+
+|===
+
+== Ещё вариации на тему хэш-таблицы
+
+* `IdentityHashMap` -- ключи сравниваются по `==`, а не по `equals()`.
+* `WeakHashMap` -- значения могут быть собраны сборщиком мусора, если не используются где-то ещё.
+
+== TreeMap
+
+[cols="60a,40a"]
+|===
+^|
+[graphviz, "tm.png"]
+----
+digraph Java {
+graph [ dpi = 100 ];
+n1735600054[label="TreeMap\|{size: 3}",shape=record];
+n1735600054 -> n1846274136[label="root",fontsize=12];
+n1846274136[label="Entry\|{key: baz\|value: 3\|parent: null\|color: true}",shape=record];
+n1846274136 -> n1627674070[label="left",fontsize=12];
+n1627674070[label="Entry\|{key: bar\|value: 2\|left: null\|right: null\|color: false}",shape=record];
+n1627674070 -> n1846274136[label="parent",fontsize=12];
+n1846274136 -> n1360875712[label="right",fontsize=12];
+n1360875712[label="Entry\|{key: foo\|value: 1\|left: null\|right: null\|color: false}",shape=record];
+n1360875712 -> n1846274136[label="parent",fontsize=12];
+}
+
+----
+|
+[source,java]
+----
+Map<String, 
+  Integer> map =  
+  new TreeMap<>();
+map.put("foo", 1); 
+map.put("bar", 2); 
+map.put("baz", 3);
+----
+* Красно-чёрное дерево, ключи сравниваются по `Comparable` или `Comparator`.
+* Как обычный `Map` уступает `HashMap`-у,
+* Незаменим в ситуациях, когда ключ известен только приблизительно.
+|===
+
+== Множества (Sets)
+
+* Коллекции, в которых объект может присутствовать только один раз.
+* Реализованы на базе соответствующих Maps:
+** `HashSet`, 
+** `LinkedHashSet`, 
+** `TreeSet`.
+
+[source,java]
+----
+private transient HashMap<E,Object> map;
+// Dummy value to associate with an Object in the backing Map
+private static final Object PRESENT = new Object();
+
+public boolean add(E e) {
+    return map.put(e, PRESENT)==null;
+}
+----
+
+== Множества на основе битовых масок
+
+* `EnumSet` -- на базе единственного значения типа `long`. _Используйте только его для enum-ов!_
+* `BitSet` -- массив long-ов.
+
+== Алгоритмы: сортировка и перемешивание
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+/*Реализует Comparable*/
+List<String> names = ...
+Collections.sort(names);
+
+/*Предлагаем Comparator*/
+List<Employee> staff = ...
+Collections.sort(staff,
+  Comparator.comparingLong(
+    Employee::getSalary));
+
+/*Иногда надо перемешать*/
+List<Card> cards = ...
+Collections.shuffle(cards);
+---- 
+|
+[source,java]
+----
+/*Реализует Comparable*/
+String[] names = ...
+Arrays.sort(names);
+
+/*Предлагаем Comparator*/
+Employee[] staff = ...
+Arrays.sort(staff,
+  Comparator.comparingLong(
+    Employee::getSalary));
+    
+/*Arrays.shuffle отсутствует!*/
+---- 
+|===
+
+== Алгоритмы: бинарный поиск
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+List<Employee> staff = ...
+
+Collections.sort(staff,
+  Comparator.comparing(
+    Employee::getName));
+
+Employee p = ...
+
+int i = 
+  Collections.binarySearch(
+    staff, p,
+    Comparator.comparing(
+      Employee::getName));
+---- 
+|
+[source,java]
+----
+Employee[] staff = ...
+
+Arrays.sort(staff,
+  Comparator.comparing(
+    Employee::getName));
+
+Employee p = ...
+
+int i = 
+  Arrays.binarySearch(
+    staff, p,
+    Comparator.comparing(
+      Employee::getName));
+---- 
+|===
+
+== Также уже реализованы
+
+* поиск min/max
+* копирование 
+* разворачивание "задом наперёд"
+* объединение и разность
+* ... -- ищите и найдёте!
