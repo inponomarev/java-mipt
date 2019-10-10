@@ -826,7 +826,7 @@ for (int i = 0; i < count; i++) {
 
 == Method references: ещё короче, ещё эффективнее
 
-[cols="50a,50a"]
+[cols="55a,45a"]
 |===
 | 
 [source,java]
@@ -836,7 +836,7 @@ event -> System.out.println(event)
 System.out::println
 | 
 [source,java] 
-(s1, s2)->s1.compareToIgnoreCase(s2)
+(s1,s2)->s1.compareToIgnoreCase(s2)
 | 
 [source,java]
 String::compareToIgnoreCase
@@ -1050,8 +1050,10 @@ List<Person> people = new ArrayList<>();
 ----
 /*НЕПРАВИЛЬНО*/
 Collections.sort(people,
-  (p1, p2) -> 
-    p2.getLastName().compareTo(p2.getLastName());
+ (p1, p2) -> 
+   p1.getLastName()
+   .compareTo(
+     p2.getLastName());
 );
 ----
 |
@@ -1086,8 +1088,9 @@ Collections.sort(people,
 [source,java]
 ----
 Collections.sort(people,
-  Comparator.comparing(Person::getLastName)
-  .thenComparing(Person::getFirstName));
+  Comparator
+    .comparing(Person::getLastName)
+    .thenComparing(Person::getFirstName));
 );
 ----
 
