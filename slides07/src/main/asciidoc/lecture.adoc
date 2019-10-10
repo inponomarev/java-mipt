@@ -398,6 +398,7 @@ n1639705018[label="Node|{hash: 97306|key: baz|value: 3|next: null}",shape=record
 [cols="60a,40a"]
 |===
 ^|
+
 [graphviz, "hm-collisions.png"]
 ----
 digraph Java {
@@ -432,6 +433,7 @@ map.put("BB", 3);
 [cols="60a,40a"]
 |===
 ^|
+
 [graphviz, "hm-lhm.png"]
 ----
 digraph Java {
@@ -477,6 +479,7 @@ map.put("baz", 3);
 [cols="60a,40a"]
 |===
 ^|
+
 [graphviz, "tm.png"]
 ----
 digraph Java {
@@ -617,3 +620,484 @@ int i =
 * разворачивание "задом наперёд"
 * объединение и разность
 * ... -- ищите и найдёте!
+
+== Callbacks: До появления лямбд
+
+[source,java]
+----
+public interface ActionListener {
+  void actionPerformed(ActionEvent event);
+}
+
+// ----использование----
+String text = ...
+new Timer(1000, new ActionListener(){
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    ... //'text' var is available here
+    }
+  });
+----
+
+== Callbacks: Comparator
+
+[source,java]
+----
+String[] friends = {"Peter", "Paul", "Mary"};
+
+Arrays.sort(friends,
+  new Comparator<String>() {
+    @Override
+    public int compare(String o1, String o2) {
+      return o1.length() - o2.length();
+  }
+});
+----
+
+== Предикат
+
+[source,java]
+----
+File[] hiddenFiles = new File(".").listFiles(
+  new FileFilter() {
+    public boolean accept(File file) {
+      return file.isHidden();
+    }
+  }
+);
+----
+
+
+== Welcome lambda expressions!
+
+[source,java]
+----
+//single-line
+(String first, String second) -> 
+  first.length() - second.length()
+  
+//multi-line with int return
+(String first, String second) -> {
+  if (first.length() < second.length()) return -1;
+  else if (first.length() > second.length()) return 1;
+  else return 0;
+}
+
+//no-arg, void return
+() -> System.out.println("Hello!");
+----
+
+== Что из этого -- валидные лямбда-выражения?
+
+1. `() -> {}`
+2. `() -> "Raoul"`
+3. `() -> {return "Mario";}`
+4. `(Integer i) -> return "Alan" + i`
+5. `(String s) -> {"Iron Man"}`
+
+[.fragment]
+Ответ: 1-3. Если лямбда с фигурными скобками, обязательно нужен return. Если без них, то return не нужен!
+
+== Чему можно присваивать лямбды?
+
+* Функциональный интерфейс -- такой, у которого не более одного абстрактного метода (понятно, что запускать).
+* Может быть помечен аннотацией `@FunctionalInterface`, хотя это не обязательно.
+* Если метод интерфейса подходит по параметрам и возвращаемому значению лямбды -- welcome.
+
+[source,java]
+----
+//Типы аргументов лямбд указывать не надо: type inference!
+ActionListener = e -> {...}
+Comparator<String> c = (s1, s2) -> s1.length() - s2.length();
+----
+== Void-compatibility 
+
+Оба варианта скомпилируются:
+
+[source,java]
+----
+//Predicate.test возвращает boolean
+Predicate<String> p = s.list(add);
+
+//Consumer.accept возвращает void!
+Consumer<String> c = s.list(add);
+----
+
+== Object -- не функциональный интерфейс!
+
+[source,java]
+----
+//не скомпилируется
+Object o = ()->{};
+
+//Скомпилируется!
+Runnable r = ()->{};
+
+//Тоже скомпилируется
+Object o = (Runnable) ()->{};
+----
+
+
+== В итоге имеем
+[cols="55a,45a"]
+|===
+^| *Anonymous Class*
+^| *Lambda*
+|
+[source,java]
+-----
+new Timer(100, new ActionListener(){
+ @Override
+ public void 
+   actionPerformed(ActionEvent e) {
+     ...
+   }
+});
+-----
+|
+[source,java]
+-----
+new Timer(100, e -> {...});
+-----
+|
+[source,java]
+----
+Arrays.sort(friends,
+ new Comparator<String>() {
+   @Override
+   public int compare(
+     String o1, String o2) {
+    return o1.length()-o2.length();
+ }
+});
+----
+| 
+[source,java]
+----
+Arrays.sort(friends, (s1, s2)-> 
+  s1.length() - s2.length());
+----
+|===
+
+== Замыкания (closures)
+
+[source,java]
+----
+void repeatMessage(String text, int delay) {
+  ActionListener  listener = event -> {
+    //переменная text доступна внутри лямбды!
+    System.out.println(text);
+  }
+  new Timer(delay, listener).start();
+
+}
+----
+
+* "Ингридиенты" лямбды:
+** Код
+** Параметры
+** Свободные ("захваченные") переменные, которые должны быть effectively final
+
+[%notitle]
+== Тупой мем
+
+image::lambdas.png[{image-50-width}]
+
+_* на самом деле, effectively final_
+
+== Effectively final only 
+
+[source,java]
+----
+int start = ...
+
+for (int i = 0; i < count; i++) {
+  ActionListener linstener = event -> {
+    start--; //ERROR: Can't mutate captured value
+    
+    //ERROR: Cannot refer to changing i
+    System.out.println(i);
+  }
+}
+
+----
+
+(Effectively final переменные -- это такие, что они либо уже `final`, либо, если на них проставить `final`, код всё равно будет компилироваться)
+
+== Method references: ещё короче, ещё эффективнее
+
+[cols="50a,50a"]
+|===
+| 
+[source,java]
+event -> System.out.println(event)
+| 
+[source,java] 
+System.out::println
+| 
+[source,java] 
+(s1, s2)->s1.compareToIgnoreCase(s2)
+| 
+[source,java]
+String::compareToIgnoreCase
+| 
+[source,java]
+(x, y) -> Math.pow(x,y)
+| 
+[source,java]
+Math::pow
+|===
+
+== Три способа определить Method reference
+
+[cols="35a,65a"]
+|===
+| `object::method`
+| `(x, y, z...) -> object.method(x, y, z...)`
+| `Class::instanceMethod`
+| `(x, y, z...) -> x.instanceMethod(y, z...)`
+| `Class::staticMethod`
+| `(x, y, z...) -> Class.staticMethod(x, y, z...)`
+|===
+
+== Constructor/Array Constructor Reference
+
+[cols="35a,65a"]
+|===
+| `Class::new`
+| `(x, y, z...) -> new Class(x, y, z...)`
+| `Class[]::new`
+| `(int i) -> new Class[i]`
+|===
+
+== IDE поможет, но разница есть!
+
+[source,java]
+----
+obj = null;
+
+//NPE только в момент запуска лямбды!!
+//obj должен быть effectively final!
+doSmth(x -> obj.method(x)); 
+
+//NPE здесь и сейчас
+//obj не обязан быть effectively final
+doSmth(obj::method)
+----
+
+== Методы, специально созданные, чтобы быть method references
+[source,java]
+----
+//Да ладно, разве трудно на null проверить??
+Objects.isNull(Object obj)...
+Objects.nonNull(Object ob)...
+
+
+list.removeIf(Objects::isNull);
+
+stream.filter(Objects::nonNull)...
+----
+
+== Готовые функциональные типы
+
+[cols="30a,^15a,^15a,^20a,^20a", options="header"]
+|===
+| Functional Interface | Parameter Types | Return
+Type | Abstract Method Name | Default Methods 
+
+| Runnable    | none | void | run |
+| Supplier<T> | none | T |  get |
+| Consumer<T> | T | void | accept | andThen
+| BiConsumer<T, U> | T, U | void | accept | andThen
+|===
+
+== Комбинирование консьюмеров
+
+[source,java]
+----
+Consumer<String> foo = ...
+List<String> list = ...
+
+//Составной консьюмер, отправляющий
+//объект сначала в первый, потом во второй
+Consumer<String> bar = foo.andThen(list::add);
+
+----
+
+== Функции
+
+[cols="30a,^15a,^15a,^20a,^20a", options="header"]
+|===
+| Functional Interface | Parameter Types | Return
+Type | Abstract Method Name | Default Methods 
+|Function<T, R> | T | R | apply | compose, andThen, identity
+| BiFunction<T, U, R> |T, U| R |apply | andThen
+|===
+
+== Композиция функций и identity
+
+
+
+[cols="50a,^50a"]
+|===
+|`f.andThen(g)` | `g(f(x))`
+|`f.compose(g)` | `f(g(x))`
+|`Function.identity()` |  `x -> x`
+|===
+
+Почему у `BiFunction` нет `compose`, только `andThen`?
+
+== Операторы
+
+[cols="30a,^15a,^15a,^20a,^20a", options="header"]
+|===
+| Functional Interface | Parameter Types | Return
+Type | Abstract Method Name | Default Methods 
+|UnaryOperator<T> |T | T | apply | compose,
+andThen,
+identity
+
+|BinaryOperator<T> |T, T | T | apply| 
+andThen,
+maxBy,
+minBy
+|===
+
+== Композиция операторов
+
+* `UnaryOperator<T> extends Function<T,T>`, поэтому `compose`, `andThen` и `identity` работают так же.
+
+* `BinaryOperator<T> extends BiFunction<T,T,T>`, поэтому `andThen` работает так же
+
+* Статические методы `minBy` и `maxBy` формируют операторы `min(x,y)` и `max(x,y)` из компаратора.
+
+
+== Предикаты
+
+[cols="30a,^15a,^15a,^20a,^20a", options="header"]
+|===
+| Functional Interface | Parameter Types | Return
+Type | Abstract Method Name | Default Methods 
+|Predicate<T> | T| boolean| test| and, or,
+negate,
+isEqual
+
+| BiPredicate<T, U> |T, U |boolean| test |and, or,
+negate
+|===
+
+== Композиция предикатов
+
+[source,java]
+----
+Predicate<T> a = ...
+Predicate<T> b = ...
+
+a.and(b).negate(); // ! (a(x) & b(x)
+
+//Двуместный предикат (x,y)-> Objects.equas(x, y)
+Objects::equals 
+
+//Одноместный предикат y -> Objects.equals(x, y)
+Predicate.isEqual(x)
+----
+
+== Функциональные интерфейсы для примитивных типов
+p, q is `int`, `long`, `double`; P, Q is `Int`, `Long`, `Double`
+
+[cols="35a,20a,20a,25a", options="header"]
+|===
+|*Functional Interface*| *Parameter Types* | *Return Type* | *Abstract Method Name*
+|BooleanSupplier | none | boolean | getAsBoolean
+|PSupplier | none |p | getAsP
+|PConsumer |p | void | accept
+|ObjPConsumer<T> | T, p |void | accept
+|PFunction<T> | p | T | apply
+|PToQFunction | p | q | applyAsQ
+|ToPFunction<T> |T|  p | applyAsP
+|ToPBiFunction<T, U> |T, U |p | applyAsP
+|===
+
+== Функциональные интерфейсы для примитивных типов (продолжение)
+
+[cols="35a,20a,20a,25a", options="header"]
+|===
+|*Functional Interface*| *Parameter Types* | *Return Type* | *Abstract Method Name*
+|PUnaryOperator |p |p | applyAsP
+|PBinaryOperator |p, p | p |applyAsP
+|PPredicate |p | boolean | test
+|===
+
+== Компараторы
+
+[source,java]
+----
+@AllArgsConstructor
+public class Person {
+    @Getter
+    private final String firstName;
+    @Getter
+    private final String lastName;
+}
+List<Person> people = new ArrayList<>();
+----
+
+== Сортируем по фамилии
+
+[cols="50a,50a"]
+|===
+[source,java]
+----
+/*НЕПРАВИЛЬНО*/
+Collections.sort(people,
+  (p1, p2) -> 
+    p2.getLastName().compareTo(p2.getLastName());
+);
+----
+|
+[source,java]
+----
+/*ПРАВИЛЬНО*/ 
+Collections.sort(people,
+  Comparator.comparing
+   (Person::getLastName));
+);
+----
+|===
+
+== Сортируем по фамилии, потом по имени
+
+[source,java]
+----
+//НЕ ПИШИТЕ ВЕСЬ ЭТОТ КОШМАР
+Collections.sort(people,
+  (p1, p2) -> {
+    int result = p1.getFirstName().compareTo(p2.getFirstName());
+    if (result == 0) {
+      result = p2.getLastName().compareTo(p2.getLastName());
+    }
+    return result;
+  }
+);
+----
+
+== Правильно так:
+
+[source,java]
+----
+Collections.sort(people,
+  Comparator.comparing(Person::getLastName)
+  .thenComparing(Person::getFirstName));
+);
+----
+
+== Также:
+
+[source,java]
+----
+Comparator.comparing(keyExtractor, keyComparator)
+Comparator.comparingInt/Double(...)
+Comparator.reversed()
+Comparator.nullsFirst/nullsLast(Comparator c)
+----
+
