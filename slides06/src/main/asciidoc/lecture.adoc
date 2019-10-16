@@ -153,16 +153,12 @@ public <T extends Person> String getRandomPersonName(List<T> items) {
 [plantuml, intersections, png]
 ----
 @startuml
-
 skinparam dpi 150 
 
-
 class Employee {
-
 }
 
 class Retiree {
-
 }
 
 class Person {
@@ -401,7 +397,7 @@ List<Manager> a = new ArrayList<>();
 List b = a;
 //Компилируется и выполняется, список испорчен!
 b.add("manager");
-//Выполняется: мы list.get вернул Object
+//Выполняется: list.get вернул String как Object
 System.out.println(b.get(0));
 //ClassCastException при выполнении
 Manager m = a.get(0);
@@ -482,7 +478,7 @@ class Pair<T> {
 }
 ----
 
-== Решается с помощью метакласса и рефлекции (о которой речь впереди)
+== Решается с помощью метакласса и рефлексии (о которой речь впереди)
 
 [source,java]
 ----
@@ -629,7 +625,9 @@ class Employee implements
     ...
   }
 }
-class Manager implements
+class Manager 
+  extends Employee
+  implements
   Comparable<Manager> {
   @Override
   int compareTo(Manager m){
@@ -640,8 +638,9 @@ class Manager implements
 |
 [source,java]
 ----
-class Manager implements
-  Comparable{
+class Manager 
+  extends Employee
+  implements Comparable{
   
   //bridge method for Employee
   int compareTo(Object m) {
@@ -1028,10 +1027,10 @@ class Holder<E, SELF extends Holder<E, SELF>>{
 }
 
 class StringHolder extends Holder<String, StringHolder> {
-
+    void doSmth() {...};
 }
 
-StringHolder h = new StringHolder().setValue("aaa");
+StringHolder h = new StringHolder().setValue("aaa").doSmth();
 ----
 
 == Что почитать-посмотреть
@@ -1047,3 +1046,33 @@ StringHolder h = new StringHolder().setValue("aaa");
 
 ** https://habr.com/ru/post/330724/[Иван Бессонов. Тьюринг-полнота Generic типов Java] (2017-08-24, на базе публикации от ноября 2016).
 
+== Nada Amin & Rose Tate's example
+
+[source,java]
+----
+class Unsound {
+  static class Constrain<A, B extends A> {}
+  static class Bind<A> {
+    <B extends A>
+    A upcast(Constrain<A,B> constrain, B b) {
+      return b;
+    }
+  }
+  static <T,U> U coerce(T t) {
+    Constrain<U,? super T> constrain = null;
+    Bind<U> bind = new Bind<U>();
+    return bind.upcast(constrain, t);
+  }
+  public static void main(String[] args) {
+    String zero = Unsound.<Integer,String>coerce(0);
+  }
+}
+----
+
+== Radu Grigore's Example
+
+[source,java]
+----
+BadList<? super String> badList = null;
+List<? super BadList<? super String>> list = badList;
+----

@@ -1028,6 +1028,25 @@ p, q is `int`, `long`, `double`; P, Q is `Int`, `Long`, `Double`
 |PPredicate |p | boolean | test
 |===
 
+== Дефолтные методы Map interface
+
+Работают атомарно в `ConcurrentHashMap`!
+
+[source,java]
+----
+V computeIfAbsent(K key,
+  Function<? super K, ? extends V> mappingFunction)
+            
+V computeIfPresent(K key,
+  BiFunction<? super K, ? super V, ? extends V> remappingFunction)
+            
+V compute(K key,
+  BiFunction<? super K, ? super V, ? extends V> remappingFunction)
+
+V merge(K key, V value,
+  BiFunction<? super V, ? super V, ? extends V> remappingFunction)
+----
+
 == Компараторы
 
 [source,java]
