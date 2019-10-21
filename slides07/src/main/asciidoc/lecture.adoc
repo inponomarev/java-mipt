@@ -254,6 +254,34 @@ public interface Comparator<T> {
 }
 ----
 
+== Промежуточные итоги
+
+* Используйте _интерфейсы_ для типов переменных и аргументов в методах. Не привязывайтесь к конкретным реализациям.
+
+* Помимо возможности подмены реализаций, существуют суррогатные коллекции, например, важные частные случаи:
+
+[source,java]
+----
+//Пустые                   //Из одного элемента
+Collections.emptyList();   Collections.singletonList(o);
+Collections.emptySet();    Collections.singleton(o);
+Collections.emptyMap();    Collections.singletonMap(k,v);
+...
+----
+
+== Суррогатные коллекции: защита (частичная) при публикации объекта
+
+[source,java]
+----
+Collections.unmodifiableList(List<? extends T> l);
+Collections.unmodifiableSet(Set<? extends T> s);
+Collections.unmodifiableMap(Map<? extends K,
+                                ? extends V> s);
+...
+----
+
+В классе `Collections` (как и в классе `Arrays`) вообще очень много всего полезного!
+
 == Его Величество ArrayList
 
 [source,java]
@@ -620,6 +648,7 @@ int i =
 * разворачивание "задом наперёд"
 * объединение и разность
 * ... -- ищите и найдёте!
+
 
 == Callbacks: До появления лямбд
 

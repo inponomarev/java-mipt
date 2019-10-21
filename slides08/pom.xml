@@ -27,12 +27,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
+        <asciidoctor.maven.plugin.version>1.6.0</asciidoctor.maven.plugin.version>
         <asciidoctorj.version>1.5.7</asciidoctorj.version>
         <jruby.version>9.1.17.0</jruby.version>
-        <revealjs.version>3.5.0</revealjs.version>
+        <revealjs.version>3.7.0</revealjs.version>
         <highlightjs.version>9.14.0</highlightjs.version>
-        <asciidoctor-revealjs.version>1.1.3</asciidoctor-revealjs.version>
+        <asciidoctor-revealjs.version>2.0.0</asciidoctor-revealjs.version>
     </properties>
 
     <dependencies> </dependencies>
@@ -94,21 +94,21 @@
                     <dependency>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctorj-diagram</artifactId>
-                        <version>1.5.11</version>
+                        <version>1.5.18</version>
                     </dependency>
 
                     <!-- Comment this section to use the default jruby artifact provided by the plugin -->
-                    <dependency>
+                    <!--<dependency>
                         <groupId>org.jruby</groupId>
                         <artifactId>jruby-complete</artifactId>
                         <version>${jruby.version}</version>
-                    </dependency>
+                    </dependency>-->
                     <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
-                    <dependency>
+                    <!--<dependency>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctorj</artifactId>
                         <version>${asciidoctorj.version}</version>
-                    </dependency>
+                    </dependency>-->
                 </dependencies>
                 <configuration>
                     <sourceDocumentName>lecture.adoc</sourceDocumentName>
