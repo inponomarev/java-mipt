@@ -299,6 +299,7 @@ n356573597 -> n325040804[label="elementData",fontsize=12];
 n325040804[shape=record, label="foo|bar|baz|null|null|null|null|null|null|null"];
 }
 -----
+(Визуализация внутреннего устройства структур данных сделана с помощью https://www.cs.auckland.ac.nz/~j-hamer/index.html#LJV[Lightweight Java Visualizer].) 
 
 == Свойства `ArrayList`
 * `get(int index)` is *O(1)*  <- *main benefit of `ArrayList<E>`*
