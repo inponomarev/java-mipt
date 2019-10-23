@@ -746,11 +746,13 @@ Comparator<String> c = (s1, s2) -> s1.length() - s2.length();
 
 [source,java]
 ----
+final List<String> list = ...
+
 //Predicate.test возвращает boolean
-Predicate<String> p = s.list(add);
+Predicate<String> p = s -> list.add(s);
 
 //Consumer.accept возвращает void!
-Consumer<String> c = s.list(add);
+Consumer<String> c = s -> list.add(s);
 ----
 
 == Object -- не функциональный интерфейс!
