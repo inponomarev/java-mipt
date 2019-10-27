@@ -1,0 +1,1093 @@
+= Core Java: Курс лекций. Лекция 9
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Streams
+
+* Появились в Java8, вместе с lambdas & method references.
+* Обработка конечных и потенциально бесконечных наборов данных.
+* Декларативный подход к обработке данных: описываем *что* хотим получить, а не *как* мы это получим.
+* Прозрачный параллелизм.
+
+== Преобразуем поток в поток
+
+[cols="^40a,60a"]
+|===
+
+|
+`blockStream`
+
+image::map.svg[]
+
+`squashedStream`
+|[source,java]
+----
+List<Block> blocks = ...;
+
+Stream<Block> blocksStream = blocks.stream();
+
+Stream<SquashedBlock> squashedStream =
+  blocksStream.map(Block::squash);
+----
+
+(Автор анимаций -- Тагир Валеев, движущиеся картинки см. https://stackoverflow.com/questions/35150231/java-streams-lazy-vs-fusion-vs-short-circuiting[здесь])
+|===
+
+
+== Фильтруем
+
+[cols="^40a,60a"]
+|===
+
+|
+`squashedStream`
+
+image::filter.svg[]
+
+`filteredStream`
+|[source,java]
+----
+Stream<SquashedBlock> filteredStream =
+  squashedStream.filter(block ‑> 
+         block.getColor() != YELLOW);
+----
+|===
+
+== Отображаем в консоль (терминальная операция)
+
+[cols="^40a,60a"]
+|===
+
+|
+`filteredStream`
+
+image::display.svg[]
+
+|[source,java]
+----
+filteredStream
+  .forEach(System.out::println);
+----
+|===
+
+
+== Всё вместе в одну строку
+
+[cols="^40a,60a"]
+|===
+|image::fuse.svg[]
+|[source,java]
+----
+blocks.stream()
+      .map(Block::squash)
+      .filter(block ‑> 
+         block.getColor() != YELLOW)
+      .forEach(System.out::println);
+----
+|===
+
+== Ничего не напоминает?
+
+«Соединить два файла, привести их строки к lowercase, отсортировать, вывести три последних строки в алфавитном порядке»
+
+[source,sh]
+cat file1 file2 | tr "[A-Z]" "[a-z]" | sort | tail -3
+
+== Зачем это нужно?
+
+[cols="55a,45a"]
+|===
+|*Java 7* | *Java 8*
+|
+[source,java]
+----
+Map<Currency, List<Transaction>>
+ transactionsByCurrencies = new HashMap<>();
+
+for (Transaction transaction : transactions) {
+ Currency currency =transaction.getCurrency();
+ List<Transaction> transactionsForCurrency =
+   transactionsByCurrencies.get(currency);
+ if (transactionsForCurrency == null) {
+  transactionsForCurrency = new ArrayList<>();
+    transactionsByCurrencies.put(currency,
+           transactionsForCurrency); 
+ }
+ transactionsForCurrency.add(transaction);
+}
+----
+| 
+[source,java]
+----
+Map<Currency, 
+ List<Transaction>>
+ transactionsByCurr =
+   transactions
+   .stream()
+   .collect(
+     Collectors
+     .groupingBy(
+   Transaction
+   ::getCurrency));
+----
+|===
+
+== Три категории методов Stream API
+
+[source,java]
+----
+//Создание стрима
+List<String> names = menu.stream()
+
+//Промежуточные операции
+  .filter(d -> d.getCalories() > 300
+  .map(Dish::getName)
+  .limit(3)
+
+//Терминальная операция
+  .collect(Collectors.toList());
+----
+
+== Создание стрима
+
+[source,java]
+----
+//Пустого
+Stream<Foo> stream0 = Stream.empty();
+
+//Перечислением элементов
+Stream<String> stream1 = 
+         Stream.of("gently", "down", "the", "stream");
+//Из массива
+Stream<String> stream2 =
+         Arrays.stream("gently down the stream".split(" "));
+//Из коллекции
+List<String> strings = ...
+Stream<String> stream3 = strings.stream();
+
+//Из API
+Path path = Paths.get(...);
+Stream<Path> stream4 = Files.list(path);
+----
+
+== Конкатенация стримов
+
+[source,java]
+----
+Stream<Foo> s1 = ...;
+Stream<Foo> s2 = ...;
+Stream<Foo> s = Stream.concat(s1, s2);
+----
+
+== Порождение стримов (generate)
+
+[source,java]
+----
+//С помощью генератора
+Stream<Double> randoms =
+    Stream.generate(Math::random);
+----
+
+[.fragment]
+[source,java]
+----
+
+          //ХОТЯ ЛУЧШЕ
+          DoubleStream doubles =
+            ThreadLocalRandom.current().doubles()
+----
+
+== Порождение стримов (iterate)
+
+[source,java]
+----
+//Итеративно
+Stream<Integer> integers =
+    Stream.iterate(0, x -> x + 1);
+----
+
+[.fragment]
+[source,java]
+----
+
+          //ХОТЯ ЛУЧШЕ
+          IntStream range = IntStream.range(0, 1000);
+----
+
+
+== Что будет в этом стриме?
+[source,java]
+----
+    Stream.iterate(new int[]{0, 1}, 
+                   t -> new int[]{t[1], t[0] + t[1]})
+    .mapToInt(t -> t[0]);
+----
+
+== Spliterator: самый общий способ создания стрима
+[source,java]
+----
+public interface Spliterator<T> {
+  boolean tryAdvance(Consumer<? super T> action);
+  Spliterator<T> trySplit();
+  long estimateSize();
+  int characteristics();
+}
+----
+
+[source,java]
+----
+StreamSupport.stream(Spliterator<T> spliterator, boolean parallel)
+----
+
+== Ветвление сплитераторов
+[graphviz,"split1.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+node[shape="box"]
+try[shape="none"; label="trySplit()"]
+Spliterator1 -> try ;
+try -> Spliterator2;
+}
+----
+
+== Ветвление сплитераторов
+[graphviz,"split2.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+node[shape="box"]
+try[shape="none"; label="trySplit()"]
+try2[shape="none"; label="trySplit()"]
+
+Spliterator1 -> Spliterator2 ;
+Spliterator1 -> try2 -> Spliterator3;
+Spliterator2 -> try -> Spliterator4;
+}
+----
+
+== Характеристики сплитератора
+
+[cols="15a,85a"]
+|===
+|`ORDERED` |Elements have a defined order (for example, a `List`), so the `Spliterator` enforces this
+order when traversing and partitioning them.
+|`DISTINCT`| For each pair of elements `x` and `y`, `x.equals(y)` returns `false`.
+|`SORTED`| The traversed elements follow a predefined sort order.
+|`SIZED`| This `Spliterator` has been created from a source with a known size, so the value returned by `estimatedSize()` is precise.
+|`NONNULL`| It’s guaranteed that the traversed elements won’t be null.
+|`IMMUTABLE`| The source of this `Spliterator` can’t be modified. This implies that no elements can be
+added, removed, or modified during their traversal.
+|`CONCURRENT`| The source of this `Spliterator` may be safely concurrently modified by other threads
+without any synchronization.
+|`SUBSIZED`| Both this `Spliterator` and all further `Spliterators` resulting from its split are `SIZED`.
+|===
+
+== Промежуточные итоги
+* Есть много стандартных способов порождения стримов, для простых случаев не надо "изобретать велосипед"
+
+
+* Скорей всего, вам не понадобится самому реализовывать `Spliterator`.
+
+* Быстродействия ради, есть "примитивные стримы" (три типа):
+** `IntStream` (эффективнее, чем `Stream<Integer>`)
+** `LongStream` (эффективнее, чем `Stream<Long>`)
+** `DoubleStream` (эффективнее, чем `Stream<Double>`)
+
+== Преобразования стримов в стримы: получение «головы» и «хвоста»
+
+[source,java]
+----
+//методы интерфейса Stream
+
+//голова
+Stream<T> limit(long maxSize)
+Stream<T> takeWhile(Predicate<? super T> predicate)
+
+//хвост
+Stream<T> skip(long n)
+Stream<T> dropWhile(Predicate<? super T> predicate)
+----
+
+== filter 
+
+[cols="^40a,60a"]
+|===
+|
+image::filter.svg[]
+|[source,java]
+----
+Stream<T> filter(
+   Predicate<? super T> predicate);
+----
+|===
+
+== map 
+[cols="^40a,60a"]
+|===
+|
+image::map.svg[]
+|[source,java]
+----
+<R> Stream<R> map(Function<? super T, 
+                           ? extends R> mapper);
+IntStream mapToInt(
+             ToIntFunction<? super T> mapper);
+LongStream mapToLong(
+            ToLongFunction<? super T> mapper);
+DoubleStream mapToDouble(
+          ToDoubleFunction<? super T> mapper);
+----
+|===
+
+== flatMap
+
+[source,java]
+----
+Path path = ...
+Pattern separator = Pattern.compile("\\s");
+try(Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
+    //НЕ ТО, что нам надо!
+    //Stream<Stream<String>> streamStream = lines.map(separator::splitAsStream);
+    
+    //ТО, что нам надо!
+    Stream<String> words = lines.flatMap(separator::splitAsStream);
+    words.forEach(System.out::println);
+}
+
+/*А также:
+  flatMapToDouble
+  flatMapToInt
+  flatMapToLong
+  */
+----
+
+
+== distinct
+
+[source,java]
+----
+//Внутренний Set
+
+Stream.of(1, 5, 8, 7, 8, 5, 9, 9)
+    .distinct()
+    .forEach(System.out::println);
+
+//Выведет 1, 5, 8, 7, 9
+----
+
+== Что произойдёт при выполнении такого кода?
+[source,java]
+----
+ThreadLocalRandom.current().ints(1, 10)
+  .distinct()
+  .forEach(System.out::println);
+----
+
+[.fragment]
+Программа зависнет, когда исчерпаются все значения от 1 до 10. Можно пофиксить, например, указав `limit(9)` после distinct.
+
+
+== sorted
+
+[source,java]
+----
+//Внутренний отсортированный список
+
+Stream.of(1, 5, 8, 7, 8, 5, 9, 9)
+    .distinct()
+    .forEach(System.out::println);
+
+//Выведет 1, 5, 5, 7, 8, 8, 9, 9
+
+//Не имеет смысла для бесконечных стримов
+----
+
+== peek -- отладочный метод
+
+* Не меняет исходный стрим.
+* Предназначен для «подглядывания» за промежуточным состоянием элементов. 
+* В качестве аргумента часто используется `System.out::println`.
+* При параллельных вычислениях может быть вызван в произвольном порядке в произвольном потоке выполнения.
+
+[source,java]
+Stream<T> peek(Consumer<? super T> action);
+
+== Терминальные операции
+
+[source,java]
+----
+//Предъяви первый элемент
+Optional<T> findFirst();
+//Предъяви любой элемент
+Optional<T> findAny();
+
+//Проверь, удовлетворяет ли условию...
+//...какой-то
+boolean anyMatch(Predicate<? super T> predicate);
+//...все
+boolean allMatch(Predicate<? super T> predicate);
+//...никакой
+boolean noneMatch(Predicate<? super T> predicate);
+
+//КОРОТКИЕ ЗАМЫКАНИЯ!
+----
+
+== forEach
+
+[source,java]
+----
+void forEach(Consumer<? super T> action);
+----
+
+* В случае параллельного выполнения нет гарантий последовательности
+* Нет гарантий относительно того, в каком потоке будет выполнена лямбда
+
+== reduce (with identity)
+
+[cols="40a,60a"]
+|===
+|
+[graphviz, "reduce1.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  
+  "4"[shape="square"];
+  "5"[shape="square"];
+  "3"[shape="square"];
+  "9"[shape="square"];
+  "p1"[label="+"; shape="circle"];
+  "p2"[label="+"; shape="circle"];
+  "p3"[label="+"; shape="circle"];
+  "p4"[label="+"; shape="circle"];
+  "4" -> "p1";
+  "0" -> "p1";
+
+  "p1" -> "s1";
+  "5" -> "p2";
+  "s1" -> "p2";
+  "p2" -> "s2";
+  "3"-> "p3";
+  "s2"->"p3";
+  "p3"->"s3";
+  "9"->"p4";
+  "s3"->"p4";
+  "p4"->"s4";
+
+  "0"[shape="square"];
+  "s1"[shape="square";label="4"];
+  "s2"[shape="square";label="9"];
+  "s3"[shape="square";label="12"];
+  "s4"[shape="square";label="21"];
+  
+  "0"->"4"->"5"->"3"->"9"[style="invis"]
+  
+  {rank = same; "4"; "5"; "3"; "9";}
+  {rank = same; "0"; "p1";}
+  {rank = same; "s1"; "p2";}
+  {rank = same; "s2"; "p3";}
+  {rank = same; "s3"; "p4";}
+}
+----
+| 
+
+* Ассоциативная функция + "identity value"
+* Промежуточные результаты -- immutable values
+* Вопрос: назовите примеры ассоциативных операций в математике?
+[source,java]
+----
+T reduce(T identity, 
+  BinaryOperator<T> accumulator);
+----
+|===
+
+== Parallel reduce
+
+[graphviz, "reduce-par.png"]
+----
+digraph G {
+  graph [ dpi = 150 ];
+  "4"[shape="square"];
+  "5"[shape="square"];
+  "3"[shape="square"];
+  "9"[shape="square"];
+  "p1"[label="+"; shape="circle"];
+  "p2"[label="+"; shape="circle"];
+  "p3"[label="+"; shape="circle"];
+  "p4"[label="+"; shape="circle"];
+  "p5"[label="+"; shape="circle"];
+  "4" -> "p1";
+  "0" -> "p1";
+  "0" -> "p3";
+
+  "p1" -> "s1";
+  "5" -> "p2";
+  "s1" -> "p2";
+  "p2" -> "s2";
+  "3"-> "p3";
+  //"s2"->"p3";
+  "p3"->"s3";
+  "9"->"p4";
+  "s3"->"p4";
+  "p4"->"s4";
+  "p5"->"s4"[dir=back];
+  "s2"->"p5";
+  
+  "p5"->"s5";
+  
+
+  "0"[shape="square"];
+  "s1"[shape="square";label="4"];
+  "s2"[shape="square";label="9"];
+  "s3"[shape="square";label="3"];
+  "s4"[shape="square";label="12"];
+  "s5"[shape="square";label="21"];
+  
+  
+  "0"->"4"->"5"->"3"->"9"[style="invis"]
+  
+  {rank = same; "4"; "5"; "3"; "9";}
+  {rank = same; "0"; "p1"; "p3"}
+  {rank = same; "s1"; "p2";}
+  //{rank = same; "s2"; "p3";}
+  {rank = same; "s3"; "p4";}
+  {rank = same; "s2"; "s4"; "p5";}
+}
+----
+
+== reduce без identity
+[cols="40a,60a"]
+|===
+|
+[graphviz, "reduce2.png"]
+----
+digraph G {
+  graph [ dpi = 140 ];
+  "4"[shape="square"];
+  "5"[shape="square"];
+  "3"[shape="square"];
+  "9"[shape="square"];
+  
+  "p2"[label="max"; shape="circle"];
+  "p3"[label="max"; shape="circle"];
+  "p4"[label="max"; shape="circle"];
+  "4" -> "s1";
+  "5" -> "p2";
+  "s1" -> "p2";
+  "p2" -> "s2";
+  "3"-> "p3";
+  "s2"->"p3";
+  "p3"->"s3";
+  "9"->"p4";
+  "s3"->"p4";
+  "p4"->"s4";
+
+  "s1"[shape="square";label="4"];
+  "s2"[shape="square";label="5"];
+  "s3"[shape="square";label="5"];
+  "s4"[shape="square";label="9"];
+  
+  
+  "4"->"5"->"3"->"9"[style="invis"]
+  
+  {rank = same; "4"; "5"; "3"; "9";}
+  {rank = same; "s1"; "p2";}
+  {rank = same; "s2"; "p3";}
+  {rank = same; "s3"; "p4";}
+}
+----
+| * identity не нужно, но и результата может не получиться (если стрим пустой)
+
+[source,java]
+Optional<T> reduce(
+  BinaryOperator<T> accumulator);
+|===
+
+== Готовые редьюсы
+
+* Доступный во всех стримах:
+** `count` -- в общем случае требует пересчёта всех элементов!
+** `max(Comparator)`, `min(Comparator)`
+* Доступные в стримах примитивов:
+** `sum`
+** `average`
+** `summaryStatistics` -- count, sum, min и max «в одном флаконе».
+
+== collect: самый гибкий метод сборки результатов
+
+* Типовые параметры:
+** `T` -- тип элементов стрима
+** `A` -- тип аккумулятора, промежуточной структуры данных, в которой всё собирается
+** `R` -- тип результата
+* В отличие от `reduce`, работающего с иммутабельными объектами, мутирует аккумулятор.
+
+[source,java]
+<R, A> R collect(Collector<? super T, A, R> collector);
+
+== Интерфейс Collector<T, A, R>
+
+* `T` -- тип элементов стрима
+* `A` -- тип аккумулятора, промежуточной структуры данных, в которой всё собирается
+* `R` -- тип результата
+
+[source,java]
+----
+public interface Collector<T, A, R> {
+  Supplier<A> supplier();
+  BiConsumer<A, T> accumulator();
+  Function<A, R> finisher();
+  BinaryOperator<A> combiner();
+  Set<Characteristics> characteristics();
+}
+
+//например:
+class ToListCollector<T> implements
+   Collector<T, List<T>, List<T>>
+----
+
+== Характеристики коллектора
+
+[cols="20a,80a"]
+|===
+|*Characteristic* | *Meaning*
+|`CONCURRENT`| Indicates that this collector is_concurrent_, meaning that the result container can support the accumulator function being called concurrently with the same result container from multiple threads.
+|`UNORDERED`| Indicates that the collection operation does not commit to preserving the encounter order of input elements.  (This might be true if the result container has no intrinsic order, such as a `Set`.)
+|`IDENTITY_FINISH`| Indicates that the finisher function is the identity function and can be elided.  If set, it must be the case that an unchecked cast from A to R will succeed.
+|===
+
+== Промежуточные выводы
+* Сделать свой коллектор непросто,
+* Но сила коллекторов в том, что есть много готовых и их можно комбинировать!
+
+== Наиболее употребимые коллекторы
+
+[source,java]
+----
+Collector<T, ?, List<T>> toList()
+Collector<T, ?, Set<T>> toSet()
+Collector<T, ?, C> toCollection(Supplier<C> collectionFactory)
+
+//Пример применения
+Stream<Foo> myStream = ...
+List<Foo> list = myStream.collect(Collectors.toList());
+----
+
+== Собирание в мапы
+[source,java]
+----
+Collector<T, ?, Map<K,U>> toMap(
+  Function<? super T, ? extends K> keyMapper,
+  Function<? super T, ? extends U> valueMapper)
+
+//Пример применения
+Stream<Person> people = ...
+Map<Integer, Person> idToPerson = people.collect(
+  Collectors.toMap(Person::getId, p->p);
+----
+
+* Также можно указать `mergeFunction` и `mapSupplier`.
+
+
+== Вариации на тему сборки в коллекции
+
+* с помощью `toUnmodifiable(List|Set|Map)` можно сразу получить неизменяемую коллекцию
+* `toConcurrentMap` можно сразу получить потокобезопасную мапу.
+
+== Строка с разделителями
+
+[source,java]
+----
+static Collector<CharSequence, ?, String> joining()
+
+//Пример использования
+menuStream.map(Dish::getName).collect(Collectors.joining(", ");
+
+//Не забываем про то, что это же можно сделать и без стримов:
+static String join(CharSequence delimiter,
+            Iterable<? extends CharSequence> elements)
+----
+
+== Группировки
+
+[graphviz, "groupby.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+node[shape="record"]
+
+map[label="<f0>FISH|<f1>MEAT|<f2>OTHER"];
+
+flist[label="{salmon|prawns}"];
+mlist[label="{pork|beef|chicken}"];
+olist[label="{pizza|rice|fruit|french fries}"];
+map:f0->flist;
+map:f1->mlist;
+map:f2->olist;
+    
+}
+----
+[source,java]
+----
+Map<Dish.Type, List<Dish>> dishesByType =
+  menu.stream().collect(Collectors.groupingBy(Dish::getType));
+----
+
+== Downstream Collectors
+[graphviz, "groupbyby.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+node[shape="record"]
+
+map[label="<f0>FISH|<f1>MEAT|<f2>OTHER"];
+
+fmap[label="<f0>NORMAL|<f1>DIET"];
+
+mmap[label="<f0>FAT|<f1>NORMAL|<f2>DIET"];
+
+omap[label="<f0>NORMAL|<f1>DIET"];
+
+olist1[label="{pizza|french fries}"];
+olist2[label="{fruit|rice}"];
+
+map:f0->fmap;
+map:f1->mmap;
+map:f2->omap;
+
+fmap:f0->salmon;
+fmap:f1->prawns;
+
+mmap:f0->pork;
+mmap:f1->beef;
+mmap:f2->chicken;
+
+omap:f0->olist1;
+omap:f1->olist2;
+    
+}
+----
+
+[source,java]
+----
+Map<Dish.Type, Map<Dish.CaloricLevel, List<Dish>>>
+  dishesByTypeAndCaloricLevel =
+    menu.stream().collect(Collectors
+      .groupingBy(Dish::getType,
+         Collectors.groupingBy(Dish::getCaloricLevel)));
+----
+
+== Но мы можем не только группировать в цепочке!
+
+[graphviz, "groupbyandcount.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+
+map[shape="record";label="<f0>FISH|<f1>MEAT|<f2>OTHER"];
+
+flist[label="2"];
+mlist[label="3"];
+olist[label="4"];
+map:f0->flist;
+map:f1->mlist;
+map:f2->olist;
+    
+}
+----
+
+[source,java]
+----
+Map<Dish.Type, Long> typesCount =
+  menu.stream().collect(Collectors
+    .groupingBy(Dish::getType, Collectors.counting()));
+----
+
+== Набор downstream collectors
+
+[source,java]
+----
+/*Всё это уже есть в стримах, но нам надо применить это
+к "разветвлённому" стриму.*/ 
+
+
+/*"Терминальные"*/
+counting()
+summingInt(ToIntFunction<? super T> mapper)
+summingLong(ToLongFunction<? super T> mapper)
+summingDouble(ToDoubleFunction<? super T> mapper)
+maxBy(Comparator<? super T> comparator)
+minBy(Comparator<? super T> comparator)
+----
+
+== Downstream collectors--продолжение
+[source,java]
+----
+/*С возможностью продолжить цепочку*/
+filtering(Predicate<? super T> predicate, downstream)
+mapping(Function<? super T, ? extends U> mapper, downstream)
+flatMapping(Function<? super T, 
+  ? extends Stream<? extends U>> mapper, downstream)
+
+/*Адаптор*/
+collectingAndThen(Collector<T,A,R> downstream, 
+  Function<R,RR> finisher)
+----
+
+== Когда может быть нужен collectingAndThen?
+
+[source,java]
+----
+Map<Dish.Type, Dish> mostCaloricByType = 
+  menu.stream()
+     .collect(Collectors.groupingBy(Dish::getType,
+       collectingAndThen( //<-----АДАПТОР
+         Collectors.maxBy(Comparator
+                   .comparingInt(Dish::getCalories),
+         //maxBy возвращает Optional
+       Optional::get)));
+----
+
+== Параллельные стримы
+
+* Метод `.parallel()` включает параллелизацию обработки.
+* `parallel` можно вызвать в любом месте цепочки вызовов.
+* Пользоваться надо с осторожностью, понимая ограничения и применимость.
+
+== Optional: Контейнер, который содержит объект. Или не содержит.
+
+* Цитата из книги Java 8 in Action:
+
+* "Tony Hoare, one of the giants of computer science, said in a presentation at QCon London 2009: _I call it my billion-dollar mistake. It was the invention of the null reference in 1965.... I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement._"
+
+
+== Optional<T> -- как стрим из 0 или 1 элемента
+
+[source,java]
+----
+//Создание
+Optional.empty(); //пустой
+Optional.of(x); //NPE если x == null
+Optional.ofNullable(x); //пустой или с x-ом
+
+//Расчехление
+o.get();
+o.orElse(other);
+o.orElseGet(()->calcOther());
+o.orElseThrow(()->new IllegalStateException());
+----
+
+== Optional.map 
+[source,java]
+----
+Optional<Insurance> optInsurance = Optional.ofNullable(insurance);
+Optional<String> name = optInsurance.map(Insurance::getName);
+----
+
+== Optional.flatMap
+[source,java]
+----
+Optional<Person> person = ...
+
+//person.map(Person::getCar) вернёт Optional<Optional<Car>>!!
+
+String insuranceName = person.flatMap(Person::getCar)
+                             .flatMap(Car::getInsurance)
+                             .map(Insurance::getName)
+                             .orElse("Unknown");
+----
+
+== Optional.filter
+
+[source,java]
+----
+String insuranceName = person.filter(p -> p.getAge() >= minAge)
+                             .flatMap(Person::getCar)
+                             .flatMap(Car::getInsurance)
+                             .map(Insurance::getName)
+                             .orElse("Unknown");
+
+----
+
+== Правила использования Optional
+
+«Лобовое» использование `Optional` -- хуже, чем `null`:
+
+[cols="50a,50a"]
+|===
+|*ПЛОХО* | *НОРМАЛЬНО*
+|
+[source,java]
+----
+if (o.isPresent())
+  o.get().someMethod();
+----
+|
+[source,java]
+----
+if (o != null)
+  o.someMethod();
+----
+
+|===
+
+== Правила использования Optional
+
+* Переменная с типом `Optional` никогда не должна быть `null`.
+* Поля с типом `Optional` бесполезны: проверка на «непустоту» этого поля не лучше проверки на `null`, цена -- дополнительный объект.
+* Не кладите `Optional`-ы в коллекции.
+* В целом, `Optional` -- для возвращаемых значений, а не для аргументов методов.
+
+== Когда стримы использовать не нужно
+
+* Стримы многим нравятся
+* Иногда люди перестают думать, и случается «стримоз»
+* Тагир Валеев: https://habr.com/ru/post/337350/[Используйте Stream API проще (или не используйте вообще)]
+
+== Что не так?
+
+[source,java]
+collection.stream().forEach(...)
+
+[.fragment]
+У класса `Collection` уже есть метод `forEach`, стрим создавать не нужно.
+
+== Что не так?
+
+[source,java]
+collection.stream().collect(Collectors.toList())
+collection.stream().collect(Collectors.toSet())
+
+[.fragment]
+[source,java]
+/*так эффективнее*/
+new ArrayList<>(collection)
+new HashSet<>(collection)
+
+== Что не так?
+
+[source,java]
+collection.stream().max(Comparator.naturalOrder()).get()
+
+[.fragment]
+[source,java]
+/*То же самое, с меньшим количеством мусора*/
+Collections.max(collection)
+
+== Что хотел сказать автор?
+[source,java]
+stream.sorted(comparator).findFirst()
+
+[.fragment]
+[source,java]
+stream.min(comparator)
+
+== Как улучшить?
+
+[source,java]
+stream.collect(Collectors.counting())
+
+[.fragment]
+[source,java]
+/*Коллекторы counting(), maxBy(), minBy(), reducing(), mapping(), ... 
+нужны лишь как вторичные в каскадных операциях groupingBy*/
+stream.count()
+
+== Что не так?!
+
+[source,java]
+collection.stream().count()
+
+
+[.fragment]
+[source,java]
+/*Без пересчёта элементов один за другим!*/
+collection.size()
+
+
+== Как улучшить?
+[source,java]
+listOfLists.stream().flatMap(List::stream).count()
+
+[.fragment]
+[source,java]
+/*Число элементов каждого подсписка известно!*/
+listOfLists.stream().mapToInt(List::size).sum()
+
+== Как улучшить?
+
+[source,java]
+stream.filter(condition).findFirst().isPresent()
+
+[.fragment]
+[source,java]
+/*Зачем сам элемент, если надо лишь проверить наличие?*/
+stream.anyMatch(condition)
+
+== Как улучшить?
+
+[source,java]
+stream.filter(condition).anyMatch(x -> true)
+stream.map(condition).anyMatch(b -> b)
+stream.map(condition).anyMatch(Boolean::booleanValue)
+stream.map(condition).anyMatch(Boolean.TRUE::equals)
+
+[.fragment]
+[source,java]
+/*Замысловатые вариации на простую тему*/
+stream.anyMatch(condition)
+
+
+== Как улучшить?!
+
+[source,java]
+if(stream.filter(condition).count() > 0)
+
+[.fragment]
+[source,java]
+/*В этом примере ещё хуже, чем в предыдущих,
+т. к. обходится весь стрим целиком! А решение то же:*/
+if(stream.anyMatch(condition)) 
+
+== Как улучшить?!
+
+[source,java]
+if(stream.count() > 2)
+
+[.fragment]
+[source,java]
+/*Нам ведь неважно, сколько их, если их больше двух?*/
+stream.limit(3).count()
+
+== Выводы
+
+* «Декларативный» подход к использованию стримов, «описываем _что_, а не _как_» не отменяет понимания того, _как_ происходит вычисление. 
+* Применять стримы надо с умом, а много где их и не надо применять.

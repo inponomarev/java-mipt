@@ -20,6 +20,7 @@
         <module>slides08</module>
         <module>plan</module>
         <module>helloworld</module>
+        <module>jdbc-example</module>
     </modules>
 
     <organization>
