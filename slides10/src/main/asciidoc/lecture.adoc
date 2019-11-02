@@ -1,0 +1,577 @@
+= Core Java: Курс лекций. Лекция 10
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+:stem: latexmath
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Concurrency -- параллельное выполнение
+
+* Одна программа -- много параллельно выполняющихся тредов (threads)
+* Зачем нам вообще Concurrency?
+
+[.fragment]
+-- Для перформанса, чтобы побыстрее!
+
+== Где мы можем получить выгоду от concurrency?
+
+* Много CPU-ядер, вычислительная задача хорошо разделяется на подзадачи.
+* Подзадачи блокируются на вводе/выводе, можно параллельно ждать других или делать что-то полезное.
+* Нужно быстро отреагировать на запрос, а потом дать детальный ответ (пользовательский интерфейс).
+* Многопользовательский сервис (каждый запрос в своём треде).
+
+
+== Где мы НЕ можем получить выгоду от [увеличения] concurrency?
+
+* CPU-bound задача не будет решаться быстрее, если тредов больше, чем ядер.
+* Задача плохо параллелизуется (упирается в неразделяемый ресурс).
+* Нас ограничивает закон Амдала.
+
+== Закон Амдала (Amdahl's law)
+
+* &alpha; -- доля вычислений, которая должна выполняться последовательно,
+* _N_ -- число параллельных потоков выполнения,
+* _S_ -- полученное ускорение (speedup).
+
+[stem] 
+++++
+\Huge
+S = \frac{1}{\alpha+\frac{1-\alpha}{N}} = \frac{N}{1+\alpha(N-1)} \leq \frac{1}{\alpha}
+++++
+
+Вывод: если разделяемая работа составляет 80%, вы не получите более чем пятикратное увеличение производительности за счёт параллелизации.
+
+== Закон Амдала: поведение
+// https://shipilev.net/talks/jpoint-April2017-perf-keynote.pdf
+
+image::amdahl.png[{image-80-width}]
+
+== На самом деле, всё ещё хуже! 
+
+* Uiversal Scalability Law -- эмпирическое обобщение закона Амдала
+* &beta; -- параметр, определяющий cohesion
+* хорошо ложится на эмпирические данные
+
+[stem] 
+++++
+\Huge
+S = \frac{N}{1+\alpha(N-1) + \beta N (N-1)}
+++++
+== USL: поведение
+
+image::usl.png[{image-80-width}]
+
+== Промежуточный вывод
+
+* Перед тем, как встать на скользкую тропу многопоточного программирования, подумайте: 
+** нужно ли это для решения задачи?
+** насколько многопоточным должно быть решение?
+* Вас предупредили.
+
+image::hydra1.jpg[{image-40-width}]
+
+//https://www.ancient.eu/img/r/p/750x750/3359.jpg?v=1539676109
+
+
+== Многопоточность в Java (с самой первой версии!)
+
+[plantuml, runthr, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+interface Runnable {
+  void run()
+}
+
+class Thread {
+  void start()
+  void join([long millis]) throws InterruptedException
+  void interrupt()
+  Thread.state getState()
+}
+
+
+Runnable <|- Thread
+
+@enduml
+----
+
+[source,java]
+----
+static class CalcSquare extends Thread {
+    final int argument;
+    int result;
+    CalcSquare(int argument) {
+        this.argument = argument;
+    }
+    @Override
+    public void run() {
+        //«сложные» вычисления
+        result = argument * argument;
+    }
+}
+----
+
+== Запуск параллельных вычислений через Thread API
+
+* NB: в современной реальности вы не будете пользоваться Thread API
+
+[source,java]
+----
+CalcSquare t1 = new CalcSquare(2);
+CalcSquare t2 = new CalcSquare(3);
+t1.start();
+t2.start();
+t1.join();
+t2.join();
+System.out.printf("%d, %d%n", t1.result, t2.result);
+//otput: 4, 6
+----
+
+
+== Проблемы с shared state
+
+[cols="50a,.^50a"]
+|===
+|image::hydraheads.jpg[]
+|
+* Race condition
+* Stale values
+* Reordering
+|===
+
+== Race condition
+
+[source,java]
+----
+static class DumbCounter {
+  int count;
+  void increment(){
+    count++;
+  }
+}
+
+DumbCounter c1 = new DumbCounter();
+IntStream.range(0, 1000000).forEach(i->c1.increment());
+
+DumbCounter c2 = new DumbCounter();
+IntStream.range(0, 1000000).parallel().forEach(i->c2.increment());
+
+System.out.printf("%d, %d%n", c1.count, c2.count);
+
+//1000000,??????
+----
+
+
+== Stale values
+
+[source,java]
+----
+class DumbWayToFallAsleep implements Runnable {
+  private boolean asleep;
+  
+  public void setAsleep(boolean asleep){
+    this.asleep = asleep;
+  }
+
+  @Override
+  public void run() {
+    while (!asleep){
+      //countSomeSheep
+      //УСНЁМ ЛИ МЫ?
+    }
+  }
+}
+----
+
+
+== Reordering
+
+[source,java]
+----
+class PossibleReordering {
+  static int x = 0, y = 0, a = 0, b = 0;
+  public static void main(String... args) 
+                throws InterruptedException {
+    //другой способ запуска треда (тоже не будете пользоваться)
+    Thread one = new Thread(() -> {
+        a = 1; x = b;
+    });
+    Thread two = new Thread(() -> {
+        b = 1; y = a;
+    });
+    one.start(); two.start();
+    one.join();  two.join();
+    System.out.printf("%d,%d", x, y);
+    //??,??
+  }
+}
+----
+
+
+== Промежуточные выводы
+
+* Написать правильно работающую concurrent-программу -- сложно.
+* Показанные здесь проблемы проявляются недетерминированно.
+* Из-за reordering и других низкоуровневых особенностей _нельзя_ рассуждать о результате работы одного треда с точки зрения другого треда как о промежуточном результате выполнения исходного кода. 
+* Все проблемы с параллельными вычислениями связаны с shared state.
+* Любая программа с доступом к shared state без должной синхронизации -- _сломана_, даже если «вчера это работало на моей машине».
+
+== Модель памяти
+
+[source,java]
+----
+int aVariable = 42; 
+----
+
+* Модель памяти (Java Memory Model, JMM) -- спецификация языка и виртуальной машины, отвечающая на вопрос: «при каких условиях поток, читающий переменную `aVariable`, увидит значение 42?»
+
+== Happens-before
+
+* JMM определяет частичный порядок на всех действиях в Java-программе, называемый _happens-before_.
+
+* Отношение _happens-before_ транзитивно: stem:[A \prec B \wedge B \prec C \Rightarrow A \prec C]
+
+* Чтобы действие B гарантированно видело результат работы действия A, необходимо, чтобы stem:[A \prec B].
+
+== Program order rule
+
+* В рамках одного треда все действия _happens-before_ в порядке их определения в исходном коде программы. 
+
+* Иными словами, однопоточные программы выполняются без сюрпризов.
+
+== Thread start & thread termination rule
+
+* Вызов `threadA.start()` _happens-before_ всех операций в потоке `threadA`.
+* Любая операция в потоке `threadA` _happens-before_ обнаружения другим потоком завершения `threadA`, либо путём выхода из `threadA.join()`, либо путём проверки `threadA.isAlive() == false`.
+* Благодаря этому правилу, наш самый первый пример на параллелизацию работает корректно.
+
+
+== Ключевое слово volatile
+
+* Переменные классов могут быть определены с ключевым словом `volatile`.
+
+* *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной.*
+
+* Это автоматом делает видимыми изменения в других переменных, но полагаться на это _настоятельно_ не рекомендуется.
+
+== Чиним stale value при помощи volatile
+
+[source,java]
+----
+class NotSoDumbWayToFallAsleep implements Runnable {
+  private volatile boolean asleep;
+        
+  public void setAsleep(boolean asleep){
+    this.asleep = asleep;
+  }
+
+  @Override
+  public void run() {
+    while (!asleep){
+      //countSomeSheep
+      //...
+    }
+  }
+}
+----
+
+== final-поля
+
+* Если объект правильно опубликован, т. е. ссылка на него не утекает во время выполнения конструктора --  `final`-поля объекта доступны всем тредам без синхронизации.
+
+* Лучший способ борьбы с проблемами mutable state -- использовать immutable state где только возможно.
+
+== Неатомарные операции: final не годится, volatile не спасёт
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+static class DumbCounter {
+  int count;
+  void increment(){
+    count++;
+  }
+}
+----
+(мы можем объявить `count` как volatile, но ситуация не улучшится)
+
+|[source,java]
+----
+void dumbMoneyTransfer(
+
+  int from, int to, int amount){
+    accounts[from]-=amount;
+    accounts[to]+=amount;
+}
+----
+
+(кстати, `volatile array` --- не массив `volatile`-элементов)
+|===
+ 
+
+== Несинхронизированное выполнение
+[plantuml, nonsync, png]
+----
+@startuml
+skinparam dpi 180
+participant Client1
+participant Client2
+participant Bank
+
+Client1 -> Bank: transfer
+activate Bank
+
+Client2 -> Bank: transfer
+Bank --> Client1 
+
+
+Bank --> Client2
+deactivate Bank
+
+@enduml
+----
+
+== Синхронизированное выполнение
+[plantuml, sync, png]
+----
+@startuml
+skinparam dpi 180
+participant Client1
+participant Client2
+participant Lock
+participant Bank
+
+
+Client1 -> Lock: lock
+activate Lock
+Lock --> Client1
+deactivate Lock
+
+Client1 -> Bank: transfer
+activate Bank
+
+Client2 -> Lock: lock
+activate Lock
+
+Bank --> Client1 
+deactivate Bank
+
+Client1 -> Lock: unlock
+Lock --> Client1
+Lock --> Client2
+deactivate Lock
+
+Client2 -> Bank: transfer
+activate Bank
+Bank --> Client2
+deactivate Bank
+
+@enduml
+----
+
+
+== Блокировки
+
+[source,java]
+----
+//Reentrant так называется потому,
+//что одному и тому же треду позволено входить повторно
+private ReentrantLock bankLock = new ReentrantLock(); 
+
+void moneyTransfer(int from, int to, int amount) {
+  bankLock.lock();
+  try {
+    accounts[from]-=amount;
+    accounts[to]+=amount;
+  } finally {
+    bankLock.unlock();
+  }
+}
+----
+[.fragment]
+Если вы задались вопросом: «где гарантии, что после выхода из блокировки тред увидит результат работы предыдущего треда?» -- поздравляю, вы начали что-то понимать.
+
+== JMM Monitor Lock Rule
+
+* Разблокировка замка _happens-before_ другой блокировки того же замка.
+* Поэтому защищённые замком переменные объявлять как `volatile` уже не нужно.
+
+== В чём проблема здесь?
+
+[source,java]
+----
+while (accounts[from] < amount) {
+    //wait ....
+}
+
+bankLock.lock();
+try {
+  //transfer funds ...
+} finally {
+  bankLock.unlock();
+}
+----
+[.fragment]
+Доступ к `accounts[from]` не синхронизирован, но даже если бы он был синхронизирован, кто-то смог бы уменьшить количество денег до вхождения в блок transfer funds.
+
+== В чём пробема здесь?
+
+[source,java]
+----
+bankLock.lock();
+try {
+  while (accounts[from] < amount) {
+    //wait ....
+  }
+  //transfer funds ...
+} finally {
+  bankLock.unlock();
+}
+----
+[.fragment]
+Мы заблокировали `bankLock` и ждём, пока кто-то закинет денег. Но никто никогда не сможет это сделать, т. к. `bankLock` занят нами.
+
+== Condition Objects
+
+[source,java]
+----
+private ReentrantLock bankLock = new ReentrantLock(); 
+private Condition sufficientFunds = bankLock.newCondition();
+
+void moneyTransfer(int from, int to, int amount) {
+  bankLock.lock();
+  try {
+    while (accounts[from] < amount)
+      sufficientFunds.await();
+      
+    accounts[from]-=amount;
+    accounts[to]+=amount;
+    
+    sufficientFunds.signalAll();
+  } finally {
+    bankLock.unlock();
+  }
+}
+----
+== Condition Objects: что происходит?
+
+* `await()` отпускает блокировку и переводит тред в ждущее состояние,
+* `signalAll()` сигнализирует всем ждущим тредам, что что-то поменялось,
+* выход из `await()` _снова захватывает блокировку_.
+* При выходе из `await()` мы вновь проверяем условие, потому что:
+** сигнал мог быть по другому поводу,
+** возможны «спонтанные пробуждения».
+
+== Правильный паттерн ожидания condition
+[source,java]
+----
+while (!okToProceed())
+  condition.await();
+----
+== Intrinsic lock
+
+* Начиная с Java 1.0, каждый объект имеет встроенный (intrinsic) lock.
+* У каждого intrinsic lock есть один condition.
+
+== То же самое, с помощью intrinsic lock
+[source,java]
+----
+//enter intrinsic lock on *this*
+synchronized void moneyTransfer(int from, int to, int amount) {
+  bankLock.lock();
+  try {
+    while (accounts[from] < amount)
+      wait(); //wait on intrinsic object's lock condition
+      
+    accounts[from]-=amount;
+    accounts[to]+=amount;
+    
+    notifyAll(); //notify all threads waiting on the condition
+  } finally {
+    bankLock.unlock();
+  }
+}
+----
+
+== Synchronized-блок
+
+Другая форма использования intrinsic locks:
+
+[source,java]
+----
+private Object lock = new Object();
+void moneyTransfer(int from, int to, int amount) {
+  synchronized (lock) {
+    while (accounts[from] < amount)
+      lock.wait();
+      
+    accounts[from]-=amount;
+    accounts[to]+=amount;
+    
+    lock.notifyAll();
+  }
+}
+----
+
+== Промежуточный итог по intrinsic conditions
+* Нужно работать по строгому паттерну: 
+** синхронизация,
+** while-loop wait,
+** нотификация.
+* Нужно держать в уме:
+** по intrinsic lock какого объекта синхронизируемся,
+** по condition какого объекта ждём,
+** треды, ждущие на condition какого объекта нотифицируем (это всё должен быть один объект).
+* В общем, это низкоуровневый и сложный механизм. Его понимание пригодится на собеседованиях, но скорее всего, вам не надо будет им пользоваться.
+
+== Промежуточный итог по всему вышесказанному
+
+* Где возможно, используйте immutable state: он автоматически потокобезопасен.
+* Используйте volatile переменные или синхронизацию для доступа к mutable state.
+* Удерживайте блокировку во время выполнения операций, которые должны быть атомарными.
+* Повторим ещё раз: *программа с shared mutable state без должной синхронизации -- сломанная программа*.
+* Думайте о потокобезопасности всё время.
+* Понимание JMM помогает
+
+== О да, многопоточность -- это сложно
+
+image::hydra2.jpg[{image-90-width}]
+
+== Потокобезопасные коллекции
+
+== Atomics и неблокирующие алгоритмы
+
+== Executor Framework
+
+== Асинхронные вычисления
