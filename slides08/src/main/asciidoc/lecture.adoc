@@ -287,6 +287,7 @@ class conference {
 class talk {
   id: INT
   conferenceid: INT
+  name: VARCHAR
 }
 
 class talkspeakers {
