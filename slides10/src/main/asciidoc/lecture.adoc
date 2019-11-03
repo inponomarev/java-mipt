@@ -99,6 +99,11 @@ image::hydra1.jpg[{image-40-width}]
 //https://www.ancient.eu/img/r/p/750x750/3359.jpg?v=1539676109
 
 
+== Часть 1. Зачем нужна и как достигается синхронизация
+
+image::hydra2.jpg[{image-90-width}]
+
+
 == Многопоточность в Java (с самой первой версии!)
 
 [plantuml, runthr, png]
@@ -239,10 +244,12 @@ class PossibleReordering {
 
 == Промежуточные выводы
 
-* Написать правильно работающую concurrent-программу -- сложно.
-* Показанные здесь проблемы проявляются недетерминированно.
 * Из-за reordering и других низкоуровневых особенностей _нельзя_ рассуждать о результате работы одного треда с точки зрения другого треда как о промежуточном результате выполнения исходного кода. 
+
 * Все проблемы с параллельными вычислениями связаны с shared state.
+
+* Показанные здесь проблемы проявляются недетерминированно.
+
 * Любая программа с доступом к shared state без должной синхронизации -- _сломана_, даже если «вчера это работало на моей машине».
 
 == Модель памяти
@@ -306,7 +313,7 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 
 == final-поля
 
-* Если объект правильно опубликован, т. е. ссылка на него не утекает во время выполнения конструктора --  `final`-поля объекта доступны всем тредам без синхронизации.
+* Если объект правильно опубликован, т. е.  _ссылка на него не утекает во время выполнения конструктора_ --  `final`-поля объекта доступны всем тредам без синхронизации.
 
 * Лучший способ борьбы с проблемами mutable state -- использовать immutable state где только возможно.
 
@@ -493,6 +500,13 @@ void moneyTransfer(int from, int to, int amount) {
 ** сигнал мог быть по другому поводу,
 ** возможны «спонтанные пробуждения».
 
+== Контрольный вопрос
+
+* Чем гарантировано, что при выходе из `await()` мы увидим изменения, сделанные другим тредом?
+
+[.fragment]
+* При выходе из `await()` мы снова захватываем блокировку, работает JMM Monitor Lock Rule.
+
 == Правильный паттерн ожидания condition
 [source,java]
 ----
@@ -555,6 +569,31 @@ void moneyTransfer(int from, int to, int amount) {
 ** треды, ждущие на condition какого объекта нотифицируем (это всё должен быть один объект).
 * В общем, это низкоуровневый и сложный механизм. Его понимание пригодится на собеседованиях, но скорее всего, вам не надо будет им пользоваться.
 
+== Теперь нам понятен смысл всех возможных состояний треда
+[graphviz,"threadstates.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+rankdir="LR"
+new -> runnable[label="start"]
+runnable -> terminated[xlabel="run\nmethod exit"]
+
+runnable -> blocked [label="aquiring a lock"]
+blocked -> runnable [label="lock aquired"]
+
+runnable -> waiting [label="waiting for notification"]
+waiting -> runnable [label="notification occured"]
+
+runnable -> TW  [label="waiting for timeout or notification"]
+TW -> runnable [xlabel="timeout or notification occured"]
+
+TW[label="timed\nwaiting"]
+
+{rank=same;new;terminated}
+}
+
+----
+
 == Промежуточный итог по всему вышесказанному
 
 * Где возможно, используйте immutable state: он автоматически потокобезопасен.
@@ -564,14 +603,394 @@ void moneyTransfer(int from, int to, int amount) {
 * Думайте о потокобезопасности всё время.
 * Понимание JMM помогает
 
-== О да, многопоточность -- это сложно
+== Часть 2. Потокобезопасные структуры данных
 
 image::hydra2.jpg[{image-90-width}]
 
+== Неблокирующие алгоритмы
+
+* Блокировка (через `synchronized` или `ReentrantLock`) решает вопрос координации действий разных тредов с переменной.
+* Но если много тредов конкурируют за блокировку (high lock contention), затраты ресурсов на координацию тредов становятся значительными.
+* Альтернативой являются _неблокирующие алгоритмы_, использующие поддержку специальных атомарных машинных инструкций (compare-and-swap).
+* В Java-библиотеке доступны _классы атомарных переменных_ и _потокобезопасные коллекции_, реализованные в том числе на неблокирующих алгоритмах.
+
+== Atomics 
+
+
+* `package java.util.concurrent.atomic`
+** `AtomicBoolean`, `AtomicInteger`, `AtomicLong`, `AtomicReference`.
+** `AtomicIntegerArray`, `AtomicLongArray`, `AtomicReferenceArray`.
+* Могут быть использованы как «улучшенные volatile-переменные», т. к. результат вызова `set(...)` виден другим тредам при вызове `get(...)`
+* Поддерживают атомарные операции.
+
+== Aтомарные операции в классах атомарных переменных
+
+----
+getAndSet(newValue)    compareAndSet(expect, update) 
+
+incrementAndGet()      decrementAndGet()
+
+getAndIncrement()      getAndDecrement()
+
+getAndAdd(delta)       addAndGet(delta)
+
+getAndUpdate(updateFunction)
+updateAndGet(updateFunction)
+
+getAndAccumulate(x, accumulatorBiFunction)
+accumulateAndGet(x, accumulatorBiFunction)
+----
+
 == Потокобезопасные коллекции
 
-== Atomics и неблокирующие алгоритмы
+* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой доступ к внутреннему состоянию коллекции.
+* Цена такого решения -- плохой параллелизм: конкуренция за блокировку (lock contention).
+* С версии 5 появились классы, специально разработанные для потокобезопасности, с меньшим количеством блокировок.
+* Их использование является _предпочтительным_.
+
+== CopyOnWriteArrayList и CopyOnWriteArraySet
+[source,java]
+----
+class CopyOnWriteArrayList<E> implements List<E>
+class CopyOnWriteArraySet<E> extends AbstractSet<E>
+----
+
+* Структуры данных на основе массива.
+* Пересоздают всё заново при каждой модификации.
+* Это дорого, зато все читающие итераторы стабильны.
+* Хороши, когда на одну операцию записи приходится много операций чтения.
+
+== ConcurrentLinkedQueue
+
+[source,java]
+----
+class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
+        implements Queue<E>
+----
+
+* Основан на неблокирующем алгоритме (CAS-операции)
+* `poll()` вернёт `null`, если очередь пуста
+
+== Блокирующие очереди: средство реализации producer-consumer pattern
+
+[plantuml, blockingqueue, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+interface BlockingQueue<E> {
+  void put(E e) throws InterruptedException;
+  E take() throws InterruptedException;
+}
+
+class ArrayBlockingQueue<E>
+class LinkedBlockingDeque<E>
+class PriorityBlockingQueue<E>
+class SynchronousQueue<E>
+
+BlockingQueue <|.. ArrayBlockingQueue
+BlockingQueue <|.. LinkedBlockingDeque
+BlockingQueue <|.. PriorityBlockingQueue
+BlockingQueue <|.. SynchronousQueue
+@enduml
+----
+
+* Могут быть ограничены по размеру (capacity constrained).
+* Методы `put()` и `take()` ждут, пока не появится возможность положить или взять элемент.
+* `PriorityBlockingQueue` не лимитируется по capacity.
+* `SynchronousQueue` не имеет capacity вовсе, передаёт элементы обрабатывающим тредам напрямую. 
+
+== ConcurrentHashMap
+
+[source,java]
+----
+class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
+    implements ConcurrentMap<K,V>
+----
+* Замена `HashMap` при разделённом доступе к данным.
+* Не блокируется при чтении и редко блокируется при записи.
+* Не позволяет использовать `null` в качестве ключа или значения.
+* Полезные методы атомарны:
+** `putIfAbsent(key, value)`
+** `remove(key, value)`
+** `replace(key, oldValue, newValue)`
+
+== ConcurrentSkipListMap
+
+[source,java]
+----
+class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
+    implements ConcurrentNavigableMap<K,V>
+----
+* Замена `TreeMap` при разделённом доступе к данным.
+* Не позволяет использовать `null` в качестве ключа или значения.
+* Имеет атомарные методы.
+* Схема из JavaDoc:
+
+[ditaa]
+....
+ Head nodes          Index nodes
+ +-+    right        +-+                      +-+
+ |2+---------------->| +--------------------->| +->null
+ +++                 +++                      +++
+  | down              |                        |
+  V                   v                        v
+ +-+            +-+  +-+       +-+            +-+       +-+
+ |1+----------->| +->| +------>| +----------->| +------>| +->null
+ +++            +++  +++       +++            +++       +++
+  |              |    |         |              |         |
+  v     next     v    v         v              v         v
+ +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+
+ | +->|A+->|B+->|C+->|D+->|E+->|F+->|G+->|H+->|I+->|J+->|K+->null
+ +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+
+....
+
+== Часть 3. Executor Framework
+
+image::hydra2.jpg[{image-90-width}]
 
 == Executor Framework
 
-== Асинхронные вычисления
+* Тред -- дорогой ресурс, поэтому мы хотим:
+** ограничивать количество наших тредов, чтобы не устроить Out of Memory,
+** переиспользовать имеющиеся треды, подавая им новые задачи после завершения старых,
+** но если какой-то тред «вылетел» -- автоматически создавать новый.
+* В стандартной библиотеке для этого есть Thread Pools, не надо ничего делать самому.
+* Никто не использует Thread API напрямую.
+
+== Executor Framework
+
+[source,java]
+----
+//Абстракция вычислительной задачи, возвращающей результат
+public interface Callable<V> {
+  V call() throws Exception;
+}
+
+//Абстракция «менджера тредов»
+public interface ExecutorService {
+  <T> Future<T> submit(Callable<T> task);
+  /*...есть и много другого, речь впереди...*/
+}
+----
+
+== Future
+
+[source,java]
+----
+//Абстракция результата "in progress", который можно ждать, 
+//а можно и отменить
+public interface Future<V> {
+  V get() throws InterruptedException, ExecutionException;
+  V get(long timeout, TimeUnit unit)
+    throws InterruptedException, ExecutionException, TimeoutException;
+  boolean cancel(boolean mayInterruptIfRunning);
+  boolean isCancelled();
+}
+----
+
+== Task, Executor, Future
+
+[plantuml, taskexecfuture, png]
+----
+@startuml
+skinparam dpi 180
+hide footbox
+
+participant Client
+participant Task
+participant Executor
+participant Future
+
+Client -> Task: new()
+Task --> Client: task
+
+Client -> Executor: submit(task)
+Executor -> Future: new(task)
+Future --> Executor: Future
+Executor --> Client: Future 
+
+Executor -> Future: run()
+note right
+  в отдельном потоке
+  выполнения
+end note
+
+Future -> Task: call()
+activate Task
+
+Client -> Future: get()
+activate Future
+Task --> Future: result
+deactivate Task
+Future --> Client: result
+deactivate Future
+
+@enduml
+----
+
+== Как создать ExecutorService?
+
+[source,java]
+----
+public class  Executors {
+  //фиксированный размер пула
+  public static ExecutorService newFixedThreadPool(int nThreads)
+  public static ExecutorService newSingleThreadExecutor()
+  //пул растёт по необходимости, держит неактивный тред 60 секунд
+  public static ExecutorService newCachedThreadPool()
+  //позволяет выполнять задачи с задержкой или периодичностью
+  public static 
+    ScheduledExecutorService newScheduledThreadPool(int corePoolSize)
+  ...
+}
+----
+
+== Обработка задач «пачками»
+[source,java]
+----
+//Запускаем и ждём, пока все выполнятся
+//List<Future<T>>, а не List<T>, т. к. возможны исключения
+<T> List<Future<T>> invokeAll(
+    Collection<? extends Callable<T>> tasks)
+        throws InterruptedException
+
+//Запускаем, возвращаем первый успешный результат, 
+//отменяем остальные
+<T> T invokeAny(Collection<? extends Callable<T>> tasks)
+        throws InterruptedException, ExecutionException;
+----
+
+== Отмена задач и «прекращение облуживания»
+
+[source,java]
+----
+//отменить задачу, если она ещё не начала выполняться
+future.cancel(false)
+
+//Запретить приём новых задач
+executorService.shutdown();
+//Подождать, пока принятые задачи завершатся
+if (!service.awaitTermination(10, TimeUnit.SECONDS)){
+    //Прервать выполнение задач
+    service.shutdownNow();
+}
+----
+
+== Прерывание задач
+
+* В ранних версиях Java существовали (ныне deprecated) методы принудительной остановки и приостановки/возобновления тредов, но _это оказалось плохой идеей:_
+** нет гарантий, что тред не остановится посередине атомарной операции.
+** приостановка может на неопределённое время "завесить" блокировку
+* В итоге, имеется _кооперативный_ механизм прерывания.
+
+== Прерывание тредов
+
+* `ExecutorService.shutdownNow()` вызывает метод `Thread.interrupt()` на потоках выполнения.
+* метод `Thread.isInterrupted()` возвращает статус прерывания треда.
+* *JMM Interruption Rule*: вызов метода `interrupt()` внешним потоком _happens-before_ прерываемый поток узнаёт о том, что он прерван.
+
+== Кооперативный механизм прерывания
+
+* Если вычисления в цикле, тред обязан периодически проверять статус `isInterrupted()` и выходить из метода, если прервалось.
+* На ждущих методах может быть выброшен `InterruptedException`, который следует либо пробросить выше, либо 
+
+[source,java]
+----
+} catch (InterruptedException e) {
+    //восстанавливаем interrupted-статус
+    Thread.currentThread().interrupt();
+    //выходим из прерванной процедуры
+    return;
+}
+----
+* "Проглатывать" `InterruptedException` *ни в коем случае нельзя*!
+
+== CompletableFuture
+
+* Появились в Java 8, расширяют `Future`
+* Позволяют явно задать результат (отсюда 'Completable') и собрать цепочку асинхронных вычислений.
+* Могут быть использованы так: 
+
+[source,java]
+----
+CompletableFuture<Integer> f = new CompletableFuture<>();
+executor.execute(() -> {
+  int n = workHard(arg);
+  f.complete(n);
+});
+executor.execute(() -> {
+  int n = workSmart(arg);
+  f.complete(n);
+});
+executor.execute(() -> {
+  Throwable t = ...;
+  f.completeExceptionally(t);
+});
+----
+
+== Композиция CompletableFuture с действием
+
+[cols="20a,20a,60a"]
+|===
+|*Method*            |*Parameter*            |*Description*
+|`thenApply`         |T->U                   |Apply a function to the result.
+|`thenAccept`        |T->void                |Like `thenApply`, but with `void` result.
+|`thenCompose`       |T->CompletableFuture<U>|Invoke the function on the result and execute the returned future.
+|`handle`            |(T, Throwable) -> U    |Process the result or error and yield a new result.
+|`whenComplete`      |(T, Throwable) -> void |Like `handle`, but with `void` result.
+|===
+
+
+== Композиция CompletableFuture с действием
+
+[cols="20a,20a,60a"]
+|===
+|*Method*            |*Parameter*            |*Description*
+|`completeOnTimeout` |T, long, TimeUnit      |Compute a result from the error.
+|`orTimeout`         |long, TimeUnit         |Yield the given value as the result in case of timeout.
+|`thenRun`           |Runnable               |Execute the `Runnable` with void result.
+|===
+
+== Композиция нескольких CompletableFuture
+
+[cols="20a,20a,60a"]
+|===
+|*Method*            |*Parameter*            |*Description*
+|`thenCombine`       |ComletableFuture<U>, +
+                      (T, U)->V              |Execute both and combine the results with the given function.
+|`thenAcceptBoth`    |ComletableFuture<U>, +
+                      (T, U)->void           |Like `thenCombine`, but with `void` result.
+|`runAfterBoth`      |CompletableFuture<?>, +
+                      Runnable               |Execute the runnable after both complete.
+|===
+
+== Композиция нескольких CompletableFuture
+[cols="20a,20a,60a"]
+|===
+|*Method*            |*Parameter*            |*Description*
+|`applyToEither`     |CompletableFuture<T>, +
+                      T->V                   |When a result is available from one or the other, pass it to the given function.
+|`acceptEither`      |CompletableFuture<T>, +
+                      T->void                |Like `applyToEither`, but with `void` result.
+|`runAfterEither`    |CompletableFuture<?>, +
+                      Runnable               |Execute the runnable after one or the other completes.
+|`static allOf`      |CompletableFuture<?>...|Complete with `void` result after all given futeres complete.
+|`static anyOf`      |CompletableFuture<?>...|Complete with `void` result after any of the given futures completes.
+|===
+
+== Если этого показалось мало...
+* Каждый иэ этих методов имеет вариант с постфиксом `Asinc` (например, `thenApplyAsync`), позволяющий выполнить дополнительное действие в другом треде заданного Executor-a.
+
+== Мы только прошлись по основам
+
+[cols="30a,70a"]
+|===
+|image::jcip.jpg[]| 
+* *Brian Goetz et al.*, Java Concurrency in Practice.
+* Вышла в 2006-м году, в эпоху Java 5.0.
+* Новых изданий не выходило.
+* На русский язык не переведена.
+* Всё ещё самое полное руководство по разным аспектам многопоточного программирования на Java.
+|===
