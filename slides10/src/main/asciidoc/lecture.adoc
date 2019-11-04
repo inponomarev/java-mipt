@@ -75,7 +75,7 @@ image::amdahl.png[{image-80-width}]
 == На самом деле, всё ещё хуже! 
 
 * Uiversal Scalability Law -- эмпирическое обобщение закона Амдала
-* &beta; -- параметр, определяющий cohesion
+* &beta; -- параметр, определяющий cohesion (межпоточную координацию)
 * хорошо ложится на эмпирические данные
 
 [stem] 
@@ -603,7 +603,93 @@ TW[label="timed\nwaiting"]
 * Думайте о потокобезопасности всё время.
 * Понимание JMM помогает
 
-== Часть 2. Потокобезопасные структуры данных
+
+== Часть 2. Deadlocks
+
+image::hydra2.jpg[{image-90-width}]
+
+== Deadlock: простой пример
+
+[plantuml, deadlock, png]
+----
+@startuml
+skinparam dpi 180
+hide footbox
+
+participant X
+participant Y
+participant LockA
+participant LockB
+
+X -> LockA: lock()
+activate LockA
+LockA --> X: 
+
+Y -> LockB: lock()
+activate LockB
+LockB --> Y
+
+X -> LockB: lock()
+note right
+  будем ждать
+  вечно
+end note
+
+Y -> LockA: lock()
+
+@enduml
+----
+
+== Перепутанный порядок блокировки
+
+[source,java]
+----
+class LeftRightDeadlock {
+  private final Object left = new Object();
+  private final Object right = new Object();
+  void leftRight() {
+    synchronized (left) {
+      syncrhonized (right) {
+        doSomething();
+      }
+    }
+  }
+  void rightLeft() {
+    synchronized (right) {
+      syncrhonized (left) {
+        doSomethingElse();
+      }
+    }
+  }
+}
+----
+
+== Перепутанный (иногда!) порядок блокировки
+
+[source,java]
+----
+void transferMoney(Account fromAccount, Account toAccount, 
+                     int amount) throws InsufficientFundsException {
+  synchronized (fromAccount) {
+    synchronized (toAccount) {
+      if (fromAccount.getBalance() < amount)
+        throw new InsufficientFundsException();
+      else {
+        fromAccount.debit(amount);
+        toAccount.credit(amount);
+      }
+    }
+  }
+}
+----
+
+== Выводы
+
+* Если процедура захватывает несколько блокировок, возможен deadlock.
+* Во избежание deadlocks нужно следить за тем, чтобы блокировки всегда захватывались в одном и том же порядке. Иногда неочевидно, как это сделать.
+* Если вы захватили блокировку -- закончите с ней как можно быстрее, не вызывайте внешних методов.
+
+== Часть 3. Потокобезопасные структуры данных
 
 image::hydra2.jpg[{image-90-width}]
 
@@ -746,7 +832,7 @@ class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+
 ....
 
-== Часть 3. Executor Framework
+== Часть 4. Executor Framework
 
 image::hydra2.jpg[{image-90-width}]
 
