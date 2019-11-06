@@ -267,7 +267,7 @@ int aVariable = 42;
 
 * Отношение _happens-before_ транзитивно: stem:[A \prec B \wedge B \prec C \Rightarrow A \prec C]
 
-* Чтобы действие B гарантированно видело результат работы действия A, необходимо, чтобы stem:[A \prec B].
+* Чтобы действие B гарантированно видело результат работы действия A, достаточно, чтобы stem:[A \prec B].
 
 == Program order rule
 
@@ -523,8 +523,6 @@ while (!okToProceed())
 ----
 //enter intrinsic lock on *this*
 synchronized void moneyTransfer(int from, int to, int amount) {
-  bankLock.lock();
-  try {
     while (accounts[from] < amount)
       wait(); //wait on intrinsic object's lock condition
       
@@ -532,9 +530,6 @@ synchronized void moneyTransfer(int from, int to, int amount) {
     accounts[to]+=amount;
     
     notifyAll(); //notify all threads waiting on the condition
-  } finally {
-    bankLock.unlock();
-  }
 }
 ----
 

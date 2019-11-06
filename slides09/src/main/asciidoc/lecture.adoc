@@ -376,7 +376,8 @@ Path path = ...
 Pattern separator = Pattern.compile("\\s");
 try(Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
     //НЕ ТО, что нам надо!
-    //Stream<Stream<String>> streamStream = lines.map(separator::splitAsStream);
+    //Stream<Stream<String>> streamStream = 
+    //                  lines.map(separator::splitAsStream);
     
     //ТО, что нам надо!
     Stream<String> words = lines.flatMap(separator::splitAsStream);
@@ -423,7 +424,7 @@ ThreadLocalRandom.current().ints(1, 10)
 //Внутренний отсортированный список
 
 Stream.of(1, 5, 8, 7, 8, 5, 9, 9)
-    .distinct()
+    .sorted()
     .forEach(System.out::println);
 
 //Выведет 1, 5, 5, 7, 8, 8, 9, 9
@@ -692,9 +693,11 @@ class ToListCollector<T> implements
 
 [source,java]
 ----
+//java.util.stream.Collectors
 Collector<T, ?, List<T>> toList()
 Collector<T, ?, Set<T>> toSet()
-Collector<T, ?, C> toCollection(Supplier<C> collectionFactory)
+Collector<T, ?, C extends Collection<T>> 
+  toCollection(Supplier<C> collectionFactory)
 
 //Пример применения
 Stream<Foo> myStream = ...
