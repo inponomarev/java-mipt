@@ -31,9 +31,9 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
-== Concurrency -- параллельное выполнение
+== Concurrency -- конкурентное выполнение
 
-* Одна программа -- много параллельно выполняющихся тредов (threads)
+* Одна программа -- много одновременно выполняющихся тредов (threads)
 * Зачем нам вообще Concurrency?
 
 [.fragment]
@@ -103,7 +103,7 @@ image::hydra1.jpg[{image-40-width}]
 
 image::hydra2.jpg[{image-90-width}]
 
-
+[[first_example]]
 == Многопоточность в Java (с самой первой версии!)
 
 [plantuml, runthr, png]
@@ -131,7 +131,7 @@ Runnable <|- Thread
 
 [source,java]
 ----
-static class CalcSquare extends Thread {
+class CalcSquare extends Thread {
     final int argument;
     int result;
     CalcSquare(int argument) {
@@ -177,7 +177,7 @@ System.out.printf("%d, %d%n", t1.result, t2.result);
 
 [source,java]
 ----
-static class DumbCounter {
+class DumbCounter {
   int count;
   void increment(){
     count++;
@@ -279,7 +279,7 @@ int aVariable = 42;
 
 * Вызов `threadA.start()` _happens-before_ всех операций в потоке `threadA`.
 * Любая операция в потоке `threadA` _happens-before_ обнаружения другим потоком завершения `threadA`, либо путём выхода из `threadA.join()`, либо путём проверки `threadA.isAlive() == false`.
-* Благодаря этому правилу, наш самый первый пример на параллелизацию работает корректно.
+* Благодаря этому правилу, <<first_example,наш самый первый пример>> на параллелизацию работает корректно.
 
 
 == Ключевое слово volatile
@@ -288,7 +288,7 @@ int aVariable = 42;
 
 * *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной.*
 
-* Это автоматом делает видимыми изменения в других переменных, но полагаться на это _настоятельно_ не рекомендуется.
+* Это автоматом делает видимыми изменения в других переменных. Полагаться на это не рекомендуется: это работает, но делает код хрупким. В процессе рефакторинга можно поменять порядок доступа к переменным и тем самым незаметно поломать программу. 
 
 == Чиним stale value при помощи volatile
 
@@ -324,26 +324,26 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 |
 [source,java]
 ----
-static class DumbCounter {
+class DumbCounter {
   int count;
   void increment(){
     count++;
   }
 }
 ----
-(мы можем объявить `count` как volatile, но ситуация не улучшится)
+(Мы можем объявить `count` как volatile, но ситуация не улучшится.)
 
 |[source,java]
 ----
 void dumbMoneyTransfer(
-
   int from, int to, int amount){
+    
     accounts[from]-=amount;
     accounts[to]+=amount;
 }
 ----
 
-(кстати, `volatile array` --- не массив `volatile`-элементов)
+(Кстати, `volatile array` -- не массив `volatile`-элементов. И вообще в Java просто так массив `volatile`-элементов не создать.)
 |===
  
 
@@ -431,8 +431,8 @@ void moneyTransfer(int from, int to, int amount) {
 
 == JMM Monitor Lock Rule
 
-* Разблокировка замка _happens-before_ другой блокировки того же замка.
-* Поэтому защищённые замком переменные объявлять как `volatile` уже не нужно.
+* Разблокировка (unlocking) _happens-before_ другой блокировки (locking) того же самого «замка» (lock).
+* Поэтому защищённые блокировкой переменные объявлять как `volatile` уже не нужно.
 
 == В чём проблема здесь?
 
@@ -724,7 +724,7 @@ accumulateAndGet(x, accumulatorBiFunction)
 
 == Потокобезопасные коллекции
 
-* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой доступ к внутреннему состоянию коллекции.
+* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой доступ к внутреннему состоянию коллекции. Из-за поддержки обратной совместимости сейчас так тоже можно, но не нужно.
 * Цена такого решения -- плохой параллелизм: конкуренция за блокировку (lock contention).
 * С версии 5 появились классы, специально разработанные для потокобезопасности, с меньшим количеством блокировок.
 * Их использование является _предпочтительным_.
@@ -807,25 +807,6 @@ class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
 * Замена `TreeMap` при разделённом доступе к данным.
 * Не позволяет использовать `null` в качестве ключа или значения.
 * Имеет атомарные методы.
-* Схема из JavaDoc:
-
-[ditaa]
-....
- Head nodes          Index nodes
- +-+    right        +-+                      +-+
- |2+---------------->| +--------------------->| +->null
- +++                 +++                      +++
-  | down              |                        |
-  V                   v                        v
- +-+            +-+  +-+       +-+            +-+       +-+
- |1+----------->| +->| +------>| +----------->| +------>| +->null
- +++            +++  +++       +++            +++       +++
-  |              |    |         |              |         |
-  v     next     v    v         v              v         v
- +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+
- | +->|A+->|B+->|C+->|D+->|E+->|F+->|G+->|H+->|I+->|J+->|K+->null
- +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+  +-+
-....
 
 == Часть 4. Executor Framework
 
@@ -837,7 +818,7 @@ image::hydra2.jpg[{image-90-width}]
 ** ограничивать количество наших тредов, чтобы не устроить Out of Memory,
 ** переиспользовать имеющиеся треды, подавая им новые задачи после завершения старых,
 ** но если какой-то тред «вылетел» -- автоматически создавать новый.
-* В стандартной библиотеке для этого есть Thread Pools, не надо ничего делать самому.
+* В стандартной библиотеке для этого есть Thread Pools, не надо ничего делать самостоятельно.
 * Никто не использует Thread API напрямую.
 
 == Executor Framework
@@ -974,23 +955,33 @@ if (!service.awaitTermination(10, TimeUnit.SECONDS)){
 
 == Кооперативный механизм прерывания
 
-* Если вычисления в цикле, тред обязан периодически проверять статус `isInterrupted()` и выходить из метода, если прервалось.
-* На ждущих методах может быть выброшен `InterruptedException`, который следует либо пробросить выше, либо 
+* Если вычисления в цикле, тред обязан периодически проверять статус `Thread.currentThread().isInterrupted()` и, если флаг выставлен, _записав в лог факт прерывания_, выходить из метода.
+
+* На ждущих методах может быть выброшен `InterruptedException`. Что с ним делать?
+
+== Что делать с `InterruptedException`
+
+* Если контекст позволяет, его всегда следует пробрасывать выше (декларируя в `throws`).
+
+* Если выше пробрасывать нельзя (например, мы находимся в методе `run` интерфейса `Runnable`), то: 
 
 [source,java]
 ----
 } catch (InterruptedException e) {
+    //записываем факт прерывания в лог ...
+    ...
     //восстанавливаем interrupted-статус
     Thread.currentThread().interrupt();
     //выходим из прерванной процедуры
     return;
 }
 ----
-* "Проглатывать" `InterruptedException` *ни в коем случае нельзя*!
+* Просто так "проглатывать" `InterruptedException` *ни в коем случае нельзя*!
+* Рекомендуется записывать факт прерывания в лог, для прозрачности отладки.
 
 == CompletableFuture
 
-* Появились в Java 8, расширяют `Future`
+* Появились в Java 8, расширяют `Future`.
 * Позволяют явно задать результат (отсюда 'Completable') и собрать цепочку асинхронных вычислений.
 * Могут быть использованы так: 
 
@@ -999,16 +990,15 @@ if (!service.awaitTermination(10, TimeUnit.SECONDS)){
 CompletableFuture<Integer> f = new CompletableFuture<>();
 executor.execute(() -> {
   int n = workHard(arg);
-  f.complete(n);
-});
+  f.complete(n); });
+  
 executor.execute(() -> {
   int n = workSmart(arg);
-  f.complete(n);
-});
+  f.complete(n); });
+
 executor.execute(() -> {
   Throwable t = ...;
-  f.completeExceptionally(t);
-});
+  f.completeExceptionally(t); });
 ----
 
 == Композиция CompletableFuture с действием
@@ -1058,11 +1048,11 @@ executor.execute(() -> {
 |`runAfterEither`    |CompletableFuture<?>, +
                       Runnable               |Execute the runnable after one or the other completes.
 |`static allOf`      |CompletableFuture<?>...|Complete with `void` result after all given futeres complete.
-|`static anyOf`      |CompletableFuture<?>...|Complete with `void` result after any of the given futures completes.
+|`static anyOf`      |CompletableFuture<?>...|Complete after any of the given futures completes, with the same result cast to `Object`.
 |===
 
 == Если этого показалось мало...
-* Каждый иэ этих методов имеет вариант с постфиксом `Asinc` (например, `thenApplyAsync`), позволяющий выполнить дополнительное действие в другом треде заданного Executor-a.
+* Каждый из этих методов имеет вариант с постфиксом `Async` (например, `thenApplyAsync`), позволяющий выполнить дополнительное действие в другом треде заданного Executor-a.
 
 == Мы только прошлись по основам
 
