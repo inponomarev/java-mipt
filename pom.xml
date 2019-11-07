@@ -21,7 +21,6 @@
         <module>slides09</module>
         <module>slides10</module>
         <module>slides11</module>
-        <module>allslides</module>
         <!--<module>plan</module>
         <module>helloworld</module>
         <module>jdbc-example</module>-->
@@ -37,5 +36,5 @@
             <email>ponomarev@phystech.edu</email>
         </developer>
     </developers>
-    
+
 </project>
