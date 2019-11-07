@@ -14,7 +14,7 @@ before_install:
   - mkdir -p output
 
 script:
-  - mvn generate-resources -pl plan
+  - mvn generate-resources
   - for file in slides??; do cp -r "$file/target/generated-slides" "output/$file"; done
 
 deploy:
