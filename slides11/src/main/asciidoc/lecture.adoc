@@ -1,0 +1,58 @@
+= Core Java: Курс лекций. Лекция 11
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+:stem: latexmath
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Рефлексия
+
+Класс Class. Имя класса. Массивы
+
+Загрузка ресурсов
+
+Анализ возможностей класса (в т. ч. generic)
+
+Анализ объектов в runtime. Присвоение полей и запуск методов и конструкторов
+
+== Аннотации
+
+Аннотации -- зачем нужны и как могут использоваться
+
+Annotation interfaces
+
+Annotating declarations. Что можно аннотировать?
+
+Target/rentention
+
+Стандартные (встроенные в язык/библиотку Java) аннотации
+
+Runtime Annotation processing (с помощью рефлексии)
+
+Source level annotation processing

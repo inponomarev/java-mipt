@@ -11,14 +11,16 @@ cache:
 
 before_install:
   - sudo apt-get install -y graphviz
+  - mkdir -p output
 
 script:
   - mvn generate-resources -pl plan
+  - for file in slides??; do cp -r "$file/target/generated-slides" "output/$file"; done
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GH_TOKEN
-  local_dir: plan/target/generated-docs
+  local_dir: output
   on:
     branch: master

@@ -18,9 +18,13 @@
         <module>slides06</module>
         <module>slides07</module>
         <module>slides08</module>
-        <module>plan</module>
+        <module>slides09</module>
+        <module>slides10</module>
+        <module>slides11</module>
+        <module>allslides</module>
+        <!--<module>plan</module>
         <module>helloworld</module>
-        <module>jdbc-example</module>
+        <module>jdbc-example</module>-->
     </modules>
 
     <organization>
@@ -33,4 +37,5 @@
             <email>ponomarev@phystech.edu</email>
         </developer>
     </developers>
+    
 </project>

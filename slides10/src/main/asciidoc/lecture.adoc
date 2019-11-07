@@ -74,14 +74,14 @@ image::amdahl.png[{image-80-width}]
 
 == На самом деле, всё ещё хуже! 
 
-* Uiversal Scalability Law -- эмпирическое обобщение закона Амдала
+* Uiversal Scalability Law -- полуэмпирическое обобщение закона Амдала
 * &beta; -- параметр, определяющий cohesion (межпоточную координацию)
 * хорошо ложится на эмпирические данные
 
 [stem] 
 ++++
 \Huge
-S = \frac{N}{1+\alpha(N-1) + \beta N (N-1)}
+S = \frac{N}{1+\alpha(N-1) + \beta N (N-1)} = \frac{N}{1+(\alpha + \beta N) (N-1)}
 ++++
 == USL: поведение
 
@@ -286,7 +286,7 @@ int aVariable = 42;
 
 * Переменные классов могут быть определены с ключевым словом `volatile`.
 
-* *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной.*
+* *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной в другом потоке.*
 
 * Это автоматом делает видимыми изменения в других переменных. Полагаться на это не рекомендуется: это работает, но делает код хрупким. В процессе рефакторинга можно поменять порядок доступа к переменным и тем самым незаметно поломать программу. 
 
@@ -1065,3 +1065,23 @@ executor.execute(() -> {
 * На русский язык не переведена.
 * Всё ещё самое полное руководство по разным аспектам многопоточного программирования на Java.
 |===
+
+== Благодарности 
+
+Эти люди дали свой фидбэк и помогли улучшить материал этой лекции:
+
+icon:twitter[size=lg]@2caco3
+icon:twitter[size=lg]@asm0dey
+icon:twitter[size=lg]@dolzhenko
+icon:twitter[size=lg]@DrEdwardHyde
+
+icon:twitter[size=lg]@dyer_the
+icon:twitter[size=lg]@krems5
+icon:twitter[size=lg]@LordOfBoredom
+
+icon:twitter[size=lg]@miha_x64
+icon:twitter[size=lg]@vaddyacom
+icon:twitter[size=lg]@vdimir
+
+
+(все ошибки и неточности -- мои)
