@@ -31,28 +31,573 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
-== Рефлексия
+== Иногда код начинает выглядеть как перечисление повторящихся действий
 
-Класс Class. Имя класса. Массивы
+[source,java]
+----
+import org.json.JSONObject;
+class NaivePersonSerializer {
+  String toJSON(Person person) {
+    JSONObject result = new JSONObject();
+      result.put("firstName", person.getFirstName());
+      result.put("lastName", person.getLastName());
+      result.put("birthDate", person.getBirthDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      ...
+      ...
+      //ещё 20 полей
+      ...
+      ...
+      return result.toString();
+  }
+}
+----
 
-Загрузка ресурсов
+== Вариант: разбор CLI команды/URL
 
-Анализ возможностей класса (в т. ч. generic)
+[source,java]
+----
+public class NaiveController {
+  private final Service service;
 
-Анализ объектов в runtime. Присвоение полей и запуск методов и конструкторов
+  public void executeCommand(String command) {
+    switch (command) {
+      case "foo":
+        service.foo();
+        break;
+      case "bar":
+        service.bar();
+        break;
+      ...
+      //Ещё 15 веток...
+      ...
+      case "help":
+      default:
+        service.help();
+        break;
+    }
+  }
+}
+----
+
+== Coupling & Cohesion
+
+* Coupling: the degree of interdependence between software modules; a measure of how closely connected two routines or modules are; the strength of the relationships between modules.
+
+* Cohesion refers to the degree to which the elements inside a module belong together.
+
+* Low coupling often correlates with high cohesion, and vice versa.
+
+== Вопросы
+
+* За счёт чего в приведённых примерах high coupling + low cohesion?
+* Чем это опасно для проекта?
+
+== Как бы мы хотели решить эту проблему?
+
+[source,java]
+----
+//Помечаем то, что хотим сериализовывать, не сериализуем по умолчанию.
+//Вариант: сериализуем по умолчанию, помечаем то, что сериализовывать не хотим.
+public class Person {
+    @Publish
+    private final String firstName;
+    @Publish
+    private final String lastName;
+    @Publish
+    private final LocalDate birthDate;
+    //...сколько угодно ещё полей
+}
+
+//Как вариант...
+JsonSerializer<Person> ser = new JsonSerializer<>(Person.class);
+JSONObject json = ser.serialize(p);
+----
+
+== Контроллер
+[source,java]
+----
+public class Controller {
+  private final Service service;
+
+  @Command("foo")
+  void doSomething() { service.foo(); }
+
+  @Command("bar")
+  void bar() { service.bar(); }
+  
+  //ещё 15 команд
+
+  @Command() //дефолтная
+  void help() { service.help(); }
+}
+
+new CommandDispatcher(new Controller(srv)).executeCommand("foo");
+----
 
 == Аннотации
 
-Аннотации -- зачем нужны и как могут использоваться
+* Аннотация -- способ разметки кода на Java, через добавление метаинформации к различным элементам программы на Java.
+* Работают приблизительно как модификаторы (`public`, `static`), но существует развитый механизм создания собственных аннотаций.
+* Могут быть обработаны на трёх этапах:
+** На этапе кодогенерации перед компиляцией (annotation processing)
+** На этапе инструментации байт-кода (instrumentation API)
+** На этапе выполнения кода (через Reflection API)
 
-Annotation interfaces
+== Синтаксис определения аннотаций
 
-Annotating declarations. Что можно аннотировать?
+----
+modifiers @interface AnnotationName {
+  type elementName();
+  ...
+  type elementName default value;
+}
+----
 
-Target/rentention
+== Пример
+[source,java]
+----
+public @interface BugReport {
+  String assignedTo() default "";
+  int severity();
+}
+----
+== Annotation Interfaces
 
-Стандартные (встроенные в язык/библиотку Java) аннотации
+* Подобно тому, как `enum`-классы -- это специальный вид классов, annotation-интерфейсы -- это специальный вид интерфейсов.
+* Наследуются от `java.lang.annotation.Annotation`.
+* Нельзя расширять наследованием, нельзя параметризовать через generics.
+* Методы не могут иметь параметров.
 
-Runtime Annotation processing (с помощью рефлексии)
+== Допустимые типы методов аннотации 
 
-Source level annotation processing
+* Примитивы (`int`, `short`, `long`, `byte`, `char`, `double`, `float`, `boolean`),
+* `String`,
+* `Class` (с возможным типовым параметром, вроде `Class<? extends MyClass`),
+* другие аннотации,
+* массивы из вышеперечисленного (но не массивы массивов).
+
+== Пример определения интерфейса аннотации
+
+[source,java]
+----
+public @interface BugReport {
+  //вложенные типы допустимы!
+  enum Status {UNCONFIRMED, CONFIRMED, FIXED, NOTABUG}
+  boolean showStopper() default false;
+  String assignedTo() default "";
+  //метакласс, речь впереди
+  Class<?> testCase() default Void.class;
+  Status status() default Status.UNCONFIRMED;
+  //Тип аннотации. При конструировании используется синтаксис
+  //аннотации, речь впереди
+  Reference ref() default @Reference(id = "");
+  String[] reportedBy();
+}
+----
+
+== Использование аннотаций
+
+----
+@AnnotationName(elementName1=value1, elementName2=value2,...)
+
+@AnnotationName(singleValue)
+
+@AnnotationName //no values
+----
+
+== Использование аннотаций
+
+[source,java]
+----
+@BugReport(assignedTo="Harry", severity=10)
+
+//порядок не имеет значения
+@BugReport(severity=10, assignedTo="Harry")
+
+//если заданы значения по умолчанию, то можно пропускать
+@BugReport(severity=10)
+
+//если параметров нет или все имеют умолчания, 
+//то можно не ставить скобки
+@BugReport
+
+//Если на параметр не задан default, его определение будет обязательно
+//(иначе ошибка компиляции).
+----
+
+== Single-value annotations
+
+[source,java]
+----
+public @interface ActionListenerFor {
+  String value();
+  int priority() default 0;
+}
+
+//использование
+@ActionListenerFor("yellowButton")
+
+//что эквивалентно
+@ActionListenerFor(value = "yellowButton")
+
+//в то же время:
+@ActionListenerFor(value = "yellowButton", priority = 1)
+----
+
+
+
+== Массивы и другие аннотации
+
+[source,java]
+----
+//Массивы задаются в фигурных скобках
+@BugReport(..., reportedBy = {"Harry", "Carl"})
+
+//То же самое, что {"Harry"}
+@BugReport(..., reportedBy = "Harry")
+
+//Конструирование вложенных аннотаций
+@BugReport(..., ref = @Reference(id = "12345"))
+
+//...Как видим, используя примитивы, можно задать сколь угодно сложную структуру данных
+----
+
+WARNING: Значение аннотации не может быть установлено в `null`. Не допускатся `null` даже в `default`-значениях. 
+
+== Где можно использовать аннотации
+
+* В декларациях
+* При использовании типов
+
+== Использование аннотаций в декларациях
+
+* Packages
+* Classes (including `enum`)
+* Interfaces (including annotation interfaces)
+* Methods
+* Constructors
+* Instance fields (including `enum` constants)
+* Local variables' declarations
+* Parameter variables' declarations
+* Type parameters
+
+== Примеры использования аннотаций в декларациях
+
+[source,java]
+----
+@Entity
+public class User {
+
+  @Caption("user")
+  public User getUser(@Param("id") String userId) {
+    @SuppressWarnings("unchecked")
+    List<User> users = ....
+  }
+}
+
+
+class Cache<@Immutable V> {
+ ...
+}
+----
+
+
+== Аннотирование пакетов -- в package-info.java
+
+[source,java]
+----
+//package-info.java
+@GPL(version="3")
+edu.phystech.corejava
+import org.gnu.GPL
+----
+
+== Аннотирование использования типов
+
+[source,java]
+----
+//аннотированный параметр, утверждает, что userId -- не `null`
+User getUser(@NonNull String userId) {
+ ...
+}
+
+//Аннотированные использования типа: каждая строчка не `null`
+List<@NonNull String> list = ...
+Comparator.<@NonNull String>reverseOrder()
+class Warning extends @Localized Message { ... }
+
+List<@Localized ? extends Message> = ...
+
+(@Localized String) text
+
+if (text instanceof @Localized String) ...
+
+//и т. д., список не полный. В общем, аннотации могут быть почти везде
+----
+
+
+== Java8+: аннотирование использования типа в `this`
+
+[source,java]
+----
+public class Foo {
+  //аннотируется использование типа!
+  void baz(@ReadOnly Foo this){
+    ...
+  }
+
+  class Bar {
+    //аннотируется использование типа!
+    public Bar(@ReadOnly Foo Foo.this) {
+      ...
+    }
+  }
+}
+----
+
+== Стандартные аннотации, встроенные в язык
+
+Уже знакомые аннотации:
+[cols="20a,20a,60a"]
+|===
+|*Annotation +
+interface*
+|*Применимость* 
+|*Назначение*
+|`@Override`
+|Методы
+|Метод переопределяет метод в базовом классе. Ошибка компиляции, если это не так (см. лекцию про классы).
+|`@FunctionalInterface`
+|Интерфейсы
+|Помечает интерфейс как функциональный (имеющий единственный абстрактный метод). Ошибка компиляции, если это не так (см. лекцию про lambdas & method refs).
+|`@SafeVarargs`
+|Методы и конструкторы
+|Декларирует безопасное использование параметризованного varargs (см. лекцию про Generics)
+|===
+
+== Стандартные аннотации, встроенные в язык
+
+[cols="20a,20a,60a"]
+|===
+|*Annotation +
+interface*
+|*Применимость* 
+|*Назначение*
+|`@Deprecated`
+|Все элементы API
+|Данный элемент API deprecated -- т. е. сохранён для обратной совместимости, запрещён к использованию в новых проектах, и возможно будет удалён в будущем. 
+|`@SuppressWarnings`
+|Все, кроме пакетов и аннотаций
+|Подавляет предупреждения заданного типа от компилятора и линтеров.
+|`@Generated`
+|Все элементы API
+|Помечает код, как автоматически сгенерированный (как следствие, этот код не следует модифицировать руками).
+|===
+
+== Аннотации управляются аннотациями
+
+[source,java]
+----
+//Какие элементы кода могут быть аннотированы
+@Target({ElementType.TYPE, ElementType.METHOD})
+//На каком уровне сохраняются эти аннотации
+@Retention(RetentionPolicy.Source)
+public @interface BugReport {
+ ...
+}
+----
+
+== Target
+
+[cols="30a,70a"]
+|===
+| *ElementType*     | *Применимость аннотаций*
+| `ANNOTATION_TYPE` | Интерфейсы аннотаций
+| `PACKAGE`         | Пакеты
+| `TYPE`            | Любые классы (включая `enums`) и интерфейсы (включая интерфейсы аннотаций)
+| `METHOD`          | Методы
+| `CONSTRUCTOR`     | Конструкторы
+| `FIELD`           | Поля
+| `PARAMETER`       | Параметры методов или конструкторов
+| `LOCAL_VARIABLE`  | Определения локальных переменных
+| `TYPE_PARAMETER`  | Типовые параметры
+| `TYPE_USE`        | Использования типов
+|===
+
+
+== RetentionPolicy
+
+[graphviz,"retention.png"]
+----
+digraph G {
+graph [ dpi = 150 ];
+rankdir="LR";
+node[shape=box];
+SOURCE -> CLASS;
+CLASS -> RUNTIME;
+CLASS[label="CLASS\n(по умолчанию)"]
+}
+----
+
+[cols="30a,70a"]
+|===
+| *Retention Policy* | *Доступность аннотаций*
+| `SOURCE` 
+| На уровне исходников для annotation processors. Не попадают в class-файлы и runtime.
+| `CLASS` + 
+(по умолчанию)
+| На уровне исходников и class-файлов. Доступны для instrumentation API. Невидимы в runtime.
+| `RUNTIME`
+| На уровне исходников, в class-файлах и во время исполнения. Доступны для Reflection API.
+|===
+
+== Другие мета-аннотации
+|===
+|`@Documented` | Все аннотации данного типа будут попадать в JavaDoc-документацию.
+|`@Inherited`  | Если класс помечен аннотацией данного типа, то все наследники данного класса также будут помечены аннотацией этого же типа. 
+|`@Repeatable` | Позволяет задать возможность многократной пометки элемента аннотацией одного и того же типа. 
+|===
+
+== Рефлексия
+
+[source,java]
+----
+Employee e = new Employee();
+Employee m = new Manager();
+
+//Получаем информацию в Runtime
+Class<? extends Employee> ce = e.getClass();
+Class<? extends Employee> cm = m.getClass();
+
+System.out.printf("%s, %s%n", ce.getName(), cm.getName());
+//edu.phystech.hello.Employee, edu.phystech.hello.Manager
+
+System.out.printf("%s, %s%n", ce.getSimpleName(), cm.getSimpleName());
+//Employee, Manager
+----
+
+== Класс `Class<T>` параметризован
+"The actual result type of `getClass()` is `Class<? extends |X|>`  where `|X|` is the erasure of the static type of the expression on which `getClass` is called."
+
+[source,java]
+----
+Employee e = 0; 
+
+//No cast needed!
+Class<? extends Employee> c = e.getClass();
+
+//No cast needed!
+Employee newEmployee =
+  ce.getDeclaredConstructor().newInstance();
+
+//Compile-time error!
+Class<? extends Number> cn = e.getClass();
+----
+
+== Class literals
+
+* Литералы -- строки в коде, порождающие объекты. Например, `"foo"` -- литерал, порождающий объект `String` с содержимым "foo".
+* Литералы классов -- специальные выражения в языке, порождающие объекты с типом `Class<...>`.
+
+[source,java]
+----
+//тут всё понятно
+Class<String> c1 = String.class;
+Class<Integer> c2 = Integer.class;
+
+//Да, так можно!! 
+Class<Integer> c3 = int.class;
+//А ещё double.class, boolean.class и т. д.
+
+//При этом c2 и с3 -- существенно РАЗНЫЕ объекты 
+//(например, c3.getConstructors() возвращает пустой массив).
+
+//Тут ничего непонятного нет, массивами можно параметризовать:
+Class<int[]> c4 = int[].class;
+----
+
+== NB: странные имена классов-массивов
+
+При чтении логов ошибок можно встретиться с таким:
+|===
+|*Class literal*  |`getName()` *value*
+|`byte[].class`   |[B
+|`short[].class`  |[S
+|`int[].class`    |[I
+|`long[].class`   |[J
+|`char[].class`   |[C
+|`double[].class` |[D
+|`float[].class`  |[F
+|`boolean[].class`|[Z
+|`Integer[].class`|[Ljava.lang.Integer;
+|===
+
+== Динамический способ получения мета-класса
+[source,java]
+----
+//может быть выброшен  ClassNotFoundException
+//параметр типа тут никак не может быть известен
+Class<?> clazz =
+  Class.forName("edu.phystech.hello.Manager");
+
+//Есть две формы: 
+
+//загрузчик вызвавшего метода, статическая инициализация
+static Class<?> forName(String className)
+                         throws ClassNotFoundException
+
+//кастомный загрузчик, статическая инициализация по запросу
+static Class<?> forName(String name, boolean initialize,
+                                   ClassLoader loader)
+----
+
+== Загрузка ресурсов
+
+
+
+== Анализ возможностей класса (в т. ч. generic)
+
+== Анализ объектов в runtime. Присвоение полей и запуск методов и конструкторов
+
+
+== Runtime Annotation processing (с помощью рефлексии)
+
+== JsonSerializer: определение полей, помеченных @Publish
+
+[source,java]
+----
+public class JsonSerializer<T> {
+    private final Set<Field> publishedFields;
+
+    public JsonSerializer(Class<T> serializedClass) {
+        publishedFields = ReflectionUtils.getAllFields(serializedClass,
+                f -> f.isAnnotationPresent(Publish.class));
+        publishedFields.forEach(f -> f.setAccessible(true));
+    }
+----
+
+== JsonSerializer: сериализация объекта
+
+[source,java]
+----
+public JSONObject serialize(T o) {
+        JSONObject result = new JSONObject();
+        for (Field f : publishedFields) {
+            Object fieldValue = null;
+            try {
+                fieldValue = f.get(o);
+            } catch (IllegalAccessException e) {
+                //this will not happen
+                e.printStackTrace();
+            }
+            if (fieldValue instanceof LocalDate) {
+                result.put(f.getName(), ((LocalDate) fieldValue).format(DateTimeFormatter.ISO_LOCAL_DATE));
+            } else {
+                result.put(f.getName(), fieldValue);
+            }
+        }
+        return result;
+    }
+----
+
+== Source level annotation processing

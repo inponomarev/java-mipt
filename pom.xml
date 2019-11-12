@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>reflection-example</module>
+        <module>overview</module>
         <module>slides01</module>
         <module>slides02</module>
         <module>slides03</module>
