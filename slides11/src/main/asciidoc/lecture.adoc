@@ -99,11 +99,11 @@ public class NaiveController {
 //Помечаем то, что хотим сериализовывать, не сериализуем по умолчанию.
 //Вариант: сериализуем по умолчанию, помечаем то, что сериализовывать не хотим.
 public class Person {
-    @Publish
+    @Published
     private final String firstName;
-    @Publish
+    @Published
     private final String lastName;
-    @Publish
+    @Published
     private final LocalDate birthDate;
     //...сколько угодно ещё полей
 }
@@ -139,9 +139,9 @@ new CommandDispatcher(new Controller(srv)).executeCommand("foo");
 * Аннотация -- способ разметки кода на Java, через добавление метаинформации к различным элементам программы на Java.
 * Работают приблизительно как модификаторы (`public`, `static`), но существует развитый механизм создания собственных аннотаций.
 * Могут быть обработаны на трёх этапах:
-** На этапе кодогенерации перед компиляцией (annotation processing)
-** На этапе инструментации байт-кода (instrumentation API)
-** На этапе выполнения кода (через Reflection API)
+** на этапе кодогенерации перед компиляцией (annotation processing, Language Model API),
+** на этапе инструментации байт-кода (Instrumentation API),
+** на этапе выполнения кода (через Reflection API).
 
 == Синтаксис определения аннотаций
 
@@ -332,7 +332,7 @@ List<@Localized ? extends Message> = ...
 
 if (text instanceof @Localized String) ...
 
-//и т. д., список не полный. В общем, аннотации могут быть почти везде
+//и т. д., список примеров не полный. Аннотации могут быть почти везде!
 ----
 
 
@@ -439,16 +439,19 @@ CLASS[label="CLASS\n(по умолчанию)"]
 }
 ----
 
-[cols="30a,70a"]
+[cols="25a,50a,25a"]
 |===
-| *Retention Policy* | *Доступность аннотаций*
+| *Retention Policy* | *Доступность аннотаций* | *API*
 | `SOURCE` 
 | На уровне исходников для annotation processors. Не попадают в class-файлы и runtime.
+| Language Model API
 | `CLASS` + 
 (по умолчанию)
-| На уровне исходников и class-файлов. Доступны для instrumentation API. Невидимы в runtime.
+| На уровне исходников и class-файлов. Невидимы в runtime.
+| Instrumentation API
 | `RUNTIME`
-| На уровне исходников, в class-файлах и во время исполнения. Доступны для Reflection API.
+| На уровне исходников, в class-файлах и во время исполнения.
+| Reflection API
 |===
 
 == Другие мета-аннотации
@@ -458,7 +461,7 @@ CLASS[label="CLASS\n(по умолчанию)"]
 |`@Repeatable` | Позволяет задать возможность многократной пометки элемента аннотацией одного и того же типа. 
 |===
 
-== Рефлексия
+== Рефлексия (Reflection API)
 
 [source,java]
 ----
@@ -551,18 +554,175 @@ static Class<?> forName(String name, boolean initialize,
                                    ClassLoader loader)
 ----
 
-== Загрузка ресурсов
+== Загрузка ресурсных файлов
+
+[source,java]
+----
+public InputStream getResourceAsStream(String name)
+public java.net.URL getResource(String name)
+----
+
+image::resource.png[{image-90-width}]
+
+== Анализ возможностей класса и взаимодействие с элементами класса
+
+[plantuml, metaclass, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+class Class<T> {
+  Class<? super T> getSuperclass()
+   Class<?>[] getInterfaces()
+  
+  Field[] getDeclaredFields()
+  Field[] getFields()
+  Constructor<?>[] getDeclaredConstructors()
+  Constructor<?>[] getConstructors()
+  Method[] getDeclaredMethods()
+  Method[] getMethods()
+  Class<?>[] getClasses()
+  Class<?>[] getDeclaredClasses()
+}
 
 
+abstract class Executable {
+Class<?>[] getParameterTypes()
+Class<?>[] getExceptionTypes()
+}
 
-== Анализ возможностей класса (в т. ч. generic)
+interface Member {
+  String getName();
+  int getModifiers();
+}
 
-== Анализ объектов в runtime. Присвоение полей и запуск методов и конструкторов
+Member <|-- Executable 
+
+class Constructor {
+T newInstance(Object ... initargs)
+}
+
+class Method {
+Class<?> getReturnType()
+
+Object invoke(Object obj, Object... args)
+}
+
+class Field {
+  Class<?> getType()
+  
+  Object get(Object obj)
+  void set(Object obj, Object value)
+  
+}
+
+Executable <|-- Constructor
+Executable <|-- Method
+Member     <|.. Field
+
+Class .. Constructor
+Class .. Method
+Class .. Field
+Class .. Class
+
+@enduml
+----
+
+* `getXXX` -- все публичные элементы (поля, конструкторы, методы)
+* `getDeclaredXXX` -- все элементы, задекларированные в данном классе (без унаследованных)
 
 
-== Runtime Annotation processing (с помощью рефлексии)
+== Доступ к элементам
 
-== JsonSerializer: определение полей, помеченных @Publish
+[plantuml, accessible, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+
+class AccessibleObject {
+boolean isAccessible()
+void setAccessible(boolean flag)
+}
+
+abstract class Executable {
+}
+
+class Field {
+
+}
+
+AccessibleObject <|-- Executable
+Executable <|-- Constructor
+Executable <|-- Method
+AccessibleObject     <|-- Field
+
+
+@enduml
+----
+
+* По умолчанию доступ определяется уровнями видимости (например, приватные элементы недоступны)
+* Можно открыть через `setAccessible(true)`
+
+
+== Анализ аннотаций в runtime
+
+[plantuml, annotated, png]
+----
+@startuml
+
+skinparam dpi 150 
+
+interface AnnotatedElement {
+boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)
+<T extends Annotation> T getAnnotation(Class<T> annotationClass)
+Annotation[] getAnnotations()
+Annotation[] getDeclaredAnnotations()
+<T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass)
+}
+
+abstract class Executable {
+  {abstract} Annotation[][] getParameterAnnotations()
+}
+
+AnnotatedElement <|.. AccessibleObject
+AnnotatedElement <|..Class
+AccessibleObject <|-- Executable
+
+@enduml
+----
+
+== Рефлексия и Generics
+
+* В runtime по объекту нельзя определить параметры типов (например, отличить `List<Employee>` от `List<Integer>`).
+
+* Анализируя параметризованнные классы (например, `List<T>`) или методы (например, `<T extends Comparable<? super T>> T min (T[] a)`), с помощью рефлексии можно узнать всю информацию про его параметры типов.
+
+== ReflectionUtils
+
+* Reflection API довольно старое, использует массивы (неудобно в эпоху Streams & Collections).
+* Частые задачи (например, получить все -- публичные и приватные, собственные и унаследованные элементы) не имеют готовых методов.
+* Можно пользоваться готовыми библиотеками, например, `org.reflections:reflections`.
+
+== Класс с аннотированными полями
+
+[source,java]
+----
+public class Person {
+    @Published
+    private final String firstName;
+    @Published
+    private final String lastName;
+    @Published
+    private final LocalDate birthDate;
+    ...
+}
+
+----
+
+== JsonSerializer: определение полей, помеченных @Published
 
 [source,java]
 ----
@@ -571,7 +731,7 @@ public class JsonSerializer<T> {
 
     public JsonSerializer(Class<T> serializedClass) {
         publishedFields = ReflectionUtils.getAllFields(serializedClass,
-                f -> f.isAnnotationPresent(Publish.class));
+                f -> f.isAnnotationPresent(Published.class));
         publishedFields.forEach(f -> f.setAccessible(true));
     }
 ----
@@ -600,4 +760,70 @@ public JSONObject serialize(T o) {
     }
 ----
 
-== Source level annotation processing
+== Пример с Controller
+
+[source,java]
+----
+public class Controller {
+    private final Service service;
+
+    @Command("foo")
+    void doSomething() {
+        service.foo();
+    }
+
+    @Command("bar")
+    void bar() {
+        service.bar();
+    }
+
+    @Command()
+    void help() {
+        service.help();
+    }
+}
+----
+
+== CommandDispatcher
+
+[source,java]
+----
+public class CommandDispatcher {
+    private final Object controller;
+    private final Map<String, Method> methodHashMap = new HashMap<>();
+    private Method defaultMethod;
+----
+
+== CommandDispatcher: инициализация
+
+[source,java]
+----
+public CommandDispatcher(Object controller) {
+    Objects.requireNonNull(controller);
+    this.controller = controller;
+    for (Method method : ReflectionUtils.getAllMethods(controller.getClass())) {
+        Command command = method.getAnnotation(Command.class);
+        if (command != null) {
+           //Извлекаем параметр из аннотации
+            String commandId = command.value();
+            if (commandId.isEmpty()) {
+                defaultMethod = method;
+            } else {
+                methodHashMap.put(commandId, method);
+            }
+        }
+    }
+}
+----
+
+== CommandDispatcher: выполнение команды
+
+[source,java]
+----
+public void executeCommand(String command) throws InvocationTargetException, IllegalAccessException {
+    Method method = methodHashMap.getOrDefault(command, defaultMethod);
+    if (method != null){
+        method.invoke(controller);
+    }
+}
+----

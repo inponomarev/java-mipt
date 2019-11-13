@@ -158,7 +158,7 @@ t2.start();
 t1.join();
 t2.join();
 System.out.printf("%d, %d%n", t1.result, t2.result);
-//otput: 4, 6
+//otput: 4, 9
 ----
 
 
