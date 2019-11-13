@@ -41,12 +41,12 @@ class NaivePersonSerializer {
     JSONObject result = new JSONObject();
       result.put("firstName", person.getFirstName());
       result.put("lastName", person.getLastName());
-      result.put("birthDate", person.getBirthDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-      ...
-      ...
+      result.put("birthDate",
+        person.getBirthDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      result.put(...)
+      result.put(...)
       //ещё 20 полей
-      ...
-      ...
+      result.put(...)
       return result.toString();
   }
 }
@@ -58,22 +58,17 @@ class NaivePersonSerializer {
 ----
 public class NaiveController {
   private final Service service;
-
   public void executeCommand(String command) {
     switch (command) {
       case "foo":
-        service.foo();
-        break;
+        service.foo(); break;
       case "bar":
-        service.bar();
-        break;
-      ...
+        service.bar(); break;
+      case ...
       //Ещё 15 веток...
-      ...
       case "help":
       default:
-        service.help();
-        break;
+        service.help(); break;
     }
   }
 }
@@ -97,7 +92,7 @@ public class NaiveController {
 [source,java]
 ----
 //Помечаем то, что хотим сериализовывать, не сериализуем по умолчанию.
-//Вариант: сериализуем по умолчанию, помечаем то, что сериализовывать не хотим.
+//Вариант: наоборот, помечать то, что сериализовывать не хотим.
 public class Person {
     @Published
     private final String firstName;
@@ -172,7 +167,7 @@ public @interface BugReport {
 
 * Примитивы (`int`, `short`, `long`, `byte`, `char`, `double`, `float`, `boolean`),
 * `String`,
-* `Class` (с возможным типовым параметром, вроде `Class<? extends MyClass`),
+* `Class` (с возможным ограничителем параметра, вроде `Class<? extends MyClass>`),
 * другие аннотации,
 * массивы из вышеперечисленного (но не массивы массивов).
 
@@ -185,9 +180,11 @@ public @interface BugReport {
   enum Status {UNCONFIRMED, CONFIRMED, FIXED, NOTABUG}
   boolean showStopper() default false;
   String assignedTo() default "";
+  
   //метакласс, речь впереди
   Class<?> testCase() default Void.class;
   Status status() default Status.UNCONFIRMED;
+  
   //Тип аннотации. При конструировании используется синтаксис
   //аннотации, речь впереди
   Reference ref() default @Reference(id = "");
@@ -202,7 +199,7 @@ public @interface BugReport {
 
 @AnnotationName(singleValue)
 
-@AnnotationName //no values
+@AnnotationName //no values, no parens
 ----
 
 == Использование аннотаций
@@ -221,7 +218,7 @@ public @interface BugReport {
 //то можно не ставить скобки
 @BugReport
 
-//Если на параметр не задан default, его определение будет обязательно
+//Если на параметр не задан default, его надо  обязательно определять 
 //(иначе ошибка компиляции).
 ----
 
@@ -259,7 +256,8 @@ public @interface ActionListenerFor {
 //Конструирование вложенных аннотаций
 @BugReport(..., ref = @Reference(id = "12345"))
 
-//...Как видим, используя примитивы, можно задать сколь угодно сложную структуру данных
+//...Как видим, используя разрешённые типы,
+//можно задать сколь угодно сложную структуру данных
 ----
 
 WARNING: Значение аннотации не может быть установлено в `null`. Не допускатся `null` даже в `default`-значениях. 
@@ -272,11 +270,11 @@ WARNING: Значение аннотации не может быть устан
 == Использование аннотаций в декларациях
 
 * Packages
-* Classes (including `enum`)
-* Interfaces (including annotation interfaces)
+* Classes (включая `enum`)
+* Interfaces (включая annotation interfaces)
 * Methods
 * Constructors
-* Instance fields (including `enum` constants)
+* Instance fields (включая константы `enum`)
 * Local variables' declarations
 * Parameter variables' declarations
 * Type parameters
@@ -290,6 +288,7 @@ public class User {
 
   @Caption("user")
   public User getUser(@Param("id") String userId) {
+  
     @SuppressWarnings("unchecked")
     List<User> users = ....
   }
@@ -317,9 +316,7 @@ import org.gnu.GPL
 [source,java]
 ----
 //аннотированный параметр, утверждает, что userId -- не `null`
-User getUser(@NonNull String userId) {
- ...
-}
+User getUser(@NonNull String userId) { ... }
 
 //Аннотированные использования типа: каждая строчка не `null`
 List<@NonNull String> list = ...
@@ -332,7 +329,8 @@ List<@Localized ? extends Message> = ...
 
 if (text instanceof @Localized String) ...
 
-//и т. д., список примеров не полный. Аннотации могут быть почти везде!
+//и т. д., список примеров не полный. 
+// Аннотации могут быть почти везде!
 ----
 
 
@@ -355,10 +353,9 @@ public class Foo {
 }
 ----
 
-== Стандартные аннотации, встроенные в язык
+== Знакомые стандартные (встроенные в язык) аннотации 
 
-Уже знакомые аннотации:
-[cols="20a,20a,60a"]
+[cols="20a,18a,62a"]
 |===
 |*Annotation +
 interface*
@@ -375,7 +372,7 @@ interface*
 |Декларирует безопасное использование параметризованного varargs (см. лекцию про Generics)
 |===
 
-== Стандартные аннотации, встроенные в язык
+== Стандартные (встроенные в язык) аннотации 
 
 [cols="20a,20a,60a"]
 |===
@@ -400,6 +397,7 @@ interface*
 ----
 //Какие элементы кода могут быть аннотированы
 @Target({ElementType.TYPE, ElementType.METHOD})
+
 //На каком уровне сохраняются эти аннотации
 @Retention(RetentionPolicy.Source)
 public @interface BugReport {
@@ -409,12 +407,12 @@ public @interface BugReport {
 
 == Target
 
-[cols="30a,70a"]
+[cols="25a,75a"]
 |===
 | *ElementType*     | *Применимость аннотаций*
 | `ANNOTATION_TYPE` | Интерфейсы аннотаций
 | `PACKAGE`         | Пакеты
-| `TYPE`            | Любые классы (включая `enums`) и интерфейсы (включая интерфейсы аннотаций)
+| `TYPE`            | Классы (в т. ч. `enums`) и интерфейсы (в т. ч. `@interface`)
 | `METHOD`          | Методы
 | `CONSTRUCTOR`     | Конструкторы
 | `FIELD`           | Поля
@@ -430,7 +428,7 @@ public @interface BugReport {
 [graphviz,"retention.png"]
 ----
 digraph G {
-graph [ dpi = 150 ];
+graph [ dpi = 180 ];
 rankdir="LR";
 node[shape=box];
 SOURCE -> CLASS;
@@ -455,6 +453,7 @@ CLASS[label="CLASS\n(по умолчанию)"]
 |===
 
 == Другие мета-аннотации
+[cols="25a,75a"]
 |===
 |`@Documented` | Все аннотации данного типа будут попадать в JavaDoc-документацию.
 |`@Inherited`  | Если класс помечен аннотацией данного типа, то все наследники данного класса также будут помечены аннотацией этого же типа. 
@@ -465,8 +464,8 @@ CLASS[label="CLASS\n(по умолчанию)"]
 
 [source,java]
 ----
-Employee e = new Employee();
-Employee m = new Manager();
+Employee e = ... //присваиваем Employee
+Employee m = ... //присваиваем Manager
 
 //Получаем информацию в Runtime
 Class<? extends Employee> ce = e.getClass();
@@ -480,11 +479,11 @@ System.out.printf("%s, %s%n", ce.getSimpleName(), cm.getSimpleName());
 ----
 
 == Класс `Class<T>` параметризован
-"The actual result type of `getClass()` is `Class<? extends |X|>`  where `|X|` is the erasure of the static type of the expression on which `getClass` is called."
+Документация: _"The actual result type of `getClass()` is `Class<? extends |X|>`  where `|X|` is the erasure of the static type of the expression on which `getClass` is called."_
 
 [source,java]
 ----
-Employee e = 0; 
+Employee e = ...; 
 
 //No cast needed!
 Class<? extends Employee> c = e.getClass();
@@ -499,8 +498,10 @@ Class<? extends Number> cn = e.getClass();
 
 == Class literals
 
-* Литералы -- строки в коде, порождающие объекты. Например, `"foo"` -- литерал, порождающий объект `String` с содержимым "foo".
+* Литералы -- строки в коде, порождающие объекты или значения. Например, `"foo"` -- литерал, порождающий объект `String` с содержимым "foo".
 * Литералы классов -- специальные выражения в языке, порождающие объекты с типом `Class<...>`.
+
+== Class literals -- примеры
 
 [source,java]
 ----
@@ -515,24 +516,25 @@ Class<Integer> c3 = int.class;
 //При этом c2 и с3 -- существенно РАЗНЫЕ объекты 
 //(например, c3.getConstructors() возвращает пустой массив).
 
-//Тут ничего непонятного нет, массивами можно параметризовать:
+//Тут ничего неожиданного нет, массивами можно параметризовать:
 Class<int[]> c4 = int[].class;
 ----
 
 == NB: странные имена классов-массивов
 
 При чтении логов ошибок можно встретиться с таким:
+[width="50%"]
 |===
-|*Class literal*  |`getName()` *value*
-|`byte[].class`   |[B
-|`short[].class`  |[S
-|`int[].class`    |[I
-|`long[].class`   |[J
-|`char[].class`   |[C
-|`double[].class` |[D
-|`float[].class`  |[F
-|`boolean[].class`|[Z
-|`Integer[].class`|[Ljava.lang.Integer;
+|*Type*  |`.class.getName()`
+|`byte[]`   |[B
+|`short[]`  |[S
+|`int[]`    |[I
+|`long[]`   |[J
+|`char[]`   |[C
+|`double[]` |[D
+|`float[]`  |[F
+|`boolean[]`|[Z
+|`Integer[]`|[Ljava.lang.Integer;
 |===
 
 == Динамический способ получения мета-класса
@@ -562,7 +564,7 @@ public InputStream getResourceAsStream(String name)
 public java.net.URL getResource(String name)
 ----
 
-image::resource.png[{image-90-width}]
+image::resource.png[{image-100-width}]
 
 == Анализ возможностей класса и взаимодействие с элементами класса
 
@@ -597,7 +599,7 @@ interface Member {
   int getModifiers();
 }
 
-Member <|-- Executable 
+Member <|- Executable 
 
 class Constructor {
 T newInstance(Object ... initargs)
@@ -619,7 +621,7 @@ class Field {
 
 Executable <|-- Constructor
 Executable <|-- Method
-Member     <|.. Field
+Member     <|. Field
 
 Class .. Constructor
 Class .. Method
@@ -628,6 +630,8 @@ Class .. Class
 
 @enduml
 ----
+
+== Получение членов класса
 
 * `getXXX` -- все публичные элементы (поля, конструкторы, методы)
 * `getDeclaredXXX` -- все элементы, задекларированные в данном классе (без унаследованных)
@@ -741,23 +745,21 @@ public class JsonSerializer<T> {
 [source,java]
 ----
 public JSONObject serialize(T o) {
-        JSONObject result = new JSONObject();
-        for (Field f : publishedFields) {
-            Object fieldValue = null;
-            try {
-                fieldValue = f.get(o);
-            } catch (IllegalAccessException e) {
-                //this will not happen
-                e.printStackTrace();
-            }
-            if (fieldValue instanceof LocalDate) {
-                result.put(f.getName(), ((LocalDate) fieldValue).format(DateTimeFormatter.ISO_LOCAL_DATE));
-            } else {
-                result.put(f.getName(), fieldValue);
-            }
-        }
-        return result;
+  JSONObject result = new JSONObject();
+  for (Field f : publishedFields) {
+    Object fieldValue = null;
+    try { fieldValue = f.get(o); } 
+      catch (IllegalAccessException e) {
+        e.printStackTrace(); }
+      if (fieldValue instanceof LocalDate) {
+        result.put(f.getName(), 
+    ((LocalDate) fieldValue).format(DateTimeFormatter.ISO_LOCAL_DATE));
+      } else {
+        result.put(f.getName(), fieldValue);
+      }
     }
+  return result;
+}
 ----
 
 == Пример с Controller
@@ -771,12 +773,10 @@ public class Controller {
     void doSomething() {
         service.foo();
     }
-
     @Command("bar")
     void bar() {
         service.bar();
     }
-
     @Command()
     void help() {
         service.help();
@@ -799,20 +799,20 @@ public class CommandDispatcher {
 [source,java]
 ----
 public CommandDispatcher(Object controller) {
-    Objects.requireNonNull(controller);
-    this.controller = controller;
-    for (Method method : ReflectionUtils.getAllMethods(controller.getClass())) {
-        Command command = method.getAnnotation(Command.class);
-        if (command != null) {
-           //Извлекаем параметр из аннотации
-            String commandId = command.value();
-            if (commandId.isEmpty()) {
-                defaultMethod = method;
-            } else {
-                methodHashMap.put(commandId, method);
-            }
+  Objects.requireNonNull(controller);
+  this.controller = controller;
+  for (Method method : ReflectionUtils.getAllMethods(controller.getClass())) {
+    Command command = method.getAnnotation(Command.class);
+    if (command != null) {
+       //Извлекаем параметр из аннотации
+        String commandId = command.value();
+        if (commandId.isEmpty()) {
+            defaultMethod = method;
+        } else {
+            methodHashMap.put(commandId, method);
         }
     }
+  }
 }
 ----
 
@@ -820,7 +820,8 @@ public CommandDispatcher(Object controller) {
 
 [source,java]
 ----
-public void executeCommand(String command) throws InvocationTargetException, IllegalAccessException {
+public void executeCommand(String command) throws InvocationTargetException, 
+ IllegalAccessException {
     Method method = methodHashMap.getOrDefault(command, defaultMethod);
     if (method != null){
         method.invoke(controller);
