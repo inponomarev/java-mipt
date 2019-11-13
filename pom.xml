@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>reflection-example</module>
+
         <module>overview</module>
         <module>slides01</module>
         <module>slides02</module>
@@ -25,7 +25,9 @@
         <module>slides11</module>
         <!--<module>plan</module>
         <module>helloworld</module>
-        <module>jdbc-example</module>-->
+        <module>reflection-example</module>
+        -->
+        <module>jdbc-example</module>
     </modules>
 
     <organization>

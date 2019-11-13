@@ -14,7 +14,7 @@ public class JsonSerializer<T> {
 
     public JsonSerializer(Class<T> serializedClass) {
         publishedFields = ReflectionUtils.getAllFields(serializedClass,
-                f -> f.isAnnotationPresent(Publish.class));
+                f -> f.isAnnotationPresent(Published.class));
         publishedFields.forEach(f -> f.setAccessible(true));
     }
 
