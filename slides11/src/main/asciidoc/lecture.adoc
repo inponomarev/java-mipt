@@ -790,7 +790,8 @@ public class Controller {
 ----
 public class CommandDispatcher {
     private final Object controller;
-    private final Map<String, Method> methodHashMap = new HashMap<>();
+    private final Map<String, Method> methodHashMap = 
+                                        new HashMap<>();
     private Method defaultMethod;
 ----
 
@@ -801,7 +802,8 @@ public class CommandDispatcher {
 public CommandDispatcher(Object controller) {
   Objects.requireNonNull(controller);
   this.controller = controller;
-  for (Method method : ReflectionUtils.getAllMethods(controller.getClass())) {
+  for (Method method : ReflectionUtils
+           .getAllMethods(controller.getClass())) {
     Command command = method.getAnnotation(Command.class);
     if (command != null) {
        //Извлекаем параметр из аннотации
@@ -820,9 +822,10 @@ public CommandDispatcher(Object controller) {
 
 [source,java]
 ----
-public void executeCommand(String command) throws InvocationTargetException, 
- IllegalAccessException {
-    Method method = methodHashMap.getOrDefault(command, defaultMethod);
+public void executeCommand(String command) 
+  throws InvocationTargetException, IllegalAccessException {
+    Method method = methodHashMap
+      .getOrDefault(command, defaultMethod);
     if (method != null){
         method.invoke(controller);
     }
