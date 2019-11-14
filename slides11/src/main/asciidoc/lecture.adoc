@@ -31,7 +31,7 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
-== Иногда код начинает выглядеть как перечисление повторящихся действий
+== Иногда при чтении кода начинает рябить в глазах...
 
 [source,java]
 ----
@@ -52,7 +52,7 @@ class NaivePersonSerializer {
 }
 ----
 
-== Вариант: разбор CLI команды/URL
+== Возникает ощущение, что что-то не так...
 
 [source,java]
 ----
@@ -599,7 +599,7 @@ interface Member {
   int getModifiers();
 }
 
-Member <|- Executable 
+Member <|. Executable 
 
 class Constructor {
 T newInstance(Object ... initargs)
