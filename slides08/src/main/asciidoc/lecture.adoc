@@ -84,19 +84,24 @@ jdbc:oracle:thin:192.168.110.128:1521:XE
 jdbc:derby://localhost:1527/corejava;create=true
 ----
 
-== Создание Connection, Statement, получение ResultSet и итерация по ResultSet
+== Создание Connection, Statement, получение и итерация по ResultSet
 
 [plantuml, sequence, png]
 ----
 skinparam dpi 150
+hide footbox
 client->DriverManager : getConnection()
-DriverManager-->client: connection
+DriverManager -> connection **: new
+
+connection-->client: connection
 
 client->connection: createStatement()
-connection-->client: statement
+connection->statement **:new
+statement-->client: statement
 
 client->statement: executeQuery()
-statement-->client: resultSet
+statement->resultSet **:new
+resultSet-->client: resultSet
 
 client->resultSet: next()
 client->resultSet: next()
@@ -143,17 +148,19 @@ Connection conn = DriverManager.getConnection(connString);
 [plantuml, pool, png]
 ----
 skinparam dpi 150
+hide footbox
 client->pool : getConnection()
 pool->pool: poll()
 alt Pool is not empty
-  pool-->client: connection
+  pool-->client: pooledConnection
 else Pool is empty
   pool->DriverManager: getConnection()
   DriverManager-->pool: connection
-  pool-->client: pooledConnection
+  pool-->pooledConnection **:new(connection)
+  pooledConnection-->client: pooledConnection
 end
 client->pooledConnection: close()
-pooledConnection->pool: add()
+pooledConnection->pool: add(this)
 ----
 
 == Connection Pool

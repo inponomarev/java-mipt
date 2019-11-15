@@ -857,7 +857,7 @@ public interface Future<V> {
 [plantuml, taskexecfuture, png]
 ----
 @startuml
-skinparam dpi 180
+skinparam dpi 150
 hide footbox
 
 participant Client
@@ -865,11 +865,11 @@ participant Task
 participant Executor
 participant Future
 
-Client -> Task: new()
+Client -> Task **: new()
 Task --> Client: task
 
 Client -> Executor: submit(task)
-Executor -> Future: new(task)
+Executor -> Future **: new(task)
 Future --> Executor: Future
 Executor --> Client: Future 
 
