@@ -1,0 +1,470 @@
+= Core Java: Курс лекций. Лекция 12
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+:stem: latexmath
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+== Наш учебный пример про доклады и спикеров
+
+[plantuml, objects, png]
+----
+@startuml
+skinparam dpi 180 
+object ConnectionPool
+object DataSource
+object ConferenceDao
+object SpeakerDao
+object TalkDao
+object Controller
+
+DataSource -->ConnectionPool
+SpeakerDao --> DataSource
+TalkDao --> DataSource
+ConferenceDao --> DataSource
+Controller --> SpeakerDao
+Controller --> TalkDao
+Controller --> ConferenceDao
+@enduml
+----    
+
+== Реальная «слоистая» архитектура серверного приложения
+
+[plantuml, layers, png]
+----
+@startuml
+skinparam dpi 180 
+object Controller1
+object Controller2
+
+object Service1
+object Service2
+object Service3
+
+object Dao1
+object Dao2
+object Dao3
+
+Controller1 --> Service1
+Controller1 --> Service2
+Controller2 --> Service2
+Controller2 --> Service1
+Controller2 --> Service3
+note on link
+  «соединение
+  проводами»,
+  aka "wiring"
+end note
+
+Service1 --> Dao1
+Service2 --> Dao1
+Service3 --> Dao2
+Service3 --> Dao3
+Service1 --> Dao2
+
+@enduml
+----    
+
+
+
+== Попытка №1, наивная. «Пусть объекты сами создают себе то, что им надо»
+
+[source,java]
+----
+public class DataSource {
+  private ConnectionPool pool = new ConnectionPool(....); 
+    //взятые откуда-то параметры подключения к БД ^^^^^^  
+  ...
+}                             
+
+public class SpeakerDao {
+  private DataSource ds = new DataSource(); 
+  ...
+}                             
+
+public class TalkDao {
+  private DataSource ds = ??? 
+    //нам нужен один ConnectionPool на всех...
+    //не получается :-(
+  ...
+}
+----
+
+== Попытка №2. Выложим ссылку на единичный объект в статическое поле
+
+[source,java]
+----
+public class ConnectionPool {
+  private final static ConnectionPool instance = new ConnectionPool(...);
+  public static ConnectionPool getInstance() {
+    return instance;
+  }
+  //конструктор сделаем приватным, чтобы ни у кого не было соблазна
+  //создать объект явно
+  private ConnectionPool(...){
+  
+  }
+}
+
+public class DataSource {
+  private final static DataSource instance = ...
+  public DataSource getInstance() {
+    return instance;
+  }
+  private ConnectionPool pool = ConnectionPool.getInstance();
+  private DataSource() {
+    ...
+  }
+}                             
+----
+
+== Мы только что изобрели дизайн-паттерн «Одиночка»!
+
+[cols="30a,70a"]
+|===
+|image::gof.jpg[]
+|
+
+* *Erich Gamma et al.*, Design Patterns: Elements of Reusable Object-Oriented Software
+* Книга 1994 года
+* Классическая книга по дизайну ПО...
+* ...но местами уже устаревшая.
+|===
+
+== Singleton Pattern
+
+* Объект-"одиночка".
+* Прямое создание невозможно (инксапсулировано в приватном конструкторе).
+* Доступ к единственному экземпляру только через статический метод `getInstance()` (или `final`-переменную `INSTANCE`).
+* Имеет проблемы технического и архитектурного плана.
+* Начнём с технических.
+
+== Синглетоноварение: подход №1
+
+[source,java]
+----
+public class Singleton {
+  //Создание Singleton "спрятано"
+  private static final Singleton instance = new Singleton();
+    
+  public static Singleton getInstance() {
+    return instance;
+  }
+
+  //Лишаем возможности создать экземпляр объекта "извне"
+  private Singleton(){
+  }
+}
+----
+
+[.fragment]
+"Тяжёлый" объект создаётся всегда, даже если `getInstance` не будет вызван?
+
+== Подход №2
+
+[source,java]
+----
+public class Singleton {
+    private static Singleton instance;
+    
+    public static Singleton getInstance() {
+        if (instance == null) {
+           instance = new Singleton();
+        }
+        return instance;
+    }
+    private Singleton(){
+    }
+}
+----
+[.fragment]
+Что с многопоточным доступом к переменной `instance`?
+
+== Подход №3 ?!
+
+[source,java]
+----
+public class Singleton {
+    private static volatile Singleton instance;
+    
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    private Singleton(){
+    }
+}
+----
+[.fragment]
+Теперь нет гарантии, что экземпляр создаётся только один раз!
+
+
+== Подход №4 ?! ?!
+
+[source,java]
+----
+public class Singleton {
+    private static Singleton instance;
+    
+    public static synchronized Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    private Singleton(){
+    }
+}
+----
+[.fragment] 
+Все потоки будут выстраиваться в очередь, только чтобы получить доступ к переменной instance?  
+
+== Подход №5 ?! ?! ?!
+
+[source,java]
+----
+public class Singleton {
+    private static Singleton instance;
+    private static final Object lock = new Object();
+    public static Singleton getInstance() {
+        if (instance == null)
+            synchronized (lock) {
+                if (instance == null)
+                    instance = new Singleton();
+            }
+        return instance;
+    }
+    private Singleton() {
+    }
+}
+----
+[.fragment] 
+Программа сломана. Из-за того, что в первом `if`-е чтение поля `instance` не синхронизировано, возможно чтение частично инициализированного объекта (если конструктор `Singleton` заинлайнен).
+
+== Подход №6 . . .
+
+[source,java]
+----
+public class Singleton {
+    private static volatile Singleton instance;
+    private static final Object lock = new Object();
+    public static Singleton getInstance() {
+        if (instance == null)
+            synchronized (lock) {
+                if (instance == null)
+                    instance = new Singleton();
+            }
+        return instance;
+    }
+    private Singleton() {
+    }
+}
+----
+[.fragment]
+Ну, почти. Только у нас оверхед, потому что два раза читаем `volatile`-переменную.
+
+== Подход №7. Код из книги "Effective Java, 3rd edition"
+Joshua Bloch: "On my machine, this method is about 1.4 times as fast as the obvious version without a local variable". [EJ, 3rd ed., pp. 334-335]
+
+[source,java]
+----
+public class Singleton {
+  private static volatile Singleton instance;
+  private static final Object lock = new Object();
+  public static Singleton getInstance() {
+    Singleton result = instance;
+    if (result == null) {
+      synchronized (lock) {
+        if (instance == null)
+          instance = result = new Singleton();
+        }
+     }
+     return result;
+  }
+}
+----
+
+== Подход №7. Код из книги "Effective Java, 3rd edition"
+
+Вы уже видите баг в этом коде?
+
+[source,java]
+----
+public class Singleton {
+  private static volatile Singleton instance;
+  private static final Object lock = new Object();
+  public static Singleton getInstance() {
+    Singleton result = instance;
+    if (result == null) {
+      synchronized (lock) {
+        if (instance == null)
+          instance = result = new Singleton();
+        }
+     }
+     return result;
+  }
+}
+----
+[.fragment]
+Если при входе в `synchronized`-блок `instance != null`, на выходе -- `null`.
+
+[%notitle]
+== Как так получилось
+
+image::bloch.png[{image-100-width}]
+
+[%notitle]
+== WTF?
+
+image::scream.jpg[canvas, size=cover]
+
+
+== Единственно Верный Ленивый Потокобезопасный Синглетон 
+[source,java]
+----
+public class Singleton {
+    private static volatile Singleton instance;
+    private static final Object lock = new Object();
+    public static Singleton getInstance() {
+        Singleton result = instance;
+        if (result != null)
+            return result;
+
+        synchronized (lock) {
+            if (instance == null)
+                instance = new Singleton();
+            return instance;
+        }
+    }
+    private Singleton() {}
+}
+----
+
+[.fragment]
+Или нет?
+
+== Подход №8
+
+[source,java]
+----
+// Correct lazy initialization in Java
+public class Singleton {
+    private static class SingletonHolder {
+       public static final Singleton instance = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        return SingletonHolder.instance;
+    }
+    private Singleton() {
+    }
+}
+----
+
+== Но беда синглетона не в этом
+
+Как автоматически тестировать компоненты, которые жёстко связаны со своими зависимостями через статические поля/методы?
+
+[.fragment]
+-- Да никак!
+
+== Фабрика
+
+[source,java]
+----
+// вынесли весь "wiring" из классов в фабричный метод
+public static Controller makeController() {
+  DataSource dataSource = new DataSource(ConnectionPool.getInstance());
+  ConferenceDao conferenceDao = new ConferenceDao(dataSource);
+  SpeakerDao speakerDao = new SpeakerDao(dataSource);
+  TalkDao talkDao = new SpeakerDao(dataSource);
+  return new Controller(conferenceDao, speakerDao, talkDao);
+}
+----
+
+== Фабрика
+
+* Мы отвязались от «wiring» и можем создавать компоненты по отдельности, что позволяет тестировать.
+* Однако в фабричном методе много повторяющихся действий, фабрика должна «знать» про все компоненты.
+* Вообще этот процесс можно автоматизировать!
+
+== Dependency Injection
+
+[plantuml, di-class, png]
+----
+@startuml
+skinparam dpi 180
+hide footbox
+
+class Injector
+interface ServiceA
+interface ServiceB
+class ServiceAImpl
+class ServiceBImpl
+class Client
+
+Client --> ServiceA
+Client --> ServiceB
+
+ServiceA <|.. ServiceAImpl
+ServiceB <|.. ServiceBImpl
+
+Injector .> Client: <<create>>\n<<inject>>
+Injector ..> ServiceAImpl: <<create>>
+Injector ..> ServiceBImpl: <<create>>
+
+@enduml
+----
+
+
+
+== Dependency Injection
+
+[plantuml, di-seq, png]
+----
+@startuml
+skinparam dpi 180
+hide footbox
+
+participant Injector
+participant ServiceAImpl
+participant ServiceBImpl
+participant Client
+
+activate Injector
+Injector -> ServiceAImpl **: new()
+Injector -> ServiceBImpl **: new()
+Injector -> Client **: new()
+Injector -> Client: inject(ServiceAImpl, ServiceBImpl)
+
+@enduml
+----
+
