@@ -1085,3 +1085,18 @@ icon:twitter[size=lg]@vdimir
 
 
 (все ошибки и неточности -- мои)
+
+[%notitle]
+== Можно добавить
+
+image::perf.png[{image-90-width}]
+
+[%notitle]
+== Пусть кто-то другой
+
+image::notme.png[{image-90-width}]
+
+[%notitle]
+== Бегите, глупцы
+
+image::flyyoufools.png[{image-80-width}]
