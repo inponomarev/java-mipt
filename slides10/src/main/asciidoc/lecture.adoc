@@ -848,6 +848,7 @@ public interface Future<V> {
   V get(long timeout, TimeUnit unit)
     throws InterruptedException, ExecutionException, TimeoutException;
   boolean cancel(boolean mayInterruptIfRunning);
+  boolean isDone();
   boolean isCancelled();
 }
 ----
