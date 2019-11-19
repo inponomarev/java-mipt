@@ -931,6 +931,8 @@ public class  Executors {
 ----
 //отменить задачу, если она ещё не начала выполняться
 future.cancel(false)
+//запросить прерывание задачи (подробности впереди)
+future.cancel(true)
 
 //Запретить приём новых задач
 executorService.shutdown();
@@ -1020,8 +1022,8 @@ executor.execute(() -> {
 [cols="20a,20a,60a"]
 |===
 |*Method*            |*Parameter*            |*Description*
-|`completeOnTimeout` |T, long, TimeUnit      |Compute a result from the error.
-|`orTimeout`         |long, TimeUnit         |Yield the given value as the result in case of timeout.
+|`completeOnTimeout` |T, long, TimeUnit      |Yield the given value as the result in case of timeout (Java 9+)
+|`orTimeout`         |long, TimeUnit         |Throw `TimeoutException ` in case of timeout (Java 9+) 
 |`thenRun`           |Runnable               |Execute the `Runnable` with void result.
 |===
 
