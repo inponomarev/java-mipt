@@ -42,7 +42,8 @@ class NaivePersonSerializer {
       result.put("firstName", person.getFirstName());
       result.put("lastName", person.getLastName());
       result.put("birthDate",
-        person.getBirthDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        person.getBirthDate()
+        .format(DateTimeFormatter.ISO_LOCAL_DATE));
       result.put(...)
       result.put(...)
       //ещё 20 полей
@@ -307,8 +308,8 @@ class Cache<@Immutable V> {
 ----
 //package-info.java
 @GPL(version="3")
-edu.phystech.corejava
-import org.gnu.GPL
+package edu.phystech.corejava;
+import org.gnu.GPL;
 ----
 
 == Аннотирование использования типов
@@ -731,13 +732,14 @@ public class Person {
 [source,java]
 ----
 public class JsonSerializer<T> {
-    private final Set<Field> publishedFields;
+  private final Set<Field> publishedFields;
 
-    public JsonSerializer(Class<T> serializedClass) {
-        publishedFields = ReflectionUtils.getAllFields(serializedClass,
+  public JsonSerializer(Class<T> serializedClass) {
+    publishedFields = ReflectionUtils
+       .getAllFields(serializedClass,
                 f -> f.isAnnotationPresent(Published.class));
-        publishedFields.forEach(f -> f.setAccessible(true));
-    }
+  publishedFields.forEach(f -> f.setAccessible(true));
+}
 ----
 
 == JsonSerializer: сериализация объекта
