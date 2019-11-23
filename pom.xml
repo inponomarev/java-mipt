@@ -27,10 +27,10 @@
         <module>plan</module>
         <module>helloworld</module>
         <module>reflection-example</module>
-        -->
+
         <module>jdbc-example</module>
         <module>di-example</module>
-        <module>spring-example</module>
+        <module>spring-example</module>-->
     </modules>
 
     <organization>
