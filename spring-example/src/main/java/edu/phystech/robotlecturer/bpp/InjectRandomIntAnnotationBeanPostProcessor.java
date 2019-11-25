@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
-@Order
 public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
