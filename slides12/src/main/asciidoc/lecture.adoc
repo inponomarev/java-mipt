@@ -1054,6 +1054,35 @@ Speaking: blah-blah-blah
 Time: 107100ns]]]
 ----
 
+== Прокси-объект
+
+[graphviz,"proxy.png"]
+----
+digraph G {
+  graph [ dpi = 150 ];
+  compound=true;
+  rankdir="LR";
+  
+  splines="line";
+  
+  caller [shape="rectangle", style=rounded];
+  caller -> inv[lhead=cluster0;label="       "];
+  caller -> inv[arrowhead=none];
+  
+  
+  subgraph cluster0 {
+    
+    inv[style=invis,shape=point];
+    target[shape="rectangle", style="rounded";]
+    
+    label="proxy";
+    style="dashed,rounded";
+    
+    inv -> target[style=dashed;];
+  }
+}
+----
+
 == BenchmarkProxyConfigurator
 
 [source,java]
