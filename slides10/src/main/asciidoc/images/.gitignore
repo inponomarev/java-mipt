@@ -19,3 +19,8 @@
 /split1.png
 /nonsync.png
 /sync.png
+/blockingqueue.png
+/deadlock.png
+/runthr.png
+/taskexecfuture.png
+/threadstates.png
