@@ -1,0 +1,624 @@
+= Core Java: Курс лекций. Лекция 13
+Иван Пономарёв, КУРС/МФТИ
+:revealjs_theme: black
+:revealjs_customtheme: white_course.css
+:revealjs_slideNumber:
+:revealjs_history:
+:revealjs_progress:
+:encoding: UTF-8
+:lang: ru
+include::_doc_general_attributes.adoc[]
+:doctype: article
+:toclevels: 3
+:imagesdir: images
+:source-highlighter: highlightjs
+:highlightjsdir: highlight
+:icons: font
+:iconfont-remote!:
+:iconfont-name: font-awesome-4.7.0/css/font-awesome
+:revealjs_mouseWheel: true
+:revealjs_center: false
+:revealjs_transition: none
+:revealjs_width: 1600
+:revealjs_height: 900
+:stem: latexmath
+
+
+//== Часть 1. Введение
+:!figure-caption:
+
+ponomarev@corchestra.ru
+
+icon:twitter[size=lg] @inponomarev
+
+[%notitle]
+== Spring Framework
+
+
+
+image::springframework.png[{image-80-width}]
+
+_"Perhaps one of the hardest parts of explaining Spring is classifying exactly what it is"_ -- Pro Spring 5, 5th ed., p. 1 
+
+== Spring Framework
+
+* DI
+* AOP
+* Тестирование
+* Интеграция с огромным количеством технологий
+* Очень развитый (и продолжающий активно развиваться)
+
+== Переписываем наш пример с «самодельного» фреймворка на Spring
+
+Было:
+[source,java]
+----
+public class Main {
+  public static void main(String[] args) throws ... {
+    RobotLecturer lecturer = new ObjectFactory()
+                     .createObject(RobotLecturer.class);
+    lecturer.lecture();
+  }
+}
+----
+
+== Переписываем наш пример с «самодельного» фреймворка на Spring
+
+Стало:
+[source,java]
+----
+@ComponentScan("edu.phystech.robotlecturer")
+public class Main {
+  public static void main(String[] args) {
+    ApplicationContext ctx = 
+      new AnnotationConfigApplicationContext(Main.class);
+    RobotLecturer lecturer = ctx.getBean(RobotLecturer.class);
+    lecturer.lecture();
+  }
+}
+----
+
+== Spring Beans
+
+* В нашем примере -- 
+** `RobotLecturer`, 
+** `FirstLecture`, 
+** `SpeakerImpl`, 
+** `SlideShowImpl`.
+* _Spring beans_ -- это переиспользуемые программные компоненты.
+* Годится любой класс, как наш, так и из сторонней библиотеки.
+
+== Способы конфигурации Spring
+
+* Разновидности конфигураций Spring:
+** Annotation-based
+** XML-based
+** Groovy-based
+* Мы будем рассматривать только annotation-based, как наиболее употребимую в настоящее время и практичную. 
+* В огромном количестве тьюториалов (и проектов) ещё встречается XML-конфигурация.
+
+== Как определять бины
+
+* Classpath Scanning: ищем проаннотированные классы в заданных пакетах.
+** @Component
+*** @Service
+*** @Controller
+*** @Repository
+* Фабричные методы 
+** @Configuration -> @Bean
+
+== Classpath scanning
+
+[source,java]
+----
+@ComponentScan("edu.phystech.robotlecturer")
+----
+
+Атрибуты аннотации:
+
+* `String[] basePackages` -- базовые пакеты для сканирования в поисках аннотированных компонент.
+* `Class<?>[] basePackageClasses` -- как типобезопасная альтернатива, можно указать классы. Пакеты каждого из указанных классов будут просканированы.
+* Плюсы: удобно. 
+* Минусы: классы должны быть проаннторированы как `@Component`, `@Service` и т. п., что не всегда возможно для сторонних библиотек.
+
+== `@Configuration` сlass
+
+* Класс конфигурации должен быть либо явно указан через конструктор `AnnotationConfigApplicationContext`, либо доступен сканирование пакетов (тогда нужно аннотировать класс как `@Configuration`). 
+
+* Чтобы прописывать в классе бины, надо пользоваться `@Bean`.
+
+== `@Configuration` сlass -- пример
+
+[source,java]
+----
+@Configuration
+public class AppConfig{
+
+  @Bean
+  @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+  public Color randomColor(){
+    ThreadLocalRandom random = ThreadLocalRandom.current();
+    return new Color(random.nextInt(256), 
+                random.nextInt(256), random.nextInt(256));
+  }
+  
+  ...
+}
+----
+
+
+
+== Bean scope
+
+* `SCOPE_SINGLETON` -- по умолчанию. Создаётся один при первом запросе и всюду впрыскивается единственный экземпляр.
+* `SCOPE_PROTOTYPE` -- создаётся новый при каждом запросе.
+* Есть ещё всякие, и можно создавать свои.
+
+== @Lazy
+
+* По умолчанию все синглетоны создаются при поднятии контейнера (чтобы fail fast, и чтобы избежать задержек при работе приложения).
+
+* Для конкретного бина это поведение можно изменить при помощи аннотации `@Lazy` (см. документацию).
+
+* Ленивая инициализация -- не такая хорошая идея, как кажется на первый взгляд.
+
+== Bean name
+
+* Каждый бин получает имя (id).
+* По умолчанию, имя вычисляется из имени класса (`SpeakerImpl` -> `"speakerImpl"`) или фабричного метода (`getSpeaker` -> `"speaker"`).
+* Имя бина можно задать явно в параметре аннотации `@Component` и других (например: `@Service("bestSpeaker")`).
+
+
+== Виды injection («впрыскивания»)
+
+* Constructor
+* Setter
+* Field
+* Lookup method
+
+== Constructor injection
+
+[source,java]
+----
+@Component
+@RequiredArgsConstructor
+public class RobotLecturer {
+    //автоматически будут переданы в конструктор
+    private final Lecture lecture;
+    private final Speaker speaker;
+    private final SlideShow slideShow;
+----
+
+* Внешне может быть незаметен (особенно с Lombok). 
+* Хорош для создания иммутабельных объектов. 
+* Много параметров конструктора? -- А точно столько надо?
+
+
+== Setter injection
+
+[source,java]
+----
+@Autowired
+void setLecture(Lecture lecture) {
+   //сеттер будет автоматически вызван после конструирования
+   this.lecture = lecture;
+}
+----
+
+* Хорош в ситуации, когда компонента сама себе способна предоставить зависимость "по умолчанию".
+
+== Field injection
+
+
+[source,java]
+----
+@Component
+public class RobotLecturer {
+    //будут установлены через рефлексию после конструирования
+    @Autowired
+    private Lecture lecture;
+    @Autowired
+    private Speaker speaker;
+    @Autowired
+    private SlideShow slideShow;
+----
+
+* Не плодит в классе сеттеры и конструкторы, но в целом сильно связывает код и считается не очень удачной практикой. 
+* Хотя, в классах тестов -- это ровно то, что нужно.
+
+
+== Lookup method injection
+
+Проблема бинов с разным жизненным циклом: `SCOPE_PROTOTYPE` не спасает.
+
+[source,java]
+----
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class Bar {...}
+
+@Component
+public class Foo {
+    @Autowired
+    private Bar bar;
+
+    public  void bar(){
+        //заинжектированный экземпляр bar всегда один и тот же 
+    }
+}
+----
+
+== Lookup method injection
+
+[source,java]
+----
+@Component
+public abstract class Foo {
+    @Lookup
+    abstract Bar getBar();
+
+    public  void bar(){
+        Bar b = getBar();
+        //теперь в b будет всякий раз новое (ну или одно и то же, 
+        //если убрать SCOPE_PROTOTYPE, хотя где тогда смысл?)
+    }
+}
+
+Foo foo = ctx.getBean(Foo.class);
+foo.bar(); foo.bar(); ...
+----
+[.fragment]
+-- Как, мы инстанцируем абстрактный класс?! -- Нет, мы же инстанцируем обёртку, на самом деле.
+
+== Lookup-метод может и не быть абстрактным
+
+[source,java]
+----
+@Component
+public class Foo {
+    //главное -- чтобы не был приватным
+    @Lookup
+    Bar getBar(){
+        return null;
+    };
+    public  void bar(){
+        //не null!
+        Bar b = getBar();
+        ...
+    }
+}
+----
+
+== Разруливание неоднозначностей
+
+[plantuml,manyimplementatons.png]
+----
+@startuml
+skinparam dpi 180
+interface Bar
+class Foo
+class Bar1
+class Bar2
+class Bar3
+
+Bar <|..Bar1
+Bar <|..Bar2
+Bar <|..Bar3
+
+note right of Bar
+ Что же выбрать
+ из подходящих кандидатур?
+end note
+
+
+Foo -> "bar" Bar
+
+@enduml
+----
+
+----
+NoUniqueBeanDefinitionException: No qualifying bean of
+type 'edu.phystech.robotlecturer.Bar' available: expected
+single matching bean but found 2: bar1,bar2,bar3
+----
+
+== Привязка по имени (неявная)
+
+[source,java]
+----
+@Component
+public class Foo {
+    //Не работает... :-(
+    @Autowired
+    private Bar bar;
+    
+    //Работает!! :-)
+    @Autowired
+    private Bar bar1;
+    ...
+}
+----
+
+== Привязка по имени (явная)
+
+[source,java]
+----
+@Component
+public class Foo {
+    @Autowired
+    @Qualifier("bar1")
+    private Bar bar;
+    ...
+}
+----
+
+== Помечаем одну из имплементаций как @Primary
+
+[source,java]
+----
+@Component
+@Primary
+public class Bar1 implements Bar {...}
+
+@Component
+public class Foo {
+    //Подставится Bar1
+    @Autowired
+    private Bar bar;
+    ...
+}
+----
+[.fragment]
+Но это работает, лишь если действительно один из бинов помечен как `@Primary`, иначе "NoUniqueBeanDefinitionException: more than one 'primary' bean found among candidates".
+
+== Но гораздо чаще нам нужны сразу все!
+
+[source,java]
+----
+
+@Component
+public class Foo {
+    
+    @Autowired
+    private List<Bar> bar;
+    
+    //ИЛИ
+    
+    @Autowired
+    private Map<String,Bar> bar;
+
+---- 
+
+== Впрыскивать можно не только бины, но и что-то попроще
+
+[source,java]
+----
+@Configuration
+//Путь к файлу с настройками
+@PropertySource("classpath:config.properties")
+public class Config {
+
+}
+
+@Component
+public class Foo {
+    @Value("${url}")
+    String url;
+    
+    @Value("${password}")
+    String password;
+----
+
+Также можно использовать SpEL-выражения, например `#{bar.url}`.
+
+== Инициализация 
+
+* Как мы помним, конструктор не годится в качестве инициализирующего метода, выполняющегося после всех впрыскиваний.
+* `@PostConstruct` -- стандартная Java-аннотация, может быть установлена над методом инициализации.
+* Если навесить аннотацию в классе нельзя, то `@Bean(initMethod= "init")`
+
+== Финализация
+
+* Симметрично инициализации -- при завершении работы контейнера.
+* При завершении приложения вызывается `context.destroy()`, запускающий механизм финализации.
+* `@PreDestroy` -- стандартная Java-аннотация.
+* Если навесить аннотацию в классе нельзя, то `@Bean(destroyMethod = "destroy")`
+
+== Практическая задача
+
+* Хотим сделать трейсинг приложения: перед началом и после завершения метода должно выводиться в лог его название и штамп времени.
+* Пусть у нас 500 классов по 5 методов
+* Значит, в 2500 мест надо копировать код:
+** не многовато ли??
+** не забудем ли какие-то из методов?
+** смешение бизнес-логики и служебного кода?
+
+== Aspect-oriented programming спешит на помощь
+
+* Типичные задачи:
+** _Логирование_: каждый вызов метода должен отмечаться в логе!
+** _Безопасность_: при вызове каждого метода надо проверять, имеем ли мы право на вызов!
+** _Управление транзакциями_: перед началом метода открывать транзакцию, при удачном завершении коммитить, при неудачном -- откатывать.
+* AOP помогает решать эти задачи без дублирования кода внутри методов.
+* Большое количество аспектов уже написано.
+
+== Терминология AOP
+
+* *Joinpoint* -- место в коде, в выполнение которого мы  «вмешиваемся» (и начинаем выполнять что-то своё). В теории может соответствовать вызовам методов, инициализации классов и инстанцированию объектов, но в Spring AOP -- это всегда _вызов метода_.
+
+
+* *Advice* -- код, который «впрыскивается» и выполняется в joinpoint. 
+
+
+* *Pointcut* -- тем или иным способом определённое множество joinpoint-ов. Например, «все методы, начинающиеся со слова get». Или: «все методы, аннотированные аннотацией `@Benchmarked`». Связывая pointcut-ы c advice-ами, мы определяем, что именно и когда будет работать.
+
+== Терминология AOP
+
+* *Aspect* -- комбинация advices+pointcuts, оформленная в виде отдельного класса. Определяет добавляемую в приложение логику, ответственную за какую-то определённую задачу (например, трассировку).
+
+* *Weaving* -- процесс «вплетения» кода advices в нужные места кода приложения.
+
+* *Target* -- метод, чьё поведение изменяется с помощью AOP.
+
+== Как можно реализовать AOP?
+
+* Статически: вплетение на уровне исходников или байт-кода.
+* Динамически: создавая прокси и используя вплетение в runtime.
+* Spring использует динамический AOP.
+* *Вопрос*: какие вы видите достоинства и недостатки у того и другого метода?
+
+== Прокси-объект: реализация
+
+[graphviz,"proxy.png"]
+----
+digraph G {
+  graph [ dpi = 200 ];
+  compound=true;
+  rankdir="LR";
+  
+  splines="line";
+  
+  caller [shape="rectangle", style=rounded];
+  caller -> inv[lhead=cluster0;label="       "];
+  caller -> inv[arrowhead=none];
+  
+  
+  subgraph cluster0 {
+    
+    inv[style=invis,shape=point];
+    target[shape="rectangle", style="rounded";]
+    
+    label="proxy";
+    style="dashed,rounded";
+    
+    inv -> target[style=dashed;];
+  }
+}
+----
+
+* Создаётся по необходимости.
+* Перехватывает вызовы всех методов на target.
+* Проверяет, не сработал ли pointcut -- и вызывает advice.
+
+== Использование AOP в Spring
+
+Для активизации `BeanPostProcessor`-а, сканирующего AOP-аннотации, надо в конфигурации включить аннотацию `@EnableAspectJAutoProxy`
+
+[source,java]
+----
+@Configuration
+@EnableAspectJAutoProxy
+public class AppConfig{
+  ...
+  
+}
+----
+
+(что такое `BeanPostProcessor` -- мы увидим в дальнейшем, но вы уже знаете, что это конфигуратор объекта)
+
+== Пример аспекта
+
+[source,java]
+----
+@Component @Aspect
+public class BenchmarkAspect {
+  @Around("@annotation(Benchmark)")
+    //pointcut expression ^^^
+  public Object execEntryPoint(ProceedingJoinPoint joinPoint) 
+                                    throws Throwable {
+    System.out.printf("[[[BENCHMARK method %s%n",
+                   joinPoint.getSignature().getName());
+    long start = System.nanoTime();
+    Object retVal = joinPoint.proceed();
+    long end = System.nanoTime();
+    System.out.printf("Time: %dns]]]%n", end - start);
+    return retVal;
+  }
+}
+----
+
+== Spring AOP checklist
+
+* `@EnableAspectJAutoProxy` над конфигурацией.
+* `@Aspect` над аспектом.
+* `@Component` / `@Bean` для аспекта, и сам аспект должен входить в конфигурацию приложения.
+* Аспект не перехватывает методы, которые вызываются `@PostConstruct`-ом. *Вопрос*: почему?
+
+== Какие бывают advices
+
+* `@Before`
+* `@AfterReturning`
+* `@AfterThrowing`
+* `@After`
+* `@Around`
+
+== `@Before`
+[source,java]
+----
+@Before("@annotation(Benchmark)")
+public void beforeFooMethods(JoinPoint jp) {
+  String methodName = jp.getSignature().getName();
+  System.out.println(methodName);
+}
+----
+
+== `@After`
+
+[source,java]
+----
+@AfterReturning(pointcut= "execution(* edu.phystech..*.foo())",
+                returning = "retVal")
+public void afterFoo(Double retVal) {
+  System.out.println("AFTER foo()" + retVal);
+}
+
+@AfterThrowing(
+    pointcut= "execution(* aop.example.application..*.*(..))", 
+    throwing = "ex")
+public void dbException(DatabaseRuntimeException ex){
+  System.out.println(ex);
+}
+----
+
+
+== BeanPostProcessor interface
+
+[source,java]
+----
+public interface BeanPostProcessor {
+  //впрыскиваем в бин значения
+  default Object postProcessBeforeInitialization(
+    Object bean, String beanName) throws BeansException {
+		return bean;
+  }
+  
+  //возвращаем обёртку над бином
+  default Object postProcessBeforeInitialization(
+    Object bean, String beanName) throws BeansException {
+		return bean;
+  }
+}
+----
+
+== Собственный BeanPostProcessor
+
+[source,java]
+----
+@Component public class InjectRandomIntAnnotationBeanPostProcessor
+                                    implements BeanPostProcessor {
+  @Override public Object postProcessBeforeInitialization(
+             Object bean, String beanName) throws BeansException {
+    for (Field f : ReflectionUtils.getAllFields(bean.getClass())) {
+      InjectRandomInt ann = f.getAnnotation(InjectRandomInt.class);
+      if (ann != null) {
+        int value = ThreadLocalRandom.current()
+                        .nextInt(ann.min(), ann.max() + 1);
+        f.setAccessible(true);
+        try { f.set(bean, value); } 
+        catch (IllegalAccessException e) {
+          throw new NotWritablePropertyException(
+                                bean.getClass(), f.getName()); }
+    } }
+    return bean;
+} }
+----
