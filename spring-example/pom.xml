@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.phystech.jdbcdemo.Hello</mainClass>
+                            <mainClass>edu.phystech.jdbcdemo.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -55,6 +55,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>5.2.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
             <version>5.2.1.RELEASE</version>
         </dependency>
         <dependency>

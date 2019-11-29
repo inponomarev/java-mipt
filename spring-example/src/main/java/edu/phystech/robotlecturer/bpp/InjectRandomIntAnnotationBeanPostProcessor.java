@@ -15,16 +15,14 @@ import java.util.concurrent.ThreadLocalRandom;
 @Component
 public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-
-        Class<?> type = bean.getClass();
-        Set<Field> allFields = ReflectionUtils.getAllFields(type);
-        for (Field field : allFields) {
+    public Object postProcessBeforeInitialization(Object bean, String beanName)
+            throws BeansException {
+        for (Field field : ReflectionUtils.getAllFields(bean.getClass())) {
             InjectRandomInt annotation = field.getAnnotation(InjectRandomInt.class);
             if (annotation != null) {
-                int min = annotation.min();
-                int max = annotation.max();
-                int value = ThreadLocalRandom.current().nextInt(min, max + 1);
+                int value = ThreadLocalRandom.current()
+                        .nextInt(annotation.min(),
+                                annotation.max() + 1);
                 field.setAccessible(true);
                 try {
                     field.set(bean, value);

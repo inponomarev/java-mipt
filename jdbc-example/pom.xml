@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.phystech.jdbcdemo.Hello</mainClass>
+                            <mainClass>edu.phystech.jdbcdemo.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

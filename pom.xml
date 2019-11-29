@@ -22,7 +22,9 @@
         <module>slides10</module>
         <module>slides11</module>
         <module>slides12</module>
+        <module>slides13</module>
         <!--
+        <module>spring-example</module>
         <module>overview</module>
         <module>plan</module>
         <module>helloworld</module>
