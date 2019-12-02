@@ -1,8 +1,6 @@
-package edu.phystech.jdbcdemo;
+package edu.phystech.jdbcdemo.controller;
 
-import edu.phystech.jdbcdemo.dao.ConferenceDao;
-import edu.phystech.jdbcdemo.dao.SpeakerDao;
-import edu.phystech.jdbcdemo.dao.TalkDao;
+import edu.phystech.jdbcdemo.service.dao.ConferenceDao;
 import edu.phystech.jdbcdemo.domain.Conference;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +14,9 @@ import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("conference")
+@RequestMapping(ConferenceController.URI)
 public class ConferenceController {
+    public static final String URI = "/conference";
     private final ConferenceDao conferenceDao;
 
     @PutMapping
@@ -26,7 +25,7 @@ public class ConferenceController {
     }
 
     @GetMapping
-    public Set<Conference> printHello() throws SQLException {
+    public Set<Conference> getConferences() throws SQLException {
         return conferenceDao.getConferences();
     }
 }

@@ -1,4 +1,4 @@
-package edu.phystech.jdbcdemo.db;
+package edu.phystech.jdbcdemo.service.db;
 
 import lombok.AllArgsConstructor;
 import org.h2.jdbcx.JdbcConnectionPool;

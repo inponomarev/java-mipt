@@ -1,4 +1,4 @@
-package edu.phystech.jdbcdemo.dao;
+package edu.phystech.jdbcdemo.service.dao;
 
 import edu.phystech.jdbcdemo.domain.Conference;
 import edu.phystech.jdbcdemo.domain.Speaker;

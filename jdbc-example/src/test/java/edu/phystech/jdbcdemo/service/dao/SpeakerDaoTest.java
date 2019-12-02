@@ -1,7 +1,7 @@
-package edu.phystech.jdbcdemo.dao;
+package edu.phystech.jdbcdemo.service.dao;
 
-import edu.phystech.jdbcdemo.db.ConnectionSource;
-import edu.phystech.jdbcdemo.db.DbInit;
+import edu.phystech.jdbcdemo.service.db.ConnectionSource;
+import edu.phystech.jdbcdemo.service.db.DbInit;
 import edu.phystech.jdbcdemo.domain.Speaker;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.junit.jupiter.api.AfterEach;
@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static edu.phystech.jdbcdemo.dao.TestData.*;
+import static edu.phystech.jdbcdemo.service.dao.TestData.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 

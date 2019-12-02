@@ -1,7 +1,6 @@
-package edu.phystech.jdbcdemo.db;
+package edu.phystech.jdbcdemo.service.db;
 
 import edu.phystech.jdbcdemo.Hello;
-import edu.phystech.jdbcdemo.db.ConnectionSource;
 import lombok.AllArgsConstructor;
 
 import java.io.BufferedReader;

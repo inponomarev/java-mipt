@@ -1,7 +1,7 @@
-package edu.phystech.jdbcdemo.dao;
+package edu.phystech.jdbcdemo.service.dao;
 
-import edu.phystech.jdbcdemo.db.ConnectionSource;
-import edu.phystech.jdbcdemo.db.DbInit;
+import edu.phystech.jdbcdemo.service.db.ConnectionSource;
+import edu.phystech.jdbcdemo.service.db.DbInit;
 import edu.phystech.jdbcdemo.domain.Conference;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.junit.jupiter.api.AfterEach;
@@ -13,8 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import static edu.phystech.jdbcdemo.dao.TestData.JOKER;
-import static edu.phystech.jdbcdemo.dao.TestData.JPOINT;
+import static edu.phystech.jdbcdemo.service.dao.TestData.JOKER;
+import static edu.phystech.jdbcdemo.service.dao.TestData.JPOINT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
