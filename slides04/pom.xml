@@ -1,41 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ru.inponomarev</groupId>
+        <artifactId>java-mipt</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>ru.inponomarev</groupId>
     <artifactId>java-mipt-slides04</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
 
     <name>Java lectures slides</name>
     <description>Java lectures slides</description>
-
-    <organization>
-        <name>MIPT</name>
-        <url>https://mipt.ru/</url>
-    </organization>
-    <developers>
-        <developer>
-            <name>Ivan Ponomarev</name>
-            <email>ponomarev@phystech.edu</email>
-        </developer>
-    </developers>
-
-    <properties>
-        <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
-        <asciidoctorj.version>1.5.7</asciidoctorj.version>
-        <jruby.version>9.1.17.0</jruby.version>
-        <revealjs.version>3.5.0</revealjs.version>
-        <highlightjs.version>9.14.0</highlightjs.version>
-        <asciidoctor-revealjs.version>1.1.3</asciidoctor-revealjs.version>
-    </properties>
-
-    <dependencies> </dependencies>
 
     <build>
         <defaultGoal>process-resources</defaultGoal>
@@ -43,109 +20,10 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.3.0</version>
-                <executions>
-                    <execution>
-                        <id>install-asciidoctor-revealjs</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>https://github.com/asciidoctor/asciidoctor-reveal.js/archive/v${asciidoctor-revealjs.version}.zip</url>
-                            <unpack>true</unpack>
-                            <outputFileName>asciidoctor-reveal.js-${asciidoctor-revealjs.version}.zip</outputFileName>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-revealjs</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>https://github.com/hakimel/reveal.js/archive/${revealjs.version}.zip</url>
-                            <unpack>true</unpack>
-                            <outputFileName>reveal.js-${revealjs.version}.zip</outputFileName>
-                            <outputDirectory>${project.slides.directory}</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <!--<execution>
-                        <id>install-highlightjs</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>https://github.com/highlightjs/highlight.js/archive/${highlightjs.version}.zip</url>
-                            <unpack>true</unpack>
-                            <outputFileName>highlight.zip</outputFileName>
-                            <outputDirectory>${project.slides.directory}</outputDirectory>
-                        </configuration>
-                    </execution> -->
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>${asciidoctor.maven.plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj-diagram</artifactId>
-                        <version>1.5.11</version>
-                    </dependency>
-
-                    <!-- Comment this section to use the default jruby artifact provided by the plugin -->
-                    <dependency>
-                        <groupId>org.jruby</groupId>
-                        <artifactId>jruby-complete</artifactId>
-                        <version>${jruby.version}</version>
-                    </dependency>
-                    <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj</artifactId>
-                        <version>${asciidoctorj.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <sourceDocumentName>lecture.adoc</sourceDocumentName>
-                    <requires>
-                        <require>asciidoctor-diagram</require>
-                    </requires>
-                    <outputFile>index.html</outputFile>
-                    <logHandler>
-                        <outputToConsole>true</outputToConsole>
-                    </logHandler>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-slides</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.slides.directory}</outputDirectory>
-                            <backend>revealjs</backend>
-                            <templateDir>${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates</templateDir>
-                            <sourceHighlighter>coderay</sourceHighlighter>
-                            <attributes>
-                                <!-- 
-                                    As we are downloading reveal.js in runtime, it sits in a nonstandard folder `reveal.js-${revealjs.version}`
-                                -->
-                                <revealjsdir>reveal.js-${revealjs.version}</revealjsdir>
-                                <!-- put here the reveal.js specific attributes -->
-                                <sourcedir>${basedir}/src/main/java</sourcedir>
-                                <revealjs_theme>black</revealjs_theme>
-                                <revealjs_transition>linear</revealjs_transition>
-                                <project-version>${project.version}</project-version>
-                            </attributes>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
