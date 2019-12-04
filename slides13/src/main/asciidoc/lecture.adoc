@@ -31,6 +31,416 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
+== Лектор-робот
+
+[plantuml, robotlecturer, png]
+----
+@startuml
+skinparam dpi 150 
+object RobotLecturer
+object Lecture
+object Speaker
+object SlideShow
+
+RobotLecturer --> Lecture
+RobotLecturer --> Speaker
+RobotLecturer --> SlideShow
+@enduml
+----
+
+[source,java]
+----
+public class RobotLecturer {
+    //«магическим» образом пусть тут появится то, что нужно!
+    @InjectByType
+    private Lecture lecture;
+    @InjectByType
+    private Speaker speaker;
+    @InjectByType
+    private SlideShow slideShow;
+    ...
+}
+----
+
+== Режим лектора
+
+[source,java]
+----
+//Читать лекции просто
+public void lecture() {
+    lecture.getSlides().forEach(
+        slide -> {
+            slideShow.show(slide.getText());
+            speaker.speak(slide.getComment());
+        }
+    );
+}
+
+//Main-метод
+public static void main(String[] args) 
+                  throws ReflectiveOperationException {
+    RobotLecturer lecturer = 
+        new ObjectFactory().createObject(RobotLecturer.class);
+    lecturer.lecture();
+}
+----
+
+== Конфигуратор объекта
+
+[source,java]
+----
+@RequiredArgsConstructor
+public class InjectByTypeAnnotationObjectConfigurator 
+                             implements ObjectConfigurator {
+  //передадим сюда через конструктор ObjectFactory
+  private final ObjectFactory factory;
+  
+  @Override
+  public void configure(Object t) throws ... {
+    for (Field field : t.getClass().getDeclaredFields()) {
+      if (field.isAnnotationPresent(InjectByType.class)) {
+        field.setAccessible(true);
+        //Мы же умеем по типу создавать объект?
+        field.set(t, factory.createObject(field.getType()));
+      }
+    }
+  }
+}
+----
+
+== Как создаётся и конфигурируется объект
+
+[source,java]
+----
+public class ObjectFactory {
+  //Правда, тут напрашивается DI?
+  private final Reflections scanner = 
+                          new Reflections("edu.phystech");
+  private final List<ObjectConfigurator> configurators = 
+                          new ArrayList<>();
+  
+  public <T> T createObject(Class<? extends T> type) throws ... {
+    //Находим реализацию запрошенного типа
+    type = resolveImpl(type);
+    //Создаём объект (с помощью конструктора по умолчанию, TODO)
+    T t = type.newInstance();
+    //Конфигурируем
+    configure(t);
+    ....
+  }
+----
+
+== Метод configure очень прост
+
+[source,java]
+
+----
+  private <T> void configure(T t) throws ... {
+    for (ObjectConfigurator configurator : configurators) {
+      configurator.configure(t);
+    }
+  }
+----
+
+== Как находится подходящая имплементация
+
+[source,java]
+----
+private <T> Class<? extends T> resolveImpl(Class<? extends T> type){
+  if (type.isInterface()) {
+    Set<Class<? extends T>> classes = 
+                         scanner.getSubTypesOf((Class<T>) type);
+    if (classes.size() != 1) {
+      throw new RuntimeException(
+         "0 or more than one implementation found for type " 
+         + type + " please update your config");
+    }
+    type = classes.iterator().next();
+  }
+  return type;
+}
+----
+
+== Ищем конфигураторы автоматически!
+
+[source,java]
+----
+//Конструктор ObjectFactory
+public ObjectFactory() throws ReflectiveOperationException {
+  Set<Class<? extends ObjectConfigurator>> classes =
+              scanner.getSubTypesOf(ObjectConfigurator.class);
+  for (Class<? extends ObjectConfigurator> aClass : classes) {
+    try {
+      Constructor<? extends ObjectConfigurator> constructor =
+                       aClass.getConstructor(ObjectFactory.class);
+      //инжектим себя через конструктор, по необходимости
+      configurators.add(constructor.newInstance(this));
+    } catch (NoSuchMethodException e){
+      configurators.add(aClass.newInstance());
+    }
+  }
+....//продолжение следует
+----
+
+== Больше конфигураторов!
+
+[source,java]
+----
+@Retention(RUNTIME)
+public @interface InjectRandomInt {
+    int min();
+    int max();
+}
+
+----
+
+
+== InjectRandomIntObjectConfigurator
+[source,java]
+----
+public class InjectRandomIntObjectConfigurator 
+                                 implements ObjectConfigurator {
+  @Override
+  public void configure(Object t) throws IllegalAccessException {
+    Class<?> type = t.getClass();
+    for (Field field : ReflectionUtils.getAllFields(type)) {
+      InjectRandomInt annotation =
+                        field.getAnnotation(InjectRandomInt.class);
+      if (annotation != null) {
+        int min = annotation.min();
+        int max = annotation.max();
+        int value = ThreadLocalRandom.current().nextInt(min, max+1);
+        field.setAccessible(true);
+        field.set(t, value);
+      }
+    }
+  }
+}
+----
+
+== Итак, первые шаги:
+
+[graphviz,"init1.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Создание -> конфигуратор1;
+subgraph cluster_R {
+label = "Конфигурация";
+  
+    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir="back"];
+{rank=same конфигуратор1 конфигуратор2 конфигуратор3}
+
+} 
+
+}
+----
+
+== Инициализация объекта
+
+* Почему конструктор не годится для действий, включающих в себя инъектированные объекты?
+
+[.fragment]
+* Инъекция может происходить после конструктора. Поэтому нужно специальное действие, вызываемое после конструктора _и_ инъекции!
+
+== PostConstruct
+
+[source,java]
+----
+public class RobotLecturer {
+  @InjectByType
+  private Lecture lecture;
+  @InjectRandomInt(min = 1, max = 3)
+  private int repeat;
+
+  @PostConstruct
+  public void init() {
+    //Место, где можно использовать все инжектированные значения
+    for (int i = 0; i < repeat; i++)
+      speaker.speak("Всем привет");
+  }
+  ...
+}
+----
+
+== Продолжаем дописывать createObject
+
+[source,java]
+----
+public <T> T createObject(Class<? extends T> type) throws ... {
+  ....
+  //Конфигурируем
+  configure(t);
+  //Запускаем методы PostConstruct
+  invokeInitMethods(type, t);
+  ....
+}
+
+private <T> void invokeInitMethods(Class<? extends T> type, T t)
+                                                      throws ... {
+  for (Method method : type.getMethods()) {
+    if (method.isAnnotationPresent(PostConstruct.class)) {
+      method.invoke(t);
+    }
+  }
+}
+----
+
+== Последовательность действий
+
+[graphviz,"init2.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Создание -> конфигуратор1;
+subgraph cluster_R {
+label = "Конфигурация";
+  
+    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir="back"];
+{rank=same конфигуратор1 конфигуратор2 конфигуратор3}
+
+} 
+
+конфигуратор3 -> postConstruct
+
+}
+----
+
+== Когда нужно модифицировать действие метода
+
+[source,java]
+----
+@Retention(RUNTIME)
+public @interface Benchmark {
+}
+----
+
+----
+[[[BENCHMARK method speak
+Speaking: blah-blah-blah
+Time: 107100ns]]]
+----
+
+== Прокси-объект
+
+[graphviz,"proxy.png"]
+----
+digraph G {
+  graph [ dpi = 150 ];
+  compound=true;
+  rankdir="LR";
+  
+  splines="line";
+  
+  caller [shape="rectangle", style=rounded];
+  caller -> inv[lhead=cluster0;label="       "];
+  caller -> inv[arrowhead=none];
+  
+  
+  subgraph cluster0 {
+    
+    inv[style=invis,shape=point];
+    target[shape="rectangle", style="rounded";]
+    
+    label="proxy";
+    style="dashed,rounded";
+    
+    inv -> target[style=dashed;];
+  }
+}
+----
+
+== BenchmarkProxyConfigurator
+
+[source,java]
+----
+public class BenchmarkProxyConfigurator 
+                                     implements ProxyConfigurator {
+  @Override
+  public <T> T wrapWithPoxy(T t, Class<? extends T> type) {
+    boolean isProxyNeeded = type.isAnnotationPresent(Benchmark.class)
+      || !ReflectionUtils.getAllMethods(type, method ->
+             method.isAnnotationPresent(Benchmark.class)).isEmpty();
+    if (isProxyNeeded) {
+      return (T) Proxy.newProxyInstance(type.getClassLoader(),
+          type.getInterfaces(), 
+          (proxy, method, args) -> {
+            Method classMethod = type.getMethod(method.getName(),
+                                method.getParameterTypes());
+            return invoke(t, type, method, args, classMethod);
+          });
+    }
+    return t;
+}}
+----
+
+== Proxied method invocation
+
+[source,java]
+----
+private Object invoke(Object t, Class type, Method method, 
+            Object[] args, Method classMethod) throws ... {
+  if (classMethod.isAnnotationPresent(Benchmark.class)
+        || type.isAnnotationPresent(Benchmark.class)) {
+    System.out.printf("[[[BENCHMARK method %s%n", method.getName());
+    long start = System.nanoTime();
+    Object retVal = method.invoke(t, args);
+    long end = System.nanoTime();
+    System.out.printf("Time: %dns]]]%n", end - start);
+    return retVal;
+  } else {
+    return method.invoke(t, args);
+  }
+}
+----
+
+== Последовательность действий (окончательная картина)
+
+
+[graphviz,"init3.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Создание -> конфигуратор1;
+subgraph cluster_R {
+label = "Конфигурация";
+  
+    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir="back"];
+{rank=same конфигуратор1 конфигуратор2 конфигуратор3}
+
+} 
+
+конфигуратор3 -> postConstruct
+
+subgraph cluster_S {
+label = "Проксирование";
+  
+    проксиконфигуратор2 -> проксиконфигуратор1  [dir="back"];
+{rank=same проксиконфигуратор2 проксиконфигуратор1}
+
+} 
+
+postConstruct -> проксиконфигуратор1
+}
+----
+
+== Промежуточные выводы
+* DI-контейнер реализует следующие этапы «настройки» объектов:
+** создание
+** конфигурация (injections)
+** инициализация (postconstruct)
+** проксирование
+* DI-паттерн повторяет сам себя: многие детали DI-контейнера удобно настраивать через DI!
+
+
+
+
 [%notitle]
 == Spring Framework
 
