@@ -32,6 +32,34 @@ ponomarev@corchestra.ru
 icon:twitter[size=lg] @inponomarev
 
 
+== Spring AOP checklist
+
+* `@EnableAspectJAutoProxy` над конфигурацией.
+* `@Aspect` над аспектом.
+* `@Component` / `@Bean` для аспекта, и сам аспект должен входить в конфигурацию приложения.
+* Аспект не перехватывает методы, которые вызываются `@PostConstruct`-ом.
+
+== Пример аспекта
+
+[source,java]
+----
+@Component @Aspect
+public class BenchmarkAspect {
+  @Around("@annotation(Benchmark)")
+    //pointcut expression ^^^
+  public Object execEntryPoint(ProceedingJoinPoint joinPoint) 
+                                    throws Throwable {
+    System.out.printf("[[[BENCHMARK method %s%n",
+                   joinPoint.getSignature().getName());
+    long start = System.nanoTime();
+    Object retVal = joinPoint.proceed();
+    long end = System.nanoTime();
+    System.out.printf("Time: %dns]]]%n", end - start);
+    return retVal;
+  }
+}
+----
+
 == Какие бывают advices
 
 * `@Before`
@@ -110,3 +138,165 @@ public interface BeanPostProcessor {
     return bean;
 } }
 ----
+
+== Демо
+
+* AnnotationConfigApplicationContext
+* DI
+* AOP
+* BeanPostProcessor
+* Test with ContextConfiguration
+
+== Spring Boot
+
+image::spring-boot-logo.jpg[]
+
+== Spring Boot
+
+* Convention over configuration
+* Подключение готовых сконфигурированных блоков через «стартеры»
+* Включая встроенный Tomcat или Jetty (что инвертировало старую модель)
+* Метрики, health checks, настройка приложения через конфигурационный файл
+* Всё на аннотациях
+
+
+== Dependency Management
+
+[source,xml]
+----
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <!-- ...to spring-boot-dependencies, 3356 LOC -->
+    <version>2.2.1.RELEASE</version>
+</parent>
+----
+
+== Подключаем стартеры
+
+[source,xml]
+----
+<!-- «Мы хотим веб-сервис»-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <!-- А почему не указываем версию?-->
+</dependency>
+----
+
+== Пишем Main-класс
+
+[source,java]
+----
+//Пакеты не указываем
+@SpringBootApplication
+public class Main {
+    public static void main(String[] args) throws SQLException, IOException {
+        /*Метод run возвращает ApplicationContext,
+        но он нам не нужен :-)*/
+        SpringApplication.run(Main.class, args);
+    }
+}
+----
+
+== Пишем контроллер
+
+[source,java]
+----
+//Это тоже @Controller, а значит, bean
+@RestController
+public class HelloController {
+    @GetMapping("/hello")
+    public String sayHello(@RequestParam("name") String name) {
+        return String.format("Hello, %s!", name);
+    }
+}
+----
+
+== За сборку jar-ника отвечает spring-boot-maven-plugin
+
+[source,xml]
+----
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+</plugin>
+----
+
+* Получается «жирный» executable jar.
+* Можно сделать так, что он будет в буквальном смысле executable.
+
+== Как Spring Boot Starter поднимает свои бины?
+
+* Spring Boot сканирует файловую систему ClassPath на наличие файлов `spring.factories`.
+
+image::spring-factories.png[{image-100-width}]
+
+== Демо
+
+* Spring Boot
+* Spring JDBC Template
+* Spring Boot Test
+
+== Пришла пора закругляться :-)
+
+* Всё, что я рассказал в этом курсе -- уже Legacy.
+* Текущая версия -- Java 13, в марте 2020 -- Java 14.
+* Синтаксис развивается, мы ничего не говорили про 
+** Modularization (Java 9+)
+** Type Inference (Java 10+)
+** Switch Expressions (Java 12+)
+
+== Возможные будущие фичи языка
+
+* Value types
+* Records
+* Pattern Matching
+* ???
+
+== «Вселенная Java» расширяется со скоростью света
+
+* Не только Spring:
+** Microframeworks -- for serverless
+* Не только Java language:
+** Groovy
+** Kotlin
+** Scala
+
+== Выводы — напутствия
+
+== Никогда не переставайте изучать новое
+
+[cols="60a,40a"]
+|===
+|
+image::alice_queen.jpg[]
+
+|"Here, you see, it takes all the running you can do, to keep in the same place. If you want to get somewhere else, you must run at least twice as fast as that!”
+|===
+
+== Старое тоже полезно изучать
+
+[cols="25a,25a,25a,25a"]
+|===
+|
+image::horstmann.jpg[]
+|
+image::bloch.jpg[]
+|
+image::goetz.jpg[]
+|
+image::urma.jpg[]
+|===
+
+== Становитесь частью community!
+* JUGs: Москва, Санкт-Петербург, Новосибирск.
+* Conferences: Joker, JPoint, SnowOne.
+* Приходите на московский JUG!
+
+image::jugmsk.jpg[]
+
+
+== Добро пожаловать во вселенную Java :-)
+
+image::duke.svg[{image-40-width}]
