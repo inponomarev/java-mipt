@@ -109,7 +109,7 @@ public interface BeanPostProcessor {
   }
   
   //возвращаем обёртку над бином
-  default Object postProcessBeforeInitialization(
+  default Object postProcessAfterInitialization(
     Object bean, String beanName) throws BeansException {
 		return bean;
   }
