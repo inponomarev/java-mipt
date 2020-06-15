@@ -644,14 +644,14 @@ class LeftRightDeadlock {
   private final Object right = new Object();
   void leftRight() {
     synchronized (left) {
-      syncrhonized (right) {
+      synchronized (right) {
         doSomething();
       }
     }
   }
   void rightLeft() {
     synchronized (right) {
-      syncrhonized (left) {
+      synchronized (left) {
         doSomethingElse();
       }
     }
