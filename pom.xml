@@ -134,7 +134,7 @@
                                     <!-- put here the reveal.js specific attributes -->
                                     <sourcedir>${basedir}/src/main/java</sourcedir>
                                     <revealjs_theme>black</revealjs_theme>
-                                    <revealjs_transition>linear</revealjs_transition>
+                                    <!--<revealjs_transition>linear</revealjs_transition>-->
                                     <project-version>${project.version}</project-version>
                                 </attributes>
                             </configuration>
