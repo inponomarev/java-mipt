@@ -9,9 +9,34 @@ include::_doc_general_attributes.adoc[]
 :source-highlighter: highlightjs
 :toc: left
 
-== Лекция 1. Экосистема Java
 
-телеграм-чат, GitLab / напоминалка про гит
+== Общий план по неделям
+
+[cols="1a,4a,4a"]
+|===
+|Неделя
+|Лекция
+|Семинар
+|1| Обзор истории, возможностей и особенностей экосистемы Java | Maven, JUnit 5
+|2| Примитивные типы. Управление выполнением. Операторы. Массивы.| CI
+|3| Классы. Интерфейсы. Класс Object и его стандартные методы. | Приём ДЗ №0
+|4| Enumerations. Исключения. Строки.| 
+|5| Регулярные выражения. Wrapper classes. IO classes. DateTime API. | 
+|6| Generics | Приём ДЗ №1.
+|7| Collections, lambdas, method references|
+|8| JDBC API | 
+|9| Streams API, Optionals | Прием ДЗ №2
+|10| Java Concurrency |
+|11| Java Concurrency (окончание). Annotations. Reflection API. | 
+|12| Reflection API (окончание). Архитектура приложения. Singleton (anti)pattern. Dependency Injection. Принцип работы DI-контейнера.| Прием ДЗ №3
+|13| Принцип работы DI-контейнера (окончание). Spring Framework: Spring DI, Spring AOP | 
+|14| Spring AOP (окончание). Spring Boot | 
+|15| — | Приём ДЗ№4, зачёт
+|===
+
+== Неделя 1.
+
+=== Лекция 1. Обзор истории, возможностей и особенностей экосистемы Java
 
 .	История платформы Java, https://www.tiobe.com/tiobe-index/[распространенность языка Java], современные применения платформы и языка Java (desktop, server-side backend, mobile).
 .	JVM и предоставляемые ей сервисы: 
@@ -23,9 +48,6 @@ include::_doc_general_attributes.adoc[]
 ..	Стандартная библиотека
 .	https://jaxenter.com/wp-content/uploads/2017/03/Pirates-of-the-JVM-JAXenter-768x4245.png[Разнообразие JVM-языков]
 .	Критика платформы и языка Java.
-
-image::images/javasirs.jpg[width=300]
-
 .	Ответ на критику: развитие языка, начиная с 8й версии: lamdbas & functional programming, modules, compact strings, type inference.
 .	Важнейшие элементы экосистемы Java: 
 ..	Библиотеки и фреймворки: JUnit, JMH, Spring Framework, Lombok, Selenium
@@ -34,17 +56,29 @@ image::images/javasirs.jpg[width=300]
 .	Java community: JUGs, Conferences. Oracle certification exams
 .	Hello, world: сборка и запуск jar-файла
 
-== Лекция 2. Структура Java-проекта. Базовый синтаксис. Unit-тесты
 
-===	Структура Java-проекта
+=== Семинар 1
 
-.	Maven-структура папок. Принцип Convention over Configuration
-.	Модули (Maven & Java 9), мавен-координаты
-.	Пакеты. Правила именования пакетов
-.	java-файлы.
+. Часть 1 (40 мин) 
 
+.. Скачивание и установка основных инструментов: Java11, Maven, IntelliJ IDEA / Eclipse
+.. Обзор Maven
+.. Maven-структура папок. Принцип Convention over Configuration
+.. Модули, мавен-координаты
+.. Пакеты. Правила именования пакетов
+.. java-файлы.
+.. Тестирование. Тестовая пирамида
+.. Junit5
+.. Место юнит-тестов в структуре Java-проекта
+.. Test-driven development
+.. Hello, world unit testing: запуск тестов в IDE и запуск тестов при Maven-сборке
 
-=== Базовый синтаксис языка Java
+. Часть 2 (40 мин или сколько останется после большой первой части)
+.. Объяснение и проработка ДЗ №1
+
+== Неделя 2
+
+=== Лекция 2  	Примитивные типы. Управление выполнением. Операторы. Массивы.
 
 .	Ключевые слова, идентификаторы и комментарии в Java.
 .	Импорт пакетов в java-файле
@@ -61,23 +95,27 @@ image::images/javasirs.jpg[width=300]
 .	Использование `break` и `continue` 
 .	Использование varargs
 
-===	Unit-тесты
- .	JUnit5. Место юнит-тестов в структуре Java-проекта
-a.	Примеры запуска unit-тестов при сборке и в IDE
-b.	Применение unit-тестов при разработке. Test-driven development
+===	Семинар 2.
 
-== Лекция 3. Классы и интерфейсы
- 
-=== Классы
+. 40 мин
+.. CI. Возникновение практики CI
+.. Обзор CI-систем
+.. Настройка Github Actions для домашней работы
+.. Индикация статуса сборки
+.. PullRequest Gating 
+. 40 мин
+.. Объяснение и проработка ДЗ №2
 
-image::images/thethreewords.jpg[width=340]
+== Неделя 3. 
+=== Лекция 3. Классы. Интерфейсы. Класс Object и его стандартные методы. 
 
+==== Классы
 .	Структура Java-класса: переменные и методы.
 .	Области видимости (private, protected, default, public) классов и элементов класса. Инкапсуляция
 .	Перегрузка (overloading) методов.
 .	Конструктор. Конструкторы по умолчанию и явно созданные конструкторы.
 .	Секции инициализации
-.	Создание объекта (создание, присвоение ссылки, выход из области видимости, сборка мусора). 
+.	Создание объекта (создание, присвоение ссылки, выход из области видимости, сборка мусора).
 .	Жизненный цикл объекта
 .	Наследование. Final-классы
 .	Тип ссылки и тип объекта
@@ -97,7 +135,7 @@ image::images/thethreewords.jpg[width=340]
 .	Анонимные классы.
 .	Доступ из вложенного/анонимного класса к элементам родительского класса.
 
-=== Интерфейсы
+==== Интерфейсы
 .	Интерфейсы. 
 .	Множественное наследование с помощью интерфейсов.
 .   Ключевое слово `instanceof`, его работа на классах и интерфейсах.
@@ -105,20 +143,28 @@ image::images/thethreewords.jpg[width=340]
 .	Функциональные интерфейсы (Java 8)
 .	Статические методы и переменные классов и интерфейсов. Статические секции инициализации. Недостатки использования статических методов и “самодельной” реализации паттерна singleton.
 
-=== Enumerations
+=== Семинар 3.
 
+. Объектно-ориентированное моделирование предметной области на примере задачи из ДЗ.
+. SOLID-принципы (?)
+. Coupling & Cohesion
+. Написание модульных тестов.
+. Проработка задачи из ДЗ №1.
+
+== Неделя 4. 
+
+=== Лекция 4. Enumerations. Исключения. Строки
+
+==== Enumerations
 .	Определение. 
 .   Добавление полей, методов и конструкторов в элементы enum-типов.
 
-=== Базовые принципы проектирования классов
+==== Базовые принципы проектирования классов
 .	Минимизация области видимости
 .	Минимизация мутабельности
 .	Документирование точек расширения через наследование, или запрет на наследование (Effective Java 4.16,17,18)
 
-
-== Лекция 4. Исключения. Фундаментальные возможности стандартной библиотеки
-
-===	Исключения
+==== Исключения
 .	Создание исключений. Ключевые слова `throw` и `throws` 
 .	Перехват и обработка исключений. 
 ..	try-catch, try-multicatch.
@@ -129,39 +175,55 @@ image::images/thethreewords.jpg[width=340]
 .	Использование InvalidArgumentException и InvalidStateException (Effective Java, 10.72)
 .	Причины, по которым не следует использовать исключения для контроля выполнения программы.
 
-=== Базовые возможности стандартной библиотеки
+==== Строки
+. Пул строк. 
+. Конкатенация строк (Effective Java, 63). `String.format`. `StringBuilder`.
+. Получение символа на позиции (charAt и codePoints)
+. Полезные и «вредные» методы класса String
 
-.	Строки
-.. Пул строк. Конкатенация строк (Effective Java, 63). `String.format`. `StringBuilder`.
-..	Регулярные выражения. Манипуляция со строками с помощью регулярных выражений. Преимущество использования регулярных выражений перед “наивными” манипуляциями со строками.
-..	Экономия создания излишних объектов при манипуляциях со строками (Effective Java: 2.6)
-.	Ввод-вывод. 
+=== Семинар 4
+
+Приём ДЗ №1.
+
+== Неделя 5
+
+=== Лекция 5
+
+==== Строки: окончание
+.	Регулярные выражения. Манипуляция со строками с помощью регулярных выражений. 
+. Конечные автоматы. Манипуляция со строками с помощью конечных автоматов.
+. Преимущество использования регулярных выражений перед “наивными” манипуляциями со строками.
+
+==== Генерация случайных чисел
+
+.	Генерация случайных чисел с помощью `ThreadLocalRandom` (Effective Java 59).
+
+==== Wrapper classes
+. `Boolean`, `Integer`, `Double`, etc. 
+. Кэширование (Object pool)
+. Разница с примитивными типами. Сравнение по equals. 
+. Autoboxing & unboxing. Проблемы производительности.
+. `BigInteger` & `Decimal`
+
+==== Ввод-вывод. 
 .. Использование классов `BufferedReader`, `BufferedWriter`, `File`, `FileReader`, `FileWriter`, `FileInputStream`, `FileOutputStream`, `PrintWriter`. 
 ..	NIO2: Классы `Path`, `Paths`, `Files`.
 .	Wrapper classes
-.. `Boolean`, `Integer`, `Double`, etc. 
-.. Разница с примитивными типами. Сравнение по equals. 
-.. Autoboxing & unboxing. Проблемы производительности.
-.	`ArrayList` и `HashMap`: пример создания и использования параметризованных классов.
 
-.	Пакет `Math`
-.	Генерация случайных чисел с помощью `ThreadLocalRandom` (Effective Java 59).
-.	`BigInteger` & `Decimal`
 .	Системные часы: календарное (`currentTimeMillis`) и монотонное (`nanoTime`) время.
 .	DateTime API
 ..	`LocalDate`, `LocalTime`, `LocalDateTime`, `Instant`, `Period`, `Duration`, `TemporalUnit`
 ..	Текстовое представление даты и времени
 
+=== Семинар 5
 
-# добавить про взаимодействие с базой данных
+TODO
 
-==  Лекция 5. Generics (параметризованные классы), Lambdas & Method References
-===	Generics
+== Неделя 6
+
+===  Лекция 6. Generics 
+
 .	Необходимость создания параметризованных классов для более строгой типобезопасности
- 
- 
-image::images/rtvscompiletime.png[width=350]
-
 .	Создание и использование параметризованных (generic) классов. Преимущества коллекций над массивами.
 .	Стирание типов (type erasure). Raw Types как средство обратной совместимости со старым кодом.
 .	Параметризованные методы. Type capture.
@@ -173,19 +235,16 @@ image::images/rtvscompiletime.png[width=350]
 ..	type erasure vs reified types
 .	Heap pollution. Использование Generics в varargs, аннотация @SafeVarargs (Effective Java, 5.32)
 
-===	Lambdas & method references
+=== Семинар 6
 
+TODO
 
-.	Реализация коллбэков через анонимные классы (на примере `File.listFiles(...)`, Java 8 in Action). Необходимость введения лямбд и ссылок на методы 
-.	Функциональные интерефейсы. Стандартные функциональные интерфейсы (из пакета `java.util.function`): `Predicate<T>`, `Function<T,R>`, `Supplier<T>`, `Consumer<T>`, `UnaryOperator<T>`, `BinaryOperator<T>` и т. п.
-.	Совместимость типов функциональных интерфейсов, лямбд и анонимных классов. Вывод типов параметров лямбд.
-.	Композиция функциональных интерфейсов: `reversed` & `thenComparing` для `Comparator<>`, `compose` для `Function<>`, `and`/`or`/etc.. для `Predicate<>` и т. п.
+== Неделя 7
 
-image::images/lambdas.png[width=350]
+=== Лекция 7. Collections, Lambdas & Method References
 
-== Лекция 6. Коллекции и Streams API
+==== Collections
 
-=== Стандартные коллекции
 .	Интерфейсы коллекций: `Iterable`, `Collection`, `Queue`, `Deque`, `List`, `Map`, `SortedMap`, `NavigableMap`, `Set`, `SortedSet`, `NavigableSet` etc.
 .	O-оценка сложности алгоритмов. Для чего нужны различные реализации интерфейсов коллекций
 .	Устройство, функциональность и область применимости основных коллекций
@@ -197,7 +256,36 @@ image::images/lambdas.png[width=350]
 .	Интерфейсы java.util.Comparator и java.lang.Comparable
 .	Утилитные классы Collections и Arrays
 
-===	Streams API
+==== Lambdas & method references
+
+.	Реализация коллбэков через анонимные классы (на примере `File.listFiles(...)`, Java 8 in Action). Необходимость введения лямбд и ссылок на методы 
+.	Функциональные интерефейсы. Стандартные функциональные интерфейсы (из пакета `java.util.function`): `Predicate<T>`, `Function<T,R>`, `Supplier<T>`, `Consumer<T>`, `UnaryOperator<T>`, `BinaryOperator<T>` и т. п.
+.	Совместимость типов функциональных интерфейсов, лямбд и анонимных классов. Вывод типов параметров лямбд.
+.	Композиция функциональных интерфейсов: `reversed` & `thenComparing` для `Comparator<>`, `compose` для `Function<>`, `and`/`or`/etc.. для `Predicate<>` и т. п.
+
+=== Семинар 7 
+
+TODO
+
+== Неделя 8. 
+
+=== Лекция 8. JDBC API
+
+. JDBC API
+. JDBC Drivers
+. Connection, Statement, ResultSet
+. ConnectionPool
+. SQL Injection
+
+=== Семинар 8
+
+TODO
+
+== Неделя 9.
+
+=== Лекция 9. Streams API, Optionals
+
+====	Streams API
 .	Что такое поток?
 ..	Коллекции vs потоки
 ..	Внутренние vs внешние итерации
@@ -210,11 +298,20 @@ image::images/lambdas.png[width=350]
 ..	`max`, `min`, `count`
 ..	`reduce`
 ..	`collect`. Коллекторы
-.	Класс `Optional<T>`: “вырожденный случай” потока. Методы Optional. Корректное использование `Optional`: как возвращаемый результат, но не как параметр метода.
 
-== Лекция 7. Параллелизм
+==== Optionals
+. Класс `Optional<T>`: “вырожденный случай” потока. Методы Optional. Корректное использование `Optional`: как возвращаемый результат, но не как параметр метода.
+. Best practices в использовании Stream API и Optionals.
 
-=== Введение. Работа с shared state
+=== Семинар 9
+
+TODO
+
+== Неделя 10
+
+=== Лекция 10. Concurrency-1
+
+. Теоретические ограничения параллелизма: Закон Амдала и USL
 
 .	Запуск параллельного выполнения: интерфейсы `Runnable`, `Callable`, `Future<T>`, `ExecutorService.submit()`.
 .	Параллельный доступ к данным. Mutual exclusion vs. visibility. Ключевые слова `synchronized` и `volatile`. Happens-before guarantee.
@@ -222,20 +319,78 @@ image::images/lambdas.png[width=350]
 .	Преимущества использования `ExecutorService` по сравнению с низкоуровневыми примитивами `wait`/`notify`. Методы `invokeAll`, `invokeAny`.
 .	`ForkJoinPool` и Parallel Streams. (Effective Java 81)
 
-=== Atomics и неблокирующие алгоритмы
-. Atomic-типы данных. 
-. CAS-операции. Неблокирующие алгоритмы. 
-. Неблокирующая синхронизация shared state.
+=== Семинар 10
 
+TODO
 
-=== Потокобезопасные структуры данных
+== Неделя 11
+
+=== Лекция 11. Concurrency-2. Аннотации. Reflection API
+
+==== Concurrency (окончание)
+. Потокобезопасные коллекции.
 ..	Синхронизированные коллекции,
 ..	`CopyOnWriteArrayList`, 
 ..	`ConcurrentLinkedQueue`, 
 ..	`ConcurrentHashMap`, 
 ..	`ConcurrentSkipListMap`.
+. Atomic-типы данных. 
+. CAS-операции. Неблокирующие алгоритмы. 
+. Неблокирующая синхронизация shared state.
+. Механизм кооперативного прерывания
+. CompletableFuture
 
-== Лекция 8. Паттерны объектно-ориентированного проектирования
+==== Аннотации
+
+. Мотивация создания аннотаций в коде
+. Синтаксис определения аннотаций
+. Стандартные аннотации
+
+==== Reflection API
+
+. Класс Class
+. Загрузка ресурсных файлов
+
+=== Семинар 11
+
+TODO
+
+== Неделя 12
+
+=== Лекция 12. Reflection & DI
+
+. Reflection API (окончание). 
+. Слоистая архитектура приложения. 
+. Singleton (anti)pattern.
+. Dependency Injection. Принцип работы DI-контейнера.
+
+=== Семинар 12
+TODO 
+
+== Неделя 13
+
+
+=== Лекция 13. Spring-1
+
+Принцип работы DI-контейнера (окончание). 
+Spring Framework: Spring DI, Spring AOP
+
+=== Семинар 13
+TODO 
+
+== Неделя 14
+
+=== Лекция 14. Spring-2
+
+. Spring AOP (окончание). 
+. Spring Boot
+. Тестирование Spring Boot приложений
+
+=== Семинар 14
+TODO 
+
+
+== TODO: идеи для семинаров: Паттерны объектно-ориентированного проектирования
 
 1.	Gang of Four
 2.	Singleton: паттерн, превратившийся в антипаттерн. Сложность конфигурирования и тестирования кода, применяющего паттерн singleton. Dependency Injection как замена паттерна Singleton.
@@ -257,7 +412,7 @@ image::images/lambdas.png[width=350]
 
 == Список литературы
 
-. *Raoul-Gabriel Urma et al.* Modern Java in Action
+. *C. Horstmann* Core Java
 . *J. Bloch* Effective Java
 . *B. Goetz et al.* Java Concurrency in Practice 
 

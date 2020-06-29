@@ -16,6 +16,7 @@ before_install:
 script:
   - mvn generate-resources
   - for file in slides??; do cp -r "$file/target/generated-slides" "output/$file"; done
+  - cp -r "plan/target/generated-docs" "output/plan"
 
 deploy:
   provider: pages
