@@ -12,26 +12,26 @@ include::_doc_general_attributes.adoc[]
 
 == Общий план по неделям
 
-[cols="1a,4a,4a"]
+[cols="%header,1a,4a,4a"]
 |===
 |Неделя
 |Лекция
 |Семинар
 |1| Обзор истории, возможностей и особенностей экосистемы Java | Maven, JUnit 5
 |2| Примитивные типы. Управление выполнением. Операторы. Массивы.| CI
-|3| Классы. Интерфейсы. Класс Object и его стандартные методы. | Приём ДЗ №0
-|4| Enumerations. Исключения. Строки.| 
+|3| Классы. Интерфейсы. Класс Object и его стандартные методы. | *Приём ДЗ №0*
+|4| Enumerations. Исключения. Строки.| SOLID, Coupling & Cohesion
 |5| Регулярные выражения. Wrapper classes. IO classes. DateTime API. | 
-|6| Generics | Приём ДЗ №1.
+|6| Generics | *Приём ДЗ №1*
 |7| Collections, lambdas, method references|
 |8| JDBC API | 
-|9| Streams API, Optionals | Прием ДЗ №2
+|9| Streams API, Optionals | *Прием ДЗ №2*
 |10| Java Concurrency |
 |11| Java Concurrency (окончание). Annotations. Reflection API. | 
-|12| Reflection API (окончание). Архитектура приложения. Singleton (anti)pattern. Dependency Injection. Принцип работы DI-контейнера.| Прием ДЗ №3
+|12| Reflection API (окончание). Архитектура приложения. Singleton (anti)pattern. Dependency Injection. Принцип работы DI-контейнера.| *Прием ДЗ №3*
 |13| Принцип работы DI-контейнера (окончание). Spring Framework: Spring DI, Spring AOP | 
 |14| Spring AOP (окончание). Spring Boot | 
-|15| — | Приём ДЗ№4, зачёт
+|15| — | *Приём ДЗ №4, зачёт*
 |===
 
 == Неделя 1.
