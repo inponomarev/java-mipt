@@ -20,6 +20,7 @@
 
 
     <modules>
+        <module>plan</module>
         <module>slides01</module>
         <module>slides02</module>
         <module>slides03</module>
@@ -37,7 +38,7 @@
         <!--
         <module>spring-example</module>
         <module>overview</module>
-        <module>plan</module>
+        
         <module>helloworld</module>
         <module>reflection-example</module>
 

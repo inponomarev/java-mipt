@@ -11,7 +11,7 @@
 
     <artifactId>java-mipt-slides05</artifactId>
 
-    <name>Java lectures slides</name>
+    <name>Java lecture 05</name>
     <description>Java lectures slides</description>
 
     <build>
