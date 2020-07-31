@@ -37,31 +37,66 @@ icon:twitter[size=lg] @inponomarev
 |===
 .^|image::me.jpg[]
 .^|
+* Выпускник МФТИ 2003 г., к.ф.-м.н
 * Tech Lead at KURS
 * ERP systems & Java background
 * Speaker at JPoint, Devoops, Heisenbug, JUG.MSK, PermDevDay, DevopsForum, Стачка etc.
-* Twitter @inponomarev
+    * Heisenbug Program Committee Member 
 |===
+
+== Как со мной связаться?
+
+* icon:home[size=lg] https://inponomarev.ru/
+
+* icon:twitter[size=lg] https://twitter.com/inponomarev[@inponomarev]
+
+* icon:telegram[size=lg] https://t.me/ivan_ponomarev[ivan_ponomarev]
+
 
 == Как будет проходить курс?
 
 * Лекции
 * Семинарские занятия
 * Домашние работы
-* Экзамен (?)
 * Баллы за сдачу ДЗ определяют финальную оценку
 
 == Полезные ссылки
 
+* https://inponomarev.ru/corejava
 * https://github.com/inponomarev/java-mipt
 * (регистрируйтесь в гитхабе)
-* Telegram MIPT. Java-2019
-* http://inponomarev.ru
+* Telegram MIPT. Java-2020
 
 == Полезные книги
 
+[cols="25a,25a,25a,25a"]
+|===
+|
+image::horstmann.jpg[]
+|
+image::horstmann2.jpg[]
+|
+image::urma.jpg[]
+|
+|===
+
 * *Cay S. Horstmann.* Core Java vol 1 & 2
-* *Raoul-Gabriel Urma, Mario Fusco, Alan Mycroft.* Modern Java in Action
+* *Raoul-Gabriel Urma et al.* Modern Java in Action
+
+== Полезные книги*
+
+[cols="25a,25a,25a,25a"]
+|===
+|
+|
+image::bloch.jpg[]
+|
+image::goetz.jpg[]
+|
+|===
+
+* *Joshua Bloch* Effective Java
+* *Brian Goetz et al.* Java Concurrency in Practice
 
 [%notitle]
 == What is Java?
@@ -82,7 +117,7 @@ image::kotlin.png[canvas, size=cover]
 [%notitle]
 == TIOBE
 
-image::tiobe.png[canvas, size=cover]
+image::tiobe.png[{image-100-width}]
 
 
 == RedMonk Index
@@ -92,41 +127,40 @@ image::tiobe.png[canvas, size=cover]
 [%notitle]
 == RedMonk
 
-image::redmonk2019.png[canvas, size=cover]
+image::redmonk2020.png[{image-70-width}]
 
-== 24 года Джавы
+== 25 лет Джавы
 
 [source]
 ----
-JDK 1.0 (January 23, 1996)
-JDK 1.1 (February 19, 1997)
-J2SE 1.2 (December 8, 1998)
-J2SE 1.3 (May 8, 2000)
-J2SE 1.4 (February 6, 2002)
-J2SE 5.0 (September 30, 2004)
-Java SE 6 (December 11, 2006)
---- Sun acquisition by Oracle
-Java SE 7 (July 28, 2011)
-Java SE 8 (March 18, 2014)
-Java SE 9 (September 21, 2017)
-Java SE 10 (March 20, 2018)
-Java SE 11 (September 25, 2018)
-Java SE 12 (March 19, 2019)
+JDK 1.0 (January 23, 1996)      |  -- 6-monthly release cadence --
+JDK 1.1 (February 19, 1997)     |  Java SE 10 (March 20, 2018)
+J2SE 1.2 (December 8, 1998)     |  Java SE 11 (September 25, 2018)
+J2SE 1.3 (May 8, 2000)          |  Java SE 12 (March 19, 2019)
+J2SE 1.4 (February 6, 2002)     |  Java SE 13 (September 17, 2019)
+J2SE 5.0 (September 30, 2004)   |  Java SE 14 (March 17, 2020)
+Java SE 6 (December 11, 2006)   |  Java SE 15 (due to Sept. 15, 2020)
+-- Sun acquisition by Oracle--  |
+Java SE 7 (July 28, 2011)       |
+Java SE 8 (March 18, 2014)      |
+Java SE 9 (September 21, 2017)  |
 ----
 
 == Истоки
 
-[cols="30a,70a"]
+[cols="50a,50a"]
 |===
 .^|
-.James Gosling
-image::gosling.jpg[]
+image::gosling-lotr.jpg[]
 .^|
 * Язык для приставок кабельного телевидения
 * Вдохновлён C++ 
 * *WORA*
 * Было и другое, но WORA -- самое главное
 |===
+
+[.fragment]
+icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: https://www.youtube.com/watch?v=XThhlihqTXI
 
 == Вопрос
 
@@ -146,7 +180,7 @@ image::gosling.jpg[]
 
 * Desktop
 * Server-side (backend)
-* Mobile Devices (Android) -- отдельная история (see Google vs. Oracle case)
+* Mobile Devices (Android) -- отдельная история (see https://en.wikipedia.org/wiki/Google_v._Oracle_America[Google vs. Oracle] case)
 
 == Безопасность в design-time и в run-time
 
@@ -161,6 +195,17 @@ WORA + Две взаимосвязанные задачи:
 
 [.fragment]
 Генерируем байт-код, верифицируем и исполняем его в безопасной среде
+
+== Вопрос
+
+[source,java]
+----
+int i = 2;
+i = ++i + ++i + ++i;
+----
+
+[.fragment]
+Java -- 12, C -- undefined behaviour (https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
 
 == Runtime-ошибки не катастрофичны
 
@@ -252,17 +297,6 @@ image::seesaw.jpg[{image-40-width}]
 
 * Отвечает на вопрос: "какие значения может прочитать конкретный read в программе?"
 
-== Вопрос
-
-[source,java]
-----
-int i = 2;
-i = ++i + ++i + ++i;
-----
-
-[.fragment]
-Java -- 12, C -- undefined behaviour )https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
-
 == Access Atomicity
 
 image::access-atomicity.png[]
@@ -297,7 +331,8 @@ image::access-atomicity.png[]
 
 == Стандартная библиотека
 
-image::lib-evolution.png[{image-50-width}]
+image::lib-evolution.png[{image-100-width}]
+*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature evolution in Java 13 and beyond]
 
 == Стандартная библиотека
 
@@ -328,22 +363,35 @@ image::javasirs.jpg[{image-40-width}]
 * lambdas & functional programming, 
 * modules, 
 * compact strings, 
-* type inference.
+* type inference,
+* switch expressions,
+* pattern matching,
+* records...
+
+== Текущие проекты
+
+* Project Amber: productivity-oriented features
+* Project Loom: fibers & continuators
+* Project Valhalla: value types & generic specialization
+* Graal, Panama, Kulla, Sumatra...
 
 == Битва за новые возможности
 
-* Алексей Шипилёв — The Lord of the Strings: Two Scours
-* Тагир Валеев — Pattern matching и его воображаемые друзья
+* *Алексей Шипилёв*, 2015: The Lord of the Strings: Two Scours
+* *Тагир Валеев*, 2018: Pattern matching и его воображаемые друзья
+* *Сергей Куксенко*, 2020: Valhalla is coming
+* *Сергей Куксенко*, 2020: Java threads are losing weight, performance review of Project Loom
 
-== Когда ждать Pattern Matching?
+== 6-monthly Release Cadence
 
-.Т. Валеев, "Pattern Matching и его воображаемые друзья" 
-image::whenmatching.png[]
+image::6-monthly.png[{image-70-width}]
+
+*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature evolution in Java 13 and beyond]
 
 [%notitle]
 == Языки
 
-image::pirates.png[canvas, size=cover]
+image::pirates.png[{image-10-width}]
 
 == Разнообразие языков для джава-машины
 
