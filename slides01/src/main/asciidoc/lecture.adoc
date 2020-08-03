@@ -169,7 +169,7 @@ icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: https://www.youtub
 * Endianness...
 * Размер регистров...
 
-== Продолжение
+== Продолжение истории
 
 * Апплеты
 * Built-in security
@@ -178,8 +178,8 @@ icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: https://www.youtub
 
 == Сегодняшний день
 
-* Desktop
-* Server-side (backend)
+* Desktop (?)
+* *Server-side (backend)*
 * Mobile Devices (Android) -- отдельная история (see https://en.wikipedia.org/wiki/Google_v._Oracle_America[Google vs. Oracle] case)
 
 == Безопасность в design-time и в run-time
@@ -247,7 +247,7 @@ image::java-bytecode-exec.jpg[]
 
 //https://advancedweb.hu/2016/05/27/jvm_jit_optimization_techniques/
 
-== Оптимизация "на лету"
+== Оптимизация «на лету»
 
 image::codecache.png[{image-50-width}]
 
@@ -291,29 +291,73 @@ image::generations.png[{image-50-width}]
 
 image::seesaw.jpg[{image-40-width}]
 
-== Модель памяти
-
-* Memory Model: часть спецификации VM: модель того, как работает хранилище данных
-
-* Отвечает на вопрос: "какие значения может прочитать конкретный read в программе?"
-
-== Access Atomicity
-
-image::access-atomicity.png[]
-//https://shipilev.net/talks/narnia-2555-jmm-pragmatics-ru.pdf
-
-
 == Многопоточность 
 
 * Возможность запуска параллельных потоков выполнения встроена в язык с первой версии (`Thread`, `Runnable` etc)
 
-* В версии 1.5 существенные дополнения (executor, semaphore, mutex, barrier, latches, concurrent collections,  blocking queues)
+* JDK 1.5: существенные дополнения (executor, semaphore, mutex, barrier, latches, concurrent collections,  blocking queues)
+
+* JDK 1.7: `ForkJoinPool` (work-stealing technique)
+
+* JDK 1.8: `CompletableFuture`
 
 // https://howtodoinjava.com/java/multi-threading/java-multi-threading-evolution-and-topics/
 
+* Будущее: Project Loom: lightweight user-mode threads (fibers)
+
+== Модель памяти
+
+* Memory Model: часть спецификации VM: модель того, как работает хранилище данных
+
+* Отвечает на вопрос: «какие значения может прочитать конкретный read в программе?»
+
+== Когда нужна memory model?
+
+[source,java]
+----
+class DumbWayToFallAsleep implements Runnable {
+  private boolean asleep;
+  
+  public void setAsleep(boolean asleep){
+    this.asleep = asleep;
+  }
+
+  @Override
+  public void run() {
+    while (!asleep){
+      //countSomeSheep
+      //УСНЁМ ЛИ МЫ?
+    }
+  }
+}
+----
+
+== Когда нужна memory model?
+
+[source,java]
+----
+class NotSoDumbWayToFallAsleep implements Runnable {
+  private volatile boolean asleep;
+        
+  public void setAsleep(boolean asleep){
+    this.asleep = asleep;
+  }
+
+  @Override
+  public void run() {
+    while (!asleep){
+      //countSomeSheep
+      //...
+    }
+  }
+}
+----
+
+
+
 == Загрузка и исполнение кода в runtime
 
-* Скомпилированный байт-код класса может быть доставлен на любую систему в runtime (чаще всего "подкладыванием файла" на файловую систему).
+* Скомпилированный байт-код класса может быть доставлен на любую систему в runtime (чаще всего «подкладыванием файла» на файловую систему).
 
 * Пересборка/линковка не требуется.
 
@@ -393,7 +437,7 @@ image::6-monthly.png[{image-70-width}]
 
 image::pirates.png[{image-10-width}]
 
-== Разнообразие языков для джава-машины
+== Разнообразие языков для Java-машины
 
 * Есть виртуальная машина -- можно компилировать из любого языка!
 
