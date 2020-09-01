@@ -40,8 +40,8 @@ icon:twitter[size=lg] @inponomarev
 * Выпускник МФТИ 2003 г., к.ф.-м.н
 * Tech Lead at KURS
 * ERP systems & Java background
-* Speaker at JPoint, Devoops, Heisenbug, JUG.MSK, PermDevDay, DevopsForum, Стачка etc.
-    * Heisenbug Program Committee Member 
+* Speaker at conferences
+* Heisenbug Program Committee Member 
 |===
 
 == Как со мной связаться?
@@ -62,10 +62,9 @@ icon:twitter[size=lg] @inponomarev
 
 == Полезные ссылки
 
+* http://gg.gg/java20-join (Telegram MIPT. Java-2020)
 * https://inponomarev.ru/corejava
-* https://github.com/inponomarev/java-mipt
-* (регистрируйтесь в гитхабе)
-* Telegram MIPT. Java-2020
+
 
 == Полезные книги
 
@@ -179,6 +178,7 @@ icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: https://www.youtub
 == Сегодняшний день
 
 * Desktop (?)
+* Embedded Systems
 * *Server-side (backend)*
 * Mobile Devices (Android) -- отдельная история (see https://en.wikipedia.org/wiki/Google_v._Oracle_America[Google vs. Oracle] case)
 
@@ -205,12 +205,13 @@ i = ++i + ++i + ++i;
 ----
 
 [.fragment]
-Java -- 12, C -- undefined behaviour (https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
+*Java* -- 12, +
+*C* -- undefined behaviour (https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
 
 == Runtime-ошибки не катастрофичны
 
-* NullPointerException
-* ArrayIndexOutOfBoundsException
+* `NullPointerException`
+* `ArrayIndexOutOfBoundsException`
 
 
 == Виртуальные машины Java
@@ -256,7 +257,7 @@ image::codecache.png[{image-50-width}]
 
 [%step]
 * Разработчику не нужно заботиться о высвобождении памяти
-* Ссылкок на объект нет? -- garbage collection
+* Ссылок на объект нет? -- garbage collection
 * Достоинства:
 ** Меньше кода 
 ** Не бывает некорректных ссылок (на разрушенный объект)
