@@ -206,7 +206,8 @@ i = ++i + ++i + ++i;
 
 [.fragment]
 *Java* -- 12, +
-*C* -- undefined behaviour (https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
+*C* -- undefined behaviour +
+(https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
 
 == Runtime-ошибки не катастрофичны
 
@@ -464,38 +465,37 @@ image::pirates.png[{image-10-width}]
 
 image::junit5.jpg[]
 
-== JMH
-
-microbenchmarking 
-
 == Spring Framework
 
 
 DI container and application framework, 
 
-image::springframework.png[]
+image::springframework.png[{image-40-width}]
 
-== Project Lombok
-
-уменьшение boilerplate-кода
-
-== Selenium
-
-
-автоматизация браузера
-
-image::selenium.png[]
 
 == Среды разработки
 
-* IDEA (proprietary, JetBrains)
-* Eclipse (Eclipse Foundation)
-* NetBeans (ASF / Oracle)
+
+
+[cols="30a,30a,40a"]
+|===
+.^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}] IDEA +
+(proprietary, JetBrains)
+.^|image:Apache_NetBeans_Logo.svg[{image-20-width}] NetBeans +
+(ASF / Oracle)
+.^|image:Eclipse-Luna-Logo.svg[] +
+Eclipse Foundation
+|===
 
 == Системы сборки
 
-* Maven -- XML-конфигурация, Maven project layout, Maven Central 
-* Gradle -- Groovy/Kotlin DSL
+image::mavenlogo.svg[{image-20-width}]
+
+* XML-конфигурация, Maven project layout, Maven Central 
+
+image::gradlelogo.png[{image-30-width}]
+
+* Groovy/Kotlin DSL
 
 == Jenkins CI
 
@@ -505,7 +505,7 @@ image::jenkins-logo-title.png[]
 
 * JUGs (Москва, Санкт-Петербург, Новосибирск)
 * Conferences (Joker, JPoint)
-* Приходите на московский JUG!
+* Приходите на московский JUG (когда закончится пандемия)
 
 image::jugmsk.jpg[]
 
