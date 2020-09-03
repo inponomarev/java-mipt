@@ -51,7 +51,7 @@ icon:twitter[size=lg] @inponomarev
  byte         float               public              void
  case         for                 requires (Java 9)   volatile
  catch        if                  return              while
- char         implements          short               
+ char         implements          short               yield (Java 14)
  class        import              static              true
  continue     instanceof          strictfp            null
  default      int                 super               false
@@ -103,11 +103,10 @@ public class FirstSample
 |`long` |8 bytes | –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
 |===
 
-== Демо 2: Разновидности целочисленных литералов
+== Разновидности целочисленных литералов
 
-
-* Long `L`
-* Underscores
+* Long `100L`
+* Underscores `1_000_000`
 * Hexadecimal `0xCAFEBABE`
 * Binary `0b0101`
 * Octal `010`
@@ -123,12 +122,7 @@ decimal digits)
 (15 significant decimal digits)
 |===
 
-== Нет unsigned значений!
-
-* Пользуемся `int`-ом для `byte` и `short`.
-* Пользуемся `long`-ом для `int`.
-
-== Демо 3: Литералы для типов с плавающей запятой
+== Литералы для типов с плавающей запятой
 
 * `2.998e8`
 * `1.0` (`1.`)
@@ -175,19 +169,64 @@ int nx = (int) x; //9
 nx = (int) Math.round(x); //10
 ----
 
-== Тип char
+== Тип `char`
 
 * 16 bit
 * code unit in the UTF-16 encoding
 * Не всегда целый символ (хотя почти всегда)!
 * Осторожней с Unicode, используйте `String`
 
-== Демо: Литералы
+== Литералы `char`
 
 * `'ы'`
 * `'\u03C0'` (греческая π)
 * `'\''` (escaped single quote)
 * Ловушка Unicode Escape: `// Look inside c:\users`
+
+== Строковые литералы
+
+[source,java]
+----
+String s = "Hello, world!";
+
+//Before Java 13
+String txt =
+      "Some\n" +
+      "  Nested\n" +
+      "    Text\n" +
+      "  Is\n" +
+      "Here\n";
+----
+
+----
+Some        
+  Nested          
+    Text        
+  Is     
+Here      
+----
+
+== Text Blocks (Java 13+)
+
+[source,java]
+----
+    String txt = """      
+      Some        
+        Nested          
+          Text        
+        Is     
+      Here      
+      """;
+----
+
+----
+//Максимальное число пробелов впереди убрано:
+Some        
+  Nested          
+    Text        
+  Is     
+Here      
+----
 
 == Escape sequences
 
@@ -201,9 +240,11 @@ nx = (int) Math.round(x); //10
 |`\"`| Double quote| \u0022
 |`\'`| Single quote| \u0027
 |`\\`| Backslash| \u005c
+|`\s` | intentional whitespace (Java 13+)|
+|`\<line-terminator>` | line continuation  (Java 13+)|
 |===
 
-== Тип boolean
+== Тип `boolean`
 
 * `true` и `false`
 * В отличие от C и многих других языков, целые числа не сводятся автоматически к `boolean`
@@ -247,7 +288,7 @@ vacationDays = 12;
 int vacationDays = 12;
 ----
 
-== Ключевое слово final (константы)
+== Ключевое слово `final` (константы)
 
 * `final` используется в двух смыслах:
 ** запрещает изменять значение
@@ -281,7 +322,7 @@ int n;
 } // k is only defined up to here
 ----
 
-== Вывод типов (type inference) при создании переменных (Java 11)
+== Вывод типов (type inference) при создании переменных (Java 10+)
 
 [source,java]
 ----
@@ -435,19 +476,19 @@ a += (b += c)
 //is added to a.
 ----
 
-== А как же оператор "запятая"?
+== А как же оператор «запятая»?
 
 * А его нет!
 * Можно несколько statement-ов перечислить через запятую в блоке `for(...)`, или в блоке `try(...)`
 
-== Конструкции if, if/else и тернарный оператор
+== Конструкция `if`
 [source,java]
 ----
 if (yourSales >= target)
   performance = "Satisfactory";
 ----
 
-== if + block
+== `if` + block
 [source,java]
 ----
 if (yourSales >= target)
@@ -457,7 +498,7 @@ if (yourSales >= target)
 }
 ----
 
-== if + block + else
+== `if` + block + `else`
 [source,java]
 ----
 if (yourSales >= target) {
@@ -469,7 +510,7 @@ if (yourSales >= target) {
 }
 ----
 
-== else группируется с ближайшим if
+== `else` группируется с ближайшим `if`
 
 [source,java]
 ----
@@ -481,7 +522,7 @@ if (x <= 0)
     sign = -1;
 ----
 
-== Цепочки else-if
+== Цепочки `else if`
 
 [source,java]
 ----
@@ -492,14 +533,14 @@ if (yourSales >= 2 * target) {
   performance = "Fine";
   bonus = 500;
 } else if (yourSales >= target) {
-performance = "Satisfactory";
+  performance = "Satisfactory";
   bonus = 100;
 } else {
   System.out.println("You're fired");
 }
 ----
 
-== switch
+== `switch`
 
 Та же ерунда, что и в C/C++:
 
@@ -519,10 +560,106 @@ switch (choice)
 }
 ----
 
-== switch-case особенности:
+== `switch`-`case` особенности:
 
 * Не забываем `break`-и (утилиты типа Checkstyle напоминают), иначе выполняем всё до конца `switch`, как в C!
 * switch бывает: по целому, по `char`-у, по `String`-у (Java 7+) и по `enum`-у.
+
+== Switch Expressions 
+
+* JDK 12 & 13 — Preview Feature
+* JDK 14 — Standard Feature
+
+[source,java]
+----
+int numLetters = switch(day) {
+  case MONDAY, FRIDAY, SUNDAY -> 6;
+  case TUESDAY -> 7;
+  case SATURDAY -> 8;
+  default -> 9;
+}
+----
+
+== Switch in Java 14+: no Fallthrough
+
+[cols="50a,50a"]
+|===
+|Expression
+|Statement
+|
+[source,java]
+----
+int numLetters = switch(day) {
+ case MONDAY, FRIDAY, SUNDAY -> 6;
+ case TUESDAY -> 7;
+ case THURSDAY, SATURDAY -> 8;
+ default -> 9;
+}
+----
+|
+[source,java]
+----
+switch(day) {
+ case MONDAY, FRIDAY, SUNDAY -> 
+  numLetters = 6;
+ case TUESDAY -> {
+  logger.info("Tuesday");
+  numLetters = 7;
+ }
+ case THURSDAY, SATURDAY -> 
+  numLetters = 8;
+  //Need not be exhaustive: 
+  //no WEDNESDAY 
+}
+----
+|===
+
+
+== Switch in Java 14+: with Fallthrough
+
+[cols="50a,50a"]
+|===
+|Expression
+|Statement (Good Old C-style Switch)
+|
+[source,java]
+----
+int numLetters = switch(day) {
+  case MONDAY, FRIDAY, SUNDAY:
+    yield 6;
+  case TUESDAY:
+    logger.info("Tuesday");
+    yield 7;
+  case THURSDAY:
+    logger.info("Thursday");
+  case SATURDAY:
+    yield 8;
+  default:
+    yield 9;
+}
+----
+|
+[source,java]
+----
+switch(day) {
+  case MONDAY, FRIDAY, SUNDAY: 
+    numLetters = 6;
+    break;
+  case TUESDAY:
+    logger.info("Tuesday");
+    numLetters = 7;
+    break;
+  case THURSDAY:
+    logger.info("Thursday");
+  case SATURDAY: 
+    numLetters = 8;
+    break;
+  default:
+    numLetters = 9;
+}
+----
+|===
+
 
 == Массивы
 
@@ -571,7 +708,7 @@ luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
 
 (Всё это страшно не совместимо с дженериками и коллекциями, которые пытаются ловить ошибки типов во время компиляции, но об этом речь впереди.)
 
-== "Многомерные" массивы
+== «Многомерные» массивы
 
 На самом деле их нет, но есть массивы массивов
 
@@ -603,7 +740,7 @@ for (int n = 0; n < odds.length; n++)
     odds[n][k] = lotteryOdds;
   }
 ----
-== Циклы while и do/while
+== Цикл `while`
 
 То же, что и в C
 [source, java]
@@ -628,7 +765,7 @@ while (flag) {
 }
 ----
 
-==  do-while: цикл с постусловием
+==  `do while`: цикл с постусловием
 [source, java]
 ----
 do {
@@ -655,7 +792,7 @@ for (int i = 1; i <= 10; i++)
   System.out.println(i);
 ----
 
-И даже, хотя оператора "запятая" нет, можно так (но не нужно):
+И даже, хотя оператора «запятая» нет, можно так (но не нужно):
 [source,java]
 ----
 for (int i = 1; i <= 10; i++, j++)
