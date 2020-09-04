@@ -146,7 +146,7 @@ decimal digits)
 [graphviz, "casting.png"]
 -----
 digraph G {
- graph [ dpi = 150 ]; 
+ graph [ dpi = 200 ]; 
  rankdir="LR";
   byte -> short;
   short -> int;
@@ -198,6 +198,8 @@ String txt =
       "Here\n";
 ----
 
+'''
+
 ----
 Some        
   Nested          
@@ -218,6 +220,8 @@ Here
       Here      
       """;
 ----
+
+'''
 
 ----
 //Максимальное число пробелов впереди убрано:
@@ -309,7 +313,7 @@ a = 43; // compilation error:
 == Область видимости
 
 * Место определения: класс, метод, блок
-* Нет ничего за пределами класса ("глобальных" переменных)!
+* Нет ничего за пределами класса («глобальных» переменных)!
 
 [source,java]
 ----
@@ -509,13 +513,39 @@ a += (b += c)
 * Можно несколько statement-ов перечислить через запятую в блоке `for(...)`, или в блоке `try(...)`
 
 == Конструкция `if`
+[cols="70a,30a"]
+
+|===
+.^a|
 [source,java]
 ----
 if (yourSales >= target)
   performance = "Satisfactory";
 ----
+|
 
+[plantuml, if, png]
+----
+@startuml
+skinparam dpi 200 
+
+start
+
+if (yourSales >= target) then (true)
+    :performance = "Satisfactory";
+    else (false)
+    
+endif
+stop
+
+@enduml
+----
+|===
 == `if` + block
+
+[cols="70a,30a"]
+|===
+.^a|
 [source,java]
 ----
 if (yourSales >= target)
@@ -524,52 +554,162 @@ if (yourSales >= target)
   bonus = 100;
 }
 ----
+|
+
+[plantuml, ifblock, png]
+----
+@startuml
+skinparam dpi 200 
+
+start
+
+if (yourSales >= target) then (true)
+    :performance = "Satisfactory";
+    :bonus = 100;
+    else (false)
+    
+endif
+stop
+
+@enduml
+----
+|===
 
 == `if` + block + `else`
+
+[cols="50a,50a"]
+|===
+.^a|
 [source,java]
 ----
 if (yourSales >= target) {
   performance = "Satisfactory";
-  bonus = 100 + 0.01 * (yourSales - target);
+  bonus = 100 + 
+    0.01 * (yourSales - target);
 } else {
   performance = "Unsatisfactory";
   bonus = 0;
 }
 ----
+|
+
+[plantuml, ifelseblock, png]
+----
+@startuml
+skinparam dpi 200 
+
+start
+
+if (yourSales >= target) then (true)
+    :performance = "Satisfactory";
+    :bonus = 100 + 
+    0.01 * (yourSales - target);
+else (false)
+    :performance = "Unsatisfactory";
+    :bonus = 0;
+endif
+stop
+
+@enduml
+----
+|===
 
 == `else` группируется с ближайшим `if`
 
+[cols="50a,50a"]
+|===
+.^a|
 [source,java]
 ----
-// Лучше добавить фигурные скобки!!
+/* Лучше добавить фигурные скобки!!*/
+
 if (x <= 0) 
   if (x == 0) 
     sign = 0; 
   else 
     sign = -1;
 ----
+|
+
+[plantuml, sign, png]
+----
+@startuml
+skinparam dpi 200 
+
+start
+
+if (x <= 0) then (true)
+    if (x == 0) then (true)
+      :sign = 0;
+    else (false)
+    
+      :sign = -1;
+    endif
+endif
+stop
+
+@enduml
+----
+|===
 
 == Цепочки `else if`
 
+[cols="40a,60a"]
+|===
+.^a|
+
 [source,java]
 ----
-if (yourSales >= 2 * target) {
-  performance = "Excellent";
-  bonus = 1000;
-} else if (yourSales >= 1.5 * target) {
-  performance = "Fine";
-  bonus = 500;
-} else if (yourSales >= target) {
-  performance = "Satisfactory";
-  bonus = 100;
+if (sales >= 2 * target) {
+ performance = "Excellent";
+ bonus = 1000;
+} else if (sales>=1.5*target) {
+ performance = "Fine";
+ bonus = 500;
+} else if (sales >= target) {
+ performance = "Satisfactory";
+ bonus = 100;
 } else {
-  System.out.println("You're fired");
+ fireThisPerson();
 }
 ----
+|
+
+[plantuml, elif, png]
+----
+@startuml
+skinparam dpi 200 
+
+start
+
+if (sales >= 2 * target) then (true)
+    :performance = "Excellent";
+    :bonus = 1000;
+elseif (sales >= 1.5 * target) then (true)
+      :performance = "Fine";
+      :bonus = 500;
+elseif (sales >= target) then (true)
+      :performance = "Satisfactory";
+      :bonus = 100;
+    else (false)
+      :YOU ARE FIRED;
+    endif
+stop
+
+@enduml
+----
+|===
+
 
 == `switch`
 
 Та же ерунда, что и в C/C++:
+
+
+[cols="40a,60a"]
+|===
+.^a|
+
 
 [source,java]
 ----
@@ -586,6 +726,28 @@ switch (choice)
     break;
 }
 ----
+
+|
+
+[plantuml, swibr, png]
+----
+@startuml
+skinparam dpi 200 
+
+start
+
+if (choise == 1 ) then (true)
+    :...;
+elseif (choise == 2) then (true)
+    :...;
+else (false)
+    :...;
+endif
+stop
+@enduml
+----
+
+|===
 
 == `switch`-`case` особенности:
 
@@ -739,6 +901,9 @@ luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
 
 На самом деле их нет, но есть массивы массивов
 
+[cols="50a,50a"]
+|====
+.^a|
 [source,java]
 ----
 int[][] magicSquare =
@@ -749,37 +914,123 @@ int[][] magicSquare =
  {4, 15, 14, 1}
 };
 
-//magicSquare[1][2] == 11
+/* magicSquare[1][2] == ?? */
 ----
+^.^a|
+
+[graphviz, "twodim.png"]
+-----
+digraph G {
+ graph [ dpi = 140 ];
+ rankdir="LR";
+ arr[shape=record,
+   label="<p0>\|<p1>\|<p2>\|<p3>"]
+ arr0 [shape=record, width=2,
+   label="{<p0>16\|<p1>3\|<p2>2\|<p3>13}"]
+ arr1 [shape=record, width=2,
+   label="{<p0>5\|<p1>10\|<p2>11\|<p3>8}"]
+ arr2 [shape=record, width=2,
+   label="{<p0>9\|<p1>6\|<p2>7\|<p3>12}"]
+ arr3 [shape=record, width=2,
+   label="{<p0>4\|<p1>15\|<p2>14\|<p3>1}"]
+   
+ arr:p0->arr0:p0;
+ arr:p1->arr1:p0;
+ arr:p2->arr2:p0;
+ arr:p3->arr3:p0;
+}
+-----
+
+|====
+
+
+
+
 
 == Треугольные матрицы
 
+[cols="50a,50a"]
+|====
+.^a|
 [source,java]
 ----
-int[][] odds = new int[NMAX + 1][];
-for (int n = 0; n <= NMAX; n++)
+int[][] odds = new int[ROWNUM][];
+for (int n = 0; n < ROWNUM; n++)
   odds[n] = new int[n + 1];
 
-for (int n = 0; n < odds.length; n++)
-  for (int k = 0; k < odds[n].length; k++) {
-    // compute lotteryOdds
-    . . .
-    odds[n][k] = lotteryOdds;
-  }
+for (int n = 0; n < ROWNUM; n++)
+ for (int k = 0; k <= n; k++){
+   /* compute lotteryOdds*/
+   . . .
+   odds[n][k] = lotteryOdds;
+ }
 ----
-== Цикл `while`
 
-То же, что и в C
+^.^a|
+[graphviz, "triangle.png"]
+-----
+digraph G {
+ graph [ dpi = 140 ];
+ rankdir="LR";
+ arr[shape=record,
+   label="<p0>\|<p1>\|<p2>\|<p3>"]
+ arr0 [shape=record,width=.5, 
+   label="{<p0>}"]
+ arr1 [shape=record,width=1, 
+   label="{<p0>\|<p1>}"]
+ arr2 [shape=record,width=1.5,
+   label="{<p0>\|<p1>\|<p2>}"]
+ arr3 [shape=record,width=2, 
+   label="{<p0>\|<p1>\|<p2>\|<p3>}"]
+   
+ arr:p0->arr0:p0;
+ arr:p1->arr1:p0;
+ arr:p2->arr2:p0;
+ arr:p3->arr3:p0;
+}
+-----
+|====
+
+== Цикл `while`: то же, что и в C
+
+[cols="50a,50a"]
+|===
+.^a|
+
 [source, java]
 ----
 while (balance < goal) {
-  balance += payment;
-  double interest = balance * interestRate / 100;
-  balance += interest;
-  years++;
+ balance += payment;
+ double interest = 
+  balance * interestRate / 100;
+ balance += interest;
+ years++;
 }
-System.out.println(years + " years.");
+System.out.println(
+ years + " years.");
 ----
+|
+
+[plantuml, while, png]
+----
+@startuml
+skinparam dpi 170 
+
+start
+
+while(balance < goal)
+  :balance += payment;
+  :double interest = balance * interestRate / 100;
+  :balance += interest;
+  :years++;
+endwhile
+
+:System.out.println(years + " years.");
+stop
+
+@enduml
+
+|===
 
 == То же, да не то же!
 
@@ -809,7 +1060,7 @@ do {
 
 Правда жизни: они никогда не нужны.
 
-== Циклы for
+== Циклы `for`
 
 Снова всё то же, что и в C (по сути, сокращение цикла `while`):
 
@@ -847,7 +1098,7 @@ for (i = 1; i <= 10; i++)
 // i is still defined here
 ----
 
-== Использование break и continue
+== Использование `break` и `continue`
 
 Прерывание цикла целиком:
 
@@ -874,7 +1125,7 @@ while (sum < goal) {
 }
 ----
 
-== У нас нет goto, но есть метки для break и continue!
+== У нас нет `goto`, но есть метки для `break` и `continue`!
 
 [source,java]
 ----
