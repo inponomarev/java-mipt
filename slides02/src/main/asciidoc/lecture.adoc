@@ -83,14 +83,16 @@ public class FirstSample
 ----
 
 == Типы
-
-* Примитивные
-** `byte`, `short`, `int`, `long`
-** `char`
-** `float`, `double`,
-** `boolean`
-* Массивы
-* Объекты
+* Value
+** Примитивные
+*** `byte`, `short`, `int`, `long`
+*** `char`
+*** `float`, `double`,
+*** `boolean`
+* Reference
+** Массивы
+** Объекты
+** `null`, будь он неладен
 
 == Целочисленные типы
 
