@@ -879,3 +879,41 @@ public class Person {
     private  String name;
 }
 ----
+
+== Полный «обвес» класса
+
+[source,java]
+----
+import lombok.Data;
+
+@Data
+public class Point {
+  private final int x;
+  private final int y;
+  public double distance(Point other) {
+    ...
+  }
+}
+----
+
+* конструктор
+* `getX()` и `getY()`
+* `equals` и `hashCode`
+* `toString`
+* 40 строчек кода из ничего!
+
+== Records (Java 14+)
+
+[source,java]
+----
+record Point(int x, int y) { 
+  public double distance(Point other) {
+    ...
+  }
+}
+----
+
+* `private final` поля
+* конструктор
+* доступ через `x()` и `y()`
+* `equals`, `hashCode` и `toString`
