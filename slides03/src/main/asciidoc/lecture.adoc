@@ -165,10 +165,97 @@ public class Employee {
 
 == Рождение, жизнь и смерть объекта
 
-* Создание: `new Employee(..)`
-* Присвоение ссылки: `Employee hacker = ...`
-* Потеря ссылки
-* Сборка мусора
+[source,java]
+new Employee("Bob")
+
+[graphviz, "life1.png"]
+-----
+digraph G {
+ graph [ dpi = 200 ]; 
+ rankdir="LR";
+ object[shape="octagon",label="Bob"]
+}
+-----
+
+
+== Присвоение ссылки
+
+[source,java]
+Employee hacker = new Employee("Bob");
+
+[graphviz, "life2.png"]
+-----
+digraph G {
+ graph [ dpi = 200 ]; 
+ rankdir="LR";
+ object[shape="octagon",label="Bob"]
+ ref[label="hacker"];
+ ref->object;
+}
+-----
+
+== Присвоение ссылки
+
+[source,java]
+Employee junior = hacker;
+
+[graphviz, "life3.png"]
+-----
+digraph G {
+ graph [ dpi = 200 ]; 
+ rankdir="LR";
+ object[shape="octagon",label="Bob"]
+ ref[label="hacker"];
+ ref2[label="junior"];
+ ref->object;
+ ref2->object;
+ 
+}
+-----
+
+== Потеря ссылки
+
+[source,java]
+hacker = null;
+junior = new Employee("Charlie");
+
+[graphviz, "life4.png"]
+-----
+digraph G {
+ graph [ dpi = 200 ]; 
+ rankdir="LR";
+ object[shape="octagon",label="Bob", fillcolor="grey",style="filled"]
+ object2[shape="octagon",label="Charlie"]
+ ref[label="hacker"];
+ ref2[label="junior"];
+ ref->null;
+ ref2->object2;
+ null[shape="circle"];
+ ref3[style="invis"];
+ ref3->object[style="invis"];
+}
+-----
+
+
+== Сборка мусора
+
+[graphviz, "life5.png"]
+-----
+digraph G {
+ graph [ dpi = 200 ]; 
+ rankdir="LR";
+ object[shape="octagon",label="Bob", fillcolor="red",style="invis"]
+ object2[shape="octagon",label="Charlie"]
+ ref[label="hacker"];
+ ref2[label="junior"];
+ ref->null;
+ ref2->object2;
+ null[shape="circle"];
+ ref3[style="invis"];
+ ref3->object[style="invis"];
+}
+-----
+
 
 
 == Области видимости
