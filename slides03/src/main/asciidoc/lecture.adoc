@@ -576,7 +576,7 @@ c2 instanceof C1 // всегда возвращает true
 с3 instanceof C2 // не скомпилируется
 ----
 
-== Приведение типов
+== Приведение типов (до Java 14)
 
 
 [source,java]
@@ -589,22 +589,52 @@ if (p instanceof Student) {
 }
 ----
 
-== Небольшое отступление про Pattern Matching
+== Pattern Matching (Java 14+)
 
-Слайд из доклада Т. Валеева "Pattern Matching и его воображаемые друзья"
+JEP305 -- preview feature для Java 14:
 
-image::patternmatching.png[]
-
-== В Котлине так
-
-[source,kotlin]
+[source,java]
 ----
-fun demo(x: Any) {
-    if (x is String) {
-        print(x.length) // x is automatically cast to String
-    }
+Person p = . . .;
+if (p instanceof Student s) {
+   //здесь доступна переменная Student s
+    . . .
+} else {
+   //здесь недоступна переменная Student s
+}
+
+//Скомпилируется
+if (obj instanceof String s && s.length() > 5) { 
+   . . .
+   s.contains(..)
+}
+
+//НЕ скомпилируется
+if (obj instanceof String s || s.length() > 5) {...}
+----
+
+== Pattern Matching (Java 14+)
+
+[cols="50a,50a"]
+|===
+|ДО
+|ПОСЛЕ
+|
+[source,java]
+----
+if (obj instanceof Number) {
+  Number n = (Number) obj;
+  System.out.println(n.longValue());
 }
 ----
+|
+[source,java]
+----
+if (obj instanceof Number n) {
+  System.out.println(n.longValue());
+}
+----
+|===
 
 
 == Вложенные классы

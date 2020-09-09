@@ -44,20 +44,20 @@ icon:twitter[size=lg] @inponomarev
 
 [source]
 ----
- abstract     exports (Java 9)    new                 throws
- assert       extends             package             transient
- boolean      final               private             try
- break        finally             protected           var (Java 10)
- byte         float               public              void
- case         for                 requires (Java 9)   volatile
- catch        if                  return              while
- char         implements          short               yield (Java 14)
- class        import              static              true
- continue     instanceof          strictfp            null
- default      int                 super               false
- do           interface           switch              
- double       long                synchronized        const
- else         module (Java 9)     this                goto
+ abstract     exports (Java 9)    new                 this
+ assert       extends             package             throws
+ boolean      final               private             transient
+ break        finally             protected           try
+ byte         float               public              var (Java 10)
+ case         for                 record (Java 14)    void
+ catch        if                  requires (Java 9)   volatile
+ char         implements          return              while
+ class        import              short               yield (Java 14)
+ continue     instanceof          static              true
+ default      int                 strictfp            false
+ do           interface           super               null
+ double       long                switch              const
+ else         module (Java 9)     synchronized        goto
 ----
 
 == Комментарии
