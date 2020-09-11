@@ -488,7 +488,24 @@ public class App {
 }
 ----
 
-== Конструкторы: ДЕМО
+== Конструктор
+
+[source,java]
+----
+public class Person {
+    //public-конструктор без аргументов
+    public Person() {
+       ....
+    }
+  
+    //package-private конструктор с аргументом
+    Person(String  name) {
+        ....
+    }
+}
+----
+
+== Конструкторы
 
 * Конструктор _обязан_ быть.
 
@@ -500,14 +517,42 @@ public class App {
 
 * Конструктор _не обязан быть публичным_.
 
-== Переопределение конструкторов при наследовании классов: ДЕМО
+== Переопределение конструкторов при наследовании классов
 
 * Если у суперкласса нет конструктора без аргументов, первым вызовом должен быть `super(...)`. 
 
-== Перегрузка конструкторов: ДЕМО
+[source,java]
+----
+public class Person {
+    Person(String  name){
+        ...
+    }
+}
+
+class Employee extends Person{
+    Employee(String name) {
+        super(name);
+        ...
+    }
+}
+----
+
+== Перегрузка конструкторов
 
 * Вызов `this(...)`
 
+[source,java]
+----
+public class Person {
+    Person(String  name){
+        ...
+    }
+    
+    Person(){
+        this("unknown");
+    }
+}
+----
 
 == Секции инициализации
 [source,java]
@@ -586,7 +631,7 @@ public class Student extends Person
 ** явно объявлены как `abstract`
 ** унаследованы из абстрактных классов или интерфейсов и не переопределены.
 * Абстрактные классы нельзя инстанцировать через new.
-** `new Person("John Doe");` -- ошибка компиляции: 'Person is abstract, cannot be intantiated'.
+** `new Person("John Doe");` -- ошибка компиляции: 'Person is abstract, cannot be instantiated'.
 
 
 == Интерфейсы
@@ -702,26 +747,25 @@ if (obj instanceof String s || s.length() > 5) {...}
 
 == Pattern Matching (Java 14+)
 
-[cols="50a,50a"]
-|===
-|ДО
-|ПОСЛЕ
-|
 [source,java]
 ----
+//Before Java 10
 if (obj instanceof Number) {
   Number n = (Number) obj;
   System.out.println(n.longValue());
 }
-----
-|
-[source,java]
-----
+
+//Java 10+
+if (obj instanceof Number) {
+  var n = (Number) obj;
+  System.out.println(n.longValue());
+}
+
+//Java 14+
 if (obj instanceof Number n) {
   System.out.println(n.longValue());
 }
 ----
-|===
 
 
 == Вложенные классы
@@ -890,7 +934,7 @@ button.onMouseClick(new EventListener(){
 * `int hashCode()` возвращает целое значение, которое обязано совпадать для объектов с одинаковым внутренним состоянием
 * Реализация на уровне `Object` работает только для совпадающих объектов
 * понятие _одинаковости внутреннего состояния_ должно совпадать для `equals` и `hashCode`.
-* На самом деле это нужно для хеш-таблиц (и, пожалуй, является протекшей абстракцией)
+* На самом деле это нужно для хеш-таблиц (и, пожалуй, является __протекшей абстракцией__)
 
 
 == Генерация equals-hashCode
