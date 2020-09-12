@@ -21,7 +21,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_transition: none
 :revealjs_width: 1600
 :revealjs_height: 900
-
+:stem: latexmath
 
 //== Часть 1. Введение
 :!figure-caption:
@@ -32,7 +32,7 @@ icon:twitter[size=lg] @inponomarev
 
 [%notitle]
 == Три главных слова
-image::thethreewords.jpg[{image-80-width}]
+image::thethreewords.jpg[{image-50-width}]
 
 == Всё есть класс
 
@@ -344,17 +344,6 @@ Manager <|- Executive
   Employee e = e;
   //для e доступны члены, объявленные только в Employee
 ----
-
-== Eщё раз про ковариантность массивов
-
-[source,java]
-----
-Manager[] managers = new Manager[10];
-Employee[] staff = managers;
-staff[0] = new Employee("Harry Hacker", . . .); //ArrayStoreException.
-----
-
-Правда жизни: массивы -- низкоуровневая возможность языка и в промышленном коде не используются
 
 == Переопределение (overriding) методов
 
@@ -905,7 +894,7 @@ class Flavor1Demo {
 
 == Использование анонимных классов
 
-* Чаще всего -- как реализация абстрактных классов и интерфейсов "по месту"
+* Чаще всего -- как реализация абстрактных классов и интерфейсов «по месту»
 * Анонимный класс -- вложенный класс, поэтому до появления лямбд и ссылок на методы это был единственный способ организовать коллбэк
 
 [source,java]
@@ -928,16 +917,44 @@ button.onMouseClick(new EventListener(){
 ** `equals` и `hashCode`
 ** `toString`
 
-== Контракты equals() и hashCode()
+== `equals()` и `hashCode()`
 
 * `boolean equals(Object other)` возвращает `true` т. и т. т., когда внутреннее состояние совпадает
 * `int hashCode()` возвращает целое значение, которое обязано совпадать для объектов с одинаковым внутренним состоянием
-* Реализация на уровне `Object` работает только для совпадающих объектов
-* понятие _одинаковости внутреннего состояния_ должно совпадать для `equals` и `hashCode`.
-* На самом деле это нужно для хеш-таблиц (и, пожалуй, является __протекшей абстракцией__)
+* Это нужно для хеш-таблиц (и, пожалуй, является __протекшей абстракцией__)
 
+== Формальный контракт `equals`
 
-== Генерация equals-hashCode
+1. Рефлексивность: +
+stem:[\forall x \ne \mathrm{null} (x.equals(x))]
+2. Симметричность: +
+stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} (x.equals(y) \iff y.equals(x))]
+3. Транзитивность: +
+stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} \, \forall z \ne \mathrm{null} (x.equals(y) \& y.equals(z) \Rightarrow z.equals(z))]
+4. Консистентность: если сравниваемые объекты не изменялись, повторный вызов `equals` должен возвращать одно и то же значение.
+5. stem:[\forall x \ne \mathrm{null} (x.equals(\mathrm{null}) = \mathrm{false})]
+
+== Формальный контракт `hashCode`
+
+1. Консистентность: если объект не изменялся, повторный вызов `hashCode` должен возвращать одно и то же значение (но не обязательно одно и то же между разными запусками приложения)
+2. Связь с `equals`: +
+stem:[\forall x \forall y (x.equals(y) \Rightarrow x.hashCode() = y.hashCode())]
+3. Хотя +
+stem:[x.hashCode() = y.hashCode() \Rightarrow x.equals(y)] +
+и не обязательно, но желательно для большинства случаев.
+
+== Выводы
+
+1. Переопределять `equals` и `hashCode` нужно только вместе и согласованно, чтобы выполнить контракт stem:[x.equals(y) \Rightarrow x.hashCode() = y.hashCode()]
+2. Грамотно реализовать `equals` и `hashCode` трудно, но, к счастью, самостоятельно это делать не нужно.
+3. Для тестирования есть специальная библиотка https://jqno.nl/equalsverifier/[EqualsVerifier].
+4. Для генерации `equals` и `hashCode` можно использовать возможности IDE или библиотеки https://projectlombok.org/[Lombok].
+
+== Генерация `equals` и `hashCode`
+
+image::generateequals.png[{image-50-width}]
+
+== Генерация `equals` и `hashCode`
 
 [source,java]
 ----
@@ -946,7 +963,7 @@ public class Person {
     private int age;
     @Override
     public boolean equals(Object o) {
-       // никогда, НИКОГДА не пытайтесь писать эту ерунду сами
+       // никогда, НИКОГДА не пишите это сами
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
@@ -991,8 +1008,6 @@ public class Person {
                 '}';
     }
 }
-
-
 . . .
 Person person = . . .
 System.out.println(person);
@@ -1015,6 +1030,29 @@ public class Person {
 
 [source,java]
 ----
+public class Point {
+  private final int x;
+  private final int y;
+  
+  /*Подождите! Нам нужны:
+   * конструктор
+   * getX() и getY()
+   * equals и hashCode
+   * toString
+   * 40 строчек кода из ничего!
+   */
+   
+  public double distance(Point other) {
+    ...
+  }
+}
+----
+
+
+== Или, если у нас Lombok
+
+[source,java]
+----
 import lombok.Data;
 
 @Data
@@ -1027,13 +1065,7 @@ public class Point {
 }
 ----
 
-* конструктор
-* `getX()` и `getY()`
-* `equals` и `hashCode`
-* `toString`
-* 40 строчек кода из ничего!
-
-== Records (Java 14+)
+== Или, если у нас Java 14+
 
 [source,java]
 ----
