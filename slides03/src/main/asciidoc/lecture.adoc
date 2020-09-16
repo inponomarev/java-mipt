@@ -378,7 +378,7 @@ class Manager extends Employee {
 }
 ----
 
-== Вариант
+== Использование `super`
 
 [source,java]
 ----
@@ -390,6 +390,38 @@ class Manager extends Employee {
   }
 }
 ----
+
+В отличие от `this`, `super` не указывает ни на какой объект (и его нельзя никуда передать). Это лишь указание компилитору вызвать метод суперкласса.
+
+== Ковариантность возвращаемых типов
+
+[plantuml, overriding, png]
+----
+@startuml
+
+skinparam dpi 200 
+
+class Producer {
+    + Object produce() 
+}
+ 
+Producer <|-- IntegerProducer
+
+class IntegerProducer {
+    + Integer produce()
+}
+ 
+
+Object <|-- Integer
+
+Producer . Object
+IntegerProducer . Integer
+
+@enduml
+----
+
+* Возвращаемый тип может быть того же типа или субтипа
+* Типы аргументов обязаны совпадать
 
 == final-классы и методы
 
