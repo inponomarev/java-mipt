@@ -280,6 +280,16 @@ digraph G {
 ----
 @startuml
 skinparam dpi 200 
+class Employee {
+  - name
+  - salary
+  + getName()
+  + getSalary()
+}
+class Manager {
+  - bonus
+  + setBonus(bonus)
+}
 Employee <|- Manager
 @enduml
 ----
@@ -692,7 +702,7 @@ C1 c1; C2 c2; C3 c3; I1 i1;
 
 x instanceof A //  false, если x == null
 c1 instanceof С2 // true или false
-I1 instanceof C2 // true или false 
+i1 instanceof C2 // true или false 
 c2 instanceof C1 // всегда возвращает true
 с3 instanceof C2 // не скомпилируется
 ----
