@@ -657,8 +657,10 @@ digraph G {
 [source,java]
 ----
 String name1 = "John Doe";
-String name2 = new String("John Doe");
-String name3 = new String("Jane Roe");
+String name2 = 
+  new String("John Doe");
+String name3 = 
+  new String("Jane Roe");
 ----
 ^.^a|
 
