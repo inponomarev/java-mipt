@@ -183,12 +183,12 @@ _Не следует_ выбрасывать явно
 [source,java]
 ----
 try {
-  code
-  more code
-  more code
+  // . . . code . . .
+  // . . . more code . . .
+  // . . . more code . . .
 } catch (ExceptionType e) {
-  handler for this type
-  //use e object to extract the data!
+  // handler for this type of exception
+  // use e object to extract the data!
 }
 ----
 
@@ -237,7 +237,7 @@ try {
 . . . throws SQLException . . .
 
 try {
-  access the database
+  //доступ к БД -- может выбросить SQLException 
 } catch (Exception e) {
   logger.log(level, message, e);
   //хотя Exception есть тип более широкий,
@@ -254,7 +254,7 @@ try {
 . . . throws ServletException . . .
 
 try {
-  access the database
+  //доступ к БД -- может выбросить SQLException
 } catch (SQLException e) {
   ServletException se = new ServletException("database error");
   //сохраняем информацию о первопричине
@@ -324,8 +324,8 @@ try {
 == Если не понятно, что делать с исключением 
 
 * Задекларируйте checked exception в методе
-* Оберните в unchecked exception (`InvalidStateException`, например)
-* Lobmok's `@SneakyThrows`
+* Оберните в unchecked exception (`InvalidStateException`, например), с помощью `initCause`.
+* Lobmok's `@SneakyThrows` (самая спорная фича Lombok)
 
 == Общее правило
 
@@ -552,7 +552,7 @@ image::stacktracereading.png[]
 == Здесь мы делаем паузу в изучении особенностей языка ради изучения библиотеки
 
 * J. Bloch, 'Effective Java': 'By using a standard library, you take advantage of the knowledge of the experts who wrote it and the experience of those who used it before you... Numerous features are added to the libraries in every major release, and it pays to keep abreast of these additions.'
-* Наряду с актуальными, "свежими" классами в библиотеках есть много старых классов, оставленных для обратной совместимости.
+* Наряду с актуальными, «свежими» классами в библиотеках есть много старых классов, оставленных для обратной совместимости.
 * Вы встретите `Vector`, `Date`, `File`, `StringBuffer`, `Random`, _о которых я не буду рассказывать на лекциях_.
 * Будьте внимательны: использование устаревших классов в существующем коде, в примерах в интернете и т. п. не оправдывает их использование в новом коде. 
 
@@ -648,6 +648,85 @@ digraph G {
 * `if ("John Doe".equalsIgnoreCase(a))` -- сравнение без учёта регистра.
 * `if(str != null && !str.trim().isEmpty())` -- в этой строке что-то есть!
 
+== Интернирование строк
+
+[cols="35a,65a"]
+|====
+.^a|
+
+[source,java]
+----
+String name1 = "John Doe";
+String name2 = new String("John Doe");
+String name3 = new String("Jane Roe");
+----
+^.^a|
+
+[graphviz, "stringpool-intern1.png"]
+----
+digraph G {
+  node [shape="rectangle"]
+  graph [ dpi = 180 ];
+  rankdir="LR";
+ 
+      subgraph cluster_s2{
+          subgraph cluster_s3 {
+            o1[label="John Doe"; style=filled; fillcolor="#ffffcc"]
+            label="String Constant Pool"
+          }
+        o2[label="John Doe"; style=filled; fillcolor="#ffffcc"]
+        
+        o3[label="Jane Roe"; style=filled; fillcolor="#ffffcc"]
+        
+        label="Memory Heap"
+      }
+  name1->o1
+  name2->o2
+  name3->o3
+}
+----
+|====
+
+== Интернирование строк
+
+[cols="35a,65a"]
+|====
+.^a|
+
+[source,java]
+----
+name1 = name1.intern();
+name2 = name2.intern();
+name3 = name3.intern();
+----
+^.^a|
+
+[graphviz, "stringpool-intern2.png"]
+----
+digraph G {
+  node [shape="rectangle"]
+  graph [ dpi = 180 ];
+  rankdir="LR";
+ 
+      subgraph cluster_s2{
+          subgraph cluster_s3 {
+            o1[label="John Doe"; style=filled; fillcolor="#ffffcc"];
+            o3[label="Jane Roe"; style=filled; fillcolor="#ffffcc"]
+            label="String Constant Pool"
+          }
+        
+
+        
+        label="Memory Heap"
+      }
+  name1->o1
+  name2->o1
+  name3->o3
+}
+----
+|====
+
+
 == Конкатенация строк
 
 [source,java]
@@ -698,7 +777,7 @@ String greeting = "Hello";
 int n = greeting.length(); // is 5.
 ----
 
-"Реальная" длина строки в code points:
+«Реальная» длина строки в code points:
 [source,java]
 ----
 int cpCount = greeting.codePointCount(0, greeting.length());
