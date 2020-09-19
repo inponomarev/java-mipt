@@ -463,7 +463,12 @@ int v = integers.get(0); /*под капотом будет
 unboxing: v = integers.get(0).intValue();*/
 ----
 
-Нужна производительность? Пишем специальные реализации.
+== Примитивы и дженерики
+
+* День сегодняшний: нужна производительность? -- пишем специальные реализации.
+** В стандартной библиотеке:  `Stream<Integer>`/`<Double>`/`<Long>` -> `IntStream`/`DoubleStream`/`LongStream`.
+** В специализированных библиотеках вроде http://fastutil.di.unimi.it/[fastutil]: `ArrayList<Integer>` -> `IntArrayList`, `HashMap<Integer, V>` -> `Int2ObjectMap<V>` (ВНИМАНИЕ: реальная потребность в таких библиотеках возникает редко!!) 
+* День завтрашний: Project Valhalla,  specialized generics. Решит проблему раз и навсегда.
 
 == Нельзя инстанцировать типы-параметры
 
