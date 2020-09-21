@@ -8,6 +8,6 @@ class SumTest {
 
     @Test
     void sum() {
-        assertEquals(5, new Sum().sum(2, 2));
+        assertEquals(4, new Sum().sum(2, 2));
     }
 }
