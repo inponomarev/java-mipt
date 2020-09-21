@@ -221,16 +221,31 @@ try {
 
 == try-multicatch
 
+[plantuml, iomultiple, png]
+----
+@startuml
+
+skinparam dpi 180 
+ 
+IOException <|-- FileNotFoundException
+
+IOException <|-- UnknownHostException
+@enduml
+----
+
 [source,java]
 ----
 try {
   //code that might throw exceptions
 } catch (FileNotFoundException | UnknownHostException e) {
   //emergency action for missing files or unknown hosts
+  
+  //e type is the most specific common supertype 
+  //of the throwable types
 } 
 ----
 
-== Перевыбрасывание исключений 
+== Перевыбрасывание исключений (с умной проверкой типов)
 
 [source,java]
 ----
