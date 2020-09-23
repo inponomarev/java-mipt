@@ -371,25 +371,34 @@ try {
 
 == Беда с finally-block
 
-Иногда finally-блок сам может вызвать исключение
+[source,java]
+----
+...throws IOException...
+//Один ресурс
+
+BufferedReader br = new BufferedReader(new FileReader(path));
+
+try {return br.readLine();} 
+
+finally {br.close();}
+----
+
+== Беда с finally-block
 
 [source,java]
 ----
-//К счастью, после Java 7 всего этого делать не надо
-InputStream in = . . .;
+...throws IOException...
+//Два ресурса
+
+InputStream in = new FileInputStream(src);
 try {
+  OutputStream out = new FileOutputStream(dst);
   try {
-    code that might throw exceptions
-  } catch (Exception e) {
-    . . .
-  }
-} finally {
-  try {
-    in.close();
-  } catch (Exception e) {
-    . . .
-  }
-}
+    byte[] buf = new byte[BUFFER_SIZE];
+    int n;
+    while ((n = in.read(buf)) >= 0)out.write(buf, 0, n);} 
+  finally {out.close();}} 
+finally {in.close();}
 ----
 
 
