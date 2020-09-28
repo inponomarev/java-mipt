@@ -351,7 +351,8 @@ digraph G {
 == Кэширование `Integer`
 
 * По умолчанию: -128..127
-* Можно поднять верхнюю границу через параметр `-XX:AutoBoxCacheMax=<size>`
+* Можно поднять верхнюю границу через параметр +
+`-XX:AutoBoxCacheMax=<size>`
 * Нижнюю границу опустить нельзя :-)
 
 == Что и как ещё кэшируется
@@ -360,16 +361,12 @@ digraph G {
 * `Short`, `Long` -- -128..127
 * `Character` -- 0..127
 * `Boolean` -- `Boolean.TRUE` и `Boolean.FALSE`
-* `Float`, `Double` -- не кэшируются, хотя в контракте `valueOf` прописана возможность кэширования часто используемых значений.
+* `Float`, `Double` -- не кэшируются, хотя в JavaDoc для `valueOf` прописана возможность кэширования часто используемых значений.
+* Правда жизни: вы чаще будете использовать autoboxing, чем `valueOf`.
 
-== Превращение числа из строки и в строку
+== Для чего я рассказал про кэширование
 
-Статические методы:
-
-* `Integer.parseInt(value, radix)`
-* `Integer.toString(value, radix)`
-* `Double.parseDouble(value)`
-* `Double.toString(value)`
+image::drake.jpg[{image-40-width}]
 
 == Autoboxing & unboxing
 
@@ -400,8 +397,17 @@ n++;
 Integer a = 1000;
 Integer b = 1000;
 if (a == b) . . . //NO! THIS WILL FAIL!
-
 ----
+
+== Превращение числа из строки и в строку
+
+Статические методы:
+
+* `Integer.parseInt(value, radix)`
+* `Integer.toString(value, radix)`
+* `Double.parseDouble(value)`
+* `Double.toString(value)`
+
 
 == Класс `BigInteger` 
 
@@ -434,6 +440,13 @@ public static BigDecimal calculateTotalAmount(
     return roundedTotal;
 }
 ----
+
+== Ввод-вывод
+
+image::IBM2741.jpg[{image-50-width}]
+
+IBM2741 terminal, 1965 (источник: https://en.wikipedia.org/wiki/IBM_2741[Wikipedia])
+
 
 == Полный зоопарк классов ввода-вывода
 
@@ -649,10 +662,11 @@ image::persistenceofmemory.jpg[{image-60-width}]
 * `long System.nanoTime()` -- монотонные часы.
 ** Наносекундная точность.
 ** Нет привязки к "календарному" времени.
+** На больших периодах может быть заметна неточность хода часов.
 
 == Когда что использовать?
 
-* `long System.nanoTime()` -- при замерах периодов времени. 
+* `long System.nanoTime()` -- при замерах периодов времени в переделах одной машины. 
 ** _Но для замеров производительности программ на Java надо применять JMH._
 * `long System.currentTimeMillis()` -- для генерации штампов времени (с пониманием ограничений).
 
