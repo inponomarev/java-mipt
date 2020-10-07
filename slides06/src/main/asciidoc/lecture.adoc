@@ -95,7 +95,7 @@ public class Pair<T> {
 
 [source,java]
 ----
-Pair<String> pair = ...
+Pair<String> pair = new Pair<>("Ваня", "Маша");
 
 //ЧТО ЭКВИВАЛЕНТНО ЗАМЕНЕ T НА String
 Pair(String, String)
@@ -560,7 +560,7 @@ String s = a[1].get(0);
 [source,java]
 ----
 static void dangerous(List<String>... stringLists){
-  List<Integer> intList = new ArrayList<Integer>() {{add(42);}};
+  List<Integer> intList = List.of(42);
   Object[] objects = stringLists;
   objects[0] = intList;
   //ClassCastException
@@ -1082,6 +1082,13 @@ class Unsound {
 
 [source,java]
 ----
-BadList<? super String> badList = null;
-List<? super BadList<? super String>> list = badList;
+class Sample {
+
+    interface BadList<T> extends List<List<? super BadList<? super T>>> {}
+
+    public static void main(String[] args) {
+        BadList<? super String> badList = null;
+        List<? super BadList<? super String>> list = badList;
+    }
+}
 ----
