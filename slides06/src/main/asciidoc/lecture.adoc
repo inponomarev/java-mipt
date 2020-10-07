@@ -989,7 +989,7 @@ Collections.max(List<String>, Comparator<Object>)
 * Используются в аргументах методов и локальных переменных.
 * Невидимы пользователю API, не должны возвращаться.
 * Их цель -- принимать те аргументы, которые надо принимать, и отвергать те аргументы, которые надо отвергать.
-* Должны быть используемы в API, иначе API будет слишком "жёстким" и непригодным для использования.
+* Должны быть используемы в API, иначе API будет слишком «жёстким» и непригодным для использования.
 
 == Wildcard Capture
 
@@ -1039,7 +1039,7 @@ class StringHolder extends Holder<String, StringHolder> {
     void doSmth() {...};
 }
 
-StringHolder h = new StringHolder().setValue("aaa").doSmth();
+new StringHolder().setValue("aaa").doSmth();
 ----
 
 == Что почитать-посмотреть
@@ -1084,11 +1084,11 @@ class Unsound {
 ----
 class Sample {
 
-    interface BadList<T> extends List<List<? super BadList<? super T>>> {}
+  interface BadList<T> extends List<List<? super BadList<? super T>>> {}
 
-    public static void main(String[] args) {
-        BadList<? super String> badList = null;
-        List<? super BadList<? super String>> list = badList;
-    }
+  public static void main(String[] args) {
+    BadList<? super String> badList = null;
+    List<? super BadList<? super String>> list = badList;
+  }
 }
 ----
