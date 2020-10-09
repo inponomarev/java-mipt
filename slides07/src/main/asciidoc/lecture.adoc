@@ -30,6 +30,21 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
+[%notitle]
+== Эпиграф
+
+image::tagir1.png[]
+
+[%notitle]
+== Эпиграф
+
+image::tagir2.png[]
+
+[%notitle]
+== Эпиграф
+
+image::tagir3.png[]
+
 == Коллекции: Разделение интерфейсов и реализаций
 
 [plantuml, colintf, png]
@@ -262,12 +277,27 @@ public interface Comparator<T> {
 
 [source,java]
 ----
+//ИММУТАБЕЛЬНЫЕ
 //Пустые                   //Из одного элемента
 Collections.emptyList();   Collections.singletonList(o);
 Collections.emptySet();    Collections.singleton(o);
 Collections.emptyMap();    Collections.singletonMap(k,v);
-...
 ----
+
+== Иммутабельные коллекции по заданным элементам
+
+[source,java]
+----
+//Из заданных элементов
+List.of(a, b, c...);
+Set.of(a, b, c...);
+Map.of(k1, v1, k2, v2...);
+----
+
+[.fragment]
+_Но как они это сделали для мапы?_
+
+
 
 == Суррогатные коллекции: защита (частичная) при публикации объекта
 
