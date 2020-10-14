@@ -1052,7 +1052,7 @@ Predicate<T> b = ...
 
 a.and(b).negate(); // ! (a(x) & b(x)
 
-//Двуместный предикат (x,y)-> Objects.equas(x, y)
+//Двуместный предикат (x,y)-> Objects.equals(x, y)
 Objects::equals 
 
 //Одноместный предикат y -> Objects.equals(x, y)
