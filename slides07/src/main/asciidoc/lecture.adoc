@@ -376,6 +376,10 @@ but *O(1)* when `index = 0`  <- *main benefit of `LinkedList<E>`*
 * `Iterator.remove()` is *O(1)* <- *main benefit of `LinkedList<E>`*
 * `ListIterator.add(E element)` is *O(1)*  This is one of the main benefits of `LinkedList<E>`
 
+== Does anyone use LinkedList?
+
+image::blochonlinkedlist.png[{image-70-width}]
+
 == А если всё-таки нужен Deque?
 
 * `ArrayDeque`
@@ -414,9 +418,6 @@ n856419764[shape=record, label="bar|foo|baz|null|null|null|null|null|null|null|n
 -----
 
 [%notitle]
-== Does anyone use LinkedList?
-
-image::blochonlinkedlist.png[{image-70-width}]
 
 == Выводы
 
