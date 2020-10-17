@@ -90,8 +90,8 @@ jdbc:derby://localhost:1527/corejava;create=true
 ----
 skinparam dpi 150
 hide footbox
-client->DriverManager : getConnection()
-DriverManager -> connection **: new
+client-> DataSource : getConnection()
+DataSource -> connection **: new
 
 connection-->client: connection
 
@@ -112,7 +112,7 @@ client->resultSet: next()
 
 [source,java]
 ----
-try (Connection conn = getConnection();
+try (Connection conn = dataSource.getConnection();
      Statement stmt = conn.getStatement()){
   
   ResultSet result = stmt.executeQuery("select name from speaker");
@@ -125,9 +125,9 @@ try (Connection conn = getConnection();
 }
 ----
 
-== JDBC Connection
+== Как получить JDBC Connection
 
-То, что написано во всех тьюториалах и учебниках, и то, что вы *никогда* не будете делать в реальной жизни:
+То, что написано во многих тьюториалах и учебниках, и то, что вы *никогда* не будете делать в реальной жизни:
 [source,java]
 ----
 String connString = "jdbc:postgresql://127.0.0.1:5432/celesta" 
@@ -166,8 +166,16 @@ pooledConnection->pool: add(this)
 == Connection Pool
 
 * Грамотно реализовать самостоятельно -- сложно
-* Предоставляет ваш фреймворк / контейнер / JDBC driver
-* Есть `javax.sql.DataSource`
+* Предоставляет ваш фреймворк / JDBC driver
+* Есть `javax.sql.DataSource`, являющийся стандартным интерфейсом для Connection Pool.
+
+[source,java]
+----
+DataSource connectionPool = ...
+try (Connection conn = connectionPool.getConnection()) {
+    ...
+}
+----
 
 == Методы Connection
 
