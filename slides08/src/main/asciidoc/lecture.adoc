@@ -186,6 +186,7 @@ try (Connection conn = connectionPool.getConnection()) {
 * создание statements:
 ** `createStatement()` -- создаёт универсальный объект для передачи SQL-команд
 ** `prepareStatement(String sql)` -- создаёт параметризованный шаблон SQL команды
+** `prepareCall(String sql)` -- cоздаёт шаблон для вызова хранимой процедуры
 
 == Разновидности Statement
 
@@ -208,8 +209,13 @@ interface PreparedStatement {
 void setXXX(int parameterIndex, XXX x)
 }
 
+interface CallableStatement {
+void registerOutParameter(int parameterIndex, int sqlType)
+}
+
 AutoCloseable <|- Statement
 Statement <|- PreparedStatement
+PreparedStatement <|- CallableStatement
 @enduml
 ----
 
