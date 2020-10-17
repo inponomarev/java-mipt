@@ -1,6 +1,6 @@
 package edu.phystech.jdbcdemo.service.dao;
 
-import edu.phystech.jdbcdemo.service.db.ConnectionSource;
+import edu.phystech.jdbcdemo.service.db.SimpleJdbcTemplate;
 import edu.phystech.jdbcdemo.domain.Conference;
 import edu.phystech.jdbcdemo.domain.Speaker;
 import edu.phystech.jdbcdemo.domain.Talk;
@@ -15,7 +15,7 @@ import java.util.Set;
 
 @AllArgsConstructor
 public class TalkDao {
-    private final ConnectionSource source;
+    private final SimpleJdbcTemplate source;
 
 
     public void saveTalks(Collection<Talk> talks) throws SQLException {

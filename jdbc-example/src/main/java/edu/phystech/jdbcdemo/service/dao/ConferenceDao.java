@@ -1,6 +1,6 @@
 package edu.phystech.jdbcdemo.service.dao;
 
-import edu.phystech.jdbcdemo.service.db.ConnectionSource;
+import edu.phystech.jdbcdemo.service.db.SimpleJdbcTemplate;
 import edu.phystech.jdbcdemo.domain.Conference;
 import lombok.AllArgsConstructor;
 
@@ -10,7 +10,7 @@ import java.util.*;
 
 @AllArgsConstructor
 public class ConferenceDao {
-    private final ConnectionSource source;
+    private final SimpleJdbcTemplate source;
 
     private Conference createConference(ResultSet resultSet) throws SQLException {
         return new Conference(resultSet.getInt("id"),

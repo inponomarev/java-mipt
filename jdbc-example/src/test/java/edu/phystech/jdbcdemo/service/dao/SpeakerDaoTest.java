@@ -1,6 +1,6 @@
 package edu.phystech.jdbcdemo.service.dao;
 
-import edu.phystech.jdbcdemo.service.db.ConnectionSource;
+import edu.phystech.jdbcdemo.service.db.SimpleJdbcTemplate;
 import edu.phystech.jdbcdemo.service.db.DbInit;
 import edu.phystech.jdbcdemo.domain.Speaker;
 import org.h2.jdbcx.JdbcConnectionPool;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 class SpeakerDaoTest {
-    private ConnectionSource source = new ConnectionSource(
+    private SimpleJdbcTemplate source = new SimpleJdbcTemplate(
             JdbcConnectionPool.create("jdbc:h2:mem:database;DB_CLOSE_DELAY=-1", "", ""));
     private SpeakerDao dao =
             new SpeakerDao(source);

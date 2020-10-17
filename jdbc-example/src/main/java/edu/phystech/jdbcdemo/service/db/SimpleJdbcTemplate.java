@@ -1,8 +1,8 @@
 package edu.phystech.jdbcdemo.service.db;
 
 import lombok.AllArgsConstructor;
-import org.h2.jdbcx.JdbcConnectionPool;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 
 @AllArgsConstructor
-public class ConnectionSource {
+public class SimpleJdbcTemplate {
     @FunctionalInterface
     public interface SQLFunction<T, R> {
         R apply(T object) throws SQLException;
@@ -22,18 +22,18 @@ public class ConnectionSource {
         void accept(T object) throws SQLException;
     }
 
-    private final JdbcConnectionPool pool;
+    private final DataSource connectionPool;
 
     public void connection(SQLConsumer<? super Connection> consumer) throws SQLException {
         Objects.requireNonNull(consumer);
-        try (Connection conn = pool.getConnection()) {
+        try (Connection conn = connectionPool.getConnection()) {
             consumer.accept(conn);
         }
     }
 
     public <R> R connection(SQLFunction<? super Connection, ? extends R> function) throws SQLException {
         Objects.requireNonNull(function);
-        try (Connection conn = pool.getConnection()) {
+        try (Connection conn = connectionPool.getConnection()) {
             return function.apply(conn);
         }
     }

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 @AllArgsConstructor
 public class DbInit {
-    final ConnectionSource source;
+    final SimpleJdbcTemplate source;
 
     private String getSQL(String name) throws IOException {
         try (BufferedReader br = new BufferedReader(

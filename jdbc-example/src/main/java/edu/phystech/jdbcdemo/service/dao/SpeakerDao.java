@@ -1,6 +1,6 @@
 package edu.phystech.jdbcdemo.service.dao;
 
-import edu.phystech.jdbcdemo.service.db.ConnectionSource;
+import edu.phystech.jdbcdemo.service.db.SimpleJdbcTemplate;
 import edu.phystech.jdbcdemo.domain.Conference;
 import edu.phystech.jdbcdemo.domain.Speaker;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.Set;
 
 @AllArgsConstructor
 public class SpeakerDao {
-    private final ConnectionSource source;
+    private final SimpleJdbcTemplate source;
 
     private Speaker createSpeaker(ResultSet resultSet) throws SQLException {
         return new Speaker(resultSet.getInt("id"),

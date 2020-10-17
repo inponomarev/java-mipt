@@ -136,10 +136,10 @@ Connection conn = DriverManager.getConnection(connString);
 
 == JDBC Connection: особенности
 
-* Корневой объект, "входная точка" ко всем возможностям взаимодействия с СУБД.
+* Корневой объект, «входная точка» ко всем возможностям взаимодействия с СУБД.
 * Медленно создаётся (связь по сети с СУБД, авторизация и т. д.).
 * Захватывает ресурсы: необходимо явно закрывать после использования.
-* Имеет тенденцию "портиться" ("отваливаться").
+* Имеет тенденцию «портиться» («отваливаться»).
 * *Не потокобезопасный*. Нужен thread confinement.
 * Выход: connection pooling.
 
@@ -167,6 +167,7 @@ pooledConnection->pool: add(this)
 
 * Грамотно реализовать самостоятельно -- сложно
 * Предоставляет ваш фреймворк / контейнер / JDBC driver
+* Есть `javax.sql.DataSource`
 
 == Методы Connection
 
@@ -310,3 +311,64 @@ talkspeakers --> talk: talkid
 
 @enduml
 ----
+
+== Наш учебный пример про доклады и спикеров
+
+[plantuml, objects, png]
+----
+@startuml
+skinparam dpi 180 
+object ConnectionPool
+object JdbcTemplate
+object ConferenceDao
+object SpeakerDao
+object TalkDao
+object Controller
+
+JdbcTemplate --> ConnectionPool
+SpeakerDao --> JdbcTemplate
+TalkDao --> JdbcTemplate
+ConferenceDao --> JdbcTemplate
+Controller --> SpeakerDao
+Controller --> TalkDao
+Controller --> ConferenceDao
+@enduml
+----    
+
+== Реальная «слоистая» архитектура серверного приложения
+
+[plantuml, layers, png]
+----
+@startuml
+skinparam dpi 180 
+object Controller1
+object Controller2
+
+object Service1
+object Service2
+object Service3
+
+object Dao1
+object Dao2
+object Dao3
+
+Controller1 --> Service1
+Controller1 --> Service2
+Controller2 --> Service2
+Controller2 --> Service1
+Controller2 --> Service3
+note on link
+  «соединение
+  проводами»,
+  aka "wiring"
+end note
+
+Service1 --> Dao1
+Service2 --> Dao1
+Service3 --> Dao2
+Service3 --> Dao3
+Service1 --> Dao2
+
+@enduml
+----    
+

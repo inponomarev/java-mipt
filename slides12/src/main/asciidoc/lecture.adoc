@@ -307,16 +307,16 @@ public void executeCommand(String command)
 @startuml
 skinparam dpi 180 
 object ConnectionPool
-object DataSource
+object JdbcTemplate
 object ConferenceDao
 object SpeakerDao
 object TalkDao
 object Controller
 
-DataSource -->ConnectionPool
-SpeakerDao --> DataSource
-TalkDao --> DataSource
-ConferenceDao --> DataSource
+JdbcTemplate -->ConnectionPool
+SpeakerDao --> JdbcTemplate
+TalkDao --> JdbcTemplate
+ConferenceDao --> JdbcTemplate
 Controller --> SpeakerDao
 Controller --> TalkDao
 Controller --> ConferenceDao
