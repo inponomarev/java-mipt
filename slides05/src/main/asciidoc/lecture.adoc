@@ -629,9 +629,11 @@ Files.size(path)
 
 [source,java]
 ----
+//содержимое папки (без захода в глубину)
 Stream<Path> list = Files.list(path);
 
-Stream<Path> walk(Path start, 
+//метод для обхода дерева папок
+Stream<Path> Files.walk(Path start, 
    int maxDepth, FileVisitOption... options)
 ----
 
