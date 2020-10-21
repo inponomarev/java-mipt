@@ -113,7 +113,7 @@ client->resultSet: next()
 [source,java]
 ----
 try (Connection conn = dataSource.getConnection();
-     Statement stmt = conn.getStatement()){
+     Statement stmt = conn.createStatement()){
   
   ResultSet result = stmt.executeQuery("select name from speaker");
   
