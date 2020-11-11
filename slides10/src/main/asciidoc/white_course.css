@@ -244,12 +244,6 @@ body {
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
   border-bottom: 1px solid; 
-  border-left: double;
-}
-
-.reveal table th:first-child,
-.reveal table td:first-child {
-  border-left: none;
 }
 
 .reveal table th[align="center"],

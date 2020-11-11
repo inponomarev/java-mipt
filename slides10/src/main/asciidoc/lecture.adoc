@@ -73,24 +73,69 @@ image::amdahl.png[{image-70-width}]
 
 == На самом деле, всё ещё хуже! 
 
+[cols="25a,25a,25a,25a"]
+|===
+^.^|
+[graphviz,"k4.png"]
+----
+graph K4 {
+    graph [ dpi = 180 ];
+    layout=circo;
+    node[shape=point];
+    a--b; a--c; a--d;
+    b--c; b--d;
+    c--d;
+}
+----
+
+^.^|
+
 [graphviz,"k5.png"]
 ----
 graph K5 {
     graph [ dpi = 180 ];
-    layout=neato;
+    layout=circo;
     node[shape=point];
-    a--b;
-    a--c;
-    a--d;
-    a--e;
-    b--c;
-    b--d;
-    b--e;
-    c--d;
-    c--e;
+    a--b; a--c; a--d; a--e;
+    b--c; b--d; b--e;
+    c--d; c--e;
     d--e;
 }
 ----
+
+^.^|
+
+[graphviz,"k6.png"]
+----
+graph K6 {
+    graph [ dpi = 180 ];
+    layout=circo;
+    node[shape=point];
+    a--b; a--c; a--d; a--e; a--f;
+    b--c; b--d; b--e; b--f;
+    c--d; c--e; c--f;
+    d--e; d--f;
+    e--f;
+}
+
+
+^.^|
+
+[graphviz,"k7.png"]
+----
+graph K7 {
+    graph [ dpi = 180 ];
+    layout=circo;
+    node[shape=point];
+    a--b; a--c; a--d; a--e; a--f; a--g;
+    b--c; b--d; b--e; b--f; b--g;
+    c--d; c--e; c--f; c--g;
+    d--e; d--f; d--g;
+    e--f; e--g;
+    f--g;
+}
+----
+|===
 
 [stem] 
 ++++
