@@ -70,7 +70,7 @@ S = \frac{1}{\alpha+\frac{1-\alpha}{N}} = \frac{N}{1+\alpha(N-1)} \leq \frac{1}{
 == Закон Амдала: поведение
 // https://shipilev.net/talks/jpoint-April2017-perf-keynote.pdf
 
-image::amdahl.png[{image-80-width}]
+image::amdahl.png[{image-70-width}]
 
 == На самом деле, всё ещё хуже! 
 
@@ -85,7 +85,7 @@ S = \frac{N}{1+\alpha(N-1) + \beta N (N-1)} = \frac{N}{1+(\alpha + \beta N) (N-1
 ++++
 == USL: поведение
 
-image::usl.png[{image-80-width}]
+image::usl.png[{image-70-width}]
 
 == Промежуточный вывод
 
