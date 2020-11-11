@@ -31,6 +31,52 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
+== Часть 3. Потокобезопасные структуры данных
+
+image::hydra2.jpg[{image-90-width}]
+
+== Неблокирующие алгоритмы
+
+* Блокировка (через `synchronized` или `ReentrantLock`) решает вопрос координации действий разных тредов с переменной.
+* Но если много тредов конкурируют за блокировку (high lock contention), затраты ресурсов на координацию тредов становятся значительными.
+* Альтернативой являются _неблокирующие алгоритмы_, использующие поддержку специальных атомарных машинных инструкций (compare-and-swap).
+* В Java-библиотеке доступны _классы атомарных переменных_ и _потокобезопасные коллекции_, реализованные в том числе на неблокирующих алгоритмах.
+
+== Atomics 
+
+
+* `package java.util.concurrent.atomic`
+** `AtomicBoolean`, `AtomicInteger`, `AtomicLong`, `AtomicReference`.
+** `AtomicIntegerArray`, `AtomicLongArray`, `AtomicReferenceArray`.
+* Могут быть использованы как «улучшенные volatile-переменные», т. к. результат вызова `set(...)` виден другим тредам при вызове `get(...)`
+* Поддерживают атомарные операции.
+
+== Aтомарные операции в классах атомарных переменных
+
+----
+getAndSet(newValue)    compareAndSet(expect, update) 
+
+incrementAndGet()      decrementAndGet()
+
+getAndIncrement()      getAndDecrement()
+
+getAndAdd(delta)       addAndGet(delta)
+
+getAndUpdate(updateFunction)
+updateAndGet(updateFunction)
+
+getAndAccumulate(x, accumulatorBiFunction)
+accumulateAndGet(x, accumulatorBiFunction)
+----
+
+
+== Потокобезопасные коллекции
+
+* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой доступ к внутреннему состоянию коллекции. Из-за поддержки обратной совместимости сейчас так тоже можно, но не нужно.
+* Цена такого решения -- плохой параллелизм: конкуренция за блокировку (lock contention).
+* С версии 5 появились классы, специально разработанные для потокобезопасности, с меньшим количеством блокировок.
+* Их использование является _предпочтительным_.
+
 
 == Потокобезопасные коллекции
 
@@ -375,9 +421,17 @@ executor.execute(() -> {
 * *Brian Goetz et al.*, Java Concurrency in Practice.
 * Вышла в 2006-м году, в эпоху Java 5.0.
 * Новых изданий не выходило.
-* На русский язык не переведена.
+* На русском языке вышла в 2020-м году!
 * Всё ещё самое полное руководство по разным аспектам многопоточного программирования на Java.
 |===
+
+== Code Review Checklist
+
+* *Roman Leventov*: https://github.com/code-review-checklists/java-concurrency[Code Review Checklist: Java Concurrency]
+
+* Порядка 100 пунктов, по которым можно проверить concurrency код на распространённые ошибки
+
+
 
 == Благодарности 
 
@@ -398,21 +452,6 @@ icon:twitter[size=lg]@vdimir
 
 
 (все ошибки и неточности -- мои)
-
-[%notitle]
-== Можно добавить
-
-image::perf.png[{image-90-width}]
-
-[%notitle]
-== Пусть кто-то другой
-
-image::notme.png[{image-90-width}]
-
-[%notitle]
-== Бегите, глупцы
-
-image::flyyoufools.png[{image-80-width}]
 
 
 == Иногда при чтении кода начинает рябить в глазах...
