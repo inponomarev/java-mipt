@@ -68,9 +68,35 @@ S = \frac{1}{\alpha+\frac{1-\alpha}{N}} = \frac{N}{1+\alpha(N-1)} \leq \frac{1}{
 Вывод: если разделяемая работа составляет 80%, вы не получите более чем пятикратное увеличение производительности за счёт параллелизации.
 
 == Закон Амдала: поведение
-// https://shipilev.net/talks/jpoint-April2017-perf-keynote.pdf
 
 image::amdahl.png[{image-70-width}]
+
+== На самом деле, всё ещё хуже! 
+
+[graphviz,"k5.png"]
+----
+graph K5 {
+    graph [ dpi = 180 ];
+    layout=neato;
+    node[shape=point];
+    a--b;
+    a--c;
+    a--d;
+    a--e;
+    b--c;
+    b--d;
+    b--e;
+    c--d;
+    c--e;
+    d--e;
+}
+----
+
+[stem] 
+++++
+\Huge
+E = \frac{N (N -1)}{2}
+++++
 
 == На самом деле, всё ещё хуже! 
 
