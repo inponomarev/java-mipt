@@ -241,18 +241,23 @@ image::spring-factories.png[{image-100-width}]
 == Пришла пора закругляться :-)
 
 * Всё, что я рассказал в этом курсе -- уже Legacy.
-* Текущая версия -- Java 13, в марте 2020 -- Java 14.
-* Синтаксис развивается, мы ничего не говорили про 
+* Мы работали на Java 11, но...
+** текущая версия -- Java 15, 
+** в марте 2021 -- Java 16, 
+** в сентябре -- Java 17 (новый LTS).
+
+== Синтаксис Java развивается
+
 ** Modularization (Java 9+)
 ** Type Inference (Java 10+)
 ** Switch Expressions (Java 12+)
+** Multiline Strings (Java 13+)
+** Records (Java 14+)
 
-== Возможные будущие фичи языка
+== Все ждут проектов
 
-* Value types
-* Records
-* Pattern Matching
-* ???
+* Valhalla
+* Loom
 
 == «Вселенная Java» расширяется со скоростью света
 
@@ -292,11 +297,11 @@ image::urma.jpg[]
 == Становитесь частью community!
 * JUGs: Москва, Санкт-Петербург, Новосибирск.
 * Conferences: Joker, JPoint, SnowOne.
-* Приходите на московский JUG!
+* Когда это всё закончится, приходите на московский JUG!
 
 image::jugmsk.jpg[]
 
 
 == Добро пожаловать во вселенную Java :-)
 
-image::duke.svg[{image-40-width}]
+image::duke.svg[{image-20-width}]

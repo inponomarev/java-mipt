@@ -31,6 +31,328 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
+== Массивы и другие аннотации
+
+[source,java]
+----
+//Массивы задаются в фигурных скобках
+@BugReport(..., reportedBy = {"Harry", "Carl"})
+
+//То же самое, что {"Harry"}
+@BugReport(..., reportedBy = "Harry")
+
+//Конструирование вложенных аннотаций
+@BugReport(..., ref = @Reference(id = "12345"))
+
+//...Как видим, используя разрешённые типы,
+//можно задать сколь угодно сложную структуру данных
+----
+
+WARNING: Значение аннотации не может быть установлено в `null`. Не допускатся `null` даже в `default`-значениях. 
+
+== Где можно использовать аннотации
+
+* В декларациях
+* При использовании типов
+
+== Использование аннотаций в декларациях
+
+* Packages
+* Classes (включая `enum`)
+* Interfaces (включая annotation interfaces)
+* Methods
+* Constructors
+* Instance fields (включая константы `enum`)
+* Local variables' declarations
+* Parameter variables' declarations
+* Type parameters
+
+== Примеры использования аннотаций в декларациях
+
+[source,java]
+----
+@Entity
+public class User {
+
+  @Caption("user")
+  public User getUser(@Param("id") String userId) {
+  
+    @SuppressWarnings("unchecked")
+    List<User> users = ....
+  }
+}
+
+
+class Cache<@Immutable V> {
+ ...
+}
+----
+
+
+== Аннотирование пакетов -- в package-info.java
+
+[source,java]
+----
+//package-info.java
+@GPL(version="3")
+package edu.phystech.corejava;
+import org.gnu.GPL;
+----
+
+== Аннотирование использования типов
+
+[source,java]
+----
+//аннотированный параметр, утверждает, что userId -- не `null`
+User getUser(@NonNull String userId) { ... }
+
+//Аннотированные использования типа: каждая строчка не `null`
+List<@NonNull String> list = ...
+Comparator.<@NonNull String>reverseOrder()
+class Warning extends @Localized Message { ... }
+
+List<@Localized ? extends Message> = ...
+
+(@Localized String) text
+
+if (text instanceof @Localized String) ...
+
+//и т. д., список примеров не полный. 
+// Аннотации могут быть почти везде!
+----
+
+
+== Java8+: аннотирование использования типа в `this`
+
+[source,java]
+----
+public class Foo {
+  //аннотируется использование типа!
+  void baz(@ReadOnly Foo this){
+    ...
+  }
+
+  class Bar {
+    //аннотируется использование типа!
+    public Bar(@ReadOnly Foo Foo.this) {
+      ...
+    }
+  }
+}
+----
+
+== Знакомые стандартные (встроенные в язык) аннотации 
+
+[cols="20a,18a,62a"]
+|===
+|*Annotation +
+interface*
+|*Применимость* 
+|*Назначение*
+|`@Override`
+|Методы
+|Метод переопределяет метод в базовом классе. Ошибка компиляции, если это не так (см. лекцию про классы).
+|`@FunctionalInterface`
+|Интерфейсы
+|Помечает интерфейс как функциональный (имеющий единственный абстрактный метод). Ошибка компиляции, если это не так (см. лекцию про lambdas & method refs).
+|`@SafeVarargs`
+|Методы и конструкторы
+|Декларирует безопасное использование параметризованного varargs (см. лекцию про Generics)
+|===
+
+== Стандартные (встроенные в язык) аннотации 
+
+[cols="20a,20a,60a"]
+|===
+|*Annotation +
+interface*
+|*Применимость* 
+|*Назначение*
+|`@Deprecated`
+|Все элементы API
+|Данный элемент API deprecated -- т. е. сохранён для обратной совместимости, запрещён к использованию в новых проектах, и возможно будет удалён в будущем. 
+|`@SuppressWarnings`
+|Все, кроме пакетов и аннотаций
+|Подавляет предупреждения заданного типа от компилятора и линтеров.
+|`@Generated`
+|Все элементы API
+|Помечает код, как автоматически сгенерированный (как следствие, этот код не следует модифицировать руками).
+|===
+
+== Аннотации управляются аннотациями
+
+[source,java]
+----
+//Какие элементы кода могут быть аннотированы
+@Target({ElementType.TYPE, ElementType.METHOD})
+
+//На каком уровне сохраняются эти аннотации
+@Retention(RetentionPolicy.Source)
+public @interface BugReport {
+ ...
+}
+----
+
+== Target
+
+[cols="25a,75a"]
+|===
+| *ElementType*     | *Применимость аннотаций*
+| `ANNOTATION_TYPE` | Интерфейсы аннотаций
+| `PACKAGE`         | Пакеты
+| `TYPE`            | Классы (в т. ч. `enums`) и интерфейсы (в т. ч. `@interface`)
+| `METHOD`          | Методы
+| `CONSTRUCTOR`     | Конструкторы
+| `FIELD`           | Поля
+| `PARAMETER`       | Параметры методов или конструкторов
+| `LOCAL_VARIABLE`  | Определения локальных переменных
+| `TYPE_PARAMETER`  | Типовые параметры
+| `TYPE_USE`        | Использования типов
+|===
+
+
+== RetentionPolicy
+
+[graphviz,"retention.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+SOURCE -> CLASS;
+CLASS -> RUNTIME;
+CLASS[label="CLASS\n(по умолчанию)"]
+}
+----
+
+[cols="25a,50a,25a"]
+|===
+| *Retention Policy* | *Доступность аннотаций* | *API*
+| `SOURCE` 
+| На уровне исходников для annotation processors. Не попадают в class-файлы и runtime.
+| Language Model API
+| `CLASS` + 
+(по умолчанию)
+| На уровне исходников и class-файлов. Невидимы в runtime.
+| Instrumentation API
+| `RUNTIME`
+| На уровне исходников, в class-файлах и во время исполнения.
+| Reflection API
+|===
+
+== Другие мета-аннотации
+[cols="25a,75a"]
+|===
+|`@Documented` | Все аннотации данного типа будут попадать в JavaDoc-документацию.
+|`@Inherited`  | Если класс помечен аннотацией данного типа, то все наследники данного класса также будут помечены аннотацией этого же типа. 
+|`@Repeatable` | Позволяет задать возможность многократной пометки элемента аннотацией одного и того же типа. 
+|===
+
+== Рефлексия (Reflection API)
+
+[source,java]
+----
+Employee e = ... //присваиваем Employee
+Employee m = ... //присваиваем Manager
+
+//Получаем информацию в Runtime
+Class<? extends Employee> ce = e.getClass();
+Class<? extends Employee> cm = m.getClass();
+
+System.out.printf("%s, %s%n", ce.getName(), cm.getName());
+//edu.phystech.hello.Employee, edu.phystech.hello.Manager
+
+System.out.printf("%s, %s%n", ce.getSimpleName(), cm.getSimpleName());
+//Employee, Manager
+----
+
+== Класс `Class<T>` параметризован
+Документация: _"The actual result type of `getClass()` is `Class<? extends |X|>`  where `|X|` is the erasure of the static type of the expression on which `getClass` is called."_
+
+[source,java]
+----
+Employee e = ...; 
+
+//No cast needed!
+Class<? extends Employee> c = e.getClass();
+
+//No cast needed!
+Employee newEmployee =
+  ce.getDeclaredConstructor().newInstance();
+
+//Compile-time error!
+Class<? extends Number> cn = e.getClass();
+----
+
+== Class literals
+
+* Литералы -- строки в коде, порождающие объекты или значения. Например, `"foo"` -- литерал, порождающий объект `String` с содержимым "foo".
+* Литералы классов -- специальные выражения в языке, порождающие объекты с типом `Class<...>`.
+
+== Class literals -- примеры
+
+[source,java]
+----
+//тут всё понятно
+Class<String> c1 = String.class;
+Class<Integer> c2 = Integer.class;
+
+//Да, так можно!! 
+Class<Integer> c3 = int.class;
+//А ещё double.class, boolean.class и т. д.
+
+//При этом c2 и с3 -- существенно РАЗНЫЕ объекты 
+//(например, c3.getConstructors() возвращает пустой массив).
+
+//Тут ничего неожиданного нет, массивами можно параметризовать:
+Class<int[]> c4 = int[].class;
+----
+
+== NB: странные имена классов-массивов
+
+При чтении логов ошибок можно встретиться с таким:
+[width="50%"]
+|===
+|*Type*  |`.class.getName()`
+|`byte[]`   |[B
+|`short[]`  |[S
+|`int[]`    |[I
+|`long[]`   |[J
+|`char[]`   |[C
+|`double[]` |[D
+|`float[]`  |[F
+|`boolean[]`|[Z
+|`Integer[]`|[Ljava.lang.Integer;
+|===
+
+== Динамический способ получения мета-класса
+[source,java]
+----
+//может быть выброшен  ClassNotFoundException
+//параметр типа тут никак не может быть известен
+Class<?> clazz =
+  Class.forName("edu.phystech.hello.Manager");
+
+//Есть две формы: 
+
+//загрузчик вызвавшего метода, статическая инициализация
+static Class<?> forName(String className)
+                         throws ClassNotFoundException
+
+//кастомный загрузчик, статическая инициализация по запросу
+static Class<?> forName(String name, boolean initialize,
+                                   ClassLoader loader)
+----
+
+== Загрузка ресурсных файлов
+
+[source,java]
+----
+public InputStream getResourceAsStream(String name)
+public java.net.URL getResource(String name)
+----
+
+image::resource.png[{image-100-width}]
 
 == Анализ возможностей класса и взаимодействие с элементами класса
 
@@ -217,7 +539,7 @@ public JSONObject serialize(T o) {
     Object fieldValue = null;
     try { fieldValue = f.get(o); } 
       catch (IllegalAccessException e) {
-        e.printStackTrace(); }
+        throw new IllegalStateException(e); }
       if (fieldValue instanceof LocalDate) {
         result.put(f.getName(), 
     ((LocalDate) fieldValue).format(DateTimeFormatter.ISO_LOCAL_DATE));
@@ -321,7 +643,15 @@ Controller --> SpeakerDao
 Controller --> TalkDao
 Controller --> ConferenceDao
 @enduml
-----    
+----   
+
+[%notitle]
+== Wiring
+
+
+//https://i.pinimg.com/originals/ce/9b/0d/ce9b0d180e893a8c2dedf239919b9721.jpg
+image::wiring.jpg[]
+
 
 == Реальная «слоистая» архитектура серверного приложения
 
@@ -360,6 +690,12 @@ Service1 --> Dao2
 @enduml
 ----    
 
+[%notitle]
+== Coupling & Cohesion
+
+
+//https://i.redd.it/yb17mu4cdn8z.jpg
+image::wiring-coupling.jpg[{image-50-width}]
 
 
 == Попытка №1, наивная. «Пусть объекты сами создают себе то, что им надо»
@@ -567,7 +903,7 @@ public class Singleton {
 [.fragment]
 Ну, почти. Только у нас оверхед, потому что два раза читаем `volatile`-переменную.
 
-[transition="fade-out, slide-in"]
+
 == Подход №7. Код из книги "Effective Java, 3rd edition"
 Joshua Bloch: "On my machine, this method is about 1.4 times as fast as the obvious version without a local variable". [EJ, 3rd ed., pp. 334-335]
 
@@ -589,7 +925,6 @@ public class Singleton {
 }
 ----
 
-[transition="fade-in, slide-out"]
 == Подход №7. Код из книги "Effective Java, 3rd edition"
 
 Вы уже видите баг в этом коде? +
@@ -667,227 +1002,4 @@ public class Singleton {
     }
 }
 ----
-
-== Но беда синглетона не в этом
-
-Как автоматически тестировать компоненты, которые жёстко связаны со своими зависимостями через статические поля/методы?
-
-[.fragment]
--- Да никак!
-
-== Фабрика
-
-[source,java]
-----
-// вынесли весь "wiring" из классов в фабричный метод
-public static Controller makeController() {
-  DataSource dataSource = 
-                new DataSource(ConnectionPool.getInstance());
-  ConferenceDao conferenceDao = new ConferenceDao(dataSource);
-  SpeakerDao speakerDao = new SpeakerDao(dataSource);
-  TalkDao talkDao = new SpeakerDao(dataSource);
-  return new Controller(conferenceDao, speakerDao, talkDao);
-}
-----
-
-== Фабрика
-
-* Мы отвязались от «wiring» и можем создавать компоненты по отдельности, что позволяет тестировать.
-* Однако в фабричном методе много повторяющихся действий, фабрика должна «знать» про все компоненты.
-* Вообще этот процесс можно автоматизировать!
-
-== Dependency Injection
-
-[plantuml, di-class, png]
-----
-@startuml
-skinparam dpi 180
-hide footbox
-
-class Injector
-interface ServiceA
-interface ServiceB
-class ServiceAImpl
-class ServiceBImpl
-class Client
-
-Client --> ServiceA
-Client --> ServiceB
-
-ServiceA <|.. ServiceAImpl
-ServiceB <|.. ServiceBImpl
-
-Injector .> Client: <<create>>\n<<inject>>
-Injector ..> ServiceAImpl: <<create>>
-Injector ..> ServiceBImpl: <<create>>
-
-@enduml
-----
-
-
-
-== Dependency Injection
-
-[plantuml, di-seq, png]
-----
-@startuml
-skinparam dpi 180
-hide footbox
-
-participant Injector
-participant ServiceAImpl
-participant ServiceBImpl
-participant Client
-
-activate Injector
-Injector -> ServiceAImpl **: new()
-Injector -> ServiceBImpl **: new()
-Injector -> Client **: new()
-Injector -> Client: inject(ServiceAImpl, ServiceBImpl)
-
-@enduml
-----
-
-== DI Frameworks
-
-* Google Guice
-* JBoss Seam Framework
-* PicoContainer
-* *Spring*
-
-== Построим свой DI-фреймворк «на коленке»
-
-* Пример на базе тренинга Евгения Борисова «Spring Ripper»
-* Позволяет понять логику и внутреннее устройство Spring Framework
-
-== Лектор-робот
-
-[plantuml, robotlecturer, png]
-----
-@startuml
-skinparam dpi 150 
-object RobotLecturer
-object Lecture
-object Speaker
-object SlideShow
-
-RobotLecturer --> Lecture
-RobotLecturer --> Speaker
-RobotLecturer --> SlideShow
-@enduml
-----    
-
-[source,java]
-----
-public class RobotLecturer {
-    //«магическим» образом пусть тут появится то, что нужно!
-    @InjectByType
-    private Lecture lecture;
-    @InjectByType
-    private Speaker speaker;
-    @InjectByType
-    private SlideShow slideShow;
-    ...
-}
-----
-
-== Режим лектора
-
-[source,java]
-----
-//Читать лекции просто
-public void lecture() {
-    lecture.getSlides().forEach(
-        slide -> {
-            slideShow.show(slide.getText());
-            speaker.speak(slide.getComment());
-        }
-    );
-}
-
-//Main-метод
-public static void main(String[] args) 
-                  throws ReflectiveOperationException {
-    RobotLecturer lecturer = 
-        new ObjectFactory().createObject(RobotLecturer.class);
-    lecturer.lecture();
-}
-----
-
-== Конфигуратор объекта
-
-[source,java]
-----
-@RequiredArgsConstructor
-public class InjectByTypeAnnotationObjectConfigurator 
-                             implements ObjectConfigurator {
-  //передадим сюда через конструктор ObjectFactory
-  private final ObjectFactory factory;
-  
-  @Override
-  public void configure(Object t) throws ... {
-    for (Field field : t.getClass().getDeclaredFields()) {
-      if (field.isAnnotationPresent(InjectByType.class)) {
-        field.setAccessible(true);
-        //Мы же умеем по типу создавать объект?
-        field.set(t, factory.createObject(field.getType()));
-      }
-    }
-  }
-}
-----
-
-== Как создаётся и конфигурируется объект
-
-[source,java]
-----
-public class ObjectFactory {
-  //Правда, тут напрашивается DI?
-  private final Reflections scanner = 
-                          new Reflections("edu.phystech");
-  private final List<ObjectConfigurator> configurators = 
-                          new ArrayList<>();
-  
-  public <T> T createObject(Class<? extends T> type) throws ... {
-    //Находим реализацию запрошенного типа
-    type = resolveImpl(type);
-    //Создаём объект (с помощью конструктора по умолчанию, TODO)
-    T t = type.newInstance();
-    //Конфигурируем
-    configure(t);
-    ....
-  }
-----
-
-== Метод configure очень прост
-
-[source,java]
-
-----
-  private <T> void configure(T t) throws ... {
-    for (ObjectConfigurator configurator : configurators) {
-      configurator.configure(t);
-    }
-  }
-----
-
-== Как находится подходящая имплементация
-
-[source,java]
-----
-private <T> Class<? extends T> resolveImpl(Class<? extends T> type){
-  if (type.isInterface()) {
-    Set<Class<? extends T>> classes = 
-                         scanner.getSubTypesOf((Class<T>) type);
-    if (classes.size() != 1) {
-      throw new RuntimeException(
-         "0 or more than one implementation found for type " 
-         + type + " please update your config");
-    }
-    type = classes.iterator().next();
-  }
-  return type;
-}
-----
-
 
