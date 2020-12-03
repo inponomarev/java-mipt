@@ -44,6 +44,30 @@ icon:twitter[size=lg] @inponomarev
 * Нарушает Single Responsibility Principle
 * Невозможно нормально тестировать
 
+
+== Наш учебный пример про доклады и спикеров
+
+[plantuml, objects, png]
+----
+@startuml
+skinparam dpi 180 
+object ConnectionPool
+object JdbcTemplate
+object ConferenceDao
+object SpeakerDao
+object TalkDao
+object Controller
+
+JdbcTemplate -->ConnectionPool
+SpeakerDao --> JdbcTemplate
+TalkDao --> JdbcTemplate
+ConferenceDao --> JdbcTemplate
+Controller --> SpeakerDao
+Controller --> TalkDao
+Controller --> ConferenceDao
+@enduml
+----
+
 == Фабрика
 
 [source,java]
@@ -54,7 +78,7 @@ public static Controller makeController() {
                 new DataSource(ConnectionPool.getInstance());
   ConferenceDao conferenceDao = new ConferenceDao(dataSource);
   SpeakerDao speakerDao = new SpeakerDao(dataSource);
-  TalkDao talkDao = new SpeakerDao(dataSource);
+  TalkDao talkDao = new TalkDao(dataSource);
   return new Controller(conferenceDao, speakerDao, talkDao);
 }
 ----
