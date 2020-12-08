@@ -31,6 +31,416 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
+== Жизненный цикл бина (напоминание)
+
+[graphviz,"beanlife1.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "Configuration";
+  configurer3 -> configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2 configurer3}
+} 
+}
+----
+
+== Жизненный цикл бина (напоминание)
+
+[graphviz,"beanlife2.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "Configuration";
+  configurer3 -> configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2 configurer3}
+}
+
+subgraph cluster_2{
+  label="Initialization";
+  postConstruct2 -> postConstruct1 [dir="back"];
+  {rank=same postConstruct1 postConstruct2}
+}
+
+configurer3 -> postConstruct1;
+}
+----
+
+== Жизненный цикл бина (напоминание)
+
+[graphviz,"beanlife3.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "Configuration";
+  configurer3 -> configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2 configurer3}
+}
+
+subgraph cluster_2{
+  label="Initialization";
+  postConstruct2 -> postConstruct1 [dir="back"];
+  {rank=same postConstruct1 postConstruct2}
+}
+configurer3 -> postConstruct1;
+
+subgraph cluster_3 {
+  label = "Wrapping";
+  
+  proxyconfigurer2 -> proxyconfigurer1  [dir="back"];
+  {rank=same proxyconfigurer2 proxyconfigurer1}
+} 
+postConstruct2 -> proxyconfigurer1;
+
+}
+----
+
+
+
+== Разруливание неоднозначностей
+
+[plantuml,manyimplementatons.png]
+----
+@startuml
+skinparam dpi 180
+interface Bar
+class Foo
+class Bar1
+class Bar2
+class Bar3
+
+Bar <|..Bar1
+Bar <|..Bar2
+Bar <|..Bar3
+
+note right of Bar
+ Что же выбрать
+ из подходящих кандидатур?
+end note
+
+
+Foo -> "bar" Bar
+
+@enduml
+----
+
+----
+NoUniqueBeanDefinitionException: No qualifying bean of
+type 'edu.phystech.robotlecturer.Bar' available: expected
+single matching bean but found 2: bar1,bar2,bar3
+----
+
+== Привязка по имени (неявная)
+
+[source,java]
+----
+@Component
+public class Foo {
+    //Не работает... :-(
+    @Autowired
+    private Bar bar;
+    
+    //Работает!! :-)
+    @Autowired
+    private Bar bar1;
+    ...
+}
+----
+
+== Привязка по имени (явная)
+
+[source,java]
+----
+@Component
+public class Foo {
+    @Autowired
+    @Qualifier("bar1")
+    private Bar bar;
+    ...
+}
+----
+
+== Помечаем одну из имплементаций как @Primary
+
+[source,java]
+----
+@Component
+@Primary
+public class Bar1 implements Bar {...}
+
+@Component
+public class Foo {
+    //Подставится Bar1
+    @Autowired
+    private Bar bar;
+    ...
+}
+----
+[.fragment]
+Но это работает, лишь если действительно один из бинов помечен как `@Primary`, иначе "NoUniqueBeanDefinitionException: more than one 'primary' bean found among candidates".
+
+== Но гораздо чаще нам нужны сразу все!
+
+[source,java]
+----
+
+@Component
+public class Foo {
+    
+    @Autowired
+    private List<Bar> bar;
+    
+    //ИЛИ
+    
+    @Autowired
+    private Map<String,Bar> bar;
+
+---- 
+
+== Впрыскивать можно не только бины, но и что-то попроще
+
+[source,java]
+----
+@Configuration
+//Путь к файлу с настройками
+@PropertySource("classpath:config.properties")
+public class Config {
+
+}
+
+@Component
+public class Foo {
+    @Value("${url}")
+    String url;
+    
+    @Value("${password}")
+    String password;
+----
+
+Также можно использовать SpEL-выражения, например `#{bar.url}`.
+
+== Инициализация
+
+
+[graphviz,"postconstruct.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "Configuration";
+  configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2}
+}
+
+subgraph cluster_2{
+  label="Initialization";
+  style="filled";
+  color="#ffffcc";
+  postConstruct2 -> postConstruct1 [dir="back"];
+  {rank=same postConstruct1 postConstruct2}
+}
+configurer2 -> postConstruct1;
+}
+----
+
+Конструктор не годится в качестве инициализирующего метода!
+
+== Инициализация 
+
+* `@PostConstruct` -- стандартная Java-аннотация, может быть установлена над методом инициализации.
+* Если навесить аннотацию в классе нельзя, то `@Bean(initMethod= "init")`
+
+
+== Финализация
+
+[graphviz,"predestroy.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "Configuration";
+  configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2}
+}
+
+subgraph cluster_2{
+  label="Initialization";
+  postConstruct2 -> postConstruct1 [dir="back"];
+  {rank=same postConstruct1 postConstruct2}
+}
+configurer2 -> postConstruct1;
+
+
+subgraph cluster_3 {
+  label = "Wrapping";
+  
+  proxyconfigurer2 -> proxyconfigurer1  [dir="back"];
+  {rank=same proxyconfigurer2 proxyconfigurer1}
+} 
+postConstruct2 -> proxyconfigurer1;
+
+subgraph cluster_4 {
+  style="filled";
+  color="#ffffcc";
+  label = "PreDestroy";
+  preDestroy2 -> preDestroy1  [dir="back"];
+  {rank=same preDestroy1 preDestroy2}
+} 
+
+proxyconfigurer2 -> preDestroy1;
+
+}
+----
+
+== Финализация
+
+* Симметрично инициализации -- при завершении работы контейнера.
+* При завершении приложения вызывается `context.destroy()`, запускающий механизм финализации.
+* `@PreDestroy` -- стандартная Java-аннотация.
+* Если навесить аннотацию в классе нельзя, то `@Bean(destroyMethod = "destroy")`
+
+== Практическая задача
+
+* Хотим сделать трейсинг приложения: перед началом и после завершения метода должно выводиться в лог его название и штамп времени.
+* Пусть у нас 500 классов по 5 методов
+* Значит, в 2500 мест надо копировать код:
+** не многовато ли??
+** не забудем ли какие-то из методов?
+** смешение бизнес-логики и служебного кода?
+
+== Aspect-oriented programming спешит на помощь
+
+* Типичные задачи:
+** _Логирование_: каждый вызов метода должен отмечаться в логе!
+** _Безопасность_: при вызове каждого метода надо проверять, имеем ли мы право на вызов!
+** _Управление транзакциями_: перед началом метода открывать транзакцию, при удачном завершении коммитить, при неудачном -- откатывать.
+* AOP помогает решать эти задачи без дублирования кода внутри методов.
+* Большое количество аспектов уже написано.
+
+== Терминология AOP
+
+* *Joinpoint* -- место в коде, в выполнение которого мы  «вмешиваемся» (и начинаем выполнять что-то своё). В теории может соответствовать вызовам методов, инициализации классов и инстанцированию объектов, но в Spring AOP -- это всегда _вызов метода_.
+
+
+* *Advice* -- код, который «впрыскивается» и выполняется в joinpoint. 
+
+
+* *Pointcut* -- тем или иным способом определённое множество joinpoint-ов. Например, «все методы, начинающиеся со слова get». Или: «все методы, аннотированные аннотацией `@Benchmarked`». Связывая pointcut-ы c advice-ами, мы определяем, что именно и когда будет работать.
+
+== Терминология AOP
+
+* *Aspect* -- комбинация advices+pointcuts, оформленная в виде отдельного класса. Определяет добавляемую в приложение логику, ответственную за какую-то определённую задачу (например, трассировку).
+
+* *Weaving* -- процесс «вплетения» кода advices в нужные места кода приложения.
+
+* *Target* -- метод, чьё поведение изменяется с помощью AOP.
+
+== Как можно реализовать AOP?
+
+* Статически: вплетение на уровне исходников или байт-кода.
+* Динамически: создавая прокси и используя вплетение в runtime.
+* Spring использует динамический AOP.
+* *Вопрос*: какие вы видите достоинства и недостатки у того и другого метода?
+
+== Прокси-объект: реализация
+
+[graphviz,"proxy.png"]
+----
+digraph G {
+  graph [ dpi = 200 ];
+  compound=true;
+  rankdir="LR";
+  
+  splines="line";
+  
+  caller [shape="rectangle", style=rounded];
+  caller -> inv[lhead=cluster0;label="       "];
+  caller -> inv[arrowhead=none];
+  
+  
+  subgraph cluster0 {
+    
+    inv[style=invis, shape=point];
+    target[shape="rectangle", style="rounded";]
+    
+    label="proxy";
+    style="dashed,rounded";
+    
+    inv -> target[style=dashed;];
+  }
+}
+----
+
+* Создаётся по необходимости.
+* Перехватывает вызовы всех методов на target.
+* Проверяет, не сработал ли pointcut -- и вызывает advice.
+
+== Использование AOP в Spring
+
+Для активизации `BeanPostProcessor`-а, сканирующего AOP-аннотации, надо в конфигурации включить аннотацию `@EnableAspectJAutoProxy`
+
+[source,java]
+----
+@Configuration
+@EnableAspectJAutoProxy
+public class AppConfig{
+  ...
+  
+}
+----
+
+(что такое `BeanPostProcessor` -- мы увидим в дальнейшем, но вы уже знаете, что это конфигуратор объекта)
+
+== Пример аспекта
+
+[source,java]
+----
+@Component @Aspect
+public class BenchmarkAspect {
+  @Around("@annotation(Benchmark)")
+    //pointcut expression ^^^
+  public Object execEntryPoint(ProceedingJoinPoint joinPoint) 
+                                    throws Throwable {
+    System.out.printf("[[[BENCHMARK method %s%n",
+                   joinPoint.getSignature().getName());
+    long start = System.nanoTime();
+    Object retVal = joinPoint.proceed();
+    long end = System.nanoTime();
+    System.out.printf("Time: %dns]]]%n", end - start);
+    return retVal;
+  }
+}
+----
+
+== Spring AOP checklist
+
+* `@EnableAspectJAutoProxy` над конфигурацией.
+* `@Aspect` над аспектом.
+* `@Component` / `@Bean` для аспекта, и сам аспект должен входить в конфигурацию приложения.
+* Аспект не перехватывает методы, которые вызываются `@PostConstruct`-ом. *Вопрос*: почему?
+
 
 == Spring AOP checklist
 
@@ -63,9 +473,9 @@ public class BenchmarkAspect {
 == Какие бывают advices
 
 * `@Before`
-* `@AfterReturning`
-* `@AfterThrowing`
-* `@After`
+* `@AfterReturning` (нормальное завершение)
+* `@AfterThrowing` (exception)
+* `@After` (нормальное завершение и exception)
 * `@Around`
 
 == `@Before`
@@ -113,6 +523,54 @@ public interface BeanPostProcessor {
     Object bean, String beanName) throws BeansException {
 		return bean;
   }
+}
+----
+
+== BeanPostProcessor
+
+[graphviz,"bpp.png"]
+----
+digraph G {
+graph [ dpi = 160 ];
+rankdir="LR";
+compound=true;
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "BeanPostProcessor#\npostProcessBeforeInitialization";
+  style="filled";
+  color="#ffffcc";
+  configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2}
+}
+
+subgraph cluster_2{
+  label="Initialization";
+  postConstruct2 -> postConstruct1 [dir="back"];
+  {rank=same   postConstruct1 postConstruct2}
+}
+configurer2 -> postConstruct1;
+
+
+subgraph cluster_3 {
+  label = "BeanPostProcessor#\npostProcessAfterInitialization";
+  style="filled";
+  color="#ffffcc";
+  proxyconfigurer2 -> proxyconfigurer1  [dir="back"];
+  {rank=same proxyconfigurer2 proxyconfigurer1}
+} 
+postConstruct2 -> proxyconfigurer1;
+
+subgraph cluster_4 {
+
+  label = "PreDestroy";
+  preDestroy2 -> preDestroy1  [dir="back"];
+  {rank=same preDestroy1 preDestroy2}
+} 
+
+proxyconfigurer2 -> preDestroy1;
+
 }
 ----
 
@@ -272,13 +730,9 @@ image::spring-factories.png[{image-100-width}]
 
 == Никогда не переставайте изучать новое
 
-[cols="60a,40a"]
-|===
-|
-image::alice_queen.jpg[]
+_"Here, you see, it takes all the running you can do, to keep in the same place. If you want to get somewhere else, you must run at least twice as fast as that!”_
 
-|"Here, you see, it takes all the running you can do, to keep in the same place. If you want to get somewhere else, you must run at least twice as fast as that!”
-|===
+image::alice_queen.jpg[{image-40-width}]
 
 == Старое тоже полезно изучать
 
@@ -293,6 +747,16 @@ image::goetz.jpg[]
 |
 image::urma.jpg[]
 |===
+
+== Помните про свою профессиональную ответственность
+
+* От работы программистов в XXI веке зависят судьбы людей
+* Даже если это не программа, управляющая самолётом или аппаратом ИВЛ
+* Помните про:
+** *Security*
+** *Privacy*
+** *Accessibility*
+* Делайте мир лучше!
 
 == Становитесь частью community!
 * JUGs: Москва, Санкт-Петербург, Новосибирск.
