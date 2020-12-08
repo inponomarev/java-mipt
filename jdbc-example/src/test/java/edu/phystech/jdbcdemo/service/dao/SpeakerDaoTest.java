@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,10 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 class SpeakerDaoTest {
-    private SimpleJdbcTemplate source = new SimpleJdbcTemplate(
-            JdbcConnectionPool.create("jdbc:h2:mem:database;DB_CLOSE_DELAY=-1", "", ""));
-    private SpeakerDao dao =
-            new SpeakerDao(source);
+    private DataSource pool = JdbcConnectionPool.create("jdbc:h2:mem:database;DB_CLOSE_DELAY=-1", "", "");
+    private SimpleJdbcTemplate source = new SimpleJdbcTemplate(pool);
+    private SpeakerDao dao = new SpeakerDao(source);
 
     @BeforeEach
     void setupDB() throws IOException, SQLException {
