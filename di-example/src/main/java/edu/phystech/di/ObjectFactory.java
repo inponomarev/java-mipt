@@ -1,6 +1,5 @@
 package edu.phystech.di;
 
-import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
 import javax.annotation.PostConstruct;
@@ -19,12 +18,12 @@ public class ObjectFactory {
     public ObjectFactory() throws ReflectiveOperationException {
         Set<Class<? extends ObjectConfigurator>> classes = scanner.getSubTypesOf(ObjectConfigurator.class);
         for (Class<? extends ObjectConfigurator> aClass : classes) {
-           try {
-               Constructor<? extends ObjectConfigurator> constructor = aClass.getConstructor(ObjectFactory.class);
-               configurators.add(constructor.newInstance(this));
-           } catch (NoSuchMethodException e){
-               configurators.add(aClass.newInstance());
-           }
+            try {
+                Constructor<? extends ObjectConfigurator> constructor = aClass.getConstructor(ObjectFactory.class);
+                configurators.add(constructor.newInstance(this));
+            } catch (NoSuchMethodException e) {
+                configurators.add(aClass.newInstance());
+            }
         }
         Set<Class<? extends ProxyConfigurator>> set = scanner.getSubTypesOf(ProxyConfigurator.class);
         for (Class<? extends ProxyConfigurator> aClass : set) {
@@ -34,22 +33,26 @@ public class ObjectFactory {
 
     public <T> T createObject(Class<? extends T> type) throws ReflectiveOperationException {
         //Находим реализацию запрошенного типа
-        type = resolveImpl(type);
+        Class<? extends T> implType = resolveImpl(type);
         //Создаём объект (с помощью конструктора по умолчанию, TODO)
-        T t = type.newInstance();
+        T obj = implType.getDeclaredConstructor().newInstance();
+
         //Конфигурируем
-        configure(t);
+        configure(obj);
         //Запускаем методы PostConstruct
-        invokeInitMethods(type, t);
-        t = wrapWithProxyIfNeeded(type, t);
-        return t;
+        invokeInitMethods(type, obj);
+
+        obj = wrapWithProxyIfNeeded(obj);
+
+        return obj;
     }
 
     private <T> Class<? extends T> resolveImpl(Class<? extends T> type) {
         if (type.isInterface()) {
             Set<Class<? extends T>> classes = scanner.getSubTypesOf((Class<T>) type);
             if (classes.size() != 1) {
-                throw new RuntimeException("0 or more than one impl found for type " + type + " please update your config");
+                throw new RuntimeException("0 or more than one impl found for type "
+                        + type + " please update your config");
             }
             type = classes.iterator().next();
         }
@@ -62,9 +65,9 @@ public class ObjectFactory {
         }
     }
 
-    private <T> T wrapWithProxyIfNeeded(Class<? extends T> type, T t) {
+    private <T> T wrapWithProxyIfNeeded(T t) {
         for (ProxyConfigurator proxyConfigurator : proxyConfigurators) {
-            t = proxyConfigurator.wrapWithPoxy(t, type);
+            t = proxyConfigurator.wrapWithPoxy(t);
         }
         return t;
     }

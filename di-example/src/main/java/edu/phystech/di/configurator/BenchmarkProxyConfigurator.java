@@ -10,7 +10,8 @@ import java.lang.reflect.Proxy;
 
 public class BenchmarkProxyConfigurator implements ProxyConfigurator {
     @Override
-    public <T> T wrapWithPoxy(T t, Class<? extends T> type) {
+    public <T> T wrapWithPoxy(T t) {
+        Class<?> type = t.getClass();
         boolean isProxyNeeded = type.isAnnotationPresent(Benchmark.class)
                 || !ReflectionUtils.getAllMethods(type, method -> method.isAnnotationPresent(Benchmark.class)).isEmpty();
         if (isProxyNeeded) {
