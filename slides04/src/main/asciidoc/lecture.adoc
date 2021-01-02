@@ -594,7 +594,7 @@ static int random() {
 }
 
 //ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее
-int rnd = ThreadLocalRandom.current().nextDouble();
+double rnd = ThreadLocalRandom.current().nextDouble();
 ----
 
 == Класс String
