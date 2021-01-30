@@ -23,6 +23,8 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
+      - name: Make output directory
+        run: mkdir -p output
       - name: Build with Maven
         run: mvn generate-resources
       - name: Copy slides
