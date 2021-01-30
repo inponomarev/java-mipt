@@ -26,7 +26,7 @@ jobs:
       - name: Make output directory
         run: mkdir -p output
       - name: Build with Maven
-        run: mvn generate-resources
+        run: mvn verify
       - name: Copy slides
         run: for file in slides??; do cp -r "$file/target/generated-slides" "output/$file"; done 
       - name: Copy plan
