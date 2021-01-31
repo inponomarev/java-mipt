@@ -589,7 +589,7 @@ double rnd = (new Random()).nextDouble();
 
 //До Java 7+ так было нормально, но теперь НЕТ!!
 static final Random r = new Random();
-static int random() {
+static double random() {
   return r.nextDouble();
 }
 
