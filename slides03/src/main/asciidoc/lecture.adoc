@@ -972,7 +972,7 @@ stem:[\forall x \ne \mathrm{null} (x.equals(x))]
 2. Симметричность: +
 stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} (x.equals(y) \iff y.equals(x))]
 3. Транзитивность: +
-stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} \, \forall z \ne \mathrm{null} (x.equals(y) \& y.equals(z) \Rightarrow z.equals(z))]
+stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} \, \forall z \ne \mathrm{null} (x.equals(y) \& y.equals(z) \Rightarrow x.equals(z))]
 4. Консистентность: если сравниваемые объекты не изменялись, повторный вызов `equals` должен возвращать одно и то же значение.
 5. stem:[\forall x \ne \mathrm{null} (x.equals(\mathrm{null}) = \mathrm{false})]
 
