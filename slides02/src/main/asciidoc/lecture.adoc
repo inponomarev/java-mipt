@@ -40,24 +40,49 @@ icon:twitter[size=lg] @inponomarev
 * psvm -- sout
 * Манифест (runnable jar) 
 
-== Ключевые слова языка
+== Ключевые слова языка (keywords) [JLS16]
+[source]
+----
+abstract   continue   for          new         switch
+assert     default    if           package     synchronized
+boolean    do         goto         private     this
+break      double     implements   protected   throw
+byte       else       import       public      throws
+case       enum       instanceof   return      transient
+catch      extends    int          short       try
+char       final      interface    static      void
+class      finally    long         strictfp    volatile
+const      float      native       super       while
+_ (underscore)    
+----
+
+== Null and Boolean Literals 
 
 [source]
 ----
- abstract     exports (Java 9)    new                 this
- assert       extends             package             throws
- boolean      final               private             transient
- break        finally             protected           try
- byte         float               public              var (Java 10)
- case         for                 record (Java 14)    void
- catch        if                  requires (Java 9)   volatile
- char         implements          return              while
- class        import              short               yield (Java 14)
- continue     instanceof          static              true
- default      int                 strictfp            false
- do           interface           super               null
- double       long                switch              const
- else         module (Java 9)     synchronized        goto
+
+
+
+
+             null       true        false
+----
+
+== Restricted Keywords & Identifiers
+
+[source]
+----
+(Java 9)
+open     module      requires    transitive    exports
+opens    to          uses        provides      with
+
+(Java 10)
+var 
+
+(Java 14)
+yield    record
+
+(Java 15)
+sealed   non-sealed  permits
 ----
 
 == Комментарии
@@ -1046,21 +1071,45 @@ while (flag) {
 ----
 
 ==  `do while`: цикл с постусловием
+
+[cols="50a,50a"]
+|===
+.^a|
+
 [source, java]
 ----
 do {
   balance += payment;
-  double interest = balance * interestRate / 100;
+  double interest = 
+    balance * interestRate / 100;
   balance += interest;
-  year++;
+  years++;
   // print current balance
-  . . .
   // ask if ready to retire and get input
-  . . .
 } while (input.equals("N"));
 ----
+|
 
-Правда жизни: они никогда не нужны.
+[plantuml, dowhile, png]
+----
+@startuml
+skinparam dpi 120 
+
+start
+
+repeat
+  :balance += payment;
+  :double interest = balance * interestRate / 100;
+  :balance += interest;
+  :years++;
+repeat while(input.equals("N"))
+
+stop
+
+@enduml
+
+|===
+Правда жизни: `do-while` бывает нужен _очень_, _ОЧЕНЬ_ редко.
 
 == Циклы `for`
 
