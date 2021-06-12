@@ -274,7 +274,7 @@ public class  Executors {
         throws InterruptedException, ExecutionException;
 ----
 
-== Отмена задач и «прекращение облуживания»
+== Отмена задач и «прекращение обслуживания»
 
 [source,java]
 ----

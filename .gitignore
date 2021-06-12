@@ -23,3 +23,5 @@ slides/src/main/asciidoc/*.png
 /*.mp4
 /*.bat
 *.cache
+
+*.bak

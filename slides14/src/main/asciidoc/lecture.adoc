@@ -141,7 +141,7 @@ Foo -> "bar" Bar
 ----
 NoUniqueBeanDefinitionException: No qualifying bean of
 type 'edu.phystech.robotlecturer.Bar' available: expected
-single matching bean but found 2: bar1,bar2,bar3
+single matching bean but found 3: bar1,bar2,bar3
 ----
 
 == Привязка по имени (неявная)
