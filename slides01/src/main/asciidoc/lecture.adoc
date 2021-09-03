@@ -60,9 +60,18 @@ icon:twitter[size=lg] @inponomarev
 * Домашние работы
 * Баллы за сдачу ДЗ определяют финальную оценку
 
+[%notitle]
+== What is Java?
+image::indonesia.png[canvas, size=cover]
+
+[%notitle]
+== Ещё про острова
+image::kotlin.png[canvas, size=cover]
+
+
 == Полезные ссылки
 
-* http://gg.gg/java20-join (Telegram MIPT. Java-2020)
+* https://bit.ly/java21-join (Telegram MIPT. Java-2021)
 * https://inponomarev.ru/corejava
 
 
@@ -96,14 +105,6 @@ image::goetz.jpg[]
 
 * *Joshua Bloch* Effective Java
 * *Brian Goetz et al.* Java Concurrency in Practice
-
-[%notitle]
-== What is Java?
-image::indonesia.png[canvas, size=cover]
-
-[%notitle]
-== Ещё про острова
-image::kotlin.png[canvas, size=cover]
 
 == TIOBE Index
 
@@ -144,6 +145,13 @@ Java SE 7 (July 28, 2011)       |  Java SE 17 (due to Sept. 2021)
 Java SE 8 (March 18, 2014)      |
 Java SE 9 (September 21, 2017)  |
 ----
+
+== 6-monthly Release Cadence
+
+image::6-monthly.png[{image-70-width}]
+
+*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature evolution in Java 13 and beyond]
+
 
 == Истоки
 
@@ -427,12 +435,6 @@ image::javasirs.jpg[{image-40-width}]
 * *Тагир Валеев*, 2018: Pattern matching и его воображаемые друзья
 * *Сергей Куксенко*, 2020: Valhalla is coming
 * *Сергей Куксенко*, 2020: Java threads are losing weight, performance review of Project Loom
-
-== 6-monthly Release Cadence
-
-image::6-monthly.png[{image-70-width}]
-
-*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature evolution in Java 13 and beyond]
 
 [%notitle]
 == Языки
