@@ -40,7 +40,7 @@ icon:twitter[size=lg] @inponomarev
 * psvm -- sout
 * Манифест (runnable jar) 
 
-== Ключевые слова языка (keywords) [JLS16]
+== Ключевые слова языка (keywords) [JLS17, 3.9]
 [source]
 ----
 abstract   continue   for          new         switch
@@ -425,7 +425,14 @@ var reader = new BufferedReader(
 
 == Не перемудрите со сдвигами!!
 
-`5 >> 32 == 5`
+`5 >> 32 == ?`
+
+== Не перемудрите со сдвигами!!
+
+`5 >> 32 == 5` 
+
+* для `int` используются только 5 младших бит второго операнда (0..31),
+* для `long` используются только 6 младших бит второго операнда (0..63)  
 
 == Побитовые операторы
 
@@ -981,7 +988,7 @@ digraph G {
 .^a|
 [source,java]
 ----
-int[][] odds = new int[ROWNUM][];
+double[][] odds = new double[ROWNUM][];
 for (int n = 0; n < ROWNUM; n++)
   odds[n] = new int[n + 1];
 
