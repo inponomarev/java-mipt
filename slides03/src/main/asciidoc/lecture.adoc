@@ -423,7 +423,7 @@ IntegerProducer . Integer
 * Возвращаемый тип может быть того же типа или субтипа
 * Типы аргументов обязаны совпадать
 
-== final-классы и методы
+== `final`-классы и методы
 
 * Ключевое слово `final`:
 ** на уровне класса запрещает наследование класса
@@ -431,6 +431,42 @@ IntegerProducer . Integer
 * Зачем это нужно?
 ** Паттерн "Шаблонный метод"
 ** J. Bloch: 'Design and document for inheritance, or else prohibit it'
+
+== `sealed`-типы (Java 15+)
+
+Наследоваться можно, но только тем, кому разрешено:
+
+[source,java]
+----
+public sealed class Pet 
+        permits 
+        //никакие другие не могут наследоваться от него
+        Cat, Dog, Fish {
+}
+
+public final Cat {...}
+
+public sealed Dog permits Hound, Terrier, Toy {...}
+
+public non-sealed Fish {...}
+----
+
+== Важный пример: `sealed`-интерфейсы и record-ы
+
+Пока не знаем ни что такое interface, ни что такое record, но просто запомним: 
+
+[source,java]
+----
+public sealed interface Expr
+        permits Add, Subtract, Multiply, Divide, Literal {}
+
+//implicitly final!
+public record Add(Expr left, Expr right) implements Expr {}
+public record Subtract(Expr left, Expr right) implements Expr {}
+public record Multiply(Expr left, Expr right) implements Expr {}
+public record Divide(Expr left, Expr right) implements Expr {}
+public record Literal(int value) implements Expr {}
+----
 
 
 == Перегрузка (overloading) методов
@@ -752,9 +788,8 @@ if (p instanceof Student) {
 }
 ----
 
-== Pattern Matching (Java 14+)
+== Pattern Matching for instanceof (Java 14+, JEP305)
 
-JEP305 -- preview feature для Java 14:
 
 [source,java]
 ----
@@ -776,7 +811,7 @@ if (obj instanceof String s && s.length() > 5) {
 if (obj instanceof String s || s.length() > 5) {...}
 ----
 
-== Pattern Matching (Java 14+)
+== Все меньше избыточного кода
 
 [source,java]
 ----
@@ -798,6 +833,21 @@ if (obj instanceof Number n) {
 }
 ----
 
+== Pattern matching for switch (JEP406, preview feature in Java 17)
+
+[source,java]
+----
+public int calculate(Expr expr) {
+  return switch (expr) {
+    //Не скомпилируется, если мы забудем что-то из реализаций Expr!
+    case Literal l -> l.value();
+    case Divide d -> calculate(d.left()) / calculate(d.right());
+    case Multiply m -> calculate(m.left()) * calculate(m.right());
+    case Add a -> calculate(a.left()) + calculate(a.right());
+    case Subtract s -> calculate(s.left()) - calculate(s.right());
+  };
+}
+----
 
 == Вложенные классы
 
@@ -889,6 +939,25 @@ class Outer {
    } 
 }
 ----
+
+== Java 15: локальные record-ы, enum-ы и интерфейсы
+
+[source,java]
+----
+class Outer { 
+   void outerMethod() { 
+      //они не захватывают внешнее состояние
+      record Foo (int a, int b) {};
+      enum Bar {A, B};
+      interface Baz {};
+      
+      //NB:
+      //static not allowed here!
+      static class X {};
+   } 
+}
+----
+
 
 == Вложенные статические классы
 
@@ -1122,3 +1191,4 @@ record Point(int x, int y) {
 * конструктор
 * доступ через `x()` и `y()`
 * `equals`, `hashCode` и `toString`
+* невозможно наследование от класса и от рекорда, но возможна реализация интерфейсов
