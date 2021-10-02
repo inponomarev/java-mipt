@@ -1012,7 +1012,7 @@ public static void swap(Pair<?> p) {
 [source,java]
 ----
 public static void swap(Pair<?> p) {
-  return swapHelper(p);
+  swapHelper(p);
 }
 
 private static <T> void swapHelper(Pair<T> p) {

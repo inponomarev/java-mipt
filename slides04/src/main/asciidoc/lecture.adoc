@@ -339,8 +339,10 @@ try {
 == Если не понятно, что делать с исключением 
 
 * Задекларируйте checked exception в методе
-* Оберните в unchecked exception (`InvalidStateException`, например), с помощью `initCause`.
-* Lobmok's `@SneakyThrows` (самая спорная фича Lombok)
+* Оберните с помощью `initCause` или параметра конструктора
+** в задекларированный checked exception
+** в unchecked exception (`InvalidStateException`, например)
+* Лучше не надо: Lobmok's `@SneakyThrows` (самая спорная фича Lombok)
 
 == Общее правило
 
