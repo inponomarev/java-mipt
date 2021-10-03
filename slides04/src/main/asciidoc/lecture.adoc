@@ -672,7 +672,9 @@ digraph G {
 * `if (a.equals("John Doe"))` -- плохо, получим NPE, если `a == null`.
 * `if ("John Doe".equals(a))` -- так делают  серьёзные ребята.
 * `if ("John Doe".equalsIgnoreCase(a))` -- сравнение без учёта регистра.
-* `if(str != null && !str.trim().isEmpty())` -- в этой строке что-то есть!
+* `if(str != null && !str.isEmpty())` -- в этой строке что-то есть!
+* `if(str != null && !str.isBlank())` -- в этой строке что-то есть помимо пробелов, табуляций, переносов и проч.!
+
 
 == Интернирование строк
 
