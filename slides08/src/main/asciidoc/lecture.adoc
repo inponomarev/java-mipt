@@ -177,6 +177,12 @@ try (Connection conn = connectionPool.getConnection()) {
 }
 ----
 
+== Реализации Connection Pools (`DataSource`)
+
+* Apache Commons DBCP
+* Hikari CP
+* Другие фреймворки или JDBC-драйверы (например, H2)
+
 == Методы Connection
 
 * управление транзакциями
@@ -279,6 +285,11 @@ userName = "a';DROP TABLE users;"
 
 //... и много другой гадости
 ----
+
+== SQL Injection
+
+image::sqlinjection.jpeg[]
+
 
 == Демо-пример
 
