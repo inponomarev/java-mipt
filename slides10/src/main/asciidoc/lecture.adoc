@@ -76,6 +76,31 @@ image::amdahl.png[{image-70-width}]
 [cols="25a,25a,25a,25a"]
 |===
 ^.^|
+[stem]
+++++
+\Large
+N = 4, E = 6
+++++
+^.^|
+[stem]
+++++
+\Large
+N = 5, E = 10
+++++
+^.^|
+[stem]
+++++
+\Large
+N = 6, E = 15
+++++
+^.^|
+[stem]
+++++
+\Large
+N = 7, E = 21
+++++
+
+^.^|
 [graphviz,"k4.png"]
 ----
 graph K4 {
@@ -151,7 +176,7 @@ E = \frac{N (N -1)}{2}
 
 [stem] 
 ++++
-\Huge
+\Large
 S = \frac{N}{1+\alpha(N-1) + \beta N (N-1)} = \frac{N}{1+(\alpha + \beta N) (N-1)}
 ++++
 == USL: поведение
