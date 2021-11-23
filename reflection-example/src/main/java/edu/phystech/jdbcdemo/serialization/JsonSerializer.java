@@ -27,7 +27,7 @@ public class JsonSerializer<T> {
                 fieldValue = f.get(o);
             } catch (IllegalAccessException e) {
                 //this will not happen
-                e.printStackTrace();
+                throw new IllegalStateException(e);
             }
             if (fieldValue instanceof LocalDate) {
                 result.put(f.getName(), ((LocalDate) fieldValue).format(DateTimeFormatter.ISO_LOCAL_DATE));

@@ -20,6 +20,7 @@ public class JacksonSerializationTest {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         String jsonString = mapper.writeValueAsString(p);
+        System.out.println(jsonString);
         JSONObject json = new JSONObject(jsonString);
 
         assertEquals("Ivan", json.get("firstName"));
