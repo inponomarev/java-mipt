@@ -1,0 +1,1440 @@
+#. extracted from ./slides04/src/main/asciidoc/lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-15 11:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.2.5\n"
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:24
+msgid ""
+"= Core Java: Курс лекций. Лекция 4\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:28
+msgid ""
+"//== Часть 1. Введение\n"
+":!figure-caption:"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:30
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:32
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:34
+msgid "== Enumeration Classes"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:39
+msgid ""
+"[source,java]\n"
+"----\n"
+"public enum Size \n"
+"  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:41
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:41"
+msgid ". . ."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:43
+msgid "Size s = Size.MEDIUM;"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:45
+msgid "for (Size s: Size.values()) . . ."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:51
+msgid ""
+"switch (s) {\n"
+"  case SMALL: . . .\n"
+"  case LARGE: . . .\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:66
+msgid ""
+"== Поля, методы и конструкторы для перечислений\n"
+"[source,java]\n"
+"----\n"
+"public enum Size\n"
+"{\n"
+"   SMALL(\"S\"), MEDIUM(\"M\"), LARGE(\"L\"), EXTRA_LARGE(\"XL\");\n"
+"   private final String abbreviation;\n"
+"   private Size(String abbreviation) {\n"
+"     this.abbreviation = abbreviation; \n"
+"   }\n"
+"   public String getAbbreviation() { \n"
+"     return abbreviation; \n"
+"   }\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:68
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:68"
+msgid ". . ."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:72
+msgid ""
+"Size s = . . .\n"
+"s.getAbbreviation(); // вернёт S, M, L или XL\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:74
+msgid "== Базовые принципы проектирования классов"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:76
+msgid "* Минимизируйте область видимости (`private` всё, что только можно)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:78
+msgid "* Минимизируйте мутабельность (`final` на всём, что только можно)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:80
+msgid ""
+"* Документируйте точки расширения через наследование, или запрещайте  "
+"наследование (`final`)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:82
+msgid "== Исключительные ситуации"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:84
+msgid ""
+"* Программные ошибки (баги): null pointer dereference, выход за границы "
+"массива, некорректное приведение типов, деление на ноль и т. п."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:86
+msgid "* Некорректные входные данные"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:88
+msgid ""
+"* Железо и сеть: невозможность открыть файл, нехватка памяти / места на "
+"диске и т. п."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:90
+msgid ""
+"Исключение -- способ _недвусмысленно_ сообщить о том, что вызов функции "
+"завершился неудачей (в отличие от return codes и т. п.)."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:92
+msgid "== Иерархия классов исключений"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:96
+msgid ""
+"[plantuml, exceptionclasses, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:98
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:104
+msgid ""
+"class Throwable {\n"
+"  + getMessage(): String\n"
+"  + getCause(): Throwable\n"
+"  + getStackTrace(): StackTraceElement[]\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:108
+msgid ""
+"Throwable <|-- Error\n"
+"Throwable <|-- Exception\n"
+"Exception <|-- RuntimeException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:112
+msgid ""
+"RuntimeException <|-- ClassCastException\n"
+"RuntimeException <|-- IndexOutOfBoundsException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:114
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:114"
+msgid "Exception <|-- IOException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:118
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:121
+msgid "== Что делаем?"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:125
+msgid ""
+"* `Error` и наследники -- не обрабатываем (что-то катастрофическое "
+"случилось).\n"
+"* `RuntimeException` и наследники -- их быть не должно (по идее, но не всё "
+"так просто).\n"
+"* Checked exceptions -- их обрабатываем."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:127
+msgid "== Декларирование checked-исключений"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:134
+msgid ""
+"[source,java]\n"
+"----\n"
+"public FileInputStream(String name) throws FileNotFoundException{\n"
+"  . . .\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:149
+msgid ""
+"== Декларирование более чем одного исключения\n"
+"[source,java]\n"
+"----\n"
+"class MyAnimation {\n"
+". . .\n"
+"  public Image loadImage(String s) \n"
+"    throws FileNotFoundException, EOFException {\n"
+"    . . .\n"
+"  }\n"
+"}\n"
+"----\n"
+"* Не надо декларировать unchecked exceptions\n"
+"* Не надо декларировать исключения, если одно -- подтип другого\n"
+"* Правда жизни: вам поможет IDE"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:151
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:151"
+msgid "== Выбрасывание исключений"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:157
+msgid ""
+"[source,java]\n"
+"----\n"
+"throw new EOFException();\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:159
+msgid ""
+"(Если мы выбрасываем checked exception, компилятор позволит это сделать либо "
+"если оно задекларировано, либо если оно обрабатывается в самом методе.)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:161
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:161"
+msgid "== Выбрасывание исключений"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:163
+msgid "_Не следует_ выбрасывать явно"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:168
+msgid ""
+"* `Exception`\n"
+"* `RuntimeException`\n"
+"* `Throwable`\n"
+"* `Error`"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:170
+msgid "(J. Bloch, Effective Java, Item 72)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:172
+msgid "== Откуда наследовать своё собственное исключение? Вот в чём вопрос"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:174
+msgid ""
+"* Если наследовать от Exception -- надо быть готовым, что его придётся "
+"декларировать или ловить всюду. Хорошо это или плохо?"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:176
+msgid "* Можно унаследоваться от RuntimeException. И забыть его поймать."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:178
+msgid "* В эпоху лямбд и стримов checked exceptions это скорее головная боль."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:180
+msgid "* Споры не прекращаются."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:182
+msgid "== Как поймать исключение: try-catch блок"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:194
+msgid ""
+"[source,java]\n"
+"----\n"
+"try {\n"
+"  // . . . code . . .\n"
+"  // . . . more code . . .\n"
+"  // . . . more code . . .\n"
+"} catch (ExceptionType e) {\n"
+"  // handler for this type of exception\n"
+"  // use e object to extract the data!\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:196
+msgid "== Как поймать несколько типов исключений"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:200
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:200"
+msgid ""
+"[plantuml, iomultiple, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:202
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:202"
+msgid "skinparam dpi 180 "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:204
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:204"
+msgid "IOException <|-- FileNotFoundException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:208
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:208"
+msgid ""
+"IOException <|-- UnknownHostException\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:221
+msgid ""
+"[source,java]\n"
+"----\n"
+"try {\n"
+"  //code that might throw exceptions\n"
+"} catch (FileNotFoundException e) {\n"
+"  //emergency action for missing files\n"
+"} catch (UnknownHostException e) {\n"
+"  // emergency action for unknown hosts\n"
+"} catch (IOException e) {\n"
+"  // emergency action for all other I/O problems\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:223
+msgid "== try-multicatch"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:227
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:227"
+msgid ""
+"[plantuml, iomultiple, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:229
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:229"
+msgid "skinparam dpi 180 "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:231
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:231"
+msgid "IOException <|-- FileNotFoundException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:235
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:235"
+msgid ""
+"IOException <|-- UnknownHostException\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:242
+msgid ""
+"[source,java]\n"
+"----\n"
+"try {\n"
+"  //code that might throw exceptions\n"
+"} catch (FileNotFoundException | UnknownHostException e) {\n"
+"  //emergency action for missing files or unknown hosts"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:247
+msgid ""
+"  //e type is the most specific common supertype \n"
+"  //of the throwable types\n"
+"} \n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:249
+msgid "== Перевыбрасывание исключений (с умной проверкой типов)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:253
+msgid ""
+"[source,java]\n"
+"----\n"
+". . . throws SQLException . . ."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:264
+msgid ""
+"try {\n"
+"  //доступ к БД -- может выбросить SQLException \n"
+"} catch (Exception e) {\n"
+"  logger.log(level, message, e);\n"
+"  //хотя Exception есть тип более широкий,\n"
+"  //чем задекларирован в методе, компилятор поймёт,\n"
+"  //что всё ок\n"
+"  throw e;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:266
+msgid "== Обёртывание исключений"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:270
+msgid ""
+"[source,java]\n"
+"----\n"
+". . . throws ServletException . . ."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:280
+msgid ""
+"try {\n"
+"  //доступ к БД -- может выбросить SQLException\n"
+"} catch (SQLException e) {\n"
+"  ServletException se = new ServletException(\"database error\");\n"
+"  //сохраняем информацию о первопричине\n"
+"  se.initCause(e);\n"
+"  throw se;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:282
+msgid "== Переопределение методов с исключениями"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:287
+msgid ""
+"[plantuml, overriding, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:289
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:289"
+msgid "skinparam dpi 200 "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:293
+msgid ""
+"class Foo {\n"
+"    + foo() throws FooException \n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:295
+msgid "Foo <|-- Bar"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:299
+msgid ""
+"class Bar {\n"
+"    + foo() throws BarException\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:302
+msgid "FooException <|-- BarException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:307
+msgid ""
+"Foo . FooException\n"
+"Bar . BarException\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:310
+msgid ""
+"* Исключение может быть того же типа или субтипа\n"
+"* Не возбраняется, если его не будет вообще"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:312
+msgid "== Стандартные типы переиспользуемых unchecked-exceptions"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:314
+msgid "J.{nbsp}Bloch 'Effective Java', Item 72:"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:322
+msgid ""
+"[cols=\"30a,70a\"]\n"
+"|===\n"
+"|`InvalidArgumentException` | неправильный, ненулевой параметр метода\n"
+"|`InvalidStateException`| внутреннее состояние объекта не подходит для "
+"запуска метода\n"
+"|`NullPointerException`| передан `null` в метод, не ожидающий `null` в "
+"качестве параметра \n"
+"|`IndexOutOfBoundsException`| Индексный параметр выходит за допустимый "
+"диапазон\n"
+"|==="
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:324
+msgid "== Вам будет очень хотеться сделать так..."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:334
+msgid ""
+"[source,java]\n"
+"----\n"
+"try {\n"
+" ...\n"
+"} catch (Exception e) {\n"
+" e.printStackTrace();\n"
+" //И компилятор счастлив!\n"
+" //(но коллега во время код-ревью -- нет)\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:336
+msgid "----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:338
+msgid "...*но так делать не надо!* "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:340
+msgid "== Если не понятно, что делать с исключением "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:346
+msgid ""
+"* Задекларируйте checked exception в методе\n"
+"* Оберните с помощью `initCause` или параметра конструктора\n"
+"** в задекларированный checked exception\n"
+"** в unchecked exception (`InvalidStateException`, например)\n"
+"* Лучше не надо: Lobmok's `@SneakyThrows` (самая спорная фича Lombok)"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:348
+msgid "== Общее правило"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:352
+msgid ""
+"* _Throw early, catch late._\n"
+"* Не откладывайте выбрасывание исключения, как только стала ясна причина "
+"ошибки.\n"
+"* Не спешите обрабатывать исключение, пока вам не стал полностью ясен "
+"механизм обработки."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:354
+msgid "== finally-блок"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:373
+msgid ""
+"[source,java]\n"
+"----\n"
+"InputStream in = new FileInputStream(. . .);\n"
+"try {\n"
+"  // исключение может возникнуть здесь\n"
+"  code that might throw exceptions\n"
+"  // и даже возврат из метода вызовет блок finally! \n"
+"  if (...) \n"
+"    return;\n"
+"} catch (IOException e) {\n"
+"  // бывает, исключение возникает во время\n"
+"  // обработки исключений\n"
+"  show error message\n"
+"} finally {\n"
+"  // в любом случае сработает finally-блок!\n"
+"  in.close();\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:375
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:375"
+msgid "== Беда с finally-block"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:380
+msgid ""
+"[source,java]\n"
+"----\n"
+"...throws IOException...\n"
+"//Один ресурс"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:382
+msgid "BufferedReader br = new BufferedReader(new FileReader(path));"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:384
+msgid "try {return br.readLine();} "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:387
+msgid ""
+"finally {br.close();}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:389
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:389"
+msgid "== Беда с finally-block"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:394
+msgid ""
+"[source,java]\n"
+"----\n"
+"...throws IOException...\n"
+"//Два ресурса"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:405
+msgid ""
+"InputStream in = new FileInputStream(src);\n"
+"try {\n"
+"  OutputStream out = new FileOutputStream(dst);\n"
+"  try {\n"
+"    byte[] buf = new byte[BUFFER_SIZE];\n"
+"    int n;\n"
+"    while ((n = in.read(buf)) >= 0)out.write(buf, 0, n);} \n"
+"  finally {out.close();}} \n"
+"finally {in.close();}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:408
+msgid "== try-with-resources-блок"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:416
+msgid ""
+"Общая схема\n"
+"[source,java]\n"
+"----\n"
+"try (Resource res = . . .) {\n"
+"  work with res\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:426
+msgid ""
+"Пример:\n"
+"[source,java]\n"
+"----\n"
+"try (Scanner in = new Scanner(\n"
+"    new FileInputStream(\"/usr/share/dict/words\")), \"UTF-8\") {\n"
+"  while (in.hasNext())\n"
+"    System.out.println(in.next());\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:428
+msgid "== Множество ресурсов"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:438
+msgid ""
+"[source,java]\n"
+"----\n"
+"try (Scanner in = new Scanner(\n"
+"     new FileInputStream(\"/usr/share/dict/words\"), \"UTF-8\");\n"
+"     PrintWriter out = new PrintWriter(\"out.txt\")) {\n"
+"  while (in.hasNext())\n"
+"    out.println(in.next().toUpperCase());\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:440
+msgid "== Интерфейсы Closeable и AutoCloseable"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:444
+msgid ""
+"[plantuml, closeable, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:446
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:446"
+msgid "skinparam dpi 200 "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:450
+msgid ""
+"interface AutoCloseable {\n"
+"    + close() throws Exception \n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:452
+msgid "AutoCloseable <|-- Closeable"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:456
+msgid ""
+"interface Closeable {\n"
+"    + close() throws IOException\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:459
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:459"
+msgid "Exception <|-- IOException"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:464
+msgid ""
+"Closeable . IOException\n"
+"AutoCloseable . Exception\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:466
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:466"
+msgid "== Исключения -- для исключительных случаев!"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:476
+msgid ""
+"[source,java]\n"
+"----\n"
+"//ЧУДОВИЩНО. НЕ ДЕЛАЙТЕ ТАК\n"
+"try {\n"
+"  int i = 0;\n"
+"  while (true)\n"
+"    range[i++].climb();\n"
+"} catch (ArrayIndexOutOfBoundsException e) {\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:481
+msgid ""
+"//ДЕЛАЙТЕ ТАК!!\n"
+"for (Mountain m: range) \n"
+"  m.climb();\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:485
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:485"
+msgid "== Исключения -- для исключительных случаев!"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:496
+msgid ""
+"[source,java]\n"
+"----\n"
+"//ЧУДОВИЩНО. НЕ ДЕЛАЙТЕ ТАК\n"
+"try {\n"
+"  Iterator<Foo> i = collection.iterator();\n"
+"  while (true)\n"
+"    Foo foo = i.next();\n"
+"} catch (NoSuchElementException e) {\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:503
+msgid ""
+"//ДЕЛАЙТЕ ТАК!!\n"
+"for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
+"    Foo foo = i.next();\n"
+"    . . .\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:505
+msgid "== Не используйте исключения для контроля выполнения"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:509
+msgid ""
+"* Это *маскирует* настоящие ошибки и делает код трудным для поддержки.\n"
+"* Это *затратно* по ресурсам (исключения несут в себе Stack Trace).\n"
+"* Это *медленно*: компилятор не оптимизирует под исключения."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:511
+msgid "== Исключение вылезло в production. Что делать?"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:569
+msgid ""
+"  2019-08-24 11:14:55.545 ERROR 30413 --- [0.1-8080-exec-6] "
+"o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet "
+"[dispatcherServlet] in context with path [] threw exception [Request "
+"processing failed; nested exception is java.lang.NullPointerException] with "
+"root cause\n"
+"  java.lang.NullPointerException: null\n"
+"\tat guess.service.AnswerServiceImpl.setAnswer(AnswerServiceImpl.java:37) "
+"~[classes!/:na]\n"
+"\tat guess.controller.AnswerController.addAnswer(AnswerController.java:31) "
+"~[classes!/:na]\n"
+"\tat sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source) ~[na:na]\n"
+"\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessor"
+"Impl.java:43) ~[na:1.8.0_222]\n"
+"\tat java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_222]\n"
+"\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(I"
+"nvocableHandlerMethod.java:190) ~[spring-"
+"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForR"
+"equest(InvocableHandlerMethod.java:138) ~[spring-"
+"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHa"
+"ndlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104) ~[spring-"
+"webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHand"
+"lerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892) "
+"~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHand"
+"lerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-"
+"webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter."
+"handle(AbstractHandlerMethodAdapter.java:87) ~[spring-"
+"webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherS"
+"ervlet.java:1039) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherSe"
+"rvlet.java:942) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.FrameworkServlet.processRequest(Framewor"
+"kServlet.java:1005) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet"
+".java:908) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-"
+"embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServle"
+"t.java:882) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-"
+"embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
+"tionFilterChain.java:231) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
+"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) "
+"~[tomcat-embed-websocket-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
+"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
+"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(Req"
+"uestContextFilter.java:99) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
+"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
+"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
+"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormCo"
+"ntentFilter.java:92) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
+"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
+"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
+"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(H"
+"iddenHttpMethodFilter.java:93) ~[spring-"
+"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
+"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
+"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
+"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal("
+"CharacterEncodingFilter.java:200) ~[spring-"
+"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
+"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
+"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
+"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValv"
+"e.java:202) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValv"
+"e.java:96) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(Authenticator"
+"Base.java:490) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat "
+"org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)"
+" [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat "
+"org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) "
+"[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve."
+"java:74) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat "
+"org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) "
+"[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat "
+"org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) "
+"[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight."
+"java:66) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractPro"
+"tocol.java:853) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint"
+".java:1587) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.j"
+"ava:49) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.jav"
+"a:1149) [na:1.8.0_222]\n"
+"\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.ja"
+"va:624) [na:1.8.0_222]\n"
+"\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThrea"
+"d.java:61) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat java.lang.Thread.run(Thread.java:748) [na:1.8.0_222]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:571
+msgid "== Analyze -> Analyze Stack Trace..."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:573
+msgid "image::analyzestacktrace.png[]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:577
+msgid ""
+"== Исследуем стек вызовов\n"
+"image::stacktracereading.png[]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:579
+msgid ""
+"== Здесь мы делаем паузу в изучении особенностей языка ради изучения "
+"библиотеки"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:584
+msgid ""
+"* J. Bloch, 'Effective Java': 'By using a standard library, you take "
+"advantage of the knowledge of the experts who wrote it and the experience of "
+"those who used it before you... Numerous features are added to the libraries "
+"in every major release, and it pays to keep abreast of these additions.'\n"
+"* Наряду с актуальными, «свежими» классами в библиотеках есть много старых "
+"классов, оставленных для обратной совместимости.\n"
+"* Вы встретите `Vector`, `Date`, `File`, `StringBuffer`, `Random`, _о "
+"которых я не буду рассказывать на лекциях_.\n"
+"* Будьте внимательны: использование устаревших классов в существующем коде, "
+"в примерах в интернете и т. п. не оправдывает их использование в новом коде. "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:586
+msgid "== Отдельный пример из книги Effective Java: ThreadLocalRandom"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:591
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Плохо: сид выбирается при каждом вызове. НЕТ!!\n"
+"double rnd = (new Random()).nextDouble();"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:597
+msgid ""
+"//До Java 7+ так было нормально, но теперь НЕТ!!\n"
+"static final Random r = new Random();\n"
+"static double random() {\n"
+"  return r.nextDouble();\n"
+"}"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:601
+msgid ""
+"//ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее\n"
+"double rnd = ThreadLocalRandom.current().nextDouble();\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:603
+msgid "== Класс String"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:609
+msgid ""
+"[source,java]\n"
+"----\n"
+"String e = \"\"; // an empty string\n"
+"String java = \"Java\\u2122\"; //Java™\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:611
+msgid "== Строка -- иммутабельный объект."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:613
+msgid "Нужна другая строка? Сооружаем новую:"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:619
+msgid ""
+"[source,java]\n"
+"----\n"
+"String greeting = \"Hello!\"\n"
+"greeting = greeting.substring(0, 3) + \"p!\"; //Help!\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:621
+msgid "Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:623
+msgid "== Внутреннее представление строк"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:628
+msgid ""
+"* До Java 9 -- `char[]`\n"
+"* После Java 9 -- `byte[]` и `byte coder`\n"
+"* UTF-16 / Latin1 ('Compact Strings')\n"
+"* https://www.youtube.com/watch?v=HWkVJkoo1_Q[Алексей Шипилёв — The Lord of "
+"the Strings: Two Scours]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:630
+msgid "== Пул строковых констант"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:634
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:634"
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|====\n"
+".^a|"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:644
+msgid ""
+"[source,java]\n"
+"----\n"
+"String name1 = \"John Doe\";\n"
+"String name2 = \"John Doe\";\n"
+"/* DO NOT DO THIS!!*/\n"
+"String name3 \n"
+"  = new String(\"John Doe\");\n"
+"----\n"
+"^.^a|"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:651
+msgid ""
+"[graphviz, \"stringpool.png\"]\n"
+"----\n"
+"digraph G {\n"
+"  node [shape=\"rectangle\"]\n"
+"  graph [ dpi = 180 ];\n"
+"  rankdir=\"LR\";"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:658
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:658"
+msgid ""
+"      subgraph cluster_s2{\n"
+"          subgraph cluster_s3 {\n"
+"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+"            label=\"String Constant Pool\"\n"
+"          }\n"
+"        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:667
+msgid ""
+"        label=\"Memory Heap\"\n"
+"      }\n"
+"  name1->o1\n"
+"  name2->o1\n"
+"  name3->o2\n"
+"}\n"
+"----\n"
+"|===="
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:669
+msgid "== Сравнение строк"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:677
+msgid ""
+"[%step]\n"
+"* `if (a == \"John Doe\")` -- *неправильно*, ошибка новичка.\n"
+"* `if (a.equals(\"John Doe\"))` -- плохо, получим NPE, если `a == null`.\n"
+"* `if (\"John Doe\".equals(a))` -- так делают  серьёзные ребята.\n"
+"* `if (\"John Doe\".equalsIgnoreCase(a))` -- сравнение без учёта регистра.\n"
+"* `if(str != null && !str.isEmpty())` -- в этой строке что-то есть!\n"
+"* `if(str != null && !str.isBlank())` -- в этой строке что-то есть помимо "
+"пробелов, табуляций, переносов и проч.!"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:680
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:680"
+msgid "== Интернирование строк"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:684
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:684"
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|====\n"
+".^a|"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:694
+msgid ""
+"[source,java]\n"
+"----\n"
+"String name1 = \"John Doe\";\n"
+"String name2 = \n"
+"  new String(\"John Doe\");\n"
+"String name3 = \n"
+"  new String(\"Jane Roe\");\n"
+"----\n"
+"^.^a|"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:701
+msgid ""
+"[graphviz, \"stringpool-intern1.png\"]\n"
+"----\n"
+"digraph G {\n"
+"  node [shape=\"rectangle\"]\n"
+"  graph [ dpi = 180 ];\n"
+"  rankdir=\"LR\";"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:708
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:708"
+msgid ""
+"      subgraph cluster_s2{\n"
+"          subgraph cluster_s3 {\n"
+"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+"            label=\"String Constant Pool\"\n"
+"          }\n"
+"        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:710
+msgid "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:719
+msgid ""
+"        label=\"Memory Heap\"\n"
+"      }\n"
+"  name1->o1\n"
+"  name2->o2\n"
+"  name3->o3\n"
+"}\n"
+"----\n"
+"|===="
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:721
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:721"
+msgid "== Интернирование строк"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:725
+msgctxt "./slides04/src/main/asciidoc/lecture.adoc:725"
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|====\n"
+".^a|"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:733
+msgid ""
+"[source,java]\n"
+"----\n"
+"name1 = name1.intern();\n"
+"name2 = name2.intern();\n"
+"name3 = name3.intern();\n"
+"----\n"
+"^.^a|"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:740
+msgid ""
+"[graphviz, \"stringpool-intern2.png\"]\n"
+"----\n"
+"digraph G {\n"
+"  node [shape=\"rectangle\"]\n"
+"  graph [ dpi = 180 ];\n"
+"  rankdir=\"LR\";"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:747
+msgid ""
+"      subgraph cluster_s2{\n"
+"          subgraph cluster_s3 {\n"
+"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"];\n"
+"            o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+"            label=\"String Constant Pool\"\n"
+"          }"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:758
+msgid ""
+"        label=\"Memory Heap\"\n"
+"      }\n"
+"  name1->o1\n"
+"  name2->o1\n"
+"  name3->o3\n"
+"}\n"
+"----\n"
+"|===="
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:761
+msgid "== Конкатенация строк"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:766
+msgid ""
+"[source,java]\n"
+"----\n"
+"String foo = \"foo\";\n"
+"String bar = \"bar\";"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:769
+msgid ""
+"System.out.println(foo + bar); //foobar\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:771
+msgid "Ситуация такова:"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:775
+msgid ""
+"* Пользовательской перегрузки операторов в Java не предусмотрено.\n"
+"* Оператор `+` для строк перегружен на уровне языка.\n"
+"* Оператор `==` для строк не перегружен, хоть его неперегруженная версия для "
+"строк и не имеет смысла :-("
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:777
+msgid "== Конкатенация строк: проблема производительности"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:786
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Плохая производительность, не делайте так!\n"
+"String result = \"\";\n"
+"for (int i = 0; i < numItems(); i++)\n"
+"  result += lineForItem(i);\n"
+"return result;\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:789
+msgid "== Конкатенация строк: используйте StringBuilder!"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:799
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Заранее можно аллоцировать приблизительное кол-во символов\n"
+"StringBuilder b = new StringBuilder(numItems() * LINE_WIDTH);\n"
+"//А можно и по умолчанию: new StringBuilder() (16 chars)\n"
+"for (int i = 0; i < numItems(); i++)\n"
+"  b.append(lineForItem(i));\n"
+"return b.toString();\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:801
+msgid "== Длина строки"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:803
+msgid "Длина строки в UTF-16 code units:"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:809
+msgid ""
+"[source,java]\n"
+"----\n"
+"String greeting = \"Hello\";\n"
+"int n = greeting.length(); // is 5.\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:815
+msgid ""
+"«Реальная» длина строки в code points:\n"
+"[source,java]\n"
+"----\n"
+"int cpCount = greeting.codePointCount(0, greeting.length());\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:817
+msgid "== Символ на i-й позиции"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:820
+msgid ""
+"[source,java]\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:825
+msgid ""
+"//работает за время O(1)\n"
+"char first = greeting.charAt(0); // first is 'H'\n"
+"char last = greeting.charAt(4); // last is 'o'\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:827
+msgid "Если нужны code points:"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:832
+msgid ""
+"[source,java]\n"
+"----\n"
+"int[] codePoints = str.codePoints().toArray();\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:834
+msgid "== Полезные методы "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:848
+msgid ""
+"[source,java]\n"
+"----\n"
+"int length()\n"
+"char charAt(int index)\n"
+"int compareTo(String other)\n"
+"boolean equals(Object other)\n"
+"boolean  equalsIgnoreCase(Object other)\n"
+"boolean startWith(String prefix) \n"
+"boolean endsWith(String prefix)\n"
+"String toLowerCase() / String toUpperCase()\n"
+"String trim()\n"
+"String join(CharSequence delimiter, CharSequence... elements)\n"
+"----"
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:850
+msgid "== Вредные методы "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:854
+msgid ""
+"* `indexOf..` / `lastIndexOf..`\n"
+"* `replace..`\n"
+"* `split..` "
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:856
+msgid ""
+"В комбинации c `substring` и конкатенацией их используют для извлечения "
+"данных / преобразования строк."
+msgstr ""
+
+#: ./slides04/src/main/asciidoc/lecture.adoc:857
+msgid ""
+"_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
+"бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"
+msgstr ""

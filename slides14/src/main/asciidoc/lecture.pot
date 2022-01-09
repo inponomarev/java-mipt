@@ -1,0 +1,1251 @@
+#. extracted from ./slides14/src/main/asciidoc/lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-15 11:40+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.2.5\n"
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:25
+msgid ""
+"= Core Java: Курс лекций. Лекция 14\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900\n"
+":stem: latexmath"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:29
+msgid ""
+"//== Часть 1. Введение\n"
+":!figure-caption:"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:31
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:33
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:35
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:35"
+msgid "== Жизненный цикл бина (напоминание)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:43
+msgid ""
+"[graphviz,\"beanlife1.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:51
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer3 -> configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2 configurer3}\n"
+"} \n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:53
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:53"
+msgid "== Жизненный цикл бина (напоминание)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:61
+msgid ""
+"[graphviz,\"beanlife2.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:67
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:67"
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer3 -> configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2 configurer3}\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:73
+msgid ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same postConstruct1 postConstruct2}\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:77
+msgid ""
+"configurer3 -> postConstruct1;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:79
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:79"
+msgid "== Жизненный цикл бина (напоминание)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:87
+msgid ""
+"[graphviz,\"beanlife3.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:93
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:93"
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer3 -> configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2 configurer3}\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:100
+msgid ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same postConstruct1 postConstruct2}\n"
+"}\n"
+"configurer3 -> postConstruct1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:103
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:103"
+msgid ""
+"subgraph cluster_3 {\n"
+"  label = \"Wrapping\";"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:108
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:108"
+msgid ""
+"  proxyconfigurer2 -> proxyconfigurer1  [dir=\"back\"];\n"
+"  {rank=same proxyconfigurer2 proxyconfigurer1}\n"
+"} \n"
+"postConstruct2 -> proxyconfigurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:111
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:111"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:115
+msgid "== Разруливание неоднозначностей"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:125
+msgid ""
+"[plantuml,manyimplementatons.png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 180\n"
+"interface Bar\n"
+"class Foo\n"
+"class Bar1\n"
+"class Bar2\n"
+"class Bar3"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:129
+msgid ""
+"Bar <|..Bar1\n"
+"Bar <|..Bar2\n"
+"Bar <|..Bar3"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:134
+msgid ""
+"note right of Bar\n"
+" Что же выбрать\n"
+" из подходящих кандидатур?\n"
+"end note"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:137
+msgid "Foo -> \"bar\" Bar"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:140
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:146
+msgid ""
+"----\n"
+"NoUniqueBeanDefinitionException: No qualifying bean of\n"
+"type 'edu.phystech.robotlecturer.Bar' available: expected\n"
+"single matching bean but found 3: bar1,bar2,bar3\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:148
+msgid "== Привязка по имени (неявная)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:156
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"public class Foo {\n"
+"    //Не работает... :-(\n"
+"    @Autowired\n"
+"    private Bar bar;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:163
+msgid ""
+"    //Работает!! :-)\n"
+"    @Autowired\n"
+"    private Bar bar1;\n"
+"    ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:165
+msgid "== Привязка по имени (явная)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:176
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"public class Foo {\n"
+"    @Autowired\n"
+"    @Qualifier(\"bar1\")\n"
+"    private Bar bar;\n"
+"    ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:178
+msgid "== Помечаем одну из имплементаций как @Primary"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:184
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"@Primary\n"
+"public class Bar1 implements Bar {...}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:195
+msgid ""
+"@Component\n"
+"public class Foo {\n"
+"    //Подставится Bar1\n"
+"    @Autowired\n"
+"    private Bar bar;\n"
+"    ...\n"
+"}\n"
+"----\n"
+"[.fragment]\n"
+"Но это работает, лишь если действительно один из бинов помечен как `@Primary`"
+", иначе \"NoUniqueBeanDefinitionException: more than one 'primary' bean "
+"found among candidates\"."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:197
+msgid "== Но гораздо чаще нам нужны сразу все!"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:200
+msgid ""
+"[source,java]\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:203
+msgid ""
+"@Component\n"
+"public class Foo {"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:206
+msgid ""
+"    @Autowired\n"
+"    private List<Bar> bar;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:208
+msgid "    //ИЛИ"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:211
+msgid ""
+"    @Autowired\n"
+"    private Map<String,Bar> bar;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:213
+msgid "---- "
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:215
+msgid "== Впрыскивать можно не только бины, но и что-то попроще"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:222
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Configuration\n"
+"//Путь к файлу с настройками\n"
+"@PropertySource(\"classpath:config.properties\")\n"
+"public class Config {"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:224
+msgid "}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:229
+msgid ""
+"@Component\n"
+"public class Foo {\n"
+"    @Value(\"${url}\")\n"
+"    String url;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:233
+msgid ""
+"    @Value(\"${password}\")\n"
+"    String password;\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:235
+msgid "Также можно использовать SpEL-выражения, например `#{bar.url}`."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:237
+msgid "== Инициализация"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:246
+msgid ""
+"[graphviz,\"postconstruct.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:252
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:252"
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2}\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:263
+msgid ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  style=\"filled\";\n"
+"  color=\"#ffffcc\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same postConstruct1 postConstruct2}\n"
+"}\n"
+"configurer2 -> postConstruct1;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:265
+msgid "Конструктор не годится в качестве инициализирующего метода!"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:267
+msgid "== Инициализация "
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:270
+msgid ""
+"* `@PostConstruct` -- стандартная Java-аннотация, может быть установлена над "
+"методом инициализации.\n"
+"* Если навесить аннотацию в классе нельзя, то `@Bean(initMethod= \"init\")`"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:273
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:273"
+msgid "== Финализация"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:281
+msgid ""
+"[graphviz,\"predestroy.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:287
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:287"
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2}\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:294
+msgid ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same postConstruct1 postConstruct2}\n"
+"}\n"
+"configurer2 -> postConstruct1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:298
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:298"
+msgid ""
+"subgraph cluster_3 {\n"
+"  label = \"Wrapping\";"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:303
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:303"
+msgid ""
+"  proxyconfigurer2 -> proxyconfigurer1  [dir=\"back\"];\n"
+"  {rank=same proxyconfigurer2 proxyconfigurer1}\n"
+"} \n"
+"postConstruct2 -> proxyconfigurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:311
+msgid ""
+"subgraph cluster_4 {\n"
+"  style=\"filled\";\n"
+"  color=\"#ffffcc\";\n"
+"  label = \"PreDestroy\";\n"
+"  preDestroy2 -> preDestroy1  [dir=\"back\"];\n"
+"  {rank=same preDestroy1 preDestroy2}\n"
+"} "
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:313
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:313"
+msgid "proxyconfigurer2 -> preDestroy1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:316
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:316"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:318
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:318"
+msgid "== Финализация"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:323
+msgid ""
+"* Симметрично инициализации -- при завершении работы контейнера.\n"
+"* При завершении приложения вызывается `context.destroy()`, запускающий "
+"механизм финализации.\n"
+"* `@PreDestroy` -- стандартная Java-аннотация.\n"
+"* Если навесить аннотацию в классе нельзя, то `@Bean(destroyMethod = \""
+"destroy\")`"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:325
+msgid "== Практическая задача"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:332
+msgid ""
+"* Хотим сделать трейсинг приложения: перед началом и после завершения метода "
+"должно выводиться в лог его название и штамп времени.\n"
+"* Пусть у нас 500 классов по 5 методов\n"
+"* Значит, в 2500 мест надо копировать код:\n"
+"** не многовато ли??\n"
+"** не забудем ли какие-то из методов?\n"
+"** смешение бизнес-логики и служебного кода?"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:334
+msgid "== Aspect-oriented programming спешит на помощь"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:341
+msgid ""
+"* Типичные задачи:\n"
+"** _Логирование_: каждый вызов метода должен отмечаться в логе!\n"
+"** _Безопасность_: при вызове каждого метода надо проверять, имеем ли мы "
+"право на вызов!\n"
+"** _Управление транзакциями_: перед началом метода открывать транзакцию, при "
+"удачном завершении коммитить, при неудачном -- откатывать.\n"
+"* AOP помогает решать эти задачи без дублирования кода внутри методов.\n"
+"* Большое количество аспектов уже написано."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:343
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:343"
+msgid "== Терминология AOP"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:345
+msgid ""
+"* *Joinpoint* -- место в коде, в выполнение которого мы  «вмешиваемся» (и "
+"начинаем выполнять что-то своё). В теории может соответствовать вызовам "
+"методов, инициализации классов и инстанцированию объектов, но в Spring AOP --"
+" это всегда _вызов метода_."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:348
+msgid "* *Advice* -- код, который «впрыскивается» и выполняется в joinpoint. "
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:351
+msgid ""
+"* *Pointcut* -- тем или иным способом определённое множество joinpoint-ов. "
+"Например, «все методы, начинающиеся со слова get». Или: «все методы, "
+"аннотированные аннотацией `@Benchmarked`». Связывая pointcut-ы c advice-ами, "
+"мы определяем, что именно и когда будет работать."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:353
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:353"
+msgid "== Терминология AOP"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:355
+msgid ""
+"* *Aspect* -- комбинация advices+pointcuts, оформленная в виде отдельного "
+"класса. Определяет добавляемую в приложение логику, ответственную за какую-"
+"то определённую задачу (например, трассировку)."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:357
+msgid ""
+"* *Weaving* -- процесс «вплетения» кода advices в нужные места кода "
+"приложения."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:359
+msgid "* *Target* -- метод, чьё поведение изменяется с помощью AOP."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:361
+msgid "== Как можно реализовать AOP?"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:366
+msgid ""
+"* Статически: вплетение на уровне исходников или байт-кода.\n"
+"* Динамически: создавая прокси и используя вплетение в runtime.\n"
+"* Spring использует динамический AOP.\n"
+"* *Вопрос*: какие вы видите достоинства и недостатки у того и другого метода?"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:368
+msgid "== Прокси-объект: реализация"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:375
+msgid ""
+"[graphviz,\"proxy.png\"]\n"
+"----\n"
+"digraph G {\n"
+"  graph [ dpi = 200 ];\n"
+"  compound=true;\n"
+"  rankdir=\"LR\";"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:377
+msgid "  splines=\"line\";"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:381
+msgid ""
+"  caller [shape=\"rectangle\", style=rounded];\n"
+"  caller -> inv[lhead=cluster0;label=\"       \"];\n"
+"  caller -> inv[arrowhead=none];"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:384
+msgid "  subgraph cluster0 {"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:387
+msgid ""
+"    inv[style=invis, shape=point];\n"
+"    target[shape=\"rectangle\", style=\"rounded\";]"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:390
+msgid ""
+"    label=\"proxy\";\n"
+"    style=\"dashed,rounded\";"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:395
+msgid ""
+"    inv -> target[style=dashed;];\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:399
+msgid ""
+"* Создаётся по необходимости.\n"
+"* Перехватывает вызовы всех методов на target.\n"
+"* Проверяет, не сработал ли pointcut -- и вызывает advice."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:401
+msgid "== Использование AOP в Spring"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:403
+msgid ""
+"Для активизации `BeanPostProcessor`-а, сканирующего AOP-аннотации, надо в "
+"конфигурации включить аннотацию `@EnableAspectJAutoProxy`"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:410
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Configuration\n"
+"@EnableAspectJAutoProxy\n"
+"public class AppConfig{\n"
+"  ..."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:413
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:413"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:415
+msgid ""
+"(что такое `BeanPostProcessor` -- мы увидим в дальнейшем, но вы уже знаете, "
+"что это конфигуратор объекта)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:417
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:417"
+msgid "== Пример аспекта"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:436
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:436"
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component @Aspect\n"
+"public class BenchmarkAspect {\n"
+"  @Around(\"@annotation(Benchmark)\")\n"
+"    //pointcut expression ^^^\n"
+"  public Object execEntryPoint(ProceedingJoinPoint joinPoint) \n"
+"                                    throws Throwable {\n"
+"    System.out.printf(\"[[[BENCHMARK method %s%n\",\n"
+"                   joinPoint.getSignature().getName());\n"
+"    long start = System.nanoTime();\n"
+"    Object retVal = joinPoint.proceed();\n"
+"    long end = System.nanoTime();\n"
+"    System.out.printf(\"Time: %dns]]]%n\", end - start);\n"
+"    return retVal;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:438
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:438"
+msgid "== Spring AOP checklist"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:443
+msgid ""
+"* `@EnableAspectJAutoProxy` над конфигурацией.\n"
+"* `@Aspect` над аспектом.\n"
+"* `@Component` / `@Bean` для аспекта, и сам аспект должен входить в "
+"конфигурацию приложения.\n"
+"* Аспект не перехватывает методы, которые вызываются `@PostConstruct`-ом. "
+"*Вопрос*: почему?"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:446
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:446"
+msgid "== Spring AOP checklist"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:451
+msgid ""
+"* `@EnableAspectJAutoProxy` над конфигурацией.\n"
+"* `@Aspect` над аспектом.\n"
+"* `@Component` / `@Bean` для аспекта, и сам аспект должен входить в "
+"конфигурацию приложения.\n"
+"* Аспект не перехватывает методы, которые вызываются `@PostConstruct`-ом."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:453
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:453"
+msgid "== Пример аспекта"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:472
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:472"
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component @Aspect\n"
+"public class BenchmarkAspect {\n"
+"  @Around(\"@annotation(Benchmark)\")\n"
+"    //pointcut expression ^^^\n"
+"  public Object execEntryPoint(ProceedingJoinPoint joinPoint) \n"
+"                                    throws Throwable {\n"
+"    System.out.printf(\"[[[BENCHMARK method %s%n\",\n"
+"                   joinPoint.getSignature().getName());\n"
+"    long start = System.nanoTime();\n"
+"    Object retVal = joinPoint.proceed();\n"
+"    long end = System.nanoTime();\n"
+"    System.out.printf(\"Time: %dns]]]%n\", end - start);\n"
+"    return retVal;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:474
+msgid "== Какие бывают advices"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:480
+msgid ""
+"* `@Before`\n"
+"* `@AfterReturning` (нормальное завершение)\n"
+"* `@AfterThrowing` (exception)\n"
+"* `@After` (нормальное завершение и exception)\n"
+"* `@Around`"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:490
+msgid ""
+"== `@Before`\n"
+"[source,java]\n"
+"----\n"
+"@Before(\"@annotation(Benchmark)\")\n"
+"public void beforeFooMethods(JoinPoint jp) {\n"
+"  String methodName = jp.getSignature().getName();\n"
+"  System.out.println(methodName);\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:492
+msgid "== `@After`"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:500
+msgid ""
+"[source,java]\n"
+"----\n"
+"@AfterReturning(pointcut= \"execution(* edu.phystech..*.foo())\",\n"
+"                returning = \"retVal\")\n"
+"public void afterFoo(Double retVal) {\n"
+"  System.out.println(\"AFTER foo()\" + retVal);\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:508
+msgid ""
+"@AfterThrowing(\n"
+"    pointcut= \"execution(* aop.example.application..*.*(..))\", \n"
+"    throwing = \"ex\")\n"
+"public void dbException(DatabaseRuntimeException ex){\n"
+"  System.out.println(ex);\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:511
+msgid "== BeanPostProcessor interface"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:520
+msgid ""
+"[source,java]\n"
+"----\n"
+"public interface BeanPostProcessor {\n"
+"  //впрыскиваем в бин значения\n"
+"  default Object postProcessBeforeInitialization(\n"
+"    Object bean, String beanName) throws BeansException {\n"
+"\t\treturn bean;\n"
+"  }"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:528
+msgid ""
+"  //возвращаем обёртку над бином\n"
+"  default Object postProcessAfterInitialization(\n"
+"    Object bean, String beanName) throws BeansException {\n"
+"\t\treturn bean;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:530
+msgid "== BeanPostProcessor"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:539
+msgid ""
+"[graphviz,\"bpp.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 160 ];\n"
+"rankdir=\"LR\";\n"
+"compound=true;\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:547
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"BeanPostProcessor#\\n"
+"postProcessBeforeInitialization\";\n"
+"  style=\"filled\";\n"
+"  color=\"#ffffcc\";\n"
+"  configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2}\n"
+"}"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:554
+msgid ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same   postConstruct1 postConstruct2}\n"
+"}\n"
+"configurer2 -> postConstruct1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:564
+msgid ""
+"subgraph cluster_3 {\n"
+"  label = \"BeanPostProcessor#\\n"
+"postProcessAfterInitialization\";\n"
+"  style=\"filled\";\n"
+"  color=\"#ffffcc\";\n"
+"  proxyconfigurer2 -> proxyconfigurer1  [dir=\"back\"];\n"
+"  {rank=same proxyconfigurer2 proxyconfigurer1}\n"
+"} \n"
+"postConstruct2 -> proxyconfigurer1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:566
+msgid "subgraph cluster_4 {"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:571
+msgid ""
+"  label = \"PreDestroy\";\n"
+"  preDestroy2 -> preDestroy1  [dir=\"back\"];\n"
+"  {rank=same preDestroy1 preDestroy2}\n"
+"} "
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:573
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:573"
+msgid "proxyconfigurer2 -> preDestroy1;"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:576
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:576"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:578
+msgid "== Собственный BeanPostProcessor"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:599
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component public class InjectRandomIntAnnotationBeanPostProcessor\n"
+"                                    implements BeanPostProcessor {\n"
+"  @Override public Object postProcessBeforeInitialization(\n"
+"             Object bean, String beanName) throws BeansException {\n"
+"    for (Field f : ReflectionUtils.getAllFields(bean.getClass())) {\n"
+"      InjectRandomInt ann = f.getAnnotation(InjectRandomInt.class);\n"
+"      if (ann != null) {\n"
+"        int value = ThreadLocalRandom.current()\n"
+"                        .nextInt(ann.min(), ann.max() + 1);\n"
+"        f.setAccessible(true);\n"
+"        try { f.set(bean, value); } \n"
+"        catch (IllegalAccessException e) {\n"
+"          throw new NotWritablePropertyException(\n"
+"                                bean.getClass(), f.getName()); }\n"
+"    } }\n"
+"    return bean;\n"
+"} }\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:601
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:601"
+msgid "== Демо"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:607
+msgid ""
+"* AnnotationConfigApplicationContext\n"
+"* DI\n"
+"* AOP\n"
+"* BeanPostProcessor\n"
+"* Test with ContextConfiguration"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:609
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:609"
+msgid "== Spring Boot"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:611
+msgid "image::spring-boot-logo.jpg[]"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:613
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:613"
+msgid "== Spring Boot"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:619
+msgid ""
+"* Convention over configuration\n"
+"* Подключение готовых сконфигурированных блоков через «стартеры»\n"
+"* Включая встроенный Tomcat или Jetty (что инвертировало старую модель)\n"
+"* Метрики, health checks, настройка приложения через конфигурационный файл\n"
+"* Всё на аннотациях"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:622
+msgid "== Dependency Management"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:632
+msgid ""
+"[source,xml]\n"
+"----\n"
+"<parent>\n"
+"    <groupId>org.springframework.boot</groupId>\n"
+"    <artifactId>spring-boot-starter-parent</artifactId>\n"
+"    <!-- ...to spring-boot-dependencies, 3356 LOC -->\n"
+"    <version>2.2.1.RELEASE</version>\n"
+"</parent>\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:634
+msgid "== Подключаем стартеры"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:644
+msgid ""
+"[source,xml]\n"
+"----\n"
+"<!-- «Мы хотим веб-сервис»-->\n"
+"<dependency>\n"
+"    <groupId>org.springframework.boot</groupId>\n"
+"    <artifactId>spring-boot-starter-web</artifactId>\n"
+"    <!-- А почему не указываем версию?-->\n"
+"</dependency>\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:646
+msgid "== Пишем Main-класс"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:659
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Пакеты не указываем\n"
+"@SpringBootApplication\n"
+"public class Main {\n"
+"    public static void main(String[] args) throws SQLException, IOException {"
+"\n"
+"        /*Метод run возвращает ApplicationContext,\n"
+"        но он нам не нужен :-)*/\n"
+"        SpringApplication.run(Main.class, args);\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:661
+msgid "== Пишем контроллер"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:673
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Это тоже @Controller, а значит, bean\n"
+"@RestController\n"
+"public class HelloController {\n"
+"    @GetMapping(\"/hello\")\n"
+"    public String sayHello(@RequestParam(\"name\") String name) {\n"
+"        return String.format(\"Hello, %s!\", name);\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:675
+msgid "== За сборку jar-ника отвечает spring-boot-maven-plugin"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:683
+msgid ""
+"[source,xml]\n"
+"----\n"
+"<plugin>\n"
+"    <groupId>org.springframework.boot</groupId>\n"
+"    <artifactId>spring-boot-maven-plugin</artifactId>\n"
+"</plugin>\n"
+"----"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:686
+msgid ""
+"* Получается «жирный» executable jar.\n"
+"* Можно сделать так, что он будет в буквальном смысле executable."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:688
+msgid "== Как Spring Boot Starter поднимает свои бины?"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:690
+msgid ""
+"* Spring Boot сканирует файловую систему ClassPath на наличие файлов "
+"`spring.factories`."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:692
+msgid "image::spring-factories.png[{image-100-width}]"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:694
+msgctxt "./slides14/src/main/asciidoc/lecture.adoc:694"
+msgid "== Демо"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:698
+msgid ""
+"* Spring Boot\n"
+"* Spring JDBC Template\n"
+"* Spring Boot Test"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:700
+msgid "== Пришла пора закругляться :-)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:706
+msgid ""
+"* Всё, что я рассказал в этом курсе -- уже Legacy.\n"
+"* Мы работали на Java 11, но...\n"
+"** текущая версия -- Java 15, \n"
+"** в марте 2021 -- Java 16, \n"
+"** в сентябре -- Java 17 (новый LTS)."
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:708
+msgid "== Синтаксис Java развивается"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:714
+msgid ""
+"** Modularization (Java 9+)\n"
+"** Type Inference (Java 10+)\n"
+"** Switch Expressions (Java 12+)\n"
+"** Multiline Strings (Java 13+)\n"
+"** Records (Java 14+)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:716
+msgid "== Все ждут проектов"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:719
+msgid ""
+"* Valhalla\n"
+"* Loom"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:721
+msgid "== «Вселенная Java» расширяется со скоростью света"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:728
+msgid ""
+"* Не только Spring:\n"
+"** Microframeworks -- for serverless\n"
+"* Не только Java language:\n"
+"** Groovy\n"
+"** Kotlin\n"
+"** Scala"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:730
+msgid "== Выводы — напутствия"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:732
+msgid "== Никогда не переставайте изучать новое"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:734
+msgid ""
+"_\"Here, you see, it takes all the running you can do, to keep in the same "
+"place. If you want to get somewhere else, you must run at least twice as "
+"fast as that!”_"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:736
+msgid "image::alice_queen.jpg[{image-40-width}]"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:738
+msgid "== Старое тоже полезно изучать"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:750
+msgid ""
+"[cols=\"25a,25a,25a,25a\"]\n"
+"|===\n"
+"|\n"
+"image::horstmann.jpg[]\n"
+"|\n"
+"image::bloch.jpg[]\n"
+"|\n"
+"image::goetz.jpg[]\n"
+"|\n"
+"image::urma.jpg[]\n"
+"|==="
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:752
+msgid "== Помните про свою профессиональную ответственность"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:760
+msgid ""
+"* От работы программистов в XXI веке зависят судьбы людей\n"
+"* Даже если это не программа, управляющая самолётом или аппаратом ИВЛ\n"
+"* Помните про:\n"
+"** *Security*\n"
+"** *Privacy*\n"
+"** *Accessibility*\n"
+"* Делайте мир лучше!"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:765
+msgid ""
+"== Становитесь частью community!\n"
+"* JUGs: Москва, Санкт-Петербург, Новосибирск.\n"
+"* Conferences: Joker, JPoint, SnowOne.\n"
+"* Когда это всё закончится, приходите на московский JUG!"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:767
+msgid "image::jugmsk.jpg[]"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:770
+msgid "== Добро пожаловать во вселенную Java :-)"
+msgstr ""
+
+#: ./slides14/src/main/asciidoc/lecture.adoc:771
+msgid "image::duke.svg[{image-20-width}]"
+msgstr ""

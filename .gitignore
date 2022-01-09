@@ -25,3 +25,9 @@ slides/src/main/asciidoc/*.png
 *.cache
 
 *.bak
+
+#Translation
+*.mo
+*.po~
+*.log
+lecture-en.adoc

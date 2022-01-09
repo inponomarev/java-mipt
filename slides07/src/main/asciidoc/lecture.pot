@@ -1,0 +1,1868 @@
+#. extracted from ./slides07/src/main/asciidoc/lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-15 11:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.2.5\n"
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:24
+msgid ""
+"= Core Java: Курс лекций. Лекция 7\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:28
+msgid ""
+"//== Часть 1. Введение\n"
+":!figure-caption:"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:30
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:32
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:35
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:35"
+msgid ""
+"[%notitle]\n"
+"== Эпиграф"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:37
+msgid "image::tagir1.png[]"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:40
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:40"
+msgid ""
+"[%notitle]\n"
+"== Эпиграф"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:42
+msgid "image::tagir2.png[]"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:45
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:45"
+msgid ""
+"[%notitle]\n"
+"== Эпиграф"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:47
+msgid "image::tagir3.png[]"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:49
+msgid "== Коллекции: Разделение интерфейсов и реализаций"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:53
+msgid ""
+"[plantuml, colintf, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:55
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:67
+msgid ""
+"interface Map<K,V> {\n"
+"V get(Object key)\n"
+"V put(K key, V value)\n"
+"V remove(Object key)\n"
+"void clear()\n"
+"...\n"
+"--default methods--\n"
+"V getOrDefault(Object key, V defaultValue)\n"
+"default V putIfAbsent(K key, V value)\n"
+"...\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:76
+msgid ""
+"interface NavigableMap<K,V> {\n"
+"K lowerKey(K key);\n"
+"K floorKey(K key);\n"
+"K ceilingKey(K key);\n"
+"K higherKey(K key);\n"
+"--\n"
+"...\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:79
+msgid ""
+"class HashMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:82
+msgid ""
+"class LinkedHashMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:86
+msgid "class TreeMap<K,V> {"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:88
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:88"
+msgid "}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:91
+msgid ""
+"class IdentityHashMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:94
+msgid ""
+"class ConcurrentSkipListMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:101
+msgid ""
+"Map <|.. TreeMap\n"
+"Map <|.. HashMap\n"
+"Map <|.. LinkedHashMap\n"
+"Map <|.. IdentityHashMap\n"
+"Map <|.. ConcurrentSkipListMap"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:103
+msgid "Map <|- NavigableMap"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:106
+msgid ""
+"NavigableMap <|.. TreeMap\n"
+"NavigableMap <|.. ConcurrentSkipListMap"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:109
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:111
+msgid "== Интерфейсы коллекций: потомки Collection"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:115
+msgid ""
+"[plantuml,intf-coll,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:117
+msgid "skinparam dpi 200"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:120
+msgid ""
+"interface Iterable {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:123
+msgid ""
+"interface Collection {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:126
+msgid ""
+"interface List {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:129
+msgid ""
+"interface Set {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:131
+msgid "interface SortedSet {"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:133
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:133"
+msgid "}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:135
+msgid "interface NavigableSet {"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:137
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:137"
+msgid "}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:139
+msgid "interface Queue {"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:141
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:141"
+msgid "}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:143
+msgid "interface Deque {"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:145
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:145"
+msgid "}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:155
+msgid ""
+"Iterable <|. Collection\n"
+"Collection <|.. List\n"
+"Collection <|.. Set\n"
+"Set <|.. SortedSet\n"
+"SortedSet <|. NavigableSet\n"
+"Collection <|.. Queue\n"
+"Queue <|.. Deque\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:160
+msgid ""
+"== Iterable: интерфейс, умеющий участвовать в for loop\n"
+"[plantuml,iterable,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:162
+msgid "skinparam dpi 160"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:166
+msgid ""
+"interface Iterable<T> {\n"
+"    Iterator<T> iterator()\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:172
+msgid ""
+"interface Iterator<E> {\n"
+"  boolean hasNext()\n"
+"  E next()\n"
+"  default void remove()\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:176
+msgid ""
+"Iterable . Iterator\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:203
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Iterable<T> collection = ...\n"
+"for (T e: collection) {\n"
+"  ...\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Iterable<T> collection = ...\n"
+"Iterator<T> i = collection.iterator();\n"
+"while (i.hasNext()) {\n"
+"  T e = i.next();\n"
+"  if (e...)\n"
+"    i.remove();\n"
+"}\n"
+"----\n"
+"|===\n"
+"== ListIterator: расширение для List\n"
+"[plantuml,listiter,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:205
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:205"
+msgid "skinparam dpi 220"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:209
+msgid ""
+"interface List<E> {\n"
+"  ListIterator<E> listIterator()\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:212
+msgid ""
+"interface Iterator<E> {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:221
+msgid ""
+"interface ListIterator<E> {\n"
+"  boolean hasPrevious()\n"
+"  E previous()\n"
+"  int nextIndex()\n"
+"  int previousIndex()\n"
+"  void set(E e)\n"
+"  void add(E e)\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:227
+msgid ""
+"List .L ListIterator\n"
+"Iterator <|. ListIterator\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:229
+msgid "== Интерфейсы коллекций: потомки Map"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:233
+msgid ""
+"[plantuml,intf-map,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:235
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:235"
+msgid "skinparam dpi 220"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:239
+msgid ""
+"interface Map {\n"
+"  Set<K> keySet()\n"
+"  Set<Map.Entry<K, V>> entrySet()"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:241
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:241"
+msgid "}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:244
+msgid ""
+"interface SortedMap {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:247
+msgid ""
+"interface NavigableMap {\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:252
+msgid ""
+"Map <|. SortedMap\n"
+"SortedMap <|. NavigableMap\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:264
+msgid ""
+"==  Comparable и Comparator\n"
+"[source,java]\n"
+"----\n"
+"public interface Comparable<T>{\n"
+"/**\n"
+" * @param  o the object to be compared.\n"
+" * @return a negative integer, zero, or a positive integer as this object\n"
+" *         is less than, equal to, or greater than the specified object.\n"
+" */\n"
+" int compareTo(T o);\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:271
+msgid ""
+"/*Применяется в случае, если сравниваемые объекты \n"
+"не реализуют Comparable*/\n"
+"public interface Comparator<T> {\n"
+"  int compare(T o1, T o2);\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:273
+msgid "== Промежуточные итоги"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:275
+msgid ""
+"* Используйте _интерфейсы_ для типов переменных и аргументов в методах. Не "
+"привязывайтесь к конкретным реализациям."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:277
+msgid ""
+"* Помимо возможности подмены реализаций, существуют суррогатные коллекции, "
+"например, важные частные случаи:"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:286
+msgid ""
+"[source,java]\n"
+"----\n"
+"//ИММУТАБЕЛЬНЫЕ\n"
+"//Пустые                   //Из одного элемента\n"
+"Collections.emptyList();   Collections.singletonList(o);\n"
+"Collections.emptySet();    Collections.singleton(o);\n"
+"Collections.emptyMap();    Collections.singletonMap(k,v);\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:288
+msgid "== Иммутабельные коллекции по заданным элементам"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:296
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Из заданных элементов\n"
+"List.of(a, b, c...);\n"
+"Set.of(a, b, c...);\n"
+"Map.of(k1, v1, k2, v2...);\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:299
+msgid ""
+"[.fragment]\n"
+"_Но как они это сделали для мапы?_"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:303
+msgid "== Суррогатные коллекции: защита (частичная) при публикации объекта"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:312
+msgid ""
+"[source,java]\n"
+"----\n"
+"Collections.unmodifiableList(List<? extends T> l);\n"
+"Collections.unmodifiableSet(Set<? extends T> s);\n"
+"Collections.unmodifiableMap(Map<? extends K,\n"
+"                                ? extends V> s);\n"
+"...\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:314
+msgid ""
+"В классе `Collections` (как и в классе `Arrays`) вообще очень много всего "
+"полезного!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:316
+msgid "== Его Величество ArrayList"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:322
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<String> list = new ArrayList<>();\n"
+"list.add(\"foo\"); list.add(\"bar\"); list.add(\"baz\");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:333
+msgid ""
+"[graphviz, \"arraylist-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"graph [ dpi = 180 ];\n"
+"n356573597[label=\"ArrayList|{size: 3}\",shape=record];\n"
+"n356573597 -> n325040804[label=\"elementData\",fontsize=12];\n"
+"n325040804[shape=record, label=\"foo|bar|baz|null|null|null|null|null|null|"
+"null\"];\n"
+"}\n"
+"-----\n"
+"(Визуализация внутреннего устройства структур данных сделана с помощью "
+"https://www.cs.auckland.ac.nz/~j-hamer/index.html#LJV[Lightweight Java "
+"Visualizer].) "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:341
+msgid ""
+"== Свойства `ArrayList`\n"
+"* `get(int index)` is *O(1)*  <- *main benefit of `ArrayList<E>`*\n"
+"* `add(E element)` is *O(1)* amortized, but *O(n)* worst-case since the "
+"array must be resized and copied\n"
+"* `add(int index, E element)` is *O(n)* (with *n/2* steps on average)\n"
+"* `remove(int index)` is *O(n)* (with *n/2* steps on average)\n"
+"* `Iterator.remove()` is *O(n)* (with *n/2* steps on average)\n"
+"* `ListIterator.add(E element)` is *O(n)* (with *n/2* steps on average)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:343
+msgid "== LinkedList"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:349
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<String> list = new LinkedList<>();\n"
+"list.add(\"foo\"); list.add(\"bar\"); list.add(\"baz\");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:367
+msgid ""
+"[graphviz, \"linkedlist-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"    rankdir=\"LR\";\n"
+"    graph [ dpi = 150 ];\n"
+"n356573597[label=\"LinkedList|{size: 3}\",shape=record];\n"
+"n356573597 -> n1173230247[label=\"first\",fontsize=12];\n"
+"n1173230247[label=\"Node|{item: foo|prev: null}\",shape=record];\n"
+"n1173230247 -> n856419764[label=\"next\",fontsize=12];\n"
+"n856419764[label=\"Node|{item: bar}\",shape=record];\n"
+"n856419764 -> n621009875[label=\"next\",fontsize=12];\n"
+"n621009875[label=\"Node|{item: baz|next: null}\",shape=record];\n"
+"n621009875 -> n856419764[label=\"prev\",fontsize=12];\n"
+"n856419764 -> n1173230247[label=\"prev\",fontsize=12];\n"
+"n356573597 -> n621009875[label=\"last\",fontsize=12];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:369
+msgid "== Свойства `LinkedList`"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:378
+msgid ""
+"* Implements `List` and `Deque`\n"
+"* `get(int index)` is *O(n)* (with *n/4* steps on average)\n"
+"* `add(E element)` is *O(1)*\n"
+"* `add(int index, E element)` is *O(n)* (with *n/4* steps on average),\n"
+"but *O(1)* when `index = 0`  <- *main benefit of `LinkedList<E>`*\n"
+"* `remove(int index)` is *O(n)* (with *n/4* steps on average)\n"
+"* `Iterator.remove()` is *O(1)* <- *main benefit of `LinkedList<E>`*\n"
+"* `ListIterator.add(E element)` is *O(1)*  This is one of the main benefits "
+"of `LinkedList<E>`"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:380
+msgid "== Does anyone use LinkedList?"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:382
+msgid "image::blochonlinkedlist.png[{image-70-width}]"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:384
+msgid "== А если всё-таки нужен Deque?"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:388
+msgid ""
+"* `ArrayDeque`\n"
+"* Circular array\n"
+"* Более быстрый, чем `LinkedList`."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:398
+msgid ""
+"[graphviz, \"arraydeque-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"graph [ dpi = 180 ];\n"
+"n356573597[label=\"ArrayDeque|{head: 0|tail: 3}\",shape=record];\n"
+"n356573597 -> n325040804[label=\"elements\",fontsize=12];\n"
+"n325040804[shape=record, label=\""
+"foo|bar|baz|null|null|null|null|null|null|null|null|null|null|null|null|"
+"null\"];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:400
+msgid "== PriorityQueue"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:403
+msgid ""
+"* Постановка в очередь с сортировкой по приоритету за счёт `Comparable` или "
+"`Comparator`.\n"
+"* Balanced binary heap: \"the two children of `queue[n]` are `queue[2*n+1]` "
+"and `queue[2*n+2]` \""
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:409
+msgid ""
+"[source,java]\n"
+"----\n"
+"PriorityQueue<String> q = new PriorityQueue<>();\n"
+"q.add(\"foo\"); q.add(\"bar\"); q.add(\"baz\");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:419
+msgid ""
+"[graphviz, \"priority-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"graph [ dpi = 180 ];\n"
+"n1735600054[label=\"PriorityQueue|{size: 3}\",shape=record];\n"
+"n1735600054 -> n856419764[label=\"queue\",fontsize=12];\n"
+"n856419764[shape=record, label=\""
+"bar|foo|baz|null|null|null|null|null|null|null|null\"];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:421
+msgid "[%notitle]"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:423
+msgid "== Выводы"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:429
+msgid ""
+"* Теоретическая асимптотика не полностью описывает пригодность той или иной "
+"структуры данных: вмешивается ряд обстоятельств, таких как \n"
+"** частные «удачные» случаи и частота их использования,\n"
+"** эффективность использования кэша,\n"
+"** количество производимого «мусора» \n"
+"** и т. п."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:431
+msgid ""
+"* `ArrayList` и `ArrayDeque` являются предпочтительным выбором реализации "
+"`List` и `Deque` в подавляющем большинстве случаев."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:433
+msgid "== Его Величество HashMap"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:439
+msgid ""
+"[source,java]\n"
+"----\n"
+"Map<String, Integer> map = new HashMap<>();\n"
+"map.put(\"foo\", 1); map.put(\"bar\", 2); map.put(\"baz\", 3);\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:453
+msgid ""
+"[graphviz, \"hm-nocollisions.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"n1735600054[label=\"HashMap|{entrySet: null|size: 3|threshold: 12|loadFactor:"
+" 0.75|keySet: null|values: null}\",shape=record];\n"
+"n1735600054 -> n1265094477[label=\"table\",fontsize=12];\n"
+"n1265094477[label=\"<f0>|<f1>|<f2>|<f3>|<f4>|<f5>|<f6>|<f7>|<f8>|<f9>|<f10>|<"
+"f11>|<f12>|<f13>|<f14>|<f15>\",shape=record];\n"
+"n1265094477:f2 -> n1554874502[label=\"2\",fontsize=12];\n"
+"n1554874502[label=\"Node|{hash: 97298|key: bar|value: 2|next: null}\""
+",shape=record];\n"
+"n1265094477:f7 -> n1846274136[label=\"7\",fontsize=12];\n"
+"n1846274136[label=\"Node|{hash: 101575|key: foo|value: 1|next: null}\""
+",shape=record];\n"
+"n1265094477:f10 -> n1639705018[label=\"10\",fontsize=12];\n"
+"n1639705018[label=\"Node|{hash: 97306|key: baz|value: 3|next: null}\""
+",shape=record];\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:455
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:455"
+msgid "----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:457
+msgid "== Коллизии хэша"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:461
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:461"
+msgid ""
+"[cols=\"60a,40a\"]\n"
+"|===\n"
+"^|"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:486
+msgid ""
+"[graphviz, \"hm-collisions.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"n1735600054[label=\"HashMap\\|{entrySet: null\\|size: 3\\|threshold: 12\\"
+"|loadFactor: 0.75\\|keySet: null\\|values: null}\",shape=record];\n"
+"n1735600054 -> n1265094477[label=\"table\",fontsize=12];\n"
+"n1265094477[label=\"<f0>\\|<f1>\\|<f2>\\|<f3>\\|<f4>\\|<f5>\\|<f6>\\|<f7>\\"
+"|<f8>\\|<f9>\\|<f10>\\|<f11>\\|<f12>\\|<f13>\\|<f14>\\|<f15>\",shape=record];"
+"\n"
+"n1265094477:f0 -> n1554874502[label=\"0\",fontsize=12];\n"
+"n1554874502[label=\"Node\\|{hash: 2112\\|key: Aa\\|value: 2}\",shape=record];"
+"\n"
+"n1554874502 -> n1846274136[label=\"next\",fontsize=12];\n"
+"n1846274136[label=\"Node\\|{hash: 2112\\|key: BB\\|value: 3\\|next: null}\""
+",shape=record];\n"
+"n1265094477:f7 -> n1639705018[label=\"7\",fontsize=12];\n"
+"n1639705018[label=\"Node\\|{hash: 101575\\|key: foo\\|value: 1\\|next: null}"
+"\",shape=record];\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Map<String, \n"
+"  Integer> map \n"
+"  = new HashMap<>();\n"
+"map.put(\"foo\", 1);\n"
+"map.put(\"Aa\", 2);\n"
+"map.put(\"BB\", 3);\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:490
+msgid ""
+"* При большом кол-ве коллизий на одной ячейке, если значение реализует "
+"`Comparable`, связный список заменяется на дерево.\n"
+"* Реализуйте `Comparable`!!\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:492
+msgid "== LinkedHashMap"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:496
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:496"
+msgid ""
+"[cols=\"60a,40a\"]\n"
+"|===\n"
+"^|"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:530
+msgid ""
+"[graphviz, \"hm-lhm.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"n1735600054[label=\"LinkedHashMap\\|{size: 3\\|threshold: 12\\|loadFactor: "
+"0.75}\",shape=record];\n"
+"n1735600054 -> n1554874502[label=\"head\",fontsize=12];\n"
+"n1554874502[label=\"Entry\\|{before: null\\|key: foo\\|value: 1\\|next: null}"
+"\",shape=record];\n"
+"n1554874502 -> n1846274136[label=\"after\",fontsize=12];\n"
+"n1846274136[label=\"Entry\\|{key: bar\\|value: 2\\|next: null}\""
+",shape=record];\n"
+"n1846274136 -> n1554874502[label=\"before\",fontsize=12];\n"
+"n1846274136 -> n1639705018[label=\"after\",fontsize=12];\n"
+"n1639705018[label=\"Entry\\|{after: null\\|key: baz\\|value: 3\\|next: null}"
+"\",shape=record];\n"
+"n1639705018 -> n1846274136[label=\"before\",fontsize=12];\n"
+"n1735600054 -> n1639705018[label=\"tail\",fontsize=12];\n"
+"n1735600054 -> n1627674070[label=\"table\",fontsize=12];\n"
+"n1627674070[label=\"<f0>\\|<f1>\\|<f2>\\|<f3>\\|<f4>\\|<f5>\\|<f6>\\|<f7>\\"
+"|<f8>\\|<f9>\\|<f10>\\|<f11>\\|<f12>\\|<f13>\\|<f14>\\|<f15>\",shape=record];"
+"\n"
+"n1627674070:f2 -> n1846274136[label=\"2\",fontsize=12];\n"
+"n1627674070:f7 -> n1554874502[label=\"7\",fontsize=12];\n"
+"n1627674070:f10 -> n1639705018[label=\"10\",fontsize=12];\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Map<String, \n"
+"  Integer> map =  \n"
+"  new LinkedHashMap<>();\n"
+"map.put(\"foo\", 1); \n"
+"map.put(\"bar\", 2); \n"
+"map.put(\"baz\", 3);\n"
+"----\n"
+"* Помнит порядок вставки элементов.\n"
+"* Хорош для LRU-кэширования.\n"
+"* Хорош для хранения настроек вида «ключ-значение», задаваемых текстом."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:532
+msgid "|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:534
+msgid "== Ещё вариации на тему хэш-таблицы"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:537
+msgid ""
+"* `IdentityHashMap` -- ключи сравниваются по `==`, а не по `equals()`.\n"
+"* `WeakHashMap` -- значения могут быть собраны сборщиком мусора, если не "
+"используются где-то ещё."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:539
+msgid "== TreeMap"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:543
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:543"
+msgid ""
+"[cols=\"60a,40a\"]\n"
+"|===\n"
+"^|"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:558
+msgid ""
+"[graphviz, \"tm.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"graph [ dpi = 100 ];\n"
+"n1735600054[label=\"TreeMap\\|{size: 3}\",shape=record];\n"
+"n1735600054 -> n1846274136[label=\"root\",fontsize=12];\n"
+"n1846274136[label=\"Entry\\|{key: baz\\|value: 3\\|parent: null\\|color: "
+"true}\",shape=record];\n"
+"n1846274136 -> n1627674070[label=\"left\",fontsize=12];\n"
+"n1627674070[label=\"Entry\\|{key: bar\\|value: 2\\|left: null\\|right: null\\"
+"|color: false}\",shape=record];\n"
+"n1627674070 -> n1846274136[label=\"parent\",fontsize=12];\n"
+"n1846274136 -> n1360875712[label=\"right\",fontsize=12];\n"
+"n1360875712[label=\"Entry\\|{key: foo\\|value: 1\\|left: null\\|right: null\\"
+"|color: false}\",shape=record];\n"
+"n1360875712 -> n1846274136[label=\"parent\",fontsize=12];\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:574
+msgid ""
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Map<String, \n"
+"  Integer> map =  \n"
+"  new TreeMap<>();\n"
+"map.put(\"foo\", 1); \n"
+"map.put(\"bar\", 2); \n"
+"map.put(\"baz\", 3);\n"
+"----\n"
+"* Красно-чёрное дерево, ключи сравниваются по `Comparable` или `Comparator`."
+"\n"
+"* Как обычный `Map` уступает `HashMap`-у,\n"
+"* Незаменим в ситуациях, когда ключ известен только приблизительно.\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:576
+msgid "== Множества (Sets)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:582
+msgid ""
+"* Коллекции, в которых объект может присутствовать только один раз.\n"
+"* Реализованы на базе соответствующих Maps:\n"
+"** `HashSet`, \n"
+"** `LinkedHashSet`, \n"
+"** `TreeSet`."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:588
+msgid ""
+"[source,java]\n"
+"----\n"
+"private transient HashMap<E,Object> map;\n"
+"// Dummy value to associate with an Object in the backing Map\n"
+"private static final Object PRESENT = new Object();"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:593
+msgid ""
+"public boolean add(E e) {\n"
+"    return map.put(e, PRESENT)==null;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:595
+msgid "== Множества на основе битовых масок"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:598
+msgid ""
+"* `EnumSet` -- на базе единственного значения типа `long`. _Используйте "
+"только его для enum-ов!_\n"
+"* `BitSet` -- массив long-ов."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:600
+msgid "== Алгоритмы: сортировка и перемешивание"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:609
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"/*Реализует Comparable*/\n"
+"List<String> names = ...\n"
+"Collections.sort(names);"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:615
+msgid ""
+"/*Предлагаем Comparator*/\n"
+"List<Employee> staff = ...\n"
+"Collections.sort(staff,\n"
+"  Comparator.comparingLong(\n"
+"    Employee::getSalary));"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:626
+msgid ""
+"/*Иногда надо перемешать*/\n"
+"List<Card> cards = ...\n"
+"Collections.shuffle(cards);\n"
+"---- \n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"/*Реализует Comparable*/\n"
+"String[] names = ...\n"
+"Arrays.sort(names);"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:632
+msgid ""
+"/*Предлагаем Comparator*/\n"
+"Employee[] staff = ...\n"
+"Arrays.sort(staff,\n"
+"  Comparator.comparingLong(\n"
+"    Employee::getSalary));"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:636
+msgid ""
+"/*Arrays.shuffle отсутствует!*/\n"
+"---- \n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:638
+msgid "== Алгоритмы: бинарный поиск"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:645
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"List<Employee> staff = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:649
+msgid ""
+"Collections.sort(staff,\n"
+"  Comparator.comparing(\n"
+"    Employee::getName));"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:651
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:651"
+msgid "Employee p = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:662
+msgid ""
+"int i = \n"
+"  Collections.binarySearch(\n"
+"    staff, p,\n"
+"    Comparator.comparing(\n"
+"      Employee::getName));\n"
+"---- \n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Employee[] staff = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:666
+msgid ""
+"Arrays.sort(staff,\n"
+"  Comparator.comparing(\n"
+"    Employee::getName));"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:668
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:668"
+msgid "Employee p = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:676
+msgid ""
+"int i = \n"
+"  Arrays.binarySearch(\n"
+"    staff, p,\n"
+"    Comparator.comparing(\n"
+"      Employee::getName));\n"
+"---- \n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:678
+msgid "== Также уже реализованы"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:684
+msgid ""
+"* поиск min/max\n"
+"* копирование \n"
+"* разворачивание «задом наперёд»\n"
+"* объединение и разность\n"
+"* ... -- ищите и найдёте!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:687
+msgid "== Callbacks: До появления лямбд"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:693
+msgid ""
+"[source,java]\n"
+"----\n"
+"public interface ActionListener {\n"
+"  void actionPerformed(ActionEvent event);\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:703
+msgid ""
+"// ----использование----\n"
+"String text = ...\n"
+"new Timer(1000, new ActionListener(){\n"
+"  @Override\n"
+"  public void actionPerformed(ActionEvent e) {\n"
+"    ... //'text' var is available here\n"
+"    }\n"
+"  });\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:705
+msgid "== Callbacks: Comparator"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:709
+msgid ""
+"[source,java]\n"
+"----\n"
+"String[] friends = {\"Peter\", \"Paul\", \"Mary\"};"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:718
+msgid ""
+"Arrays.sort(friends,\n"
+"  new Comparator<String>() {\n"
+"    @Override\n"
+"    public int compare(String o1, String o2) {\n"
+"      return o1.length() - o2.length();\n"
+"  }\n"
+"});\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:720
+msgid "== Предикат"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:731
+msgid ""
+"[source,java]\n"
+"----\n"
+"File[] hiddenFiles = new File(\".\").listFiles(\n"
+"  new FileFilter() {\n"
+"    public boolean accept(File file) {\n"
+"      return file.isHidden();\n"
+"    }\n"
+"  }\n"
+");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:734
+msgid "== Welcome lambda expressions!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:740
+msgid ""
+"[source,java]\n"
+"----\n"
+"//single-line\n"
+"(String first, String second) -> \n"
+"  first.length() - second.length()"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:747
+msgid ""
+"//multi-line with int return\n"
+"(String first, String second) -> {\n"
+"  if (first.length() < second.length()) return -1;\n"
+"  else if (first.length() > second.length()) return 1;\n"
+"  else return 0;\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:751
+msgid ""
+"//no-arg, void return\n"
+"() -> System.out.println(\"Hello!\");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:753
+msgid "== Что из этого -- валидные лямбда-выражения?"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:759
+msgid ""
+"1. `() -> {}`\n"
+"2. `() -> \"Raoul\"`\n"
+"3. `() -> {return \"Mario\";}`\n"
+"4. `(Integer i) -> return \"Alan\" + i`\n"
+"5. `(String s) -> {\"Iron Man\"}`"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:762
+msgid ""
+"[.fragment]\n"
+"Ответ: 1-3. Если лямбда с фигурными скобками, обязательно нужен return. Если "
+"без них, то return не нужен!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:764
+msgid "== Чему можно присваивать лямбды?"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:768
+msgid ""
+"* Функциональный интерфейс -- такой, у которого не более одного абстрактного "
+"метода (понятно, что запускать).\n"
+"* Может быть помечен аннотацией `@FunctionalInterface`, хотя это не "
+"обязательно.\n"
+"* Если метод интерфейса подходит по параметрам и возвращаемому значению "
+"лямбды -- welcome."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:776
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Типы аргументов лямбд указывать не надо: type inference!\n"
+"ActionListener = e -> {...}\n"
+"Comparator<String> c = (s1, s2) -> s1.length() - s2.length();\n"
+"----\n"
+"== Void-compatibility "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:778
+msgid "Оба варианта скомпилируются:"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:782
+msgid ""
+"[source,java]\n"
+"----\n"
+"final List<String> list = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:785
+msgid ""
+"//Predicate.test возвращает boolean\n"
+"Predicate<String> p = s -> list.add(s);"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:789
+msgid ""
+"//Consumer.accept возвращает void!\n"
+"Consumer<String> c = s -> list.add(s);\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:791
+msgid "== Object -- не функциональный интерфейс!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:796
+msgid ""
+"[source,java]\n"
+"----\n"
+"//не скомпилируется\n"
+"Object o = ()->{};"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:799
+msgid ""
+"//Скомпилируется!\n"
+"Runnable r = ()->{};"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:803
+msgid ""
+"//Тоже скомпилируется\n"
+"Object o = (Runnable) ()->{};\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:845
+msgid ""
+"== В итоге имеем\n"
+"[cols=\"55a,45a\"]\n"
+"|===\n"
+"^| *Anonymous Class*\n"
+"^| *Lambda*\n"
+"|\n"
+"[source,java]\n"
+"-----\n"
+"new Timer(100, new ActionListener(){\n"
+" @Override\n"
+" public void \n"
+"   actionPerformed(ActionEvent e) {\n"
+"     ...\n"
+"   }\n"
+"});\n"
+"-----\n"
+"|\n"
+"[source,java]\n"
+"-----\n"
+"new Timer(100, e -> {...});\n"
+"-----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Arrays.sort(friends,\n"
+" new Comparator<String>() {\n"
+"   @Override\n"
+"   public int compare(\n"
+"     String o1, String o2) {\n"
+"    return o1.length()-o2.length();\n"
+" }\n"
+"});\n"
+"----\n"
+"| \n"
+"[source,java]\n"
+"----\n"
+"Arrays.sort(friends, (s1, s2)-> \n"
+"  s1.length() - s2.length());\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:847
+msgid "== Замыкания (closures)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:856
+msgid ""
+"[source,java]\n"
+"----\n"
+"void repeatMessage(String text, int delay) {\n"
+"  ActionListener  listener = event -> {\n"
+"    //переменная text доступна внутри лямбды!\n"
+"    System.out.println(text);\n"
+"  }\n"
+"  new Timer(delay, listener).start();"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:859
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:864
+msgid ""
+"* «Ингридиенты» лямбды:\n"
+"** Код\n"
+"** Параметры\n"
+"** Свободные («захваченные») переменные, которые должны быть effectively "
+"final"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:866
+msgid "== Effectively final only "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:870
+msgid ""
+"[source,java]\n"
+"----\n"
+"int start = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:874
+msgid ""
+"for (int i = 0; i < count; i++) {\n"
+"  ActionListener linstener = event -> {\n"
+"    start--; //ERROR: Can't mutate captured value"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:879
+msgid ""
+"    //ERROR: Cannot refer to changing i\n"
+"    System.out.println(i);\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:881
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:881"
+msgid "----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:883
+msgid ""
+"(Effectively final переменные -- это такие, что они либо уже `final`, либо, "
+"если на них проставить `final`, код всё равно будет компилироваться)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:885
+msgid "== Method references: ещё короче, ещё эффективнее"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:907
+msgid ""
+"[cols=\"55a,45a\"]\n"
+"|===\n"
+"| \n"
+"[source,java]\n"
+"event -> System.out.println(event)\n"
+"| \n"
+"[source,java] \n"
+"System.out::println\n"
+"| \n"
+"[source,java] \n"
+"(s1,s2)->s1.compareToIgnoreCase(s2)\n"
+"| \n"
+"[source,java]\n"
+"String::compareToIgnoreCase\n"
+"| \n"
+"[source,java]\n"
+"(x, y) -> Math.pow(x,y)\n"
+"| \n"
+"[source,java]\n"
+"Math::pow\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:909
+msgid "== Три способа определить Method reference"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:919
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|===\n"
+"| `object::method`\n"
+"| `(x, y, z...) -> object.method(x, y, z...)`\n"
+"| `Class::instanceMethod`\n"
+"| `(x, y, z...) -> x.instanceMethod(y, z...)`\n"
+"| `Class::staticMethod`\n"
+"| `(x, y, z...) -> Class.staticMethod(x, y, z...)`\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:921
+msgid "== Constructor/Array Constructor Reference"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:929
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|===\n"
+"| `Class::new`\n"
+"| `(x, y, z...) -> new Class(x, y, z...)`\n"
+"| `Class[]::new`\n"
+"| `(int i) -> new Class[i]`\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:931
+msgid "== IDE поможет, но разница есть!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:935
+msgid ""
+"[source,java]\n"
+"----\n"
+"obj = null;"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:939
+msgid ""
+"//NPE только в момент запуска лямбды!!\n"
+"//obj должен быть effectively final!\n"
+"doSmth(x -> obj.method(x)); "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:944
+msgid ""
+"//NPE здесь и сейчас\n"
+"//obj не обязан быть effectively final\n"
+"doSmth(obj::method)\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:951
+msgid ""
+"== Методы, специально созданные, чтобы быть method references\n"
+"[source,java]\n"
+"----\n"
+"//Да ладно, разве трудно на null проверить??\n"
+"Objects.isNull(Object obj)...\n"
+"Objects.nonNull(Object ob)..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:954
+msgid "list.removeIf(Objects::isNull);"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:957
+msgid ""
+"stream.filter(Objects::nonNull)...\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:959
+msgid "== Готовые функциональные типы"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:964
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:970
+msgid ""
+"| Runnable    | none | void | run |\n"
+"| Supplier<T> | none | T |  get |\n"
+"| Consumer<T> | T | void | accept | andThen\n"
+"| BiConsumer<T, U> | T, U | void | accept | andThen\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:972
+msgid "== Комбинирование консьюмеров"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:977
+msgid ""
+"[source,java]\n"
+"----\n"
+"Consumer<String> foo = ...\n"
+"List<String> list = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:981
+msgid ""
+"//Составной консьюмер, отправляющий\n"
+"//объект сначала в первый, потом во второй\n"
+"Consumer<String> bar = foo.andThen(list::add);"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:983
+msgctxt "./slides07/src/main/asciidoc/lecture.adoc:983"
+msgid "----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:985
+msgid "== Функции"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:993
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods \n"
+"|Function<T, R> | T | R | apply | compose, andThen, identity\n"
+"| BiFunction<T, U, R> |T, U| R |apply | andThen\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:995
+msgid "== Композиция функций и identity"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1004
+msgid ""
+"[cols=\"50a,^50a\"]\n"
+"|===\n"
+"|`f.andThen(g)` | `g(f(x))`\n"
+"|`f.compose(g)` | `f(g(x))`\n"
+"|`Function.identity()` |  `x -> x`\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1006
+msgid "Почему у `BiFunction` нет `compose`, только `andThen`?"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1008
+msgid "== Операторы"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1016
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods \n"
+"|UnaryOperator<T> |T | T | apply | compose,\n"
+"andThen,\n"
+"identity"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1022
+msgid ""
+"|BinaryOperator<T> |T, T | T | apply| \n"
+"andThen,\n"
+"maxBy,\n"
+"minBy\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1024
+msgid "== Композиция операторов"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1026
+msgid ""
+"* `UnaryOperator<T> extends Function<T,T>`, поэтому `compose`, `andThen` и "
+"`identity` работают так же."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1028
+msgid ""
+"* `BinaryOperator<T> extends BiFunction<T,T,T>`, поэтому `andThen` работает "
+"так же"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1030
+msgid ""
+"* Статические методы `minBy` и `maxBy` формируют операторы `min(x,y)` и "
+"`max(x,y)` из компаратора."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1033
+msgid "== Предикаты"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1041
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods \n"
+"|Predicate<T> | T| boolean| test| and, or,\n"
+"negate,\n"
+"isEqual"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1045
+msgid ""
+"| BiPredicate<T, U> |T, U |boolean| test |and, or,\n"
+"negate\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1047
+msgid "== Композиция предикатов"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1052
+msgid ""
+"[source,java]\n"
+"----\n"
+"Predicate<T> a = ...\n"
+"Predicate<T> b = ..."
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1054
+msgid "a.and(b).negate(); // ! (a(x) & b(x)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1057
+msgid ""
+"//Двуместный предикат (x,y)-> Objects.equals(x, y)\n"
+"Objects::equals "
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1061
+msgid ""
+"//Одноместный предикат y -> Objects.equals(x, y)\n"
+"Predicate.isEqual(x)\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1064
+msgid ""
+"== Функциональные интерфейсы для примитивных типов\n"
+"p, q is `int`, `long`, `double`; P, Q is `Int`, `Long`, `Double`"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1077
+msgid ""
+"[cols=\"35a,20a,20a,25a\", options=\"header\"]\n"
+"|===\n"
+"|*Functional Interface*| *Parameter Types* | *Return Type* | *Abstract "
+"Method Name*\n"
+"|BooleanSupplier | none | boolean | getAsBoolean\n"
+"|PSupplier | none |p | getAsP\n"
+"|PConsumer |p | void | accept\n"
+"|ObjPConsumer<T> | T, p |void | accept\n"
+"|PFunction<T> | p | T | apply\n"
+"|PToQFunction | p | q | applyAsQ\n"
+"|ToPFunction<T> |T|  p | applyAsP\n"
+"|ToPBiFunction<T, U> |T, U |p | applyAsP\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1079
+msgid "== Функциональные интерфейсы для примитивных типов (продолжение)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1087
+msgid ""
+"[cols=\"35a,20a,20a,25a\", options=\"header\"]\n"
+"|===\n"
+"|*Functional Interface*| *Parameter Types* | *Return Type* | *Abstract "
+"Method Name*\n"
+"|PUnaryOperator |p |p | applyAsP\n"
+"|PBinaryOperator |p, p | p |applyAsP\n"
+"|PPredicate |p | boolean | test\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1089
+msgid "== Дефолтные методы Map interface"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1091
+msgid "Работают атомарно в `ConcurrentHashMap`!"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1096
+msgid ""
+"[source,java]\n"
+"----\n"
+"V computeIfAbsent(K key,\n"
+"  Function<? super K, ? extends V> mappingFunction)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1099
+msgid ""
+"V computeIfPresent(K key,\n"
+"  BiFunction<? super K, ? super V, ? extends V> remappingFunction)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1102
+msgid ""
+"V compute(K key,\n"
+"  BiFunction<? super K, ? super V, ? extends V> remappingFunction)"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1106
+msgid ""
+"V merge(K key, V value,\n"
+"  BiFunction<? super V, ? super V, ? extends V> remappingFunction)\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1108
+msgid "== Компараторы"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1120
+msgid ""
+"[source,java]\n"
+"----\n"
+"@AllArgsConstructor\n"
+"public class Person {\n"
+"    @Getter\n"
+"    private final String firstName;\n"
+"    @Getter\n"
+"    private final String lastName;\n"
+"}\n"
+"List<Person> people = new ArrayList<>();\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1122
+msgid "== Сортируем по фамилии"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1145
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"[source,java]\n"
+"----\n"
+"/*НЕПРАВИЛЬНО*/\n"
+"Collections.sort(people,\n"
+" (p1, p2) -> \n"
+"   p1.getLastName()\n"
+"   .compareTo(\n"
+"     p2.getLastName());\n"
+");\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"/*ПРАВИЛЬНО*/ \n"
+"Collections.sort(people,\n"
+"  Comparator.comparing\n"
+"   (Person::getLastName));\n"
+");\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1147
+msgid "== Сортируем по фамилии, потом по имени"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1161
+msgid ""
+"[source,java]\n"
+"----\n"
+"//НЕ ПИШИТЕ ВЕСЬ ЭТОТ КОШМАР\n"
+"Collections.sort(people,\n"
+"  (p1, p2) -> {\n"
+"    int result = p1.getFirstName().compareTo(p2.getFirstName());\n"
+"    if (result == 0) {\n"
+"      result = p2.getLastName().compareTo(p2.getLastName());\n"
+"    }\n"
+"    return result;\n"
+"  }\n"
+");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1163
+msgid "== Правильно так:"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1172
+msgid ""
+"[source,java]\n"
+"----\n"
+"Collections.sort(people,\n"
+"  Comparator\n"
+"    .comparing(Person::getLastName)\n"
+"    .thenComparing(Person::getFirstName));\n"
+");\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1174
+msgid "== Также:"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1182
+msgid ""
+"[source,java]\n"
+"----\n"
+"Comparator.comparing(keyExtractor, keyComparator)\n"
+"Comparator.comparingInt/Double(...)\n"
+"Comparator.reversed()\n"
+"Comparator.nullsFirst/nullsLast(Comparator c)\n"
+"----"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1185
+msgid ""
+"[%notitle]\n"
+"== Хотя не без проблем"
+msgstr ""
+
+#: ./slides07/src/main/asciidoc/lecture.adoc:1186
+msgid "image::doctor.jpg[{image-30-width}]"
+msgstr ""
