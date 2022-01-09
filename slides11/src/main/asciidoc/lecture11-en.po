@@ -16,8 +16,8 @@ msgstr ""
 
 #: slides11/src/main/asciidoc/lecture.adoc:25
 msgid ""
-"= Core Java: Курс лекций. Лекция 11\n"
-"Иван Пономарёв, КУРС/МФТИ\n"
+"= Core Java: Lecture #11\n"
+"Ivan Ponomarev, Synthesized.io/MIPT\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
 ":revealjs_slideNumber:\n"
