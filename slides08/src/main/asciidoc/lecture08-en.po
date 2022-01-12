@@ -1,18 +1,17 @@
-#. extracted from ./slides08/src/main/asciidoc/lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 08\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 11:39+0300\n"
-"PO-Revision-Date: 2021-12-15 11:39+0300\n"
+"PO-Revision-Date: 2022-01-12 21:58+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
+"Language: en_UK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.2.5\n"
-"Language: en_UK\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: slides08/src/main/asciidoc/lecture.adoc:24
 msgid ""
@@ -82,7 +81,7 @@ msgstr "icon:twitter[size=lg] @inponomarev"
 
 #: slides08/src/main/asciidoc/lecture.adoc:34
 msgid "== RDMBS -- реляционные базы данных"
-msgstr "== RDMBS -- реляционные базы данных"
+msgstr "== RDMBS -- Relational Database Management Systems"
 
 #: slides08/src/main/asciidoc/lecture.adoc:40
 msgid ""
@@ -95,14 +94,14 @@ msgid ""
 "* В современных реалиях больших данных теснятся различными NoSQL системами, "
 "но пока ещё лидируют по распространённости"
 msgstr ""
-"* Существуют с 1970-х годов.\n"
-"* Наиболее распространённый способ хранения информации в самых разнообразных "
-"системах.\n"
-"* Большое разнообразие зрелых, стабильных и богатых возможностями продуктов: "
-"IBM DB2, Oracle, MS SQL Server, Postgres, etc. etc.\n"
-"* Язык SQL стандартизован и слабо различается в разных системах.\n"
-"* В современных реалиях больших данных теснятся различными NoSQL системами, "
-"но пока ещё лидируют по распространённости"
+"* Existed since the 1970s.\n"
+"* The most common way of storing information in a wide variety of systems.\n"
+"* A wide variety of mature, stable and feature-rich products: IBM DB2, "
+"Oracle, MS SQL Server, Postgres, etc. etc.\n"
+"* The SQL language is standardized and varies slightly from system to "
+"system.\n"
+"* In modern \"big data\" realities various NoSQL systems are being used for "
+"different tasks, but RDBMS is still the leader in prevalence"
 
 #: slides08/src/main/asciidoc/lecture.adoc:42
 msgid "== JDBC"
@@ -118,15 +117,15 @@ msgid ""
 "* Активно используется десятилетиями"
 msgstr ""
 "* \"Java Database Connectivity\"\n"
-"* Стандарт взаимодействия с реляционными СУБД\n"
-"* Назван по аналогии с ODBC (Open Database Connectivity) для языка C, "
-"разработанного Microsoft\n"
-"* Первая версия в 1996 году, текущая -- 4.3 (2017-09-21)\n"
-"* Активно используется десятилетиями"
+"* Standard API for interaction with relational DBMS\n"
+"* Named after ODBC (Open Database Connectivity) for the C language developed "
+"by Microsoft\n"
+"* First version in 1996, current version is 4.3 (2017-09-21)\n"
+"* Actively used for decades"
 
 #: slides08/src/main/asciidoc/lecture.adoc:50
 msgid "== Структура приложения"
-msgstr "== Структура приложения"
+msgstr "== Application structure"
 
 #: slides08/src/main/asciidoc/lecture.adoc:64
 msgid ""
@@ -176,8 +175,8 @@ msgid ""
 "* Разрабатываются производителями БД или сообществами\n"
 "* У хороших БД -- стабильные, высокого качества драйверы"
 msgstr ""
-"* Разрабатываются производителями БД или сообществами\n"
-"* У хороших БД -- стабильные, высокого качества драйверы"
+"* Developed by database vendors or communities\n"
+"* Good databases have stable, high quality drivers"
 
 #: slides08/src/main/asciidoc/lecture.adoc:74
 msgid "== Connection Strings aka Database URLs"
@@ -188,8 +187,8 @@ msgid ""
 "В специфичной для каждого драйвера манере указывают сервер, порт, базу "
 "данных и иные параметры подключения:"
 msgstr ""
-"В специфичной для каждого драйвера манере указывают сервер, порт, базу "
-"данных и иные параметры подключения:"
+"In a manner specific to each driver, specify the server, port, database and "
+"other connection parameters:"
 
 #: slides08/src/main/asciidoc/lecture.adoc:79
 msgid ""
@@ -217,7 +216,8 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:88
 msgid "== Создание Connection, Statement, получение и итерация по ResultSet"
-msgstr "== Создание Connection, Statement, получение и итерация по ResultSet"
+msgstr ""
+"== Creating Connection, Statement, getting ResultSet and iterating over it"
 
 #: slides08/src/main/asciidoc/lecture.adoc:95
 msgid ""
@@ -273,7 +273,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:112
 msgid "== Получение данных и итерация"
-msgstr "== Получение данных и итерация"
+msgstr "== Getting the data and iteration"
 
 #: slides08/src/main/asciidoc/lecture.adoc:117
 msgid ""
@@ -311,7 +311,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:129
 msgid "== Как получить JDBC Connection"
-msgstr "== Как получить JDBC Connection"
+msgstr "== How to obtain JDBC Connection"
 
 #: slides08/src/main/asciidoc/lecture.adoc:136
 msgid ""
@@ -323,8 +323,8 @@ msgid ""
 "Connection conn = DriverManager.getConnection(connString);\n"
 "----"
 msgstr ""
-"То, что написано во многих тьюториалах и учебниках, и то, что вы *никогда* "
-"не будете делать в реальной жизни:\n"
+"What is written in many tutorials, and what you will *never* do in real "
+"life:\n"
 "[source,java]\n"
 "----\n"
 "String connString = \"jdbc:postgresql://127.0.0.1:5432/celesta\" \n"
@@ -333,7 +333,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:138
 msgid "== JDBC Connection: особенности"
-msgstr "== JDBC Connection: особенности"
+msgstr "== JDBC Connection features"
 
 #: slides08/src/main/asciidoc/lecture.adoc:145
 msgid ""
@@ -345,13 +345,13 @@ msgid ""
 "* *Не потокобезопасный*. Нужен thread confinement.\n"
 "* Выход: connection pooling."
 msgstr ""
-"* Корневой объект, «входная точка» ко всем возможностям взаимодействия с "
-"СУБД.\n"
-"* Медленно создаётся (связь по сети с СУБД, авторизация и т. д.).\n"
-"* Захватывает ресурсы: необходимо явно закрывать после использования.\n"
-"* Имеет тенденцию «портиться» («отваливаться»).\n"
-"* *Не потокобезопасный*. Нужен thread confinement.\n"
-"* Выход: connection pooling."
+"* Connection is a root object, \"entry point\" to all the interaction with "
+"the DBMS.\n"
+"* Created slowly (network connection with the DBMS, authorization, etc.).\n"
+"* Acquires resources: must be explicitly closed after use.\n"
+"* Tends to \"spoil\" (to \"break\" after some time).\n"
+"* *Not thread-safe*. Thread confinement is needed.\n"
+"* Workaround: connection pooling."
 
 #: slides08/src/main/asciidoc/lecture.adoc:147
 msgctxt "./slides08/src/main/asciidoc/lecture.adoc:147"
@@ -408,9 +408,9 @@ msgid ""
 "* Есть `javax.sql.DataSource`, являющийся стандартным интерфейсом для "
 "Connection Pool."
 msgstr ""
-"* Грамотно реализовать самостоятельно -- сложно\n"
-"* Предоставляет ваш фреймворк / JDBC driver\n"
-"* Есть `javax.sql.DataSource`, являющийся стандартным интерфейсом для "
+"* Difficult to implement on your own competently\n"
+"* Provided by your framework / JDBC driver\n"
+"* There is `javax.sql.DataSource` which is a standard interface for "
 "Connection Pool."
 
 #: slides08/src/main/asciidoc/lecture.adoc:179
@@ -433,7 +433,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:181
 msgid "== Реализации Connection Pools (`DataSource`)"
-msgstr "== Реализации Connection Pools (`DataSource`)"
+msgstr "== Connection Pools (`DataSource`) implementations"
 
 #: slides08/src/main/asciidoc/lecture.adoc:185
 msgid ""
@@ -443,11 +443,11 @@ msgid ""
 msgstr ""
 "* Apache Commons DBCP\n"
 "* Hikari CP\n"
-"* Другие фреймворки или JDBC-драйверы (например, H2)"
+"* Other frameworks or JDBC drivers (H2, for example)"
 
 #: slides08/src/main/asciidoc/lecture.adoc:187
 msgid "== Методы Connection"
-msgstr "== Методы Connection"
+msgstr "== Connection methods"
 
 #: slides08/src/main/asciidoc/lecture.adoc:196
 msgid ""
@@ -462,20 +462,20 @@ msgid ""
 "команды\n"
 "** `prepareCall(String sql)` -- cоздаёт шаблон для вызова хранимой процедуры"
 msgstr ""
-"* управление транзакциями\n"
+"* transaction management\n"
 "** `setAutoCommit`\n"
 "** `commit`\n"
 "** `rollback`\n"
-"* создание statements:\n"
-"** `createStatement()` -- создаёт универсальный объект для передачи SQL-"
-"команд\n"
-"** `prepareStatement(String sql)` -- создаёт параметризованный шаблон SQL "
-"команды\n"
-"** `prepareCall(String sql)` -- cоздаёт шаблон для вызова хранимой процедуры"
+"* statements creation:\n"
+"** `createStatement()` -- creates a generic object for passing SQL commands\n"
+"** `prepareStatement(String sql)` -- creates a parameterized SQL command "
+"template\n"
+"** `prepareCall(String sql)` -- creates a template for calling a stored "
+"procedure"
 
 #: slides08/src/main/asciidoc/lecture.adoc:198
 msgid "== Разновидности Statement"
-msgstr "== Разновидности Statement"
+msgstr "== Varieties of Statements"
 
 #: slides08/src/main/asciidoc/lecture.adoc:202
 msgid ""
@@ -549,7 +549,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:229
 msgid "== Statement и PreparedStatement"
-msgstr "== Statement и PreparedStatement"
+msgstr "== Statement and PreparedStatement"
 
 #: slides08/src/main/asciidoc/lecture.adoc:239
 msgid ""
@@ -603,8 +603,8 @@ msgid ""
 "* Запомним раз и навсегда: нельзя конструировать запросы в базу на основании "
 "данных от пользователя"
 msgstr ""
-"* Запомним раз и навсегда: нельзя конструировать запросы в базу на основании "
-"данных от пользователя"
+"* Let's remember once and for all: you cannot build queries to the database "
+"based on the input from the user"
 
 #: slides08/src/main/asciidoc/lecture.adoc:273
 msgid ""
@@ -632,7 +632,7 @@ msgid ""
 msgstr ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
-"|*НЕПРАВИЛЬНО* | *ПРАВИЛЬНО*\n"
+"|*WRONG* | *CORRECT*\n"
 "|\n"
 "[source,java]\n"
 "----\n"
@@ -682,7 +682,7 @@ msgid ""
 "//... и много другой гадости\n"
 "----"
 msgstr ""
-"//... и много другой гадости\n"
+"//... and many other nasty things\n"
 "----"
 
 #: slides08/src/main/asciidoc/lecture.adoc:290
@@ -696,21 +696,21 @@ msgstr "image::sqlinjection.jpeg[]"
 
 #: slides08/src/main/asciidoc/lecture.adoc:295
 msgid "== Демо-пример"
-msgstr "== Демо-пример"
+msgstr "== Demo example"
 
 #: slides08/src/main/asciidoc/lecture.adoc:297
 msgid "* Пишем базу данных выступлений на Java-конференциях"
-msgstr "* Пишем базу данных выступлений на Java-конференциях"
+msgstr "* Let's write a database for talks at Java conferences"
 
 #: slides08/src/main/asciidoc/lecture.adoc:299
 msgid ""
 "* Основные сущности: на *конференциях* выступают *докладчики* с *докладами*. "
 msgstr ""
-"* Основные сущности: на *конференциях* выступают *докладчики* с *докладами*. "
+"* Main entities: at *conferences* there are *speakers* with their *talks*. "
 
 #: slides08/src/main/asciidoc/lecture.adoc:301
 msgid "* Бывает, что один доклад делают несколько докладчиков одновременно."
-msgstr "* Бывает, что один доклад делают несколько докладчиков одновременно."
+msgstr "* It happens that one talk is delivered with more than one speaker."
 
 #: slides08/src/main/asciidoc/lecture.adoc:307
 msgid ""
@@ -803,7 +803,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:341
 msgid "== Наш учебный пример про доклады и спикеров"
-msgstr "== Наш учебный пример про доклады и спикеров"
+msgstr "== Our case study about talks and speakers"
 
 #: slides08/src/main/asciidoc/lecture.adoc:352
 msgid ""
@@ -853,7 +853,7 @@ msgstr ""
 
 #: slides08/src/main/asciidoc/lecture.adoc:364
 msgid "== Реальная «слоистая» архитектура серверного приложения"
-msgstr "== Реальная «слоистая» архитектура серверного приложения"
+msgstr "== The real \"layered\" application architecture"
 
 #: slides08/src/main/asciidoc/lecture.adoc:371
 msgid ""
