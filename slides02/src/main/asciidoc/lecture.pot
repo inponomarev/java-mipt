@@ -1,10 +1,10 @@
-#. extracted from ./slides02/src/main/asciidoc/lecture.adoc
+#. extracted from lecture.adoc
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 11:38+0300\n"
+"POT-Creation-Date: 2022-01-16 14:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,9 +13,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:24
+#: lecture.adoc:24
 msgid ""
-"= Core Java: Курс лекций. Лекция 2\n"
+"= Core Java. Лекция 2: Примитивные типы. Управление выполнением. Операторы. "
+"Массивы.\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -40,29 +41,29 @@ msgid ""
 ":revealjs_height: 900"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:28
+#: lecture.adoc:28
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:30
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:32
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:34
+#: lecture.adoc:34
 msgid "== Демо"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:36
+#: lecture.adoc:36
 msgid "* Hello, World!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:42
+#: lecture.adoc:42
 msgid ""
 "* New Maven Project\n"
 "* New package\n"
@@ -71,7 +72,7 @@ msgid ""
 "* Манифест (runnable jar) "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:58
+#: lecture.adoc:58
 msgid ""
 "== Ключевые слова языка (keywords) [JLS17, 3.9]\n"
 "[source]\n"
@@ -90,27 +91,27 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:60
+#: lecture.adoc:60
 msgid "== Null and Boolean Literals "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:63
+#: lecture.adoc:63
 msgid ""
 "[source]\n"
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:69
+#: lecture.adoc:69
 msgid ""
 "             null       true        false\n"
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:71
+#: lecture.adoc:71
 msgid "== Restricted Keywords & Identifiers"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:77
+#: lecture.adoc:77
 msgid ""
 "[source]\n"
 "----\n"
@@ -119,30 +120,30 @@ msgid ""
 "opens    to          uses        provides      with"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:80
+#: lecture.adoc:80
 msgid ""
 "(Java 10)\n"
 "var "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:83
+#: lecture.adoc:83
 msgid ""
 "(Java 14)\n"
 "yield    record"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:87
+#: lecture.adoc:87
 msgid ""
 "(Java 15)\n"
 "sealed   non-sealed  permits\n"
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:89
+#: lecture.adoc:89
 msgid "== Комментарии"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:109
+#: lecture.adoc:109
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -165,7 +166,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:121
+#: lecture.adoc:121
 msgid ""
 "== Типы\n"
 "* Value\n"
@@ -180,11 +181,11 @@ msgid ""
 "** `null`, будь он неладен"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:123
+#: lecture.adoc:123
 msgid "== Целочисленные типы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:132
+#: lecture.adoc:132
 msgid ""
 "[cols=\"20a,20a,60a\"] \n"
 "|===\n"
@@ -196,11 +197,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:134
+#: lecture.adoc:134
 msgid "== Разновидности целочисленных литералов"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:140
+#: lecture.adoc:140
 msgid ""
 "* Long `100L`\n"
 "* Underscores `1_000_000`\n"
@@ -209,11 +210,11 @@ msgid ""
 "* Octal `010`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:142
+#: lecture.adoc:142
 msgid "== Типы с плавающей запятой"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:151
+#: lecture.adoc:151
 msgid ""
 "[cols=\"20a,20a,60a\"] \n"
 "|===\n"
@@ -225,11 +226,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:153
+#: lecture.adoc:153
 msgid "== Литералы для типов с плавающей запятой"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:161
+#: lecture.adoc:161
 msgid ""
 "* `2.998e8`\n"
 "* `1.0` (`1.`)\n"
@@ -240,11 +241,11 @@ msgid ""
 "* `Double.NaN`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:163
+#: lecture.adoc:163
 msgid "== Осторожней с плавающей запятой!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:170
+#: lecture.adoc:170
 msgid ""
 "* `System.out.println(2.0 - 1.1)` выводит 0.8999999999999999\n"
 "* *НИКОГДА НЕ СЧИТАЙТЕ ДЕНЬГИ DOUBLE-ОМ!*\n"
@@ -256,11 +257,11 @@ msgid ""
 "* `strictfp`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:172
+#: lecture.adoc:172
 msgid "== Приводимость числовых типов"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:189
+#: lecture.adoc:189
 msgid ""
 "[graphviz, \"casting.png\"]\n"
 "-----\n"
@@ -280,11 +281,11 @@ msgid ""
 "-----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:191
+#: lecture.adoc:191
 msgid "== Явное приведение типов"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:198
+#: lecture.adoc:198
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -294,11 +295,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:200
+#: lecture.adoc:200
 msgid "== Тип `char`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:205
+#: lecture.adoc:205
 msgid ""
 "* 16 bit\n"
 "* code unit in the UTF-16 encoding\n"
@@ -306,11 +307,11 @@ msgid ""
 "* Осторожней с Unicode, используйте `String`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:207
+#: lecture.adoc:207
 msgid "== Литералы `char`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:212
+#: lecture.adoc:212
 msgid ""
 "* `'ы'`\n"
 "* `'\\u03C0'` (греческая π)\n"
@@ -318,18 +319,18 @@ msgid ""
 "* Ловушка Unicode Escape: `// Look inside c:\\users`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:214
+#: lecture.adoc:214
 msgid "== Строковые литералы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:218
+#: lecture.adoc:218
 msgid ""
 "[source,java]\n"
 "----\n"
 "String s = \"Hello, world!\";"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:227
+#: lecture.adoc:227
 msgid ""
 "//Before Java 13\n"
 "String txt =\n"
@@ -346,12 +347,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:229
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:229"
+#: lecture.adoc:229
+msgctxt "lecture.adoc:229"
 msgid "'''"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:237
+#: lecture.adoc:237
 msgid ""
 "----\n"
 "Some        \n"
@@ -362,11 +363,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:239
+#: lecture.adoc:239
 msgid "== Text Blocks (Java 13+)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:250
+#: lecture.adoc:250
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -380,12 +381,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:252
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:252"
+#: lecture.adoc:252
+msgctxt "lecture.adoc:252"
 msgid "'''"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:261
+#: lecture.adoc:261
 msgid ""
 "----\n"
 "//Максимальное число пробелов впереди убрано:\n"
@@ -397,11 +398,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:263
+#: lecture.adoc:263
 msgid "== Escape sequences"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:277
+#: lecture.adoc:277
 msgid ""
 "[cols=\"20a,40a,20a\"] \n"
 "|===\n"
@@ -419,11 +420,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:279
+#: lecture.adoc:279
 msgid "== Тип `boolean`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:283
+#: lecture.adoc:283
 msgid ""
 "* `true` и `false`\n"
 "* В отличие от C и многих других языков, целые числа не сводятся "
@@ -431,11 +432,11 @@ msgid ""
 "* Избегаем ошибок вида `if (x = 0) {...`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:285
+#: lecture.adoc:285
 msgid "== Определение переменных и их область видимости"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:293
+#: lecture.adoc:293
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -446,24 +447,24 @@ msgid ""
 "boolean done;"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:296
+#: lecture.adoc:296
 msgid ""
 "// не очень приветствуется\n"
 "int i, j;"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:300
+#: lecture.adoc:300
 msgid ""
 "// технически можно, но . . .\n"
 "int суммаНДФЛ;\n"
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:302
+#: lecture.adoc:302
 msgid "== Инициализация переменных"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:309
+#: lecture.adoc:309
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -473,7 +474,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:316
+#: lecture.adoc:316
 msgid ""
 "Возможные способы инициализации:\n"
 "[source,java]\n"
@@ -483,7 +484,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:321
+#: lecture.adoc:321
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -491,18 +492,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:323
+#: lecture.adoc:323
 msgid "== Ключевое слово `final` (константы)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:327
+#: lecture.adoc:327
 msgid ""
 "* `final` используется в двух смыслах:\n"
 "** запрещает изменять значение\n"
 "** запрещает переопределять методы/классы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:333
+#: lecture.adoc:333
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -511,28 +512,28 @@ msgid ""
 "a = 42; // инициализация"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:337
+#: lecture.adoc:337
 msgid ""
 "...\n"
 "a = 43; // compilation error: \n"
 "  // variable a might already have been initialized"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:339
+#: lecture.adoc:339
 msgid "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:341
+#: lecture.adoc:341
 msgid "== Область видимости"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:344
+#: lecture.adoc:344
 msgid ""
 "* Место определения: класс, метод, блок\n"
 "* Нет ничего за пределами класса («глобальных» переменных)!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:355
+#: lecture.adoc:355
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -546,11 +547,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:357
+#: lecture.adoc:357
 msgid "== Вывод типов (type inference) при создании переменных (Java 10+)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:362
+#: lecture.adoc:362
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -558,11 +559,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:364
+#: lecture.adoc:364
 msgid "== Вывод типов"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:373
+#: lecture.adoc:373
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -574,7 +575,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:382
+#: lecture.adoc:382
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -586,26 +587,26 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:384
+#: lecture.adoc:384
 msgid "//https://blog.codefx.org/java/java-10-var-type-inference/"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:386
+#: lecture.adoc:386
 msgid "== Арифметические операторы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:390
+#: lecture.adoc:390
 msgid ""
 "* Арифметические: `+`, `-`, `*`, `/`, `%`\n"
 "* Деление работает как целочисленное, если оба аргумента целочисленные\n"
 "* Унарные `+` и `-`."
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:392
+#: lecture.adoc:392
 msgid "== Сдвиги"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:398
+#: lecture.adoc:398
 msgid ""
 "[cols=\"30a,25a,25a\"]\n"
 "|===\n"
@@ -614,110 +615,110 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:402
+#: lecture.adoc:402
 msgid ""
 "| `5 << 1 == 10`\n"
 "| `0000 ... 0000 1010`\n"
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:406
+#: lecture.adoc:406
 msgid ""
 "| `5 >> 1 == 2`\n"
 "| `0000 ... 0000 0010`\n"
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:410
+#: lecture.adoc:410
 msgid ""
 "| `-5`\n"
 "| `1111 ... 1111 1011`\n"
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:414
+#: lecture.adoc:414
 msgid ""
 "| `-5 << 1 == -10`\n"
 "| `1111 ... 1111 0110`\n"
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:418
+#: lecture.adoc:418
 msgid ""
 "| `-5 >> 1 == -3`\n"
 "| `1111 ... 1111 1101`\n"
 "| старший (знаковый) бит сохраняется"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:422
+#: lecture.adoc:422
 msgid ""
 "| `-5 >>> 1 == 2147483645`\n"
 "| `0111 ... 1111 1101`\n"
 "| старший (знаковый) бит заполняется нулём"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:424
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:424"
+#: lecture.adoc:424
+msgctxt "lecture.adoc:424"
 msgid "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:427
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:427"
+#: lecture.adoc:427
+msgctxt "lecture.adoc:427"
 msgid "== Не перемудрите со сдвигами!!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:429
+#: lecture.adoc:429
 msgid "`5 >> 32 == ?`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:431
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:431"
+#: lecture.adoc:431
+msgctxt "lecture.adoc:431"
 msgid "== Не перемудрите со сдвигами!!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:433
+#: lecture.adoc:433
 msgid "`5 >> 32 == 5` "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:436
+#: lecture.adoc:436
 msgid ""
 "* для `int` используются только 5 младших бит второго операнда (0..31),\n"
 "* для `long` используются только 6 младших бит второго операнда (0..63)  "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:438
+#: lecture.adoc:438
 msgid "== Побитовые операторы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:440
+#: lecture.adoc:440
 msgid "* `&`, `|`, `^`, `~`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:442
+#: lecture.adoc:442
 msgid "== Операторы сравнения"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:445
+#: lecture.adoc:445
 msgid ""
 "* `<` `+<=+` `>` `>=` `instanceof`\n"
 "* `==` `!=`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:447
+#: lecture.adoc:447
 msgid "== Булевские операторы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:449
+#: lecture.adoc:449
 msgid ""
 "* Без короткого замыкания: `&`, `|`, `^`, `!`  (вместо тильды -- "
 "восклицательный знак!)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:451
+#: lecture.adoc:451
 msgid "* С коротким замыканием `&&`, `||`."
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:457
+#: lecture.adoc:457
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -725,11 +726,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:460
+#: lecture.adoc:460
 msgid "== Оператор присвоения"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:466
+#: lecture.adoc:466
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -738,11 +739,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:468
+#: lecture.adoc:468
 msgid "Пример использования:"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:475
+#: lecture.adoc:475
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -752,7 +753,7 @@ msgid ""
 "== Пре/пост инкремент/декремент, присвоение с изменением"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:480
+#: lecture.adoc:480
 msgid ""
 "* `a{plus}{plus}`, `{plus}{plus}a`\n"
 "* `a--`, `--a`\n"
@@ -760,11 +761,11 @@ msgid ""
 "* ВНИМАНИЕ: может показаться, что эти операции атомарны. Но это не так."
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:483
+#: lecture.adoc:483
 msgid "== Тернарный оператор"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:488
+#: lecture.adoc:488
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -772,11 +773,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:490
+#: lecture.adoc:490
 msgid "== Операторы в порядке убывания приоритета"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:502
+#: lecture.adoc:502
 msgid ""
 "[cols=\"80a,20a\"] \n"
 "|===\n"
@@ -792,12 +793,12 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:505
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:505"
+#: lecture.adoc:505
+msgctxt "lecture.adoc:505"
 msgid "== Операторы в порядке убывания приоритета (продолжение)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:522
+#: lecture.adoc:522
 msgid ""
 "[cols=\"80a,20a\"] \n"
 "|===\n"
@@ -817,12 +818,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:525
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:525"
+#: lecture.adoc:525
+msgctxt "lecture.adoc:525"
 msgid "== Операторы в порядке убывания приоритета (продолжение)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:532
+#: lecture.adoc:532
 msgid ""
 "[cols=\"80a,20a\"] \n"
 "|===\n"
@@ -833,7 +834,7 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:543
+#: lecture.adoc:543
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -847,24 +848,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:545
+#: lecture.adoc:545
 msgid "== А как же оператор «запятая»?"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:548
+#: lecture.adoc:548
 msgid ""
 "* А его нет!\n"
 "* Можно несколько statement-ов перечислить через запятую в блоке `for(...)`, "
 "или в блоке `try(...)`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:551
+#: lecture.adoc:551
 msgid ""
 "== Конструкция `if`\n"
 "[cols=\"70a,30a\"]"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:560
+#: lecture.adoc:560
 msgid ""
 "|===\n"
 ".^a|\n"
@@ -876,7 +877,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:565
+#: lecture.adoc:565
 msgid ""
 "[plantuml, if, png]\n"
 "----\n"
@@ -884,26 +885,26 @@ msgid ""
 "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:567
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:567"
+#: lecture.adoc:567
+msgctxt "lecture.adoc:567"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:571
+#: lecture.adoc:571
 msgid ""
 "if (yourSales >= target) then (true)\n"
 "    :performance = \"Satisfactory\";\n"
 "    else (false)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:574
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:574"
+#: lecture.adoc:574
+msgctxt "lecture.adoc:574"
 msgid ""
 "endif\n"
 "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:579
+#: lecture.adoc:579
 msgid ""
 "@enduml\n"
 "----\n"
@@ -911,7 +912,7 @@ msgid ""
 "== `if` + block"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:592
+#: lecture.adoc:592
 msgid ""
 "[cols=\"70a,30a\"]\n"
 "|===\n"
@@ -927,7 +928,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:597
+#: lecture.adoc:597
 msgid ""
 "[plantuml, ifblock, png]\n"
 "----\n"
@@ -935,12 +936,12 @@ msgid ""
 "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:599
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:599"
+#: lecture.adoc:599
+msgctxt "lecture.adoc:599"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:604
+#: lecture.adoc:604
 msgid ""
 "if (yourSales >= target) then (true)\n"
 "    :performance = \"Satisfactory\";\n"
@@ -948,26 +949,26 @@ msgid ""
 "    else (false)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:607
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:607"
+#: lecture.adoc:607
+msgctxt "lecture.adoc:607"
 msgid ""
 "endif\n"
 "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:611
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:611"
+#: lecture.adoc:611
+msgctxt "lecture.adoc:611"
 msgid ""
 "@enduml\n"
 "----\n"
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:613
+#: lecture.adoc:613
 msgid "== `if` + block + `else`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:629
+#: lecture.adoc:629
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -986,7 +987,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:634
+#: lecture.adoc:634
 msgid ""
 "[plantuml, ifelseblock, png]\n"
 "----\n"
@@ -994,12 +995,12 @@ msgid ""
 "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:636
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:636"
+#: lecture.adoc:636
+msgctxt "lecture.adoc:636"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:646
+#: lecture.adoc:646
 msgid ""
 "if (yourSales >= target) then (true)\n"
 "    :performance = \"Satisfactory\";\n"
@@ -1012,19 +1013,19 @@ msgid ""
 "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:650
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:650"
+#: lecture.adoc:650
+msgctxt "lecture.adoc:650"
 msgid ""
 "@enduml\n"
 "----\n"
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:652
+#: lecture.adoc:652
 msgid "== `else` группируется с ближайшим `if`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:659
+#: lecture.adoc:659
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1034,7 +1035,7 @@ msgid ""
 "/* Лучше добавить фигурные скобки!!*/"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:667
+#: lecture.adoc:667
 msgid ""
 "if (x <= 0) \n"
 "  if (x == 0) \n"
@@ -1045,7 +1046,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:672
+#: lecture.adoc:672
 msgid ""
 "[plantuml, sign, png]\n"
 "----\n"
@@ -1053,12 +1054,12 @@ msgid ""
 "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:674
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:674"
+#: lecture.adoc:674
+msgctxt "lecture.adoc:674"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:679
+#: lecture.adoc:679
 msgid ""
 "if (x <= 0) then (true)\n"
 "    if (x == 0) then (true)\n"
@@ -1066,7 +1067,7 @@ msgid ""
 "    else (false)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:684
+#: lecture.adoc:684
 msgid ""
 "      :sign = -1;\n"
 "    endif\n"
@@ -1074,27 +1075,27 @@ msgid ""
 "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:688
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:688"
+#: lecture.adoc:688
+msgctxt "lecture.adoc:688"
 msgid ""
 "@enduml\n"
 "----\n"
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:690
+#: lecture.adoc:690
 msgid "== Цепочки `else if`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:694
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:694"
+#: lecture.adoc:694
+msgctxt "lecture.adoc:694"
 msgid ""
 "[cols=\"40a,60a\"]\n"
 "|===\n"
 ".^a|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:711
+#: lecture.adoc:711
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1114,7 +1115,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:716
+#: lecture.adoc:716
 msgid ""
 "[plantuml, elif, png]\n"
 "----\n"
@@ -1122,12 +1123,12 @@ msgid ""
 "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:718
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:718"
+#: lecture.adoc:718
+msgctxt "lecture.adoc:718"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:732
+#: lecture.adoc:732
 msgid ""
 "if (sales >= 2 * target) then (true)\n"
 "    :performance = \"Excellent\";\n"
@@ -1144,31 +1145,31 @@ msgid ""
 "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:736
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:736"
+#: lecture.adoc:736
+msgctxt "lecture.adoc:736"
 msgid ""
 "@enduml\n"
 "----\n"
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:739
+#: lecture.adoc:739
 msgid "== `switch`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:741
+#: lecture.adoc:741
 msgid "Та же ерунда, что и в C/C++:"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:746
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:746"
+#: lecture.adoc:746
+msgctxt "lecture.adoc:746"
 msgid ""
 "[cols=\"40a,60a\"]\n"
 "|===\n"
 ".^a|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:763
+#: lecture.adoc:763
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1187,11 +1188,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:765
+#: lecture.adoc:765
 msgid "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:770
+#: lecture.adoc:770
 msgid ""
 "[plantuml, swibr, png]\n"
 "----\n"
@@ -1199,12 +1200,12 @@ msgid ""
 "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:772
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:772"
+#: lecture.adoc:772
+msgctxt "lecture.adoc:772"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:783
+#: lecture.adoc:783
 msgid ""
 "if (choise == 1 ) then (true)\n"
 "    :...;\n"
@@ -1218,16 +1219,16 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:785
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:785"
+#: lecture.adoc:785
+msgctxt "lecture.adoc:785"
 msgid "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:787
+#: lecture.adoc:787
 msgid "== `switch`-`case` особенности:"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:790
+#: lecture.adoc:790
 msgid ""
 "* Не забываем `break`-и (утилиты типа Checkstyle напоминают), иначе "
 "выполняем всё до конца `switch`, как в C!\n"
@@ -1235,17 +1236,17 @@ msgid ""
 "`enum`-у."
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:792
+#: lecture.adoc:792
 msgid "== Switch Expressions "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:795
+#: lecture.adoc:795
 msgid ""
 "* JDK 12 & 13 — Preview Feature\n"
 "* JDK 14 — Standard Feature"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:805
+#: lecture.adoc:805
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1258,11 +1259,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:807
+#: lecture.adoc:807
 msgid "== Switch in Java 14+: no Fallthrough"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:839
+#: lecture.adoc:839
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1297,11 +1298,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:842
+#: lecture.adoc:842
 msgid "== Switch in Java 14+: with Fallthrough"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:885
+#: lecture.adoc:885
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1347,11 +1348,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:888
+#: lecture.adoc:888
 msgid "== Массивы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:894
+#: lecture.adoc:894
 msgid ""
 "* Из любого типа можно построить массив данного типа.\n"
 "* Длина массива может быть определена в runtime, но после создания не может "
@@ -1363,18 +1364,18 @@ msgid ""
 "современном коде."
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:896
+#: lecture.adoc:896
 msgid "== Декларирование и инициализация массива"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:900
+#: lecture.adoc:900
 msgid ""
 "* Два варианта:\n"
 "** `int[] a` \n"
 "**  `int a[]` -- не делайте так"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:905
+#: lecture.adoc:905
 msgid ""
 "* Инициализация:\n"
 "** `int[] a = new int[100];`\n"
@@ -1382,11 +1383,11 @@ msgid ""
 "** анонимный массив: `foo(new int[] {2, 4, 6});`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:907
+#: lecture.adoc:907
 msgid "== Массивы передаются по ссылке"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:912
+#: lecture.adoc:912
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1394,7 +1395,7 @@ msgid ""
 "luckyNumbers[5] = 12; // теперь smallPrimes[5] тоже 12"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:917
+#: lecture.adoc:917
 msgid ""
 "luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);\n"
 "//теперь luckyNumbers это отдельный массив\n"
@@ -1402,11 +1403,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:921
+#: lecture.adoc:921
 msgid "== Массивы ковариантны"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:931
+#: lecture.adoc:931
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1419,21 +1420,21 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:933
+#: lecture.adoc:933
 msgid ""
 "(Всё это страшно не совместимо с дженериками и коллекциями, которые пытаются "
 "ловить ошибки типов во время компиляции, но об этом речь впереди.)"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:935
+#: lecture.adoc:935
 msgid "== «Многомерные» массивы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:937
+#: lecture.adoc:937
 msgid "На самом деле их нет, но есть массивы массивов"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:950
+#: lecture.adoc:950
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|====\n"
@@ -1449,14 +1450,14 @@ msgid ""
 "};"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:954
+#: lecture.adoc:954
 msgid ""
 "/* magicSquare[1][2] == ?? */\n"
 "----\n"
 "^.^a|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:970
+#: lecture.adoc:970
 msgid ""
 "[graphviz, \"twodim.png\"]\n"
 "-----\n"
@@ -1475,7 +1476,7 @@ msgid ""
 "   label=\"{<p0>4\\|<p1>15\\|<p2>14\\|<p3>1}\"]"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:977
+#: lecture.adoc:977
 msgid ""
 " arr:p0->arr0:p0;\n"
 " arr:p1->arr1:p0;\n"
@@ -1485,15 +1486,15 @@ msgid ""
 "-----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:979
+#: lecture.adoc:979
 msgid "|===="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:985
+#: lecture.adoc:985
 msgid "== Треугольные матрицы"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:994
+#: lecture.adoc:994
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|====\n"
@@ -1505,7 +1506,7 @@ msgid ""
 "  odds[n] = new int[n + 1];"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1002
+#: lecture.adoc:1002
 msgid ""
 "for (int n = 0; n < ROWNUM; n++)\n"
 " for (int k = 0; k <= n; k++){\n"
@@ -1516,7 +1517,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1019
+#: lecture.adoc:1019
 msgid ""
 "^.^a|\n"
 "[graphviz, \"triangle.png\"]\n"
@@ -1536,7 +1537,7 @@ msgid ""
 "   label=\"{<p0>\\|<p1>\\|<p2>\\|<p3>}\"]"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1027
+#: lecture.adoc:1027
 msgid ""
 " arr:p0->arr0:p0;\n"
 " arr:p1->arr1:p0;\n"
@@ -1547,19 +1548,19 @@ msgid ""
 "|===="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1029
+#: lecture.adoc:1029
 msgid "== Цикл `while`: то же, что и в C"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1033
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1033"
+#: lecture.adoc:1033
+msgctxt "lecture.adoc:1033"
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
 ".^a|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1047
+#: lecture.adoc:1047
 msgid ""
 "[source, java]\n"
 "----\n"
@@ -1576,7 +1577,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1052
+#: lecture.adoc:1052
 msgid ""
 "[plantuml, while, png]\n"
 "----\n"
@@ -1584,12 +1585,12 @@ msgid ""
 "skinparam dpi 170 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1054
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1054"
+#: lecture.adoc:1054
+msgctxt "lecture.adoc:1054"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1061
+#: lecture.adoc:1061
 msgid ""
 "while(balance < goal)\n"
 "  :balance += payment;\n"
@@ -1599,27 +1600,27 @@ msgid ""
 "endwhile"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1064
+#: lecture.adoc:1064
 msgid ""
 ":System.out.println(years + \" years.\");\n"
 "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1066
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1066"
+#: lecture.adoc:1066
+msgctxt "lecture.adoc:1066"
 msgid "@enduml"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1068
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1068"
+#: lecture.adoc:1068
+msgctxt "lecture.adoc:1068"
 msgid "|==="
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1070
+#: lecture.adoc:1070
 msgid "== То же, да не то же!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1079
+#: lecture.adoc:1079
 msgid ""
 "[source, java]\n"
 "----\n"
@@ -1631,19 +1632,19 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1081
+#: lecture.adoc:1081
 msgid "==  `do while`: цикл с постусловием"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1085
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1085"
+#: lecture.adoc:1085
+msgctxt "lecture.adoc:1085"
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
 ".^a|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1099
+#: lecture.adoc:1099
 msgid ""
 "[source, java]\n"
 "----\n"
@@ -1660,7 +1661,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1104
+#: lecture.adoc:1104
 msgid ""
 "[plantuml, dowhile, png]\n"
 "----\n"
@@ -1668,12 +1669,12 @@ msgid ""
 "skinparam dpi 120 "
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1106
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1106"
+#: lecture.adoc:1106
+msgctxt "lecture.adoc:1106"
 msgid "start"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1113
+#: lecture.adoc:1113
 msgid ""
 "repeat\n"
 "  :balance += payment;\n"
@@ -1683,30 +1684,30 @@ msgid ""
 "repeat while(input.equals(\"N\"))"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1115
+#: lecture.adoc:1115
 msgid "stop"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1117
-msgctxt "./slides02/src/main/asciidoc/lecture.adoc:1117"
+#: lecture.adoc:1117
+msgctxt "lecture.adoc:1117"
 msgid "@enduml"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1120
+#: lecture.adoc:1120
 msgid ""
 "|===\n"
 "Правда жизни: `do-while` бывает нужен _очень_, _ОЧЕНЬ_ редко."
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1122
+#: lecture.adoc:1122
 msgid "== Циклы `for`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1124
+#: lecture.adoc:1124
 msgid "Снова всё то же, что и в C (по сути, сокращение цикла `while`):"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1130
+#: lecture.adoc:1130
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1715,7 +1716,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1137
+#: lecture.adoc:1137
 msgid ""
 "И даже, хотя оператора «запятая» нет, можно так (но не нужно):\n"
 "[source,java]\n"
@@ -1725,11 +1726,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1139
+#: lecture.adoc:1139
 msgid "== Видимость переменной цикла"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1148
+#: lecture.adoc:1148
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1741,7 +1742,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1158
+#: lecture.adoc:1158
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1754,15 +1755,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1160
+#: lecture.adoc:1160
 msgid "== Использование `break` и `continue`"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1162
+#: lecture.adoc:1162
 msgid "Прерывание цикла целиком:"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1173
+#: lecture.adoc:1173
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1776,7 +1777,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1185
+#: lecture.adoc:1185
 msgid ""
 "Переход к следующему циклу:\n"
 "[source,java]\n"
@@ -1791,11 +1792,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1187
+#: lecture.adoc:1187
 msgid "== У нас нет `goto`, но есть метки для `break` и `continue`!"
 msgstr ""
 
-#: ./slides02/src/main/asciidoc/lecture.adoc:1209
+#: lecture.adoc:1209
 msgid ""
 "[source,java]\n"
 "----\n"

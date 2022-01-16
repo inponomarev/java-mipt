@@ -1,10 +1,10 @@
-#. extracted from ./slides09/src/main/asciidoc/lecture.adoc
+#. extracted from lecture.adoc
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 11:39+0300\n"
+"POT-Creation-Date: 2022-01-16 14:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,9 +13,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:24
+#: lecture.adoc:24
 msgid ""
-"= Core Java: Курс лекций. Лекция 9\n"
+"= Core Java. Лекция 9: Streams API, Optionals\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -40,25 +40,25 @@ msgid ""
 ":revealjs_height: 900"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:28
+#: lecture.adoc:28
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:30
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:32
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:34
+#: lecture.adoc:34
 msgid "== Streams"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:39
+#: lecture.adoc:39
 msgid ""
 "* Появились в Java8, вместе с lambdas & method references.\n"
 "* Обработка конечных и потенциально бесконечных наборов данных.\n"
@@ -67,28 +67,28 @@ msgid ""
 "* Прозрачный параллелизм."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:41
+#: lecture.adoc:41
 msgid "== Преобразуем поток в поток"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:44
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:44"
+#: lecture.adoc:44
+msgctxt "lecture.adoc:44"
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:47
+#: lecture.adoc:47
 msgid ""
 "|\n"
 "`blockStream`"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:49
+#: lecture.adoc:49
 msgid "image::map.svg[]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:54
+#: lecture.adoc:54
 msgid ""
 "`squashedStream`\n"
 "|[source,java]\n"
@@ -96,18 +96,18 @@ msgid ""
 "List<Block> blocks = ...;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:56
+#: lecture.adoc:56
 msgid "Stream<Block> blocksStream = blocks.stream();"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:60
+#: lecture.adoc:60
 msgid ""
 "Stream<SquashedBlock> squashedStream =\n"
 "  blocksStream.map(Block::squash);\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:63
+#: lecture.adoc:63
 msgid ""
 "(Автор анимаций -- Тагир Валеев, движущиеся картинки см. "
 "https://stackoverflow.com/questions/35150231/java-streams-lazy-vs-fusion-vs-"
@@ -115,28 +115,28 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:66
+#: lecture.adoc:66
 msgid "== Фильтруем"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:69
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:69"
+#: lecture.adoc:69
+msgctxt "lecture.adoc:69"
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:72
+#: lecture.adoc:72
 msgid ""
 "|\n"
 "`squashedStream`"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:74
+#: lecture.adoc:74
 msgid "image::filter.svg[]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:83
+#: lecture.adoc:83
 msgid ""
 "`filteredStream`\n"
 "|[source,java]\n"
@@ -148,28 +148,28 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:85
+#: lecture.adoc:85
 msgid "== Отображаем в консоль (терминальная операция)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:88
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:88"
+#: lecture.adoc:88
+msgctxt "lecture.adoc:88"
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:91
+#: lecture.adoc:91
 msgid ""
 "|\n"
 "`filteredStream`"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:93
+#: lecture.adoc:93
 msgid "image::display.svg[]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:100
+#: lecture.adoc:100
 msgid ""
 "|[source,java]\n"
 "----\n"
@@ -179,11 +179,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:103
+#: lecture.adoc:103
 msgid "== Всё вместе в одну строку"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:116
+#: lecture.adoc:116
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|===\n"
@@ -199,27 +199,27 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:118
+#: lecture.adoc:118
 msgid "== Ничего не напоминает?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:120
+#: lecture.adoc:120
 msgid ""
 "«Соединить два файла, привести их строки к lowercase, отсортировать, вывести "
 "три последних строки в алфавитном порядке»"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:123
+#: lecture.adoc:123
 msgid ""
 "[source,sh]\n"
 "cat file1 file2 | tr \"[A-Z]\" \"[a-z]\" | sort | tail -3"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:125
+#: lecture.adoc:125
 msgid "== Зачем это нужно?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:134
+#: lecture.adoc:134
 msgid ""
 "[cols=\"55a,45a\"]\n"
 "|===\n"
@@ -231,7 +231,7 @@ msgid ""
 " transactionsByCurrencies = new HashMap<>();"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:162
+#: lecture.adoc:162
 msgid ""
 "for (Transaction transaction : transactions) {\n"
 " Currency currency =transaction.getCurrency();\n"
@@ -262,11 +262,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:164
+#: lecture.adoc:164
 msgid "== Три категории методов Stream API"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:169
+#: lecture.adoc:169
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -274,7 +274,7 @@ msgid ""
 "List<String> names = menu.stream()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:174
+#: lecture.adoc:174
 msgid ""
 "//Промежуточные операции\n"
 "  .filter(d -> d.getCalories() > 300\n"
@@ -282,18 +282,18 @@ msgid ""
 "  .limit(3)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:178
+#: lecture.adoc:178
 msgid ""
 "//Терминальная операция\n"
 "  .collect(Collectors.toList());\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:180
+#: lecture.adoc:180
 msgid "== Создание стрима"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:185
+#: lecture.adoc:185
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -301,7 +301,7 @@ msgid ""
 "Stream<Foo> stream0 = Stream.empty();"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:195
+#: lecture.adoc:195
 msgid ""
 "//Перечислением элементов\n"
 "Stream<String> stream1 = \n"
@@ -314,7 +314,7 @@ msgid ""
 "Stream<String> stream3 = strings.stream();"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:200
+#: lecture.adoc:200
 msgid ""
 "//Из API\n"
 "Path path = Paths.get(...);\n"
@@ -322,11 +322,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:202
+#: lecture.adoc:202
 msgid "== Конкатенация стримов"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:209
+#: lecture.adoc:209
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -336,11 +336,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:211
+#: lecture.adoc:211
 msgid "== Порождение стримов (generate)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:218
+#: lecture.adoc:218
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -350,15 +350,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:222
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:222"
+#: lecture.adoc:222
+msgctxt "lecture.adoc:222"
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:227
+#: lecture.adoc:227
 msgid ""
 "          //ХОТЯ ЛУЧШЕ\n"
 "          DoubleStream doubles =\n"
@@ -366,11 +366,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:229
+#: lecture.adoc:229
 msgid "== Порождение стримов (iterate)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:236
+#: lecture.adoc:236
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -380,22 +380,22 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:240
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:240"
+#: lecture.adoc:240
+msgctxt "lecture.adoc:240"
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:244
+#: lecture.adoc:244
 msgid ""
 "          //ХОТЯ ЛУЧШЕ\n"
 "          IntStream range = IntStream.range(0, 1000);\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:253
+#: lecture.adoc:253
 msgid ""
 "== Что будет в этом стриме?\n"
 "[source,java]\n"
@@ -406,7 +406,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:264
+#: lecture.adoc:264
 msgid ""
 "== Spliterator: самый общий способ создания стрима\n"
 "[source,java]\n"
@@ -420,7 +420,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:269
+#: lecture.adoc:269
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -428,7 +428,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:281
+#: lecture.adoc:281
 msgid ""
 "== Ветвление сплитераторов\n"
 "[graphviz,\"split1.png\"]\n"
@@ -443,7 +443,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:290
+#: lecture.adoc:290
 msgid ""
 "== Ветвление сплитераторов\n"
 "[graphviz,\"split2.png\"]\n"
@@ -455,7 +455,7 @@ msgid ""
 "try2[shape=\"none\"; label=\"trySplit()\"]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:296
+#: lecture.adoc:296
 msgid ""
 "Spliterator1 -> Spliterator2 ;\n"
 "Spliterator1 -> try2 -> Spliterator3;\n"
@@ -464,11 +464,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:298
+#: lecture.adoc:298
 msgid "== Характеристики сплитератора"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:313
+#: lecture.adoc:313
 msgid ""
 "[cols=\"15a,85a\"]\n"
 "|===\n"
@@ -492,18 +492,18 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:316
+#: lecture.adoc:316
 msgid ""
 "== Промежуточные итоги\n"
 "* Есть много стандартных способов порождения стримов, для простых случаев не "
 "надо \"изобретать велосипед\""
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:319
+#: lecture.adoc:319
 msgid "* Скорей всего, вам не понадобится самому реализовывать `Spliterator`."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:324
+#: lecture.adoc:324
 msgid ""
 "* Быстродействия ради, есть \"примитивные стримы\" (три типа):\n"
 "** `IntStream` (эффективнее, чем `Stream<Integer>`)\n"
@@ -511,25 +511,25 @@ msgid ""
 "** `DoubleStream` (эффективнее, чем `Stream<Double>`)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:326
+#: lecture.adoc:326
 msgid "== Преобразования стримов в стримы: получение «головы» и «хвоста»"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:330
+#: lecture.adoc:330
 msgid ""
 "[source,java]\n"
 "----\n"
 "//методы интерфейса Stream"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:334
+#: lecture.adoc:334
 msgid ""
 "//голова\n"
 "Stream<T> limit(long maxSize)\n"
 "Stream<T> takeWhile(Predicate<? super T> predicate)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:339
+#: lecture.adoc:339
 msgid ""
 "//хвост\n"
 "Stream<T> skip(long n)\n"
@@ -537,11 +537,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:341
+#: lecture.adoc:341
 msgid "== filter "
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:352
+#: lecture.adoc:352
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|===\n"
@@ -555,7 +555,7 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:370
+#: lecture.adoc:370
 msgid ""
 "== map \n"
 "[cols=\"^40a,60a\"]\n"
@@ -576,11 +576,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:372
+#: lecture.adoc:372
 msgid "== flatMap"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:381
+#: lecture.adoc:381
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -592,7 +592,7 @@ msgid ""
 "    //                  lines.map(separator::splitAsStream);"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:386
+#: lecture.adoc:386
 msgid ""
 "    //ТО, что нам надо!\n"
 "    Stream<String> words = lines.flatMap(separator::splitAsStream);\n"
@@ -600,7 +600,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:393
+#: lecture.adoc:393
 msgid ""
 "/*А также:\n"
 "  flatMapToDouble\n"
@@ -610,31 +610,31 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:396
+#: lecture.adoc:396
 msgid "== distinct"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:400
+#: lecture.adoc:400
 msgid ""
 "[source,java]\n"
 "----\n"
 "//Внутренний Set"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:404
+#: lecture.adoc:404
 msgid ""
 "Stream.of(1, 5, 8, 7, 8, 5, 9, 9)\n"
 "    .distinct()\n"
 "    .forEach(System.out::println);"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:407
+#: lecture.adoc:407
 msgid ""
 "//Выведет 1, 5, 8, 7, 9\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:415
+#: lecture.adoc:415
 msgid ""
 "== Что произойдёт при выполнении такого кода?\n"
 "[source,java]\n"
@@ -645,46 +645,46 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:418
+#: lecture.adoc:418
 msgid ""
 "[.fragment]\n"
 "Программа зависнет, когда исчерпаются все значения от 1 до 10. Можно "
 "пофиксить, например, указав `limit(9)` после distinct."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:421
+#: lecture.adoc:421
 msgid "== sorted"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:425
+#: lecture.adoc:425
 msgid ""
 "[source,java]\n"
 "----\n"
 "//Внутренний отсортированный список"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:429
+#: lecture.adoc:429
 msgid ""
 "Stream.of(1, 5, 8, 7, 8, 5, 9, 9)\n"
 "    .sorted()\n"
 "    .forEach(System.out::println);"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:431
+#: lecture.adoc:431
 msgid "//Выведет 1, 5, 5, 7, 8, 8, 9, 9"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:434
+#: lecture.adoc:434
 msgid ""
 "//Не имеет смысла для бесконечных стримов\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:436
+#: lecture.adoc:436
 msgid "== peek -- отладочный метод"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:441
+#: lecture.adoc:441
 msgid ""
 "* Не меняет исходный стрим.\n"
 "* Предназначен для «подглядывания» за промежуточным состоянием элементов. \n"
@@ -693,17 +693,17 @@ msgid ""
 "произвольном потоке выполнения."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:444
+#: lecture.adoc:444
 msgid ""
 "[source,java]\n"
 "Stream<T> peek(Consumer<? super T> action);"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:446
+#: lecture.adoc:446
 msgid "== Терминальные операции"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:453
+#: lecture.adoc:453
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -713,7 +713,7 @@ msgid ""
 "Optional<T> findAny();"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:461
+#: lecture.adoc:461
 msgid ""
 "//Проверь, удовлетворяет ли условию...\n"
 "//...какой-то\n"
@@ -724,17 +724,17 @@ msgid ""
 "boolean noneMatch(Predicate<? super T> predicate);"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:464
+#: lecture.adoc:464
 msgid ""
 "//КОРОТКИЕ ЗАМЫКАНИЯ!\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:466
+#: lecture.adoc:466
 msgid "== forEach"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:471
+#: lecture.adoc:471
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -742,17 +742,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:474
+#: lecture.adoc:474
 msgid ""
 "* В случае параллельного выполнения нет гарантий последовательности\n"
 "* Нет гарантий относительно того, в каком потоке будет выполнена лямбда"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:476
+#: lecture.adoc:476
 msgid "== reduce (with identity)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:484
+#: lecture.adoc:484
 msgid ""
 "[cols=\"40a,60a\"]\n"
 "|===\n"
@@ -763,7 +763,7 @@ msgid ""
 "  graph [ dpi = 140 ];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:495
+#: lecture.adoc:495
 msgid ""
 "  \"4\"[shape=\"square\"];\n"
 "  \"5\"[shape=\"square\"];\n"
@@ -777,7 +777,7 @@ msgid ""
 "  \"0\" -> \"p1\";"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:506
+#: lecture.adoc:506
 msgid ""
 "  \"p1\" -> \"s1\";\n"
 "  \"5\" -> \"p2\";\n"
@@ -791,7 +791,7 @@ msgid ""
 "  \"p4\"->\"s4\";"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:512
+#: lecture.adoc:512
 msgid ""
 "  \"0\"[shape=\"square\"];\n"
 "  \"s1\"[shape=\"square\";label=\"4\"];\n"
@@ -800,12 +800,12 @@ msgid ""
 "  \"s4\"[shape=\"square\";label=\"21\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:514
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:514"
+#: lecture.adoc:514
+msgctxt "lecture.adoc:514"
 msgid "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:523
+#: lecture.adoc:523
 msgid ""
 "  {rank = same; \"4\"; \"5\"; \"3\"; \"9\";}\n"
 "  {rank = same; \"0\"; \"p1\";}\n"
@@ -817,7 +817,7 @@ msgid ""
 "| "
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:533
+#: lecture.adoc:533
 msgid ""
 "* Ассоциативная функция + \"identity value\"\n"
 "* Промежуточные результаты -- immutable values\n"
@@ -830,11 +830,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:535
+#: lecture.adoc:535
 msgid "== Parallel reduce"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:552
+#: lecture.adoc:552
 msgid ""
 "[graphviz, \"reduce-par.png\"]\n"
 "----\n"
@@ -854,7 +854,7 @@ msgid ""
 "  \"0\" -> \"p3\";"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:565
+#: lecture.adoc:565
 msgid ""
 "  \"p1\" -> \"s1\";\n"
 "  \"5\" -> \"p2\";\n"
@@ -870,11 +870,11 @@ msgid ""
 "  \"s2\"->\"p5\";"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:567
+#: lecture.adoc:567
 msgid "  \"p5\"->\"s5\";"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:575
+#: lecture.adoc:575
 msgid ""
 "  \"0\"[shape=\"square\"];\n"
 "  \"s1\"[shape=\"square\";label=\"4\"];\n"
@@ -884,12 +884,12 @@ msgid ""
 "  \"s5\"[shape=\"square\";label=\"21\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:578
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:578"
+#: lecture.adoc:578
+msgctxt "lecture.adoc:578"
 msgid "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:587
+#: lecture.adoc:587
 msgid ""
 "  {rank = same; \"4\"; \"5\"; \"3\"; \"9\";}\n"
 "  {rank = same; \"0\"; \"p1\"; \"p3\"}\n"
@@ -901,7 +901,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:600
+#: lecture.adoc:600
 msgid ""
 "== reduce без identity\n"
 "[cols=\"40a,60a\"]\n"
@@ -917,7 +917,7 @@ msgid ""
 "  \"9\"[shape=\"square\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:614
+#: lecture.adoc:614
 msgid ""
 "  \"p2\"[label=\"max\"; shape=\"circle\"];\n"
 "  \"p3\"[label=\"max\"; shape=\"circle\"];\n"
@@ -934,7 +934,7 @@ msgid ""
 "  \"p4\"->\"s4\";"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:619
+#: lecture.adoc:619
 msgid ""
 "  \"s1\"[shape=\"square\";label=\"4\"];\n"
 "  \"s2\"[shape=\"square\";label=\"5\"];\n"
@@ -942,11 +942,11 @@ msgid ""
 "  \"s4\"[shape=\"square\";label=\"9\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:622
+#: lecture.adoc:622
 msgid "  \"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:630
+#: lecture.adoc:630
 msgid ""
 "  {rank = same; \"4\"; \"5\"; \"3\"; \"9\";}\n"
 "  {rank = same; \"s1\"; \"p2\";}\n"
@@ -958,7 +958,7 @@ msgid ""
 "пустой)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:635
+#: lecture.adoc:635
 msgid ""
 "[source,java]\n"
 "Optional<T> reduce(\n"
@@ -966,11 +966,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:637
+#: lecture.adoc:637
 msgid "== Готовые редьюсы"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:645
+#: lecture.adoc:645
 msgid ""
 "* Доступный во всех стримах:\n"
 "** `count` -- в общем случае требует пересчёта всех элементов!\n"
@@ -981,11 +981,11 @@ msgid ""
 "** `summaryStatistics` -- count, sum, min и max «в одном флаконе»."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:647
+#: lecture.adoc:647
 msgid "== collect: самый гибкий метод сборки результатов"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:653
+#: lecture.adoc:653
 msgid ""
 "* Типовые параметры:\n"
 "** `T` -- тип элементов стрима\n"
@@ -996,17 +996,17 @@ msgid ""
 "аккумулятор."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:656
+#: lecture.adoc:656
 msgid ""
 "[source,java]\n"
 "<R, A> R collect(Collector<? super T, A, R> collector);"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:658
+#: lecture.adoc:658
 msgid "== Интерфейс Collector<T, A, R>"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:662
+#: lecture.adoc:662
 msgid ""
 "* `T` -- тип элементов стрима\n"
 "* `A` -- тип аккумулятора, промежуточной структуры данных, в которой всё "
@@ -1014,7 +1014,7 @@ msgid ""
 "* `R` -- тип результата"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:672
+#: lecture.adoc:672
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1027,7 +1027,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:677
+#: lecture.adoc:677
 msgid ""
 "//например:\n"
 "class ToListCollector<T> implements\n"
@@ -1035,11 +1035,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:679
+#: lecture.adoc:679
 msgid "== Характеристики коллектора"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:687
+#: lecture.adoc:687
 msgid ""
 "[cols=\"20a,80a\"]\n"
 "|===\n"
@@ -1056,18 +1056,18 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:691
+#: lecture.adoc:691
 msgid ""
 "== Промежуточные выводы\n"
 "* Сделать свой коллектор непросто,\n"
 "* Но сила коллекторов в том, что есть много готовых и их можно комбинировать!"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:693
+#: lecture.adoc:693
 msgid "== Наиболее употребимые коллекторы"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:701
+#: lecture.adoc:701
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1078,7 +1078,7 @@ msgid ""
 "  toCollection(Supplier<C> collectionFactory)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:706
+#: lecture.adoc:706
 msgid ""
 "//Пример применения\n"
 "Stream<Foo> myStream = ...\n"
@@ -1086,7 +1086,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:713
+#: lecture.adoc:713
 msgid ""
 "== Собирание в мапы\n"
 "[source,java]\n"
@@ -1096,7 +1096,7 @@ msgid ""
 "  Function<? super T, ? extends U> valueMapper)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:719
+#: lecture.adoc:719
 msgid ""
 "//Пример применения\n"
 "Stream<Person> people = ...\n"
@@ -1105,39 +1105,39 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:721
+#: lecture.adoc:721
 msgid "* Также можно указать `mergeFunction` и `mapSupplier`."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:724
+#: lecture.adoc:724
 msgid "== Вариации на тему сборки в коллекции"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:727
+#: lecture.adoc:727
 msgid ""
 "* с помощью `toUnmodifiable(List|Set|Map)` можно сразу получить неизменяемую "
 "коллекцию\n"
 "* `toConcurrentMap` можно сразу получить потокобезопасную мапу."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:729
+#: lecture.adoc:729
 msgid "== Строка с разделителями"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:733
+#: lecture.adoc:733
 msgid ""
 "[source,java]\n"
 "----\n"
 "static Collector<CharSequence, ?, String> joining()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:736
+#: lecture.adoc:736
 msgid ""
 "//Пример использования\n"
 "menuStream.map(Dish::getName).collect(Collectors.joining(\", \");"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:741
+#: lecture.adoc:741
 msgid ""
 "//Не забываем про то, что это же можно сделать и без стримов:\n"
 "static String join(CharSequence delimiter,\n"
@@ -1145,11 +1145,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:743
+#: lecture.adoc:743
 msgid "== Группировки"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:749
+#: lecture.adoc:749
 msgid ""
 "[graphviz, \"groupby.png\"]\n"
 "----\n"
@@ -1158,12 +1158,12 @@ msgid ""
 "node[shape=\"record\"]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:751
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:751"
+#: lecture.adoc:751
+msgctxt "lecture.adoc:751"
 msgid "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:758
+#: lecture.adoc:758
 msgid ""
 "flist[label=\"{salmon|prawns}\"];\n"
 "mlist[label=\"{pork|beef|chicken}\"];\n"
@@ -1173,7 +1173,7 @@ msgid ""
 "map:f2->olist;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:766
+#: lecture.adoc:766
 msgid ""
 "}\n"
 "----\n"
@@ -1184,7 +1184,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:773
+#: lecture.adoc:773
 msgid ""
 "== Downstream Collectors\n"
 "[graphviz, \"groupbyby.png\"]\n"
@@ -1194,63 +1194,63 @@ msgid ""
 "node[shape=\"record\"]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:775
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:775"
+#: lecture.adoc:775
+msgctxt "lecture.adoc:775"
 msgid "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:777
+#: lecture.adoc:777
 msgid "fmap[label=\"<f0>NORMAL|<f1>DIET\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:779
+#: lecture.adoc:779
 msgid "mmap[label=\"<f0>FAT|<f1>NORMAL|<f2>DIET\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:781
+#: lecture.adoc:781
 msgid "omap[label=\"<f0>NORMAL|<f1>DIET\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:784
+#: lecture.adoc:784
 msgid ""
 "olist1[label=\"{pizza|french fries}\"];\n"
 "olist2[label=\"{fruit|rice}\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:788
+#: lecture.adoc:788
 msgid ""
 "map:f0->fmap;\n"
 "map:f1->mmap;\n"
 "map:f2->omap;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:791
+#: lecture.adoc:791
 msgid ""
 "fmap:f0->salmon;\n"
 "fmap:f1->prawns;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:795
+#: lecture.adoc:795
 msgid ""
 "mmap:f0->pork;\n"
 "mmap:f1->beef;\n"
 "mmap:f2->chicken;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:798
+#: lecture.adoc:798
 msgid ""
 "omap:f0->olist1;\n"
 "omap:f1->olist2;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:801
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:801"
+#: lecture.adoc:801
+msgctxt "lecture.adoc:801"
 msgid ""
 "}\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:810
+#: lecture.adoc:810
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1262,11 +1262,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:812
+#: lecture.adoc:812
 msgid "== Но мы можем не только группировать в цепочке!"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:817
+#: lecture.adoc:817
 msgid ""
 "[graphviz, \"groupbyandcount.png\"]\n"
 "----\n"
@@ -1274,11 +1274,11 @@ msgid ""
 "graph [ dpi = 150 ];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:819
+#: lecture.adoc:819
 msgid "map[shape=\"record\";label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:826
+#: lecture.adoc:826
 msgid ""
 "flist[label=\"2\"];\n"
 "mlist[label=\"3\"];\n"
@@ -1288,14 +1288,14 @@ msgid ""
 "map:f2->olist;"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:829
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:829"
+#: lecture.adoc:829
+msgctxt "lecture.adoc:829"
 msgid ""
 "}\n"
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:836
+#: lecture.adoc:836
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1305,11 +1305,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:838
+#: lecture.adoc:838
 msgid "== Набор downstream collectors"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:843
+#: lecture.adoc:843
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1317,7 +1317,7 @@ msgid ""
 "к \"разветвлённому\" стриму.*/ "
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:853
+#: lecture.adoc:853
 msgid ""
 "/*\"Терминальные\"*/\n"
 "counting()\n"
@@ -1329,7 +1329,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:862
+#: lecture.adoc:862
 msgid ""
 "== Downstream collectors--продолжение\n"
 "[source,java]\n"
@@ -1341,7 +1341,7 @@ msgid ""
 "  ? extends Stream<? extends U>> mapper, downstream)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:867
+#: lecture.adoc:867
 msgid ""
 "/*Адаптор*/\n"
 "collectingAndThen(Collector<T,A,R> downstream, \n"
@@ -1349,11 +1349,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:869
+#: lecture.adoc:869
 msgid "== Когда может быть нужен collectingAndThen?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:881
+#: lecture.adoc:881
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1368,26 +1368,26 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:883
+#: lecture.adoc:883
 msgid "== Параллельные стримы"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:887
+#: lecture.adoc:887
 msgid ""
 "* Метод `.parallel()` включает параллелизацию обработки.\n"
 "* `parallel` можно вызвать в любом месте цепочки вызовов.\n"
 "* Пользоваться надо с осторожностью, понимая ограничения и применимость."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:889
+#: lecture.adoc:889
 msgid "== Optional: Контейнер, который содержит объект. Или не содержит."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:891
+#: lecture.adoc:891
 msgid "* Цитата из книги Java 8 in Action:"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:893
+#: lecture.adoc:893
 msgid ""
 "* \"Tony Hoare, one of the giants of computer science, said in a "
 "presentation at QCon London 2009: _I call it my billion-dollar mistake. It "
@@ -1396,11 +1396,11 @@ msgid ""
 "implement._\""
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:896
+#: lecture.adoc:896
 msgid "== Optional<T> -- как стрим из 0 или 1 элемента"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:903
+#: lecture.adoc:903
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1410,7 +1410,7 @@ msgid ""
 "Optional.ofNullable(x); //пустой или с x-ом"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:910
+#: lecture.adoc:910
 msgid ""
 "//Расчехление\n"
 "o.get();\n"
@@ -1420,7 +1420,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:917
+#: lecture.adoc:917
 msgid ""
 "== Optional.map \n"
 "[source,java]\n"
@@ -1430,7 +1430,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:922
+#: lecture.adoc:922
 msgid ""
 "== Optional.flatMap\n"
 "[source,java]\n"
@@ -1438,11 +1438,11 @@ msgid ""
 "Optional<Person> person = ..."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:924
+#: lecture.adoc:924
 msgid "//person.map(Person::getCar) вернёт Optional<Optional<Car>>!!"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:930
+#: lecture.adoc:930
 msgid ""
 "String insuranceName = person.flatMap(Person::getCar)\n"
 "                             .flatMap(Car::getInsurance)\n"
@@ -1451,11 +1451,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:932
+#: lecture.adoc:932
 msgid "== Optional.filter"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:940
+#: lecture.adoc:940
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1466,20 +1466,20 @@ msgid ""
 "                             .orElse(\"Unknown\");"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:942
+#: lecture.adoc:942
 msgid "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:944
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:944"
+#: lecture.adoc:944
+msgctxt "lecture.adoc:944"
 msgid "== Правила использования Optional"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:946
+#: lecture.adoc:946
 msgid "«Лобовое» использование `Optional` -- хуже, чем `null`:"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:962
+#: lecture.adoc:962
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1498,16 +1498,16 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:964
+#: lecture.adoc:964
 msgid "|==="
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:966
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:966"
+#: lecture.adoc:966
+msgctxt "lecture.adoc:966"
 msgid "== Правила использования Optional"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:971
+#: lecture.adoc:971
 msgid ""
 "* Переменная с типом `Optional` никогда не должна быть `null`.\n"
 "* Поля с типом `Optional` бесполезны: проверка на «непустоту» этого поля не "
@@ -1517,11 +1517,11 @@ msgid ""
 "методов."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:973
+#: lecture.adoc:973
 msgid "== Когда стримы использовать не нужно"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:977
+#: lecture.adoc:977
 msgid ""
 "* Стримы многим нравятся\n"
 "* Иногда люди перестают думать, и случается «стримоз»\n"
@@ -1529,36 +1529,36 @@ msgid ""
 "проще (или не используйте вообще)]"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:979
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:979"
+#: lecture.adoc:979
+msgctxt "lecture.adoc:979"
 msgid "== Что не так?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:982
+#: lecture.adoc:982
 msgid ""
 "[source,java]\n"
 "collection.stream().forEach(...)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:985
+#: lecture.adoc:985
 msgid ""
 "[.fragment]\n"
 "У класса `Collection` уже есть метод `forEach`, стрим создавать не нужно."
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:987
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:987"
+#: lecture.adoc:987
+msgctxt "lecture.adoc:987"
 msgid "== Что не так?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:991
+#: lecture.adoc:991
 msgid ""
 "[source,java]\n"
 "collection.stream().collect(Collectors.toList())\n"
 "collection.stream().collect(Collectors.toSet())"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:997
+#: lecture.adoc:997
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1567,18 +1567,18 @@ msgid ""
 "new HashSet<>(collection)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:999
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:999"
+#: lecture.adoc:999
+msgctxt "lecture.adoc:999"
 msgid "== Что не так?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1002
+#: lecture.adoc:1002
 msgid ""
 "[source,java]\n"
 "collection.stream().max(Comparator.naturalOrder()).get()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1007
+#: lecture.adoc:1007
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1586,32 +1586,32 @@ msgid ""
 "Collections.max(collection)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1011
+#: lecture.adoc:1011
 msgid ""
 "== Что хотел сказать автор?\n"
 "[source,java]\n"
 "stream.sorted(comparator).findFirst()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1015
+#: lecture.adoc:1015
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
 "stream.min(comparator)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1017
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:1017"
+#: lecture.adoc:1017
+msgctxt "lecture.adoc:1017"
 msgid "== Как улучшить?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1020
+#: lecture.adoc:1020
 msgid ""
 "[source,java]\n"
 "stream.collect(Collectors.counting())"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1026
+#: lecture.adoc:1026
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1620,17 +1620,17 @@ msgid ""
 "stream.count()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1028
+#: lecture.adoc:1028
 msgid "== Что не так?!"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1031
+#: lecture.adoc:1031
 msgid ""
 "[source,java]\n"
 "collection.stream().count()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1037
+#: lecture.adoc:1037
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1638,14 +1638,14 @@ msgid ""
 "collection.size()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1042
+#: lecture.adoc:1042
 msgid ""
 "== Как улучшить?\n"
 "[source,java]\n"
 "listOfLists.stream().flatMap(List::stream).count()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1047
+#: lecture.adoc:1047
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1653,18 +1653,18 @@ msgid ""
 "listOfLists.stream().mapToInt(List::size).sum()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1049
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:1049"
+#: lecture.adoc:1049
+msgctxt "lecture.adoc:1049"
 msgid "== Как улучшить?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1052
+#: lecture.adoc:1052
 msgid ""
 "[source,java]\n"
 "stream.filter(condition).findFirst().isPresent()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1057
+#: lecture.adoc:1057
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1672,12 +1672,12 @@ msgid ""
 "stream.anyMatch(condition)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1059
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:1059"
+#: lecture.adoc:1059
+msgctxt "lecture.adoc:1059"
 msgid "== Как улучшить?"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1065
+#: lecture.adoc:1065
 msgid ""
 "[source,java]\n"
 "stream.filter(condition).anyMatch(x -> true)\n"
@@ -1686,7 +1686,7 @@ msgid ""
 "stream.map(condition).anyMatch(Boolean.TRUE::equals)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1070
+#: lecture.adoc:1070
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1694,18 +1694,18 @@ msgid ""
 "stream.anyMatch(condition)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1073
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:1073"
+#: lecture.adoc:1073
+msgctxt "lecture.adoc:1073"
 msgid "== Как улучшить?!"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1076
+#: lecture.adoc:1076
 msgid ""
 "[source,java]\n"
 "if(stream.filter(condition).count() > 0)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1082
+#: lecture.adoc:1082
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1714,18 +1714,18 @@ msgid ""
 "if(stream.anyMatch(condition)) "
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1084
-msgctxt "./slides09/src/main/asciidoc/lecture.adoc:1084"
+#: lecture.adoc:1084
+msgctxt "lecture.adoc:1084"
 msgid "== Как улучшить?!"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1087
+#: lecture.adoc:1087
 msgid ""
 "[source,java]\n"
 "if(stream.count() > 2)"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1092
+#: lecture.adoc:1092
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -1733,11 +1733,11 @@ msgid ""
 "stream.limit(3).count()"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1094
+#: lecture.adoc:1094
 msgid "== Выводы"
 msgstr ""
 
-#: ./slides09/src/main/asciidoc/lecture.adoc:1096
+#: lecture.adoc:1096
 msgid ""
 "* «Декларативный» подход к использованию стримов, «описываем _что_, а не "
 "_как_» не отменяет понимания того, _как_ происходит вычисление. \n"

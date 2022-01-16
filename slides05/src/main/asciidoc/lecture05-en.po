@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 05\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 11:39+0300\n"
-"PO-Revision-Date: 2022-01-06 16:06+0300\n"
+"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"PO-Revision-Date: 2022-01-16 14:12+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -13,9 +13,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: slides05/src/main/asciidoc/lecture.adoc:24
+#: lecture.adoc:24
 msgid ""
-"= Core Java: Курс лекций. Лекция 5\n"
+"= Core Java. Лекция 5: Регулярные выражения. Wrapper classes. IO classes. "
+"DateTime API\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -39,7 +40,8 @@ msgid ""
 ":revealjs_width: 1600\n"
 ":revealjs_height: 900"
 msgstr ""
-"= Core Java: Lecture #5\n"
+"= Core Java. Lecture #5: Regular expressions. Wrapper classes. IO classes. "
+"DateTime API\n"
 "Ivan Ponomarev, Synthesized.io/MIPT\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -63,7 +65,7 @@ msgstr ""
 ":revealjs_width: 1600\n"
 ":revealjs_height: 900"
 
-#: slides05/src/main/asciidoc/lecture.adoc:28
+#: lecture.adoc:28
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
@@ -71,20 +73,20 @@ msgstr ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 
-#: slides05/src/main/asciidoc/lecture.adoc:30
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr "ponomarev@corchestra.ru"
 
-#: slides05/src/main/asciidoc/lecture.adoc:32
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
-#: slides05/src/main/asciidoc/lecture.adoc:35
-msgctxt "./slides05/src/main/asciidoc/lecture.adoc:35"
+#: lecture.adoc:35
+msgctxt "lecture.adoc:35"
 msgid "== Регулярные выражения"
 msgstr "== Regular expressions"
 
-#: slides05/src/main/asciidoc/lecture.adoc:42
+#: lecture.adoc:42
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -102,7 +104,7 @@ msgstr ""
 "\\s*([ap]m)\");\n"
 "Matcher matcher = pattern.matcher(input);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:51
+#: lecture.adoc:51
 msgid ""
 "//matches() требует совпадения всей строки,\n"
 "//find() -- находит первое совпадение\n"
@@ -122,7 +124,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:54
+#: lecture.adoc:54
 msgid ""
 "== Поиск/замена в цикле\n"
 "Пример на https://stackoverflow.com/questions/9605716/java-regular-"
@@ -133,7 +135,7 @@ msgstr ""
 "An example from https://stackoverflow.com/questions/9605716/java-regular-"
 "expression-find-and-replace[StackOverflow]: we want \"1xxxx23\" as an output:"
 
-#: slides05/src/main/asciidoc/lecture.adoc:59
+#: lecture.adoc:59
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -143,7 +145,7 @@ msgstr ""
 "----\n"
 "Map<String, String> replacements = new HashMap<String, String>();"
 
-#: slides05/src/main/asciidoc/lecture.adoc:63
+#: lecture.adoc:63
 msgid ""
 "replacements.put(\"${env1}\", \"1\");\n"
 "replacements.put(\"${env2}\", \"2\");\n"
@@ -153,7 +155,7 @@ msgstr ""
 "replacements.put(\"${env2}\", \"2\");\n"
 "replacements.put(\"${env3}\", \"3\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:67
+#: lecture.adoc:67
 msgid ""
 "String line =\"${env1}xxxx${env2}${env3}\";\n"
 "----"
@@ -161,11 +163,11 @@ msgstr ""
 "String line =\"${env1}xxxx${env2}${env3}\";\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:69
+#: lecture.adoc:69
 msgid "== Поиск/замена в цикле"
 msgstr "== Find/replace in a loop"
 
-#: slides05/src/main/asciidoc/lecture.adoc:74
+#: lecture.adoc:74
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -177,7 +179,7 @@ msgstr ""
 "//Before Java9 StringBuffer was used\n"
 "StringBuilder sb = new StringBuilder();"
 
-#: slides05/src/main/asciidoc/lecture.adoc:83
+#: lecture.adoc:83
 msgid ""
 "Pattern p = Pattern.compile(\"(\\\\$\\\\{[^}]+\\\\})\");\n"
 "Matcher m = p.matcher(line);\n"
@@ -197,7 +199,7 @@ msgstr ""
 "}\n"
 "m.appendTail(sb);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:86
+#: lecture.adoc:86
 msgid ""
 "System.out.println(sb.toString()); //1xxxx23\n"
 "----"
@@ -205,12 +207,12 @@ msgstr ""
 "System.out.println(sb.toString()); //1xxxx23\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:88
-msgctxt "./slides05/src/main/asciidoc/lecture.adoc:88"
+#: lecture.adoc:88
+msgctxt "lecture.adoc:88"
 msgid "== Регулярные выражения"
 msgstr "== Regular expressions"
 
-#: slides05/src/main/asciidoc/lecture.adoc:98
+#: lecture.adoc:98
 msgid ""
 "[%step]\n"
 "* Достоинства\n"
@@ -234,15 +236,15 @@ msgstr ""
 "performance)\n"
 "** They look horribly and perplexing"
 
-#: slides05/src/main/asciidoc/lecture.adoc:100
+#: lecture.adoc:100
 msgid "== Конечные автоматы"
 msgstr "== State machines"
 
-#: slides05/src/main/asciidoc/lecture.adoc:102
+#: lecture.adoc:102
 msgid "Как разобрать строку вида?"
 msgstr "How can we parse the following string?"
 
-#: slides05/src/main/asciidoc/lecture.adoc:109
+#: lecture.adoc:109
 msgid ""
 "[source]\n"
 "----\n"
@@ -258,11 +260,11 @@ msgstr ""
 "  \"OOO \"\"Берёзка\"\"\",веники берёзовые\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:111
+#: lecture.adoc:111
 msgid "== Конечный автомат!"
 msgstr "== Definite State Machine!"
 
-#: slides05/src/main/asciidoc/lecture.adoc:127
+#: lecture.adoc:127
 msgid ""
 "[graphviz, \"dfa.png\"]\n"
 "----\n"
@@ -296,11 +298,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:129
+#: lecture.adoc:129
 msgid "== Реализация"
 msgstr "== Implementation"
 
-#: slides05/src/main/asciidoc/lecture.adoc:149
+#: lecture.adoc:149
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -342,7 +344,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:168
+#: lecture.adoc:168
 msgid ""
 "[transition=\"none\"]\n"
 "== Начали читать поле\n"
@@ -382,7 +384,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:182
+#: lecture.adoc:182
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -410,7 +412,7 @@ msgstr ""
 "    break;\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:201
+#: lecture.adoc:201
 msgid ""
 "[transition=\"none\"]\n"
 "== Закавыченное значение\n"
@@ -450,7 +452,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:213
+#: lecture.adoc:213
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -476,7 +478,7 @@ msgstr ""
 "    break;\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:232
+#: lecture.adoc:232
 msgid ""
 "[transition=\"none\"]\n"
 "== Встретилась кавычка\n"
@@ -516,7 +518,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:247
+#: lecture.adoc:247
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -546,7 +548,7 @@ msgstr ""
 "    } break;\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:266
+#: lecture.adoc:266
 msgid ""
 "[transition=\"none\"]\n"
 "== Незакавыченное значение\n"
@@ -586,7 +588,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:278
+#: lecture.adoc:278
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -612,11 +614,11 @@ msgstr ""
 "    break;\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:280
+#: lecture.adoc:280
 msgid "== В завершение"
 msgstr "== Conclusion"
 
-#: slides05/src/main/asciidoc/lecture.adoc:283
+#: lecture.adoc:283
 msgid ""
 "* Математический факт: Каждый ДКА может быть сконвертирован в регулярное "
 "выражение, и наоборот.\n"
@@ -626,11 +628,11 @@ msgstr ""
 "and vice versa.\n"
 "* When processing regular and FSM strings, that's our everything."
 
-#: slides05/src/main/asciidoc/lecture.adoc:285
+#: lecture.adoc:285
 msgid "== Wrapper Types"
 msgstr "== Wrapper Types"
 
-#: slides05/src/main/asciidoc/lecture.adoc:294
+#: lecture.adoc:294
 msgid ""
 "Примитивные типы несовместимы с объектами. Поэтому есть Wrapper Classes:\n"
 "[cols=\"50a,50a\"]\n"
@@ -651,11 +653,11 @@ msgstr ""
 "|     `boolean` | `Boolean`\n"
 "|==="
 
-#: slides05/src/main/asciidoc/lecture.adoc:297
+#: lecture.adoc:297
 msgid "== Wrapper-типы похожи на строки"
 msgstr "== Wrapper-types are similar to strings"
 
-#: slides05/src/main/asciidoc/lecture.adoc:301
+#: lecture.adoc:301
 msgid ""
 "* Объекты иммутабельные. Если нужен новый -- делаем новый объект, а не "
 "модифицируем старый.\n"
@@ -669,11 +671,11 @@ msgstr ""
 "* Like strings in string pool, these objects are _cached_, so it they should "
 "be created with `valueOf` rather than `new`."
 
-#: slides05/src/main/asciidoc/lecture.adoc:304
+#: lecture.adoc:304
 msgid "== Кэширование (object pool)"
 msgstr "== Object pool (caching)"
 
-#: slides05/src/main/asciidoc/lecture.adoc:308
+#: lecture.adoc:308
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -683,7 +685,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: slides05/src/main/asciidoc/lecture.adoc:324
+#: lecture.adoc:324
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -717,7 +719,7 @@ msgstr ""
 "  graph [ dpi = 140 ];\n"
 "  rankdir=\"LR\";"
 
-#: slides05/src/main/asciidoc/lecture.adoc:327
+#: lecture.adoc:327
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {"
@@ -725,7 +727,7 @@ msgstr ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {"
 
-#: slides05/src/main/asciidoc/lecture.adoc:329
+#: lecture.adoc:329
 msgid ""
 "            o1[label=\"5\"; shape=\"circle\"; style=filled; fillcolor="
 "\"#ffffcc\"]"
@@ -733,7 +735,7 @@ msgstr ""
 "            o1[label=\"5\"; shape=\"circle\"; style=filled; fillcolor="
 "\"#ffffcc\"]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:335
+#: lecture.adoc:335
 msgid ""
 "            c1[label=\"3\"; shape=\"circle\"; style=filled; fillcolor="
 "\"#ffffcc\"]\n"
@@ -751,7 +753,7 @@ msgstr ""
 "            c3[label=\"-1\"; shape=\"rectangle\"; style=invis; ]\n"
 "            label=\"Integer Object Pool\""
 
-#: slides05/src/main/asciidoc/lecture.adoc:338
+#: lecture.adoc:338
 msgid ""
 "            o1 -> c1 [style=\"invis\"]\n"
 "            o1 -> c2 [style=\"invis\"]"
@@ -759,7 +761,7 @@ msgstr ""
 "            o1 -> c1 [style=\"invis\"]\n"
 "            o1 -> c2 [style=\"invis\"]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:341
+#: lecture.adoc:341
 msgid ""
 "          }\n"
 "        o2[label=\"5\"; shape=\"circle\"; style=filled; fillcolor=\"#ffffcc"
@@ -769,7 +771,7 @@ msgstr ""
 "        o2[label=\"5\"; shape=\"circle\"; style=filled; fillcolor=\"#ffffcc"
 "\"]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:350
+#: lecture.adoc:350
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -789,11 +791,11 @@ msgstr ""
 "-----\n"
 "|===="
 
-#: slides05/src/main/asciidoc/lecture.adoc:352
+#: lecture.adoc:352
 msgid "== Кэширование `Integer`"
 msgstr "== `Integer` caching"
 
-#: slides05/src/main/asciidoc/lecture.adoc:357
+#: lecture.adoc:357
 msgid ""
 "* По умолчанию: -128..127\n"
 "* Можно поднять верхнюю границу через параметр +\n"
@@ -805,11 +807,11 @@ msgstr ""
 "`-XX:AutoBoxCacheMax=<size>`\n"
 "* The lower limit cannot be lowered :-)</size>"
 
-#: slides05/src/main/asciidoc/lecture.adoc:359
+#: lecture.adoc:359
 msgid "== Что и как ещё кэшируется"
 msgstr "== What else is cached"
 
-#: slides05/src/main/asciidoc/lecture.adoc:366
+#: lecture.adoc:366
 msgid ""
 "* `Byte` -- полностью (-128..127)\n"
 "* `Short`, `Long` -- -128..127\n"
@@ -827,19 +829,19 @@ msgstr ""
 "the possible caching is mentioned.\n"
 "* Truth of Life: You'll use autoboxing more often than `valueOf`."
 
-#: slides05/src/main/asciidoc/lecture.adoc:368
+#: lecture.adoc:368
 msgid "== Для чего я рассказал про кэширование"
 msgstr "== Why do I talk about caching?"
 
-#: slides05/src/main/asciidoc/lecture.adoc:370
+#: lecture.adoc:370
 msgid "image::drake.jpg[{image-40-width}]"
 msgstr "image::drake.jpg[{image-40-width}]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:372
+#: lecture.adoc:372
 msgid "== Autoboxing & unboxing"
 msgstr "== Autoboxing & unboxing"
 
-#: slides05/src/main/asciidoc/lecture.adoc:376
+#: lecture.adoc:376
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -849,7 +851,7 @@ msgstr ""
 "----\n"
 "ArrayList<Integer> list = new ArrayList<>();"
 
-#: slides05/src/main/asciidoc/lecture.adoc:381
+#: lecture.adoc:381
 msgid ""
 "//autoboxing :-)\n"
 "list.add(3);\n"
@@ -861,7 +863,7 @@ msgstr ""
 "//without autoboxing :-(\n"
 "list.add(Integer.valueOf(3));"
 
-#: slides05/src/main/asciidoc/lecture.adoc:387
+#: lecture.adoc:387
 msgid ""
 "//unboxing :-)\n"
 "int n = list.get(i);\n"
@@ -875,11 +877,11 @@ msgstr ""
 "int n = list.get(i).intValue();\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:389
+#: lecture.adoc:389
 msgid "== Не всегда всё так очевидно с автобоксингом"
 msgstr "== Autoboxing is not always that obvious"
 
-#: slides05/src/main/asciidoc/lecture.adoc:396
+#: lecture.adoc:396
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -895,7 +897,7 @@ msgstr ""
 "//not so effective!!\n"
 "n++;"
 
-#: slides05/src/main/asciidoc/lecture.adoc:401
+#: lecture.adoc:401
 msgid ""
 "Integer a = 1000;\n"
 "Integer b = 1000;\n"
@@ -907,15 +909,15 @@ msgstr ""
 "if (a == b) . . . //NO! THIS WILL FAIL!\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:403
+#: lecture.adoc:403
 msgid "== Превращение числа из строки и в строку"
 msgstr "== Convert a number from and to a string"
 
-#: slides05/src/main/asciidoc/lecture.adoc:405
+#: lecture.adoc:405
 msgid "Статические методы:"
 msgstr "Static methods:"
 
-#: slides05/src/main/asciidoc/lecture.adoc:410
+#: lecture.adoc:410
 msgid ""
 "* `Integer.parseInt(value, radix)`\n"
 "* `Integer.toString(value, radix)`\n"
@@ -927,11 +929,11 @@ msgstr ""
 "* `Double.parseDouble(value)`\n"
 "* `Double.toString(value)`"
 
-#: slides05/src/main/asciidoc/lecture.adoc:413
+#: lecture.adoc:413
 msgid "== Класс `BigInteger` "
 msgstr "== `BigInteger` class "
 
-#: slides05/src/main/asciidoc/lecture.adoc:418
+#: lecture.adoc:418
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -943,7 +945,7 @@ msgstr ""
 "BigInteger i = new BigInteger(\"123456789012345678901234567890\");\n"
 "BigInteger j = new BigInteger(\"123456789012345678901234567892\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:424
+#: lecture.adoc:424
 msgid ""
 "BigInteger sum = i.add(j);\n"
 "BigInteger difference = i.subtract(j);\n"
@@ -957,11 +959,11 @@ msgstr ""
 "BigInteger product = i.multiply(j);\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:426
+#: lecture.adoc:426
 msgid "== Класс `BigDecimal`"
 msgstr "== `BigDecimal` class"
 
-#: slides05/src/main/asciidoc/lecture.adoc:437
+#: lecture.adoc:437
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -985,7 +987,7 @@ msgstr ""
 "    BigDecimal tax = discountedAmount.multiply(taxRate);\n"
 "    BigDecimal total = discountedAmount.add(tax);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:443
+#: lecture.adoc:443
 msgid ""
 "    // round to 2 decimal places using HALF_EVEN\n"
 "    BigDecimal roundedTotal = total.setScale(2, RoundingMode.HALF_EVEN);\n"
@@ -999,15 +1001,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:445
+#: lecture.adoc:445
 msgid "== Ввод-вывод"
 msgstr "== Input/Output"
 
-#: slides05/src/main/asciidoc/lecture.adoc:447
+#: lecture.adoc:447
 msgid "image::IBM2741.JPG[{image-50-width}]"
 msgstr "image::IBM2741.JPG[{image-50-width}]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:449
+#: lecture.adoc:449
 msgid ""
 "IBM2741 terminal, 1965 (источник: https://en.wikipedia.org/wiki/"
 "IBM_2741[Wikipedia])"
@@ -1015,11 +1017,11 @@ msgstr ""
 "IBM2741 terminal, 1965 (источник: https://en.wikipedia.org/wiki/"
 "IBM_2741[Wikipedia])"
 
-#: slides05/src/main/asciidoc/lecture.adoc:452
+#: lecture.adoc:452
 msgid "== Полный зоопарк классов ввода-вывода"
 msgstr "== A complete zoo of I/O classes"
 
-#: slides05/src/main/asciidoc/lecture.adoc:455
+#: lecture.adoc:455
 msgid ""
 ".Cay Horstmann. Core Java, vol. II\n"
 "image::input-output.jpg[]"
@@ -1027,11 +1029,11 @@ msgstr ""
 ".Cay Horstmann. Core Java, vol. II\n"
 "image::input-output.jpg[]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:457
+#: lecture.adoc:457
 msgid "== Классы для ввода-вывода текста"
 msgstr "== Classes for text input/output"
 
-#: slides05/src/main/asciidoc/lecture.adoc:460
+#: lecture.adoc:460
 msgid ""
 ".Cay Horstmann. Core Java, vol. II\n"
 "image::reader-writer.jpg[]"
@@ -1039,11 +1041,11 @@ msgstr ""
 ".Cay Horstmann. Core Java, vol. II\n"
 "image::reader-writer.jpg[]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:462
+#: lecture.adoc:462
 msgid "== Базовые потоки ввода/вывода"
 msgstr "== Basic I/O streams"
 
-#: slides05/src/main/asciidoc/lecture.adoc:466
+#: lecture.adoc:466
 msgid ""
 "[plantuml, iostreams, png]\n"
 "----\n"
@@ -1053,11 +1055,11 @@ msgstr ""
 "----\n"
 "@startuml"
 
-#: slides05/src/main/asciidoc/lecture.adoc:468
+#: lecture.adoc:468
 msgid "skinparam dpi 150 "
 msgstr "skinparam dpi 150 "
 
-#: slides05/src/main/asciidoc/lecture.adoc:475
+#: lecture.adoc:475
 msgid ""
 "abstract class InputStream {\n"
 "  + read(): int throws IOException\n"
@@ -1073,7 +1075,7 @@ msgstr ""
 "  + available(): int throws IOException\n"
 "}"
 
-#: slides05/src/main/asciidoc/lecture.adoc:481
+#: lecture.adoc:481
 msgid ""
 "abstract class OutputStream {\n"
 "  + write(int b): void throws IOException\n"
@@ -1087,7 +1089,7 @@ msgstr ""
 "  + flush(): void throws IOException\n"
 "}"
 
-#: slides05/src/main/asciidoc/lecture.adoc:485
+#: lecture.adoc:485
 msgid ""
 "interface Closeable {\n"
 "  + close() throws IOException\n"
@@ -1097,7 +1099,7 @@ msgstr ""
 "  + close() throws IOException\n"
 "}"
 
-#: slides05/src/main/asciidoc/lecture.adoc:488
+#: lecture.adoc:488
 msgid ""
 "Closeable <|.. InputStream\n"
 "Closeable <|.. OutputStream"
@@ -1105,7 +1107,7 @@ msgstr ""
 "Closeable <|.. InputStream\n"
 "Closeable <|.. OutputStream"
 
-#: slides05/src/main/asciidoc/lecture.adoc:491
+#: lecture.adoc:491
 msgid ""
 "@enduml\n"
 "----"
@@ -1113,11 +1115,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:493
+#: lecture.adoc:493
 msgid "== Комбинирование потоков"
 msgstr "== Combining streams"
 
-#: slides05/src/main/asciidoc/lecture.adoc:503
+#: lecture.adoc:503
 msgid ""
 "[plantuml, combining, png]\n"
 "----\n"
@@ -1139,7 +1141,7 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:507
+#: lecture.adoc:507
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1149,7 +1151,7 @@ msgstr ""
 "----\n"
 "Path path = Paths.get(\"path/to/file.dat\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:516
+#: lecture.adoc:516
 msgid ""
 "try (DataInputStream dis =\n"
 "         new DataInputStream(\n"
@@ -1169,7 +1171,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:521
+#: lecture.adoc:521
 msgid ""
 "== Комбинирование потоков: чтение Zip-файла\n"
 "[source,java]\n"
@@ -1181,7 +1183,7 @@ msgstr ""
 "----\n"
 "Path path = Paths.get(\"path/to/file.zip\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:528
+#: lecture.adoc:528
 msgid ""
 "try(ZipInputStream zis =  new ZipInputStream(\n"
 "    Files.newInputStream(path));\n"
@@ -1197,15 +1199,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:530
+#: lecture.adoc:530
 msgid "== Чтение/запись текстовых данных"
 msgstr "== Read/write text data"
 
-#: slides05/src/main/asciidoc/lecture.adoc:532
+#: lecture.adoc:532
 msgid "Современный, простой и правильный метод:"
 msgstr "The modern, simple and correct method:"
 
-#: slides05/src/main/asciidoc/lecture.adoc:536
+#: lecture.adoc:536
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1215,7 +1217,7 @@ msgstr ""
 "----\n"
 "Path path = Paths.get(\"path/to/file.txt\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:539
+#: lecture.adoc:539
 msgid ""
 "//Ленивая вычитка\n"
 "Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8);"
@@ -1223,7 +1225,7 @@ msgstr ""
 "//Lazy reading\n"
 "Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:544
+#: lecture.adoc:544
 msgid ""
 "//Вычитка всего содержимого в память\n"
 "List<String> strings = \n"
@@ -1235,11 +1237,11 @@ msgstr ""
 "  Files.readAllLines(path, StandardCharsets.UTF_8);\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:546
+#: lecture.adoc:546
 msgid "== Использование BufferedReader"
 msgstr "== Using `BufferedReader`"
 
-#: slides05/src/main/asciidoc/lecture.adoc:557
+#: lecture.adoc:557
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1263,11 +1265,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:559
+#: lecture.adoc:559
 msgid "== Сохранение готовых данных в текст"
 msgstr "== Save prepared data to text"
 
-#: slides05/src/main/asciidoc/lecture.adoc:565
+#: lecture.adoc:565
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1281,7 +1283,7 @@ msgstr ""
 "List<String> lines = new List<String>();\n"
 "lines.add(...)"
 
-#: slides05/src/main/asciidoc/lecture.adoc:568
+#: lecture.adoc:568
 msgid ""
 "//Если всё уже готово в памяти \n"
 "Files.write(path, lines, StandardCharsets.UTF_8);"
@@ -1289,7 +1291,7 @@ msgstr ""
 "//If everything is already in memory \n"
 "Files.write(path, lines, StandardCharsets.UTF_8);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:580
+#: lecture.adoc:580
 msgid ""
 "----\n"
 "== Сохранение данных в текст по мере поступления\n"
@@ -1315,12 +1317,12 @@ msgstr ""
 "        }\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:582
-msgctxt "./slides05/src/main/asciidoc/lecture.adoc:582"
+#: lecture.adoc:582
+msgctxt "lecture.adoc:582"
 msgid "== Работа с файловой системой"
 msgstr "== Working with the file system"
 
-#: slides05/src/main/asciidoc/lecture.adoc:585
+#: lecture.adoc:585
 msgid ""
 "* Устаревший `File` (ещё может встретиться, в частности, как аргумент "
 "конструктора `FileInputStream`).\n"
@@ -1330,12 +1332,12 @@ msgstr ""
 "`FileInputStream` constructor).\n"
 "* More modern `Path` (Java 7+)"
 
-#: slides05/src/main/asciidoc/lecture.adoc:587
-msgctxt "./slides05/src/main/asciidoc/lecture.adoc:587"
+#: lecture.adoc:587
+msgctxt "lecture.adoc:587"
 msgid "== Работа с файловой системой"
 msgstr "== Working with the file system"
 
-#: slides05/src/main/asciidoc/lecture.adoc:592
+#: lecture.adoc:592
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1347,7 +1349,7 @@ msgstr ""
 "//Path does not necessarily specify \n"
 "//an existing file or directory!!"
 
-#: slides05/src/main/asciidoc/lecture.adoc:595
+#: lecture.adoc:595
 msgid ""
 "Path absolute = Paths.get(\"/home\", \"harry\");\n"
 "Path relative = Paths.get(\"myprog\", \"conf\", \"user.properties\");"
@@ -1355,11 +1357,11 @@ msgstr ""
 "Path absolute = Paths.get(\"/home\", \"harry\");\n"
 "Path relative = Paths.get(\"myprog\", \"conf\", \"user.properties\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:597
+#: lecture.adoc:597
 msgid "Path subPath = absolute.resolve(\"file.txt\");"
 msgstr "Path subPath = absolute.resolve(\"file.txt\");"
 
-#: slides05/src/main/asciidoc/lecture.adoc:601
+#: lecture.adoc:601
 msgid ""
 "subPath.getParent(); //родитель\n"
 "subPath.getFileName(); //последняя компонента пути\n"
@@ -1369,12 +1371,12 @@ msgstr ""
 "subPath.getFileName(); //the last component of the path\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:603
-msgctxt "./slides05/src/main/asciidoc/lecture.adoc:603"
+#: lecture.adoc:603
+msgctxt "lecture.adoc:603"
 msgid "== Работа с файловой системой"
 msgstr "== Working with the file system"
 
-#: slides05/src/main/asciidoc/lecture.adoc:612
+#: lecture.adoc:612
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1394,7 +1396,7 @@ msgstr ""
 "creates an empty file\n"
 "Files.createFile(path);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:616
+#: lecture.adoc:616
 msgid ""
 "//создаёт временный файл в локации, специфичной для ОС\n"
 "Files.createTempFile(prefix, suffix);\n"
@@ -1404,11 +1406,11 @@ msgstr ""
 "Files.createTempFile(prefix, suffix);\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:618
+#: lecture.adoc:618
 msgid "== Проверка файлов"
 msgstr "== File verification"
 
-#: slides05/src/main/asciidoc/lecture.adoc:624
+#: lecture.adoc:624
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1422,7 +1424,7 @@ msgstr ""
 "Files.exists(path)\n"
 "Files.isReadable(path)"
 
-#: slides05/src/main/asciidoc/lecture.adoc:627
+#: lecture.adoc:627
 msgid ""
 "Files.size(path)\n"
 "----"
@@ -1430,11 +1432,11 @@ msgstr ""
 "Files.size(path)\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:629
+#: lecture.adoc:629
 msgid "== Чтение списка файлов и обход директории в глубину"
 msgstr "== Getting the list of files and depth-first directory traversal"
 
-#: slides05/src/main/asciidoc/lecture.adoc:634
+#: lecture.adoc:634
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1446,7 +1448,7 @@ msgstr ""
 "//the contents of the folder (without going to subfolders)\n"
 "Stream<Path> list = Files.list(path);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:639
+#: lecture.adoc:639
 msgid ""
 "//метод для обхода дерева папок\n"
 "Stream<Path> Files.walk(Path start, \n"
@@ -1458,11 +1460,11 @@ msgstr ""
 "   int maxDepth, FileVisitOption... options)\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:641
+#: lecture.adoc:641
 msgid "== Копирование, перемещение и удаление файлов"
 msgstr "== Copy, move and delete files"
 
-#: slides05/src/main/asciidoc/lecture.adoc:645
+#: lecture.adoc:645
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1472,11 +1474,11 @@ msgstr ""
 "----\n"
 "Files.copy(fromPath, toPath)"
 
-#: slides05/src/main/asciidoc/lecture.adoc:647
+#: lecture.adoc:647
 msgid "Files.move(fromPath, toPath)"
 msgstr "Files.move(fromPath, toPath)"
 
-#: slides05/src/main/asciidoc/lecture.adoc:650
+#: lecture.adoc:650
 msgid ""
 "Files.delete(path)\n"
 "----"
@@ -1484,23 +1486,23 @@ msgstr ""
 "Files.delete(path)\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:652
+#: lecture.adoc:652
 msgid "== Часы и API для работы со временем"
 msgstr "== Clocks and Datetime API"
 
-#: slides05/src/main/asciidoc/lecture.adoc:654
+#: lecture.adoc:654
 msgid "*Сколько секунд в сутках?*"
 msgstr "*How many seconds are there in a day?*"
 
-#: slides05/src/main/asciidoc/lecture.adoc:656
+#: lecture.adoc:656
 msgid "image::persistenceofmemory.jpg[{image-60-width}]"
 msgstr "image::persistenceofmemory.jpg[{image-60-width}]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:658
+#: lecture.adoc:658
 msgid "== Системные часы"
 msgstr "== System clock"
 
-#: slides05/src/main/asciidoc/lecture.adoc:668
+#: lecture.adoc:668
 msgid ""
 "[%step]\n"
 "* `long System.currentTimeMillis()` -- количество миллисекунд, прошедшее с "
@@ -1526,11 +1528,11 @@ msgstr ""
 "** There is no reference to the \"calendar\" time.\n"
 "** Over long periods, inaccuracy of the clock may become noticeable."
 
-#: slides05/src/main/asciidoc/lecture.adoc:670
+#: lecture.adoc:670
 msgid "== Когда что использовать?"
 msgstr "== When to use what?"
 
-#: slides05/src/main/asciidoc/lecture.adoc:674
+#: lecture.adoc:674
 msgid ""
 "* `long System.nanoTime()` -- при замерах периодов времени в переделах одной "
 "машины. \n"
@@ -1544,11 +1546,11 @@ msgstr ""
 "* 'long System.currentTimeMillis()' -- to generate time stamps (minding the "
 "constraints)."
 
-#: slides05/src/main/asciidoc/lecture.adoc:676
+#: lecture.adoc:676
 msgid "== DateTime API"
 msgstr "== DateTime API"
 
-#: slides05/src/main/asciidoc/lecture.adoc:686
+#: lecture.adoc:686
 msgid ""
 "[%step]\n"
 "* Устаревшие, неудобные, мутабельные, непотокобезопасные классы (_не "
@@ -1573,11 +1575,11 @@ msgstr ""
 "** `ZoneId`, `ZonedDateTime`.\n"
 "** 'DateTimeFormatter' works with them."
 
-#: slides05/src/main/asciidoc/lecture.adoc:688
+#: lecture.adoc:688
 msgid "== `Instant`"
 msgstr "== `Instant`"
 
-#: slides05/src/main/asciidoc/lecture.adoc:691
+#: lecture.adoc:691
 msgid ""
 "* Точка на временной прямой\n"
 "* UNIX time"
@@ -1585,7 +1587,7 @@ msgstr ""
 "* Point on time line\n"
 "* UNIX time"
 
-#: slides05/src/main/asciidoc/lecture.adoc:701
+#: lecture.adoc:701
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1607,11 +1609,11 @@ msgstr ""
 "int year = Instant.now().get(ChronoField.YEAR);\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:703
+#: lecture.adoc:703
 msgid "== `LocalDate`, `LocalTime` и `LocalDateTime`"
 msgstr "== `LocalDate`, `LocalTime` and `LocalDateTime`"
 
-#: slides05/src/main/asciidoc/lecture.adoc:707
+#: lecture.adoc:707
 msgid ""
 "* Дата и время в «человеческом» понимании.\n"
 "* Без информации о том, в каком часовом поясе -> без привязки к `Instant`.\n"
@@ -1623,7 +1625,7 @@ msgstr ""
 "* Often binding to an Instant is not needed: \"weekly call at 9:00\" bound "
 "to Instant will \"creep\" due to daylight saving time."
 
-#: slides05/src/main/asciidoc/lecture.adoc:711
+#: lecture.adoc:711
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1633,7 +1635,7 @@ msgstr ""
 "----\n"
 "LocalDate date = LocalDate.of(2014, 3, 18); // March 18, 2014"
 
-#: slides05/src/main/asciidoc/lecture.adoc:717
+#: lecture.adoc:717
 msgid ""
 "int year      = date.getYear(); //2014\n"
 "Month month   = date.getMonth();  //MARCH\n"
@@ -1647,11 +1649,11 @@ msgstr ""
 "DayOfWeek dow = date.getDayOfWeek(); //TUESDAY\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:719
+#: lecture.adoc:719
 msgid "== `LocalTime` и `LocalDateTime`"
 msgstr "== `LocalTime` and `LocalDateTime`"
 
-#: slides05/src/main/asciidoc/lecture.adoc:723
+#: lecture.adoc:723
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1661,7 +1663,7 @@ msgstr ""
 "----\n"
 "LocalTime time = LocalTime.of(13, 45, 20); //13:45:20"
 
-#: slides05/src/main/asciidoc/lecture.adoc:727
+#: lecture.adoc:727
 msgid ""
 "int hour   = time.getHour();\n"
 "int minute = time.getMinute();\n"
@@ -1671,7 +1673,7 @@ msgstr ""
 "int minute = time.getMinute();\n"
 "int second = time.getSecond();"
 
-#: slides05/src/main/asciidoc/lecture.adoc:732
+#: lecture.adoc:732
 msgid ""
 "LocalDateTime dt1 = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20);\n"
 "LocalDateTime dt1 = LocalDateTime.of(date, time);\n"
@@ -1683,7 +1685,7 @@ msgstr ""
 "LocalDateTime dt2 = date.atTime(time);\n"
 "LocalDateTime dt3 = time.atDate(date);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:736
+#: lecture.adoc:736
 msgid ""
 "dt1.toLocalDate(); //2014-03-18\n"
 "dt1.toLocalTime(); //13:45:20\n"
@@ -1693,11 +1695,11 @@ msgstr ""
 "dt1.toLocalTime(); //13:45:20\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:738
+#: lecture.adoc:738
 msgid "== `Duration` и `Period`"
 msgstr "== `Duration` and `Period`"
 
-#: slides05/src/main/asciidoc/lecture.adoc:746
+#: lecture.adoc:746
 msgid ""
 "* `Duration`: количество времени между двумя точками на временной прямой с "
 "наносекундной точностью.\n"
@@ -1719,7 +1721,7 @@ msgstr ""
 "//LocalTime, LocalDateTime, and Instant are suitable as arguments\n"
 "Duration d = Duration.between(time1, time2);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:752
+#: lecture.adoc:752
 msgid ""
 "//В качестве аргумента годится только LocalDate\n"
 "Period tenDays = Period.between(\n"
@@ -1733,11 +1735,11 @@ msgstr ""
 "    LocalDate.of(2014, 3, 18));\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:754
+#: lecture.adoc:754
 msgid "== Конструирование новых объектов из старых"
 msgstr "== Constructing new objects from old ones"
 
-#: slides05/src/main/asciidoc/lecture.adoc:759
+#: lecture.adoc:759
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1749,7 +1751,7 @@ msgstr ""
 "Instant i = Instant.now();\n"
 "Duration d = Duration.ofSeconds(3);"
 
-#: slides05/src/main/asciidoc/lecture.adoc:763
+#: lecture.adoc:763
 msgid ""
 "//например:\n"
 "i.plus(dd.multipliedBy(10))\n"
@@ -1759,7 +1761,7 @@ msgstr ""
 "i.plus(dd.multipliedBy(10))\n"
 " .minus(dd.minus(Duration.ofMillis(1)));"
 
-#: slides05/src/main/asciidoc/lecture.adoc:766
+#: lecture.adoc:766
 msgid ""
 "//то же самое можно сделать с LocalDateTime\n"
 "----"
@@ -1767,11 +1769,11 @@ msgstr ""
 "//the same can be done with LocalDateTime\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:768
+#: lecture.adoc:768
 msgid "== Печать и парсинг даты-времени"
 msgstr "== Format and parse date and time"
 
-#: slides05/src/main/asciidoc/lecture.adoc:784
+#: lecture.adoc:784
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1805,11 +1807,11 @@ msgstr ""
 "  .toFormatter(Locale.ITALIAN);\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:786
+#: lecture.adoc:786
 msgid "== В строку и из строки"
 msgstr "== To string and from string"
 
-#: slides05/src/main/asciidoc/lecture.adoc:795
+#: lecture.adoc:795
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1829,11 +1831,11 @@ msgstr ""
 "  s, DateTimeFormatter.ISO_LOCAL_DATE);\n"
 "----"
 
-#: slides05/src/main/asciidoc/lecture.adoc:797
+#: lecture.adoc:797
 msgid "== Часовые пояса"
 msgstr "== Time zones"
 
-#: slides05/src/main/asciidoc/lecture.adoc:803
+#: lecture.adoc:803
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1847,7 +1849,7 @@ msgstr ""
 "ZoneId romeZone = ZoneId.of(\"Europe/Rome\");\n"
 "LocalDateTime dateTime = LocalDateTime.now();"
 
-#: slides05/src/main/asciidoc/lecture.adoc:807
+#: lecture.adoc:807
 msgid ""
 "ZonedDateTime moscowTime = dateTime.atZone(moscowZone);\n"
 "System.out.println(moscowTime);\n"
@@ -1857,7 +1859,7 @@ msgstr ""
 "System.out.println(moscowTime);\n"
 "//2019-09-30T18:15:52.670+03:00[Europe/Moscow]"
 
-#: slides05/src/main/asciidoc/lecture.adoc:812
+#: lecture.adoc:812
 msgid ""
 "ZonedDateTime romeTime = \n"
 "  moscowTime.withZoneSameInstant(romeZone);\n"
@@ -1870,3 +1872,15 @@ msgstr ""
 "System.out.println(romeTime);\n"
 "//2019-09-30T17:15:52.670+02:00[Europe/Rome]\n"
 "----"
+
+#~ msgctxt "./slides05/src/main/asciidoc/lecture.adoc:88"
+#~ msgid "== Регулярные выражения"
+#~ msgstr "== Regular expressions"
+
+#~ msgctxt "./slides05/src/main/asciidoc/lecture.adoc:587"
+#~ msgid "== Работа с файловой системой"
+#~ msgstr "== Working with the file system"
+
+#~ msgctxt "./slides05/src/main/asciidoc/lecture.adoc:603"
+#~ msgid "== Работа с файловой системой"
+#~ msgstr "== Working with the file system"

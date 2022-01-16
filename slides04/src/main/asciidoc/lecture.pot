@@ -1,10 +1,10 @@
-#. extracted from ./slides04/src/main/asciidoc/lecture.adoc
+#. extracted from lecture.adoc
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 11:39+0300\n"
+"POT-Creation-Date: 2022-01-16 14:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,9 +13,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:24
+#: lecture.adoc:24
 msgid ""
-"= Core Java: Курс лекций. Лекция 4\n"
+"= Core Java. Лекция 4: Enumerations. Исключения. Строки\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -40,25 +40,25 @@ msgid ""
 ":revealjs_height: 900"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:28
+#: lecture.adoc:28
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:30
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:32
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:34
+#: lecture.adoc:34
 msgid "== Enumeration Classes"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:39
+#: lecture.adoc:39
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -66,20 +66,20 @@ msgid ""
 "  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:41
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:41"
+#: lecture.adoc:41
+msgctxt "lecture.adoc:41"
 msgid ". . ."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:43
+#: lecture.adoc:43
 msgid "Size s = Size.MEDIUM;"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:45
+#: lecture.adoc:45
 msgid "for (Size s: Size.values()) . . ."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:51
+#: lecture.adoc:51
 msgid ""
 "switch (s) {\n"
 "  case SMALL: . . .\n"
@@ -88,7 +88,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:66
+#: lecture.adoc:66
 msgid ""
 "== Поля, методы и конструкторы для перечислений\n"
 "[source,java]\n"
@@ -106,78 +106,78 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:68
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:68"
+#: lecture.adoc:68
+msgctxt "lecture.adoc:68"
 msgid ". . ."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:72
+#: lecture.adoc:72
 msgid ""
 "Size s = . . .\n"
 "s.getAbbreviation(); // вернёт S, M, L или XL\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:74
+#: lecture.adoc:74
 msgid "== Базовые принципы проектирования классов"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:76
+#: lecture.adoc:76
 msgid "* Минимизируйте область видимости (`private` всё, что только можно)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:78
+#: lecture.adoc:78
 msgid "* Минимизируйте мутабельность (`final` на всём, что только можно)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:80
+#: lecture.adoc:80
 msgid ""
 "* Документируйте точки расширения через наследование, или запрещайте  "
 "наследование (`final`)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:82
+#: lecture.adoc:82
 msgid "== Исключительные ситуации"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:84
+#: lecture.adoc:84
 msgid ""
 "* Программные ошибки (баги): null pointer dereference, выход за границы "
 "массива, некорректное приведение типов, деление на ноль и т. п."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:86
+#: lecture.adoc:86
 msgid "* Некорректные входные данные"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:88
+#: lecture.adoc:88
 msgid ""
 "* Железо и сеть: невозможность открыть файл, нехватка памяти / места на "
 "диске и т. п."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:90
+#: lecture.adoc:90
 msgid ""
 "Исключение -- способ _недвусмысленно_ сообщить о том, что вызов функции "
 "завершился неудачей (в отличие от return codes и т. п.)."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:92
+#: lecture.adoc:92
 msgid "== Иерархия классов исключений"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:96
+#: lecture.adoc:96
 msgid ""
 "[plantuml, exceptionclasses, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:98
+#: lecture.adoc:98
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:104
+#: lecture.adoc:104
 msgid ""
 "class Throwable {\n"
 "  + getMessage(): String\n"
@@ -186,35 +186,35 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:108
+#: lecture.adoc:108
 msgid ""
 "Throwable <|-- Error\n"
 "Throwable <|-- Exception\n"
 "Exception <|-- RuntimeException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:112
+#: lecture.adoc:112
 msgid ""
 "RuntimeException <|-- ClassCastException\n"
 "RuntimeException <|-- IndexOutOfBoundsException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:114
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:114"
+#: lecture.adoc:114
+msgctxt "lecture.adoc:114"
 msgid "Exception <|-- IOException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:118
+#: lecture.adoc:118
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:121
+#: lecture.adoc:121
 msgid "== Что делаем?"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:125
+#: lecture.adoc:125
 msgid ""
 "* `Error` и наследники -- не обрабатываем (что-то катастрофическое "
 "случилось).\n"
@@ -223,11 +223,11 @@ msgid ""
 "* Checked exceptions -- их обрабатываем."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:127
+#: lecture.adoc:127
 msgid "== Декларирование checked-исключений"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:134
+#: lecture.adoc:134
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -237,7 +237,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:149
+#: lecture.adoc:149
 msgid ""
 "== Декларирование более чем одного исключения\n"
 "[source,java]\n"
@@ -255,12 +255,12 @@ msgid ""
 "* Правда жизни: вам поможет IDE"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:151
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:151"
+#: lecture.adoc:151
+msgctxt "lecture.adoc:151"
 msgid "== Выбрасывание исключений"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:157
+#: lecture.adoc:157
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -268,22 +268,22 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:159
+#: lecture.adoc:159
 msgid ""
 "(Если мы выбрасываем checked exception, компилятор позволит это сделать либо "
 "если оно задекларировано, либо если оно обрабатывается в самом методе.)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:161
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:161"
+#: lecture.adoc:161
+msgctxt "lecture.adoc:161"
 msgid "== Выбрасывание исключений"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:163
+#: lecture.adoc:163
 msgid "_Не следует_ выбрасывать явно"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:168
+#: lecture.adoc:168
 msgid ""
 "* `Exception`\n"
 "* `RuntimeException`\n"
@@ -291,37 +291,37 @@ msgid ""
 "* `Error`"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:170
+#: lecture.adoc:170
 msgid "(J. Bloch, Effective Java, Item 72)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:172
+#: lecture.adoc:172
 msgid "== Откуда наследовать своё собственное исключение? Вот в чём вопрос"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:174
+#: lecture.adoc:174
 msgid ""
 "* Если наследовать от Exception -- надо быть готовым, что его придётся "
 "декларировать или ловить всюду. Хорошо это или плохо?"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:176
+#: lecture.adoc:176
 msgid "* Можно унаследоваться от RuntimeException. И забыть его поймать."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:178
+#: lecture.adoc:178
 msgid "* В эпоху лямбд и стримов checked exceptions это скорее головная боль."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:180
+#: lecture.adoc:180
 msgid "* Споры не прекращаются."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:182
+#: lecture.adoc:182
 msgid "== Как поймать исключение: try-catch блок"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:194
+#: lecture.adoc:194
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -336,37 +336,37 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:196
+#: lecture.adoc:196
 msgid "== Как поймать несколько типов исключений"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:200
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:200"
+#: lecture.adoc:200
+msgctxt "lecture.adoc:200"
 msgid ""
 "[plantuml, iomultiple, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:202
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:202"
+#: lecture.adoc:202
+msgctxt "lecture.adoc:202"
 msgid "skinparam dpi 180 "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:204
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:204"
+#: lecture.adoc:204
+msgctxt "lecture.adoc:204"
 msgid "IOException <|-- FileNotFoundException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:208
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:208"
+#: lecture.adoc:208
+msgctxt "lecture.adoc:208"
 msgid ""
 "IOException <|-- UnknownHostException\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:221
+#: lecture.adoc:221
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -382,37 +382,37 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:223
+#: lecture.adoc:223
 msgid "== try-multicatch"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:227
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:227"
+#: lecture.adoc:227
+msgctxt "lecture.adoc:227"
 msgid ""
 "[plantuml, iomultiple, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:229
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:229"
+#: lecture.adoc:229
+msgctxt "lecture.adoc:229"
 msgid "skinparam dpi 180 "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:231
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:231"
+#: lecture.adoc:231
+msgctxt "lecture.adoc:231"
 msgid "IOException <|-- FileNotFoundException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:235
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:235"
+#: lecture.adoc:235
+msgctxt "lecture.adoc:235"
 msgid ""
 "IOException <|-- UnknownHostException\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:242
+#: lecture.adoc:242
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -422,7 +422,7 @@ msgid ""
 "  //emergency action for missing files or unknown hosts"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:247
+#: lecture.adoc:247
 msgid ""
 "  //e type is the most specific common supertype \n"
 "  //of the throwable types\n"
@@ -430,18 +430,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:249
+#: lecture.adoc:249
 msgid "== Перевыбрасывание исключений (с умной проверкой типов)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:253
+#: lecture.adoc:253
 msgid ""
 "[source,java]\n"
 "----\n"
 ". . . throws SQLException . . ."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:264
+#: lecture.adoc:264
 msgid ""
 "try {\n"
 "  //доступ к БД -- может выбросить SQLException \n"
@@ -455,18 +455,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:266
+#: lecture.adoc:266
 msgid "== Обёртывание исключений"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:270
+#: lecture.adoc:270
 msgid ""
 "[source,java]\n"
 "----\n"
 ". . . throws ServletException . . ."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:280
+#: lecture.adoc:280
 msgid ""
 "try {\n"
 "  //доступ к БД -- может выбросить SQLException\n"
@@ -479,45 +479,45 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:282
+#: lecture.adoc:282
 msgid "== Переопределение методов с исключениями"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:287
+#: lecture.adoc:287
 msgid ""
 "[plantuml, overriding, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:289
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:289"
+#: lecture.adoc:289
+msgctxt "lecture.adoc:289"
 msgid "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:293
+#: lecture.adoc:293
 msgid ""
 "class Foo {\n"
 "    + foo() throws FooException \n"
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:295
+#: lecture.adoc:295
 msgid "Foo <|-- Bar"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:299
+#: lecture.adoc:299
 msgid ""
 "class Bar {\n"
 "    + foo() throws BarException\n"
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:302
+#: lecture.adoc:302
 msgid "FooException <|-- BarException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:307
+#: lecture.adoc:307
 msgid ""
 "Foo . FooException\n"
 "Bar . BarException\n"
@@ -525,21 +525,21 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:310
+#: lecture.adoc:310
 msgid ""
 "* Исключение может быть того же типа или субтипа\n"
 "* Не возбраняется, если его не будет вообще"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:312
+#: lecture.adoc:312
 msgid "== Стандартные типы переиспользуемых unchecked-exceptions"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:314
+#: lecture.adoc:314
 msgid "J.{nbsp}Bloch 'Effective Java', Item 72:"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:322
+#: lecture.adoc:322
 msgid ""
 "[cols=\"30a,70a\"]\n"
 "|===\n"
@@ -553,11 +553,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:324
+#: lecture.adoc:324
 msgid "== Вам будет очень хотеться сделать так..."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:334
+#: lecture.adoc:334
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -570,19 +570,19 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:336
+#: lecture.adoc:336
 msgid "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:338
+#: lecture.adoc:338
 msgid "...*но так делать не надо!* "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:340
+#: lecture.adoc:340
 msgid "== Если не понятно, что делать с исключением "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:346
+#: lecture.adoc:346
 msgid ""
 "* Задекларируйте checked exception в методе\n"
 "* Оберните с помощью `initCause` или параметра конструктора\n"
@@ -591,11 +591,11 @@ msgid ""
 "* Лучше не надо: Lobmok's `@SneakyThrows` (самая спорная фича Lombok)"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:348
+#: lecture.adoc:348
 msgid "== Общее правило"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:352
+#: lecture.adoc:352
 msgid ""
 "* _Throw early, catch late._\n"
 "* Не откладывайте выбрасывание исключения, как только стала ясна причина "
@@ -604,11 +604,11 @@ msgid ""
 "механизм обработки."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:354
+#: lecture.adoc:354
 msgid "== finally-блок"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:373
+#: lecture.adoc:373
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -630,12 +630,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:375
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:375"
+#: lecture.adoc:375
+msgctxt "lecture.adoc:375"
 msgid "== Беда с finally-block"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:380
+#: lecture.adoc:380
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -643,26 +643,26 @@ msgid ""
 "//Один ресурс"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:382
+#: lecture.adoc:382
 msgid "BufferedReader br = new BufferedReader(new FileReader(path));"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:384
+#: lecture.adoc:384
 msgid "try {return br.readLine();} "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:387
+#: lecture.adoc:387
 msgid ""
 "finally {br.close();}\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:389
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:389"
+#: lecture.adoc:389
+msgctxt "lecture.adoc:389"
 msgid "== Беда с finally-block"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:394
+#: lecture.adoc:394
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -670,7 +670,7 @@ msgid ""
 "//Два ресурса"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:405
+#: lecture.adoc:405
 msgid ""
 "InputStream in = new FileInputStream(src);\n"
 "try {\n"
@@ -684,11 +684,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:408
+#: lecture.adoc:408
 msgid "== try-with-resources-блок"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:416
+#: lecture.adoc:416
 msgid ""
 "Общая схема\n"
 "[source,java]\n"
@@ -699,7 +699,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:426
+#: lecture.adoc:426
 msgid ""
 "Пример:\n"
 "[source,java]\n"
@@ -712,11 +712,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:428
+#: lecture.adoc:428
 msgid "== Множество ресурсов"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:438
+#: lecture.adoc:438
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -729,46 +729,46 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:440
+#: lecture.adoc:440
 msgid "== Интерфейсы Closeable и AutoCloseable"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:444
+#: lecture.adoc:444
 msgid ""
 "[plantuml, closeable, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:446
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:446"
+#: lecture.adoc:446
+msgctxt "lecture.adoc:446"
 msgid "skinparam dpi 200 "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:450
+#: lecture.adoc:450
 msgid ""
 "interface AutoCloseable {\n"
 "    + close() throws Exception \n"
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:452
+#: lecture.adoc:452
 msgid "AutoCloseable <|-- Closeable"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:456
+#: lecture.adoc:456
 msgid ""
 "interface Closeable {\n"
 "    + close() throws IOException\n"
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:459
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:459"
+#: lecture.adoc:459
+msgctxt "lecture.adoc:459"
 msgid "Exception <|-- IOException"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:464
+#: lecture.adoc:464
 msgid ""
 "Closeable . IOException\n"
 "AutoCloseable . Exception\n"
@@ -776,12 +776,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:466
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:466"
+#: lecture.adoc:466
+msgctxt "lecture.adoc:466"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:476
+#: lecture.adoc:476
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -794,7 +794,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:481
+#: lecture.adoc:481
 msgid ""
 "//ДЕЛАЙТЕ ТАК!!\n"
 "for (Mountain m: range) \n"
@@ -802,12 +802,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:485
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:485"
+#: lecture.adoc:485
+msgctxt "lecture.adoc:485"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:496
+#: lecture.adoc:496
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -820,7 +820,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:503
+#: lecture.adoc:503
 msgid ""
 "//ДЕЛАЙТЕ ТАК!!\n"
 "for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
@@ -830,22 +830,22 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:505
+#: lecture.adoc:505
 msgid "== Не используйте исключения для контроля выполнения"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:509
+#: lecture.adoc:509
 msgid ""
 "* Это *маскирует* настоящие ошибки и делает код трудным для поддержки.\n"
 "* Это *затратно* по ресурсам (исключения несут в себе Stack Trace).\n"
 "* Это *медленно*: компилятор не оптимизирует под исключения."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:511
+#: lecture.adoc:511
 msgid "== Исключение вылезло в production. Что делать?"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:569
+#: lecture.adoc:569
 msgid ""
 "  2019-08-24 11:14:55.545 ERROR 30413 --- [0.1-8080-exec-6] "
 "o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet "
@@ -974,27 +974,27 @@ msgid ""
 "\tat java.lang.Thread.run(Thread.java:748) [na:1.8.0_222]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:571
+#: lecture.adoc:571
 msgid "== Analyze -> Analyze Stack Trace..."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:573
+#: lecture.adoc:573
 msgid "image::analyzestacktrace.png[]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:577
+#: lecture.adoc:577
 msgid ""
 "== Исследуем стек вызовов\n"
 "image::stacktracereading.png[]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:579
+#: lecture.adoc:579
 msgid ""
 "== Здесь мы делаем паузу в изучении особенностей языка ради изучения "
 "библиотеки"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:584
+#: lecture.adoc:584
 msgid ""
 "* J. Bloch, 'Effective Java': 'By using a standard library, you take "
 "advantage of the knowledge of the experts who wrote it and the experience of "
@@ -1008,11 +1008,11 @@ msgid ""
 "в примерах в интернете и т. п. не оправдывает их использование в новом коде. "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:586
+#: lecture.adoc:586
 msgid "== Отдельный пример из книги Effective Java: ThreadLocalRandom"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:591
+#: lecture.adoc:591
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1020,7 +1020,7 @@ msgid ""
 "double rnd = (new Random()).nextDouble();"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:597
+#: lecture.adoc:597
 msgid ""
 "//До Java 7+ так было нормально, но теперь НЕТ!!\n"
 "static final Random r = new Random();\n"
@@ -1029,18 +1029,18 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:601
+#: lecture.adoc:601
 msgid ""
 "//ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее\n"
 "double rnd = ThreadLocalRandom.current().nextDouble();\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:603
+#: lecture.adoc:603
 msgid "== Класс String"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:609
+#: lecture.adoc:609
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1049,15 +1049,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:611
+#: lecture.adoc:611
 msgid "== Строка -- иммутабельный объект."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:613
+#: lecture.adoc:613
 msgid "Нужна другая строка? Сооружаем новую:"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:619
+#: lecture.adoc:619
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1066,15 +1066,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:621
+#: lecture.adoc:621
 msgid "Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:623
+#: lecture.adoc:623
 msgid "== Внутреннее представление строк"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:628
+#: lecture.adoc:628
 msgid ""
 "* До Java 9 -- `char[]`\n"
 "* После Java 9 -- `byte[]` и `byte coder`\n"
@@ -1083,19 +1083,19 @@ msgid ""
 "the Strings: Two Scours]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:630
+#: lecture.adoc:630
 msgid "== Пул строковых констант"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:634
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:634"
+#: lecture.adoc:634
+msgctxt "lecture.adoc:634"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:644
+#: lecture.adoc:644
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1108,7 +1108,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:651
+#: lecture.adoc:651
 msgid ""
 "[graphviz, \"stringpool.png\"]\n"
 "----\n"
@@ -1118,8 +1118,8 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:658
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:658"
+#: lecture.adoc:658
+msgctxt "lecture.adoc:658"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1129,7 +1129,7 @@ msgid ""
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:667
+#: lecture.adoc:667
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1141,11 +1141,11 @@ msgid ""
 "|===="
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:669
+#: lecture.adoc:669
 msgid "== Сравнение строк"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:677
+#: lecture.adoc:677
 msgid ""
 "[%step]\n"
 "* `if (a == \"John Doe\")` -- *неправильно*, ошибка новичка.\n"
@@ -1157,20 +1157,20 @@ msgid ""
 "пробелов, табуляций, переносов и проч.!"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:680
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:680"
+#: lecture.adoc:680
+msgctxt "lecture.adoc:680"
 msgid "== Интернирование строк"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:684
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:684"
+#: lecture.adoc:684
+msgctxt "lecture.adoc:684"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:694
+#: lecture.adoc:694
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1183,7 +1183,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:701
+#: lecture.adoc:701
 msgid ""
 "[graphviz, \"stringpool-intern1.png\"]\n"
 "----\n"
@@ -1193,8 +1193,8 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:708
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:708"
+#: lecture.adoc:708
+msgctxt "lecture.adoc:708"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1204,11 +1204,11 @@ msgid ""
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:710
+#: lecture.adoc:710
 msgid "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:719
+#: lecture.adoc:719
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1220,20 +1220,20 @@ msgid ""
 "|===="
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:721
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:721"
+#: lecture.adoc:721
+msgctxt "lecture.adoc:721"
 msgid "== Интернирование строк"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:725
-msgctxt "./slides04/src/main/asciidoc/lecture.adoc:725"
+#: lecture.adoc:725
+msgctxt "lecture.adoc:725"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:733
+#: lecture.adoc:733
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1244,7 +1244,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:740
+#: lecture.adoc:740
 msgid ""
 "[graphviz, \"stringpool-intern2.png\"]\n"
 "----\n"
@@ -1254,7 +1254,7 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:747
+#: lecture.adoc:747
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1264,7 +1264,7 @@ msgid ""
 "          }"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:758
+#: lecture.adoc:758
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1276,11 +1276,11 @@ msgid ""
 "|===="
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:761
+#: lecture.adoc:761
 msgid "== Конкатенация строк"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:766
+#: lecture.adoc:766
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1288,17 +1288,17 @@ msgid ""
 "String bar = \"bar\";"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:769
+#: lecture.adoc:769
 msgid ""
 "System.out.println(foo + bar); //foobar\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:771
+#: lecture.adoc:771
 msgid "Ситуация такова:"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:775
+#: lecture.adoc:775
 msgid ""
 "* Пользовательской перегрузки операторов в Java не предусмотрено.\n"
 "* Оператор `+` для строк перегружен на уровне языка.\n"
@@ -1306,11 +1306,11 @@ msgid ""
 "строк и не имеет смысла :-("
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:777
+#: lecture.adoc:777
 msgid "== Конкатенация строк: проблема производительности"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:786
+#: lecture.adoc:786
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1322,11 +1322,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:789
+#: lecture.adoc:789
 msgid "== Конкатенация строк: используйте StringBuilder!"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:799
+#: lecture.adoc:799
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1339,15 +1339,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:801
+#: lecture.adoc:801
 msgid "== Длина строки"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:803
+#: lecture.adoc:803
 msgid "Длина строки в UTF-16 code units:"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:809
+#: lecture.adoc:809
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1356,7 +1356,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:815
+#: lecture.adoc:815
 msgid ""
 "«Реальная» длина строки в code points:\n"
 "[source,java]\n"
@@ -1365,17 +1365,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:817
+#: lecture.adoc:817
 msgid "== Символ на i-й позиции"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:820
+#: lecture.adoc:820
 msgid ""
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:825
+#: lecture.adoc:825
 msgid ""
 "//работает за время O(1)\n"
 "char first = greeting.charAt(0); // first is 'H'\n"
@@ -1383,11 +1383,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:827
+#: lecture.adoc:827
 msgid "Если нужны code points:"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:832
+#: lecture.adoc:832
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1395,11 +1395,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:834
+#: lecture.adoc:834
 msgid "== Полезные методы "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:848
+#: lecture.adoc:848
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1416,24 +1416,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:850
+#: lecture.adoc:850
 msgid "== Вредные методы "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:854
+#: lecture.adoc:854
 msgid ""
 "* `indexOf..` / `lastIndexOf..`\n"
 "* `replace..`\n"
 "* `split..` "
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:856
+#: lecture.adoc:856
 msgid ""
 "В комбинации c `substring` и конкатенацией их используют для извлечения "
 "данных / преобразования строк."
 msgstr ""
 
-#: ./slides04/src/main/asciidoc/lecture.adoc:857
+#: lecture.adoc:857
 msgid ""
 "_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
 "бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"

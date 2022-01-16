@@ -1,10 +1,10 @@
-#. extracted from ./slides06/src/main/asciidoc/lecture.adoc
+#. extracted from lecture.adoc
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 11:39+0300\n"
+"POT-Creation-Date: 2022-01-16 14:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,9 +13,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:24
+#: lecture.adoc:24
 msgid ""
-"= Core Java: Курс лекций. Лекция 6\n"
+"= Core Java. Лекция 6: Generics\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -40,25 +40,25 @@ msgid ""
 ":revealjs_height: 900"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:28
+#: lecture.adoc:28
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:30
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:32
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:35
+#: lecture.adoc:35
 msgid "== До появления дженериков"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:44
+#: lecture.adoc:44
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -70,34 +70,34 @@ msgid ""
 "managers.add(cto);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:47
+#: lecture.adoc:47
 msgid ""
 "//bug!!\n"
 "managers.add(cleaner);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:51
+#: lecture.adoc:51
 msgid ""
 "//typecast with runtime exception -- too late!\n"
 "Manager m = (Manager) managers.get(2); \n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:54
+#: lecture.adoc:54
 msgid ""
 "[%notitle]\n"
 "== Runtime vs Compile Time Errors"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:56
+#: lecture.adoc:56
 msgid "image::rtvscompiletime.png[]"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:58
+#: lecture.adoc:58
 msgid "== После появления дженериков"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:65
+#: lecture.adoc:65
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -107,7 +107,7 @@ msgid ""
 "List<Manager> managers = new ArrayList<>();"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:70
+#: lecture.adoc:70
 msgid ""
 "managers.add(ceo);\n"
 "managers.add(cto);\n"
@@ -115,18 +115,18 @@ msgid ""
 "// managers.add(cleaner);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:74
+#: lecture.adoc:74
 msgid ""
 "// приводить тип не нужно!\n"
 "Manager m = managers.get(1); \n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:76
+#: lecture.adoc:76
 msgid "== Определяем собственный параметризованный класс"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:93
+#: lecture.adoc:93
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -146,18 +146,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:95
+#: lecture.adoc:95
 msgid "== Определение и использование"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:99
+#: lecture.adoc:99
 msgid ""
 "[source,java]\n"
 "----\n"
 "Pair<String> pair = new Pair<>(\"Ваня\", \"Маша\");"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:106
+#: lecture.adoc:106
 msgid ""
 "//ЧТО ЭКВИВАЛЕНТНО ЗАМЕНЕ T НА String\n"
 "Pair(String, String)\n"
@@ -167,16 +167,16 @@ msgid ""
 "void setSecond(String)"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:108
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:108"
+#: lecture.adoc:108
+msgctxt "lecture.adoc:108"
 msgid "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:110
+#: lecture.adoc:110
 msgid "== Generic methods"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:116
+#: lecture.adoc:116
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -185,18 +185,18 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:120
+#: lecture.adoc:120
 msgid ""
 "String s = getRandomItem(\"A\", \"B\", \"C\");\n"
 "Manager m = getRandomItem(ceo, cto, cfo);\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:122
+#: lecture.adoc:122
 msgid "== Другой пример"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:132
+#: lecture.adoc:132
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -209,11 +209,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:134
+#: lecture.adoc:134
 msgid "== Промежуточные выводы"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:138
+#: lecture.adoc:138
 msgid ""
 "* Использование параметризованных классов -- простое (просто укажите "
 "параметры, `List<Manager>`)\n"
@@ -223,11 +223,11 @@ msgid ""
 "сложная."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:140
+#: lecture.adoc:140
 msgid "== Bounded types"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:146
+#: lecture.adoc:146
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -236,18 +236,18 @@ msgid ""
 "    items.get(ThreadLocalRandom.current().nextInt(items.size()));"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:150
+#: lecture.adoc:150
 msgid ""
 "  return result.getName();\n"
 "}\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:152
+#: lecture.adoc:152
 msgid "== Intersection types"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:157
+#: lecture.adoc:157
 msgid ""
 "[plantuml, intersections, png]\n"
 "----\n"
@@ -255,33 +255,33 @@ msgid ""
 "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:160
+#: lecture.adoc:160
 msgid ""
 "class Employee {\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:163
+#: lecture.adoc:163
 msgid ""
 "class Retiree {\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:167
+#: lecture.adoc:167
 msgid ""
 "class Person {\n"
 "  + getName(): String\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:171
+#: lecture.adoc:171
 msgid ""
 "interface Payable {\n"
 "  + getMonthPayment: BigDecimal\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:180
+#: lecture.adoc:180
 msgid ""
 "Payable <|.. Employee\n"
 "Payable <|.. Retiree\n"
@@ -292,7 +292,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:195
+#: lecture.adoc:195
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -309,7 +309,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:201
+#: lecture.adoc:201
 msgid ""
 "== Реализация дженериков\n"
 "* Появились в Java 5\n"
@@ -318,11 +318,11 @@ msgid ""
 "* Type Erasure, будь он неладен!"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:203
+#: lecture.adoc:203
 msgid "== Сырые типы"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:249
+#: lecture.adoc:249
 msgid ""
 "[cols=\"45a,55a\"]\n"
 "|===\n"
@@ -371,11 +371,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:252
+#: lecture.adoc:252
 msgid "== Ограниченные типы вместо Object"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:298
+#: lecture.adoc:298
 msgid ""
 "[cols=\"45a,55a\"]\n"
 "|===\n"
@@ -424,11 +424,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:300
+#: lecture.adoc:300
 msgid "== Вызовы методов"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:311
+#: lecture.adoc:311
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -441,7 +441,7 @@ msgid ""
 "  new Pair<>();"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:316
+#: lecture.adoc:316
 msgid ""
 "/*контроль типов --\n"
 "на этапе компиляции*/\n"
@@ -449,7 +449,7 @@ msgid ""
 "buddies.setSecond(cto);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:326
+#: lecture.adoc:326
 msgid ""
 "/*type cast не нужен*/\n"
 "Manager buddy = \n"
@@ -462,7 +462,7 @@ msgid ""
 "  new Pair();"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:331
+#: lecture.adoc:331
 msgid ""
 "/*контроль типов не нужен --\n"
 "на этапе компиляции проверили!*/\n"
@@ -470,7 +470,7 @@ msgid ""
 "buddies.setSecond(cto);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:337
+#: lecture.adoc:337
 msgid ""
 "/*type cast вставлен компилятором*/\n"
 "Manager buddy = \n"
@@ -479,11 +479,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:339
+#: lecture.adoc:339
 msgid "== Bridge methods для сохранения полиморфизма"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:349
+#: lecture.adoc:349
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -496,7 +496,7 @@ msgid ""
 " Pair<LocalDate> {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:364
+#: lecture.adoc:364
 msgid ""
 " @Override\n"
 " void setSecond(\n"
@@ -514,7 +514,7 @@ msgid ""
 "class DateInterval extends Pair {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:372
+#: lecture.adoc:372
 msgid ""
 " void setSecond(\n"
 "        LocalDate second){\n"
@@ -525,7 +525,7 @@ msgid ""
 " }"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:381
+#: lecture.adoc:381
 msgid ""
 " //bridge method!!\n"
 " @Override\n"
@@ -537,7 +537,7 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:387
+#: lecture.adoc:387
 msgid ""
 "== Итог: как это работает\n"
 "* Параметризованных классов в JVM нет, только обычные классы и методы.\n"
@@ -547,18 +547,18 @@ msgid ""
 "* Сведение типов добавляется по мере необходимости."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:389
+#: lecture.adoc:389
 msgid "== Никогда не употребляйте сырые типы"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:392
+#: lecture.adoc:392
 msgid ""
 "* Возможность назначать переменным сырые типы оставлена для обратной "
 "совместимости с кодом, написанным до Java5.\n"
 "* Java5 вышла в 2004 году."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:405
+#: lecture.adoc:405
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -574,35 +574,35 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:408
+#: lecture.adoc:408
 msgid ""
 "[%notitle]\n"
 "== Понимание дженериков в Джаве"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:410
+#: lecture.adoc:410
 msgid ""
 "_Понимание дженериков в Джаве -- это не про то, что с ними делать можно, а "
 "про то, что с ними делать нельзя._"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:413
+#: lecture.adoc:413
 msgid "== Стирание типов -> невозможность определить параметр типа в Runtime"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:417
+#: lecture.adoc:417
 msgid ""
 "[plantuml, rawtype, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:419
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:419"
+#: lecture.adoc:419
+msgctxt "lecture.adoc:419"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:425
+#: lecture.adoc:425
 msgid ""
 "class Pair {\n"
 "(raw type)\n"
@@ -610,40 +610,40 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:427
+#: lecture.adoc:427
 msgid "class \"Pair<String>\" {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:429
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:429"
+#: lecture.adoc:429
+msgctxt "lecture.adoc:429"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:431
+#: lecture.adoc:431
 msgid "class \"Pair<Manager>\" {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:433
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:433"
+#: lecture.adoc:433
+msgctxt "lecture.adoc:433"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:437
+#: lecture.adoc:437
 msgid "Pair <|-- \"Pair<String>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:439
+#: lecture.adoc:439
 msgid "Pair <|-- \"Pair<Manager>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:442
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:442"
+#: lecture.adoc:442
+msgctxt "lecture.adoc:442"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:447
+#: lecture.adoc:447
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -651,20 +651,20 @@ msgid ""
 "if (a instanceof Pair<String>) ..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:451
+#: lecture.adoc:451
 msgid ""
 "//вот так -- получится...\n"
 "if (a instanceof Pair<?>) ...\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:453
+#: lecture.adoc:453
 msgid ""
 "== Стирание типов до Object -> невозможность использовать примитивные типы в "
 "качестве параметров"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:458
+#: lecture.adoc:458
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -672,7 +672,7 @@ msgid ""
 "List<int>  integers = ... //ошибка компиляции!"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:465
+#: lecture.adoc:465
 msgid ""
 "List<Integer> integers = ...\n"
 "integers.add(42); /*под капотом будет autoboxing:\n"
@@ -682,11 +682,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:467
+#: lecture.adoc:467
 msgid "== Примитивы и дженерики"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:476
+#: lecture.adoc:476
 msgid ""
 "* День сегодняшний: нужна производительность? -- пишем специальные "
 "реализации.\n"
@@ -702,21 +702,21 @@ msgid ""
 "раз и навсегда."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:478
+#: lecture.adoc:478
 msgid "== Нельзя инстанцировать типы-параметры"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:481
+#: lecture.adoc:481
 msgid ""
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:483
+#: lecture.adoc:483
 msgid "class Pair<T> {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:489
+#: lecture.adoc:489
 msgid ""
 "    T newValue {\n"
 "      return new T(); //увы, ошибка компиляции!\n"
@@ -725,11 +725,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:491
+#: lecture.adoc:491
 msgid "== Решается с помощью метакласса и рефлексии (о которой речь впереди)"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:497
+#: lecture.adoc:497
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -738,14 +738,14 @@ msgid ""
 "  Class<? extends T> clazz;"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:501
+#: lecture.adoc:501
 msgid ""
 "  Container(Class<? extends T> clazz) {\n"
 "    this.clazz = clazz;\n"
 "  }"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:507
+#: lecture.adoc:507
 msgid ""
 "  T newInstance() throws ReflectiveOperationException {\n"
 "   //если нашёлся открытый конструктор без параметров!\n"
@@ -754,17 +754,17 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:510
+#: lecture.adoc:510
 msgid ""
 "Container<Employee> container1 = new Container<>(Employee.class);\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:512
+#: lecture.adoc:512
 msgid "== Тем более нельзя инстанцировать массив типа-параметра"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:520
+#: lecture.adoc:520
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -775,11 +775,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:522
+#: lecture.adoc:522
 msgid "Решается передачей параметра, например, в ArrayList:"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:529
+#: lecture.adoc:529
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -789,11 +789,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:531
+#: lecture.adoc:531
 msgid "== Массивы и дженерики -- лютые враги"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:539
+#: lecture.adoc:539
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -804,7 +804,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:545
+#: lecture.adoc:545
 msgid ""
 "== Забьём значения кувалдой и устроим heap pollution\n"
 "[source,java]\n"
@@ -813,7 +813,7 @@ msgid ""
 "Object[] objArray = a;"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:550
+#: lecture.adoc:550
 msgid ""
 "objArray[0] = (List<String>) Arrays.asList(\"foo\");\n"
 "//a[1] не пропустит в compile-time\n"
@@ -821,7 +821,7 @@ msgid ""
 "objArray[1] = (List<Manager>) Arrays.asList(new Manager());"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:556
+#: lecture.adoc:556
 msgid ""
 "//Runtime error: Manager cannot be cast to String\n"
 "String s = a[1].get(0);\n"
@@ -829,11 +829,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:558
+#: lecture.adoc:558
 msgid "== Varargs -- всё равно массив..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:569
+#: lecture.adoc:569
 msgid ""
 "Тот же heap pollution, что и в прошлом примере:\n"
 "[source,java]\n"
@@ -847,21 +847,21 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:572
+#: lecture.adoc:572
 msgid ""
 "dangerous(new ArrayList<>());\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:574
+#: lecture.adoc:574
 msgid "== Компилятор что-то предчувствует..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:576
+#: lecture.adoc:576
 msgid "image::varargswarning.png[{image-100-width}]"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:585
+#: lecture.adoc:585
 msgid ""
 "Чтобы успокоить компилятор, надо поставить аннотацию `@SafeVarargs`:\n"
 "[source,java]\n"
@@ -873,15 +873,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:587
+#: lecture.adoc:587
 msgid "...и компилятор успокоится."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:589
+#: lecture.adoc:589
 msgid "== Зачем?!"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:597
+#: lecture.adoc:597
 msgid ""
 "* Всё потому, что иметь varargs с параметризованными типами удобно!..\n"
 "** `Arrays.asList(T... a)`\n"
@@ -892,11 +892,11 @@ msgid ""
 "** Не раздавать ссылку на массив параметров наружу."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:599
+#: lecture.adoc:599
 msgid "== Нельзя параметризовать"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:606
+#: lecture.adoc:606
 msgid ""
 "* Исключения\n"
 "** ловля исключений -- это проверка их типов,\n"
@@ -907,11 +907,11 @@ msgid ""
 "* Enum-ы."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:608
+#: lecture.adoc:608
 msgid "== Параметры типов нельзя использовать в статическом контексте"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:615
+#: lecture.adoc:615
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -921,7 +921,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:620
+#: lecture.adoc:620
 msgid ""
 "//Статический контекст ОДИН НА ВСЕХ\n"
 "Container<Foo>.getValue();\n"
@@ -929,12 +929,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:622
+#: lecture.adoc:622
 msgid ""
 "== Нельзя реализовывать разные параметризации одного и того же интерфейса"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:653
+#: lecture.adoc:653
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -968,7 +968,7 @@ msgid ""
 "  implements Comparable{"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:658
+#: lecture.adoc:658
 msgid ""
 "  //bridge method for Employee\n"
 "  int compareTo(Object m) {\n"
@@ -976,7 +976,7 @@ msgid ""
 "  }"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:663
+#: lecture.adoc:663
 msgid ""
 "  //bridge method for Manager\n"
 "  int compareTo(Object e) {\n"
@@ -984,121 +984,121 @@ msgid ""
 "  }"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:666
+#: lecture.adoc:666
 msgid ""
 "  //CLASH!!!\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:669
+#: lecture.adoc:669
 msgid ""
 "----\n"
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:671
+#: lecture.adoc:671
 msgid "== Ковариантность массивов vs инвариантность дженериков"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:675
+#: lecture.adoc:675
 msgid ""
 "[plantuml, manemp, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:677
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:677"
+#: lecture.adoc:677
+msgctxt "lecture.adoc:677"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:679
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:679"
+#: lecture.adoc:679
+msgctxt "lecture.adoc:679"
 msgid "class Employee {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:681
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:681"
+#: lecture.adoc:681
+msgctxt "lecture.adoc:681"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:683
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:683"
+#: lecture.adoc:683
+msgctxt "lecture.adoc:683"
 msgid "class Manager {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:685
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:685"
+#: lecture.adoc:685
+msgctxt "lecture.adoc:685"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:687
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:687"
+#: lecture.adoc:687
+msgctxt "lecture.adoc:687"
 msgid "Employee <|- Manager"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:690
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:690"
+#: lecture.adoc:690
+msgctxt "lecture.adoc:690"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:693
+#: lecture.adoc:693
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:695
+#: lecture.adoc:695
 msgid "a|"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:699
+#: lecture.adoc:699
 msgid ""
 "[plantuml, covariance, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:701
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:701"
+#: lecture.adoc:701
+msgctxt "lecture.adoc:701"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:704
+#: lecture.adoc:704
 msgid ""
 "class \"Employee[]\" as E {\n"
 "} "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:706
+#: lecture.adoc:706
 msgid ""
 "note \"Контроль типов\\n"
 "в рантайме\" as ArrayNote"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:708
+#: lecture.adoc:708
 msgid "E .. ArrayNote"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:710
+#: lecture.adoc:710
 msgid "class \"Manager[]\" as M {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:712
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:712"
+#: lecture.adoc:712
+msgctxt "lecture.adoc:712"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:716
+#: lecture.adoc:716
 msgid ""
 "E <\\|- M\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:729
+#: lecture.adoc:729
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1114,30 +1114,30 @@ msgid ""
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:731
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:731"
+#: lecture.adoc:731
+msgctxt "lecture.adoc:731"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:735
+#: lecture.adoc:735
 msgid ""
 "class \"List<Employee>\"{\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:738
+#: lecture.adoc:738
 msgid ""
 "class \"List<Manager>\"{ \n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:740
+#: lecture.adoc:740
 msgid ""
 "note \"Не связаны\\n"
 "наследованием!\" as Note"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:745
+#: lecture.adoc:745
 msgid ""
 "\"List<Employee>\" .. Note\n"
 "\"List<Manager>\" .. Note\n"
@@ -1145,7 +1145,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:754
+#: lecture.adoc:754
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1157,64 +1157,64 @@ msgid ""
 "|==="
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:757
+#: lecture.adoc:757
 msgid "== Реальная картина "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:761
+#: lecture.adoc:761
 msgid ""
 "[plantuml, realpicture, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:763
+#: lecture.adoc:763
 msgid "skinparam dpi 170 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:766
+#: lecture.adoc:766
 msgid ""
 "class \"ArrayList<Employee>\"{\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:769
+#: lecture.adoc:769
 msgid ""
 "class \"ArrayList<Manager>\"{ \n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:772
+#: lecture.adoc:772
 msgid ""
 "class \"ArrayList\" {\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:775
+#: lecture.adoc:775
 msgid ""
 "interface \"List<Employee>\"{\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:778
+#: lecture.adoc:778
 msgid ""
 "interface \"List<Manager>\"{ \n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:781
+#: lecture.adoc:781
 msgid ""
 "interface \"List\"{\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:783
+#: lecture.adoc:783
 msgid ""
 "note \"Сырые типы.\\n"
 "Использовать нельзя!\" as Note"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:790
+#: lecture.adoc:790
 msgid ""
 "\"List<Employee>\" <|.. \"ArrayList<Employee>\"  \n"
 "\"List<Manager>\" <|.. \"ArrayList<Manager>\"  \n"
@@ -1224,7 +1224,7 @@ msgid ""
 "\"List\" <|-- \"List<Manager>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:795
+#: lecture.adoc:795
 msgid ""
 "Note.\"List\"\n"
 "Note..\"ArrayList\"\n"
@@ -1232,68 +1232,68 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:797
+#: lecture.adoc:797
 msgid "== Как быть, если хочется такого?"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:801
+#: lecture.adoc:801
 msgid ""
 "[plantuml, manempperson, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:803
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:803"
+#: lecture.adoc:803
+msgctxt "lecture.adoc:803"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:805
+#: lecture.adoc:805
 msgid "class Person {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:807
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:807"
+#: lecture.adoc:807
+msgctxt "lecture.adoc:807"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:809
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:809"
+#: lecture.adoc:809
+msgctxt "lecture.adoc:809"
 msgid "class Employee {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:811
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:811"
+#: lecture.adoc:811
+msgctxt "lecture.adoc:811"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:813
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:813"
+#: lecture.adoc:813
+msgctxt "lecture.adoc:813"
 msgid "class Manager {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:815
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:815"
+#: lecture.adoc:815
+msgctxt "lecture.adoc:815"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:817
+#: lecture.adoc:817
 msgid "Person <|- Employee"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:819
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:819"
+#: lecture.adoc:819
+msgctxt "lecture.adoc:819"
 msgid "Employee <|- Manager"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:822
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:822"
+#: lecture.adoc:822
+msgctxt "lecture.adoc:822"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:827
+#: lecture.adoc:827
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1301,30 +1301,30 @@ msgid ""
 "List<Employee> employees = ..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:831
+#: lecture.adoc:831
 msgid ""
 "//Допустимые варианты, хотим чтоб компилировалось!\n"
 "employees.addAllFrom(managers);\n"
 "managers.addAllTo(employees);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:835
+#: lecture.adoc:835
 msgid ""
 "//Недопустимые варианты, не хотим чтоб компилировалось!\n"
 "managers.addAllFrom(employees);\n"
 "employees.addAllTo(managers);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:837
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:837"
+#: lecture.adoc:837
+msgctxt "lecture.adoc:837"
 msgid "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:839
+#: lecture.adoc:839
 msgid "== Так не получится..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:848
+#: lecture.adoc:848
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1336,7 +1336,7 @@ msgid ""
 "    }"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:855
+#: lecture.adoc:855
 msgid ""
 "    void addAllTo (List<E> list){\n"
 "       for (E item: this)\n"
@@ -1346,63 +1346,63 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:857
+#: lecture.adoc:857
 msgid "== Wildcard Types"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:861
+#: lecture.adoc:861
 msgid ""
 "[plantuml, wildext, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:863
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:863"
+#: lecture.adoc:863
+msgctxt "lecture.adoc:863"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:866
+#: lecture.adoc:866
 msgid ""
 "class \"List<? extends Employee>\" {\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:869
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:869"
+#: lecture.adoc:869
+msgctxt "lecture.adoc:869"
 msgid "class \"List<Employee>\" {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:871
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:871"
+#: lecture.adoc:871
+msgctxt "lecture.adoc:871"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:873
+#: lecture.adoc:873
 msgid "class \"List<Manager>\" {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:875
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:875"
+#: lecture.adoc:875
+msgctxt "lecture.adoc:875"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:877
+#: lecture.adoc:877
 msgid "\"List<? extends Employee>\" <|-- \"List<Employee>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:879
+#: lecture.adoc:879
 msgid "\"List<? extends Employee>\" <|-- \"List<Manager>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:882
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:882"
+#: lecture.adoc:882
+msgctxt "lecture.adoc:882"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:893
+#: lecture.adoc:893
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1416,24 +1416,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:895
+#: lecture.adoc:895
 msgid "== Что можно сделать с объектом, типизированным `? extends`?"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:899
+#: lecture.adoc:899
 msgid ""
 "[source,java]\n"
 "----\n"
 "List<? extends E> list = ..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:902
+#: lecture.adoc:902
 msgid ""
 "//это понятно\n"
 "E e1 = list.get(...);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:909
+#: lecture.adoc:909
 msgid ""
 "E e2 = ...;\n"
 "//не скомпилируется! ПОЧЕМУ??\n"
@@ -1443,67 +1443,67 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:911
+#: lecture.adoc:911
 msgid "В общем, `addAllTo` реализовать не получится..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:913
+#: lecture.adoc:913
 msgid "== В обратную сторону (контравариантные типы)"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:917
+#: lecture.adoc:917
 msgid ""
 "[plantuml, wildsup, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:919
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:919"
+#: lecture.adoc:919
+msgctxt "lecture.adoc:919"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:922
+#: lecture.adoc:922
 msgid ""
 "class \"List<? super Employee>\" {\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:925
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:925"
+#: lecture.adoc:925
+msgctxt "lecture.adoc:925"
 msgid "class \"List<Employee>\" {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:927
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:927"
+#: lecture.adoc:927
+msgctxt "lecture.adoc:927"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:929
+#: lecture.adoc:929
 msgid "class \"List<Person>\" {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:931
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:931"
+#: lecture.adoc:931
+msgctxt "lecture.adoc:931"
 msgid "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:933
+#: lecture.adoc:933
 msgid "\"List<? super Employee>\" <|-- \"List<Person>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:935
+#: lecture.adoc:935
 msgid "\"List<? super Employee>\" <|-- \"List<Employee>\""
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:938
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:938"
+#: lecture.adoc:938
+msgctxt "lecture.adoc:938"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:949
+#: lecture.adoc:949
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1517,18 +1517,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:951
+#: lecture.adoc:951
 msgid "== Что можно сделать с объектом, типизированным `? super`?"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:955
+#: lecture.adoc:955
 msgid ""
 "[source,java]\n"
 "----\n"
 "List<? super E> list = ..."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:960
+#: lecture.adoc:960
 msgid ""
 "E e1 = ...;\n"
 "//скомпилируется!\n"
@@ -1536,18 +1536,18 @@ msgid ""
 "list.add(null);"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:964
+#: lecture.adoc:964
 msgid ""
 "//Только Object. ПОЧЕМУ??\n"
 "Object e2 = list.get(...);\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:966
+#: lecture.adoc:966
 msgid "== Unbounded wildcard"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:970
+#: lecture.adoc:970
 msgid ""
 "* `List<?>` -- это то же, что `List<? extends Object>`. (Вопрос: почему не `<"
 "? super Object>`?)\n"
@@ -1555,19 +1555,19 @@ msgid ""
 "* Класть можем только null."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:972
+#: lecture.adoc:972
 msgid "== Мнемоническое правило"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:974
+#: lecture.adoc:974
 msgid "*PECS*"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:976
+#: lecture.adoc:976
 msgid "*Producer Extends, Consumer Super*"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:981
+#: lecture.adoc:981
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1575,21 +1575,21 @@ msgid ""
 "                       Comparator<? super T> comp)"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:983
+#: lecture.adoc:983
 msgid "Collections.max(List<Integer>, Comparator<Number>)"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:986
+#: lecture.adoc:986
 msgid ""
 "Collections.max(List<String>, Comparator<Object>)\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:988
+#: lecture.adoc:988
 msgid "== Правила использования wildcard-типов"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:993
+#: lecture.adoc:993
 msgid ""
 "* Используются в аргументах методов и локальных переменных.\n"
 "* Невидимы пользователю API, не должны возвращаться.\n"
@@ -1599,11 +1599,11 @@ msgid ""
 "непригодным для использования."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:995
+#: lecture.adoc:995
 msgid "== Wildcard Capture"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1007
+#: lecture.adoc:1007
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1618,16 +1618,16 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1009
-msgctxt "./slides06/src/main/asciidoc/lecture.adoc:1009"
+#: lecture.adoc:1009
+msgctxt "lecture.adoc:1009"
 msgid "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1011
+#: lecture.adoc:1011
 msgid "== Метод с type capture"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1017
+#: lecture.adoc:1017
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1636,7 +1636,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1024
+#: lecture.adoc:1024
 msgid ""
 "private static <T> void swapHelper(Pair<T> p) {\n"
 "  T f = p.getFirst();\n"
@@ -1646,11 +1646,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1027
+#: lecture.adoc:1027
 msgid "== Recursive Generics"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1037
+#: lecture.adoc:1037
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1663,57 +1663,57 @@ msgid ""
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1041
+#: lecture.adoc:1041
 msgid ""
 "class StringHolder extends Holder<String, StringHolder> {\n"
 "    void doSmth() {...};\n"
 "}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1044
+#: lecture.adoc:1044
 msgid ""
 "new StringHolder().setValue(\"aaa\").doSmth();\n"
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1046
+#: lecture.adoc:1046
 msgid "== Что почитать-посмотреть"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1049
+#: lecture.adoc:1049
 msgid ""
 "* Полезное\n"
 "** J. Bloch, Effective Java, 3rd ed. Chapter 5 -- Generics. Addison-Wesley, "
 "2018"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1051
+#: lecture.adoc:1051
 msgid ""
 "** https://www.youtube.com/watch?v=_0c9Fd9FacU[Александр Маторин — "
 "Неочевидные Дженерики. JPoint 2016]"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1053
+#: lecture.adoc:1053
 msgid "* Дичь"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1055
+#: lecture.adoc:1055
 msgid ""
 "** https://dev.to/rosstate/java-is-unsound-the-industry-perspective[Ross "
 "Tate. Java is Unsound: The Industry Perspective] (2017-01-24)."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1057
+#: lecture.adoc:1057
 msgid ""
 "** https://habr.com/ru/post/330724/[Иван Бессонов. Тьюринг-полнота Generic "
 "типов Java] (2017-08-24, на базе публикации от ноября 2016)."
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1059
+#: lecture.adoc:1059
 msgid "== Nada Amin & Rose Tate's example"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1080
+#: lecture.adoc:1080
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1737,23 +1737,23 @@ msgid ""
 "----"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1082
+#: lecture.adoc:1082
 msgid "== Radu Grigore's Example"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1086
+#: lecture.adoc:1086
 msgid ""
 "[source,java]\n"
 "----\n"
 "class Sample {"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1088
+#: lecture.adoc:1088
 msgid ""
 "  interface BadList<T> extends List<List<? super BadList<? super T>>> {}"
 msgstr ""
 
-#: ./slides06/src/main/asciidoc/lecture.adoc:1094
+#: lecture.adoc:1094
 msgid ""
 "  public static void main(String[] args) {\n"
 "    BadList<? super String> badList = null;\n"

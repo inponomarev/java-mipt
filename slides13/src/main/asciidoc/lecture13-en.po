@@ -1,22 +1,25 @@
-#. extracted from ./slides13/src/main/asciidoc/lecture.adoc
+#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 11:40+0300\n"
+"POT-Creation-Date: 2022-01-16 14:05+0300\n"
 "PO-Revision-Date: 2021-12-15 11:40+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
+"Language: en_UK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
-"Language: en_UK\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: slides13/src/main/asciidoc/lecture.adoc:25
+#: lecture.adoc:25
+#, fuzzy
 msgid ""
-"= Core Java: Курс лекций. Лекция 13\n"
+"= Core Java. Лекция 13: Dependency Injection. Принцип работы DI-контейнера. "
+"Принцип работы DI-контейнера (окончание). Spring Framework (Spring DI, "
+"Spring AOP)\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -66,7 +69,7 @@ msgstr ""
 ":revealjs_height: 900\n"
 ":stem: latexmath"
 
-#: slides13/src/main/asciidoc/lecture.adoc:29
+#: lecture.adoc:29
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
@@ -74,20 +77,21 @@ msgstr ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 
-#: slides13/src/main/asciidoc/lecture.adoc:31
+#: lecture.adoc:31
 msgid "ponomarev@corchestra.ru"
 msgstr "ponomarev@corchestra.ru"
 
-#: slides13/src/main/asciidoc/lecture.adoc:33
+#: lecture.adoc:33
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
-#: slides13/src/main/asciidoc/lecture.adoc:35
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:35"
+#: lecture.adoc:35
+#, fuzzy
+msgctxt "lecture.adoc:35"
 msgid "== Проблемы GoF-cинглетона"
 msgstr "== Проблемы GoF-cинглетона"
 
-#: slides13/src/main/asciidoc/lecture.adoc:37
+#: lecture.adoc:37
 msgid ""
 "Как автоматически тестировать компоненты, которые жёстко связаны со своими "
 "зависимостями через статические поля/методы?"
@@ -95,7 +99,7 @@ msgstr ""
 "Как автоматически тестировать компоненты, которые жёстко связаны со своими "
 "зависимостями через статические поля/методы?"
 
-#: slides13/src/main/asciidoc/lecture.adoc:40
+#: lecture.adoc:40
 msgid ""
 "[.fragment]\n"
 "-- Да никак!"
@@ -103,12 +107,13 @@ msgstr ""
 "[.fragment]\n"
 "-- Да никак!"
 
-#: slides13/src/main/asciidoc/lecture.adoc:42
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:42"
+#: lecture.adoc:42
+#, fuzzy
+msgctxt "lecture.adoc:42"
 msgid "== Проблемы GoF-cинглетона"
 msgstr "== Проблемы GoF-cинглетона"
 
-#: slides13/src/main/asciidoc/lecture.adoc:46
+#: lecture.adoc:46
 msgid ""
 "* Увеличивает Coupling\n"
 "* Нарушает Single Responsibility Principle\n"
@@ -118,11 +123,11 @@ msgstr ""
 "* Нарушает Single Responsibility Principle\n"
 "* Невозможно нормально тестировать"
 
-#: slides13/src/main/asciidoc/lecture.adoc:49
+#: lecture.adoc:49
 msgid "== Наш учебный пример про доклады и спикеров"
 msgstr "== Наш учебный пример про доклады и спикеров"
 
-#: slides13/src/main/asciidoc/lecture.adoc:60
+#: lecture.adoc:60
 msgid ""
 "[plantuml, objects, png]\n"
 "----\n"
@@ -146,7 +151,7 @@ msgstr ""
 "object TalkDao\n"
 "object Controller"
 
-#: slides13/src/main/asciidoc/lecture.adoc:70
+#: lecture.adoc:70
 msgid ""
 "JdbcTemplate -->ConnectionPool\n"
 "SpeakerDao --> JdbcTemplate\n"
@@ -168,12 +173,13 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:72
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:72"
+#: lecture.adoc:72
+#, fuzzy
+msgctxt "lecture.adoc:72"
 msgid "== Фабрика"
 msgstr "== Фабрика"
 
-#: slides13/src/main/asciidoc/lecture.adoc:85
+#: lecture.adoc:85
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -201,12 +207,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:87
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:87"
+#: lecture.adoc:87
+#, fuzzy
+msgctxt "lecture.adoc:87"
 msgid "== Фабрика"
 msgstr "== Фабрика"
 
-#: slides13/src/main/asciidoc/lecture.adoc:91
+#: lecture.adoc:91
 msgid ""
 "* Мы отвязались от «wiring» и можем создавать компоненты по отдельности, что "
 "позволяет тестировать.\n"
@@ -220,12 +227,13 @@ msgstr ""
 "«знать» про все компоненты.\n"
 "* Вообще этот процесс можно автоматизировать!"
 
-#: slides13/src/main/asciidoc/lecture.adoc:93
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:93"
+#: lecture.adoc:93
+#, fuzzy
+msgctxt "lecture.adoc:93"
 msgid "== Dependency Injection"
 msgstr "== Dependency Injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:99
+#: lecture.adoc:99
 msgid ""
 "[plantuml, di-class, png]\n"
 "----\n"
@@ -239,7 +247,7 @@ msgstr ""
 "skinparam dpi 180\n"
 "hide footbox"
 
-#: slides13/src/main/asciidoc/lecture.adoc:106
+#: lecture.adoc:106
 msgid ""
 "class Injector\n"
 "interface ServiceA\n"
@@ -255,7 +263,7 @@ msgstr ""
 "class ServiceBImpl\n"
 "class Client"
 
-#: slides13/src/main/asciidoc/lecture.adoc:109
+#: lecture.adoc:109
 msgid ""
 "Client --> ServiceA\n"
 "Client --> ServiceB"
@@ -263,7 +271,7 @@ msgstr ""
 "Client --> ServiceA\n"
 "Client --> ServiceB"
 
-#: slides13/src/main/asciidoc/lecture.adoc:112
+#: lecture.adoc:112
 msgid ""
 "ServiceA <|.. ServiceAImpl\n"
 "ServiceB <|.. ServiceBImpl"
@@ -271,7 +279,7 @@ msgstr ""
 "ServiceA <|.. ServiceAImpl\n"
 "ServiceB <|.. ServiceBImpl"
 
-#: slides13/src/main/asciidoc/lecture.adoc:116
+#: lecture.adoc:116
 msgid ""
 "Injector .> Client: <<create>>\\n<<inject>>\n"
 "Injector ..> ServiceAImpl: <<create>>\n"
@@ -281,8 +289,9 @@ msgstr ""
 "Injector ..> ServiceAImpl: <<create>>\n"
 "Injector ..> ServiceBImpl: <<create>>"
 
-#: slides13/src/main/asciidoc/lecture.adoc:119
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:119"
+#: lecture.adoc:119
+#, fuzzy
+msgctxt "lecture.adoc:119"
 msgid ""
 "@enduml\n"
 "----"
@@ -290,12 +299,13 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:123
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:123"
+#: lecture.adoc:123
+#, fuzzy
+msgctxt "lecture.adoc:123"
 msgid "== Dependency Injection"
 msgstr "== Dependency Injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:129
+#: lecture.adoc:129
 msgid ""
 "[plantuml, di-seq, png]\n"
 "----\n"
@@ -309,7 +319,7 @@ msgstr ""
 "skinparam dpi 180\n"
 "hide footbox"
 
-#: slides13/src/main/asciidoc/lecture.adoc:134
+#: lecture.adoc:134
 msgid ""
 "participant Injector\n"
 "participant ServiceAImpl\n"
@@ -321,7 +331,7 @@ msgstr ""
 "participant ServiceBImpl\n"
 "participant Client"
 
-#: slides13/src/main/asciidoc/lecture.adoc:140
+#: lecture.adoc:140
 msgid ""
 "activate Injector\n"
 "Injector -> ServiceAImpl **: new()\n"
@@ -335,8 +345,9 @@ msgstr ""
 "Injector -> Client **: new()\n"
 "Injector -> Client: inject(ServiceAImpl, ServiceBImpl)"
 
-#: slides13/src/main/asciidoc/lecture.adoc:143
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:143"
+#: lecture.adoc:143
+#, fuzzy
+msgctxt "lecture.adoc:143"
 msgid ""
 "@enduml\n"
 "----"
@@ -344,11 +355,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:145
+#: lecture.adoc:145
 msgid "== DI Frameworks"
 msgstr "== DI Frameworks"
 
-#: slides13/src/main/asciidoc/lecture.adoc:150
+#: lecture.adoc:150
 msgid ""
 "* Google Guice\n"
 "* JBoss Seam Framework\n"
@@ -360,11 +371,11 @@ msgstr ""
 "* PicoContainer\n"
 "* *Spring*"
 
-#: slides13/src/main/asciidoc/lecture.adoc:152
+#: lecture.adoc:152
 msgid "== Построим свой DI-фреймворк «на коленке»"
 msgstr "== Построим свой DI-фреймворк «на коленке»"
 
-#: slides13/src/main/asciidoc/lecture.adoc:155
+#: lecture.adoc:155
 msgid ""
 "* Пример на базе тренинга Евгения Борисова «Spring Ripper»\n"
 "* Позволяет понять логику и внутреннее устройство Spring Framework"
@@ -372,13 +383,15 @@ msgstr ""
 "* Пример на базе тренинга Евгения Борисова «Spring Ripper»\n"
 "* Позволяет понять логику и внутреннее устройство Spring Framework"
 
-#: slides13/src/main/asciidoc/lecture.adoc:157
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:157"
+#: lecture.adoc:157
+#, fuzzy
+msgctxt "lecture.adoc:157"
 msgid "== Лектор-робот"
 msgstr "== Лектор-робот"
 
-#: slides13/src/main/asciidoc/lecture.adoc:166
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:166"
+#: lecture.adoc:166
+#, fuzzy
+msgctxt "lecture.adoc:166"
 msgid ""
 "[plantuml, robotlecturer, png]\n"
 "----\n"
@@ -398,7 +411,7 @@ msgstr ""
 "object Speaker\n"
 "object SlideShow"
 
-#: slides13/src/main/asciidoc/lecture.adoc:172
+#: lecture.adoc:172
 msgid ""
 "RobotLecturer --> Lecture\n"
 "RobotLecturer --> Speaker\n"
@@ -412,8 +425,9 @@ msgstr ""
 "@enduml\n"
 "----    "
 
-#: slides13/src/main/asciidoc/lecture.adoc:186
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:186"
+#: lecture.adoc:186
+#, fuzzy
+msgctxt "lecture.adoc:186"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -443,13 +457,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:188
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:188"
+#: lecture.adoc:188
+#, fuzzy
+msgctxt "lecture.adoc:188"
 msgid "== Режим лектора"
 msgstr "== Режим лектора"
 
-#: slides13/src/main/asciidoc/lecture.adoc:200
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:200"
+#: lecture.adoc:200
+#, fuzzy
+msgctxt "lecture.adoc:200"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -475,8 +491,9 @@ msgstr ""
 "    );\n"
 "}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:209
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:209"
+#: lecture.adoc:209
+#, fuzzy
+msgctxt "lecture.adoc:209"
 msgid ""
 "//Main-метод\n"
 "public static void main(String[] args) \n"
@@ -496,13 +513,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:211
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:211"
+#: lecture.adoc:211
+#, fuzzy
+msgctxt "lecture.adoc:211"
 msgid "== Конфигуратор объекта"
 msgstr "== Конфигуратор объекта"
 
-#: slides13/src/main/asciidoc/lecture.adoc:219
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:219"
+#: lecture.adoc:219
+#, fuzzy
+msgctxt "lecture.adoc:219"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -520,8 +539,9 @@ msgstr ""
 "  //передадим сюда через конструктор ObjectFactory\n"
 "  private final ObjectFactory factory;"
 
-#: slides13/src/main/asciidoc/lecture.adoc:232
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:232"
+#: lecture.adoc:232
+#, fuzzy
+msgctxt "lecture.adoc:232"
 msgid ""
 "  @Override\n"
 "  public void configure(Object t) throws ... {\n"
@@ -549,13 +569,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:234
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:234"
+#: lecture.adoc:234
+#, fuzzy
+msgctxt "lecture.adoc:234"
 msgid "== Как создаётся и конфигурируется объект"
 msgstr "== Как создаётся и конфигурируется объект"
 
-#: slides13/src/main/asciidoc/lecture.adoc:243
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:243"
+#: lecture.adoc:243
+#, fuzzy
+msgctxt "lecture.adoc:243"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -575,8 +597,9 @@ msgstr ""
 "  private final List<ObjectConfigurator> configurators = \n"
 "                          new ArrayList<>();"
 
-#: slides13/src/main/asciidoc/lecture.adoc:254
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:254"
+#: lecture.adoc:254
+#, fuzzy
+msgctxt "lecture.adoc:254"
 msgid ""
 "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
 "    //Находим реализацию запрошенного типа\n"
@@ -600,18 +623,21 @@ msgstr ""
 "  }\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:256
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:256"
+#: lecture.adoc:256
+#, fuzzy
+msgctxt "lecture.adoc:256"
 msgid "== Метод configure очень прост"
 msgstr "== Метод configure очень прост"
 
-#: slides13/src/main/asciidoc/lecture.adoc:258
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:258"
+#: lecture.adoc:258
+#, fuzzy
+msgctxt "lecture.adoc:258"
 msgid "[source,java]"
 msgstr "[source,java]"
 
-#: slides13/src/main/asciidoc/lecture.adoc:266
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:266"
+#: lecture.adoc:266
+#, fuzzy
+msgctxt "lecture.adoc:266"
 msgid ""
 "----\n"
 "  private <T> void configure(T t) throws ... {\n"
@@ -629,13 +655,15 @@ msgstr ""
 "  }\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:268
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:268"
+#: lecture.adoc:268
+#, fuzzy
+msgctxt "lecture.adoc:268"
 msgid "== Как находится подходящая имплементация"
 msgstr "== Как находится подходящая имплементация"
 
-#: slides13/src/main/asciidoc/lecture.adoc:285
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:285"
+#: lecture.adoc:285
+#, fuzzy
+msgctxt "lecture.adoc:285"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -671,13 +699,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:288
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:288"
+#: lecture.adoc:288
+#, fuzzy
+msgctxt "lecture.adoc:288"
 msgid "== Лектор-робот"
 msgstr "== Лектор-робот"
 
-#: slides13/src/main/asciidoc/lecture.adoc:297
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:297"
+#: lecture.adoc:297
+#, fuzzy
+msgctxt "lecture.adoc:297"
 msgid ""
 "[plantuml, robotlecturer, png]\n"
 "----\n"
@@ -697,7 +727,7 @@ msgstr ""
 "object Speaker\n"
 "object SlideShow"
 
-#: slides13/src/main/asciidoc/lecture.adoc:303
+#: lecture.adoc:303
 msgid ""
 "RobotLecturer --> Lecture\n"
 "RobotLecturer --> Speaker\n"
@@ -711,8 +741,9 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:317
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:317"
+#: lecture.adoc:317
+#, fuzzy
+msgctxt "lecture.adoc:317"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -742,13 +773,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:319
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:319"
+#: lecture.adoc:319
+#, fuzzy
+msgctxt "lecture.adoc:319"
 msgid "== Режим лектора"
 msgstr "== Режим лектора"
 
-#: slides13/src/main/asciidoc/lecture.adoc:331
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:331"
+#: lecture.adoc:331
+#, fuzzy
+msgctxt "lecture.adoc:331"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -774,8 +807,9 @@ msgstr ""
 "    );\n"
 "}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:340
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:340"
+#: lecture.adoc:340
+#, fuzzy
+msgctxt "lecture.adoc:340"
 msgid ""
 "//Main-метод\n"
 "public static void main(String[] args) \n"
@@ -795,13 +829,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:342
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:342"
+#: lecture.adoc:342
+#, fuzzy
+msgctxt "lecture.adoc:342"
 msgid "== Конфигуратор объекта"
 msgstr "== Конфигуратор объекта"
 
-#: slides13/src/main/asciidoc/lecture.adoc:350
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:350"
+#: lecture.adoc:350
+#, fuzzy
+msgctxt "lecture.adoc:350"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -819,8 +855,9 @@ msgstr ""
 "  //передадим сюда через конструктор ObjectFactory\n"
 "  private final ObjectFactory factory;"
 
-#: slides13/src/main/asciidoc/lecture.adoc:363
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:363"
+#: lecture.adoc:363
+#, fuzzy
+msgctxt "lecture.adoc:363"
 msgid ""
 "  @Override\n"
 "  public void configure(Object t) throws ... {\n"
@@ -848,13 +885,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:365
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:365"
+#: lecture.adoc:365
+#, fuzzy
+msgctxt "lecture.adoc:365"
 msgid "== Как создаётся и конфигурируется объект"
 msgstr "== Как создаётся и конфигурируется объект"
 
-#: slides13/src/main/asciidoc/lecture.adoc:374
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:374"
+#: lecture.adoc:374
+#, fuzzy
+msgctxt "lecture.adoc:374"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -874,8 +913,9 @@ msgstr ""
 "  private final List<ObjectConfigurator> configurators = \n"
 "                          new ArrayList<>();"
 
-#: slides13/src/main/asciidoc/lecture.adoc:385
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:385"
+#: lecture.adoc:385
+#, fuzzy
+msgctxt "lecture.adoc:385"
 msgid ""
 "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
 "    //Находим реализацию запрошенного типа\n"
@@ -899,18 +939,21 @@ msgstr ""
 "  }\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:387
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:387"
+#: lecture.adoc:387
+#, fuzzy
+msgctxt "lecture.adoc:387"
 msgid "== Метод configure очень прост"
 msgstr "== Метод configure очень прост"
 
-#: slides13/src/main/asciidoc/lecture.adoc:389
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:389"
+#: lecture.adoc:389
+#, fuzzy
+msgctxt "lecture.adoc:389"
 msgid "[source,java]"
 msgstr "[source,java]"
 
-#: slides13/src/main/asciidoc/lecture.adoc:397
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:397"
+#: lecture.adoc:397
+#, fuzzy
+msgctxt "lecture.adoc:397"
 msgid ""
 "----\n"
 "  private <T> void configure(T t) throws ... {\n"
@@ -928,13 +971,15 @@ msgstr ""
 "  }\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:399
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:399"
+#: lecture.adoc:399
+#, fuzzy
+msgctxt "lecture.adoc:399"
 msgid "== Как находится подходящая имплементация"
 msgstr "== Как находится подходящая имплементация"
 
-#: slides13/src/main/asciidoc/lecture.adoc:416
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:416"
+#: lecture.adoc:416
+#, fuzzy
+msgctxt "lecture.adoc:416"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -970,11 +1015,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:418
+#: lecture.adoc:418
 msgid "== Ищем конфигураторы автоматически!"
 msgstr "== Ищем конфигураторы автоматически!"
 
-#: slides13/src/main/asciidoc/lecture.adoc:437
+#: lecture.adoc:437
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1014,11 +1059,11 @@ msgstr ""
 "....//продолжение следует\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:439
+#: lecture.adoc:439
 msgid "== Больше конфигураторов!"
 msgstr "== Больше конфигураторов!"
 
-#: slides13/src/main/asciidoc/lecture.adoc:447
+#: lecture.adoc:447
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1036,11 +1081,11 @@ msgstr ""
 "    int max();\n"
 "}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:449
+#: lecture.adoc:449
 msgid "----"
 msgstr "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:473
+#: lecture.adoc:473
 msgid ""
 "== InjectRandomIntObjectConfigurator\n"
 "[source,java]\n"
@@ -1088,11 +1133,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:475
+#: lecture.adoc:475
 msgid "== Итак, первые шаги:"
 msgstr "== Итак, первые шаги:"
 
-#: slides13/src/main/asciidoc/lecture.adoc:485
+#: lecture.adoc:485
 msgid ""
 "[graphviz,\"init1.png\"]\n"
 "----\n"
@@ -1114,8 +1159,9 @@ msgstr ""
 "subgraph cluster_R {\n"
 "label = \"Конфигурация\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:488
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:488"
+#: lecture.adoc:488
+#, fuzzy
+msgctxt "lecture.adoc:488"
 msgid ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
@@ -1123,13 +1169,15 @@ msgstr ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:490
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:490"
+#: lecture.adoc:490
+#, fuzzy
+msgctxt "lecture.adoc:490"
 msgid "} "
 msgstr "} "
 
-#: slides13/src/main/asciidoc/lecture.adoc:493
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:493"
+#: lecture.adoc:493
+#, fuzzy
+msgctxt "lecture.adoc:493"
 msgid ""
 "}\n"
 "----"
@@ -1137,11 +1185,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:495
+#: lecture.adoc:495
 msgid "== Инициализация объекта"
 msgstr "== Инициализация объекта"
 
-#: slides13/src/main/asciidoc/lecture.adoc:497
+#: lecture.adoc:497
 msgid ""
 "* Почему конструктор не годится для действий, включающих в себя "
 "инъектированные объекты?"
@@ -1149,7 +1197,7 @@ msgstr ""
 "* Почему конструктор не годится для действий, включающих в себя "
 "инъектированные объекты?"
 
-#: slides13/src/main/asciidoc/lecture.adoc:500
+#: lecture.adoc:500
 msgid ""
 "[.fragment]\n"
 "* Инъекция может происходить после конструктора. Поэтому нужно специальное "
@@ -1159,11 +1207,11 @@ msgstr ""
 "* Инъекция может происходить после конструктора. Поэтому нужно специальное "
 "действие, вызываемое после конструктора _и_ инъекции!"
 
-#: slides13/src/main/asciidoc/lecture.adoc:502
+#: lecture.adoc:502
 msgid "== PostConstruct"
 msgstr "== PostConstruct"
 
-#: slides13/src/main/asciidoc/lecture.adoc:510
+#: lecture.adoc:510
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1181,7 +1229,7 @@ msgstr ""
 "  @InjectRandomInt(min = 1, max = 3)\n"
 "  private int repeat;"
 
-#: slides13/src/main/asciidoc/lecture.adoc:520
+#: lecture.adoc:520
 msgid ""
 "  @PostConstruct\n"
 "  public void init() {\n"
@@ -1203,11 +1251,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:522
+#: lecture.adoc:522
 msgid "== Продолжаем дописывать createObject"
 msgstr "== Продолжаем дописывать createObject"
 
-#: slides13/src/main/asciidoc/lecture.adoc:533
+#: lecture.adoc:533
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1231,7 +1279,7 @@ msgstr ""
 "  ....\n"
 "}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:543
+#: lecture.adoc:543
 msgid ""
 "private <T> void invokeInitMethods(Class<? extends T> type, T t)\n"
 "                                                      throws ... {\n"
@@ -1253,11 +1301,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:545
+#: lecture.adoc:545
 msgid "== Последовательность действий"
 msgstr "== Последовательность действий"
 
-#: slides13/src/main/asciidoc/lecture.adoc:555
+#: lecture.adoc:555
 msgid ""
 "[graphviz,\"init2.png\"]\n"
 "----\n"
@@ -1279,8 +1327,9 @@ msgstr ""
 "subgraph cluster_R {\n"
 "label = \"Конфигурация\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:558
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:558"
+#: lecture.adoc:558
+#, fuzzy
+msgctxt "lecture.adoc:558"
 msgid ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
@@ -1288,18 +1337,21 @@ msgstr ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:560
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:560"
+#: lecture.adoc:560
+#, fuzzy
+msgctxt "lecture.adoc:560"
 msgid "} "
 msgstr "} "
 
-#: slides13/src/main/asciidoc/lecture.adoc:562
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:562"
+#: lecture.adoc:562
+#, fuzzy
+msgctxt "lecture.adoc:562"
 msgid "конфигуратор3 -> postConstruct"
 msgstr "конфигуратор3 -> postConstruct"
 
-#: slides13/src/main/asciidoc/lecture.adoc:565
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:565"
+#: lecture.adoc:565
+#, fuzzy
+msgctxt "lecture.adoc:565"
 msgid ""
 "}\n"
 "----"
@@ -1307,11 +1359,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:567
+#: lecture.adoc:567
 msgid "== Когда нужно модифицировать действие метода"
 msgstr "== Когда нужно модифицировать действие метода"
 
-#: slides13/src/main/asciidoc/lecture.adoc:574
+#: lecture.adoc:574
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1327,7 +1379,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:580
+#: lecture.adoc:580
 msgid ""
 "----\n"
 "[[[BENCHMARK method speak\n"
@@ -1341,11 +1393,11 @@ msgstr ""
 "Time: 107100ns]]]\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:582
+#: lecture.adoc:582
 msgid "== Прокси-объект"
 msgstr "== Прокси-объект"
 
-#: slides13/src/main/asciidoc/lecture.adoc:589
+#: lecture.adoc:589
 msgid ""
 "[graphviz,\"proxy.png\"]\n"
 "----\n"
@@ -1361,11 +1413,11 @@ msgstr ""
 "  compound=true;\n"
 "  rankdir=\"LR\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:591
+#: lecture.adoc:591
 msgid "  splines=\"line\";"
 msgstr "  splines=\"line\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:595
+#: lecture.adoc:595
 msgid ""
 "  caller [shape=\"rectangle\", style=rounded];\n"
 "  caller -> inv[lhead=cluster0;label=\"       \"];\n"
@@ -1375,11 +1427,11 @@ msgstr ""
 "  caller -> inv[lhead=cluster0;label=\"       \"];\n"
 "  caller -> inv[arrowhead=none];"
 
-#: slides13/src/main/asciidoc/lecture.adoc:598
+#: lecture.adoc:598
 msgid "  subgraph cluster0 {"
 msgstr "  subgraph cluster0 {"
 
-#: slides13/src/main/asciidoc/lecture.adoc:601
+#: lecture.adoc:601
 msgid ""
 "    inv[style=invis,shape=point];\n"
 "    target[shape=\"rectangle\", style=\"rounded\";]"
@@ -1387,7 +1439,7 @@ msgstr ""
 "    inv[style=invis,shape=point];\n"
 "    target[shape=\"rectangle\", style=\"rounded\";]"
 
-#: slides13/src/main/asciidoc/lecture.adoc:604
+#: lecture.adoc:604
 msgid ""
 "    label=\"proxy\";\n"
 "    style=\"dashed,rounded\";"
@@ -1395,7 +1447,7 @@ msgstr ""
 "    label=\"proxy\";\n"
 "    style=\"dashed,rounded\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:609
+#: lecture.adoc:609
 msgid ""
 "    inv -> target[style=dashed;];\n"
 "  }\n"
@@ -1407,11 +1459,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:611
+#: lecture.adoc:611
 msgid "== BenchmarkProxyConfigurator"
 msgstr "== BenchmarkProxyConfigurator"
 
-#: slides13/src/main/asciidoc/lecture.adoc:633
+#: lecture.adoc:633
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1457,11 +1509,11 @@ msgstr ""
 "}}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:635
+#: lecture.adoc:635
 msgid "== Proxied method invocation"
 msgstr "== Proxied method invocation"
 
-#: slides13/src/main/asciidoc/lecture.adoc:653
+#: lecture.adoc:653
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1499,11 +1551,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:655
+#: lecture.adoc:655
 msgid "== Последовательность действий (окончательная картина)"
 msgstr "== Последовательность действий (окончательная картина)"
 
-#: slides13/src/main/asciidoc/lecture.adoc:666
+#: lecture.adoc:666
 msgid ""
 "[graphviz,\"init3.png\"]\n"
 "----\n"
@@ -1525,8 +1577,9 @@ msgstr ""
 "subgraph cluster_R {\n"
 "label = \"Конфигурация\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:669
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:669"
+#: lecture.adoc:669
+#, fuzzy
+msgctxt "lecture.adoc:669"
 msgid ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
@@ -1534,17 +1587,19 @@ msgstr ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:671
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:671"
+#: lecture.adoc:671
+#, fuzzy
+msgctxt "lecture.adoc:671"
 msgid "} "
 msgstr "} "
 
-#: slides13/src/main/asciidoc/lecture.adoc:673
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:673"
+#: lecture.adoc:673
+#, fuzzy
+msgctxt "lecture.adoc:673"
 msgid "конфигуратор3 -> postConstruct"
 msgstr "конфигуратор3 -> postConstruct"
 
-#: slides13/src/main/asciidoc/lecture.adoc:676
+#: lecture.adoc:676
 msgid ""
 "subgraph cluster_S {\n"
 "label = \"Проксирование\";"
@@ -1552,7 +1607,7 @@ msgstr ""
 "subgraph cluster_S {\n"
 "label = \"Проксирование\";"
 
-#: slides13/src/main/asciidoc/lecture.adoc:679
+#: lecture.adoc:679
 msgid ""
 "    проксиконфигуратор2 -> проксиконфигуратор1  [dir=\"back\"];\n"
 "{rank=same проксиконфигуратор2 проксиконфигуратор1}"
@@ -1560,12 +1615,13 @@ msgstr ""
 "    проксиконфигуратор2 -> проксиконфигуратор1  [dir=\"back\"];\n"
 "{rank=same проксиконфигуратор2 проксиконфигуратор1}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:681
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:681"
+#: lecture.adoc:681
+#, fuzzy
+msgctxt "lecture.adoc:681"
 msgid "} "
 msgstr "} "
 
-#: slides13/src/main/asciidoc/lecture.adoc:685
+#: lecture.adoc:685
 msgid ""
 "postConstruct -> проксиконфигуратор1\n"
 "}\n"
@@ -1575,7 +1631,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:693
+#: lecture.adoc:693
 msgid ""
 "== Промежуточные выводы\n"
 "* DI-контейнер реализует следующие этапы «настройки» объектов:\n"
@@ -1595,7 +1651,7 @@ msgstr ""
 "* DI-паттерн повторяет сам себя: многие детали DI-контейнера удобно "
 "настраивать через DI!"
 
-#: slides13/src/main/asciidoc/lecture.adoc:699
+#: lecture.adoc:699
 msgid ""
 "[%notitle]\n"
 "== Spring Framework"
@@ -1603,11 +1659,11 @@ msgstr ""
 "[%notitle]\n"
 "== Spring Framework"
 
-#: slides13/src/main/asciidoc/lecture.adoc:703
+#: lecture.adoc:703
 msgid "image::springframework.png[{image-80-width}]"
 msgstr "image::springframework.png[{image-80-width}]"
 
-#: slides13/src/main/asciidoc/lecture.adoc:705
+#: lecture.adoc:705
 msgid ""
 "_\"Perhaps one of the hardest parts of explaining Spring is classifying "
 "exactly what it is\"_ -- Pro Spring 5, 5th ed., p. 1 "
@@ -1615,11 +1671,11 @@ msgstr ""
 "_\"Perhaps one of the hardest parts of explaining Spring is classifying "
 "exactly what it is\"_ -- Pro Spring 5, 5th ed., p. 1 "
 
-#: slides13/src/main/asciidoc/lecture.adoc:707
+#: lecture.adoc:707
 msgid "== Spring Framework"
 msgstr "== Spring Framework"
 
-#: slides13/src/main/asciidoc/lecture.adoc:713
+#: lecture.adoc:713
 msgid ""
 "* DI\n"
 "* AOP\n"
@@ -1633,12 +1689,13 @@ msgstr ""
 "* Интеграция с огромным количеством технологий\n"
 "* Очень развитый (и продолжающий активно развиваться)"
 
-#: slides13/src/main/asciidoc/lecture.adoc:715
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:715"
+#: lecture.adoc:715
+#, fuzzy
+msgctxt "lecture.adoc:715"
 msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
 msgstr "== Переписываем наш пример с «самодельного» фреймворка на Spring"
 
-#: slides13/src/main/asciidoc/lecture.adoc:727
+#: lecture.adoc:727
 msgid ""
 "Было:\n"
 "[source,java]\n"
@@ -1664,12 +1721,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:729
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:729"
+#: lecture.adoc:729
+#, fuzzy
+msgctxt "lecture.adoc:729"
 msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
 msgstr "== Переписываем наш пример с «самодельного» фреймворка на Spring"
 
-#: slides13/src/main/asciidoc/lecture.adoc:743
+#: lecture.adoc:743
 msgid ""
 "Стало:\n"
 "[source,java]\n"
@@ -1699,11 +1757,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:745
+#: lecture.adoc:745
 msgid "== Spring Beans"
 msgstr "== Spring Beans"
 
-#: slides13/src/main/asciidoc/lecture.adoc:753
+#: lecture.adoc:753
 msgid ""
 "* В нашем примере -- \n"
 "** `RobotLecturer`, \n"
@@ -1721,11 +1779,11 @@ msgstr ""
 "* _Spring beans_ -- это переиспользуемые программные компоненты.\n"
 "* Годится любой класс, как наш, так и из сторонней библиотеки."
 
-#: slides13/src/main/asciidoc/lecture.adoc:755
+#: lecture.adoc:755
 msgid "== Способы конфигурации Spring"
 msgstr "== Способы конфигурации Spring"
 
-#: slides13/src/main/asciidoc/lecture.adoc:762
+#: lecture.adoc:762
 msgid ""
 "* Разновидности конфигураций Spring:\n"
 "** Annotation-based\n"
@@ -1745,11 +1803,11 @@ msgstr ""
 "* В огромном количестве тьюториалов (и проектов) ещё встречается XML-"
 "конфигурация."
 
-#: slides13/src/main/asciidoc/lecture.adoc:764
+#: lecture.adoc:764
 msgid "== Как определять бины"
 msgstr "== Как определять бины"
 
-#: slides13/src/main/asciidoc/lecture.adoc:772
+#: lecture.adoc:772
 msgid ""
 "* Classpath Scanning: ищем проаннотированные классы в заданных пакетах.\n"
 "** @Component\n"
@@ -1767,11 +1825,11 @@ msgstr ""
 "* Фабричные методы \n"
 "** @Configuration -> @Bean"
 
-#: slides13/src/main/asciidoc/lecture.adoc:774
+#: lecture.adoc:774
 msgid "== Classpath scanning"
 msgstr "== Classpath scanning"
 
-#: slides13/src/main/asciidoc/lecture.adoc:779
+#: lecture.adoc:779
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1783,11 +1841,11 @@ msgstr ""
 "@ComponentScan(\"edu.phystech.robotlecturer\")\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:781
+#: lecture.adoc:781
 msgid "Атрибуты аннотации:"
 msgstr "Атрибуты аннотации:"
 
-#: slides13/src/main/asciidoc/lecture.adoc:786
+#: lecture.adoc:786
 msgid ""
 "* `String[] basePackages` -- базовые пакеты для сканирования в поисках "
 "аннотированных компонент.\n"
@@ -1805,11 +1863,11 @@ msgstr ""
 "* Минусы: классы должны быть проаннторированы как `@Component`, `@Service` и "
 "т. п., что не всегда возможно для сторонних библиотек."
 
-#: slides13/src/main/asciidoc/lecture.adoc:788
+#: lecture.adoc:788
 msgid "== `@Configuration` сlass"
 msgstr "== `@Configuration` сlass"
 
-#: slides13/src/main/asciidoc/lecture.adoc:790
+#: lecture.adoc:790
 msgid ""
 "* Класс конфигурации должен быть либо явно указан через конструктор "
 "`AnnotationConfigApplicationContext`, либо доступен сканирование пакетов "
@@ -1819,15 +1877,15 @@ msgstr ""
 "`AnnotationConfigApplicationContext`, либо доступен сканирование пакетов "
 "(тогда нужно аннотировать класс как `@Configuration`). "
 
-#: slides13/src/main/asciidoc/lecture.adoc:792
+#: lecture.adoc:792
 msgid "* Чтобы прописывать в классе бины, надо пользоваться `@Bean`."
 msgstr "* Чтобы прописывать в классе бины, надо пользоваться `@Bean`."
 
-#: slides13/src/main/asciidoc/lecture.adoc:794
+#: lecture.adoc:794
 msgid "== `@Configuration` сlass -- пример"
 msgstr "== `@Configuration` сlass -- пример"
 
-#: slides13/src/main/asciidoc/lecture.adoc:799
+#: lecture.adoc:799
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1839,7 +1897,7 @@ msgstr ""
 "@Configuration\n"
 "public class AppConfig{"
 
-#: slides13/src/main/asciidoc/lecture.adoc:807
+#: lecture.adoc:807
 msgid ""
 "  @Bean\n"
 "  @Scope(BeanDefinition.SCOPE_PROTOTYPE)\n"
@@ -1857,7 +1915,7 @@ msgstr ""
 "                random.nextInt(256), random.nextInt(256));\n"
 "  }"
 
-#: slides13/src/main/asciidoc/lecture.adoc:811
+#: lecture.adoc:811
 msgid ""
 "  ...\n"
 "}\n"
@@ -1867,11 +1925,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:815
+#: lecture.adoc:815
 msgid "== Bean scope"
 msgstr "== Bean scope"
 
-#: slides13/src/main/asciidoc/lecture.adoc:819
+#: lecture.adoc:819
 msgid ""
 "* `SCOPE_SINGLETON` -- по умолчанию. Создаётся один при первом запросе и "
 "всюду впрыскивается единственный экземпляр.\n"
@@ -1883,11 +1941,11 @@ msgstr ""
 "* `SCOPE_PROTOTYPE` -- создаётся новый при каждом запросе.\n"
 "* Есть ещё всякие, и можно создавать свои."
 
-#: slides13/src/main/asciidoc/lecture.adoc:821
+#: lecture.adoc:821
 msgid "== @Lazy"
 msgstr "== @Lazy"
 
-#: slides13/src/main/asciidoc/lecture.adoc:823
+#: lecture.adoc:823
 msgid ""
 "* По умолчанию все синглетоны создаются при поднятии контейнера (чтобы fail "
 "fast, и чтобы избежать задержек при работе приложения)."
@@ -1895,7 +1953,7 @@ msgstr ""
 "* По умолчанию все синглетоны создаются при поднятии контейнера (чтобы fail "
 "fast, и чтобы избежать задержек при работе приложения)."
 
-#: slides13/src/main/asciidoc/lecture.adoc:825
+#: lecture.adoc:825
 msgid ""
 "* Для конкретного бина это поведение можно изменить при помощи аннотации "
 "`@Lazy` (см. документацию)."
@@ -1903,7 +1961,7 @@ msgstr ""
 "* Для конкретного бина это поведение можно изменить при помощи аннотации "
 "`@Lazy` (см. документацию)."
 
-#: slides13/src/main/asciidoc/lecture.adoc:827
+#: lecture.adoc:827
 msgid ""
 "* Ленивая инициализация -- не такая хорошая идея, как кажется на первый "
 "взгляд."
@@ -1911,11 +1969,11 @@ msgstr ""
 "* Ленивая инициализация -- не такая хорошая идея, как кажется на первый "
 "взгляд."
 
-#: slides13/src/main/asciidoc/lecture.adoc:829
+#: lecture.adoc:829
 msgid "== Bean name"
 msgstr "== Bean name"
 
-#: slides13/src/main/asciidoc/lecture.adoc:833
+#: lecture.adoc:833
 msgid ""
 "* Каждый бин получает имя (id).\n"
 "* По умолчанию, имя вычисляется из имени класса (`SpeakerImpl` -> `"
@@ -1929,11 +1987,11 @@ msgstr ""
 "* Имя бина можно задать явно в параметре аннотации `@Component` и других "
 "(например: `@Service(\"bestSpeaker\")`)."
 
-#: slides13/src/main/asciidoc/lecture.adoc:836
+#: lecture.adoc:836
 msgid "== Виды injection («впрыскивания»)"
 msgstr "== Виды injection («впрыскивания»)"
 
-#: slides13/src/main/asciidoc/lecture.adoc:841
+#: lecture.adoc:841
 msgid ""
 "* Constructor\n"
 "* Setter\n"
@@ -1945,11 +2003,11 @@ msgstr ""
 "* Field\n"
 "* Lookup method"
 
-#: slides13/src/main/asciidoc/lecture.adoc:843
+#: lecture.adoc:843
 msgid "== Constructor injection"
 msgstr "== Constructor injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:854
+#: lecture.adoc:854
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1973,7 +2031,7 @@ msgstr ""
 "    private final SlideShow slideShow;\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:858
+#: lecture.adoc:858
 msgid ""
 "* Внешне может быть незаметен (особенно с Lombok). \n"
 "* Хорош для создания иммутабельных объектов. \n"
@@ -1983,11 +2041,11 @@ msgstr ""
 "* Хорош для создания иммутабельных объектов. \n"
 "* Много параметров конструктора? -- А точно столько надо?"
 
-#: slides13/src/main/asciidoc/lecture.adoc:861
+#: lecture.adoc:861
 msgid "== Setter injection"
 msgstr "== Setter injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:870
+#: lecture.adoc:870
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2007,7 +2065,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:872
+#: lecture.adoc:872
 msgid ""
 "* Хорош в ситуации, когда компонента сама себе способна предоставить "
 "зависимость \"по умолчанию\"."
@@ -2015,11 +2073,11 @@ msgstr ""
 "* Хорош в ситуации, когда компонента сама себе способна предоставить "
 "зависимость \"по умолчанию\"."
 
-#: slides13/src/main/asciidoc/lecture.adoc:874
+#: lecture.adoc:874
 msgid "== Field injection"
 msgstr "== Field injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:888
+#: lecture.adoc:888
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2047,7 +2105,7 @@ msgstr ""
 "    private SlideShow slideShow;\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:891
+#: lecture.adoc:891
 msgid ""
 "* Не плодит в классе сеттеры и конструкторы, но в целом сильно связывает код "
 "и считается не очень удачной практикой. \n"
@@ -2057,17 +2115,18 @@ msgstr ""
 "и считается не очень удачной практикой. \n"
 "* Хотя, в классах тестов -- это ровно то, что нужно."
 
-#: slides13/src/main/asciidoc/lecture.adoc:894
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:894"
+#: lecture.adoc:894
+#, fuzzy
+msgctxt "lecture.adoc:894"
 msgid "== Lookup method injection"
 msgstr "== Lookup method injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:896
+#: lecture.adoc:896
 msgid "Проблема бинов с разным жизненным циклом: `SCOPE_PROTOTYPE` не спасает."
 msgstr ""
 "Проблема бинов с разным жизненным циклом: `SCOPE_PROTOTYPE` не спасает."
 
-#: slides13/src/main/asciidoc/lecture.adoc:902
+#: lecture.adoc:902
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2081,7 +2140,7 @@ msgstr ""
 "@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)\n"
 "public class Bar {...}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:907
+#: lecture.adoc:907
 msgid ""
 "@Component\n"
 "public class Foo {\n"
@@ -2093,7 +2152,7 @@ msgstr ""
 "    @Autowired\n"
 "    private Bar bar;"
 
-#: slides13/src/main/asciidoc/lecture.adoc:913
+#: lecture.adoc:913
 msgid ""
 "    public  void bar(){\n"
 "        //заинжектированный экземпляр bar всегда один и тот же \n"
@@ -2107,12 +2166,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: slides13/src/main/asciidoc/lecture.adoc:915
-msgctxt "./slides13/src/main/asciidoc/lecture.adoc:915"
+#: lecture.adoc:915
+#, fuzzy
+msgctxt "lecture.adoc:915"
 msgid "== Lookup method injection"
 msgstr "== Lookup method injection"
 
-#: slides13/src/main/asciidoc/lecture.adoc:922
+#: lecture.adoc:922
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2128,7 +2188,7 @@ msgstr ""
 "    @Lookup\n"
 "    abstract Bar getBar();"
 
-#: slides13/src/main/asciidoc/lecture.adoc:929
+#: lecture.adoc:929
 msgid ""
 "    public  void bar(){\n"
 "        Bar b = getBar();\n"
@@ -2144,7 +2204,7 @@ msgstr ""
 "    }\n"
 "}"
 
-#: slides13/src/main/asciidoc/lecture.adoc:935
+#: lecture.adoc:935
 msgid ""
 "Foo foo = ctx.getBean(Foo.class);\n"
 "foo.bar(); foo.bar(); ...\n"
@@ -2160,11 +2220,11 @@ msgstr ""
 "-- Как, мы инстанцируем абстрактный класс?! -- Нет, мы же инстанцируем "
 "обёртку, на самом деле."
 
-#: slides13/src/main/asciidoc/lecture.adoc:937
+#: lecture.adoc:937
 msgid "== Lookup-метод может и не быть абстрактным"
 msgstr "== Lookup-метод может и не быть абстрактным"
 
-#: slides13/src/main/asciidoc/lecture.adoc:954
+#: lecture.adoc:954
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2199,3 +2259,339 @@ msgstr ""
 "    }\n"
 "}\n"
 "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:42"
+#~ msgid "== Проблемы GoF-cинглетона"
+#~ msgstr "== Проблемы GoF-cинглетона"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:87"
+#~ msgid "== Фабрика"
+#~ msgstr "== Фабрика"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:123"
+#~ msgid "== Dependency Injection"
+#~ msgstr "== Dependency Injection"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:143"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:288"
+#~ msgid "== Лектор-робот"
+#~ msgstr "== Лектор-робот"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:297"
+#~ msgid ""
+#~ "[plantuml, robotlecturer, png]\n"
+#~ "----\n"
+#~ "@startuml\n"
+#~ "skinparam dpi 150 \n"
+#~ "object RobotLecturer\n"
+#~ "object Lecture\n"
+#~ "object Speaker\n"
+#~ "object SlideShow"
+#~ msgstr ""
+#~ "[plantuml, robotlecturer, png]\n"
+#~ "----\n"
+#~ "@startuml\n"
+#~ "skinparam dpi 150 \n"
+#~ "object RobotLecturer\n"
+#~ "object Lecture\n"
+#~ "object Speaker\n"
+#~ "object SlideShow"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:317"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class RobotLecturer {\n"
+#~ "    //«магическим» образом пусть тут появится то, что нужно!\n"
+#~ "    @InjectByType\n"
+#~ "    private Lecture lecture;\n"
+#~ "    @InjectByType\n"
+#~ "    private Speaker speaker;\n"
+#~ "    @InjectByType\n"
+#~ "    private SlideShow slideShow;\n"
+#~ "    ...\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class RobotLecturer {\n"
+#~ "    //«магическим» образом пусть тут появится то, что нужно!\n"
+#~ "    @InjectByType\n"
+#~ "    private Lecture lecture;\n"
+#~ "    @InjectByType\n"
+#~ "    private Speaker speaker;\n"
+#~ "    @InjectByType\n"
+#~ "    private SlideShow slideShow;\n"
+#~ "    ...\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:319"
+#~ msgid "== Режим лектора"
+#~ msgstr "== Режим лектора"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:331"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "//Читать лекции просто\n"
+#~ "public void lecture() {\n"
+#~ "    lecture.getSlides().forEach(\n"
+#~ "        slide -> {\n"
+#~ "            slideShow.show(slide.getText());\n"
+#~ "            speaker.speak(slide.getComment());\n"
+#~ "        }\n"
+#~ "    );\n"
+#~ "}"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "//Читать лекции просто\n"
+#~ "public void lecture() {\n"
+#~ "    lecture.getSlides().forEach(\n"
+#~ "        slide -> {\n"
+#~ "            slideShow.show(slide.getText());\n"
+#~ "            speaker.speak(slide.getComment());\n"
+#~ "        }\n"
+#~ "    );\n"
+#~ "}"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:340"
+#~ msgid ""
+#~ "//Main-метод\n"
+#~ "public static void main(String[] args) \n"
+#~ "                  throws ReflectiveOperationException {\n"
+#~ "    RobotLecturer lecturer = \n"
+#~ "        new ObjectFactory().createObject(RobotLecturer.class);\n"
+#~ "    lecturer.lecture();\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "//Main-метод\n"
+#~ "public static void main(String[] args) \n"
+#~ "                  throws ReflectiveOperationException {\n"
+#~ "    RobotLecturer lecturer = \n"
+#~ "        new ObjectFactory().createObject(RobotLecturer.class);\n"
+#~ "    lecturer.lecture();\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:342"
+#~ msgid "== Конфигуратор объекта"
+#~ msgstr "== Конфигуратор объекта"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:350"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "@RequiredArgsConstructor\n"
+#~ "public class InjectByTypeAnnotationObjectConfigurator \n"
+#~ "                             implements ObjectConfigurator {\n"
+#~ "  //передадим сюда через конструктор ObjectFactory\n"
+#~ "  private final ObjectFactory factory;"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "@RequiredArgsConstructor\n"
+#~ "public class InjectByTypeAnnotationObjectConfigurator \n"
+#~ "                             implements ObjectConfigurator {\n"
+#~ "  //передадим сюда через конструктор ObjectFactory\n"
+#~ "  private final ObjectFactory factory;"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:363"
+#~ msgid ""
+#~ "  @Override\n"
+#~ "  public void configure(Object t) throws ... {\n"
+#~ "    for (Field field : t.getClass().getDeclaredFields()) {\n"
+#~ "      if (field.isAnnotationPresent(InjectByType.class)) {\n"
+#~ "        field.setAccessible(true);\n"
+#~ "        //Мы же умеем по типу создавать объект?\n"
+#~ "        field.set(t, factory.createObject(field.getType()));\n"
+#~ "      }\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "  @Override\n"
+#~ "  public void configure(Object t) throws ... {\n"
+#~ "    for (Field field : t.getClass().getDeclaredFields()) {\n"
+#~ "      if (field.isAnnotationPresent(InjectByType.class)) {\n"
+#~ "        field.setAccessible(true);\n"
+#~ "        //Мы же умеем по типу создавать объект?\n"
+#~ "        field.set(t, factory.createObject(field.getType()));\n"
+#~ "      }\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:365"
+#~ msgid "== Как создаётся и конфигурируется объект"
+#~ msgstr "== Как создаётся и конфигурируется объект"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:374"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class ObjectFactory {\n"
+#~ "  //Правда, тут напрашивается DI?\n"
+#~ "  private final Reflections scanner = \n"
+#~ "                          new Reflections(\"edu.phystech\");\n"
+#~ "  private final List<ObjectConfigurator> configurators = \n"
+#~ "                          new ArrayList<>();"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class ObjectFactory {\n"
+#~ "  //Правда, тут напрашивается DI?\n"
+#~ "  private final Reflections scanner = \n"
+#~ "                          new Reflections(\"edu.phystech\");\n"
+#~ "  private final List<ObjectConfigurator> configurators = \n"
+#~ "                          new ArrayList<>();"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:385"
+#~ msgid ""
+#~ "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
+#~ "    //Находим реализацию запрошенного типа\n"
+#~ "    type = resolveImpl(type);\n"
+#~ "    //Создаём объект (с помощью конструктора по умолчанию, TODO)\n"
+#~ "    T t = type.newInstance();\n"
+#~ "    //Конфигурируем\n"
+#~ "    configure(t);\n"
+#~ "    ....\n"
+#~ "  }\n"
+#~ "----"
+#~ msgstr ""
+#~ "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
+#~ "    //Находим реализацию запрошенного типа\n"
+#~ "    type = resolveImpl(type);\n"
+#~ "    //Создаём объект (с помощью конструктора по умолчанию, TODO)\n"
+#~ "    T t = type.newInstance();\n"
+#~ "    //Конфигурируем\n"
+#~ "    configure(t);\n"
+#~ "    ....\n"
+#~ "  }\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:387"
+#~ msgid "== Метод configure очень прост"
+#~ msgstr "== Метод configure очень прост"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:389"
+#~ msgid "[source,java]"
+#~ msgstr "[source,java]"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:397"
+#~ msgid ""
+#~ "----\n"
+#~ "  private <T> void configure(T t) throws ... {\n"
+#~ "    for (ObjectConfigurator configurator : configurators) {\n"
+#~ "      configurator.configure(t);\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "----"
+#~ msgstr ""
+#~ "----\n"
+#~ "  private <T> void configure(T t) throws ... {\n"
+#~ "    for (ObjectConfigurator configurator : configurators) {\n"
+#~ "      configurator.configure(t);\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:399"
+#~ msgid "== Как находится подходящая имплементация"
+#~ msgstr "== Как находится подходящая имплементация"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:416"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "private <T> Class<? extends T> resolveImpl(Class<? extends T> type){\n"
+#~ "  if (type.isInterface()) {\n"
+#~ "    Set<Class<? extends T>> classes = \n"
+#~ "                         scanner.getSubTypesOf((Class<T>) type);\n"
+#~ "    if (classes.size() != 1) {\n"
+#~ "      throw new RuntimeException(\n"
+#~ "         \"0 or more than one implementation found for type \" \n"
+#~ "         + type + \" please update your config\");\n"
+#~ "    }\n"
+#~ "    type = classes.iterator().next();\n"
+#~ "  }\n"
+#~ "  return type;\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "private <T> Class<? extends T> resolveImpl(Class<? extends T> type){\n"
+#~ "  if (type.isInterface()) {\n"
+#~ "    Set<Class<? extends T>> classes = \n"
+#~ "                         scanner.getSubTypesOf((Class<T>) type);\n"
+#~ "    if (classes.size() != 1) {\n"
+#~ "      throw new RuntimeException(\n"
+#~ "         \"0 or more than one implementation found for type \" \n"
+#~ "         + type + \" please update your config\");\n"
+#~ "    }\n"
+#~ "    type = classes.iterator().next();\n"
+#~ "  }\n"
+#~ "  return type;\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:558"
+#~ msgid ""
+#~ "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+#~ "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+#~ msgstr ""
+#~ "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+#~ "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:560"
+#~ msgid "} "
+#~ msgstr "} "
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:565"
+#~ msgid ""
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:669"
+#~ msgid ""
+#~ "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+#~ "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+#~ msgstr ""
+#~ "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+#~ "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:671"
+#~ msgid "} "
+#~ msgstr "} "
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:673"
+#~ msgid "конфигуратор3 -> postConstruct"
+#~ msgstr "конфигуратор3 -> postConstruct"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:681"
+#~ msgid "} "
+#~ msgstr "} "
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:729"
+#~ msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
+#~ msgstr "== Переписываем наш пример с «самодельного» фреймворка на Spring"
+
+#~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:915"
+#~ msgid "== Lookup method injection"
+#~ msgstr "== Lookup method injection"
