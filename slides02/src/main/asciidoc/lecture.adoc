@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 2
+= Core Java. Лекция 2: Примитивные типы. Управление выполнением. Операторы. Массивы.
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

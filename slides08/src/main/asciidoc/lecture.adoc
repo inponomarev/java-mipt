@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 8
+= Core Java. Лекция 8: JDBC API
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 14
+= Core Java. Лекция 14: Spring AOP (окончание). Spring Boot
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

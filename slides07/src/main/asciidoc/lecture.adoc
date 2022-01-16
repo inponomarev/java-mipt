@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 7
+= Core Java. Лекция 7: Collections, lambdas, method references
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

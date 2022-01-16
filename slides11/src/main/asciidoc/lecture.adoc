@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 11
+= Core Java. Лекция 11: Java Concurrency (окончание). Annotations
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 6
+= Core Java. Лекция 6: Generics
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

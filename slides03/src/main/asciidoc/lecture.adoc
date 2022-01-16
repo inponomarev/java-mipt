@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 3
+= Core Java. Лекция 3: Классы. Интерфейсы. Класс Object и его стандартные методы
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

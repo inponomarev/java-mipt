@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 13
+= Core Java. Лекция 13: Dependency Injection. Принцип работы DI-контейнера. Принцип работы DI-контейнера (окончание). Spring Framework (Spring DI, Spring AOP)
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

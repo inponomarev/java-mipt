@@ -1,4 +1,4 @@
-= Core Java: Курс лекций
+= Core Java. Лекция 1: Обзор истории, возможностей и особенностей экосистемы Java
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

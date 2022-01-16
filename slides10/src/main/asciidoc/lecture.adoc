@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 10
+= Core Java. Лекция 10: Java Concurrency
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css

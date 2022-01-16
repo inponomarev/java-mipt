@@ -1,4 +1,4 @@
-= Core Java: Курс лекций. Лекция 12
+= Core Java. Лекция 12: Annotations (окончание). Reflection API. Архитектура приложения. Singleton (anti)pattern
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css
