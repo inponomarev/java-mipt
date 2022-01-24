@@ -1,21 +1,19 @@
-#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2021-12-15 11:39+0300\n"
+"PO-Revision-Date: 2022-01-24 22:42+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.2.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: lecture.adoc:25
-#, fuzzy
 msgid ""
 "= Core Java. Лекция 10: Java Concurrency\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
@@ -42,7 +40,7 @@ msgid ""
 ":revealjs_height: 900\n"
 ":stem: latexmath"
 msgstr ""
-"= Core Java: Lecture #10\n"
+"= Core Java. Lecture #10: Java Concurrency\n"
 "Ivan Ponomarev, Synthesized.io/MIPT\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
@@ -85,15 +83,15 @@ msgstr "icon:twitter[size=lg] @inponomarev"
 
 #: lecture.adoc:35
 msgid "== Concurrency -- конкурентное выполнение"
-msgstr "== Concurrency -- конкурентное выполнение"
+msgstr "== Concurrent execution"
 
 #: lecture.adoc:38
 msgid ""
 "* Одна программа -- много одновременно выполняющихся тредов (threads)\n"
 "* Зачем нам вообще Concurrency?"
 msgstr ""
-"* Одна программа -- много одновременно выполняющихся тредов (threads)\n"
-"* Зачем нам вообще Concurrency?"
+"* One program -- many simultaneous threads\n"
+"* Why do we need Concurrency at all?"
 
 #: lecture.adoc:41
 msgid ""
@@ -101,11 +99,11 @@ msgid ""
 "-- Для перформанса, чтобы побыстрее!"
 msgstr ""
 "[.fragment]\n"
-"-- Для перформанса, чтобы побыстрее!"
+"-- For performance, to make things quickly!"
 
 #: lecture.adoc:43
 msgid "== Где мы можем получить выгоду от concurrency?"
-msgstr "== Где мы можем получить выгоду от concurrency?"
+msgstr "== Where can we benefit from concurrency?"
 
 #: lecture.adoc:48
 msgid ""
@@ -116,16 +114,16 @@ msgid ""
 "(пользовательский интерфейс).\n"
 "* Многопользовательский сервис (каждый запрос в своём треде)."
 msgstr ""
-"* Много CPU-ядер, вычислительная задача хорошо разделяется на подзадачи.\n"
-"* Подзадачи блокируются на вводе/выводе, можно параллельно ждать других или "
-"делать что-то полезное.\n"
-"* Нужно быстро отреагировать на запрос, а потом дать детальный ответ "
-"(пользовательский интерфейс).\n"
-"* Многопользовательский сервис (каждый запрос в своём треде)."
+"* Many CPU cores, the computational task is divided into subtasks well.\n"
+"* Subtasks are blocked on I/O, you can wait for multiple replies in parallel "
+"or do something useful.\n"
+"* You need to respond to the request quickly and give a detailed answer "
+"later (user interface).\n"
+"* Multi-user service (each request is in its own thread)."
 
 #: lecture.adoc:51
 msgid "== Где мы НЕ можем получить выгоду от [увеличения] concurrency?"
-msgstr "== Где мы НЕ можем получить выгоду от [увеличения] concurrency?"
+msgstr "== Where can we NOT benefit from [increasing] concurrency?"
 
 #: lecture.adoc:55
 msgid ""
@@ -133,13 +131,14 @@ msgid ""
 "* Задача плохо параллелизуется (упирается в неразделяемый ресурс).\n"
 "* Нас ограничивает закон Амдала."
 msgstr ""
-"* CPU-bound задача не будет решаться быстрее, если тредов больше, чем ядер.\n"
-"* Задача плохо параллелизуется (упирается в неразделяемый ресурс).\n"
-"* Нас ограничивает закон Амдала."
+"* CPU-bound task will not be solved faster if there are more threads than "
+"cores.\n"
+"* The task is poorly parallelized (limited by a non-divisible resource).\n"
+"* We are limited by Amdahl law."
 
 #: lecture.adoc:57
 msgid "== Закон Амдала (Amdahl's law)"
-msgstr "== Закон Амдала (Amdahl's law)"
+msgstr "== Amdahl's law"
 
 #: lecture.adoc:61
 msgid ""
@@ -147,9 +146,10 @@ msgid ""
 "* _N_ -- число параллельных потоков выполнения,\n"
 "* _S_ -- полученное ускорение (speedup)."
 msgstr ""
-"* &alpha; -- доля вычислений, которая должна выполняться последовательно,\n"
-"* _N_ -- число параллельных потоков выполнения,\n"
-"* _S_ -- полученное ускорение (speedup)."
+"* &alpha; is the proportion of calculations that must be performed "
+"sequentially,\n"
+"* _N_ -- number of simultaneously executed threads,\n"
+"* _S_ -- the resulting speedup."
 
 #: lecture.adoc:67
 msgid ""
@@ -172,22 +172,21 @@ msgid ""
 "Вывод: если разделяемая работа составляет 80%, вы не получите более чем "
 "пятикратное увеличение производительности за счёт параллелизации."
 msgstr ""
-"Вывод: если разделяемая работа составляет 80%, вы не получите более чем "
-"пятикратное увеличение производительности за счёт параллелизации."
+"Bottom line: If the shared work is 80%, you won't get more than a fivefold "
+"increase in performance due to parallelization."
 
 #: lecture.adoc:71
 msgid "== Закон Амдала: поведение"
-msgstr "== Закон Амдала: поведение"
+msgstr "== Amdahl's Law"
 
 #: lecture.adoc:73
 msgid "image::amdahl.png[{image-70-width}]"
 msgstr "image::amdahl.png[{image-70-width}]"
 
 #: lecture.adoc:75
-#, fuzzy
 msgctxt "lecture.adoc:75"
 msgid "== На самом деле, всё ещё хуже! "
-msgstr "== На самом деле, всё ещё хуже! "
+msgstr "== In fact, it's even worse! "
 
 #: lecture.adoc:102
 msgid ""
@@ -274,7 +273,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:117
-#, fuzzy
 msgctxt "lecture.adoc:117"
 msgid "^.^|"
 msgstr "^.^|"
@@ -308,7 +306,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:132
-#, fuzzy
 msgctxt "lecture.adoc:132"
 msgid "^.^|"
 msgstr "^.^|"
@@ -342,7 +339,6 @@ msgstr ""
 "}"
 
 #: lecture.adoc:148
-#, fuzzy
 msgctxt "lecture.adoc:148"
 msgid "^.^|"
 msgstr "^.^|"
@@ -396,10 +392,9 @@ msgstr ""
 "++++"
 
 #: lecture.adoc:172
-#, fuzzy
 msgctxt "lecture.adoc:172"
 msgid "== На самом деле, всё ещё хуже! "
-msgstr "== На самом деле, всё ещё хуже! "
+msgstr "== In fact, it's even worse! "
 
 #: lecture.adoc:176
 msgid ""
@@ -407,9 +402,9 @@ msgid ""
 "* &beta; -- параметр, определяющий cohesion (межпоточную координацию)\n"
 "* хорошо ложится на эмпирические данные"
 msgstr ""
-"* Uiversal Scalability Law -- полуэмпирическое обобщение закона Амдала\n"
-"* &beta; -- параметр, определяющий cohesion (межпоточную координацию)\n"
-"* хорошо ложится на эмпирические данные"
+"- Uiversal Scalability Law, a semi-empirical generalization of Amdahl's law\n"
+"* &beta; is a parameter that defines cohesion (inter-thread coordination)\n"
+"* fits well on empirical data"
 
 #: lecture.adoc:183
 msgid ""
@@ -435,7 +430,7 @@ msgstr "image::usl.png[{image-70-width}]"
 
 #: lecture.adoc:187
 msgid "== Промежуточный вывод"
-msgstr "== Промежуточный вывод"
+msgstr "== Intermediate conclusions"
 
 #: lecture.adoc:192
 msgid ""
@@ -445,11 +440,11 @@ msgid ""
 "** насколько многопоточным должно быть решение?\n"
 "* Вас предупредили."
 msgstr ""
-"* Перед тем, как встать на скользкую тропу многопоточного программирования, "
-"подумайте: \n"
-"** нужно ли это для решения задачи?\n"
-"** насколько многопоточным должно быть решение?\n"
-"* Вас предупредили."
+"* Before embarking on the slippery slope of multithreaded programming, "
+"consider: \n"
+"** Is this necessary to solve the problem?\n"
+"** How many threads do you need?\n"
+"* You have been warned."
 
 #: lecture.adoc:194
 msgid "image::hydra1.jpg[{image-40-width}]"
@@ -461,10 +456,9 @@ msgstr "//https://www.ancient.eu/img/r/p/750x750/3359.jpg?v=1539676109"
 
 #: lecture.adoc:199
 msgid "== Часть 1. Зачем нужна и как достигается синхронизация"
-msgstr "== Часть 1. Зачем нужна и как достигается синхронизация"
+msgstr "== Part 1. Why do you need synchronization and how is it achieved"
 
 #: lecture.adoc:201
-#, fuzzy
 msgctxt "lecture.adoc:201"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
@@ -475,7 +469,7 @@ msgid ""
 "== Многопоточность в Java (с самой первой версии!)"
 msgstr ""
 "[[first_example]]\n"
-"== Многопоточность в Java (с самой первой версии!)"
+"== Multithreading in Java (from the very first version!)"
 
 #: lecture.adoc:208
 msgid ""
@@ -522,7 +516,6 @@ msgid "Runnable <|- Thread"
 msgstr "Runnable <|- Thread"
 
 #: lecture.adoc:227
-#, fuzzy
 msgctxt "lecture.adoc:227"
 msgid ""
 "@enduml\n"
@@ -559,7 +552,7 @@ msgstr ""
 "    }\n"
 "    @Override\n"
 "    public void run() {\n"
-"        //«сложные» вычисления\n"
+"        //\"complex\" calculations\n"
 "        result = argument * argument;\n"
 "    }\n"
 "}\n"
@@ -567,11 +560,11 @@ msgstr ""
 
 #: lecture.adoc:245
 msgid "== Запуск параллельных вычислений через Thread API"
-msgstr "== Запуск параллельных вычислений через Thread API"
+msgstr "== Run parallel computing via Thread API"
 
 #: lecture.adoc:247
 msgid "* NB: в современной реальности вы не будете пользоваться Thread API"
-msgstr "* NB: в современной реальности вы не будете пользоваться Thread API"
+msgstr "* NB: in real world you will not use the Thread API"
 
 #: lecture.adoc:259
 msgid ""
@@ -601,7 +594,7 @@ msgstr ""
 
 #: lecture.adoc:262
 msgid "== Проблемы с shared state"
-msgstr "== Проблемы с shared state"
+msgstr "== Problems with shared state"
 
 #: lecture.adoc:271
 msgid ""
@@ -692,7 +685,6 @@ msgstr ""
 "  private boolean asleep;"
 
 #: lecture.adoc:305
-#, fuzzy
 msgctxt "lecture.adoc:305"
 msgid ""
 "  public void setAsleep(boolean asleep){\n"
@@ -775,7 +767,7 @@ msgstr ""
 
 #: lecture.adoc:342
 msgid "== Промежуточные выводы"
-msgstr "== Промежуточные выводы"
+msgstr "== Intermediate conclusions"
 
 #: lecture.adoc:344
 msgid ""
@@ -783,29 +775,29 @@ msgid ""
 "о результате работы одного треда с точки зрения другого треда как о "
 "промежуточном результате выполнения исходного кода. "
 msgstr ""
-"* Из-за reordering и других низкоуровневых особенностей _нельзя_ рассуждать "
-"о результате работы одного треда с точки зрения другого треда как о "
-"промежуточном результате выполнения исходного кода. "
+"* Due to reordering and other low-level features, it is _impossible_ to "
+"reason about the result of one thread from the point of view of another "
+"thread as an intermediate result of the execution of the source code. "
 
 #: lecture.adoc:346
 msgid "* Все проблемы с параллельными вычислениями связаны с shared state."
-msgstr "* Все проблемы с параллельными вычислениями связаны с shared state."
+msgstr "* All problems with parallel computing are related to shared state."
 
 #: lecture.adoc:348
 msgid "* Показанные здесь проблемы проявляются недетерминированно."
-msgstr "* Показанные здесь проблемы проявляются недетерминированно."
+msgstr "* The problems shown here are nondeterministic."
 
 #: lecture.adoc:350
 msgid ""
 "* Любая программа с доступом к shared state без должной синхронизации -- "
 "_сломана_, даже если «вчера это работало на моей машине»."
 msgstr ""
-"* Любая программа с доступом к shared state без должной синхронизации -- "
-"_сломана_, даже если «вчера это работало на моей машине»."
+"* Any program with shared state access without proper synchronization is "
+"_broken_, even if \"yesterday it worked on my machine\"."
 
 #: lecture.adoc:352
 msgid "== Модель памяти"
-msgstr "== Модель памяти"
+msgstr "== Memory model"
 
 #: lecture.adoc:357
 msgid ""
@@ -825,9 +817,9 @@ msgid ""
 "машины, отвечающая на вопрос: «при каких условиях поток, читающий переменную "
 "`aVariable`, увидит значение 42?»"
 msgstr ""
-"* Модель памяти (Java Memory Model, JMM) -- спецификация языка и виртуальной "
-"машины, отвечающая на вопрос: «при каких условиях поток, читающий переменную "
-"`aVariable`, увидит значение 42?»"
+"* Java Memory Model (JMM) -- A language and virtual machine specification "
+"that answers the question, \"Under what conditions will a thread reading the "
+"'aVariable' see a value of 42?\""
 
 #: lecture.adoc:361
 msgid "== Happens-before"
@@ -838,24 +830,24 @@ msgid ""
 "* JMM определяет частичный порядок на всех действиях в Java-программе, "
 "называемый _happens-before_."
 msgstr ""
-"* JMM определяет частичный порядок на всех действиях в Java-программе, "
-"называемый _happens-before_."
+"* JMM defines a partial order on all actions in a Java program, called "
+"_happens before_."
 
 #: lecture.adoc:365
 msgid ""
 "* Отношение _happens-before_ транзитивно: stem:[A \\prec B \\wedge B \\prec "
 "C \\Rightarrow A \\prec C]"
 msgstr ""
-"* Отношение _happens-before_ транзитивно: stem:[A \\prec B \\wedge B \\prec "
-"C \\Rightarrow A \\prec C]"
+"* The _happens-before_ relation is transitive: stem:[A \\prec B \\wedge B "
+"\\prec C \\Rightarrow A \\prec C]"
 
 #: lecture.adoc:367
 msgid ""
 "* Чтобы действие B гарантированно видело результат работы действия A, "
 "достаточно, чтобы stem:[A \\prec B]."
 msgstr ""
-"* Чтобы действие B гарантированно видело результат работы действия A, "
-"достаточно, чтобы stem:[A \\prec B]."
+"* For action B to be guaranteed to see the result of action A, it is "
+"sufficient that stem:[A \\prec B]."
 
 #: lecture.adoc:369
 msgid "== Program order rule"
@@ -866,12 +858,13 @@ msgid ""
 "* В рамках одного треда все действия _happens-before_ в порядке их "
 "определения в исходном коде программы. "
 msgstr ""
-"* В рамках одного треда все действия _happens-before_ в порядке их "
-"определения в исходном коде программы. "
+"* Within one thread, all actions _happens before_ in the order of their "
+"definition in the source code of the program. "
 
 #: lecture.adoc:373
 msgid "* Иными словами, однопоточные программы выполняются без сюрпризов."
-msgstr "* Иными словами, однопоточные программы выполняются без сюрпризов."
+msgstr ""
+"* In other words, single-threaded programs are executed without surprises."
 
 #: lecture.adoc:375
 msgid "== Thread start & thread termination rule"
@@ -887,31 +880,30 @@ msgid ""
 "* Благодаря этому правилу, <<first_example,наш самый первый пример>> на "
 "параллелизацию работает корректно."
 msgstr ""
-"* Вызов `threadA.start()` _happens-before_ всех операций в потоке "
-"`threadA`.\n"
-"* Любая операция в потоке `threadA` _happens-before_ обнаружения другим "
-"потоком завершения `threadA`, либо путём выхода из `threadA.join()`, либо "
-"путём проверки `threadA.isAlive() == false`.\n"
-"* Благодаря этому правилу, <<first_example,наш самый первый пример>> на "
-"параллелизацию работает корректно."
+"* Calling 'threadA.start()' _happens-before_ all operations on the 'threadA' "
+"thread.\n"
+"* Any operation on the 'threadA' _happens-before_ the detection of the "
+"completion of 'threadA' by another thread, either by exiting 'threadA."
+"join()' or by checking 'threadA.isAlive() == false'.\n"
+"* Due to this rule, <<first_example, our very first example>> works "
+"correctly."
 
 #: lecture.adoc:382
 msgid "== Ключевое слово volatile"
-msgstr "== Ключевое слово volatile"
+msgstr "== `volatile` keyword"
 
 #: lecture.adoc:384
 msgid ""
 "* Переменные классов могут быть определены с ключевым словом `volatile`."
-msgstr ""
-"* Переменные классов могут быть определены с ключевым словом `volatile`."
+msgstr "* Class variables can be defined with the `volatile` keyword."
 
 #: lecture.adoc:386
 msgid ""
 "* *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной "
 "в другом потоке.*"
 msgstr ""
-"* *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной "
-"в другом потоке.*"
+"* *Writing to a `volatile` variable _happens-before_ reading from this "
+"variable on another thread.*"
 
 #: lecture.adoc:388
 msgid ""
@@ -920,14 +912,14 @@ msgid ""
 "рефакторинга можно поменять порядок доступа к переменным и тем самым "
 "незаметно поломать программу. "
 msgstr ""
-"* Это автоматом делает видимыми изменения в других переменных. Полагаться на "
-"это не рекомендуется: это работает, но делает код хрупким. В процессе "
-"рефакторинга можно поменять порядок доступа к переменным и тем самым "
-"незаметно поломать программу. "
+"* This automatically makes changes in all the other variables visible. "
+"Relying on this is not recommended: it works, but it makes the code fragile. "
+"In the process of refactoring, you can change the order of access to "
+"variables and thereby accidentally break the program. "
 
 #: lecture.adoc:390
 msgid "== Чиним stale value при помощи volatile"
-msgstr "== Чиним stale value при помощи volatile"
+msgstr "== Fix stale value using volatile"
 
 #: lecture.adoc:395
 msgid ""
@@ -942,7 +934,6 @@ msgstr ""
 "  private volatile boolean asleep;"
 
 #: lecture.adoc:399
-#, fuzzy
 msgctxt "lecture.adoc:399"
 msgid ""
 "  public void setAsleep(boolean asleep){\n"
@@ -977,7 +968,7 @@ msgstr ""
 
 #: lecture.adoc:411
 msgid "== final-поля"
-msgstr "== final-поля"
+msgstr "== `final` fields"
 
 #: lecture.adoc:413
 msgid ""
@@ -985,21 +976,21 @@ msgid ""
 "время выполнения конструктора_ --  `final`-поля объекта доступны всем тредам "
 "без синхронизации."
 msgstr ""
-"* Если объект правильно опубликован, т. е.  _ссылка на него не утекает во "
-"время выполнения конструктора_ --  `final`-поля объекта доступны всем тредам "
-"без синхронизации."
+"* If the object is correctly published, i.e. if _reference to `this` does "
+"not leak from constructor_ -- `final` fields of the object are available to "
+"all the threads without synchronization."
 
 #: lecture.adoc:415
 msgid ""
 "* Лучший способ борьбы с проблемами mutable state -- использовать immutable "
 "state где только возможно."
 msgstr ""
-"* Лучший способ борьбы с проблемами mutable state -- использовать immutable "
-"state где только возможно."
+"* The best way to deal with mutable state problems is to use immutable state "
+"wherever possible."
 
 #: lecture.adoc:417
 msgid "== Неатомарные операции: final не годится, volatile не спасёт"
-msgstr "== Неатомарные операции: final не годится, volatile не спасёт"
+msgstr "== Non-atomic operations: final is not good, volatile will not save us"
 
 #: lecture.adoc:431
 msgid ""
@@ -1061,8 +1052,8 @@ msgid ""
 "просто так массив `volatile`-элементов не создать.)\n"
 "|==="
 msgstr ""
-"(Кстати, `volatile array` -- не массив `volatile`-элементов. И вообще в Java "
-"просто так массив `volatile`-элементов не создать.)\n"
+"(By the way, a `volatile` array is not an array of `volatile` elements, and "
+"in Java you can't just create an array of `volatile` elements that easy.)\n"
 "|==="
 
 #: lecture.adoc:454
@@ -1076,7 +1067,7 @@ msgid ""
 "participant Client2\n"
 "participant Bank"
 msgstr ""
-"== Несинхронизированное выполнение\n"
+"== Unsynchronized execution\n"
 "[plantuml, nonsync, png]\n"
 "----\n"
 "@startuml\n"
@@ -1086,7 +1077,6 @@ msgstr ""
 "participant Bank"
 
 #: lecture.adoc:457
-#, fuzzy
 msgctxt "lecture.adoc:457"
 msgid ""
 "Client1 -> Bank: transfer\n"
@@ -1112,7 +1102,6 @@ msgstr ""
 "deactivate Bank"
 
 #: lecture.adoc:467
-#, fuzzy
 msgctxt "lecture.adoc:467"
 msgid ""
 "@enduml\n"
@@ -1133,7 +1122,7 @@ msgid ""
 "participant Lock\n"
 "participant Bank"
 msgstr ""
-"== Синхронизированное выполнение\n"
+"== Synchronized execution\n"
 "[plantuml, sync, png]\n"
 "----\n"
 "@startuml\n"
@@ -1156,7 +1145,6 @@ msgstr ""
 "deactivate Lock"
 
 #: lecture.adoc:486
-#, fuzzy
 msgctxt "lecture.adoc:486"
 msgid ""
 "Client1 -> Bank: transfer\n"
@@ -1206,7 +1194,6 @@ msgstr ""
 "deactivate Bank"
 
 #: lecture.adoc:505
-#, fuzzy
 msgctxt "lecture.adoc:505"
 msgid ""
 "@enduml\n"
@@ -1217,7 +1204,7 @@ msgstr ""
 
 #: lecture.adoc:508
 msgid "== Блокировки"
-msgstr "== Блокировки"
+msgstr "== Locks"
 
 #: lecture.adoc:514
 msgid ""
@@ -1229,8 +1216,8 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"//Reentrant так называется потому,\n"
-"//что одному и тому же треду позволено входить повторно\n"
+"//Reentrant is so called because\n"
+"//the same thread is allowed to enter again\n"
 "private ReentrantLock bankLock = new ReentrantLock(); "
 
 #: lecture.adoc:527
@@ -1276,14 +1263,13 @@ msgid ""
 "* Поэтому защищённые блокировкой переменные объявлять как `volatile` уже не "
 "нужно."
 msgstr ""
-"* Разблокировка (unlocking) _happens-before_ другой блокировки (locking) "
-"того же самого «замка» (lock).\n"
-"* Поэтому защищённые блокировкой переменные объявлять как `volatile` уже не "
-"нужно."
+"* Unlocking _happens before_ another locking of the same lock.\n"
+"* Therefore, lock-protected variables should no longer be declared as "
+"`volatile`."
 
 #: lecture.adoc:534
 msgid "== В чём проблема здесь?"
-msgstr "== В чём проблема здесь?"
+msgstr "== What's the problem here?"
 
 #: lecture.adoc:540
 msgid ""
@@ -1315,19 +1301,19 @@ msgid ""
 msgstr ""
 "bankLock.lock();\n"
 "try {\n"
-"  //transfer funds ...\n"
+"  transfer funds ...\n"
 "} finally {\n"
 "  bankLock.unlock();\n"
 "}\n"
 "----\n"
 "[.fragment]\n"
-"Доступ к `accounts[from]` не синхронизирован, но даже если бы он был "
-"синхронизирован, кто-то смог бы уменьшить количество денег до вхождения в "
-"блок transfer funds."
+"Access to `accounts[from]` is not synchronized, but even if it were "
+"synchronized, someone would be able to reduce the amount of money before "
+"entering the transfer funds block."
 
 #: lecture.adoc:552
 msgid "== В чём пробема здесь?"
-msgstr "== В чём пробема здесь?"
+msgstr "== What's the problem here?"
 
 #: lecture.adoc:567
 msgid ""
@@ -1352,16 +1338,17 @@ msgstr ""
 "bankLock.lock();\n"
 "try {\n"
 "  while (accounts[from] < amount) {\n"
-"    //wait ....\n"
+"    wait ....\n"
 "  }\n"
-"  //transfer funds ...\n"
+"  transfer funds ...\n"
 "} finally {\n"
 "  bankLock.unlock();\n"
 "}\n"
 "----\n"
 "[.fragment]\n"
-"Мы заблокировали `bankLock` и ждём, пока кто-то закинет денег. Но никто "
-"никогда не сможет это сделать, т. к. `bankLock` занят нами."
+"We have acquired `bankLock` and are waiting for someone to top up the "
+"account. But no one will ever be able to do it, because `bankLock` is locked "
+"by us."
 
 #: lecture.adoc:569
 msgid "== Condition Objects"
@@ -1394,7 +1381,6 @@ msgstr ""
 "      sufficientFunds.await();"
 
 #: lecture.adoc:583
-#, fuzzy
 msgctxt "lecture.adoc:583"
 msgid ""
 "    accounts[from]-=amount;\n"
@@ -1419,7 +1405,7 @@ msgstr ""
 "  }\n"
 "}\n"
 "----\n"
-"== Condition Objects: что происходит?"
+"== Condition Objects: What happens?"
 
 #: lecture.adoc:598
 msgid ""
@@ -1430,24 +1416,24 @@ msgid ""
 "** сигнал мог быть по другому поводу,\n"
 "** возможны «спонтанные пробуждения»."
 msgstr ""
-"* `await()` отпускает блокировку и переводит тред в ждущее состояние,\n"
-"* `signalAll()` сигнализирует всем ждущим тредам, что что-то поменялось,\n"
-"* выход из `await()` _снова захватывает блокировку_.\n"
-"* При выходе из `await()` мы вновь проверяем условие, потому что:\n"
-"** сигнал мог быть по другому поводу,\n"
-"** возможны «спонтанные пробуждения»."
+"* 'await()' releases the lock and puts the thread into a waiting state,\n"
+"* 'signalAll()' signals to all waiting threads that something has changed,\n"
+"* exiting 'await()' _again acquires the lock_.\n"
+"* When exiting 'await()' we check the condition again because:\n"
+"** the signal could be sent for another reason,\n"
+"** \"spurious wakeups\" are possible."
 
 #: lecture.adoc:600
 msgid "== Контрольный вопрос"
-msgstr "== Контрольный вопрос"
+msgstr "== Question"
 
 #: lecture.adoc:602
 msgid ""
 "* Чем гарантировано, что при выходе из `await()` мы увидим изменения, "
 "сделанные другим тредом?"
 msgstr ""
-"* Чем гарантировано, что при выходе из `await()` мы увидим изменения, "
-"сделанные другим тредом?"
+"* How is it guaranteed that when we leave `await()` we will see changes made "
+"by another thread?"
 
 #: lecture.adoc:605
 msgid ""
@@ -1456,8 +1442,8 @@ msgid ""
 "Monitor Lock Rule."
 msgstr ""
 "[.fragment]\n"
-"* При выходе из `await()` мы снова захватываем блокировку, работает JMM "
-"Monitor Lock Rule."
+"* When exiting `await()` we capture the lock again, the JMM Monitor Lock "
+"Rule is working."
 
 #: lecture.adoc:613
 msgid ""
@@ -1469,7 +1455,7 @@ msgid ""
 "----\n"
 "== Intrinsic lock"
 msgstr ""
-"== Правильный паттерн ожидания condition\n"
+"== Correct condition waiting pattern\n"
 "[source,java]\n"
 "----\n"
 "while (!okToProceed())\n"
@@ -1482,8 +1468,8 @@ msgid ""
 "* Начиная с Java 1.0, каждый объект имеет встроенный (intrinsic) lock.\n"
 "* У каждого intrinsic lock есть один condition."
 msgstr ""
-"* Начиная с Java 1.0, каждый объект имеет встроенный (intrinsic) lock.\n"
-"* У каждого intrinsic lock есть один condition."
+"* Starting with Java 1.0, every object has an intrinsic lock.\n"
+"* Each intrinsic lock has one condition."
 
 #: lecture.adoc:624
 msgid ""
@@ -1495,7 +1481,7 @@ msgid ""
 "    while (accounts[from] < amount)\n"
 "      wait(); //wait on intrinsic object's lock condition"
 msgstr ""
-"== То же самое, с помощью intrinsic lock\n"
+"== Same with intrinsic lock\n"
 "[source,java]\n"
 "----\n"
 "//enter intrinsic lock on *this*\n"
@@ -1504,7 +1490,6 @@ msgstr ""
 "      wait(); //wait on intrinsic object's lock condition"
 
 #: lecture.adoc:627
-#, fuzzy
 msgctxt "lecture.adoc:627"
 msgid ""
 "    accounts[from]-=amount;\n"
@@ -1525,11 +1510,11 @@ msgstr ""
 
 #: lecture.adoc:633
 msgid "== Synchronized-блок"
-msgstr "== Synchronized-блок"
+msgstr "== `synchronized` block"
 
 #: lecture.adoc:635
 msgid "Другая форма использования intrinsic locks:"
-msgstr "Другая форма использования intrinsic locks:"
+msgstr "Another form of using intrinsic locks:"
 
 #: lecture.adoc:643
 msgid ""
@@ -1550,7 +1535,6 @@ msgstr ""
 "      lock.wait();"
 
 #: lecture.adoc:646
-#, fuzzy
 msgctxt "lecture.adoc:646"
 msgid ""
 "    accounts[from]-=amount;\n"
@@ -1586,18 +1570,19 @@ msgid ""
 "* В общем, это низкоуровневый и сложный механизм. Его понимание пригодится "
 "на собеседованиях, но скорее всего, вам не надо будет им пользоваться."
 msgstr ""
-"== Промежуточный итог по intrinsic conditions\n"
-"* Нужно работать по строгому паттерну: \n"
-"** синхронизация,\n"
+"== Intermediate conclusions for intrinsic conditions\n"
+"* It is necessary to follow the strict pattern: \n"
+"** synchronization,\n"
 "** while-loop wait,\n"
-"** нотификация.\n"
-"* Нужно держать в уме:\n"
-"** по intrinsic lock какого объекта синхронизируемся,\n"
-"** по condition какого объекта ждём,\n"
-"** треды, ждущие на condition какого объекта нотифицируем (это всё должен "
-"быть один объект).\n"
-"* В общем, это низкоуровневый и сложный механизм. Его понимание пригодится "
-"на собеседованиях, но скорее всего, вам не надо будет им пользоваться."
+"** notification.\n"
+"* You need to keep in mind:\n"
+"** the object whose intrinsic lock we are capturing,\n"
+"** the object whose condition we use for waiting,\n"
+"** threads waiting on which condition we notify (it all should relate to the "
+"same object).\n"
+"* In general, this is a low-level and complex mechanism. Its understanding "
+"will be useful during job interviews, but most likely, you will not need to "
+"use it."
 
 #: lecture.adoc:671
 msgid ""
@@ -1610,7 +1595,7 @@ msgid ""
 "new -> runnable[label=\"start\"]\n"
 "runnable -> terminated[xlabel=\"run\\nmethod exit\"]"
 msgstr ""
-"== Теперь нам понятен смысл всех возможных состояний треда\n"
+"== Now we understand the meaning of all the possible thread states\n"
 "[graphviz,\"threadstates.png\"]\n"
 "----\n"
 "digraph G {\n"
@@ -1661,7 +1646,7 @@ msgstr "----"
 
 #: lecture.adoc:689
 msgid "== Промежуточный итог по всему вышесказанному"
-msgstr "== Промежуточный итог по всему вышесказанному"
+msgstr "== Intermediate conclusions for all of the above"
 
 #: lecture.adoc:696
 msgid ""
@@ -1676,30 +1661,26 @@ msgid ""
 "* Думайте о потокобезопасности всё время.\n"
 "* Понимание JMM помогает"
 msgstr ""
-"* Где возможно, используйте immutable state: он автоматически "
-"потокобезопасен.\n"
-"* Используйте volatile переменные или синхронизацию для доступа к mutable "
-"state.\n"
-"* Удерживайте блокировку во время выполнения операций, которые должны быть "
-"атомарными.\n"
-"* Повторим ещё раз: *программа с shared mutable state без должной "
-"синхронизации -- сломанная программа*.\n"
-"* Думайте о потокобезопасности всё время.\n"
-"* Понимание JMM помогает"
+"* Where possible, use immutable state: it is automatically thread-safe.\n"
+"* Use volatile variables or synchronization to access mutable state.\n"
+"* Hold the lock while performing operations that should be atomic.\n"
+"* To reiterate: *a program with a shared mutable state without proper "
+"synchronization is a broken program*.\n"
+"* Think about thread safety all the time.\n"
+"* JMM understanding helps"
 
 #: lecture.adoc:699
 msgid "== Часть 2. Deadlocks"
-msgstr "== Часть 2. Deadlocks"
+msgstr "== Part 2. Deadlocks"
 
 #: lecture.adoc:701
-#, fuzzy
 msgctxt "lecture.adoc:701"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
 #: lecture.adoc:703
 msgid "== Deadlock: простой пример"
-msgstr "== Deadlock: простой пример"
+msgstr "== Deadlock: A Simple Example"
 
 #: lecture.adoc:709
 msgid ""
@@ -1757,8 +1738,8 @@ msgid ""
 msgstr ""
 "X -> LockB: lock()\n"
 "note right\n"
-"  будем ждать\n"
-"  вечно\n"
+"  we will wait\n"
+"  forever\n"
 "end note"
 
 #: lecture.adoc:730
@@ -1766,7 +1747,6 @@ msgid "Y -> LockA: lock()"
 msgstr "Y -> LockA: lock()"
 
 #: lecture.adoc:733
-#, fuzzy
 msgctxt "lecture.adoc:733"
 msgid ""
 "@enduml\n"
@@ -1777,7 +1757,7 @@ msgstr ""
 
 #: lecture.adoc:735
 msgid "== Перепутанный порядок блокировки"
-msgstr "== Перепутанный порядок блокировки"
+msgstr "== Wrong order of blocking"
 
 #: lecture.adoc:757
 msgid ""
@@ -1827,7 +1807,7 @@ msgstr ""
 
 #: lecture.adoc:759
 msgid "== Перепутанный (иногда!) порядок блокировки"
-msgstr "== Перепутанный (иногда!) порядок блокировки"
+msgstr "== (Sometimes?) wrong order of blocking"
 
 #: lecture.adoc:776
 msgid ""
@@ -1867,7 +1847,7 @@ msgstr ""
 
 #: lecture.adoc:778
 msgid "== Выводы"
-msgstr "== Выводы"
+msgstr "== Conclusions"
 
 #: lecture.adoc:782
 msgid ""
@@ -1877,25 +1857,24 @@ msgid ""
 "* Если вы захватили блокировку -- закончите с ней как можно быстрее, не "
 "вызывайте внешних методов."
 msgstr ""
-"* Если процедура захватывает несколько блокировок, возможен deadlock.\n"
-"* Во избежание deadlocks нужно следить за тем, чтобы блокировки всегда "
-"захватывались в одном и том же порядке. Иногда неочевидно, как это сделать.\n"
-"* Если вы захватили блокировку -- закончите с ней как можно быстрее, не "
-"вызывайте внешних методов."
+"* If function captures more than one lock, deadlock is possible.\n"
+"* To avoid deadlocks, you need to make sure that the locks are always "
+"captured in the same order. Sometimes it's not obvious how to do it.\n"
+"* If you have captured a lock -- finish with it as quickly as possible, do "
+"not call external methods."
 
 #: lecture.adoc:784
 msgid "== Часть 3. Потокобезопасные структуры данных"
-msgstr "== Часть 3. Потокобезопасные структуры данных"
+msgstr "== Part 3. Thread-safe data structures"
 
 #: lecture.adoc:786
-#, fuzzy
 msgctxt "lecture.adoc:786"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
 #: lecture.adoc:788
 msgid "== Неблокирующие алгоритмы"
-msgstr "== Неблокирующие алгоритмы"
+msgstr "== Non-blocking algorithms"
 
 #: lecture.adoc:793
 msgid ""
@@ -1909,15 +1888,15 @@ msgid ""
 "_потокобезопасные коллекции_, реализованные в том числе на неблокирующих "
 "алгоритмах."
 msgstr ""
-"* Блокировка (через `synchronized` или `ReentrantLock`) решает вопрос "
-"координации действий разных тредов с переменной.\n"
-"* Но если много тредов конкурируют за блокировку (high lock contention), "
-"затраты ресурсов на координацию тредов становятся значительными.\n"
-"* Альтернативой являются _неблокирующие алгоритмы_, использующие поддержку "
-"специальных атомарных машинных инструкций (compare-and-swap).\n"
-"* В Java-библиотеке доступны _классы атомарных переменных_ и "
-"_потокобезопасные коллекции_, реализованные в том числе на неблокирующих "
-"алгоритмах."
+"* Locking (via `synchronized` or `ReentrantLock`) solves the issue of "
+"coordinating the actions of different threads with a variable.\n"
+"* But if many threads compete for the lock (high lock contention), the cost "
+"of coordinating the threads becomes significant.\n"
+"* The alternative is _non-blocking algorithms_ that use special atomic "
+"machine instructions (compare-and-swap).\n"
+"* In the Java library, _classes of atomic variables_ and _thread-safe "
+"collections_ are available, including those implementing non-blocking "
+"algorithms."
 
 #: lecture.adoc:795
 msgid "== Atomics "
@@ -1935,13 +1914,13 @@ msgstr ""
 "* `package java.util.concurrent.atomic`\n"
 "** `AtomicBoolean`, `AtomicInteger`, `AtomicLong`, `AtomicReference`.\n"
 "** `AtomicIntegerArray`, `AtomicLongArray`, `AtomicReferenceArray`.\n"
-"* Могут быть использованы как «улучшенные volatile-переменные», т. к. "
-"результат вызова `set(...)` виден другим тредам при вызове `get(...)`\n"
-"* Поддерживают атомарные операции."
+"* Can be used as \"enhanced volatiles\", as the result of calling `set(...)` "
+"is visible to other threads via `get(...)`\n"
+"* Support atomic operations."
 
 #: lecture.adoc:804
 msgid "== Aтомарные операции в классах атомарных переменных"
-msgstr "== Aтомарные операции в классах атомарных переменных"
+msgstr "== Atomic operations in atomic variable classes"
 
 #: lecture.adoc:807
 msgid ""
@@ -1983,7 +1962,7 @@ msgstr ""
 
 #: lecture.adoc:823
 msgid "== Потокобезопасные коллекции"
-msgstr "== Потокобезопасные коллекции"
+msgstr "== Thread-safe collections"
 
 #: lecture.adoc:827
 msgid ""
@@ -1997,15 +1976,15 @@ msgid ""
 "потокобезопасности, с меньшим количеством блокировок.\n"
 "* Их использование является _предпочтительным_."
 msgstr ""
-"* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, "
-"обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой "
-"доступ к внутреннему состоянию коллекции. Из-за поддержки обратной "
-"совместимости сейчас так тоже можно, но не нужно.\n"
-"* Цена такого решения -- плохой параллелизм: конкуренция за блокировку (lock "
-"contention).\n"
-"* С версии 5 появились классы, специально разработанные для "
-"потокобезопасности, с меньшим количеством блокировок.\n"
-"* Их использование является _предпочтительным_."
+"* In earlier versions of Java, it was possible to \"make\" a collection "
+"thread-safe by wrapping it in `Collections.synchronizedXXX(...)`. This "
+"serialized any access to the internal state of the collection. Because of "
+"backward compatibility support, doing this is still possible, but not "
+"recommended.\n"
+"* The price of such a solution is high lock contention.\n"
+"* Version 5 introduces classes specifically designed for thread safety, with "
+"fewer locks.\n"
+"* Their use is _preferred_."
 
 #~ msgctxt "./slides10/src/main/asciidoc/lecture.adoc:132"
 #~ msgid "^.^|"
