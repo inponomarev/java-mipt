@@ -141,9 +141,9 @@ J2SE 1.4 (February 6, 2002)     |  Java SE 13 (September 17, 2019)
 J2SE 5.0 (September 30, 2004)   |  Java SE 14 (March 17, 2020)
 Java SE 6 (December 11, 2006)   |  Java SE 15 (September 15, 2020)
 -- Sun acquisition by Oracle--  |  Java SE 16 (March 16, 2021) 
-Java SE 7 (July 28, 2011)       |  Java SE 17 (due to Sept. 2021)
-Java SE 8 (March 18, 2014)      |
-Java SE 9 (September 21, 2017)  |
+Java SE 7 (July 28, 2011)       |  Java SE 17 (September 14, 2021)
+Java SE 8 (March 18, 2014)      |  Java SE 18 (due to in March 2022)
+Java SE 9 (September 21, 2017)  |  Java SE 19 (due to in September 2022)
 ----
 
 == 6-monthly Release Cadence
