@@ -1,21 +1,19 @@
-#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 11\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2021-12-15 11:39+0300\n"
+"PO-Revision-Date: 2022-01-26 05:53+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.2.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: lecture.adoc:25
-#, fuzzy
 msgid ""
 "= Core Java. Лекция 11: Java Concurrency (окончание). Annotations\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
@@ -42,8 +40,8 @@ msgid ""
 ":revealjs_height: 900\n"
 ":stem: latexmath"
 msgstr ""
-"= Core Java: Курс лекций. Лекция 11\n"
-"Иван Пономарёв, КУРС/МФТИ\n"
+"= Core Java. Lecture #11: Java Concurrency (ending). Annotations\n"
+"Ivan Ponomarev, Synthesized.io/MIPT\n"
 ":revealjs_theme: black\n"
 ":revealjs_customtheme: white_course.css\n"
 ":revealjs_slideNumber:\n"
@@ -85,17 +83,16 @@ msgstr "icon:twitter[size=lg] @inponomarev"
 
 #: lecture.adoc:35
 msgid "== Часть 3. Потокобезопасные структуры данных"
-msgstr "== Часть 3. Потокобезопасные структуры данных"
+msgstr "== Part 3. Thread-safe data structures"
 
 #: lecture.adoc:37
-#, fuzzy
 msgctxt "lecture.adoc:37"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
 #: lecture.adoc:39
 msgid "== Неблокирующие алгоритмы"
-msgstr "== Неблокирующие алгоритмы"
+msgstr "== Non-blocking algorithms"
 
 #: lecture.adoc:44
 msgid ""
@@ -109,15 +106,15 @@ msgid ""
 "_потокобезопасные коллекции_, реализованные в том числе на неблокирующих "
 "алгоритмах."
 msgstr ""
-"* Блокировка (через `synchronized` или `ReentrantLock`) решает вопрос "
-"координации действий разных тредов с переменной.\n"
-"* Но если много тредов конкурируют за блокировку (high lock contention), "
-"затраты ресурсов на координацию тредов становятся значительными.\n"
-"* Альтернативой являются _неблокирующие алгоритмы_, использующие поддержку "
-"специальных атомарных машинных инструкций (compare-and-swap).\n"
-"* В Java-библиотеке доступны _классы атомарных переменных_ и "
-"_потокобезопасные коллекции_, реализованные в том числе на неблокирующих "
-"алгоритмах."
+"* Locking (via `synchronized` or `ReentrantLock`) solves the issue of "
+"coordinating the actions of different threads with a variable.\n"
+"* But if many threads compete for the lock (high lock contention), the cost "
+"of coordinating the threads becomes significant.\n"
+"* The alternative is _non-blocking algorithms_ that use special atomic "
+"machine instructions (compare-and-swap).\n"
+"* In the Java library, _classes of atomic variables_ and _thread-safe "
+"collections_ are available, including those implementing non-blocking "
+"algorithms."
 
 #: lecture.adoc:46
 msgid "== Atomics "
@@ -135,13 +132,13 @@ msgstr ""
 "* `package java.util.concurrent.atomic`\n"
 "** `AtomicBoolean`, `AtomicInteger`, `AtomicLong`, `AtomicReference`.\n"
 "** `AtomicIntegerArray`, `AtomicLongArray`, `AtomicReferenceArray`.\n"
-"* Могут быть использованы как «улучшенные volatile-переменные», т. к. "
-"результат вызова `set(...)` виден другим тредам при вызове `get(...)`\n"
-"* Поддерживают атомарные операции."
+"* Can be used as \"enhanced volatiles\", as the result of calling `set(...)` "
+"is visible to other threads via `get(...)`\n"
+"* Support atomic operations."
 
 #: lecture.adoc:55
 msgid "== Aтомарные операции в классах атомарных переменных"
-msgstr "== Aтомарные операции в классах атомарных переменных"
+msgstr "== Atomic operations in atomic variable classes"
 
 #: lecture.adoc:58
 msgid ""
@@ -183,7 +180,7 @@ msgstr ""
 
 #: lecture.adoc:74
 msgid "== Потокобезопасные коллекции"
-msgstr "== Потокобезопасные коллекции"
+msgstr "== Thread-safe collections"
 
 #: lecture.adoc:79
 msgid ""
@@ -197,15 +194,15 @@ msgid ""
 "потокобезопасности, с меньшим количеством блокировок.\n"
 "* Их использование является _предпочтительным_."
 msgstr ""
-"* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, "
-"обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой "
-"доступ к внутреннему состоянию коллекции. Из-за поддержки обратной "
-"совместимости сейчас так тоже можно, но не нужно.\n"
-"* Цена такого решения -- плохой параллелизм: конкуренция за блокировку (lock "
-"contention).\n"
-"* С версии 5 появились классы, специально разработанные для "
-"потокобезопасности, с меньшим количеством блокировок.\n"
-"* Их использование является _предпочтительным_."
+"* In earlier versions of Java, it was possible to \"make\" a collection "
+"thread-safe by wrapping it in `Collections.synchronizedXXX(...)`. This "
+"serialized any access to the internal state of the collection. Because of "
+"backward compatibility support, doing this is still possible, but not "
+"recommended.\n"
+"* The price of such a solution is high lock contention.\n"
+"* Version 5 introduces classes specifically designed for thread safety, with "
+"fewer locks.\n"
+"* Their use is _preferred_."
 
 #: lecture.adoc:87
 msgid ""
@@ -216,7 +213,7 @@ msgid ""
 "class CopyOnWriteArraySet<E> extends AbstractSet<E>\n"
 "----"
 msgstr ""
-"== CopyOnWriteArrayList и CopyOnWriteArraySet\n"
+"== CopyOnWriteArrayList and CopyOnWriteArraySet\n"
 "[source,java]\n"
 "----\n"
 "class CopyOnWriteArrayList<E> implements List<E>\n"
@@ -230,13 +227,12 @@ msgid ""
 "* Это дорого, зато все читающие итераторы стабильны.\n"
 "* Хороши, когда на одну операцию записи приходится много операций чтения."
 msgstr ""
-"* Структуры данных на основе массива.\n"
-"* Пересоздают всё заново при каждой модификации.\n"
-"* Это дорого, зато все читающие итераторы стабильны.\n"
-"* Хороши, когда на одну операцию записи приходится много операций чтения."
+"* Array-based data structures.\n"
+"* Recreate themselves from scratch on each modification.\n"
+"* It's expensive, but all reading iterators are stable.\n"
+"* Good when there are multiple read operations per one write operation."
 
 #: lecture.adoc:94
-#, fuzzy
 msgctxt "lecture.adoc:94"
 msgid "== ConcurrentLinkedQueue/Deque"
 msgstr "== ConcurrentLinkedQueue/Deque"
@@ -265,12 +261,11 @@ msgid ""
 "* `poll()` вернёт `null`, если очередь пуста\n"
 "* Под капотом -- связные/двусвязные списки"
 msgstr ""
-"* Основаны на неблокирующем алгоритме (CAS-операции)\n"
-"* `poll()` вернёт `null`, если очередь пуста\n"
-"* Под капотом -- связные/двусвязные списки"
+"* Based on non-blocking algorithm (CAS operations)\n"
+"* `poll()` returns `null` if the queue is empty\n"
+"* Under the hood there are (double) linked lists"
 
 #: lecture.adoc:108
-#, fuzzy
 msgctxt "lecture.adoc:108"
 msgid "== ConcurrentLinkedQueue/Deque"
 msgstr "== ConcurrentLinkedQueue/Deque"
@@ -426,7 +421,6 @@ msgstr ""
 "}"
 
 #: lecture.adoc:184
-#, fuzzy
 msgctxt "lecture.adoc:184"
 msgid "--"
 msgstr "--"
@@ -596,14 +590,14 @@ msgstr ""
 "}"
 
 #: lecture.adoc:267
-#, fuzzy
 msgctxt "lecture.adoc:267"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:270
 msgid "== Блокирующие очереди: средство реализации producer-consumer pattern"
-msgstr "== Блокирующие очереди: средство реализации producer-consumer pattern"
+msgstr ""
+"== Blocking queues: a means of implementing the producer-consumer pattern"
 
 #: lecture.adoc:274
 msgid ""
@@ -668,12 +662,11 @@ msgid ""
 "* `SynchronousQueue` не имеет capacity вовсе, передаёт элементы "
 "обрабатывающим тредам напрямую. "
 msgstr ""
-"* Могут быть ограничены по размеру (capacity constrained).\n"
-"* Методы `put()` и `take()` ждут, пока не появится возможность положить или "
-"взять элемент.\n"
-"* `PriorityBlockingQueue` не лимитируется по capacity.\n"
-"* `SynchronousQueue` не имеет capacity вовсе, передаёт элементы "
-"обрабатывающим тредам напрямую. "
+"* May be limited in size (capacity constrained).\n"
+"* The `put()` and `take()` methods wait until you can put or take an item.\n"
+"* `PriorityBlockingQueue` is not limited by capacity.\n"
+"* `SynchronousQueue` has no capacity at all, passes elements to processing "
+"threads directly. "
 
 #: lecture.adoc:300
 msgid "== ConcurrentHashMap"
@@ -1154,7 +1147,6 @@ msgstr ""
 "--"
 
 #: lecture.adoc:522
-#, fuzzy
 msgctxt "lecture.adoc:522"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -1246,7 +1238,6 @@ msgstr ""
 "--"
 
 #: lecture.adoc:566
-#, fuzzy
 msgctxt "lecture.adoc:566"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -1346,13 +1337,11 @@ msgstr ""
 "}"
 
 #: lecture.adoc:614
-#, fuzzy
 msgctxt "lecture.adoc:614"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:616
-#, fuzzy
 msgctxt "lecture.adoc:616"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -1470,13 +1459,11 @@ msgstr ""
 "}"
 
 #: lecture.adoc:673
-#, fuzzy
 msgctxt "lecture.adoc:673"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:675
-#, fuzzy
 msgctxt "lecture.adoc:675"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -1672,13 +1659,11 @@ msgstr ""
 "}"
 
 #: lecture.adoc:771
-#, fuzzy
 msgctxt "lecture.adoc:771"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:773
-#, fuzzy
 msgctxt "lecture.adoc:773"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -1914,13 +1899,11 @@ msgstr ""
 "}"
 
 #: lecture.adoc:889
-#, fuzzy
 msgctxt "lecture.adoc:889"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:891
-#, fuzzy
 msgctxt "lecture.adoc:891"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -2198,7 +2181,6 @@ msgstr ""
 "--"
 
 #: lecture.adoc:1028
-#, fuzzy
 msgctxt "lecture.adoc:1028"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -2514,13 +2496,11 @@ msgstr ""
 "}"
 
 #: lecture.adoc:1184
-#, fuzzy
 msgctxt "lecture.adoc:1184"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:1186
-#, fuzzy
 msgctxt "lecture.adoc:1186"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -2896,13 +2876,11 @@ msgstr ""
 "}"
 
 #: lecture.adoc:1372
-#, fuzzy
 msgctxt "lecture.adoc:1372"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:1374
-#, fuzzy
 msgctxt "lecture.adoc:1374"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
@@ -3300,23 +3278,20 @@ msgstr ""
 "}"
 
 #: lecture.adoc:1571
-#, fuzzy
 msgctxt "lecture.adoc:1571"
 msgid "--"
 msgstr "--"
 
 #: lecture.adoc:1573
 msgid "== Часть 4. Executor Framework"
-msgstr "== Часть 4. Executor Framework"
+msgstr "== Part 4. Executor Framework"
 
 #: lecture.adoc:1575
-#, fuzzy
 msgctxt "lecture.adoc:1575"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
 #: lecture.adoc:1577
-#, fuzzy
 msgctxt "lecture.adoc:1577"
 msgid "== Executor Framework"
 msgstr "== Executor Framework"
@@ -3332,17 +3307,17 @@ msgid ""
 "делать самостоятельно.\n"
 "* Никто не использует Thread API напрямую."
 msgstr ""
-"* Тред -- дорогой ресурс, поэтому мы хотим:\n"
-"** ограничивать количество наших тредов, чтобы не устроить Out of Memory,\n"
-"** переиспользовать имеющиеся треды, подавая им новые задачи после "
-"завершения старых,\n"
-"** но если какой-то тред «вылетел» -- автоматически создавать новый.\n"
-"* В стандартной библиотеке для этого есть Thread Pools, не надо ничего "
-"делать самостоятельно.\n"
-"* Никто не использует Thread API напрямую."
+"* Trade is an expensive resource, so we want to:\n"
+"** limit the number of our threads so as not to get Out of Memory "
+"exception,\n"
+"** reuse existing threads by submitting new tasks after completing the old "
+"ones,\n"
+"** if some thread \"crashed\" - automatically create a new one.\n"
+"* There are Thread Pools in the standard library for all of this, you do not "
+"need to implement anything yourself.\n"
+"* No one uses the Thread API directly."
 
 #: lecture.adoc:1586
-#, fuzzy
 msgctxt "lecture.adoc:1586"
 msgid "== Executor Framework"
 msgstr "== Executor Framework"
@@ -3358,10 +3333,10 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"//Абстракция вычислительной задачи, возвращающей результат\n"
+"//Abstraction of a computational task returning a result\n"
 "public interface Callable<V> {\n"
 "  V call() throws Exception;\n"
-"}"
+"}</V>"
 
 #: lecture.adoc:1600
 msgid ""
@@ -3372,10 +3347,10 @@ msgid ""
 "}\n"
 "----"
 msgstr ""
-"//Абстракция «менджера тредов»\n"
+"//Abstraction of the \"manager of threads\"\n"
 "public interface ExecutorService {\n"
 "  <T> Future<T> submit(Callable<T> task);\n"
-"  /*...есть и много другого, речь впереди...*/\n"
+"  /*... there are many other methods, will discuss later...*/\n"
 "}\n"
 "----"
 
@@ -3401,8 +3376,8 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"//Абстракция результата \"in progress\", который можно ждать, \n"
-"//а можно и отменить\n"
+"//Abstraction of the \"in progress\" result that you can wait for \n"
+"//finalization or just cancel\n"
 "public interface Future<V> {\n"
 "  V get() throws InterruptedException, ExecutionException;\n"
 "  V get(long timeout, TimeUnit unit)\n"
@@ -3473,8 +3448,8 @@ msgid ""
 msgstr ""
 "Executor -> Future: run()\n"
 "note right\n"
-"  в отдельном потоке\n"
-"  выполнения\n"
+"  in a separate thread\n"
+"  of execution\n"
 "end note"
 
 #: lecture.adoc:1646
@@ -3511,7 +3486,7 @@ msgstr ""
 
 #: lecture.adoc:1658
 msgid "== Как создать ExecutorService?"
-msgstr "== Как создать ExecutorService?"
+msgstr "== How do I create an ExecutorService?"
 
 #: lecture.adoc:1673
 msgid ""
@@ -3532,13 +3507,13 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"public class  Executors {\n"
-"  //фиксированный размер пула\n"
+"public class Executors {\n"
+"  //fixed pool size\n"
 "  public static ExecutorService newFixedThreadPool(int nThreads)\n"
 "  public static ExecutorService newSingleThreadExecutor()\n"
-"  //пул растёт по необходимости, держит неактивный тред 60 секунд\n"
+"  //pool grows as needed, keeps inactive thread for 60 seconds\n"
 "  public static ExecutorService newCachedThreadPool()\n"
-"  //позволяет выполнять задачи с задержкой или периодичностью\n"
+"  //allows you to perform tasks with a delay or periodically\n"
 "  public static \n"
 "    ScheduledExecutorService newScheduledThreadPool(int corePoolSize)\n"
 "  ...\n"
@@ -3556,13 +3531,13 @@ msgid ""
 "    Collection<? extends Callable<T>> tasks)\n"
 "        throws InterruptedException"
 msgstr ""
-"== Обработка задач «пачками»\n"
+"== Processing tasks in batches\n"
 "[source,java]\n"
 "----\n"
-"//Запускаем и ждём, пока все выполнятся\n"
-"//List<Future<T>>, а не List<T>, т. к. возможны исключения\n"
-"<T> List<Future<T>> invokeAll(\n"
-"    Collection<? extends Callable<T>> tasks)\n"
+"//Run and wait for everything to finish\n"
+"//List<Future<T>>, not List<T>, because exceptions are possible\n"
+"<T>List <Future <T>> invokeAll(\n"
+"    Collection <? extends Callable <T>> tasks)\n"
 "        throws InterruptedException"
 
 #: lecture.adoc:1688
@@ -3573,15 +3548,15 @@ msgid ""
 "        throws InterruptedException, ExecutionException;\n"
 "----"
 msgstr ""
-"//Запускаем, возвращаем первый успешный результат, \n"
-"//отменяем остальные\n"
+"//Run, return the first successful result \n"
+"//cancel the rest\n"
 "<T> T invokeAny(Collection<? extends Callable<T>> tasks)\n"
 "        throws InterruptedException, ExecutionException;\n"
 "----"
 
 #: lecture.adoc:1690
 msgid "== Отмена задач и «прекращение обслуживания»"
-msgstr "== Отмена задач и «прекращение обслуживания»"
+msgstr "== Cancellation of tasks and \"termination of service\""
 
 #: lecture.adoc:1697
 msgid ""
@@ -3594,9 +3569,9 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"//отменить задачу, если она ещё не начала выполняться\n"
+"//cancel a task if it has not already started\n"
 "future.cancel(false)\n"
-"//запросить прерывание задачи (подробности впереди)\n"
+"//request task interruption (details ahead)\n"
 "future.cancel(true)"
 
 #: lecture.adoc:1706
@@ -3610,18 +3585,18 @@ msgid ""
 "}\n"
 "----"
 msgstr ""
-"//Запретить приём новых задач\n"
+"//Prevent new tasks from being accepted\n"
 "executorService.shutdown();\n"
-"//Подождать, пока принятые задачи завершатся\n"
+"//Wait until the accepted tasks are completed\n"
 "if (!service.awaitTermination(10, TimeUnit.SECONDS)){\n"
-"    //Прервать выполнение задач\n"
+"    Abort tasks\n"
 "    service.shutdownNow();\n"
 "}\n"
 "----"
 
 #: lecture.adoc:1708
 msgid "== Прерывание задач"
-msgstr "== Прерывание задач"
+msgstr "== Interruption of tasks"
 
 #: lecture.adoc:1713
 msgid ""
@@ -3632,16 +3607,17 @@ msgid ""
 "** приостановка может на неопределённое время \"завесить\" блокировку\n"
 "* В итоге, имеется _кооперативный_ механизм прерывания."
 msgstr ""
-"* В ранних версиях Java существовали (ныне deprecated) методы принудительной "
-"остановки и приостановки/возобновления тредов, но _это оказалось плохой "
-"идеей:_\n"
-"** нет гарантий, что тред не остановится посередине атомарной операции.\n"
-"** приостановка может на неопределённое время \"завесить\" блокировку\n"
-"* В итоге, имеется _кооперативный_ механизм прерывания."
+"* In early versions of Java, there were (now deprecated) methods for "
+"forcibly stopping and suspending/resuming threads, but _this turned out to "
+"be a bad idea:_\n"
+"** there is no guarantee that the thread will not stop in the middle of the "
+"atomic operation.\n"
+"** suspension may indefinitely \"hang\" the lock\n"
+"* As a result, there is a _cooperative_ interrupt mechanism."
 
 #: lecture.adoc:1715
 msgid "== Прерывание тредов"
-msgstr "== Прерывание тредов"
+msgstr "== Interrupting threads"
 
 #: lecture.adoc:1719
 msgid ""
@@ -3651,15 +3627,17 @@ msgid ""
 "* *JMM Interruption Rule*: вызов метода `interrupt()` внешним потоком "
 "_happens-before_ прерываемый поток узнаёт о том, что он прерван."
 msgstr ""
-"* `ExecutorService.shutdownNow()` вызывает метод `Thread.interrupt()` на "
-"потоках выполнения.\n"
-"* метод `Thread.isInterrupted()` возвращает статус прерывания треда.\n"
-"* *JMM Interruption Rule*: вызов метода `interrupt()` внешним потоком "
-"_happens-before_ прерываемый поток узнаёт о том, что он прерван."
+"* `ExecutorService.shutdownNow()` calls the `Thread.interrupt()` method on "
+"threads.\n"
+"* the `Thread.isInterrupted()` method returns the interrupt status of the "
+"thread.\n"
+"* *JMM Interruption Rule*: An external thread call to the `interrupt()` "
+"method _happens before_ the interrupted thread knows that it has been "
+"interrupted."
 
 #: lecture.adoc:1721
 msgid "== Кооперативный механизм прерывания"
-msgstr "== Кооперативный механизм прерывания"
+msgstr "== Cooperative termination mechanism"
 
 #: lecture.adoc:1723
 msgid ""
@@ -3667,37 +3645,38 @@ msgid ""
 "currentThread().isInterrupted()` и, если флаг выставлен, _записав в лог факт "
 "прерывания_, выходить из метода."
 msgstr ""
-"* Если вычисления в цикле, тред обязан периодически проверять статус `Thread."
-"currentThread().isInterrupted()` и, если флаг выставлен, _записав в лог факт "
-"прерывания_, выходить из метода."
+"* If the calculations are in a loop, the thread is obliged to periodically "
+"check the status of 'Thread.currentThread().isInterrupted()' and, if the "
+"flag is set, _write to the log the fact of interruption_ and exit the method."
 
 #: lecture.adoc:1725
 msgid ""
 "* На ждущих методах может быть выброшен `InterruptedException`. Что с ним "
 "делать?"
 msgstr ""
-"* На ждущих методах может быть выброшен `InterruptedException`. Что с ним "
-"делать?"
+"* `InterruptedException` may be thrown on waiting methods. What should we do "
+"with it?"
 
 #: lecture.adoc:1727
 msgid "== Что делать с `InterruptedException`"
-msgstr "== Что делать с `InterruptedException`"
+msgstr "== What should we do with `InterruptedException`"
 
 #: lecture.adoc:1729
 msgid ""
 "* Если контекст позволяет, его всегда следует пробрасывать выше (декларируя "
 "в `throws`)."
 msgstr ""
-"* Если контекст позволяет, его всегда следует пробрасывать выше (декларируя "
-"в `throws`)."
+"* If circumstances allow, it is best to declare it in `throws` and not to "
+"handle it at all."
 
 #: lecture.adoc:1731
 msgid ""
 "* Если выше пробрасывать нельзя (например, мы находимся в методе `run` "
 "интерфейса `Runnable`), то: "
 msgstr ""
-"* Если выше пробрасывать нельзя (например, мы находимся в методе `run` "
-"интерфейса `Runnable`), то: "
+"* If we cannot change the method's signature (e. g. we are implementing "
+"`run` method of `Runnable` interface which doesn't throw checked exceptions) "
+"then: "
 
 #: lecture.adoc:1745
 msgid ""
@@ -3719,11 +3698,11 @@ msgstr ""
 "[source,java]\n"
 "----\n"
 "} catch (InterruptedException e) {\n"
-"    //записываем факт прерывания в лог ...\n"
+"    //record the fact of interruption to the log...\n"
 "    ...\n"
-"    //восстанавливаем interrupted-статус\n"
+"    //restore the interrupted status\n"
 "    Thread.currentThread().interrupt();\n"
-"    //выходим из прерванной процедуры\n"
+"    //exit the interrupted method\n"
 "    return;\n"
 "}\n"
 "----\n"
@@ -3742,10 +3721,10 @@ msgid ""
 "асинхронных вычислений.\n"
 "* Могут быть использованы так: "
 msgstr ""
-"* Появились в Java 8, расширяют `Future`.\n"
-"* Позволяют явно задать результат (отсюда 'Completable') и собрать цепочку "
-"асинхронных вычислений.\n"
-"* Могут быть использованы так: "
+"* Introduced in Java 8, extending `Future`.\n"
+"* Allow you to explicitly set the result (hence `Completable`) and assemble "
+"a chain of asynchronous calculations.\n"
+"* Can be used as follows: "
 
 #: lecture.adoc:1758
 msgid ""
@@ -3786,10 +3765,9 @@ msgstr ""
 "----"
 
 #: lecture.adoc:1769
-#, fuzzy
 msgctxt "lecture.adoc:1769"
 msgid "== Композиция CompletableFuture с действием"
-msgstr "== Композиция CompletableFuture с действием"
+msgstr "== CompletableFuture composition with action"
 
 #: lecture.adoc:1779
 msgid ""
@@ -3824,10 +3802,9 @@ msgstr ""
 "|==="
 
 #: lecture.adoc:1782
-#, fuzzy
 msgctxt "lecture.adoc:1782"
 msgid "== Композиция CompletableFuture с действием"
-msgstr "== Композиция CompletableFuture с действием"
+msgstr "== CompletableFuture composition with action"
 
 #: lecture.adoc:1790
 msgid ""
@@ -3855,7 +3832,7 @@ msgstr ""
 
 #: lecture.adoc:1792
 msgid "== Композиция нескольких CompletableFuture"
-msgstr "== Композиция нескольких CompletableFuture"
+msgstr "== Composition of several CompletableFutures"
 
 #: lecture.adoc:1803
 msgid ""
@@ -3908,7 +3885,7 @@ msgid ""
 "given futures completes, with the same result cast to `Object`.\n"
 "|==="
 msgstr ""
-"== Композиция нескольких CompletableFuture\n"
+"== Composition of several CompletableFutures\n"
 "[cols=\"20a,20a,60a\"]\n"
 "|===\n"
 "|*Method*            |*Parameter*            |*Description*\n"
@@ -3934,14 +3911,14 @@ msgid ""
 "`thenApplyAsync`), позволяющий выполнить дополнительное действие в другом "
 "треде заданного Executor-a."
 msgstr ""
-"== Если этого показалось мало...\n"
-"* Каждый из этих методов имеет вариант с постфиксом `Async` (например, "
-"`thenApplyAsync`), позволяющий выполнить дополнительное действие в другом "
-"треде заданного Executor-a."
+"== If that didn't seem enough...\n"
+"* Each of these methods has a variant with the postfix `Async` (for example, "
+"`thenApplyAsync`) that allows you to perform an additional action in another "
+"thread of the specified Executor."
 
 #: lecture.adoc:1822
 msgid "== Мы только прошлись по основам"
-msgstr "== Мы только прошлись по основам"
+msgstr "== We just scratched the surface"
 
 #: lecture.adoc:1832
 msgid ""
@@ -3960,11 +3937,11 @@ msgstr ""
 "|===\n"
 "|image::jcip.jpg[]| \n"
 "* *Brian Goetz et al.*, Java Concurrency in Practice.\n"
-"* Вышла в 2006-м году, в эпоху Java 5.0.\n"
-"* Новых изданий не выходило.\n"
-"* На русском языке вышла в 2020-м году!\n"
-"* Всё ещё самое полное руководство по разным аспектам многопоточного "
-"программирования на Java.\n"
+"* Released in 2006, in the era of Java 5.0.\n"
+"* No new editions were published.\n"
+"* It was released in Russian language in 2020!\n"
+"* Still the most comprehensive guide to different aspects of multithreaded "
+"Java programming.\n"
 "|==="
 
 #: lecture.adoc:1834
@@ -3983,17 +3960,17 @@ msgstr ""
 msgid ""
 "* Порядка 100 пунктов, по которым можно проверить concurrency код на "
 "распространённые ошибки"
-msgstr ""
-"* Порядка 100 пунктов, по которым можно проверить concurrency код на "
-"распространённые ошибки"
+msgstr "* About 100 points to check the concurrency code for common errors"
 
 #: lecture.adoc:1842
 msgid "== Благодарности "
-msgstr "== Благодарности "
+msgstr "== Acknowledgements "
 
 #: lecture.adoc:1844
 msgid "Эти люди дали свой фидбэк и помогли улучшить материал этой лекции:"
-msgstr "Эти люди дали свой фидбэк и помогли улучшить материал этой лекции:"
+msgstr ""
+"These people gave their feedback and helped to improve the material of this "
+"lecture:"
 
 #: lecture.adoc:1849
 msgid ""
@@ -4029,11 +4006,11 @@ msgstr ""
 
 #: lecture.adoc:1860
 msgid "(все ошибки и неточности -- мои)"
-msgstr "(все ошибки и неточности -- мои)"
+msgstr "(all errors and inaccuracies are mine)"
 
 #: lecture.adoc:1863
 msgid "== Иногда при чтении кода начинает рябить в глазах..."
-msgstr "== Иногда при чтении кода начинает рябить в глазах..."
+msgstr "== Sometimes you feel the smell while reading the code..."
 
 #: lecture.adoc:1883
 msgid ""
@@ -4079,7 +4056,7 @@ msgstr ""
 
 #: lecture.adoc:1885
 msgid "== Возникает ощущение, что что-то не так..."
-msgstr "== Возникает ощущение, что что-то не так..."
+msgstr "== There is a feeling that something is wrong..."
 
 #: lecture.adoc:1905
 msgid ""
@@ -4159,19 +4136,19 @@ msgstr "image::coupling-cohesion.png[{image-70-width}]"
 
 #: lecture.adoc:1920
 msgid "== Вопросы"
-msgstr "== Вопросы"
+msgstr "== Questions"
 
 #: lecture.adoc:1923
 msgid ""
 "* За счёт чего в приведённых примерах high coupling + low cohesion?\n"
 "* Чем это опасно для проекта?"
 msgstr ""
-"* За счёт чего в приведённых примерах high coupling + low cohesion?\n"
-"* Чем это опасно для проекта?"
+"* Why coupling is high and cohesion is low in the above examples?\n"
+"* What danger does it impose on the project?"
 
 #: lecture.adoc:1925
 msgid "== Как бы мы хотели решить эту проблему?"
-msgstr "== Как бы мы хотели решить эту проблему?"
+msgstr "== How would we like to solve this problem?"
 
 #: lecture.adoc:1939
 msgid ""
@@ -4191,8 +4168,8 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"//Помечаем то, что хотим сериализовывать, не сериализуем по умолчанию.\n"
-"//Вариант: наоборот, помечать то, что сериализовывать не хотим.\n"
+"//Mark what we want to serialize, do not serialize by default.\n"
+"//(Option: mark what we do not want to serialize, serialize by default)\n"
 "public class Person {\n"
 "    @Published\n"
 "    private final String firstName;\n"
@@ -4200,7 +4177,7 @@ msgstr ""
 "    private final String lastName;\n"
 "    @Published\n"
 "    private final LocalDate birthDate;\n"
-"    //...сколько угодно ещё полей\n"
+"    //... as many other fields as you like\n"
 "}"
 
 #: lecture.adoc:1944
@@ -4210,7 +4187,7 @@ msgid ""
 "JSONObject json = ser.serialize(p);\n"
 "----"
 msgstr ""
-"//Как вариант...\n"
+"//As an option...\n"
 "JsonSerializer<Person> ser = new JsonSerializer<>(Person.class);\n"
 "JSONObject json = ser.serialize(p);\n"
 "----"
@@ -4223,7 +4200,7 @@ msgid ""
 "public class Controller {\n"
 "  private final Service service;"
 msgstr ""
-"== Контроллер\n"
+"== Controller\n"
 "[source,java]\n"
 "----\n"
 "public class Controller {\n"
@@ -4247,7 +4224,7 @@ msgstr ""
 
 #: lecture.adoc:1958
 msgid "  //ещё 15 команд"
-msgstr "  //ещё 15 команд"
+msgstr "  //15 more commands"
 
 #: lecture.adoc:1962
 msgid ""
@@ -4255,7 +4232,7 @@ msgid ""
 "  void help() { service.help(); }\n"
 "}"
 msgstr ""
-"  @Command() //дефолтная\n"
+"  @Command() //default one\n"
 "  void help() { service.help(); }\n"
 "}"
 
@@ -4269,7 +4246,7 @@ msgstr ""
 
 #: lecture.adoc:1967
 msgid "== Аннотации"
-msgstr "== Аннотации"
+msgstr "== Annotations"
 
 #: lecture.adoc:1974
 msgid ""
@@ -4283,19 +4260,19 @@ msgid ""
 "** на этапе инструментации байт-кода (Instrumentation API),\n"
 "** на этапе выполнения кода (через Reflection API)."
 msgstr ""
-"* Аннотация -- способ разметки кода на Java, через добавление метаинформации "
-"к различным элементам программы на Java.\n"
-"* Работают приблизительно как модификаторы (`public`, `static`), но "
-"существует развитый механизм создания собственных аннотаций.\n"
-"* Могут быть обработаны на трёх этапах:\n"
-"** на этапе кодогенерации перед компиляцией (annotation processing, Language "
-"Model API),\n"
-"** на этапе инструментации байт-кода (Instrumentation API),\n"
-"** на этапе выполнения кода (через Reflection API)."
+"* Annotation is a way of marking up Java code by adding meta-information to "
+"various elements of a Java program.\n"
+"* They work approximately like modifiers (`public`, `static`), but there is "
+"a mechanism for creating your own annotations.\n"
+"* Can be processed at three stages:\n"
+"** at the stage of code generation before compilation (annotation "
+"processing, Language Model API),\n"
+"** at the stage of instrumentation of bytecode (Instrumentation API),\n"
+"** at the stage of code execution (via Reflection API)."
 
 #: lecture.adoc:1976
 msgid "== Синтаксис определения аннотаций"
-msgstr "== Синтаксис определения аннотаций"
+msgstr "== Annotation definition syntax"
 
 #: lecture.adoc:1984
 msgid ""
@@ -4327,7 +4304,7 @@ msgid ""
 "----\n"
 "== Annotation Interfaces"
 msgstr ""
-"== Пример\n"
+"== Example\n"
 "[source,java]\n"
 "----\n"
 "public @interface BugReport {\n"
@@ -4345,15 +4322,16 @@ msgid ""
 "* Нельзя расширять наследованием, нельзя параметризовать через generics.\n"
 "* Методы не могут иметь параметров."
 msgstr ""
-"* Подобно тому, как `enum`-классы -- это специальный вид классов, annotation-"
-"интерфейсы -- это специальный вид интерфейсов.\n"
-"* Наследуются от `java.lang.annotation.Annotation`.\n"
-"* Нельзя расширять наследованием, нельзя параметризовать через generics.\n"
-"* Методы не могут иметь параметров."
+"* Just as `enum` classes are a special kind of class, annotation interfaces "
+"are a special kind of interface.\n"
+"* Inherited from `java.lang.annotation.Annotation`.\n"
+"* Cannot be extended by inheritance, cannot be parameterized through "
+"generics.\n"
+"* Methods cannot have parameters."
 
 #: lecture.adoc:2001
 msgid "== Допустимые типы методов аннотации (JLS 9.6.1)"
-msgstr "== Допустимые типы методов аннотации (JLS 9.6.1)"
+msgstr "== Valid return types of annotation methods (JLS 9.6.1)"
 
 #: lecture.adoc:2008
 msgid ""
@@ -4366,18 +4344,18 @@ msgid ""
 "* другие аннотации,\n"
 "* массивы из вышеперечисленного (но не массивы массивов)."
 msgstr ""
-"* Примитивы (`int`, `short`, `long`, `byte`, `char`, `double`, `float`, "
+"* Primitives (`int`, `short`, `long`, `byte`, `char`, `double`, `float`, "
 "`boolean`),\n"
-"* enum-ы,\n"
+"* enums,\n"
 "* `String`,\n"
-"* `Class` (с возможным ограничителем параметра, вроде `Class<? extends "
+"* `Class` (with a possible parameter restriction like `Class<? extends "
 "MyClass>`),\n"
-"* другие аннотации,\n"
-"* массивы из вышеперечисленного (но не массивы массивов)."
+"* other annotations,\n"
+"* arrays of the above (but not arrays of arrays)."
 
 #: lecture.adoc:2010
 msgid "== Пример определения интерфейса аннотации"
-msgstr "== Пример определения интерфейса аннотации"
+msgstr "== Annotation Interface Definition Example"
 
 #: lecture.adoc:2018
 msgid ""
@@ -4392,7 +4370,7 @@ msgstr ""
 "[source,java]\n"
 "----\n"
 "public @interface BugReport {\n"
-"  //вложенные типы допустимы!\n"
+"  //nested types are valid!\n"
 "  enum Status {UNCONFIRMED, CONFIRMED, FIXED, NOTABUG}\n"
 "  boolean showStopper() default false;\n"
 "  String assignedTo() default \"\";"
@@ -4403,7 +4381,7 @@ msgid ""
 "  Class<?> testCase() default Void.class;\n"
 "  Status status() default Status.UNCONFIRMED;"
 msgstr ""
-"  //метакласс, речь впереди\n"
+"  //metaclass, to be explained later\n"
 "  Class<?> testCase() default Void.class;\n"
 "  Status status() default Status.UNCONFIRMED;"
 
@@ -4416,18 +4394,17 @@ msgid ""
 "}\n"
 "----"
 msgstr ""
-"  //Тип аннотации. При конструировании используется синтаксис\n"
-"  //аннотации, речь впереди\n"
+"  //Annotation type. We use a special syntax to construct an instance ,\n"
+"  //to be explained later\n"
 "  Reference ref() default @Reference(id = \"\");\n"
 "  String[] reportedBy();\n"
 "}\n"
 "----"
 
 #: lecture.adoc:2031
-#, fuzzy
 msgctxt "lecture.adoc:2031"
 msgid "== Использование аннотаций"
-msgstr "== Использование аннотаций"
+msgstr "== Use of annotations"
 
 #: lecture.adoc:2034
 msgid ""
@@ -4450,10 +4427,9 @@ msgstr ""
 "----"
 
 #: lecture.adoc:2041
-#, fuzzy
 msgctxt "lecture.adoc:2041"
 msgid "== Использование аннотаций"
-msgstr "== Использование аннотаций"
+msgstr "== Use of annotations"
 
 #: lecture.adoc:2045
 msgid ""
@@ -4470,7 +4446,7 @@ msgid ""
 "//порядок не имеет значения\n"
 "@BugReport(severity=10, assignedTo=\"Harry\")"
 msgstr ""
-"//порядок не имеет значения\n"
+"//order doesn't matter\n"
 "@BugReport(severity=10, assignedTo=\"Harry\")"
 
 #: lecture.adoc:2051
@@ -4478,7 +4454,7 @@ msgid ""
 "//если заданы значения по умолчанию, то можно пропускать\n"
 "@BugReport(severity=10)"
 msgstr ""
-"//если заданы значения по умолчанию, то можно пропускать\n"
+"//if default values are set, you can skip the parameters\n"
 "@BugReport(severity=10)"
 
 #: lecture.adoc:2055
@@ -4487,8 +4463,8 @@ msgid ""
 "//то можно не ставить скобки\n"
 "@BugReport"
 msgstr ""
-"//если параметров нет или все имеют умолчания, \n"
-"//то можно не ставить скобки\n"
+"//if there are no parameters or all of them have default, \n"
+"//then brackets can be omitted\n"
 "@BugReport"
 
 #: lecture.adoc:2059
@@ -4497,8 +4473,8 @@ msgid ""
 "//(иначе ошибка компиляции).\n"
 "----"
 msgstr ""
-"//Если на параметр не задан default, его надо  обязательно определять \n"
-"//(иначе ошибка компиляции).\n"
+"//if there is no default value for the parameter, it must be defined \n"
+"//(otherwise a compilation error).\n"
 "----"
 
 #: lecture.adoc:2061
@@ -4526,7 +4502,7 @@ msgid ""
 "//использование\n"
 "@ActionListenerFor(\"yellowButton\")"
 msgstr ""
-"//использование\n"
+"//use\n"
 "@ActionListenerFor(\"yellowButton\")"
 
 #: lecture.adoc:2074
@@ -4534,7 +4510,7 @@ msgid ""
 "//что эквивалентно\n"
 "@ActionListenerFor(value = \"yellowButton\")"
 msgstr ""
-"//что эквивалентно\n"
+"//which is equivalent to\n"
 "@ActionListenerFor(value = \"yellowButton\")"
 
 #: lecture.adoc:2078
@@ -4543,13 +4519,13 @@ msgid ""
 "@ActionListenerFor(value = \"yellowButton\", priority = 1)\n"
 "----"
 msgstr ""
-"//в то же время:\n"
+"//at the same time:\n"
 "@ActionListenerFor(value = \"yellowButton\", priority = 1)\n"
 "----"
 
 #: lecture.adoc:2082
 msgid "== Массивы и другие аннотации"
-msgstr "== Массивы и другие аннотации"
+msgstr "== Arrays and other annotations"
 
 #: lecture.adoc:2087
 msgid ""
@@ -4560,7 +4536,7 @@ msgid ""
 msgstr ""
 "[source,java]\n"
 "----\n"
-"//Массивы задаются в фигурных скобках\n"
+"//Arrays are specified in curly braces\n"
 "@BugReport(..., reportedBy = {\"Harry\", \"Carl\"})"
 
 #: lecture.adoc:2090
@@ -4568,7 +4544,7 @@ msgid ""
 "//То же самое, что {\"Harry\"}\n"
 "@BugReport(..., reportedBy = \"Harry\")"
 msgstr ""
-"//То же самое, что {\"Harry\"}\n"
+"//Same as {\"Harry\"}\n"
 "@BugReport(..., reportedBy = \"Harry\")"
 
 #: lecture.adoc:2093
@@ -4576,7 +4552,7 @@ msgid ""
 "//Конструирование вложенных аннотаций\n"
 "@BugReport(..., ref = @Reference(id = \"12345\"))"
 msgstr ""
-"//Конструирование вложенных аннотаций\n"
+"//Constructing nested annotations\n"
 "@BugReport(..., ref = @Reference(id = \"12345\"))"
 
 #: lecture.adoc:2097
@@ -4585,8 +4561,8 @@ msgid ""
 "//можно задать сколь угодно сложную структуру данных\n"
 "----"
 msgstr ""
-"//...Как видим, используя разрешённые типы,\n"
-"//можно задать сколь угодно сложную структуру данных\n"
+"//... As you can see, using the allowed types,\n"
+"//you can specify an arbitrarily complex data structure\n"
 "----"
 
 #: lecture.adoc:2099
@@ -4594,8 +4570,8 @@ msgid ""
 "WARNING: Значение аннотации не может быть установлено в `null`. Не "
 "допускатся `null` даже в `default`-значениях. "
 msgstr ""
-"WARNING: Значение аннотации не может быть установлено в `null`. Не "
-"допускатся `null` даже в `default`-значениях. "
+"WARNING: The annotation value cannot be set to `null`. `null` will not be "
+"allowed even for `default` values. "
 
 #~ msgctxt "./slides11/src/main/asciidoc/lecture.adoc:108"
 #~ msgid "== ConcurrentLinkedQueue/Deque"
