@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: slides 02\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-01-16 14:09+0300\n"
+"PO-Revision-Date: 2022-02-04 14:40+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -512,7 +512,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:229
-#, fuzzy
 msgctxt "lecture.adoc:229"
 msgid "'''"
 msgstr "'''"
@@ -564,7 +563,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:252
-#, fuzzy
 msgctxt "lecture.adoc:252"
 msgid "'''"
 msgstr "'''"
@@ -962,13 +960,11 @@ msgstr ""
 "| the highest (sign) bit is filled with zero"
 
 #: lecture.adoc:424
-#, fuzzy
 msgctxt "lecture.adoc:424"
 msgid "|==="
 msgstr "|==="
 
 #: lecture.adoc:427
-#, fuzzy
 msgctxt "lecture.adoc:427"
 msgid "== Не перемудрите со сдвигами!!"
 msgstr "== Don't overdo it with shifts!!"
@@ -978,7 +974,6 @@ msgid "`5 >> 32 == ?`"
 msgstr "`5 >> 32 == ?`"
 
 #: lecture.adoc:431
-#, fuzzy
 msgctxt "lecture.adoc:431"
 msgid "== Не перемудрите со сдвигами!!"
 msgstr "== Don't overdo it with shifts!!"
@@ -1142,7 +1137,6 @@ msgstr ""
 "|==="
 
 #: lecture.adoc:505
-#, fuzzy
 msgctxt "lecture.adoc:505"
 msgid "== Операторы в порядке убывания приоритета (продолжение)"
 msgstr "== Operators in descending order of priority (continued)"
@@ -1184,7 +1178,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:525
-#, fuzzy
 msgctxt "lecture.adoc:525"
 msgid "== Операторы в порядке убывания приоритета (продолжение)"
 msgstr "== Operators in descending order of priority (continued)"
@@ -1286,7 +1279,6 @@ msgstr ""
 "skinparam dpi 200 "
 
 #: lecture.adoc:567
-#, fuzzy
 msgctxt "lecture.adoc:567"
 msgid "start"
 msgstr "start"
@@ -1302,7 +1294,6 @@ msgstr ""
 "    else (false)"
 
 #: lecture.adoc:574
-#, fuzzy
 msgctxt "lecture.adoc:574"
 msgid ""
 "endif\n"
@@ -1364,7 +1355,6 @@ msgstr ""
 "skinparam dpi 200 "
 
 #: lecture.adoc:599
-#, fuzzy
 msgctxt "lecture.adoc:599"
 msgid "start"
 msgstr "start"
@@ -1382,7 +1372,6 @@ msgstr ""
 "    else (false)"
 
 #: lecture.adoc:607
-#, fuzzy
 msgctxt "lecture.adoc:607"
 msgid ""
 "endif\n"
@@ -1392,7 +1381,6 @@ msgstr ""
 "stop"
 
 #: lecture.adoc:611
-#, fuzzy
 msgctxt "lecture.adoc:611"
 msgid ""
 "@enduml\n"
@@ -1454,7 +1442,6 @@ msgstr ""
 "skinparam dpi 200 "
 
 #: lecture.adoc:636
-#, fuzzy
 msgctxt "lecture.adoc:636"
 msgid "start"
 msgstr "start"
@@ -1482,7 +1469,6 @@ msgstr ""
 "stop"
 
 #: lecture.adoc:650
-#, fuzzy
 msgctxt "lecture.adoc:650"
 msgid ""
 "@enduml\n"
@@ -1544,7 +1530,6 @@ msgstr ""
 "skinparam dpi 200 "
 
 #: lecture.adoc:674
-#, fuzzy
 msgctxt "lecture.adoc:674"
 msgid "start"
 msgstr "start"
@@ -1574,7 +1559,6 @@ msgstr ""
 "stop"
 
 #: lecture.adoc:688
-#, fuzzy
 msgctxt "lecture.adoc:688"
 msgid ""
 "@enduml\n"
@@ -1590,7 +1574,6 @@ msgid "== Цепочки `else if`"
 msgstr "== `else if` chains"
 
 #: lecture.adoc:694
-#, fuzzy
 msgctxt "lecture.adoc:694"
 msgid ""
 "[cols=\"40a,60a\"]\n"
@@ -1650,7 +1633,6 @@ msgstr ""
 "skinparam dpi 200 "
 
 #: lecture.adoc:718
-#, fuzzy
 msgctxt "lecture.adoc:718"
 msgid "start"
 msgstr "start"
@@ -1686,7 +1668,6 @@ msgstr ""
 "stop"
 
 #: lecture.adoc:736
-#, fuzzy
 msgctxt "lecture.adoc:736"
 msgid ""
 "@enduml\n"
@@ -1706,7 +1687,6 @@ msgid "Та же ерунда, что и в C/C++:"
 msgstr "Same nonsense as in C/C++:"
 
 #: lecture.adoc:746
-#, fuzzy
 msgctxt "lecture.adoc:746"
 msgid ""
 "[cols=\"40a,60a\"]\n"
@@ -1768,7 +1748,6 @@ msgstr ""
 "skinparam dpi 200 "
 
 #: lecture.adoc:772
-#, fuzzy
 msgctxt "lecture.adoc:772"
 msgid "start"
 msgstr "start"
@@ -1798,7 +1777,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:785
-#, fuzzy
 msgctxt "lecture.adoc:785"
 msgid "|==="
 msgstr "|==="
@@ -2328,7 +2306,6 @@ msgid "== Цикл `while`: то же, что и в C"
 msgstr "== `while` loop: same as in C"
 
 #: lecture.adoc:1033
-#, fuzzy
 msgctxt "lecture.adoc:1033"
 msgid ""
 "[cols=\"50a,50a\"]\n"
@@ -2382,7 +2359,6 @@ msgstr ""
 "skinparam dpi 170 "
 
 #: lecture.adoc:1054
-#, fuzzy
 msgctxt "lecture.adoc:1054"
 msgid "start"
 msgstr "start"
@@ -2412,13 +2388,11 @@ msgstr ""
 "stop"
 
 #: lecture.adoc:1066
-#, fuzzy
 msgctxt "lecture.adoc:1066"
 msgid "@enduml"
 msgstr "@enduml"
 
 #: lecture.adoc:1068
-#, fuzzy
 msgctxt "lecture.adoc:1068"
 msgid "|==="
 msgstr "|==="
@@ -2452,7 +2426,6 @@ msgid "==  `do while`: цикл с постусловием"
 msgstr "== `do while`: loop with postcondition"
 
 #: lecture.adoc:1085
-#, fuzzy
 msgctxt "lecture.adoc:1085"
 msgid ""
 "[cols=\"50a,50a\"]\n"
@@ -2506,7 +2479,6 @@ msgstr ""
 "skinparam dpi 120 "
 
 #: lecture.adoc:1106
-#, fuzzy
 msgctxt "lecture.adoc:1106"
 msgid "start"
 msgstr "start"
@@ -2532,7 +2504,6 @@ msgid "stop"
 msgstr "stop"
 
 #: lecture.adoc:1117
-#, fuzzy
 msgctxt "lecture.adoc:1117"
 msgid "@enduml"
 msgstr "@enduml"
