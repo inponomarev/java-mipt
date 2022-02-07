@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: slides 04\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-01-16 14:11+0300\n"
+"PO-Revision-Date: 2022-02-07 13:40+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -96,7 +96,6 @@ msgstr ""
 "  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };"
 
 #: lecture.adoc:41
-#, fuzzy
 msgctxt "lecture.adoc:41"
 msgid ". . ."
 msgstr ". . ."
@@ -156,7 +155,6 @@ msgstr ""
 "}"
 
 #: lecture.adoc:68
-#, fuzzy
 msgctxt "lecture.adoc:68"
 msgid ". . ."
 msgstr ". . ."
@@ -274,7 +272,6 @@ msgstr ""
 "RuntimeException <|-- IndexOutOfBoundsException"
 
 #: lecture.adoc:114
-#, fuzzy
 msgctxt "lecture.adoc:114"
 msgid "Exception <|-- IOException"
 msgstr "Exception <|-- IOException"
@@ -357,7 +354,6 @@ msgstr ""
 "* Truth of Life: IDE does everything for you"
 
 #: lecture.adoc:151
-#, fuzzy
 msgctxt "lecture.adoc:151"
 msgid "== Выбрасывание исключений"
 msgstr "== Throwing exceptions"
@@ -383,7 +379,6 @@ msgstr ""
 "it's either declared or handled in the same method.)"
 
 #: lecture.adoc:161
-#, fuzzy
 msgctxt "lecture.adoc:161"
 msgid "== Выбрасывание исключений"
 msgstr "== Throwing exceptions"
@@ -470,7 +465,6 @@ msgid "== Как поймать несколько типов исключени
 msgstr "== How to catch several types of exceptions"
 
 #: lecture.adoc:200
-#, fuzzy
 msgctxt "lecture.adoc:200"
 msgid ""
 "[plantuml, iomultiple, png]\n"
@@ -482,19 +476,16 @@ msgstr ""
 "@startuml"
 
 #: lecture.adoc:202
-#, fuzzy
 msgctxt "lecture.adoc:202"
 msgid "skinparam dpi 180 "
 msgstr "skinparam dpi 180 "
 
 #: lecture.adoc:204
-#, fuzzy
 msgctxt "lecture.adoc:204"
 msgid "IOException <|-- FileNotFoundException"
 msgstr "IOException <|-- FileNotFoundException"
 
 #: lecture.adoc:208
-#, fuzzy
 msgctxt "lecture.adoc:208"
 msgid ""
 "IOException <|-- UnknownHostException\n"
@@ -538,7 +529,6 @@ msgid "== try-multicatch"
 msgstr "== try-multicatch"
 
 #: lecture.adoc:227
-#, fuzzy
 msgctxt "lecture.adoc:227"
 msgid ""
 "[plantuml, iomultiple, png]\n"
@@ -550,19 +540,16 @@ msgstr ""
 "@startuml"
 
 #: lecture.adoc:229
-#, fuzzy
 msgctxt "lecture.adoc:229"
 msgid "skinparam dpi 180 "
 msgstr "skinparam dpi 180 "
 
 #: lecture.adoc:231
-#, fuzzy
 msgctxt "lecture.adoc:231"
 msgid "IOException <|-- FileNotFoundException"
 msgstr "IOException <|-- FileNotFoundException"
 
 #: lecture.adoc:235
-#, fuzzy
 msgctxt "lecture.adoc:235"
 msgid ""
 "IOException <|-- UnknownHostException\n"
@@ -689,7 +676,6 @@ msgstr ""
 "@startuml"
 
 #: lecture.adoc:289
-#, fuzzy
 msgctxt "lecture.adoc:289"
 msgid "skinparam dpi 200 "
 msgstr "skinparam dpi 200 "
@@ -888,7 +874,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:375
-#, fuzzy
 msgctxt "lecture.adoc:375"
 msgid "== Беда с finally-block"
 msgstr "== A problem with `finally` block"
@@ -922,7 +907,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:389
-#, fuzzy
 msgctxt "lecture.adoc:389"
 msgid "== Беда с finally-block"
 msgstr "== A problem with `finally` block"
@@ -1048,7 +1032,6 @@ msgstr ""
 "@startuml"
 
 #: lecture.adoc:446
-#, fuzzy
 msgctxt "lecture.adoc:446"
 msgid "skinparam dpi 200 "
 msgstr "skinparam dpi 200 "
@@ -1078,7 +1061,6 @@ msgstr ""
 "}"
 
 #: lecture.adoc:459
-#, fuzzy
 msgctxt "lecture.adoc:459"
 msgid "Exception <|-- IOException"
 msgstr "Exception <|-- IOException"
@@ -1096,7 +1078,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:466
-#, fuzzy
 msgctxt "lecture.adoc:466"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr "== Exceptions are for exceptional cases!"
@@ -1136,7 +1117,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:485
-#, fuzzy
 msgctxt "lecture.adoc:485"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr "== Exceptions are for exceptional cases!"
@@ -1651,7 +1631,6 @@ msgid "== Пул строковых констант"
 msgstr "== Internal String constants pool"
 
 #: lecture.adoc:634
-#, fuzzy
 msgctxt "lecture.adoc:634"
 msgid ""
 "[cols=\"35a,65a\"]\n"
@@ -1701,7 +1680,6 @@ msgstr ""
 "  rankdir=\"LR\";"
 
 #: lecture.adoc:658
-#, fuzzy
 msgctxt "lecture.adoc:658"
 msgid ""
 "      subgraph cluster_s2{\n"
@@ -1763,13 +1741,11 @@ msgstr ""
 "besides spaces, tabs, carriage returns etc.!"
 
 #: lecture.adoc:680
-#, fuzzy
 msgctxt "lecture.adoc:680"
 msgid "== Интернирование строк"
 msgstr "== String interning"
 
 #: lecture.adoc:684
-#, fuzzy
 msgctxt "lecture.adoc:684"
 msgid ""
 "[cols=\"35a,65a\"]\n"
@@ -1819,7 +1795,6 @@ msgstr ""
 "  rankdir=\"LR\";"
 
 #: lecture.adoc:708
-#, fuzzy
 msgctxt "lecture.adoc:708"
 msgid ""
 "      subgraph cluster_s2{\n"
@@ -1861,13 +1836,11 @@ msgstr ""
 "|===="
 
 #: lecture.adoc:721
-#, fuzzy
 msgctxt "lecture.adoc:721"
 msgid "== Интернирование строк"
 msgstr "== String interning"
 
 #: lecture.adoc:725
-#, fuzzy
 msgctxt "lecture.adoc:725"
 msgid ""
 "[cols=\"35a,65a\"]\n"

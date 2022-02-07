@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: slides 03\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-01-16 14:10+0300\n"
+"PO-Revision-Date: 2022-02-07 13:35+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -340,7 +340,6 @@ msgstr ""
 "}"
 
 #: lecture.adoc:141
-#, fuzzy
 msgctxt "lecture.adoc:141"
 msgid "----"
 msgstr "----"
@@ -430,7 +429,6 @@ msgstr ""
 "-----"
 
 #: lecture.adoc:182
-#, fuzzy
 msgctxt "lecture.adoc:182"
 msgid "== Присвоение ссылки"
 msgstr "== Reference assignment"
@@ -468,7 +466,6 @@ msgstr ""
 "-----"
 
 #: lecture.adoc:198
-#, fuzzy
 msgctxt "lecture.adoc:198"
 msgid "== Присвоение ссылки"
 msgstr "== Reference assignment"
@@ -646,7 +643,6 @@ msgstr ""
 "rather a bad practice."
 
 #: lecture.adoc:278
-#, fuzzy
 msgctxt "lecture.adoc:278"
 msgid "== Наследование"
 msgstr "== Inheritance"
@@ -714,7 +710,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:309
-#, fuzzy
 msgctxt "lecture.adoc:309"
 msgid "== Наследование"
 msgstr "== Inheritance"
@@ -1250,7 +1245,6 @@ msgstr ""
 "Employee.nextId() //class name instead of object"
 
 #: lecture.adoc:545
-#, fuzzy
 msgctxt "lecture.adoc:545"
 msgid "----"
 msgstr "----"
@@ -1952,7 +1946,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:853
-#, fuzzy
 msgctxt "lecture.adoc:853"
 msgid "== Вложенные классы"
 msgstr "== Nested classes"
@@ -2004,7 +1997,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:876
-#, fuzzy
 msgctxt "lecture.adoc:876"
 msgid "== Вложенные классы"
 msgstr "== Nested classes"
@@ -2036,7 +2028,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:890
-#, fuzzy
 msgctxt "lecture.adoc:890"
 msgid "== Вложенные классы"
 msgstr "== Nested classes"
@@ -2074,7 +2065,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:907
-#, fuzzy
 msgctxt "lecture.adoc:907"
 msgid "== Вложенные классы"
 msgstr "== Nested classes"
@@ -2323,7 +2313,6 @@ msgstr ""
 "});"
 
 #: lecture.adoc:1022
-#, fuzzy
 msgctxt "lecture.adoc:1022"
 msgid "----"
 msgstr "----"
@@ -2451,7 +2440,6 @@ msgstr ""
 "of the IDE or https://projectlombok.org/[Lombok] library."
 
 #: lecture.adoc:1065
-#, fuzzy
 msgctxt "lecture.adoc:1065"
 msgid "== Генерация `equals` и `hashCode`"
 msgstr "== Code generation of 'equals' and 'hashCode'"
@@ -2461,7 +2449,6 @@ msgid "image::generateequals.png[{image-50-width}]"
 msgstr "image::generateequals.png[{image-50-width}]"
 
 #: lecture.adoc:1069
-#, fuzzy
 msgctxt "lecture.adoc:1069"
 msgid "== Генерация `equals` и `hashCode`"
 msgstr "== Code generation of 'equals' and 'hashCode'"
@@ -2515,7 +2502,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:1093
-#, fuzzy
 msgctxt "lecture.adoc:1093"
 msgid "== Или, если у нас Lombok"
 msgstr "== Or if we have Lombok"
@@ -2591,7 +2577,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:1128
-#, fuzzy
 msgctxt "lecture.adoc:1128"
 msgid "== Или, если у нас Lombok"
 msgstr "== Or if we have Lombok"
@@ -2673,7 +2658,6 @@ msgstr ""
 "----"
 
 #: lecture.adoc:1164
-#, fuzzy
 msgctxt "lecture.adoc:1164"
 msgid "== Или, если у нас Lombok"
 msgstr "== Or if we have Lombok"
