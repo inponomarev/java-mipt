@@ -22,6 +22,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_width: 1600
 :revealjs_height: 900
 :stem: latexmath
+:zsp: &#8203;
 
 //== Часть 1. Введение
 :!figure-caption:
@@ -572,7 +573,7 @@ public class Person {
 }
 ----
 
-== Конструкторы
+== {zsp}Конструкторы{zsp}
 
 * Конструктор _обязан_ быть.
 

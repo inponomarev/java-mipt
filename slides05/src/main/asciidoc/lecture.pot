@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"POT-Creation-Date: 2022-02-12 13:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -498,25 +498,13 @@ msgid ""
 msgstr ""
 
 #: lecture.adoc:352
-msgid "== Кэширование `Integer`"
-msgstr ""
-
-#: lecture.adoc:357
-msgid ""
-"* По умолчанию: -128..127\n"
-"* Можно поднять верхнюю границу через параметр +\n"
-"`-XX:AutoBoxCacheMax=<size>`\n"
-"* Нижнюю границу опустить нельзя :-)"
+msgid "== Что и как кэшируется"
 msgstr ""
 
 #: lecture.adoc:359
-msgid "== Что и как ещё кэшируется"
-msgstr ""
-
-#: lecture.adoc:366
 msgid ""
+"* `Integer`, `Short`, `Long` -- -128..127\n"
 "* `Byte` -- полностью (-128..127)\n"
-"* `Short`, `Long` -- -128..127\n"
 "* `Character` -- 0..127\n"
 "* `Boolean` -- `Boolean.TRUE` и `Boolean.FALSE`\n"
 "* `Float`, `Double` -- не кэшируются, хотя в JavaDoc для `valueOf` прописана "
@@ -524,26 +512,18 @@ msgid ""
 "* Правда жизни: вы чаще будете использовать autoboxing, чем `valueOf`."
 msgstr ""
 
-#: lecture.adoc:368
-msgid "== Для чего я рассказал про кэширование"
-msgstr ""
-
-#: lecture.adoc:370
-msgid "image::drake.jpg[{image-40-width}]"
-msgstr ""
-
-#: lecture.adoc:372
+#: lecture.adoc:362
 msgid "== Autoboxing & unboxing"
 msgstr ""
 
-#: lecture.adoc:376
+#: lecture.adoc:366
 msgid ""
 "[source,java]\n"
 "----\n"
 "ArrayList<Integer> list = new ArrayList<>();"
 msgstr ""
 
-#: lecture.adoc:381
+#: lecture.adoc:371
 msgid ""
 "//autoboxing :-)\n"
 "list.add(3);\n"
@@ -551,7 +531,7 @@ msgid ""
 "list.add(Integer.valueOf(3));"
 msgstr ""
 
-#: lecture.adoc:387
+#: lecture.adoc:377
 msgid ""
 "//unboxing :-)\n"
 "int n = list.get(i);\n"
@@ -560,11 +540,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:389
+#: lecture.adoc:379
 msgid "== Не всегда всё так очевидно с автобоксингом"
 msgstr ""
 
-#: lecture.adoc:396
+#: lecture.adoc:386
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -574,7 +554,7 @@ msgid ""
 "n++;"
 msgstr ""
 
-#: lecture.adoc:401
+#: lecture.adoc:391
 msgid ""
 "Integer a = 1000;\n"
 "Integer b = 1000;\n"
@@ -582,15 +562,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:403
+#: lecture.adoc:393
 msgid "== Превращение числа из строки и в строку"
 msgstr ""
 
-#: lecture.adoc:405
+#: lecture.adoc:395
 msgid "Статические методы:"
 msgstr ""
 
-#: lecture.adoc:410
+#: lecture.adoc:400
 msgid ""
 "* `Integer.parseInt(value, radix)`\n"
 "* `Integer.toString(value, radix)`\n"
@@ -598,11 +578,11 @@ msgid ""
 "* `Double.toString(value)`"
 msgstr ""
 
-#: lecture.adoc:413
+#: lecture.adoc:403
 msgid "== Класс `BigInteger` "
 msgstr ""
 
-#: lecture.adoc:418
+#: lecture.adoc:408
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -610,7 +590,7 @@ msgid ""
 "BigInteger j = new BigInteger(\"123456789012345678901234567892\");"
 msgstr ""
 
-#: lecture.adoc:424
+#: lecture.adoc:414
 msgid ""
 "BigInteger sum = i.add(j);\n"
 "BigInteger difference = i.subtract(j);\n"
@@ -619,11 +599,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:426
+#: lecture.adoc:416
 msgid "== Класс `BigDecimal`"
 msgstr ""
 
-#: lecture.adoc:437
+#: lecture.adoc:427
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -637,7 +617,7 @@ msgid ""
 "    BigDecimal total = discountedAmount.add(tax);"
 msgstr ""
 
-#: lecture.adoc:443
+#: lecture.adoc:433
 msgid ""
 "    // round to 2 decimal places using HALF_EVEN\n"
 "    BigDecimal roundedTotal = total.setScale(2, RoundingMode.HALF_EVEN);\n"
@@ -646,56 +626,56 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:445
+#: lecture.adoc:435
 msgid "== Ввод-вывод"
 msgstr ""
 
-#: lecture.adoc:447
+#: lecture.adoc:437
 msgid "image::IBM2741.JPG[{image-50-width}]"
 msgstr ""
 
-#: lecture.adoc:449
+#: lecture.adoc:439
 msgid ""
 "IBM2741 terminal, 1965 (источник: "
 "https://en.wikipedia.org/wiki/IBM_2741[Wikipedia])"
 msgstr ""
 
-#: lecture.adoc:452
+#: lecture.adoc:442
 msgid "== Полный зоопарк классов ввода-вывода"
 msgstr ""
 
-#: lecture.adoc:455
+#: lecture.adoc:445
 msgid ""
 ".Cay Horstmann. Core Java, vol. II\n"
 "image::input-output.jpg[]"
 msgstr ""
 
-#: lecture.adoc:457
+#: lecture.adoc:447
 msgid "== Классы для ввода-вывода текста"
 msgstr ""
 
-#: lecture.adoc:460
+#: lecture.adoc:450
 msgid ""
 ".Cay Horstmann. Core Java, vol. II\n"
 "image::reader-writer.jpg[]"
 msgstr ""
 
-#: lecture.adoc:462
+#: lecture.adoc:452
 msgid "== Базовые потоки ввода/вывода"
 msgstr ""
 
-#: lecture.adoc:466
+#: lecture.adoc:456
 msgid ""
 "[plantuml, iostreams, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:468
+#: lecture.adoc:458
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: lecture.adoc:475
+#: lecture.adoc:465
 msgid ""
 "abstract class InputStream {\n"
 "  + read(): int throws IOException\n"
@@ -705,7 +685,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:481
+#: lecture.adoc:471
 msgid ""
 "abstract class OutputStream {\n"
 "  + write(int b): void throws IOException\n"
@@ -714,30 +694,30 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:485
+#: lecture.adoc:475
 msgid ""
 "interface Closeable {\n"
 "  + close() throws IOException\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:488
+#: lecture.adoc:478
 msgid ""
 "Closeable <|.. InputStream\n"
 "Closeable <|.. OutputStream"
 msgstr ""
 
-#: lecture.adoc:491
+#: lecture.adoc:481
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:493
+#: lecture.adoc:483
 msgid "== Комбинирование потоков"
 msgstr ""
 
-#: lecture.adoc:503
+#: lecture.adoc:493
 msgid ""
 "[plantuml, combining, png]\n"
 "----\n"
@@ -750,14 +730,14 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:507
+#: lecture.adoc:497
 msgid ""
 "[source,java]\n"
 "----\n"
 "Path path = Paths.get(\"path/to/file.dat\");"
 msgstr ""
 
-#: lecture.adoc:516
+#: lecture.adoc:506
 msgid ""
 "try (DataInputStream dis =\n"
 "         new DataInputStream(\n"
@@ -769,7 +749,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:521
+#: lecture.adoc:511
 msgid ""
 "== Комбинирование потоков: чтение Zip-файла\n"
 "[source,java]\n"
@@ -777,7 +757,7 @@ msgid ""
 "Path path = Paths.get(\"path/to/file.zip\");"
 msgstr ""
 
-#: lecture.adoc:528
+#: lecture.adoc:518
 msgid ""
 "try(ZipInputStream zis =  new ZipInputStream(\n"
 "    Files.newInputStream(path));\n"
@@ -787,28 +767,28 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:530
+#: lecture.adoc:520
 msgid "== Чтение/запись текстовых данных"
 msgstr ""
 
-#: lecture.adoc:532
+#: lecture.adoc:522
 msgid "Современный, простой и правильный метод:"
 msgstr ""
 
-#: lecture.adoc:536
+#: lecture.adoc:526
 msgid ""
 "[source,java]\n"
 "----\n"
 "Path path = Paths.get(\"path/to/file.txt\");"
 msgstr ""
 
-#: lecture.adoc:539
+#: lecture.adoc:529
 msgid ""
 "//Ленивая вычитка\n"
 "Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8);"
 msgstr ""
 
-#: lecture.adoc:544
+#: lecture.adoc:534
 msgid ""
 "//Вычитка всего содержимого в память\n"
 "List<String> strings = \n"
@@ -816,11 +796,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:546
+#: lecture.adoc:536
 msgid "== Использование BufferedReader"
 msgstr ""
 
-#: lecture.adoc:557
+#: lecture.adoc:547
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -834,11 +814,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:559
+#: lecture.adoc:549
 msgid "== Сохранение готовых данных в текст"
 msgstr ""
 
-#: lecture.adoc:565
+#: lecture.adoc:555
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -847,13 +827,13 @@ msgid ""
 "lines.add(...)"
 msgstr ""
 
-#: lecture.adoc:568
+#: lecture.adoc:558
 msgid ""
 "//Если всё уже готово в памяти \n"
 "Files.write(path, lines, StandardCharsets.UTF_8);"
 msgstr ""
 
-#: lecture.adoc:580
+#: lecture.adoc:570
 msgid ""
 "----\n"
 "== Сохранение данных в текст по мере поступления\n"
@@ -868,24 +848,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:582
-msgctxt "lecture.adoc:582"
+#: lecture.adoc:572
+msgctxt "lecture.adoc:572"
 msgid "== Работа с файловой системой"
 msgstr ""
 
-#: lecture.adoc:585
+#: lecture.adoc:575
 msgid ""
 "* Устаревший `File` (ещё может встретиться, в частности, как аргумент "
 "конструктора `FileInputStream`).\n"
 "* Более современный `Path` (Java 7+)"
 msgstr ""
 
-#: lecture.adoc:587
-msgctxt "lecture.adoc:587"
+#: lecture.adoc:577
+msgctxt "lecture.adoc:577"
 msgid "== Работа с файловой системой"
 msgstr ""
 
-#: lecture.adoc:592
+#: lecture.adoc:582
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -893,29 +873,29 @@ msgid ""
 "//на уже существующий файл или каталог!!"
 msgstr ""
 
-#: lecture.adoc:595
+#: lecture.adoc:585
 msgid ""
 "Path absolute = Paths.get(\"/home\", \"harry\");\n"
 "Path relative = Paths.get(\"myprog\", \"conf\", \"user.properties\");"
 msgstr ""
 
-#: lecture.adoc:597
+#: lecture.adoc:587
 msgid "Path subPath = absolute.resolve(\"file.txt\");"
 msgstr ""
 
-#: lecture.adoc:601
+#: lecture.adoc:591
 msgid ""
 "subPath.getParent(); //родитель\n"
 "subPath.getFileName(); //последняя компонента пути\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:603
-msgctxt "lecture.adoc:603"
+#: lecture.adoc:593
+msgctxt "lecture.adoc:593"
 msgid "== Работа с файловой системой"
 msgstr ""
 
-#: lecture.adoc:612
+#: lecture.adoc:602
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -927,18 +907,18 @@ msgid ""
 "Files.createFile(path);"
 msgstr ""
 
-#: lecture.adoc:616
+#: lecture.adoc:606
 msgid ""
 "//создаёт временный файл в локации, специфичной для ОС\n"
 "Files.createTempFile(prefix, suffix);\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:618
+#: lecture.adoc:608
 msgid "== Проверка файлов"
 msgstr ""
 
-#: lecture.adoc:624
+#: lecture.adoc:614
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -947,17 +927,17 @@ msgid ""
 "Files.isReadable(path)"
 msgstr ""
 
-#: lecture.adoc:627
+#: lecture.adoc:617
 msgid ""
 "Files.size(path)\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:629
+#: lecture.adoc:619
 msgid "== Чтение списка файлов и обход директории в глубину"
 msgstr ""
 
-#: lecture.adoc:634
+#: lecture.adoc:624
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -965,7 +945,7 @@ msgid ""
 "Stream<Path> list = Files.list(path);"
 msgstr ""
 
-#: lecture.adoc:639
+#: lecture.adoc:629
 msgid ""
 "//метод для обхода дерева папок\n"
 "Stream<Path> Files.walk(Path start, \n"
@@ -973,44 +953,44 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:641
+#: lecture.adoc:631
 msgid "== Копирование, перемещение и удаление файлов"
 msgstr ""
 
-#: lecture.adoc:645
+#: lecture.adoc:635
 msgid ""
 "[source,java]\n"
 "----\n"
 "Files.copy(fromPath, toPath)"
 msgstr ""
 
-#: lecture.adoc:647
+#: lecture.adoc:637
 msgid "Files.move(fromPath, toPath)"
 msgstr ""
 
-#: lecture.adoc:650
+#: lecture.adoc:640
 msgid ""
 "Files.delete(path)\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:652
+#: lecture.adoc:642
 msgid "== Часы и API для работы со временем"
 msgstr ""
 
-#: lecture.adoc:654
+#: lecture.adoc:644
 msgid "*Сколько секунд в сутках?*"
 msgstr ""
 
-#: lecture.adoc:656
+#: lecture.adoc:646
 msgid "image::persistenceofmemory.jpg[{image-60-width}]"
 msgstr ""
 
-#: lecture.adoc:658
+#: lecture.adoc:648
 msgid "== Системные часы"
 msgstr ""
 
-#: lecture.adoc:668
+#: lecture.adoc:658
 msgid ""
 "[%step]\n"
 "* `long System.currentTimeMillis()` -- количество миллисекунд, прошедшее с "
@@ -1025,11 +1005,11 @@ msgid ""
 "** На больших периодах может быть заметна неточность хода часов."
 msgstr ""
 
-#: lecture.adoc:670
+#: lecture.adoc:660
 msgid "== Когда что использовать?"
 msgstr ""
 
-#: lecture.adoc:674
+#: lecture.adoc:664
 msgid ""
 "* `long System.nanoTime()` -- при замерах периодов времени в переделах одной "
 "машины. \n"
@@ -1038,11 +1018,11 @@ msgid ""
 "пониманием ограничений)."
 msgstr ""
 
-#: lecture.adoc:676
+#: lecture.adoc:666
 msgid "== DateTime API"
 msgstr ""
 
-#: lecture.adoc:686
+#: lecture.adoc:676
 msgid ""
 "[%step]\n"
 "* Устаревшие, неудобные, мутабельные, непотокобезопасные классы (_не "
@@ -1057,17 +1037,17 @@ msgid ""
 "** С ними работает `DateTimeFormatter`."
 msgstr ""
 
-#: lecture.adoc:688
+#: lecture.adoc:678
 msgid "== `Instant`"
 msgstr ""
 
-#: lecture.adoc:691
+#: lecture.adoc:681
 msgid ""
 "* Точка на временной прямой\n"
 "* UNIX time"
 msgstr ""
 
-#: lecture.adoc:701
+#: lecture.adoc:691
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1080,11 +1060,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:703
+#: lecture.adoc:693
 msgid "== `LocalDate`, `LocalTime` и `LocalDateTime`"
 msgstr ""
 
-#: lecture.adoc:707
+#: lecture.adoc:697
 msgid ""
 "* Дата и время в «человеческом» понимании.\n"
 "* Без информации о том, в каком часовом поясе -> без привязки к `Instant`.\n"
@@ -1092,14 +1072,14 @@ msgid ""
 "UTC «уползёт» при переходе на летнее время."
 msgstr ""
 
-#: lecture.adoc:711
+#: lecture.adoc:701
 msgid ""
 "[source,java]\n"
 "----\n"
 "LocalDate date = LocalDate.of(2014, 3, 18); //18 марта 2014 г"
 msgstr ""
 
-#: lecture.adoc:717
+#: lecture.adoc:707
 msgid ""
 "int year      = date.getYear(); //2014\n"
 "Month month   = date.getMonth();  //MARCH\n"
@@ -1108,25 +1088,25 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:719
+#: lecture.adoc:709
 msgid "== `LocalTime` и `LocalDateTime`"
 msgstr ""
 
-#: lecture.adoc:723
+#: lecture.adoc:713
 msgid ""
 "[source,java]\n"
 "----\n"
 "LocalTime time = LocalTime.of(13, 45, 20); //13:45:20"
 msgstr ""
 
-#: lecture.adoc:727
+#: lecture.adoc:717
 msgid ""
 "int hour   = time.getHour();\n"
 "int minute = time.getMinute();\n"
 "int second = time.getSecond();"
 msgstr ""
 
-#: lecture.adoc:732
+#: lecture.adoc:722
 msgid ""
 "LocalDateTime dt1 = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20);\n"
 "LocalDateTime dt1 = LocalDateTime.of(date, time);\n"
@@ -1134,18 +1114,18 @@ msgid ""
 "LocalDateTime dt3 = time.atDate(date);"
 msgstr ""
 
-#: lecture.adoc:736
+#: lecture.adoc:726
 msgid ""
 "dt1.toLocalDate(); //2014-03-18\n"
 "dt1.toLocalTime(); //13:45:20\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:738
+#: lecture.adoc:728
 msgid "== `Duration` и `Period`"
 msgstr ""
 
-#: lecture.adoc:746
+#: lecture.adoc:736
 msgid ""
 "* `Duration`: количество времени между двумя точками на временной прямой с "
 "наносекундной точностью.\n"
@@ -1158,7 +1138,7 @@ msgid ""
 "Duration d = Duration.between(time1, time2);"
 msgstr ""
 
-#: lecture.adoc:752
+#: lecture.adoc:742
 msgid ""
 "//В качестве аргумента годится только LocalDate\n"
 "Period tenDays = Period.between(\n"
@@ -1167,11 +1147,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:754
+#: lecture.adoc:744
 msgid "== Конструирование новых объектов из старых"
 msgstr ""
 
-#: lecture.adoc:759
+#: lecture.adoc:749
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1179,24 +1159,24 @@ msgid ""
 "Duration d = Duration.ofSeconds(3);"
 msgstr ""
 
-#: lecture.adoc:763
+#: lecture.adoc:753
 msgid ""
 "//например:\n"
 "i.plus(dd.multipliedBy(10))\n"
 " .minus(dd.minus(Duration.ofMillis(1)));"
 msgstr ""
 
-#: lecture.adoc:766
+#: lecture.adoc:756
 msgid ""
 "//то же самое можно сделать с LocalDateTime\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:768
+#: lecture.adoc:758
 msgid "== Печать и парсинг даты-времени"
 msgstr ""
 
-#: lecture.adoc:784
+#: lecture.adoc:774
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1215,11 +1195,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:786
+#: lecture.adoc:776
 msgid "== В строку и из строки"
 msgstr ""
 
-#: lecture.adoc:795
+#: lecture.adoc:785
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1231,11 +1211,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:797
+#: lecture.adoc:787
 msgid "== Часовые пояса"
 msgstr ""
 
-#: lecture.adoc:803
+#: lecture.adoc:793
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1244,14 +1224,14 @@ msgid ""
 "LocalDateTime dateTime = LocalDateTime.now();"
 msgstr ""
 
-#: lecture.adoc:807
+#: lecture.adoc:797
 msgid ""
 "ZonedDateTime moscowTime = dateTime.atZone(moscowZone);\n"
 "System.out.println(moscowTime);\n"
 "//2019-09-30T18:15:52.670+03:00[Europe/Moscow]"
 msgstr ""
 
-#: lecture.adoc:812
+#: lecture.adoc:802
 msgid ""
 "ZonedDateTime romeTime = \n"
 "  moscowTime.withZoneSameInstant(romeZone);\n"

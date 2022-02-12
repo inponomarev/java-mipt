@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 04\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-02-10 20:24+0300\n"
+"POT-Creation-Date: 2022-02-12 13:36+0300\n"
+"PO-Revision-Date: 2022-02-12 13:40+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: lecture.adoc:24
+#: lecture.adoc:25
 msgid ""
 "= Core Java. Лекция 4: Enumerations. Исключения. Строки\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
@@ -37,7 +37,8 @@ msgid ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 msgstr ""
 "= Core Java. Lecture #4: Enumerations. Exceptions. Strings\n"
 "Ivan Ponomarev, Synthesized.io/MIPT\n"
@@ -61,7 +62,8 @@ msgstr ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 
 #: lecture.adoc:28
 msgid ""
@@ -1553,21 +1555,31 @@ msgstr ""
 "  return r.nextDouble();\n"
 "}"
 
-#: lecture.adoc:601
+#: lecture.adoc:600
 msgid ""
-"//ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее\n"
-"double rnd = ThreadLocalRandom.current().nextDouble();\n"
+"//Java 7-16: в 3.6 раз быстрее, проще, качественнее\n"
+"double rnd = ThreadLocalRandom.current().nextDouble();"
+msgstr ""
+"//Java 7-16: 3.6 times faster, statistically better\n"
+"double rnd = ThreadLocalRandom.current().nextDouble();"
+
+#: lecture.adoc:605
+msgid ""
+"//Java 17+: JEP356. Not thread safe!\n"
+"RandomGenerator generator = RandomGenerator.getDefault();\n"
+"generator.nextDouble();\n"
 "----"
 msgstr ""
-"//DO IT LIKE THIS: 3.6 times faster, statistically better\n"
-"double rnd = ThreadLocalRandom.current().nextDouble();\n"
+"//Java 17+: JEP356. Not thread safe!\n"
+"RandomGenerator generator = RandomGenerator.getDefault();\n"
+"generator.nextDouble();\n"
 "----"
 
-#: lecture.adoc:603
+#: lecture.adoc:607
 msgid "== Класс String"
 msgstr "== String class"
 
-#: lecture.adoc:609
+#: lecture.adoc:613
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1581,15 +1593,15 @@ msgstr ""
 "String java = \"Java\\u2122\"; //Java™\n"
 "----"
 
-#: lecture.adoc:611
+#: lecture.adoc:615
 msgid "== Строка -- иммутабельный объект."
 msgstr "== String is an immutable object."
 
-#: lecture.adoc:613
+#: lecture.adoc:617
 msgid "Нужна другая строка? Сооружаем новую:"
 msgstr "Need another string? Build another one from scratch:"
 
-#: lecture.adoc:619
+#: lecture.adoc:623
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1603,16 +1615,16 @@ msgstr ""
 "greeting = greeting.substring(0, 3) + \"p!\"; //Help!\n"
 "----"
 
-#: lecture.adoc:621
+#: lecture.adoc:625
 msgid "Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!"
 msgstr ""
 "Although there is an array inside the String, you cannot change its elements!"
 
-#: lecture.adoc:623
+#: lecture.adoc:627
 msgid "== Внутреннее представление строк"
 msgstr "== Internal representation of strings"
 
-#: lecture.adoc:628
+#: lecture.adoc:632
 msgid ""
 "* До Java 9 -- `char[]`\n"
 "* После Java 9 -- `byte[]` и `byte coder`\n"
@@ -1626,12 +1638,12 @@ msgstr ""
 "* https://www.youtube.com/watch?v=HWkVJkoo1_Q[Alexey Shipilev — The Lord of "
 "the Strings: Two Scours]"
 
-#: lecture.adoc:630
+#: lecture.adoc:634
 msgid "== Пул строковых констант"
 msgstr "== Internal String constants pool"
 
-#: lecture.adoc:634
-msgctxt "lecture.adoc:634"
+#: lecture.adoc:638
+msgctxt "lecture.adoc:638"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -1641,7 +1653,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: lecture.adoc:644
+#: lecture.adoc:648
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1663,7 +1675,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:651
+#: lecture.adoc:655
 msgid ""
 "[graphviz, \"stringpool.png\"]\n"
 "----\n"
@@ -1679,8 +1691,8 @@ msgstr ""
 "  graph [ dpi = 180 ];\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:658
-msgctxt "lecture.adoc:658"
+#: lecture.adoc:662
+msgctxt "lecture.adoc:662"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1696,7 +1708,7 @@ msgstr ""
 "          }\n"
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 
-#: lecture.adoc:667
+#: lecture.adoc:671
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1716,11 +1728,11 @@ msgstr ""
 "----\n"
 "|===="
 
-#: lecture.adoc:669
+#: lecture.adoc:673
 msgid "== Сравнение строк"
 msgstr "== Comparing strings"
 
-#: lecture.adoc:677
+#: lecture.adoc:681
 msgid ""
 "[%step]\n"
 "* `if (a == \"John Doe\")` -- *неправильно*, ошибка новичка.\n"
@@ -1740,13 +1752,13 @@ msgstr ""
 "* `if(str != null && !str.isBlank())` -- there is something in this string "
 "besides spaces, tabs, carriage returns etc.!"
 
-#: lecture.adoc:680
-msgctxt "lecture.adoc:680"
+#: lecture.adoc:684
+msgctxt "lecture.adoc:684"
 msgid "== Интернирование строк"
 msgstr "== String interning"
 
-#: lecture.adoc:684
-msgctxt "lecture.adoc:684"
+#: lecture.adoc:688
+msgctxt "lecture.adoc:688"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -1756,7 +1768,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: lecture.adoc:694
+#: lecture.adoc:698
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1778,7 +1790,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:701
+#: lecture.adoc:705
 msgid ""
 "[graphviz, \"stringpool-intern1.png\"]\n"
 "----\n"
@@ -1794,8 +1806,8 @@ msgstr ""
 "  graph [ dpi = 180 ];\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:708
-msgctxt "lecture.adoc:708"
+#: lecture.adoc:712
+msgctxt "lecture.adoc:712"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1811,11 +1823,11 @@ msgstr ""
 "          }\n"
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 
-#: lecture.adoc:710
+#: lecture.adoc:714
 msgid "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 
-#: lecture.adoc:719
+#: lecture.adoc:723
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1834,14 +1846,14 @@ msgstr ""
 "}\n"
 "----\n"
 "|===="
-
-#: lecture.adoc:721
-msgctxt "lecture.adoc:721"
-msgid "== Интернирование строк"
-msgstr "== String interning"
 
 #: lecture.adoc:725
 msgctxt "lecture.adoc:725"
+msgid "== Интернирование строк"
+msgstr "== String interning"
+
+#: lecture.adoc:729
+msgctxt "lecture.adoc:729"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -1851,7 +1863,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: lecture.adoc:733
+#: lecture.adoc:737
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1869,7 +1881,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:740
+#: lecture.adoc:744
 msgid ""
 "[graphviz, \"stringpool-intern2.png\"]\n"
 "----\n"
@@ -1885,7 +1897,7 @@ msgstr ""
 "  graph [ dpi = 180 ];\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:747
+#: lecture.adoc:751
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1901,7 +1913,7 @@ msgstr ""
 "            label=\"String Constant Pool\"\n"
 "          }"
 
-#: lecture.adoc:758
+#: lecture.adoc:762
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1921,11 +1933,11 @@ msgstr ""
 "----\n"
 "|===="
 
-#: lecture.adoc:761
+#: lecture.adoc:765
 msgid "== Конкатенация строк"
 msgstr "== String concatenation"
 
-#: lecture.adoc:766
+#: lecture.adoc:770
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1937,7 +1949,7 @@ msgstr ""
 "String foo = \"foo\";\n"
 "String bar = \"bar\";"
 
-#: lecture.adoc:769
+#: lecture.adoc:773
 msgid ""
 "System.out.println(foo + bar); //foobar\n"
 "----"
@@ -1945,11 +1957,11 @@ msgstr ""
 "System.out.println(foo + bar); //foobar\n"
 "----"
 
-#: lecture.adoc:771
+#: lecture.adoc:775
 msgid "Ситуация такова:"
 msgstr "The situation is following:"
 
-#: lecture.adoc:775
+#: lecture.adoc:779
 msgid ""
 "* Пользовательской перегрузки операторов в Java не предусмотрено.\n"
 "* Оператор `+` для строк перегружен на уровне языка.\n"
@@ -1962,11 +1974,11 @@ msgstr ""
 "* `==` operator is not overloaded, although its non-overloaded version does "
 "not make sense :-("
 
-#: lecture.adoc:777
-msgid "== Конкатенация строк: проблема производительности"
+#: lecture.adoc:781
+msgid "== {zsp}Конкатенация строк: проблема производительности{zsp}"
 msgstr "== String concatenation: performance problem"
 
-#: lecture.adoc:786
+#: lecture.adoc:790
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1986,11 +1998,11 @@ msgstr ""
 "return result;\n"
 "----"
 
-#: lecture.adoc:789
-msgid "== Конкатенация строк: используйте StringBuilder!"
+#: lecture.adoc:793
+msgid "== {zsp}Конкатенация строк: используйте StringBuilder!{zsp}"
 msgstr "== String concatenation: use `StringBuilder`!"
 
-#: lecture.adoc:799
+#: lecture.adoc:803
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2012,15 +2024,15 @@ msgstr ""
 "return b.toString();\n"
 "----"
 
-#: lecture.adoc:801
+#: lecture.adoc:805
 msgid "== Длина строки"
 msgstr "== String length"
 
-#: lecture.adoc:803
+#: lecture.adoc:807
 msgid "Длина строки в UTF-16 code units:"
 msgstr "String length in UTF-16 code units:"
 
-#: lecture.adoc:809
+#: lecture.adoc:813
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2034,7 +2046,7 @@ msgstr ""
 "int n = greeting.length(); // is 5.\n"
 "----"
 
-#: lecture.adoc:815
+#: lecture.adoc:819
 msgid ""
 "«Реальная» длина строки в code points:\n"
 "[source,java]\n"
@@ -2048,11 +2060,11 @@ msgstr ""
 "int cpCount = greeting.codePointCount(0, greeting.length());\n"
 "----"
 
-#: lecture.adoc:817
+#: lecture.adoc:821
 msgid "== Символ на i-й позиции"
 msgstr "== Character at a given position"
 
-#: lecture.adoc:820
+#: lecture.adoc:824
 msgid ""
 "[source,java]\n"
 "----"
@@ -2060,7 +2072,7 @@ msgstr ""
 "[source,java]\n"
 "----"
 
-#: lecture.adoc:825
+#: lecture.adoc:829
 msgid ""
 "//работает за время O(1)\n"
 "char first = greeting.charAt(0); // first is 'H'\n"
@@ -2072,11 +2084,11 @@ msgstr ""
 "char last = greeting.charAt(4); // last is 'o'\n"
 "----"
 
-#: lecture.adoc:827
+#: lecture.adoc:831
 msgid "Если нужны code points:"
 msgstr "If you need code points:"
 
-#: lecture.adoc:832
+#: lecture.adoc:836
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2088,11 +2100,11 @@ msgstr ""
 "int[] codePoints = str.codePoints().toArray();\n"
 "----"
 
-#: lecture.adoc:834
+#: lecture.adoc:838
 msgid "== Полезные методы "
 msgstr "== Useful methods "
 
-#: lecture.adoc:848
+#: lecture.adoc:852
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2122,11 +2134,11 @@ msgstr ""
 "String join(CharSequence delimiter, CharSequence... elements)\n"
 "----"
 
-#: lecture.adoc:850
+#: lecture.adoc:854
 msgid "== Вредные методы "
 msgstr "== Harmful methods "
 
-#: lecture.adoc:854
+#: lecture.adoc:858
 msgid ""
 "* `indexOf..` / `lastIndexOf..`\n"
 "* `replace..`\n"
@@ -2136,7 +2148,7 @@ msgstr ""
 "* `replace..`\n"
 "* `split..` "
 
-#: lecture.adoc:856
+#: lecture.adoc:860
 msgid ""
 "В комбинации c `substring` и конкатенацией их используют для извлечения "
 "данных / преобразования строк."
@@ -2144,13 +2156,53 @@ msgstr ""
 "In combination with `substring` and concatenation they are sometimes used "
 "for string parsing/transformation."
 
-#: lecture.adoc:857
+#: lecture.adoc:862
 msgid ""
 "_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
 "бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"
 msgstr ""
 "_Don't do that. This is the way for endless pain, endless bugs and endless "
 "shame. Use definite state machines or regular expressions instead._"
+
+#~ msgctxt "lecture.adoc:684"
+#~ msgid ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
+#~ msgstr ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
+
+#~ msgctxt "lecture.adoc:708"
+#~ msgid ""
+#~ "      subgraph cluster_s2{\n"
+#~ "          subgraph cluster_s3 {\n"
+#~ "            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+#~ "            label=\"String Constant Pool\"\n"
+#~ "          }\n"
+#~ "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+#~ msgstr ""
+#~ "      subgraph cluster_s2{\n"
+#~ "          subgraph cluster_s3 {\n"
+#~ "            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+#~ "            label=\"String Constant Pool\"\n"
+#~ "          }\n"
+#~ "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+
+#~ msgctxt "lecture.adoc:721"
+#~ msgid "== Интернирование строк"
+#~ msgstr "== String interning"
+
+#~ msgctxt "lecture.adoc:725"
+#~ msgid ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
+#~ msgstr ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
 
 #~ msgctxt "./slides04/src/main/asciidoc/lecture.adoc:68"
 #~ msgid ". . ."

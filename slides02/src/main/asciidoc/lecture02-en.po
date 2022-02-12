@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 02\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-02-10 16:03+0300\n"
+"POT-Creation-Date: 2022-02-12 13:36+0300\n"
+"PO-Revision-Date: 2022-02-12 13:37+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: lecture.adoc:24
+#: lecture.adoc:25
 msgid ""
 "= Core Java. Лекция 2: Примитивные типы. Управление выполнением. Операторы. "
 "Массивы.\n"
@@ -38,7 +38,8 @@ msgid ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 msgstr ""
 "= Core Java. Lecture #2: Primitive types. Execution control. Operators. "
 "Arrays\n"
@@ -63,7 +64,8 @@ msgstr ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 
 #: lecture.adoc:28
 msgid ""
@@ -2044,7 +2046,7 @@ msgstr ""
 "** anonymous array: `foo(new int[] {2, 4, 6});`"
 
 #: lecture.adoc:907
-msgid "== Массивы передаются по ссылке"
+msgid "== {zsp}Массивы передаются по ссылке{zsp}"
 msgstr "== Arrays are passed by reference"
 
 #: lecture.adoc:912
@@ -2072,7 +2074,7 @@ msgstr ""
 "----"
 
 #: lecture.adoc:921
-msgid "== Массивы ковариантны"
+msgid "== {zsp}Массивы ковариантны{zsp}"
 msgstr "== Arrays are covariant"
 
 #: lecture.adoc:931

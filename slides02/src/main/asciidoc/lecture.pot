@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"POT-Creation-Date: 2022-02-12 13:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: lecture.adoc:24
+#: lecture.adoc:25
 msgid ""
 "= Core Java. Лекция 2: Примитивные типы. Управление выполнением. Операторы. "
 "Массивы.\n"
@@ -38,7 +38,8 @@ msgid ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 msgstr ""
 
 #: lecture.adoc:28
@@ -1384,7 +1385,7 @@ msgid ""
 msgstr ""
 
 #: lecture.adoc:907
-msgid "== Массивы передаются по ссылке"
+msgid "== {zsp}Массивы передаются по ссылке{zsp}"
 msgstr ""
 
 #: lecture.adoc:912
@@ -1404,7 +1405,7 @@ msgid ""
 msgstr ""
 
 #: lecture.adoc:921
-msgid "== Массивы ковариантны"
+msgid "== {zsp}Массивы ковариантны{zsp}"
 msgstr ""
 
 #: lecture.adoc:931

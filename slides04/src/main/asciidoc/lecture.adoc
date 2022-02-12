@@ -21,7 +21,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_transition: none
 :revealjs_width: 1600
 :revealjs_height: 900
-
+:zsp: &#8203;
 
 //== Часть 1. Введение
 :!figure-caption:
@@ -595,8 +595,12 @@ static double random() {
   return r.nextDouble();
 }
 
-//ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее
+//Java 7-16: в 3.6 раз быстрее, проще, качественнее
 double rnd = ThreadLocalRandom.current().nextDouble();
+
+//Java 17+: JEP356. Not thread safe!
+RandomGenerator generator = RandomGenerator.getDefault();
+generator.nextDouble();
 ----
 
 == Класс String
@@ -773,7 +777,7 @@ System.out.println(foo + bar); //foobar
 * Оператор `+` для строк перегружен на уровне языка.
 * Оператор `==` для строк не перегружен, хоть его неперегруженная версия для строк и не имеет смысла :-(
 
-== Конкатенация строк: проблема производительности
+== {zsp}Конкатенация строк: проблема производительности{zsp}
 
 [source,java]
 ----
@@ -785,7 +789,7 @@ return result;
 ----
 
 
-== Конкатенация строк: используйте StringBuilder!
+== {zsp}Конкатенация строк: используйте StringBuilder!{zsp}
 
 [source,java]
 ----
@@ -855,3 +859,4 @@ String join(CharSequence delimiter, CharSequence... elements)
 В комбинации c `substring` и конкатенацией их используют для извлечения данных / преобразования строк.
 
 _Не делайте так. Это путь к бесконечным багам, бесконечной боли и бесконечному стыду. Используйте конечные автоматы или регулярные выражения._
+    

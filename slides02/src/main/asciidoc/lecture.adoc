@@ -21,7 +21,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_transition: none
 :revealjs_width: 1600
 :revealjs_height: 900
-
+:zsp: &#8203;
 
 //== Часть 1. Введение
 :!figure-caption:
@@ -903,7 +903,7 @@ switch(day) {
 ** `int[] a = {1, 3, 5};`
 ** анонимный массив: `foo(new int[] {2, 4, 6});`
 
-== Массивы передаются по ссылке
+== {zsp}Массивы передаются по ссылке{zsp}
 
 [source,java]
 ----
@@ -917,7 +917,7 @@ luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
 
 
 
-== Массивы ковариантны
+== {zsp}Массивы ковариантны{zsp}
 
 [source,java]
 ----

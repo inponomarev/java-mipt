@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"POT-Creation-Date: 2022-02-12 13:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: lecture.adoc:24
+#: lecture.adoc:25
 msgid ""
 "= Core Java. Лекция 4: Enumerations. Исключения. Строки\n"
 "Иван Пономарёв, КУРС/МФТИ\n"
@@ -37,7 +37,8 @@ msgid ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 msgstr ""
 
 #: lecture.adoc:28
@@ -1029,18 +1030,25 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:601
+#: lecture.adoc:600
 msgid ""
-"//ТЕПЕРЬ НУЖНО ТАК: в 3.6 раз быстрее, проще, качественнее\n"
-"double rnd = ThreadLocalRandom.current().nextDouble();\n"
+"//Java 7-16: в 3.6 раз быстрее, проще, качественнее\n"
+"double rnd = ThreadLocalRandom.current().nextDouble();"
+msgstr ""
+
+#: lecture.adoc:605
+msgid ""
+"//Java 17+: JEP356. Not thread safe!\n"
+"RandomGenerator generator = RandomGenerator.getDefault();\n"
+"generator.nextDouble();\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:603
+#: lecture.adoc:607
 msgid "== Класс String"
 msgstr ""
 
-#: lecture.adoc:609
+#: lecture.adoc:613
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1049,15 +1057,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:611
+#: lecture.adoc:615
 msgid "== Строка -- иммутабельный объект."
 msgstr ""
 
-#: lecture.adoc:613
+#: lecture.adoc:617
 msgid "Нужна другая строка? Сооружаем новую:"
 msgstr ""
 
-#: lecture.adoc:619
+#: lecture.adoc:623
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1066,15 +1074,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:621
+#: lecture.adoc:625
 msgid "Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!"
 msgstr ""
 
-#: lecture.adoc:623
+#: lecture.adoc:627
 msgid "== Внутреннее представление строк"
 msgstr ""
 
-#: lecture.adoc:628
+#: lecture.adoc:632
 msgid ""
 "* До Java 9 -- `char[]`\n"
 "* После Java 9 -- `byte[]` и `byte coder`\n"
@@ -1083,19 +1091,19 @@ msgid ""
 "the Strings: Two Scours]"
 msgstr ""
 
-#: lecture.adoc:630
+#: lecture.adoc:634
 msgid "== Пул строковых констант"
 msgstr ""
 
-#: lecture.adoc:634
-msgctxt "lecture.adoc:634"
+#: lecture.adoc:638
+msgctxt "lecture.adoc:638"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: lecture.adoc:644
+#: lecture.adoc:648
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1108,7 +1116,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: lecture.adoc:651
+#: lecture.adoc:655
 msgid ""
 "[graphviz, \"stringpool.png\"]\n"
 "----\n"
@@ -1118,8 +1126,8 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: lecture.adoc:658
-msgctxt "lecture.adoc:658"
+#: lecture.adoc:662
+msgctxt "lecture.adoc:662"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1129,7 +1137,7 @@ msgid ""
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: lecture.adoc:667
+#: lecture.adoc:671
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1141,11 +1149,11 @@ msgid ""
 "|===="
 msgstr ""
 
-#: lecture.adoc:669
+#: lecture.adoc:673
 msgid "== Сравнение строк"
 msgstr ""
 
-#: lecture.adoc:677
+#: lecture.adoc:681
 msgid ""
 "[%step]\n"
 "* `if (a == \"John Doe\")` -- *неправильно*, ошибка новичка.\n"
@@ -1157,20 +1165,20 @@ msgid ""
 "пробелов, табуляций, переносов и проч.!"
 msgstr ""
 
-#: lecture.adoc:680
-msgctxt "lecture.adoc:680"
+#: lecture.adoc:684
+msgctxt "lecture.adoc:684"
 msgid "== Интернирование строк"
 msgstr ""
 
-#: lecture.adoc:684
-msgctxt "lecture.adoc:684"
+#: lecture.adoc:688
+msgctxt "lecture.adoc:688"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: lecture.adoc:694
+#: lecture.adoc:698
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1183,7 +1191,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: lecture.adoc:701
+#: lecture.adoc:705
 msgid ""
 "[graphviz, \"stringpool-intern1.png\"]\n"
 "----\n"
@@ -1193,8 +1201,8 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: lecture.adoc:708
-msgctxt "lecture.adoc:708"
+#: lecture.adoc:712
+msgctxt "lecture.adoc:712"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1204,11 +1212,11 @@ msgid ""
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: lecture.adoc:710
+#: lecture.adoc:714
 msgid "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: lecture.adoc:719
+#: lecture.adoc:723
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1220,20 +1228,20 @@ msgid ""
 "|===="
 msgstr ""
 
-#: lecture.adoc:721
-msgctxt "lecture.adoc:721"
+#: lecture.adoc:725
+msgctxt "lecture.adoc:725"
 msgid "== Интернирование строк"
 msgstr ""
 
-#: lecture.adoc:725
-msgctxt "lecture.adoc:725"
+#: lecture.adoc:729
+msgctxt "lecture.adoc:729"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: lecture.adoc:733
+#: lecture.adoc:737
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1244,7 +1252,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: lecture.adoc:740
+#: lecture.adoc:744
 msgid ""
 "[graphviz, \"stringpool-intern2.png\"]\n"
 "----\n"
@@ -1254,7 +1262,7 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: lecture.adoc:747
+#: lecture.adoc:751
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1264,7 +1272,7 @@ msgid ""
 "          }"
 msgstr ""
 
-#: lecture.adoc:758
+#: lecture.adoc:762
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1276,11 +1284,11 @@ msgid ""
 "|===="
 msgstr ""
 
-#: lecture.adoc:761
+#: lecture.adoc:765
 msgid "== Конкатенация строк"
 msgstr ""
 
-#: lecture.adoc:766
+#: lecture.adoc:770
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1288,17 +1296,17 @@ msgid ""
 "String bar = \"bar\";"
 msgstr ""
 
-#: lecture.adoc:769
+#: lecture.adoc:773
 msgid ""
 "System.out.println(foo + bar); //foobar\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:771
+#: lecture.adoc:775
 msgid "Ситуация такова:"
 msgstr ""
 
-#: lecture.adoc:775
+#: lecture.adoc:779
 msgid ""
 "* Пользовательской перегрузки операторов в Java не предусмотрено.\n"
 "* Оператор `+` для строк перегружен на уровне языка.\n"
@@ -1306,11 +1314,11 @@ msgid ""
 "строк и не имеет смысла :-("
 msgstr ""
 
-#: lecture.adoc:777
-msgid "== Конкатенация строк: проблема производительности"
+#: lecture.adoc:781
+msgid "== {zsp}Конкатенация строк: проблема производительности{zsp}"
 msgstr ""
 
-#: lecture.adoc:786
+#: lecture.adoc:790
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1322,11 +1330,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:789
-msgid "== Конкатенация строк: используйте StringBuilder!"
+#: lecture.adoc:793
+msgid "== {zsp}Конкатенация строк: используйте StringBuilder!{zsp}"
 msgstr ""
 
-#: lecture.adoc:799
+#: lecture.adoc:803
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1339,15 +1347,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:801
+#: lecture.adoc:805
 msgid "== Длина строки"
 msgstr ""
 
-#: lecture.adoc:803
+#: lecture.adoc:807
 msgid "Длина строки в UTF-16 code units:"
 msgstr ""
 
-#: lecture.adoc:809
+#: lecture.adoc:813
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1356,7 +1364,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:815
+#: lecture.adoc:819
 msgid ""
 "«Реальная» длина строки в code points:\n"
 "[source,java]\n"
@@ -1365,17 +1373,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:817
+#: lecture.adoc:821
 msgid "== Символ на i-й позиции"
 msgstr ""
 
-#: lecture.adoc:820
+#: lecture.adoc:824
 msgid ""
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:825
+#: lecture.adoc:829
 msgid ""
 "//работает за время O(1)\n"
 "char first = greeting.charAt(0); // first is 'H'\n"
@@ -1383,11 +1391,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:827
+#: lecture.adoc:831
 msgid "Если нужны code points:"
 msgstr ""
 
-#: lecture.adoc:832
+#: lecture.adoc:836
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1395,11 +1403,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:834
+#: lecture.adoc:838
 msgid "== Полезные методы "
 msgstr ""
 
-#: lecture.adoc:848
+#: lecture.adoc:852
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1416,24 +1424,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:850
+#: lecture.adoc:854
 msgid "== Вредные методы "
 msgstr ""
 
-#: lecture.adoc:854
+#: lecture.adoc:858
 msgid ""
 "* `indexOf..` / `lastIndexOf..`\n"
 "* `replace..`\n"
 "* `split..` "
 msgstr ""
 
-#: lecture.adoc:856
+#: lecture.adoc:860
 msgid ""
 "В комбинации c `substring` и конкатенацией их используют для извлечения "
 "данных / преобразования строк."
 msgstr ""
 
-#: lecture.adoc:857
+#: lecture.adoc:862
 msgid ""
 "_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
 "бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"
