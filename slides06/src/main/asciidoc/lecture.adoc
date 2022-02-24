@@ -543,11 +543,11 @@ List<String>[] a = new ArrayList<String>[10];
 List<String>[] a = (List<String>[])new List<?>[10];
 Object[] objArray = a;
 
-objArray[0] = (List<String>) Arrays.asList("foo");
-//a[1] не пропустит в compile-time
-//но objArray[1] пропустит и в compile-time, и в run-time
-objArray[1] = (List<Manager>) Arrays.asList(new Manager());
+objArray[0] =  List.of("foo");
 
+a[1] = List.of(new Manager()); //не скомпилируется!
+
+objArray[1] =  List.of(new Manager()); //скомпилируется и выполнится!
 
 //Runtime error: Manager cannot be cast to String
 String s = a[1].get(0);
@@ -588,7 +588,7 @@ static void dangerous(List<String>...
 == Зачем?!
 
 * Всё потому, что иметь varargs с параметризованными типами удобно!..
-** `Arrays.asList(T... a)`
+** `List.of(E... a)`
 ** `Collections.addAll(Collection<? super T> c, T... elements)`
 ** `EnumSet.of(E first, E... rest)`
 * Если вести себя хорошо, можно ставить @SafeVarargs, и всё будет хорошо:

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"POT-Creation-Date: 2022-02-24 09:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -813,12 +813,16 @@ msgid ""
 "Object[] objArray = a;"
 msgstr ""
 
-#: lecture.adoc:550
-msgid ""
-"objArray[0] = (List<String>) Arrays.asList(\"foo\");\n"
-"//a[1] не пропустит в compile-time\n"
-"//но objArray[1] пропустит и в compile-time, и в run-time\n"
-"objArray[1] = (List<Manager>) Arrays.asList(new Manager());"
+#: lecture.adoc:547
+msgid "objArray[0] =  List.of(\"foo\");"
+msgstr ""
+
+#: lecture.adoc:549
+msgid "a[1] = List.of(new Manager()); //не скомпилируется!"
+msgstr ""
+
+#: lecture.adoc:551
+msgid "objArray[1] =  List.of(new Manager()); //скомпилируется и выполнится!"
 msgstr ""
 
 #: lecture.adoc:556
@@ -884,7 +888,7 @@ msgstr ""
 #: lecture.adoc:597
 msgid ""
 "* Всё потому, что иметь varargs с параметризованными типами удобно!..\n"
-"** `Arrays.asList(T... a)`\n"
+"** `List.of(E... a)`\n"
 "** `Collections.addAll(Collection<? super T> c, T... elements)`\n"
 "** `EnumSet.of(E first, E... rest)`\n"
 "* Если вести себя хорошо, можно ставить @SafeVarargs, и всё будет хорошо:\n"
