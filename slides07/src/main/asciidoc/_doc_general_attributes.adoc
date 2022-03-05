@@ -17,6 +17,7 @@
 ifdef::basebackend-docbook[]
 :for-print:
 endif::[]
+:zsp: &#8203;
 :image-140-width: width="100%"
 :image-130-width: width="100%"
 :image-120-width: width="100%"

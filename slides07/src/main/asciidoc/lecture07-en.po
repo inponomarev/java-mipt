@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 07\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-02-22 10:32+0300\n"
+"POT-Creation-Date: 2022-03-05 17:30+0300\n"
+"PO-Revision-Date: 2022-03-05 17:31+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -2415,7 +2415,7 @@ msgstr ""
 "y)` operators from the comparator."
 
 #: lecture.adoc:1033
-msgid "== Предикаты"
+msgid "== {zsp}Предикаты{zsp}"
 msgstr "== Predicates"
 
 #: lecture.adoc:1041
@@ -2675,7 +2675,7 @@ msgstr ""
 "|==="
 
 #: lecture.adoc:1147
-msgid "== Сортируем по фамилии, потом по имени"
+msgid "== {zsp}Сортируем по фамилии, потом по имени{zsp}"
 msgstr "== Sort by last name, then by first name"
 
 #: lecture.adoc:1161
