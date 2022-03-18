@@ -33,71 +33,24 @@ icon:twitter[size=lg] @inponomarev
 
 == Жизненный цикл бина (напоминание)
 
-[graphviz,"beanlife1.png"]
+[graphviz,beanlifecycle.png]
 ----
 digraph G {
 graph [ dpi = 180 ];
 rankdir="LR";
 node[shape=box];
 Constructor -> configurer1;
-
-subgraph cluster_1 {
-  label = "Configuration";
-  configurer3 -> configurer2 -> configurer1 [dir="back"];
-  {rank=same configurer1 configurer2 configurer3}
-} 
-}
-----
-
-== Жизненный цикл бина (напоминание)
-
-[graphviz,"beanlife2.png"]
-----
-digraph G {
-graph [ dpi = 180 ];
-rankdir="LR";
-node[shape=box];
-Constructor -> configurer1;
-
 subgraph cluster_1 {
   label = "Configuration";
   configurer3 -> configurer2 -> configurer1 [dir="back"];
   {rank=same configurer1 configurer2 configurer3}
 }
-
-subgraph cluster_2{
-  label="Initialization";
-  postConstruct2 -> postConstruct1 [dir="back"];
-  {rank=same postConstruct1 postConstruct2}
-}
-
-configurer3 -> postConstruct1;
-}
-----
-
-== Жизненный цикл бина (напоминание)
-
-[graphviz,"beanlife3.png"]
-----
-digraph G {
-graph [ dpi = 180 ];
-rankdir="LR";
-node[shape=box];
-Constructor -> configurer1;
-
-subgraph cluster_1 {
-  label = "Configuration";
-  configurer3 -> configurer2 -> configurer1 [dir="back"];
-  {rank=same configurer1 configurer2 configurer3}
-}
-
 subgraph cluster_2{
   label="Initialization";
   postConstruct2 -> postConstruct1 [dir="back"];
   {rank=same postConstruct1 postConstruct2}
 }
 configurer3 -> postConstruct1;
-
 subgraph cluster_3 {
   label = "Wrapping";
   
@@ -105,11 +58,8 @@ subgraph cluster_3 {
   {rank=same proxyconfigurer2 proxyconfigurer1}
 } 
 postConstruct2 -> proxyconfigurer1;
-
 }
 ----
-
-
 
 == Разруливание неоднозначностей
 
