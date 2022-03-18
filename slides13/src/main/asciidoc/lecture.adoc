@@ -22,6 +22,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_width: 1600
 :revealjs_height: 900
 :stem: latexmath
+:zsp: &#8203;
 
 
 //== Часть 1. Введение
@@ -651,7 +652,7 @@ private Object invoke(Object t, Class type, Method method,
 }
 ----
 
-== Последовательность действий (окончательная картина)
+== {zsp}Последовательность действий (окончательная картина){zsp}
 
 
 [graphviz,"init3.png"]

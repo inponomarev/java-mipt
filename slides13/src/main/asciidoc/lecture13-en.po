@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-02-07 12:46+0300\n"
+"POT-Creation-Date: 2022-03-18 18:25+0300\n"
+"PO-Revision-Date: 2022-03-18 18:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: lecture.adoc:25
+#: lecture.adoc:26
 msgid ""
 "= Core Java. Лекция 13: Dependency Injection. Принцип работы DI-контейнера. "
 "Принцип работы DI-контейнера (окончание). Spring Framework (Spring DI, "
@@ -40,7 +40,8 @@ msgid ""
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
 ":revealjs_height: 900\n"
-":stem: latexmath"
+":stem: latexmath\n"
+":zsp: &#8203;"
 msgstr ""
 "= Core Java. Lecture #13: Dependency Injection. DI containers working "
 "principle. Spring Framework (Spring DI, Spring AOP)\n"
@@ -66,9 +67,10 @@ msgstr ""
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
 ":revealjs_height: 900\n"
-":stem: latexmath"
+":stem: latexmath\n"
+":zsp: &#8203;"
 
-#: lecture.adoc:29
+#: lecture.adoc:30
 msgid ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
@@ -76,20 +78,20 @@ msgstr ""
 "//== Часть 1. Введение\n"
 ":!figure-caption:"
 
-#: lecture.adoc:31
+#: lecture.adoc:32
 msgid "ponomarev@corchestra.ru"
 msgstr "ponomarev@corchestra.ru"
 
-#: lecture.adoc:33
+#: lecture.adoc:34
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
-#: lecture.adoc:35
-msgctxt "lecture.adoc:35"
+#: lecture.adoc:36
+msgctxt "lecture.adoc:36"
 msgid "== Проблемы GoF-cинглетона"
 msgstr "== GoF's Singleton problems"
 
-#: lecture.adoc:37
+#: lecture.adoc:38
 msgid ""
 "Как автоматически тестировать компоненты, которые жёстко связаны со своими "
 "зависимостями через статические поля/методы?"
@@ -97,7 +99,7 @@ msgstr ""
 "How do I automatically test components that are hard-coded to their "
 "dependencies through static fields/methods?"
 
-#: lecture.adoc:40
+#: lecture.adoc:41
 msgid ""
 "[.fragment]\n"
 "-- Да никак!"
@@ -105,12 +107,12 @@ msgstr ""
 "[.fragment]\n"
 "- No way you can do it!"
 
-#: lecture.adoc:42
-msgctxt "lecture.adoc:42"
+#: lecture.adoc:43
+msgctxt "lecture.adoc:43"
 msgid "== Проблемы GoF-cинглетона"
 msgstr "== GoF's Singleton problems"
 
-#: lecture.adoc:46
+#: lecture.adoc:47
 msgid ""
 "* Увеличивает Coupling\n"
 "* Нарушает Single Responsibility Principle\n"
@@ -120,11 +122,11 @@ msgstr ""
 "* Violates the Single Responsibility Principle\n"
 "* Unable to test normally"
 
-#: lecture.adoc:49
+#: lecture.adoc:50
 msgid "== Наш учебный пример про доклады и спикеров"
 msgstr "== Our case study about talks and speakers"
 
-#: lecture.adoc:60
+#: lecture.adoc:61
 msgid ""
 "[plantuml, objects, png]\n"
 "----\n"
@@ -148,7 +150,7 @@ msgstr ""
 "object TalkDao\n"
 "object Controller"
 
-#: lecture.adoc:70
+#: lecture.adoc:71
 msgid ""
 "JdbcTemplate -->ConnectionPool\n"
 "SpeakerDao --> JdbcTemplate\n"
@@ -170,12 +172,12 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:72
-msgctxt "lecture.adoc:72"
+#: lecture.adoc:73
+msgctxt "lecture.adoc:73"
 msgid "== Фабрика"
 msgstr "== Factory"
 
-#: lecture.adoc:85
+#: lecture.adoc:86
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -203,12 +205,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:87
-msgctxt "lecture.adoc:87"
+#: lecture.adoc:88
+msgctxt "lecture.adoc:88"
 msgid "== Фабрика"
 msgstr "== Factory"
 
-#: lecture.adoc:91
+#: lecture.adoc:92
 msgid ""
 "* Мы отвязались от «wiring» и можем создавать компоненты по отдельности, что "
 "позволяет тестировать.\n"
@@ -222,12 +224,12 @@ msgstr ""
 "factory must \"know\" about all the components.\n"
 "* In general, this process can be automated!"
 
-#: lecture.adoc:93
-msgctxt "lecture.adoc:93"
+#: lecture.adoc:94
+msgctxt "lecture.adoc:94"
 msgid "== Dependency Injection"
 msgstr "== Dependency Injection"
 
-#: lecture.adoc:99
+#: lecture.adoc:100
 msgid ""
 "[plantuml, di-class, png]\n"
 "----\n"
@@ -241,7 +243,7 @@ msgstr ""
 "skinparam dpi 180\n"
 "hide footbox"
 
-#: lecture.adoc:106
+#: lecture.adoc:107
 msgid ""
 "class Injector\n"
 "interface ServiceA\n"
@@ -257,7 +259,7 @@ msgstr ""
 "class ServiceBImpl\n"
 "class Client"
 
-#: lecture.adoc:109
+#: lecture.adoc:110
 msgid ""
 "Client --> ServiceA\n"
 "Client --> ServiceB"
@@ -265,7 +267,7 @@ msgstr ""
 "Client --> ServiceA\n"
 "Client --> ServiceB"
 
-#: lecture.adoc:112
+#: lecture.adoc:113
 msgid ""
 "ServiceA <|.. ServiceAImpl\n"
 "ServiceB <|.. ServiceBImpl"
@@ -273,7 +275,7 @@ msgstr ""
 "ServiceA <|.. ServiceAImpl\n"
 "ServiceB <|.. ServiceBImpl"
 
-#: lecture.adoc:116
+#: lecture.adoc:117
 msgid ""
 "Injector .> Client: <<create>>\\n<<inject>>\n"
 "Injector ..> ServiceAImpl: <<create>>\n"
@@ -283,8 +285,8 @@ msgstr ""
 "Injector ..> ServiceAImpl: <<create>>\n"
 "Injector ..> ServiceBImpl: <<create>>"
 
-#: lecture.adoc:119
-msgctxt "lecture.adoc:119"
+#: lecture.adoc:120
+msgctxt "lecture.adoc:120"
 msgid ""
 "@enduml\n"
 "----"
@@ -292,12 +294,12 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:123
-msgctxt "lecture.adoc:123"
+#: lecture.adoc:124
+msgctxt "lecture.adoc:124"
 msgid "== Dependency Injection"
 msgstr "== Dependency Injection"
 
-#: lecture.adoc:129
+#: lecture.adoc:130
 msgid ""
 "[plantuml, di-seq, png]\n"
 "----\n"
@@ -311,7 +313,7 @@ msgstr ""
 "skinparam dpi 180\n"
 "hide footbox"
 
-#: lecture.adoc:134
+#: lecture.adoc:135
 msgid ""
 "participant Injector\n"
 "participant ServiceAImpl\n"
@@ -323,7 +325,7 @@ msgstr ""
 "participant ServiceBImpl\n"
 "participant Client"
 
-#: lecture.adoc:140
+#: lecture.adoc:141
 msgid ""
 "activate Injector\n"
 "Injector -> ServiceAImpl **: new()\n"
@@ -337,8 +339,8 @@ msgstr ""
 "Injector -> Client **: new()\n"
 "Injector -> Client: inject(ServiceAImpl, ServiceBImpl)"
 
-#: lecture.adoc:143
-msgctxt "lecture.adoc:143"
+#: lecture.adoc:144
+msgctxt "lecture.adoc:144"
 msgid ""
 "@enduml\n"
 "----"
@@ -346,11 +348,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:145
+#: lecture.adoc:146
 msgid "== DI Frameworks"
 msgstr "== DI Frameworks"
 
-#: lecture.adoc:150
+#: lecture.adoc:151
 msgid ""
 "* Google Guice\n"
 "* JBoss Seam Framework\n"
@@ -362,11 +364,11 @@ msgstr ""
 "* PicoContainer\n"
 "* *Spring*"
 
-#: lecture.adoc:152
+#: lecture.adoc:153
 msgid "== Построим свой DI-фреймворк «на коленке»"
 msgstr "== Let's build our own homemade DI-framework"
 
-#: lecture.adoc:155
+#: lecture.adoc:156
 msgid ""
 "* Пример на базе тренинга Евгения Борисова «Spring Ripper»\n"
 "* Позволяет понять логику и внутреннее устройство Spring Framework"
@@ -374,13 +376,13 @@ msgstr ""
 "* Example based on Evgeny Borisov's training \"Spring Ripper\"\n"
 "* Allows you to understand the logic and internals of the Spring Framework"
 
-#: lecture.adoc:157
-msgctxt "lecture.adoc:157"
+#: lecture.adoc:158
+msgctxt "lecture.adoc:158"
 msgid "== Лектор-робот"
 msgstr "== Robot lecturer"
 
-#: lecture.adoc:166
-msgctxt "lecture.adoc:166"
+#: lecture.adoc:167
+msgctxt "lecture.adoc:167"
 msgid ""
 "[plantuml, robotlecturer, png]\n"
 "----\n"
@@ -400,7 +402,7 @@ msgstr ""
 "object Speaker\n"
 "object SlideShow"
 
-#: lecture.adoc:172
+#: lecture.adoc:173
 msgid ""
 "RobotLecturer --> Lecture\n"
 "RobotLecturer --> Speaker\n"
@@ -414,8 +416,8 @@ msgstr ""
 "@enduml\n"
 "----    "
 
-#: lecture.adoc:186
-msgctxt "lecture.adoc:186"
+#: lecture.adoc:187
+msgctxt "lecture.adoc:187"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -445,13 +447,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:188
-msgctxt "lecture.adoc:188"
+#: lecture.adoc:189
+msgctxt "lecture.adoc:189"
 msgid "== Режим лектора"
 msgstr "== Lecturer mode"
 
-#: lecture.adoc:200
-msgctxt "lecture.adoc:200"
+#: lecture.adoc:201
+msgctxt "lecture.adoc:201"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -477,8 +479,8 @@ msgstr ""
 "    );\n"
 "}"
 
-#: lecture.adoc:209
-msgctxt "lecture.adoc:209"
+#: lecture.adoc:210
+msgctxt "lecture.adoc:210"
 msgid ""
 "//Main-метод\n"
 "public static void main(String[] args) \n"
@@ -498,13 +500,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:211
-msgctxt "lecture.adoc:211"
+#: lecture.adoc:212
+msgctxt "lecture.adoc:212"
 msgid "== Конфигуратор объекта"
 msgstr "== Object Configurator"
 
-#: lecture.adoc:219
-msgctxt "lecture.adoc:219"
+#: lecture.adoc:220
+msgctxt "lecture.adoc:220"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -522,8 +524,8 @@ msgstr ""
 "  //let's pass the ObjectFactory here as a constructor parameter\n"
 "  private final ObjectFactory factory;"
 
-#: lecture.adoc:232
-msgctxt "lecture.adoc:232"
+#: lecture.adoc:233
+msgctxt "lecture.adoc:233"
 msgid ""
 "  @Override\n"
 "  public void configure(Object t) throws ... {\n"
@@ -551,13 +553,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:234
-msgctxt "lecture.adoc:234"
+#: lecture.adoc:235
+msgctxt "lecture.adoc:235"
 msgid "== Как создаётся и конфигурируется объект"
 msgstr "== How an object is being created and configured"
 
-#: lecture.adoc:243
-msgctxt "lecture.adoc:243"
+#: lecture.adoc:244
+msgctxt "lecture.adoc:244"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -577,8 +579,8 @@ msgstr ""
 "  private final List<ObjectConfigurator> configurators = \n"
 "                          new ArrayList<>();"
 
-#: lecture.adoc:254
-msgctxt "lecture.adoc:254"
+#: lecture.adoc:255
+msgctxt "lecture.adoc:255"
 msgid ""
 "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
 "    //Находим реализацию запрошенного типа\n"
@@ -602,18 +604,18 @@ msgstr ""
 "  }\n"
 "----"
 
-#: lecture.adoc:256
-msgctxt "lecture.adoc:256"
+#: lecture.adoc:257
+msgctxt "lecture.adoc:257"
 msgid "== Метод configure очень прост"
 msgstr "== The `configure` method is very simple"
 
-#: lecture.adoc:258
-msgctxt "lecture.adoc:258"
+#: lecture.adoc:259
+msgctxt "lecture.adoc:259"
 msgid "[source,java]"
 msgstr "[source,java]"
 
-#: lecture.adoc:266
-msgctxt "lecture.adoc:266"
+#: lecture.adoc:267
+msgctxt "lecture.adoc:267"
 msgid ""
 "----\n"
 "  private <T> void configure(T t) throws ... {\n"
@@ -631,13 +633,13 @@ msgstr ""
 "  }\n"
 "----"
 
-#: lecture.adoc:268
-msgctxt "lecture.adoc:268"
+#: lecture.adoc:269
+msgctxt "lecture.adoc:269"
 msgid "== Как находится подходящая имплементация"
 msgstr "== How is the appropriate implementation found?"
 
-#: lecture.adoc:285
-msgctxt "lecture.adoc:285"
+#: lecture.adoc:286
+msgctxt "lecture.adoc:286"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -673,13 +675,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:288
-msgctxt "lecture.adoc:288"
+#: lecture.adoc:289
+msgctxt "lecture.adoc:289"
 msgid "== Лектор-робот"
 msgstr "== Robot lecturer"
 
-#: lecture.adoc:297
-msgctxt "lecture.adoc:297"
+#: lecture.adoc:298
+msgctxt "lecture.adoc:298"
 msgid ""
 "[plantuml, robotlecturer, png]\n"
 "----\n"
@@ -699,7 +701,7 @@ msgstr ""
 "object Speaker\n"
 "object SlideShow"
 
-#: lecture.adoc:303
+#: lecture.adoc:304
 msgid ""
 "RobotLecturer --> Lecture\n"
 "RobotLecturer --> Speaker\n"
@@ -713,8 +715,8 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:317
-msgctxt "lecture.adoc:317"
+#: lecture.adoc:318
+msgctxt "lecture.adoc:318"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -744,13 +746,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:319
-msgctxt "lecture.adoc:319"
+#: lecture.adoc:320
+msgctxt "lecture.adoc:320"
 msgid "== Режим лектора"
 msgstr "== Lecturer mode"
 
-#: lecture.adoc:331
-msgctxt "lecture.adoc:331"
+#: lecture.adoc:332
+msgctxt "lecture.adoc:332"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -776,8 +778,8 @@ msgstr ""
 "    );\n"
 "}"
 
-#: lecture.adoc:340
-msgctxt "lecture.adoc:340"
+#: lecture.adoc:341
+msgctxt "lecture.adoc:341"
 msgid ""
 "//Main-метод\n"
 "public static void main(String[] args) \n"
@@ -797,13 +799,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:342
-msgctxt "lecture.adoc:342"
+#: lecture.adoc:343
+msgctxt "lecture.adoc:343"
 msgid "== Конфигуратор объекта"
 msgstr "== Object Configurator"
 
-#: lecture.adoc:350
-msgctxt "lecture.adoc:350"
+#: lecture.adoc:351
+msgctxt "lecture.adoc:351"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -821,8 +823,8 @@ msgstr ""
 "  //let's pass the ObjectFactory here as a constructor parameter\n"
 "  private final ObjectFactory factory;"
 
-#: lecture.adoc:363
-msgctxt "lecture.adoc:363"
+#: lecture.adoc:364
+msgctxt "lecture.adoc:364"
 msgid ""
 "  @Override\n"
 "  public void configure(Object t) throws ... {\n"
@@ -850,13 +852,13 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:365
-msgctxt "lecture.adoc:365"
+#: lecture.adoc:366
+msgctxt "lecture.adoc:366"
 msgid "== Как создаётся и конфигурируется объект"
 msgstr "== How an object is being created and configured"
 
-#: lecture.adoc:374
-msgctxt "lecture.adoc:374"
+#: lecture.adoc:375
+msgctxt "lecture.adoc:375"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -876,8 +878,8 @@ msgstr ""
 "  private final List<ObjectConfigurator> configurators = \n"
 "                          new ArrayList<>();"
 
-#: lecture.adoc:385
-msgctxt "lecture.adoc:385"
+#: lecture.adoc:386
+msgctxt "lecture.adoc:386"
 msgid ""
 "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
 "    //Находим реализацию запрошенного типа\n"
@@ -901,18 +903,18 @@ msgstr ""
 "  }\n"
 "----"
 
-#: lecture.adoc:387
-msgctxt "lecture.adoc:387"
+#: lecture.adoc:388
+msgctxt "lecture.adoc:388"
 msgid "== Метод configure очень прост"
 msgstr "== The `configure` method is very simple"
 
-#: lecture.adoc:389
-msgctxt "lecture.adoc:389"
+#: lecture.adoc:390
+msgctxt "lecture.adoc:390"
 msgid "[source,java]"
 msgstr "[source,java]"
 
-#: lecture.adoc:397
-msgctxt "lecture.adoc:397"
+#: lecture.adoc:398
+msgctxt "lecture.adoc:398"
 msgid ""
 "----\n"
 "  private <T> void configure(T t) throws ... {\n"
@@ -930,13 +932,13 @@ msgstr ""
 "  }\n"
 "----"
 
-#: lecture.adoc:399
-msgctxt "lecture.adoc:399"
+#: lecture.adoc:400
+msgctxt "lecture.adoc:400"
 msgid "== Как находится подходящая имплементация"
 msgstr "== How is the appropriate implementation found?"
 
-#: lecture.adoc:416
-msgctxt "lecture.adoc:416"
+#: lecture.adoc:417
+msgctxt "lecture.adoc:417"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -972,11 +974,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:418
+#: lecture.adoc:419
 msgid "== Ищем конфигураторы автоматически!"
 msgstr "== Let's look for configurators automatically!"
 
-#: lecture.adoc:437
+#: lecture.adoc:438
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1016,11 +1018,11 @@ msgstr ""
 "....//to be continued\n"
 "----"
 
-#: lecture.adoc:439
+#: lecture.adoc:440
 msgid "== Больше конфигураторов!"
 msgstr "== More configurators!"
 
-#: lecture.adoc:447
+#: lecture.adoc:448
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1038,11 +1040,11 @@ msgstr ""
 "    int max();\n"
 "}"
 
-#: lecture.adoc:449
+#: lecture.adoc:450
 msgid "----"
 msgstr "----"
 
-#: lecture.adoc:473
+#: lecture.adoc:474
 msgid ""
 "== InjectRandomIntObjectConfigurator\n"
 "[source,java]\n"
@@ -1090,11 +1092,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:475
+#: lecture.adoc:476
 msgid "== Итак, первые шаги:"
 msgstr "== So, the first steps:"
 
-#: lecture.adoc:485
+#: lecture.adoc:486
 msgid ""
 "[graphviz,\"init1.png\"]\n"
 "----\n"
@@ -1116,8 +1118,8 @@ msgstr ""
 "subgraph cluster_R {\n"
 "label = \"Configuration\";"
 
-#: lecture.adoc:488
-msgctxt "lecture.adoc:488"
+#: lecture.adoc:489
+msgctxt "lecture.adoc:489"
 msgid ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
@@ -1125,13 +1127,13 @@ msgstr ""
 "    configurator3 -> configurator2 -> configurator1 [dir=\"back\"];\n"
 "{rank=same configurator1 configurator2 configurator3}"
 
-#: lecture.adoc:490
-msgctxt "lecture.adoc:490"
+#: lecture.adoc:491
+msgctxt "lecture.adoc:491"
 msgid "} "
 msgstr "} "
 
-#: lecture.adoc:493
-msgctxt "lecture.adoc:493"
+#: lecture.adoc:494
+msgctxt "lecture.adoc:494"
 msgid ""
 "}\n"
 "----"
@@ -1139,11 +1141,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:495
+#: lecture.adoc:496
 msgid "== Инициализация объекта"
 msgstr "== Object Initialization"
 
-#: lecture.adoc:497
+#: lecture.adoc:498
 msgid ""
 "* Почему конструктор не годится для действий, включающих в себя "
 "инъектированные объекты?"
@@ -1151,7 +1153,7 @@ msgstr ""
 "* Why is the constructor not suitable for actions that require the injected "
 "values?"
 
-#: lecture.adoc:500
+#: lecture.adoc:501
 msgid ""
 "[.fragment]\n"
 "* Инъекция может происходить после конструктора. Поэтому нужно специальное "
@@ -1161,11 +1163,11 @@ msgstr ""
 "* Injection may occur after constructor. Therefore, you need a special "
 "action that is called after constructor _and_ injection!"
 
-#: lecture.adoc:502
+#: lecture.adoc:503
 msgid "== PostConstruct"
 msgstr "== PostConstruct"
 
-#: lecture.adoc:510
+#: lecture.adoc:511
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1183,7 +1185,7 @@ msgstr ""
 "  @InjectRandomInt(min = 1, max = 3)\n"
 "  private int repeat;"
 
-#: lecture.adoc:520
+#: lecture.adoc:521
 msgid ""
 "  @PostConstruct\n"
 "  public void init() {\n"
@@ -1205,11 +1207,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:522
+#: lecture.adoc:523
 msgid "== Продолжаем дописывать createObject"
 msgstr "== Let's continue to implement `createObject`"
 
-#: lecture.adoc:533
+#: lecture.adoc:534
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1233,7 +1235,7 @@ msgstr ""
 "  ....\n"
 "}"
 
-#: lecture.adoc:543
+#: lecture.adoc:544
 msgid ""
 "private <T> void invokeInitMethods(Class<? extends T> type, T t)\n"
 "                                                      throws ... {\n"
@@ -1255,11 +1257,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:545
+#: lecture.adoc:546
 msgid "== Последовательность действий"
 msgstr "== Sequence of actions"
 
-#: lecture.adoc:555
+#: lecture.adoc:556
 msgid ""
 "[graphviz,\"init2.png\"]\n"
 "----\n"
@@ -1281,8 +1283,8 @@ msgstr ""
 "subgraph cluster_R {\n"
 "label = \"Configuration\";"
 
-#: lecture.adoc:558
-msgctxt "lecture.adoc:558"
+#: lecture.adoc:559
+msgctxt "lecture.adoc:559"
 msgid ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
@@ -1290,18 +1292,18 @@ msgstr ""
 "    configurator3 -> configurator2 -> configurator1 [dir=\"back\"];\n"
 "{rank=same configurator1 configurator2 configurator3}"
 
-#: lecture.adoc:560
-msgctxt "lecture.adoc:560"
+#: lecture.adoc:561
+msgctxt "lecture.adoc:561"
 msgid "} "
 msgstr "} "
 
-#: lecture.adoc:562
-msgctxt "lecture.adoc:562"
+#: lecture.adoc:563
+msgctxt "lecture.adoc:563"
 msgid "конфигуратор3 -> postConstruct"
 msgstr "configurator3 -> postConstruct"
 
-#: lecture.adoc:565
-msgctxt "lecture.adoc:565"
+#: lecture.adoc:566
+msgctxt "lecture.adoc:566"
 msgid ""
 "}\n"
 "----"
@@ -1309,11 +1311,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:567
+#: lecture.adoc:568
 msgid "== Когда нужно модифицировать действие метода"
 msgstr "== Sometimes we need to modify the action of the method"
 
-#: lecture.adoc:574
+#: lecture.adoc:575
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1329,7 +1331,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:580
+#: lecture.adoc:581
 msgid ""
 "----\n"
 "[[[BENCHMARK method speak\n"
@@ -1343,11 +1345,11 @@ msgstr ""
 "Time: 107100ns]]]\n"
 "----"
 
-#: lecture.adoc:582
+#: lecture.adoc:583
 msgid "== Прокси-объект"
 msgstr "== Proxy object"
 
-#: lecture.adoc:589
+#: lecture.adoc:590
 msgid ""
 "[graphviz,\"proxy.png\"]\n"
 "----\n"
@@ -1363,11 +1365,11 @@ msgstr ""
 "  compound=true;\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:591
+#: lecture.adoc:592
 msgid "  splines=\"line\";"
 msgstr "  splines=\"line\";"
 
-#: lecture.adoc:595
+#: lecture.adoc:596
 msgid ""
 "  caller [shape=\"rectangle\", style=rounded];\n"
 "  caller -> inv[lhead=cluster0;label=\"       \"];\n"
@@ -1377,11 +1379,11 @@ msgstr ""
 "  caller -> inv[lhead=cluster0;label=\"       \"];\n"
 "  caller -> inv[arrowhead=none];"
 
-#: lecture.adoc:598
+#: lecture.adoc:599
 msgid "  subgraph cluster0 {"
 msgstr "  subgraph cluster0 {"
 
-#: lecture.adoc:601
+#: lecture.adoc:602
 msgid ""
 "    inv[style=invis,shape=point];\n"
 "    target[shape=\"rectangle\", style=\"rounded\";]"
@@ -1389,7 +1391,7 @@ msgstr ""
 "    inv[style=invis,shape=point];\n"
 "    target[shape=\"rectangle\", style=\"rounded\";]"
 
-#: lecture.adoc:604
+#: lecture.adoc:605
 msgid ""
 "    label=\"proxy\";\n"
 "    style=\"dashed,rounded\";"
@@ -1397,7 +1399,7 @@ msgstr ""
 "    label=\"proxy\";\n"
 "    style=\"dashed,rounded\";"
 
-#: lecture.adoc:609
+#: lecture.adoc:610
 msgid ""
 "    inv -> target[style=dashed;];\n"
 "  }\n"
@@ -1409,11 +1411,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:611
+#: lecture.adoc:612
 msgid "== BenchmarkProxyConfigurator"
 msgstr "== BenchmarkProxyConfigurator"
 
-#: lecture.adoc:633
+#: lecture.adoc:634
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1459,11 +1461,11 @@ msgstr ""
 "}}\n"
 "----"
 
-#: lecture.adoc:635
+#: lecture.adoc:636
 msgid "== Proxied method invocation"
 msgstr "== Proxied method invocation"
 
-#: lecture.adoc:653
+#: lecture.adoc:654
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1501,11 +1503,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:655
-msgid "== Последовательность действий (окончательная картина)"
+#: lecture.adoc:656
+msgid "== {zsp}Последовательность действий (окончательная картина){zsp}"
 msgstr "== Sequence of actions (final picture)"
 
-#: lecture.adoc:666
+#: lecture.adoc:667
 msgid ""
 "[graphviz,\"init3.png\"]\n"
 "----\n"
@@ -1527,8 +1529,8 @@ msgstr ""
 "subgraph cluster_R {\n"
 "label = \"Configuration\";"
 
-#: lecture.adoc:669
-msgctxt "lecture.adoc:669"
+#: lecture.adoc:670
+msgctxt "lecture.adoc:670"
 msgid ""
 "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
 "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
@@ -1536,17 +1538,17 @@ msgstr ""
 "    configurator3 -> configurator2 -> configurator1 [dir=\"back\"];\n"
 "{rank=same configurator1 configurator2 configurator3}"
 
-#: lecture.adoc:671
-msgctxt "lecture.adoc:671"
+#: lecture.adoc:672
+msgctxt "lecture.adoc:672"
 msgid "} "
 msgstr "} "
 
-#: lecture.adoc:673
-msgctxt "lecture.adoc:673"
+#: lecture.adoc:674
+msgctxt "lecture.adoc:674"
 msgid "конфигуратор3 -> postConstruct"
 msgstr "configurator3 -> postConstruct"
 
-#: lecture.adoc:676
+#: lecture.adoc:677
 msgid ""
 "subgraph cluster_S {\n"
 "label = \"Проксирование\";"
@@ -1554,7 +1556,7 @@ msgstr ""
 "subgraph cluster_S {\n"
 "label = \"Проксирование\";"
 
-#: lecture.adoc:679
+#: lecture.adoc:680
 msgid ""
 "    проксиконфигуратор2 -> проксиконфигуратор1  [dir=\"back\"];\n"
 "{rank=same проксиконфигуратор2 проксиконфигуратор1}"
@@ -1562,12 +1564,12 @@ msgstr ""
 "    proxyconfigurator2 -> proxyconfigurator1  [dir=\"back\"];\n"
 "{rank=same proxyconfigurator2 proxyconfigurator1}"
 
-#: lecture.adoc:681
-msgctxt "lecture.adoc:681"
+#: lecture.adoc:682
+msgctxt "lecture.adoc:682"
 msgid "} "
 msgstr "} "
 
-#: lecture.adoc:685
+#: lecture.adoc:686
 msgid ""
 "postConstruct -> проксиконфигуратор1\n"
 "}\n"
@@ -1577,7 +1579,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:693
+#: lecture.adoc:694
 msgid ""
 "== Промежуточные выводы\n"
 "* DI-контейнер реализует следующие этапы «настройки» объектов:\n"
@@ -1597,7 +1599,7 @@ msgstr ""
 "* DI pattern repeats itself: many DI container parts are convenient to "
 "configure via DI!"
 
-#: lecture.adoc:699
+#: lecture.adoc:700
 msgid ""
 "[%notitle]\n"
 "== Spring Framework"
@@ -1605,11 +1607,11 @@ msgstr ""
 "[%notitle]\n"
 "== Spring Framework"
 
-#: lecture.adoc:703
+#: lecture.adoc:704
 msgid "image::springframework.png[{image-80-width}]"
 msgstr "image::springframework.png[{image-80-width}]"
 
-#: lecture.adoc:705
+#: lecture.adoc:706
 msgid ""
 "_\"Perhaps one of the hardest parts of explaining Spring is classifying "
 "exactly what it is\"_ -- Pro Spring 5, 5th ed., p. 1 "
@@ -1617,11 +1619,11 @@ msgstr ""
 "_\"Perhaps one of the hardest parts of explaining Spring is classifying "
 "exactly what it is\"_ -- Pro Spring 5, 5th ed., p. 1 "
 
-#: lecture.adoc:707
+#: lecture.adoc:708
 msgid "== Spring Framework"
 msgstr "== Spring Framework"
 
-#: lecture.adoc:713
+#: lecture.adoc:714
 msgid ""
 "* DI\n"
 "* AOP\n"
@@ -1635,12 +1637,12 @@ msgstr ""
 "* Integration with a huge number of technologies\n"
 "* Very mature (and continuing to actively develop)"
 
-#: lecture.adoc:715
-msgctxt "lecture.adoc:715"
+#: lecture.adoc:716
+msgctxt "lecture.adoc:716"
 msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
 msgstr "== Rewrite our example from a \"homemade\" framework to Spring"
 
-#: lecture.adoc:727
+#: lecture.adoc:728
 msgid ""
 "Было:\n"
 "[source,java]\n"
@@ -1666,12 +1668,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:729
-msgctxt "lecture.adoc:729"
+#: lecture.adoc:730
+msgctxt "lecture.adoc:730"
 msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
 msgstr "== Rewrite our example from a \"homemade\" framework to Spring"
 
-#: lecture.adoc:743
+#: lecture.adoc:744
 msgid ""
 "Стало:\n"
 "[source,java]\n"
@@ -1701,11 +1703,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:745
+#: lecture.adoc:746
 msgid "== Spring Beans"
 msgstr "== Spring Beans"
 
-#: lecture.adoc:753
+#: lecture.adoc:754
 msgid ""
 "* В нашем примере -- \n"
 "** `RobotLecturer`, \n"
@@ -1723,11 +1725,11 @@ msgstr ""
 "* _Spring beans_ are reusable software components.\n"
 "* Any class, both ours and those from a third-party library, is suitable."
 
-#: lecture.adoc:755
+#: lecture.adoc:756
 msgid "== Способы конфигурации Spring"
 msgstr "== Spring configuration methods"
 
-#: lecture.adoc:762
+#: lecture.adoc:763
 msgid ""
 "* Разновидности конфигураций Spring:\n"
 "** Annotation-based\n"
@@ -1746,11 +1748,11 @@ msgstr ""
 "practical. \n"
 "* A huge number of tutorials (and projects) still have XML configuration."
 
-#: lecture.adoc:764
+#: lecture.adoc:765
 msgid "== Как определять бины"
 msgstr "== How to define beans"
 
-#: lecture.adoc:772
+#: lecture.adoc:773
 msgid ""
 "* Classpath Scanning: ищем проаннотированные классы в заданных пакетах.\n"
 "** @Component\n"
@@ -1760,19 +1762,19 @@ msgid ""
 "* Фабричные методы \n"
 "** @Configuration -> @Bean"
 msgstr ""
-"* Classpath Scanning: ищем проаннотированные классы в заданных пакетах.\n"
+"* Classpath Scanning: looks for annotated classes in the given packages.\n"
 "** @Component\n"
 "*** @Service\n"
 "*** @Controller\n"
 "*** @Repository\n"
-"* Фабричные методы \n"
+"* Factory methods \n"
 "** @Configuration -> @Bean"
 
-#: lecture.adoc:774
+#: lecture.adoc:775
 msgid "== Classpath scanning"
 msgstr "== Classpath scanning"
 
-#: lecture.adoc:779
+#: lecture.adoc:780
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1784,11 +1786,11 @@ msgstr ""
 "@ComponentScan(\"edu.phystech.robotlecturer\")\n"
 "----"
 
-#: lecture.adoc:781
+#: lecture.adoc:782
 msgid "Атрибуты аннотации:"
 msgstr "Annotation attributes:"
 
-#: lecture.adoc:786
+#: lecture.adoc:787
 msgid ""
 "* `String[] basePackages` -- базовые пакеты для сканирования в поисках "
 "аннотированных компонент.\n"
@@ -1798,19 +1800,19 @@ msgid ""
 "* Минусы: классы должны быть проаннторированы как `@Component`, `@Service` и "
 "т. п., что не всегда возможно для сторонних библиотек."
 msgstr ""
-"* `String[] basePackages` -- базовые пакеты для сканирования в поисках "
-"аннотированных компонент.\n"
-"* `Class<?>[] basePackageClasses` -- как типобезопасная альтернатива, можно "
-"указать классы. Пакеты каждого из указанных классов будут просканированы.\n"
-"* Плюсы: удобно. \n"
-"* Минусы: классы должны быть проаннторированы как `@Component`, `@Service` и "
-"т. п., что не всегда возможно для сторонних библиотек."
+"* `String[] basePackages` -- base packages for scanning for annotated "
+"components.\n"
+"* `Class<?>[] basePackageClasses` -- as a type-safe alternative, you can "
+"specify classes. Packages for each of these classes will be scanned.\n"
+"* Pros: convenient. \n"
+"* Cons: classes must be annotated with `@Component`, `@Service` etc., which "
+"is not always possible for third-party code."
 
-#: lecture.adoc:788
+#: lecture.adoc:789
 msgid "== `@Configuration` сlass"
 msgstr "== `@Configuration` сlass"
 
-#: lecture.adoc:790
+#: lecture.adoc:791
 msgid ""
 "* Класс конфигурации должен быть либо явно указан через конструктор "
 "`AnnotationConfigApplicationContext`, либо доступен сканирование пакетов "
@@ -1820,15 +1822,15 @@ msgstr ""
 "'AnnotationConfigApplicationContext' constructor or be available for package "
 "scanning (in which case the class should be annotated as '@Configuration'). "
 
-#: lecture.adoc:792
+#: lecture.adoc:793
 msgid "* Чтобы прописывать в классе бины, надо пользоваться `@Bean`."
 msgstr "* In order to define beans, you need to use `@Bean` annotation."
 
-#: lecture.adoc:794
+#: lecture.adoc:795
 msgid "== `@Configuration` сlass -- пример"
 msgstr "== `@Configuration` сlass example"
 
-#: lecture.adoc:799
+#: lecture.adoc:800
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1840,7 +1842,7 @@ msgstr ""
 "@Configuration\n"
 "public class AppConfig{"
 
-#: lecture.adoc:807
+#: lecture.adoc:808
 msgid ""
 "  @Bean\n"
 "  @Scope(BeanDefinition.SCOPE_PROTOTYPE)\n"
@@ -1858,7 +1860,7 @@ msgstr ""
 "                random.nextInt(256), random.nextInt(256));\n"
 "  }"
 
-#: lecture.adoc:811
+#: lecture.adoc:812
 msgid ""
 "  ...\n"
 "}\n"
@@ -1868,11 +1870,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:815
+#: lecture.adoc:816
 msgid "== Bean scope"
 msgstr "== Bean scope"
 
-#: lecture.adoc:819
+#: lecture.adoc:820
 msgid ""
 "* `SCOPE_SINGLETON` -- по умолчанию. Создаётся один при первом запросе и "
 "всюду впрыскивается единственный экземпляр.\n"
@@ -1884,11 +1886,11 @@ msgstr ""
 "* `SCOPE_PROTOTYPE` -- a new instance is created with each request.\n"
 "* There are many others, and you can create your own."
 
-#: lecture.adoc:821
+#: lecture.adoc:822
 msgid "== @Lazy"
 msgstr "== @Lazy"
 
-#: lecture.adoc:823
+#: lecture.adoc:824
 msgid ""
 "* По умолчанию все синглетоны создаются при поднятии контейнера (чтобы fail "
 "fast, и чтобы избежать задержек при работе приложения)."
@@ -1896,7 +1898,7 @@ msgstr ""
 "* By default, all singletons are created when the container is started (to "
 "fail fast, and to avoid delays when the application is running)."
 
-#: lecture.adoc:825
+#: lecture.adoc:826
 msgid ""
 "* Для конкретного бина это поведение можно изменить при помощи аннотации "
 "`@Lazy` (см. документацию)."
@@ -1904,18 +1906,18 @@ msgstr ""
 "* For a specific bean, this behavior can be changed using the `@Lazy` "
 "annotation (see documentation)."
 
-#: lecture.adoc:827
+#: lecture.adoc:828
 msgid ""
 "* Ленивая инициализация -- не такая хорошая идея, как кажется на первый "
 "взгляд."
 msgstr ""
 "* Lazy initialization is not as good an idea as it seems at first glance."
 
-#: lecture.adoc:829
+#: lecture.adoc:830
 msgid "== Bean name"
 msgstr "== Bean name"
 
-#: lecture.adoc:833
+#: lecture.adoc:834
 msgid ""
 "* Каждый бин получает имя (id).\n"
 "* По умолчанию, имя вычисляется из имени класса (`SpeakerImpl` -> `"
@@ -1931,11 +1933,11 @@ msgstr ""
 "parameter for `@Component` and other annotations (for example: "
 "`@Service(\"bestSpeaker\")`)."
 
-#: lecture.adoc:836
+#: lecture.adoc:837
 msgid "== Виды injection («впрыскивания»)"
 msgstr "== Types of injection"
 
-#: lecture.adoc:841
+#: lecture.adoc:842
 msgid ""
 "* Constructor\n"
 "* Setter\n"
@@ -1947,11 +1949,11 @@ msgstr ""
 "* Field\n"
 "* Lookup method"
 
-#: lecture.adoc:843
+#: lecture.adoc:844
 msgid "== Constructor injection"
 msgstr "== Constructor injection"
 
-#: lecture.adoc:854
+#: lecture.adoc:855
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1975,7 +1977,7 @@ msgstr ""
 "    private final SlideShow slideShow;\n"
 "----"
 
-#: lecture.adoc:858
+#: lecture.adoc:859
 msgid ""
 "* Внешне может быть незаметен (особенно с Lombok). \n"
 "* Хорош для создания иммутабельных объектов. \n"
@@ -1985,11 +1987,11 @@ msgstr ""
 "* Good for creating immutable objects. \n"
 "* A lot of parameters in constructor? -- Do you really need that many?"
 
-#: lecture.adoc:861
+#: lecture.adoc:862
 msgid "== Setter injection"
 msgstr "== Setter injection"
 
-#: lecture.adoc:870
+#: lecture.adoc:871
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2009,7 +2011,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:872
+#: lecture.adoc:873
 msgid ""
 "* Хорош в ситуации, когда компонента сама себе способна предоставить "
 "зависимость \"по умолчанию\"."
@@ -2017,11 +2019,11 @@ msgstr ""
 "* Good in a situation where the component itself is able to provide a "
 "\"default\" dependency."
 
-#: lecture.adoc:874
+#: lecture.adoc:875
 msgid "== Field injection"
 msgstr "== Field injection"
 
-#: lecture.adoc:888
+#: lecture.adoc:889
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2049,7 +2051,7 @@ msgstr ""
 "    private SlideShow slideShow;\n"
 "----"
 
-#: lecture.adoc:891
+#: lecture.adoc:892
 msgid ""
 "* Не плодит в классе сеттеры и конструкторы, но в целом сильно связывает код "
 "и считается не очень удачной практикой. \n"
@@ -2059,18 +2061,18 @@ msgstr ""
 "strongly binds the code and is considered to be not a very good practice. \n"
 "* Although, in test classes this is exactly what is needed."
 
-#: lecture.adoc:894
-msgctxt "lecture.adoc:894"
+#: lecture.adoc:895
+msgctxt "lecture.adoc:895"
 msgid "== Lookup method injection"
 msgstr "== Lookup method injection"
 
-#: lecture.adoc:896
+#: lecture.adoc:897
 msgid "Проблема бинов с разным жизненным циклом: `SCOPE_PROTOTYPE` не спасает."
 msgstr ""
 "The problem of beans with different life cycles: `SCOPE_PROTOTYPE` won't "
 "work."
 
-#: lecture.adoc:902
+#: lecture.adoc:903
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2084,7 +2086,7 @@ msgstr ""
 "@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)\n"
 "public class Bar {...}"
 
-#: lecture.adoc:907
+#: lecture.adoc:908
 msgid ""
 "@Component\n"
 "public class Foo {\n"
@@ -2096,7 +2098,7 @@ msgstr ""
 "    @Autowired\n"
 "    private Bar bar;"
 
-#: lecture.adoc:913
+#: lecture.adoc:914
 msgid ""
 "    public  void bar(){\n"
 "        //заинжектированный экземпляр bar всегда один и тот же \n"
@@ -2110,12 +2112,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:915
-msgctxt "lecture.adoc:915"
+#: lecture.adoc:916
+msgctxt "lecture.adoc:916"
 msgid "== Lookup method injection"
 msgstr "== Lookup method injection"
 
-#: lecture.adoc:922
+#: lecture.adoc:923
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2131,7 +2133,7 @@ msgstr ""
 "    @Lookup\n"
 "    abstract Bar getBar();"
 
-#: lecture.adoc:929
+#: lecture.adoc:930
 msgid ""
 "    public  void bar(){\n"
 "        Bar b = getBar();\n"
@@ -2147,7 +2149,7 @@ msgstr ""
 "    }\n"
 "}"
 
-#: lecture.adoc:935
+#: lecture.adoc:936
 msgid ""
 "Foo foo = ctx.getBean(Foo.class);\n"
 "foo.bar(); foo.bar(); ...\n"
@@ -2163,11 +2165,11 @@ msgstr ""
 "- What? do we instantiate an abstract class?! - No, we're instantating the "
 "wrapper, actually."
 
-#: lecture.adoc:937
+#: lecture.adoc:938
 msgid "== Lookup-метод может и не быть абстрактным"
 msgstr "== Lookup method may be not abstract"
 
-#: lecture.adoc:954
+#: lecture.adoc:955
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2202,6 +2204,342 @@ msgstr ""
 "    }\n"
 "}\n"
 "----"
+
+#~ msgctxt "lecture.adoc:42"
+#~ msgid "== Проблемы GoF-cинглетона"
+#~ msgstr "== GoF's Singleton problems"
+
+#~ msgctxt "lecture.adoc:87"
+#~ msgid "== Фабрика"
+#~ msgstr "== Factory"
+
+#~ msgctxt "lecture.adoc:123"
+#~ msgid "== Dependency Injection"
+#~ msgstr "== Dependency Injection"
+
+#~ msgctxt "lecture.adoc:143"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:288"
+#~ msgid "== Лектор-робот"
+#~ msgstr "== Robot lecturer"
+
+#~ msgctxt "lecture.adoc:297"
+#~ msgid ""
+#~ "[plantuml, robotlecturer, png]\n"
+#~ "----\n"
+#~ "@startuml\n"
+#~ "skinparam dpi 150 \n"
+#~ "object RobotLecturer\n"
+#~ "object Lecture\n"
+#~ "object Speaker\n"
+#~ "object SlideShow"
+#~ msgstr ""
+#~ "[plantuml, robotlecturer, png]\n"
+#~ "----\n"
+#~ "@startuml\n"
+#~ "skinparam dpi 150 \n"
+#~ "object RobotLecturer\n"
+#~ "object Lecture\n"
+#~ "object Speaker\n"
+#~ "object SlideShow"
+
+#~ msgctxt "lecture.adoc:317"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class RobotLecturer {\n"
+#~ "    //«магическим» образом пусть тут появится то, что нужно!\n"
+#~ "    @InjectByType\n"
+#~ "    private Lecture lecture;\n"
+#~ "    @InjectByType\n"
+#~ "    private Speaker speaker;\n"
+#~ "    @InjectByType\n"
+#~ "    private SlideShow slideShow;\n"
+#~ "    ...\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class RobotLecturer {\n"
+#~ "    //let what we need just magically appear here!\n"
+#~ "    @InjectByType\n"
+#~ "    private Lecture lecture;\n"
+#~ "    @InjectByType\n"
+#~ "    private Speaker speaker;\n"
+#~ "    @InjectByType\n"
+#~ "    private SlideShow slideShow;\n"
+#~ "    ...\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:319"
+#~ msgid "== Режим лектора"
+#~ msgstr "== Lecturer mode"
+
+#~ msgctxt "lecture.adoc:331"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "//Читать лекции просто\n"
+#~ "public void lecture() {\n"
+#~ "    lecture.getSlides().forEach(\n"
+#~ "        slide -> {\n"
+#~ "            slideShow.show(slide.getText());\n"
+#~ "            speaker.speak(slide.getComment());\n"
+#~ "        }\n"
+#~ "    );\n"
+#~ "}"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "//It's easy to read lectures\n"
+#~ "public void lecture() {\n"
+#~ "    lecture.getSlides().forEach(\n"
+#~ "        slide -> {\n"
+#~ "            slideShow.show(slide.getText());\n"
+#~ "            speaker.speak(slide.getComment());\n"
+#~ "        }\n"
+#~ "    );\n"
+#~ "}"
+
+#~ msgctxt "lecture.adoc:340"
+#~ msgid ""
+#~ "//Main-метод\n"
+#~ "public static void main(String[] args) \n"
+#~ "                  throws ReflectiveOperationException {\n"
+#~ "    RobotLecturer lecturer = \n"
+#~ "        new ObjectFactory().createObject(RobotLecturer.class);\n"
+#~ "    lecturer.lecture();\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "//Main method\n"
+#~ "public static void main(String[] args) \n"
+#~ "                  throws ReflectiveOperationException {\n"
+#~ "    RobotLecturer lecturer = \n"
+#~ "        new ObjectFactory().createObject(RobotLecturer.class);\n"
+#~ "    lecturer.lecture();\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:342"
+#~ msgid "== Конфигуратор объекта"
+#~ msgstr "== Object Configurator"
+
+#~ msgctxt "lecture.adoc:350"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "@RequiredArgsConstructor\n"
+#~ "public class InjectByTypeAnnotationObjectConfigurator \n"
+#~ "                             implements ObjectConfigurator {\n"
+#~ "  //передадим сюда через конструктор ObjectFactory\n"
+#~ "  private final ObjectFactory factory;"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "@RequiredArgsConstructor\n"
+#~ "public class InjectByTypeAnnotationObjectConfigurator \n"
+#~ "                             implements ObjectConfigurator {\n"
+#~ "  //let's pass the ObjectFactory here as a constructor parameter\n"
+#~ "  private final ObjectFactory factory;"
+
+#~ msgctxt "lecture.adoc:363"
+#~ msgid ""
+#~ "  @Override\n"
+#~ "  public void configure(Object t) throws ... {\n"
+#~ "    for (Field field : t.getClass().getDeclaredFields()) {\n"
+#~ "      if (field.isAnnotationPresent(InjectByType.class)) {\n"
+#~ "        field.setAccessible(true);\n"
+#~ "        //Мы же умеем по типу создавать объект?\n"
+#~ "        field.set(t, factory.createObject(field.getType()));\n"
+#~ "      }\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "  @Override\n"
+#~ "  public void configure(Object t) throws ... {\n"
+#~ "    for (Field field : t.getClass().getDeclaredFields()) {\n"
+#~ "      if (field.isAnnotationPresent(InjectByType.class)) {\n"
+#~ "        field.setAccessible(true);\n"
+#~ "        //Do we know how to create an object by its type?\n"
+#~ "        field.set(t, factory.createObject(field.getType()));\n"
+#~ "      }\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:365"
+#~ msgid "== Как создаётся и конфигурируется объект"
+#~ msgstr "== How an object is being created and configured"
+
+#~ msgctxt "lecture.adoc:374"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class ObjectFactory {\n"
+#~ "  //Правда, тут напрашивается DI?\n"
+#~ "  private final Reflections scanner = \n"
+#~ "                          new Reflections(\"edu.phystech\");\n"
+#~ "  private final List<ObjectConfigurator> configurators = \n"
+#~ "                          new ArrayList<>();"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "public class ObjectFactory {\n"
+#~ "  //Don't we need DI here also?\n"
+#~ "  private final Reflections scanner = \n"
+#~ "                          new Reflections(\"edu.phystech\");\n"
+#~ "  private final List<ObjectConfigurator> configurators = \n"
+#~ "                          new ArrayList<>();"
+
+#~ msgctxt "lecture.adoc:385"
+#~ msgid ""
+#~ "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
+#~ "    //Находим реализацию запрошенного типа\n"
+#~ "    type = resolveImpl(type);\n"
+#~ "    //Создаём объект (с помощью конструктора по умолчанию, TODO)\n"
+#~ "    T t = type.newInstance();\n"
+#~ "    //Конфигурируем\n"
+#~ "    configure(t);\n"
+#~ "    ....\n"
+#~ "  }\n"
+#~ "----"
+#~ msgstr ""
+#~ "  public <T> T createObject(Class<? extends T> type) throws ... {\n"
+#~ "    //Let's find an implementation of the requested type\n"
+#~ "    type = resolveImpl(type);\n"
+#~ "    //Let's create an instance (using the default constructor, TODO)\n"
+#~ "    T t = type.newInstance();\n"
+#~ "    //Configuring\n"
+#~ "    configure(t);\n"
+#~ "    ....\n"
+#~ "  }\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:387"
+#~ msgid "== Метод configure очень прост"
+#~ msgstr "== The `configure` method is very simple"
+
+#~ msgctxt "lecture.adoc:389"
+#~ msgid "[source,java]"
+#~ msgstr "[source,java]"
+
+#~ msgctxt "lecture.adoc:397"
+#~ msgid ""
+#~ "----\n"
+#~ "  private <T> void configure(T t) throws ... {\n"
+#~ "    for (ObjectConfigurator configurator : configurators) {\n"
+#~ "      configurator.configure(t);\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "----"
+#~ msgstr ""
+#~ "----\n"
+#~ "  private <T> void configure(T t) throws ... {\n"
+#~ "    for (ObjectConfigurator configurator : configurators) {\n"
+#~ "      configurator.configure(t);\n"
+#~ "    }\n"
+#~ "  }\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:399"
+#~ msgid "== Как находится подходящая имплементация"
+#~ msgstr "== How is the appropriate implementation found?"
+
+#~ msgctxt "lecture.adoc:416"
+#~ msgid ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "private <T> Class<? extends T> resolveImpl(Class<? extends T> type){\n"
+#~ "  if (type.isInterface()) {\n"
+#~ "    Set<Class<? extends T>> classes = \n"
+#~ "                         scanner.getSubTypesOf((Class<T>) type);\n"
+#~ "    if (classes.size() != 1) {\n"
+#~ "      throw new RuntimeException(\n"
+#~ "         \"0 or more than one implementation found for type \" \n"
+#~ "         + type + \" please update your config\");\n"
+#~ "    }\n"
+#~ "    type = classes.iterator().next();\n"
+#~ "  }\n"
+#~ "  return type;\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "[source,java]\n"
+#~ "----\n"
+#~ "private <T> Class<? extends T> resolveImpl(Class<? extends T> type){\n"
+#~ "  if (type.isInterface()) {\n"
+#~ "    Set<Class<? extends T>> classes = \n"
+#~ "                         scanner.getSubTypesOf((Class<T>) type);\n"
+#~ "    if (classes.size() != 1) {\n"
+#~ "      throw new RuntimeException(\n"
+#~ "         \"0 or more than one implementation found for type \" \n"
+#~ "         + type + \" please update your config\");\n"
+#~ "    }\n"
+#~ "    type = classes.iterator().next();\n"
+#~ "  }\n"
+#~ "  return type;\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:558"
+#~ msgid ""
+#~ "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+#~ "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+#~ msgstr ""
+#~ "    configurator3 -> configurator2 -> configurator1 [dir=\"back\"];\n"
+#~ "{rank=same configurator1 configurator2 configurator3}"
+
+#~ msgctxt "lecture.adoc:560"
+#~ msgid "} "
+#~ msgstr "} "
+
+#~ msgctxt "lecture.adoc:565"
+#~ msgid ""
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:669"
+#~ msgid ""
+#~ "    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+#~ "{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+#~ msgstr ""
+#~ "    configurator3 -> configurator2 -> configurator1 [dir=\"back\"];\n"
+#~ "{rank=same configurator1 configurator2 configurator3}"
+
+#~ msgctxt "lecture.adoc:671"
+#~ msgid "} "
+#~ msgstr "} "
+
+#~ msgctxt "lecture.adoc:673"
+#~ msgid "конфигуратор3 -> postConstruct"
+#~ msgstr "configurator3 -> postConstruct"
+
+#~ msgctxt "lecture.adoc:681"
+#~ msgid "} "
+#~ msgstr "} "
+
+#~ msgctxt "lecture.adoc:729"
+#~ msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
+#~ msgstr "== Rewrite our example from a \"homemade\" framework to Spring"
+
+#~ msgctxt "lecture.adoc:915"
+#~ msgid "== Lookup method injection"
+#~ msgstr "== Lookup method injection"
 
 #~ msgctxt "./slides13/src/main/asciidoc/lecture.adoc:42"
 #~ msgid "== Проблемы GoF-cинглетона"
