@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 19:15+0300\n"
-"PO-Revision-Date: 2022-03-18 19:24+0200\n"
+"POT-Creation-Date: 2022-03-20 17:00+0300\n"
+"PO-Revision-Date: 2022-03-20 17:01+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -1512,25 +1512,27 @@ msgstr ""
 msgid "== Пришла пора закругляться :-)"
 msgstr "== It's time to round off :-)"
 
-#: lecture.adoc:656
+#: lecture.adoc:657
 msgid ""
 "* Всё, что я рассказал в этом курсе -- уже Legacy.\n"
-"* Мы работали на Java 11, но...\n"
-"** текущая версия -- Java 15, \n"
-"** в марте 2021 -- Java 16, \n"
-"** в сентябре -- Java 17 (новый LTS)."
+"* Мы работали на Java 17 (LTS), но...\n"
+"** март 2022 -- Java 18,\n"
+"** сентябрь 2022 -- Java 19,\n"
+"** март 2023 -- Java 20,\n"
+"** сентябрь 2023 -- Java 21 (новый LTS)."
 msgstr ""
-"* Everything I've covered in this course is Legacy already.\n"
-"* We worked on Java 11, but...\n"
-"** current version -- Java 15, \n"
-"** March 2021 -- Java 16, \n"
-"** in September -- Java 17 (new LTS)."
+"* Everything I've covered in this course is legacy already.\n"
+"* We worked on Java 17 (LTS), but...\n"
+"** March 2022 -- Java 18,\n"
+"** September 2022 -- Java 19,\n"
+"** March 2023 -- Java 20,\n"
+"** September 2023 -- Java 21 (next LTS)."
 
-#: lecture.adoc:658
+#: lecture.adoc:659
 msgid "== Синтаксис Java развивается"
 msgstr "== Java syntax is evolving"
 
-#: lecture.adoc:664
+#: lecture.adoc:665
 msgid ""
 "** Modularization (Java 9+)\n"
 "** Type Inference (Java 10+)\n"
@@ -1544,11 +1546,11 @@ msgstr ""
 "** Multiline Strings (Java 13+)\n"
 "** Records (Java 14+)"
 
-#: lecture.adoc:666
+#: lecture.adoc:667
 msgid "== Все ждут проектов"
 msgstr "== Everyone is waiting for projects"
 
-#: lecture.adoc:669
+#: lecture.adoc:670
 msgid ""
 "* Valhalla\n"
 "* Loom"
@@ -1556,11 +1558,11 @@ msgstr ""
 "* Valhalla\n"
 "* Loom"
 
-#: lecture.adoc:671
+#: lecture.adoc:672
 msgid "== «Вселенная Java» расширяется со скоростью света"
 msgstr "== \"Java Universe\" is expanding at the speed of light"
 
-#: lecture.adoc:678
+#: lecture.adoc:679
 msgid ""
 "* Не только Spring:\n"
 "** Microframeworks -- for serverless\n"
@@ -1576,15 +1578,15 @@ msgstr ""
 "** Kotlin\n"
 "** Scala"
 
-#: lecture.adoc:680
+#: lecture.adoc:681
 msgid "== Выводы — напутствия"
 msgstr "== Conclusions — parting words"
 
-#: lecture.adoc:682
+#: lecture.adoc:683
 msgid "== Никогда не переставайте изучать новое"
 msgstr "== Never stop learning new things"
 
-#: lecture.adoc:684
+#: lecture.adoc:685
 msgid ""
 "_\"Here, you see, it takes all the running you can do, to keep in the same "
 "place. If you want to get somewhere else, you must run at least twice as "
@@ -1594,15 +1596,15 @@ msgstr ""
 "place. If you want to get somewhere else, you must run at least twice as "
 "fast as that!”_"
 
-#: lecture.adoc:686
+#: lecture.adoc:687
 msgid "image::alice_queen.jpg[{image-40-width}]"
 msgstr "image::alice_queen.jpg[{image-40-width}]"
 
-#: lecture.adoc:688
+#: lecture.adoc:689
 msgid "== Старое тоже полезно изучать"
 msgstr "== The old is also useful to learn"
 
-#: lecture.adoc:700
+#: lecture.adoc:701
 msgid ""
 "[cols=\"25a,25a,25a,25a\"]\n"
 "|===\n"
@@ -1628,11 +1630,11 @@ msgstr ""
 "image::urma.jpg[]\n"
 "|==="
 
-#: lecture.adoc:702
+#: lecture.adoc:703
 msgid "== Помните про свою профессиональную ответственность"
 msgstr "== Remember about your professional responsibility"
 
-#: lecture.adoc:710
+#: lecture.adoc:711
 msgid ""
 "* От работы программистов в XXI веке зависят судьбы людей\n"
 "* Даже если это не программа, управляющая самолётом или аппаратом ИВЛ\n"
@@ -1650,7 +1652,7 @@ msgstr ""
 "** *Accessibility*\n"
 "* Make the world a better place!"
 
-#: lecture.adoc:715
+#: lecture.adoc:716
 msgid ""
 "== Становитесь частью community!\n"
 "* JUGs: Москва, Санкт-Петербург, Новосибирск.\n"
@@ -1662,15 +1664,15 @@ msgstr ""
 "* Conferences: Joker, JPoint, SnowOne.\n"
 "* When it's all over, come to moscow's JUG!"
 
-#: lecture.adoc:717
+#: lecture.adoc:718
 msgid "image::jugmsk.jpg[]"
 msgstr "image::jugmsk.jpg[]"
 
-#: lecture.adoc:720
+#: lecture.adoc:721
 msgid "== Добро пожаловать во вселенную Java :-)"
 msgstr "== Welcome to the Java universe :-)"
 
-#: lecture.adoc:721
+#: lecture.adoc:722
 msgid "image::duke.svg[{image-20-width}]"
 msgstr "image::duke.svg[{image-20-width}]"
 
