@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-03-16 10:30+0200\n"
+"POT-Creation-Date: 2022-05-22 14:58+0300\n"
+"PO-Revision-Date: 2022-05-22 15:02+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -310,7 +310,7 @@ msgctxt "lecture.adoc:132"
 msgid "^.^|"
 msgstr "^.^|"
 
-#: lecture.adoc:145
+#: lecture.adoc:146
 msgid ""
 "[graphviz,\"k6.png\"]\n"
 "----\n"
@@ -323,7 +323,8 @@ msgid ""
 "    c--d; c--e; c--f;\n"
 "    d--e; d--f;\n"
 "    e--f;\n"
-"}"
+"}\n"
+"----"
 msgstr ""
 "[graphviz,\"k6.png\"]\n"
 "----\n"
@@ -336,7 +337,8 @@ msgstr ""
 "    c--d; c--e; c--f;\n"
 "    d--e; d--f;\n"
 "    e--f;\n"
-"}"
+"}\n"
+"----"
 
 #: lecture.adoc:148
 msgctxt "lecture.adoc:148"
@@ -765,11 +767,173 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:342
+#: lecture.adoc:341
+msgid "== Thread one, Thread two"
+msgstr "== Thread one, Thread two"
+
+#: lecture.adoc:351
+msgctxt "lecture.adoc:351"
+msgid ""
+"[source,java]\n"
+"----\n"
+"Thread one = new Thread(() -> {\n"
+"    a = 1; x = b;\n"
+"});\n"
+"Thread two = new Thread(() -> {\n"
+"    b = 1; y = a;\n"
+"});\n"
+"----"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"Thread one = new Thread(() -> {\n"
+"    a = 1; x = b;\n"
+"});\n"
+"Thread two = new Thread(() -> {\n"
+"    b = 1; y = a;\n"
+"});\n"
+"----"
+
+#: lecture.adoc:355
+msgctxt "lecture.adoc:355"
+msgid ""
+"[source]\n"
+"----\n"
+"         x  y  a  b "
+msgstr ""
+"[source]\n"
+"----\n"
+"         x  y  a  b "
+
+#: lecture.adoc:361
+msgid ""
+"a = 1;   0  0  1  0\n"
+"x = b;   0  0  1  0 \n"
+"b = 1;   0  0  1  1\n"
+"y = a;   0  1  0  0\n"
+"----"
+msgstr ""
+"a = 1;   0  0  1  0\n"
+"x = b;   0  0  1  0 \n"
+"b = 1;   0  0  1  1\n"
+"y = a;   0  1  0  0\n"
+"----"
+
+#: lecture.adoc:363
+msgid "== Thread two, Thread one"
+msgstr "== Thread two, Thread one"
+
+#: lecture.adoc:373
+msgctxt "lecture.adoc:373"
+msgid ""
+"[source,java]\n"
+"----\n"
+"Thread one = new Thread(() -> {\n"
+"    a = 1; x = b;\n"
+"});\n"
+"Thread two = new Thread(() -> {\n"
+"    b = 1; y = a;\n"
+"});\n"
+"----"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"Thread one = new Thread(() -> {\n"
+"    a = 1; x = b;\n"
+"});\n"
+"Thread two = new Thread(() -> {\n"
+"    b = 1; y = a;\n"
+"});\n"
+"----"
+
+#: lecture.adoc:377
+msgctxt "lecture.adoc:377"
+msgid ""
+"[source]\n"
+"----\n"
+"         x  y  a  b "
+msgstr ""
+"[source]\n"
+"----\n"
+"         x  y  a  b "
+
+#: lecture.adoc:383
+msgid ""
+"b = 1;   0  0  0  1\n"
+"y = a;   0  0  0  1\n"
+"a = 1;   0  0  1  1\n"
+"x = b;   1  0  1  1 \n"
+"----"
+msgstr ""
+"b = 1;   0  0  0  1\n"
+"y = a;   0  0  0  1\n"
+"a = 1;   0  0  1  1\n"
+"x = b;   1  0  1  1 \n"
+"----"
+
+#: lecture.adoc:385
+msgid "== Threads interleaved"
+msgstr "== Threads interleaved"
+
+#: lecture.adoc:395
+msgctxt "lecture.adoc:395"
+msgid ""
+"[source,java]\n"
+"----\n"
+"Thread one = new Thread(() -> {\n"
+"    a = 1; x = b;\n"
+"});\n"
+"Thread two = new Thread(() -> {\n"
+"    b = 1; y = a;\n"
+"});\n"
+"----"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"Thread one = new Thread(() -> {\n"
+"    a = 1; x = b;\n"
+"});\n"
+"Thread two = new Thread(() -> {\n"
+"    b = 1; y = a;\n"
+"});\n"
+"----"
+
+#: lecture.adoc:399
+msgctxt "lecture.adoc:399"
+msgid ""
+"[source]\n"
+"----\n"
+"         x  y  a  b "
+msgstr ""
+"[source]\n"
+"----\n"
+"         x  y  a  b "
+
+#: lecture.adoc:408
+msgid ""
+"a = 1;   0  0  1  0\n"
+"b = 1;   0  0  1  1\n"
+"x = b;   1  0  1  1\n"
+"y = a;   1  1  1  1\n"
+"or \n"
+"y = a;   0  1  1  1\n"
+"x = b;   1  1  1  1\n"
+"----"
+msgstr ""
+"a = 1;   0  0  1  0\n"
+"b = 1;   0  0  1  1\n"
+"x = b;   1  0  1  1\n"
+"y = a;   1  1  1  1\n"
+"or \n"
+"y = a;   0  1  1  1\n"
+"x = b;   1  1  1  1\n"
+"----"
+
+#: lecture.adoc:411
 msgid "== Промежуточные выводы"
 msgstr "== Intermediate conclusions"
 
-#: lecture.adoc:344
+#: lecture.adoc:413
 msgid ""
 "* Из-за reordering и других низкоуровневых особенностей _нельзя_ рассуждать "
 "о результате работы одного треда с точки зрения другого треда как о "
@@ -779,15 +943,15 @@ msgstr ""
 "reason about the result of one thread from the point of view of another "
 "thread as an intermediate result of the execution of the source code. "
 
-#: lecture.adoc:346
+#: lecture.adoc:415
 msgid "* Все проблемы с параллельными вычислениями связаны с shared state."
 msgstr "* All problems with parallel computing are related to shared state."
 
-#: lecture.adoc:348
+#: lecture.adoc:417
 msgid "* Показанные здесь проблемы проявляются недетерминированно."
 msgstr "* The problems shown here are nondeterministic."
 
-#: lecture.adoc:350
+#: lecture.adoc:419
 msgid ""
 "* Любая программа с доступом к shared state без должной синхронизации -- "
 "_сломана_, даже если «вчера это работало на моей машине»."
@@ -795,11 +959,11 @@ msgstr ""
 "* Any program with shared state access without proper synchronization is "
 "_broken_, even if \"yesterday it worked on my machine\"."
 
-#: lecture.adoc:352
+#: lecture.adoc:421
 msgid "== Модель памяти"
 msgstr "== Memory model"
 
-#: lecture.adoc:357
+#: lecture.adoc:426
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -811,7 +975,7 @@ msgstr ""
 "int aVariable = 42; \n"
 "----"
 
-#: lecture.adoc:359
+#: lecture.adoc:428
 msgid ""
 "* Модель памяти (Java Memory Model, JMM) -- спецификация языка и виртуальной "
 "машины, отвечающая на вопрос: «при каких условиях поток, читающий переменную "
@@ -821,11 +985,11 @@ msgstr ""
 "that answers the question, \"Under what conditions will a thread reading the "
 "'aVariable' see a value of 42?\""
 
-#: lecture.adoc:361
+#: lecture.adoc:430
 msgid "== Happens-before"
 msgstr "== Happens-before"
 
-#: lecture.adoc:363
+#: lecture.adoc:432
 msgid ""
 "* JMM определяет частичный порядок на всех действиях в Java-программе, "
 "называемый _happens-before_."
@@ -833,7 +997,7 @@ msgstr ""
 "* JMM defines a partial order on all actions in a Java program, called "
 "_happens before_."
 
-#: lecture.adoc:365
+#: lecture.adoc:434
 msgid ""
 "* Отношение _happens-before_ транзитивно: stem:[A \\prec B \\wedge B \\prec "
 "C \\Rightarrow A \\prec C]"
@@ -841,7 +1005,7 @@ msgstr ""
 "* The _happens-before_ relation is transitive: stem:[A \\prec B \\wedge B "
 "\\prec C \\Rightarrow A \\prec C]"
 
-#: lecture.adoc:367
+#: lecture.adoc:436
 msgid ""
 "* Чтобы действие B гарантированно видело результат работы действия A, "
 "достаточно, чтобы stem:[A \\prec B]."
@@ -849,11 +1013,11 @@ msgstr ""
 "* For action B to be guaranteed to see the result of action A, it is "
 "sufficient that stem:[A \\prec B]."
 
-#: lecture.adoc:369
+#: lecture.adoc:438
 msgid "== Program order rule"
 msgstr "== Program order rule"
 
-#: lecture.adoc:371
+#: lecture.adoc:440
 msgid ""
 "* В рамках одного треда все действия _happens-before_ в порядке их "
 "определения в исходном коде программы. "
@@ -861,16 +1025,16 @@ msgstr ""
 "* Within one thread, all actions _happens before_ in the order of their "
 "definition in the source code of the program. "
 
-#: lecture.adoc:373
+#: lecture.adoc:442
 msgid "* Иными словами, однопоточные программы выполняются без сюрпризов."
 msgstr ""
 "* In other words, single-threaded programs are executed without surprises."
 
-#: lecture.adoc:375
+#: lecture.adoc:444
 msgid "== Thread start & thread termination rule"
 msgstr "== Thread start & thread termination rule"
 
-#: lecture.adoc:379
+#: lecture.adoc:448
 msgid ""
 "* Вызов `threadA.start()` _happens-before_ всех операций в потоке "
 "`threadA`.\n"
@@ -888,16 +1052,16 @@ msgstr ""
 "* Due to this rule, <<first_example, our very first example>> works "
 "correctly."
 
-#: lecture.adoc:382
+#: lecture.adoc:451
 msgid "== Ключевое слово volatile"
 msgstr "== `volatile` keyword"
 
-#: lecture.adoc:384
+#: lecture.adoc:453
 msgid ""
 "* Переменные классов могут быть определены с ключевым словом `volatile`."
 msgstr "* Class variables can be defined with the `volatile` keyword."
 
-#: lecture.adoc:386
+#: lecture.adoc:455
 msgid ""
 "* *Запись в `volatile`-переменную _happens-before_ чтения из этой переменной "
 "в другом потоке.*"
@@ -905,7 +1069,7 @@ msgstr ""
 "* *Writing to a `volatile` variable _happens-before_ reading from this "
 "variable on another thread.*"
 
-#: lecture.adoc:388
+#: lecture.adoc:457
 msgid ""
 "* Это автоматом делает видимыми изменения в других переменных. Полагаться на "
 "это не рекомендуется: это работает, но делает код хрупким. В процессе "
@@ -917,11 +1081,11 @@ msgstr ""
 "In the process of refactoring, you can change the order of access to "
 "variables and thereby accidentally break the program. "
 
-#: lecture.adoc:390
+#: lecture.adoc:459
 msgid "== Чиним stale value при помощи volatile"
 msgstr "== Fix stale value using volatile"
 
-#: lecture.adoc:395
+#: lecture.adoc:464
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -933,8 +1097,8 @@ msgstr ""
 "class NotSoDumbWayToFallAsleep implements Runnable {\n"
 "  private volatile boolean asleep;"
 
-#: lecture.adoc:399
-msgctxt "lecture.adoc:399"
+#: lecture.adoc:468
+msgctxt "lecture.adoc:468"
 msgid ""
 "  public void setAsleep(boolean asleep){\n"
 "    this.asleep = asleep;\n"
@@ -944,7 +1108,7 @@ msgstr ""
 "    this.asleep = asleep;\n"
 "  }"
 
-#: lecture.adoc:409
+#: lecture.adoc:478
 msgid ""
 "  @Override\n"
 "  public void run() {\n"
@@ -966,11 +1130,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:411
+#: lecture.adoc:480
 msgid "== final-поля"
 msgstr "== `final` fields"
 
-#: lecture.adoc:413
+#: lecture.adoc:482
 msgid ""
 "* Если объект правильно опубликован, т. е.  _ссылка на него не утекает во "
 "время выполнения конструктора_ --  `final`-поля объекта доступны всем тредам "
@@ -980,7 +1144,7 @@ msgstr ""
 "not leak from constructor_ -- `final` fields of the object are available to "
 "all the threads without synchronization."
 
-#: lecture.adoc:415
+#: lecture.adoc:484
 msgid ""
 "* Лучший способ борьбы с проблемами mutable state -- использовать immutable "
 "state где только возможно."
@@ -988,11 +1152,11 @@ msgstr ""
 "* The best way to deal with mutable state problems is to use immutable state "
 "wherever possible."
 
-#: lecture.adoc:417
+#: lecture.adoc:486
 msgid "== Неатомарные операции: final не годится, volatile не спасёт"
 msgstr "== Non-atomic operations: final is not good, volatile will not save us"
 
-#: lecture.adoc:431
+#: lecture.adoc:500
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1022,7 +1186,7 @@ msgstr ""
 "----\n"
 "(We can declare `count` as `volatile`, but this won't help.)"
 
-#: lecture.adoc:436
+#: lecture.adoc:505
 msgid ""
 "|[source,java]\n"
 "----\n"
@@ -1034,7 +1198,7 @@ msgstr ""
 "void dumbMoneyTransfer(\n"
 "  int from, int to, int amount){"
 
-#: lecture.adoc:441
+#: lecture.adoc:510
 msgid ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;\n"
@@ -1046,7 +1210,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:444
+#: lecture.adoc:513
 msgid ""
 "(Кстати, `volatile array` -- не массив `volatile`-элементов. И вообще в Java "
 "просто так массив `volatile`-элементов не создать.)\n"
@@ -1056,7 +1220,7 @@ msgstr ""
 "in Java you can't just create an array of `volatile` elements that easy.)\n"
 "|==="
 
-#: lecture.adoc:454
+#: lecture.adoc:523
 msgid ""
 "== Несинхронизированное выполнение\n"
 "[plantuml, nonsync, png]\n"
@@ -1076,8 +1240,8 @@ msgstr ""
 "participant Client2\n"
 "participant Bank"
 
-#: lecture.adoc:457
-msgctxt "lecture.adoc:457"
+#: lecture.adoc:526
+msgctxt "lecture.adoc:526"
 msgid ""
 "Client1 -> Bank: transfer\n"
 "activate Bank"
@@ -1085,7 +1249,7 @@ msgstr ""
 "Client1 -> Bank: transfer\n"
 "activate Bank"
 
-#: lecture.adoc:460
+#: lecture.adoc:529
 msgid ""
 "Client2 -> Bank: transfer\n"
 "Bank --> Client1 "
@@ -1093,7 +1257,7 @@ msgstr ""
 "Client2 -> Bank: transfer\n"
 "Bank --> Client1 "
 
-#: lecture.adoc:464
+#: lecture.adoc:533
 msgid ""
 "Bank --> Client2\n"
 "deactivate Bank"
@@ -1101,8 +1265,8 @@ msgstr ""
 "Bank --> Client2\n"
 "deactivate Bank"
 
-#: lecture.adoc:467
-msgctxt "lecture.adoc:467"
+#: lecture.adoc:536
+msgctxt "lecture.adoc:536"
 msgid ""
 "@enduml\n"
 "----"
@@ -1110,7 +1274,7 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:477
+#: lecture.adoc:546
 msgid ""
 "== Синхронизированное выполнение\n"
 "[plantuml, sync, png]\n"
@@ -1132,7 +1296,7 @@ msgstr ""
 "participant Lock\n"
 "participant Bank"
 
-#: lecture.adoc:483
+#: lecture.adoc:552
 msgid ""
 "Client1 -> Lock: lock\n"
 "activate Lock\n"
@@ -1144,8 +1308,8 @@ msgstr ""
 "Lock --> Client1\n"
 "deactivate Lock"
 
-#: lecture.adoc:486
-msgctxt "lecture.adoc:486"
+#: lecture.adoc:555
+msgctxt "lecture.adoc:555"
 msgid ""
 "Client1 -> Bank: transfer\n"
 "activate Bank"
@@ -1153,7 +1317,7 @@ msgstr ""
 "Client1 -> Bank: transfer\n"
 "activate Bank"
 
-#: lecture.adoc:489
+#: lecture.adoc:558
 msgid ""
 "Client2 -> Lock: lock\n"
 "activate Lock"
@@ -1161,7 +1325,7 @@ msgstr ""
 "Client2 -> Lock: lock\n"
 "activate Lock"
 
-#: lecture.adoc:492
+#: lecture.adoc:561
 msgid ""
 "Bank --> Client1 \n"
 "deactivate Bank"
@@ -1169,7 +1333,7 @@ msgstr ""
 "Bank --> Client1 \n"
 "deactivate Bank"
 
-#: lecture.adoc:497
+#: lecture.adoc:566
 msgid ""
 "Client1 -> Lock: unlock\n"
 "Lock --> Client1\n"
@@ -1181,7 +1345,7 @@ msgstr ""
 "Lock --> Client2\n"
 "deactivate Lock"
 
-#: lecture.adoc:502
+#: lecture.adoc:571
 msgid ""
 "Client2 -> Bank: transfer\n"
 "activate Bank\n"
@@ -1193,8 +1357,8 @@ msgstr ""
 "Bank --> Client2\n"
 "deactivate Bank"
 
-#: lecture.adoc:505
-msgctxt "lecture.adoc:505"
+#: lecture.adoc:574
+msgctxt "lecture.adoc:574"
 msgid ""
 "@enduml\n"
 "----"
@@ -1202,11 +1366,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:508
+#: lecture.adoc:577
 msgid "== Блокировки"
 msgstr "== Locks"
 
-#: lecture.adoc:514
+#: lecture.adoc:583
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1220,7 +1384,7 @@ msgstr ""
 "//the same thread is allowed to enter again\n"
 "private ReentrantLock bankLock = new ReentrantLock(); "
 
-#: lecture.adoc:527
+#: lecture.adoc:596
 msgid ""
 "void moneyTransfer(int from, int to, int amount) {\n"
 "  bankLock.lock();\n"
@@ -1252,11 +1416,11 @@ msgstr ""
 "blocking, the thread will see the result of the work of the previous "
 "thread?” If you did, then you had begun to understand something."
 
-#: lecture.adoc:529
+#: lecture.adoc:598
 msgid "== JMM Monitor Lock Rule"
 msgstr "== JMM Monitor Lock Rule"
 
-#: lecture.adoc:532
+#: lecture.adoc:601
 msgid ""
 "* Разблокировка (unlocking) _happens-before_ другой блокировки (locking) "
 "того же самого «замка» (lock).\n"
@@ -1267,11 +1431,11 @@ msgstr ""
 "* Therefore, lock-protected variables should no longer be declared as "
 "`volatile`."
 
-#: lecture.adoc:534
+#: lecture.adoc:603
 msgid "== В чём проблема здесь?"
 msgstr "== What's the problem here?"
 
-#: lecture.adoc:540
+#: lecture.adoc:609
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1285,7 +1449,7 @@ msgstr ""
 "    //wait ....\n"
 "}"
 
-#: lecture.adoc:550
+#: lecture.adoc:619
 msgid ""
 "bankLock.lock();\n"
 "try {\n"
@@ -1311,11 +1475,11 @@ msgstr ""
 "synchronized, someone would be able to reduce the amount of money before "
 "entering the transfer funds block."
 
-#: lecture.adoc:552
+#: lecture.adoc:621
 msgid "== В чём пробема здесь?"
 msgstr "== What's the problem here?"
 
-#: lecture.adoc:567
+#: lecture.adoc:636
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1350,11 +1514,11 @@ msgstr ""
 "account. But no one will ever be able to do it, because `bankLock` is locked "
 "by us."
 
-#: lecture.adoc:569
+#: lecture.adoc:638
 msgid "== Condition Objects"
 msgstr "== Condition Objects"
 
-#: lecture.adoc:574
+#: lecture.adoc:643
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1366,7 +1530,7 @@ msgstr ""
 "private ReentrantLock bankLock = new ReentrantLock(); \n"
 "private Condition sufficientFunds = bankLock.newCondition();"
 
-#: lecture.adoc:580
+#: lecture.adoc:649
 msgid ""
 "void moneyTransfer(int from, int to, int amount) {\n"
 "  bankLock.lock();\n"
@@ -1380,8 +1544,8 @@ msgstr ""
 "    while (accounts[from] < amount)\n"
 "      sufficientFunds.await();"
 
-#: lecture.adoc:583
-msgctxt "lecture.adoc:583"
+#: lecture.adoc:652
+msgctxt "lecture.adoc:652"
 msgid ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;"
@@ -1389,7 +1553,7 @@ msgstr ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;"
 
-#: lecture.adoc:591
+#: lecture.adoc:660
 msgid ""
 "    sufficientFunds.signalAll();\n"
 "  } finally {\n"
@@ -1407,7 +1571,7 @@ msgstr ""
 "----\n"
 "== Condition Objects: What happens?"
 
-#: lecture.adoc:598
+#: lecture.adoc:667
 msgid ""
 "* `await()` отпускает блокировку и переводит тред в ждущее состояние,\n"
 "* `signalAll()` сигнализирует всем ждущим тредам, что что-то поменялось,\n"
@@ -1423,11 +1587,11 @@ msgstr ""
 "** the signal could be sent for another reason,\n"
 "** \"spurious wakeups\" are possible."
 
-#: lecture.adoc:600
+#: lecture.adoc:669
 msgid "== Контрольный вопрос"
 msgstr "== Question"
 
-#: lecture.adoc:602
+#: lecture.adoc:671
 msgid ""
 "* Чем гарантировано, что при выходе из `await()` мы увидим изменения, "
 "сделанные другим тредом?"
@@ -1435,7 +1599,7 @@ msgstr ""
 "* How is it guaranteed that when we leave `await()` we will see changes made "
 "by another thread?"
 
-#: lecture.adoc:605
+#: lecture.adoc:674
 msgid ""
 "[.fragment]\n"
 "* При выходе из `await()` мы снова захватываем блокировку, работает JMM "
@@ -1445,7 +1609,7 @@ msgstr ""
 "* When exiting `await()` we capture the lock again, the JMM Monitor Lock "
 "Rule is working."
 
-#: lecture.adoc:613
+#: lecture.adoc:682
 msgid ""
 "== Правильный паттерн ожидания condition\n"
 "[source,java]\n"
@@ -1463,7 +1627,7 @@ msgstr ""
 "----\n"
 "== Intrinsic lock"
 
-#: lecture.adoc:616
+#: lecture.adoc:685
 msgid ""
 "* Начиная с Java 1.0, каждый объект имеет встроенный (intrinsic) lock.\n"
 "* У каждого intrinsic lock есть один condition."
@@ -1471,7 +1635,7 @@ msgstr ""
 "* Starting with Java 1.0, every object has an intrinsic lock.\n"
 "* Each intrinsic lock has one condition."
 
-#: lecture.adoc:624
+#: lecture.adoc:693
 msgid ""
 "== То же самое, с помощью intrinsic lock\n"
 "[source,java]\n"
@@ -1489,8 +1653,8 @@ msgstr ""
 "    while (accounts[from] < amount)\n"
 "      wait(); //wait on intrinsic object's lock condition"
 
-#: lecture.adoc:627
-msgctxt "lecture.adoc:627"
+#: lecture.adoc:696
+msgctxt "lecture.adoc:696"
 msgid ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;"
@@ -1498,7 +1662,7 @@ msgstr ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;"
 
-#: lecture.adoc:631
+#: lecture.adoc:700
 msgid ""
 "    notifyAll(); //notify all threads waiting on the condition\n"
 "}\n"
@@ -1508,15 +1672,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:633
+#: lecture.adoc:702
 msgid "== Synchronized-блок"
 msgstr "== `synchronized` block"
 
-#: lecture.adoc:635
+#: lecture.adoc:704
 msgid "Другая форма использования intrinsic locks:"
 msgstr "Another form of using intrinsic locks:"
 
-#: lecture.adoc:643
+#: lecture.adoc:712
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1534,8 +1698,8 @@ msgstr ""
 "    while (accounts[from] < amount)\n"
 "      lock.wait();"
 
-#: lecture.adoc:646
-msgctxt "lecture.adoc:646"
+#: lecture.adoc:715
+msgctxt "lecture.adoc:715"
 msgid ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;"
@@ -1543,7 +1707,7 @@ msgstr ""
 "    accounts[from]-=amount;\n"
 "    accounts[to]+=amount;"
 
-#: lecture.adoc:651
+#: lecture.adoc:720
 msgid ""
 "    lock.notifyAll();\n"
 "  }\n"
@@ -1555,7 +1719,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:662
+#: lecture.adoc:731
 msgid ""
 "== Промежуточный итог по intrinsic conditions\n"
 "* Нужно работать по строгому паттерну: \n"
@@ -1584,7 +1748,7 @@ msgstr ""
 "will be useful during job interviews, but most likely, you will not need to "
 "use it."
 
-#: lecture.adoc:671
+#: lecture.adoc:740
 msgid ""
 "== Теперь нам понятен смысл всех возможных состояний треда\n"
 "[graphviz,\"threadstates.png\"]\n"
@@ -1604,7 +1768,7 @@ msgstr ""
 "new -> runnable[label=\"start\"]\n"
 "runnable -> terminated[xlabel=\"run\\nmethod exit\"]"
 
-#: lecture.adoc:674
+#: lecture.adoc:743
 msgid ""
 "runnable -> blocked [label=\"aquiring a lock\"]\n"
 "blocked -> runnable [label=\"lock aquired\"]"
@@ -1612,7 +1776,7 @@ msgstr ""
 "runnable -> blocked [label=\"aquiring a lock\"]\n"
 "blocked -> runnable [label=\"lock aquired\"]"
 
-#: lecture.adoc:677
+#: lecture.adoc:746
 msgid ""
 "runnable -> waiting [label=\"waiting for notification\"]\n"
 "waiting -> runnable [label=\"notification occured\"]"
@@ -1620,7 +1784,7 @@ msgstr ""
 "runnable -> waiting [label=\"waiting for notification\"]\n"
 "waiting -> runnable [label=\"notification occured\"]"
 
-#: lecture.adoc:680
+#: lecture.adoc:749
 msgid ""
 "runnable -> TW  [label=\"waiting for timeout or notification\"]\n"
 "TW -> runnable [xlabel=\"timeout or notification occured\"]"
@@ -1628,11 +1792,11 @@ msgstr ""
 "runnable -> TW  [label=\"waiting for timeout or notification\"]\n"
 "TW -> runnable [xlabel=\"timeout or notification occured\"]"
 
-#: lecture.adoc:682
+#: lecture.adoc:751
 msgid "TW[label=\"timed\\nwaiting\"]"
 msgstr "TW[label=\"timed\\nwaiting\"]"
 
-#: lecture.adoc:685
+#: lecture.adoc:754
 msgid ""
 "{rank=same;new;terminated}\n"
 "}"
@@ -1640,15 +1804,15 @@ msgstr ""
 "{rank=same;new;terminated}\n"
 "}"
 
-#: lecture.adoc:687
+#: lecture.adoc:756
 msgid "----"
 msgstr "----"
 
-#: lecture.adoc:689
+#: lecture.adoc:758
 msgid "== Промежуточный итог по всему вышесказанному"
 msgstr "== Intermediate conclusions for all of the above"
 
-#: lecture.adoc:696
+#: lecture.adoc:765
 msgid ""
 "* Где возможно, используйте immutable state: он автоматически "
 "потокобезопасен.\n"
@@ -1669,20 +1833,20 @@ msgstr ""
 "* Think about thread safety all the time.\n"
 "* JMM understanding helps"
 
-#: lecture.adoc:699
+#: lecture.adoc:768
 msgid "== Часть 2. Deadlocks"
 msgstr "== Part 2. Deadlocks"
 
-#: lecture.adoc:701
-msgctxt "lecture.adoc:701"
+#: lecture.adoc:770
+msgctxt "lecture.adoc:770"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
-#: lecture.adoc:703
+#: lecture.adoc:772
 msgid "== Deadlock: простой пример"
 msgstr "== Deadlock: A Simple Example"
 
-#: lecture.adoc:709
+#: lecture.adoc:778
 msgid ""
 "[plantuml, deadlock, png]\n"
 "----\n"
@@ -1696,7 +1860,7 @@ msgstr ""
 "skinparam dpi 180\n"
 "hide footbox"
 
-#: lecture.adoc:714
+#: lecture.adoc:783
 msgid ""
 "participant X\n"
 "participant Y\n"
@@ -1708,7 +1872,7 @@ msgstr ""
 "participant LockA\n"
 "participant LockB"
 
-#: lecture.adoc:718
+#: lecture.adoc:787
 msgid ""
 "X -> LockA: lock()\n"
 "activate LockA\n"
@@ -1718,7 +1882,7 @@ msgstr ""
 "activate LockA\n"
 "LockA --> X: "
 
-#: lecture.adoc:722
+#: lecture.adoc:791
 msgid ""
 "Y -> LockB: lock()\n"
 "activate LockB\n"
@@ -1728,7 +1892,7 @@ msgstr ""
 "activate LockB\n"
 "LockB --> Y"
 
-#: lecture.adoc:728
+#: lecture.adoc:797
 msgid ""
 "X -> LockB: lock()\n"
 "note right\n"
@@ -1742,12 +1906,12 @@ msgstr ""
 "  forever\n"
 "end note"
 
-#: lecture.adoc:730
+#: lecture.adoc:799
 msgid "Y -> LockA: lock()"
 msgstr "Y -> LockA: lock()"
 
-#: lecture.adoc:733
-msgctxt "lecture.adoc:733"
+#: lecture.adoc:802
+msgctxt "lecture.adoc:802"
 msgid ""
 "@enduml\n"
 "----"
@@ -1755,11 +1919,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:735
+#: lecture.adoc:804
 msgid "== Перепутанный порядок блокировки"
 msgstr "== Wrong order of blocking"
 
-#: lecture.adoc:757
+#: lecture.adoc:826
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1805,11 +1969,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:759
+#: lecture.adoc:828
 msgid "== Перепутанный (иногда!) порядок блокировки"
 msgstr "== (Sometimes?) wrong order of blocking"
 
-#: lecture.adoc:776
+#: lecture.adoc:845
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1845,11 +2009,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:778
+#: lecture.adoc:847
 msgid "== Выводы"
 msgstr "== Conclusions"
 
-#: lecture.adoc:782
+#: lecture.adoc:851
 msgid ""
 "* Если процедура захватывает несколько блокировок, возможен deadlock.\n"
 "* Во избежание deadlocks нужно следить за тем, чтобы блокировки всегда "
@@ -1863,20 +2027,20 @@ msgstr ""
 "* If you have captured a lock -- finish with it as quickly as possible, do "
 "not call external methods."
 
-#: lecture.adoc:784
+#: lecture.adoc:853
 msgid "== Часть 3. Потокобезопасные структуры данных"
 msgstr "== Part 3. Thread-safe data structures"
 
-#: lecture.adoc:786
-msgctxt "lecture.adoc:786"
+#: lecture.adoc:855
+msgctxt "lecture.adoc:855"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
-#: lecture.adoc:788
+#: lecture.adoc:857
 msgid "== Неблокирующие алгоритмы"
 msgstr "== Non-blocking algorithms"
 
-#: lecture.adoc:793
+#: lecture.adoc:862
 msgid ""
 "* Блокировка (через `synchronized` или `ReentrantLock`) решает вопрос "
 "координации действий разных тредов с переменной.\n"
@@ -1898,11 +2062,11 @@ msgstr ""
 "collections_ are available, including those implementing non-blocking "
 "algorithms."
 
-#: lecture.adoc:795
+#: lecture.adoc:864
 msgid "== Atomics "
 msgstr "== Atomics "
 
-#: lecture.adoc:802
+#: lecture.adoc:871
 msgid ""
 "* `package java.util.concurrent.atomic`\n"
 "** `AtomicBoolean`, `AtomicInteger`, `AtomicLong`, `AtomicReference`.\n"
@@ -1918,11 +2082,11 @@ msgstr ""
 "is visible to other threads via `get(...)`\n"
 "* Support atomic operations."
 
-#: lecture.adoc:804
+#: lecture.adoc:873
 msgid "== Aтомарные операции в классах атомарных переменных"
 msgstr "== Atomic operations in atomic variable classes"
 
-#: lecture.adoc:807
+#: lecture.adoc:876
 msgid ""
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
@@ -1930,19 +2094,19 @@ msgstr ""
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
 
-#: lecture.adoc:809
+#: lecture.adoc:878
 msgid "incrementAndGet()      decrementAndGet()"
 msgstr "incrementAndGet()      decrementAndGet()"
 
-#: lecture.adoc:811
+#: lecture.adoc:880
 msgid "getAndIncrement()      getAndDecrement()"
 msgstr "getAndIncrement()      getAndDecrement()"
 
-#: lecture.adoc:813
+#: lecture.adoc:882
 msgid "getAndAdd(delta)       addAndGet(delta)"
 msgstr "getAndAdd(delta)       addAndGet(delta)"
 
-#: lecture.adoc:816
+#: lecture.adoc:885
 msgid ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
@@ -1950,7 +2114,7 @@ msgstr ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
 
-#: lecture.adoc:820
+#: lecture.adoc:889
 msgid ""
 "getAndAccumulate(x, accumulatorBiFunction)\n"
 "accumulateAndGet(x, accumulatorBiFunction)\n"
@@ -1960,11 +2124,11 @@ msgstr ""
 "accumulateAndGet(x, accumulatorBiFunction)\n"
 "----"
 
-#: lecture.adoc:823
+#: lecture.adoc:892
 msgid "== Потокобезопасные коллекции"
 msgstr "== Thread-safe collections"
 
-#: lecture.adoc:827
+#: lecture.adoc:896
 msgid ""
 "* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, "
 "обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой "
@@ -1985,6 +2149,72 @@ msgstr ""
 "* Version 5 introduces classes specifically designed for thread safety, with "
 "fewer locks.\n"
 "* Their use is _preferred_."
+
+#~ msgctxt "lecture.adoc:399"
+#~ msgid ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+#~ msgstr ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+
+#~ msgctxt "lecture.adoc:467"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:486"
+#~ msgid ""
+#~ "Client1 -> Bank: transfer\n"
+#~ "activate Bank"
+#~ msgstr ""
+#~ "Client1 -> Bank: transfer\n"
+#~ "activate Bank"
+
+#~ msgctxt "lecture.adoc:505"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:627"
+#~ msgid ""
+#~ "    accounts[from]-=amount;\n"
+#~ "    accounts[to]+=amount;"
+#~ msgstr ""
+#~ "    accounts[from]-=amount;\n"
+#~ "    accounts[to]+=amount;"
+
+#~ msgctxt "lecture.adoc:646"
+#~ msgid ""
+#~ "    accounts[from]-=amount;\n"
+#~ "    accounts[to]+=amount;"
+#~ msgstr ""
+#~ "    accounts[from]-=amount;\n"
+#~ "    accounts[to]+=amount;"
+
+#~ msgctxt "lecture.adoc:701"
+#~ msgid "image::hydra2.jpg[{image-90-width}]"
+#~ msgstr "image::hydra2.jpg[{image-90-width}]"
+
+#~ msgctxt "lecture.adoc:733"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:786"
+#~ msgid "image::hydra2.jpg[{image-90-width}]"
+#~ msgstr "image::hydra2.jpg[{image-90-width}]"
 
 #~ msgctxt "./slides10/src/main/asciidoc/lecture.adoc:132"
 #~ msgid "^.^|"

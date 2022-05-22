@@ -142,7 +142,7 @@ graph K6 {
     d--e; d--f;
     e--f;
 }
-
+----
 
 ^.^|
 
@@ -335,6 +335,75 @@ class PossibleReordering {
     //??,??
   }
 }
+----
+
+== Thread one, Thread two
+
+[source,java]
+----
+Thread one = new Thread(() -> {
+    a = 1; x = b;
+});
+Thread two = new Thread(() -> {
+    b = 1; y = a;
+});
+----
+
+[source]
+----
+         x  y  a  b 
+
+a = 1;   0  0  1  0
+x = b;   0  0  1  0 
+b = 1;   0  0  1  1
+y = a;   0  1  0  0
+----
+
+== Thread two, Thread one
+
+[source,java]
+----
+Thread one = new Thread(() -> {
+    a = 1; x = b;
+});
+Thread two = new Thread(() -> {
+    b = 1; y = a;
+});
+----
+
+[source]
+----
+         x  y  a  b 
+
+b = 1;   0  0  0  1
+y = a;   0  0  0  1
+a = 1;   0  0  1  1
+x = b;   1  0  1  1 
+----
+
+== Threads interleaved
+
+[source,java]
+----
+Thread one = new Thread(() -> {
+    a = 1; x = b;
+});
+Thread two = new Thread(() -> {
+    b = 1; y = a;
+});
+----
+
+[source]
+----
+         x  y  a  b 
+
+a = 1;   0  0  1  0
+b = 1;   0  0  1  1
+x = b;   1  0  1  1
+y = a;   1  1  1  1
+or 
+y = a;   0  1  1  1
+x = b;   1  1  1  1
 ----
 
 
