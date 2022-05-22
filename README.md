@@ -2,4 +2,4 @@
 
 # Java-MIPT
 
-Материалы для [курса по Core Java](https://inponomarev.ru/corejava) в МФТИ
+Slides and examples for [Core Java](https://inponomarev.ru/corejava) lectures for MIPT/Mainor
