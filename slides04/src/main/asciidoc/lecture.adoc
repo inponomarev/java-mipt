@@ -839,11 +839,12 @@ int[] codePoints = str.codePoints().toArray();
 [source,java]
 ----
 int length()
+boolean isEmpty() / boolean isBlank()
 char charAt(int index)
-int compareTo(String other)
-boolean equals(Object other)
-boolean  equalsIgnoreCase(Object other)
-boolean startWith(String prefix) 
+int compareTo(String anotherString)
+boolean equals(Object anObject)
+boolean equalsIgnoreCase(String anotherString)
+boolean startsWith(String prefix) 
 boolean endsWith(String suffix)
 String toLowerCase() / String toUpperCase()
 String trim()

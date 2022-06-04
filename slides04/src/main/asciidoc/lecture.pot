@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-20 09:22+0300\n"
+"POT-Creation-Date: 2022-06-04 10:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1407,16 +1407,17 @@ msgstr ""
 msgid "== Полезные методы "
 msgstr ""
 
-#: lecture.adoc:852
+#: lecture.adoc:853
 msgid ""
 "[source,java]\n"
 "----\n"
 "int length()\n"
+"boolean isEmpty() / boolean isBlank()\n"
 "char charAt(int index)\n"
-"int compareTo(String other)\n"
-"boolean equals(Object other)\n"
-"boolean  equalsIgnoreCase(Object other)\n"
-"boolean startWith(String prefix) \n"
+"int compareTo(String anotherString)\n"
+"boolean equals(Object anObject)\n"
+"boolean equalsIgnoreCase(String anotherString)\n"
+"boolean startsWith(String prefix) \n"
 "boolean endsWith(String suffix)\n"
 "String toLowerCase() / String toUpperCase()\n"
 "String trim()\n"
@@ -1424,24 +1425,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:854
+#: lecture.adoc:855
 msgid "== Вредные методы "
 msgstr ""
 
-#: lecture.adoc:858
+#: lecture.adoc:859
 msgid ""
 "* `indexOf..` / `lastIndexOf..`\n"
 "* `replace..`\n"
 "* `split..` "
 msgstr ""
 
-#: lecture.adoc:860
+#: lecture.adoc:861
 msgid ""
 "В комбинации c `substring` и конкатенацией их используют для извлечения "
 "данных / преобразования строк."
 msgstr ""
 
-#: lecture.adoc:862
+#: lecture.adoc:863
 msgid ""
 "_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
 "бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"
