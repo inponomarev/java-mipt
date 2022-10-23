@@ -976,8 +976,8 @@ Object e2 = list.get(...);
 
 [source,java]
 ----
-public static <T> max (Collection<? extends T> coll,
-                       Comparator<? super T> comp)
+public static <T> T max (Collection<? extends T> coll,
+                         Comparator<? super T> comp)
                        
 Collections.max(List<Integer>, Comparator<Number>)
 
