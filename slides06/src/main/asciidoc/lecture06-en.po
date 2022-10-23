@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: slides 06\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-23 11:11+0300\n"
-"PO-Revision-Date: 2022-10-23 11:12+0300\n"
+"PO-Revision-Date: 2022-10-23 20:35+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -565,7 +565,7 @@ msgstr ""
 
 #: lecture.adoc:252
 msgid "== Ограниченные типы вместо Object"
-msgstr "== Restricted types instead of Object"
+msgstr "== Bounded types instead of Object"
 
 #: lecture.adoc:298
 msgid ""
@@ -2083,7 +2083,7 @@ msgstr "In general, `addAllTo` will not work using `? extends`..."
 
 #: lecture.adoc:913
 msgid "== В обратную сторону (контравариантные типы)"
-msgstr "== Reverse case (contravariant types)"
+msgstr "== The opposite case (contravariant types)"
 
 #: lecture.adoc:917
 msgid ""
