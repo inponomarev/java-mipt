@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"POT-Creation-Date: 2023-01-29 19:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
 #: lecture.adoc:34
-msgid "== RDMBS -- реляционные базы данных"
+msgid "== RDBMS -- реляционные базы данных"
 msgstr ""
 
 #: lecture.adoc:40

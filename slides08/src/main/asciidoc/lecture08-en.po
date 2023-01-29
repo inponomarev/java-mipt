@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 08\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-03-05 17:36+0200\n"
+"POT-Creation-Date: 2023-01-29 19:20+0300\n"
+"PO-Revision-Date: 2023-01-29 19:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lecture.adoc:24
 msgid ""
@@ -80,8 +80,8 @@ msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
 #: lecture.adoc:34
-msgid "== RDMBS -- реляционные базы данных"
-msgstr "== RDMBS -- Relational Database Management Systems"
+msgid "== RDBMS -- реляционные базы данных"
+msgstr "== RDBMS -- Relational Database Management Systems"
 
 #: lecture.adoc:40
 msgid ""
