@@ -322,7 +322,7 @@ for (Employee e : staff)
   System.out.println("name=" + e.getName() + ",salary=" + e.getSalary());
 ----
 
-== Наследование: единственный родительский класс
+== {zsp}Наследование: единственный родительский класс{zsp}
 
 [plantuml, columnclasses, png]
 ----
