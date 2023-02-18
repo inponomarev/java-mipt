@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 02\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 13:36+0300\n"
-"PO-Revision-Date: 2022-02-12 13:37+0300\n"
+"POT-Creation-Date: 2023-02-18 09:39+0300\n"
+"PO-Revision-Date: 2023-02-18 09:41+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -380,8 +380,8 @@ msgid ""
 msgstr ""
 "* `System.out.println(2.0 - 1.1)` outputs 0.8999999999999999\n"
 "* *NEVER USE DOUBLE FOR COUNTING MONEY!*\n"
-"* `System.out.println(2.0 / 0.0)` outputs 'Infinity` (но 2 / 0 -- divizion "
-"by zero)\n"
+"* `System.out.println(2.0 / 0.0)` outputs 'Infinity` (but 2 / 0 is 'divizion "
+"by zero')\n"
 "* `System.out.println(0.0 / 0.0)` outputs 'NaN`\n"
 "* Comparison with infinity and `NaN` does not work, we need to use `Double."
 "isNaN`, `Double.isInfinite`.\n"
@@ -1140,7 +1140,7 @@ msgstr ""
 
 #: lecture.adoc:505
 msgctxt "lecture.adoc:505"
-msgid "== Операторы в порядке убывания приоритета (продолжение)"
+msgid "== {zsp}Операторы в порядке убывания приоритета (продолжение){zsp}"
 msgstr "== Operators in descending order of priority (continued)"
 
 #: lecture.adoc:522
@@ -1181,7 +1181,7 @@ msgstr ""
 
 #: lecture.adoc:525
 msgctxt "lecture.adoc:525"
-msgid "== Операторы в порядке убывания приоритета (продолжение)"
+msgid "== {zsp}Операторы в порядке убывания приоритета (продолжение){zsp}"
 msgstr "== Operators in descending order of priority (continued)"
 
 #: lecture.adoc:532

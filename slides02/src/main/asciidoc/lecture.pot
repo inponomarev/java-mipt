@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 13:36+0300\n"
+"POT-Creation-Date: 2023-02-18 09:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -796,7 +796,7 @@ msgstr ""
 
 #: lecture.adoc:505
 msgctxt "lecture.adoc:505"
-msgid "== Операторы в порядке убывания приоритета (продолжение)"
+msgid "== {zsp}Операторы в порядке убывания приоритета (продолжение){zsp}"
 msgstr ""
 
 #: lecture.adoc:522
@@ -821,7 +821,7 @@ msgstr ""
 
 #: lecture.adoc:525
 msgctxt "lecture.adoc:525"
-msgid "== Операторы в порядке убывания приоритета (продолжение)"
+msgid "== {zsp}Операторы в порядке убывания приоритета (продолжение){zsp}"
 msgstr ""
 
 #: lecture.adoc:532
