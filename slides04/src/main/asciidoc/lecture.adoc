@@ -23,7 +23,6 @@ include::_doc_general_attributes.adoc[]
 :revealjs_height: 900
 :zsp: &#8203;
 
-//== Часть 1. Введение
 :!figure-caption:
 
 ponomarev@corchestra.ru
