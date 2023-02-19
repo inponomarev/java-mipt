@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-05 17:30+0300\n"
+"POT-Creation-Date: 2023-02-19 19:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,69 +40,67 @@ msgid ""
 ":revealjs_height: 900"
 msgstr ""
 
-#: lecture.adoc:28
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+#: lecture.adoc:27
+msgid ":!figure-caption:"
 msgstr ""
 
-#: lecture.adoc:30
+#: lecture.adoc:29
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: lecture.adoc:32
+#: lecture.adoc:31
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: lecture.adoc:35
-msgctxt "lecture.adoc:35"
+#: lecture.adoc:34
+msgctxt "lecture.adoc:34"
 msgid ""
 "[%notitle]\n"
 "== Эпиграф"
 msgstr ""
 
-#: lecture.adoc:37
+#: lecture.adoc:36
 msgid "image::tagir1.png[]"
 msgstr ""
 
-#: lecture.adoc:40
-msgctxt "lecture.adoc:40"
+#: lecture.adoc:39
+msgctxt "lecture.adoc:39"
 msgid ""
 "[%notitle]\n"
 "== Эпиграф"
 msgstr ""
 
-#: lecture.adoc:42
+#: lecture.adoc:41
 msgid "image::tagir2.png[]"
 msgstr ""
 
-#: lecture.adoc:45
-msgctxt "lecture.adoc:45"
+#: lecture.adoc:44
+msgctxt "lecture.adoc:44"
 msgid ""
 "[%notitle]\n"
 "== Эпиграф"
 msgstr ""
 
-#: lecture.adoc:47
+#: lecture.adoc:46
 msgid "image::tagir3.png[]"
 msgstr ""
 
-#: lecture.adoc:49
+#: lecture.adoc:48
 msgid "== Коллекции: Разделение интерфейсов и реализаций"
 msgstr ""
 
-#: lecture.adoc:53
+#: lecture.adoc:52
 msgid ""
 "[plantuml, colintf, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:55
+#: lecture.adoc:54
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: lecture.adoc:67
+#: lecture.adoc:66
 msgid ""
 "interface Map<K,V> {\n"
 "V get(Object key)\n"
@@ -117,7 +115,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:76
+#: lecture.adoc:75
 msgid ""
 "interface NavigableMap<K,V> {\n"
 "K lowerKey(K key);\n"
@@ -129,40 +127,40 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:79
+#: lecture.adoc:78
 msgid ""
 "class HashMap<K,V> {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:82
+#: lecture.adoc:81
 msgid ""
 "class LinkedHashMap<K,V> {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:86
+#: lecture.adoc:85
 msgid "class TreeMap<K,V> {"
 msgstr ""
 
-#: lecture.adoc:88
-msgctxt "lecture.adoc:88"
+#: lecture.adoc:87
+msgctxt "lecture.adoc:87"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:91
+#: lecture.adoc:90
 msgid ""
 "class IdentityHashMap<K,V> {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:94
+#: lecture.adoc:93
 msgid ""
 "class ConcurrentSkipListMap<K,V> {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:101
+#: lecture.adoc:100
 msgid ""
 "Map <|.. TreeMap\n"
 "Map <|.. HashMap\n"
@@ -171,98 +169,98 @@ msgid ""
 "Map <|.. ConcurrentSkipListMap"
 msgstr ""
 
-#: lecture.adoc:103
+#: lecture.adoc:102
 msgid "Map <|- NavigableMap"
 msgstr ""
 
-#: lecture.adoc:106
+#: lecture.adoc:105
 msgid ""
 "NavigableMap <|.. TreeMap\n"
 "NavigableMap <|.. ConcurrentSkipListMap"
 msgstr ""
 
-#: lecture.adoc:109
+#: lecture.adoc:108
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:111
+#: lecture.adoc:110
 msgid "== Интерфейсы коллекций: потомки Collection"
 msgstr ""
 
-#: lecture.adoc:115
+#: lecture.adoc:114
 msgid ""
 "[plantuml,intf-coll,png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:117
+#: lecture.adoc:116
 msgid "skinparam dpi 200"
 msgstr ""
 
-#: lecture.adoc:120
+#: lecture.adoc:119
 msgid ""
 "interface Iterable {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:123
+#: lecture.adoc:122
 msgid ""
 "interface Collection {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:126
+#: lecture.adoc:125
 msgid ""
 "interface List {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:129
+#: lecture.adoc:128
 msgid ""
 "interface Set {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:131
+#: lecture.adoc:130
 msgid "interface SortedSet {"
 msgstr ""
 
-#: lecture.adoc:133
-msgctxt "lecture.adoc:133"
+#: lecture.adoc:132
+msgctxt "lecture.adoc:132"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:135
+#: lecture.adoc:134
 msgid "interface NavigableSet {"
 msgstr ""
 
-#: lecture.adoc:137
-msgctxt "lecture.adoc:137"
+#: lecture.adoc:136
+msgctxt "lecture.adoc:136"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:139
+#: lecture.adoc:138
 msgid "interface Queue {"
 msgstr ""
 
-#: lecture.adoc:141
-msgctxt "lecture.adoc:141"
+#: lecture.adoc:140
+msgctxt "lecture.adoc:140"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:143
+#: lecture.adoc:142
 msgid "interface Deque {"
 msgstr ""
 
-#: lecture.adoc:145
-msgctxt "lecture.adoc:145"
+#: lecture.adoc:144
+msgctxt "lecture.adoc:144"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:155
+#: lecture.adoc:154
 msgid ""
 "Iterable <|. Collection\n"
 "Collection <|.. List\n"
@@ -275,7 +273,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:160
+#: lecture.adoc:159
 msgid ""
 "== Iterable: интерфейс, умеющий участвовать в for loop\n"
 "[plantuml,iterable,png]\n"
@@ -283,18 +281,18 @@ msgid ""
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:162
+#: lecture.adoc:161
 msgid "skinparam dpi 160"
 msgstr ""
 
-#: lecture.adoc:166
+#: lecture.adoc:165
 msgid ""
 "interface Iterable<T> {\n"
 "    Iterator<T> iterator()\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:172
+#: lecture.adoc:171
 msgid ""
 "interface Iterator<E> {\n"
 "  boolean hasNext()\n"
@@ -303,14 +301,14 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:176
+#: lecture.adoc:175
 msgid ""
 "Iterable . Iterator\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:203
+#: lecture.adoc:202
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -340,25 +338,25 @@ msgid ""
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:205
-msgctxt "lecture.adoc:205"
+#: lecture.adoc:204
+msgctxt "lecture.adoc:204"
 msgid "skinparam dpi 220"
 msgstr ""
 
-#: lecture.adoc:209
+#: lecture.adoc:208
 msgid ""
 "interface List<E> {\n"
 "  ListIterator<E> listIterator()\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:212
+#: lecture.adoc:211
 msgid ""
 "interface Iterator<E> {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:221
+#: lecture.adoc:220
 msgid ""
 "interface ListIterator<E> {\n"
 "  boolean hasPrevious()\n"
@@ -370,7 +368,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:227
+#: lecture.adoc:226
 msgid ""
 "List .L ListIterator\n"
 "Iterator <|. ListIterator\n"
@@ -378,47 +376,47 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:229
+#: lecture.adoc:228
 msgid "== Интерфейсы коллекций: потомки Map"
 msgstr ""
 
-#: lecture.adoc:233
+#: lecture.adoc:232
 msgid ""
 "[plantuml,intf-map,png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:235
-msgctxt "lecture.adoc:235"
+#: lecture.adoc:234
+msgctxt "lecture.adoc:234"
 msgid "skinparam dpi 220"
 msgstr ""
 
-#: lecture.adoc:239
+#: lecture.adoc:238
 msgid ""
 "interface Map {\n"
 "  Set<K> keySet()\n"
 "  Set<Map.Entry<K, V>> entrySet()"
 msgstr ""
 
-#: lecture.adoc:241
-msgctxt "lecture.adoc:241"
+#: lecture.adoc:240
+msgctxt "lecture.adoc:240"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:244
+#: lecture.adoc:243
 msgid ""
 "interface SortedMap {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:247
+#: lecture.adoc:246
 msgid ""
 "interface NavigableMap {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:252
+#: lecture.adoc:251
 msgid ""
 "Map <|. SortedMap\n"
 "SortedMap <|. NavigableMap\n"
@@ -426,7 +424,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:264
+#: lecture.adoc:263
 msgid ""
 "==  Comparable и Comparator\n"
 "[source,java]\n"
@@ -441,7 +439,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:271
+#: lecture.adoc:270
 msgid ""
 "/*Применяется в случае, если сравниваемые объекты \n"
 "не реализуют Comparable*/\n"
@@ -451,23 +449,23 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:273
+#: lecture.adoc:272
 msgid "== Промежуточные итоги"
 msgstr ""
 
-#: lecture.adoc:275
+#: lecture.adoc:274
 msgid ""
 "* Используйте _интерфейсы_ для типов переменных и аргументов в методах. Не "
 "привязывайтесь к конкретным реализациям."
 msgstr ""
 
-#: lecture.adoc:277
+#: lecture.adoc:276
 msgid ""
 "* Помимо возможности подмены реализаций, существуют суррогатные коллекции, "
 "например, важные частные случаи:"
 msgstr ""
 
-#: lecture.adoc:286
+#: lecture.adoc:285
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -479,11 +477,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:288
+#: lecture.adoc:287
 msgid "== Иммутабельные коллекции по заданным элементам"
 msgstr ""
 
-#: lecture.adoc:296
+#: lecture.adoc:295
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -494,17 +492,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:299
+#: lecture.adoc:298
 msgid ""
 "[.fragment]\n"
 "_Но как они это сделали для мапы?_"
 msgstr ""
 
-#: lecture.adoc:303
+#: lecture.adoc:302
 msgid "== Суррогатные коллекции: защита (частичная) при публикации объекта"
 msgstr ""
 
-#: lecture.adoc:312
+#: lecture.adoc:311
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -516,17 +514,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:314
+#: lecture.adoc:313
 msgid ""
 "В классе `Collections` (как и в классе `Arrays`) вообще очень много всего "
 "полезного!"
 msgstr ""
 
-#: lecture.adoc:316
+#: lecture.adoc:315
 msgid "== Его Величество ArrayList"
 msgstr ""
 
-#: lecture.adoc:322
+#: lecture.adoc:321
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -535,7 +533,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:333
+#: lecture.adoc:332
 msgid ""
 "[graphviz, \"arraylist-inside.png\"]\n"
 "-----\n"
@@ -552,7 +550,7 @@ msgid ""
 "Visualizer].) "
 msgstr ""
 
-#: lecture.adoc:341
+#: lecture.adoc:340
 msgid ""
 "== Свойства `ArrayList`\n"
 "* `get(int index)` is *O(1)*  <- *main benefit of `ArrayList<E>`*\n"
@@ -564,11 +562,11 @@ msgid ""
 "* `ListIterator.add(E element)` is *O(n)* (with *n/2* steps on average)"
 msgstr ""
 
-#: lecture.adoc:343
+#: lecture.adoc:342
 msgid "== LinkedList"
 msgstr ""
 
-#: lecture.adoc:349
+#: lecture.adoc:348
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -577,7 +575,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:367
+#: lecture.adoc:366
 msgid ""
 "[graphviz, \"linkedlist-inside.png\"]\n"
 "-----\n"
@@ -598,11 +596,11 @@ msgid ""
 "-----"
 msgstr ""
 
-#: lecture.adoc:369
+#: lecture.adoc:368
 msgid "== Свойства `LinkedList`"
 msgstr ""
 
-#: lecture.adoc:378
+#: lecture.adoc:377
 msgid ""
 "* Implements `List` and `Deque`\n"
 "* `get(int index)` is *O(n)* (with *n/4* steps on average)\n"
@@ -615,26 +613,26 @@ msgid ""
 "of `LinkedList<E>`"
 msgstr ""
 
-#: lecture.adoc:380
+#: lecture.adoc:379
 msgid "== Does anyone use LinkedList?"
 msgstr ""
 
-#: lecture.adoc:382
+#: lecture.adoc:381
 msgid "image::blochonlinkedlist.png[{image-70-width}]"
 msgstr ""
 
-#: lecture.adoc:384
+#: lecture.adoc:383
 msgid "== А если всё-таки нужен Deque?"
 msgstr ""
 
-#: lecture.adoc:388
+#: lecture.adoc:387
 msgid ""
 "* `ArrayDeque`\n"
 "* Circular array\n"
 "* Более быстрый, чем `LinkedList`."
 msgstr ""
 
-#: lecture.adoc:398
+#: lecture.adoc:397
 msgid ""
 "[graphviz, \"arraydeque-inside.png\"]\n"
 "-----\n"
@@ -649,11 +647,11 @@ msgid ""
 "-----"
 msgstr ""
 
-#: lecture.adoc:400
+#: lecture.adoc:399
 msgid "== PriorityQueue"
 msgstr ""
 
-#: lecture.adoc:403
+#: lecture.adoc:402
 msgid ""
 "* Постановка в очередь с сортировкой по приоритету за счёт `Comparable` или "
 "`Comparator`.\n"
@@ -661,7 +659,7 @@ msgid ""
 "and `queue[2*n+2]` \""
 msgstr ""
 
-#: lecture.adoc:409
+#: lecture.adoc:408
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -670,7 +668,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:419
+#: lecture.adoc:418
 msgid ""
 "[graphviz, \"priority-inside.png\"]\n"
 "-----\n"
@@ -684,15 +682,15 @@ msgid ""
 "-----"
 msgstr ""
 
-#: lecture.adoc:421
+#: lecture.adoc:420
 msgid "[%notitle]"
 msgstr ""
 
-#: lecture.adoc:423
+#: lecture.adoc:422
 msgid "== Выводы"
 msgstr ""
 
-#: lecture.adoc:429
+#: lecture.adoc:428
 msgid ""
 "* Теоретическая асимптотика не полностью описывает пригодность той или иной "
 "структуры данных: вмешивается ряд обстоятельств, таких как \n"
@@ -702,17 +700,17 @@ msgid ""
 "** и т. п."
 msgstr ""
 
-#: lecture.adoc:431
+#: lecture.adoc:430
 msgid ""
 "* `ArrayList` и `ArrayDeque` являются предпочтительным выбором реализации "
 "`List` и `Deque` в подавляющем большинстве случаев."
 msgstr ""
 
-#: lecture.adoc:433
+#: lecture.adoc:432
 msgid "== Его Величество HashMap"
 msgstr ""
 
-#: lecture.adoc:439
+#: lecture.adoc:438
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -721,7 +719,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:453
+#: lecture.adoc:452
 msgid ""
 "[graphviz, \"hm-nocollisions.png\"]\n"
 "----\n"
@@ -743,24 +741,24 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:455
-msgctxt "lecture.adoc:455"
+#: lecture.adoc:454
+msgctxt "lecture.adoc:454"
 msgid "----"
 msgstr ""
 
-#: lecture.adoc:457
+#: lecture.adoc:456
 msgid "== Коллизии хэша"
 msgstr ""
 
-#: lecture.adoc:461
-msgctxt "lecture.adoc:461"
+#: lecture.adoc:460
+msgctxt "lecture.adoc:460"
 msgid ""
 "[cols=\"60a,40a\"]\n"
 "|===\n"
 "^|"
 msgstr ""
 
-#: lecture.adoc:486
+#: lecture.adoc:485
 msgid ""
 "[graphviz, \"hm-collisions.png\"]\n"
 "----\n"
@@ -794,7 +792,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:490
+#: lecture.adoc:489
 msgid ""
 "* При большом кол-ве коллизий на одной ячейке, если значение реализует "
 "`Comparable`, связный список заменяется на дерево.\n"
@@ -802,19 +800,19 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:492
+#: lecture.adoc:491
 msgid "== LinkedHashMap"
 msgstr ""
 
-#: lecture.adoc:496
-msgctxt "lecture.adoc:496"
+#: lecture.adoc:495
+msgctxt "lecture.adoc:495"
 msgid ""
 "[cols=\"60a,40a\"]\n"
 "|===\n"
 "^|"
 msgstr ""
 
-#: lecture.adoc:530
+#: lecture.adoc:529
 msgid ""
 "[graphviz, \"hm-lhm.png\"]\n"
 "----\n"
@@ -857,34 +855,34 @@ msgid ""
 "* Хорош для хранения настроек вида «ключ-значение», задаваемых текстом."
 msgstr ""
 
-#: lecture.adoc:532
+#: lecture.adoc:531
 msgid "|==="
 msgstr ""
 
-#: lecture.adoc:534
+#: lecture.adoc:533
 msgid "== Ещё вариации на тему хэш-таблицы"
 msgstr ""
 
-#: lecture.adoc:537
+#: lecture.adoc:536
 msgid ""
 "* `IdentityHashMap` -- ключи сравниваются по `==`, а не по `equals()`.\n"
 "* `WeakHashMap` -- значения могут быть собраны сборщиком мусора, если не "
 "используются где-то ещё."
 msgstr ""
 
-#: lecture.adoc:539
+#: lecture.adoc:538
 msgid "== TreeMap"
 msgstr ""
 
-#: lecture.adoc:543
-msgctxt "lecture.adoc:543"
+#: lecture.adoc:542
+msgctxt "lecture.adoc:542"
 msgid ""
 "[cols=\"60a,40a\"]\n"
 "|===\n"
 "^|"
 msgstr ""
 
-#: lecture.adoc:558
+#: lecture.adoc:557
 msgid ""
 "[graphviz, \"tm.png\"]\n"
 "----\n"
@@ -905,7 +903,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:574
+#: lecture.adoc:573
 msgid ""
 "----\n"
 "|\n"
@@ -925,11 +923,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:576
+#: lecture.adoc:575
 msgid "== Множества (Sets)"
 msgstr ""
 
-#: lecture.adoc:582
+#: lecture.adoc:581
 msgid ""
 "* Коллекции, в которых объект может присутствовать только один раз.\n"
 "* Реализованы на базе соответствующих Maps:\n"
@@ -938,7 +936,7 @@ msgid ""
 "** `TreeSet`."
 msgstr ""
 
-#: lecture.adoc:588
+#: lecture.adoc:587
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -947,7 +945,7 @@ msgid ""
 "private static final Object PRESENT = new Object();"
 msgstr ""
 
-#: lecture.adoc:593
+#: lecture.adoc:592
 msgid ""
 "public boolean add(E e) {\n"
 "    return map.put(e, PRESENT)==null;\n"
@@ -955,22 +953,22 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:595
+#: lecture.adoc:594
 msgid "== Множества на основе битовых масок"
 msgstr ""
 
-#: lecture.adoc:598
+#: lecture.adoc:597
 msgid ""
 "* `EnumSet` -- на базе единственного значения типа `long`. _Используйте "
 "только его для enum-ов!_\n"
 "* `BitSet` -- массив long-ов."
 msgstr ""
 
-#: lecture.adoc:600
+#: lecture.adoc:599
 msgid "== Алгоритмы: сортировка и перемешивание"
 msgstr ""
 
-#: lecture.adoc:609
+#: lecture.adoc:608
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -982,7 +980,7 @@ msgid ""
 "Collections.sort(names);"
 msgstr ""
 
-#: lecture.adoc:615
+#: lecture.adoc:614
 msgid ""
 "/*Предлагаем Comparator*/\n"
 "List<Employee> staff = ...\n"
@@ -991,7 +989,7 @@ msgid ""
 "    Employee::getSalary));"
 msgstr ""
 
-#: lecture.adoc:626
+#: lecture.adoc:625
 msgid ""
 "/*Иногда надо перемешать*/\n"
 "List<Card> cards = ...\n"
@@ -1005,7 +1003,7 @@ msgid ""
 "Arrays.sort(names);"
 msgstr ""
 
-#: lecture.adoc:632
+#: lecture.adoc:631
 msgid ""
 "/*Предлагаем Comparator*/\n"
 "Employee[] staff = ...\n"
@@ -1014,18 +1012,18 @@ msgid ""
 "    Employee::getSalary));"
 msgstr ""
 
-#: lecture.adoc:636
+#: lecture.adoc:635
 msgid ""
 "/*Arrays.shuffle отсутствует!*/\n"
 "---- \n"
 "|==="
 msgstr ""
 
-#: lecture.adoc:638
+#: lecture.adoc:637
 msgid "== Алгоритмы: бинарный поиск"
 msgstr ""
 
-#: lecture.adoc:645
+#: lecture.adoc:644
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1035,19 +1033,19 @@ msgid ""
 "List<Employee> staff = ..."
 msgstr ""
 
-#: lecture.adoc:649
+#: lecture.adoc:648
 msgid ""
 "Collections.sort(staff,\n"
 "  Comparator.comparing(\n"
 "    Employee::getName));"
 msgstr ""
 
-#: lecture.adoc:651
-msgctxt "lecture.adoc:651"
+#: lecture.adoc:650
+msgctxt "lecture.adoc:650"
 msgid "Employee p = ..."
 msgstr ""
 
-#: lecture.adoc:662
+#: lecture.adoc:661
 msgid ""
 "int i = \n"
 "  Collections.binarySearch(\n"
@@ -1061,19 +1059,19 @@ msgid ""
 "Employee[] staff = ..."
 msgstr ""
 
-#: lecture.adoc:666
+#: lecture.adoc:665
 msgid ""
 "Arrays.sort(staff,\n"
 "  Comparator.comparing(\n"
 "    Employee::getName));"
 msgstr ""
 
-#: lecture.adoc:668
-msgctxt "lecture.adoc:668"
+#: lecture.adoc:667
+msgctxt "lecture.adoc:667"
 msgid "Employee p = ..."
 msgstr ""
 
-#: lecture.adoc:676
+#: lecture.adoc:675
 msgid ""
 "int i = \n"
 "  Arrays.binarySearch(\n"
@@ -1084,11 +1082,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:678
+#: lecture.adoc:677
 msgid "== Также уже реализованы"
 msgstr ""
 
-#: lecture.adoc:684
+#: lecture.adoc:683
 msgid ""
 "* поиск min/max\n"
 "* копирование \n"
@@ -1097,11 +1095,11 @@ msgid ""
 "* ... -- ищите и найдёте!"
 msgstr ""
 
-#: lecture.adoc:687
+#: lecture.adoc:686
 msgid "== Callbacks: До появления лямбд"
 msgstr ""
 
-#: lecture.adoc:693
+#: lecture.adoc:692
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1110,7 +1108,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:703
+#: lecture.adoc:702
 msgid ""
 "// ----использование----\n"
 "String text = ...\n"
@@ -1123,18 +1121,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:705
+#: lecture.adoc:704
 msgid "== Callbacks: Comparator"
 msgstr ""
 
-#: lecture.adoc:709
+#: lecture.adoc:708
 msgid ""
 "[source,java]\n"
 "----\n"
 "String[] friends = {\"Peter\", \"Paul\", \"Mary\"};"
 msgstr ""
 
-#: lecture.adoc:718
+#: lecture.adoc:717
 msgid ""
 "Arrays.sort(friends,\n"
 "  new Comparator<String>() {\n"
@@ -1146,11 +1144,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:720
+#: lecture.adoc:719
 msgid "== Предикат"
 msgstr ""
 
-#: lecture.adoc:731
+#: lecture.adoc:730
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1164,11 +1162,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:734
+#: lecture.adoc:733
 msgid "== Welcome lambda expressions!"
 msgstr ""
 
-#: lecture.adoc:740
+#: lecture.adoc:739
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1177,7 +1175,7 @@ msgid ""
 "  first.length() - second.length()"
 msgstr ""
 
-#: lecture.adoc:747
+#: lecture.adoc:746
 msgid ""
 "//multi-line with int return\n"
 "(String first, String second) -> {\n"
@@ -1187,18 +1185,18 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:751
+#: lecture.adoc:750
 msgid ""
 "//no-arg, void return\n"
 "() -> System.out.println(\"Hello!\");\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:753
+#: lecture.adoc:752
 msgid "== Что из этого -- валидные лямбда-выражения?"
 msgstr ""
 
-#: lecture.adoc:759
+#: lecture.adoc:758
 msgid ""
 "1. `() -> {}`\n"
 "2. `() -> \"Raoul\"`\n"
@@ -1207,18 +1205,18 @@ msgid ""
 "5. `(String s) -> {\"Iron Man\"}`"
 msgstr ""
 
-#: lecture.adoc:762
+#: lecture.adoc:761
 msgid ""
 "[.fragment]\n"
 "Ответ: 1-3. Если лямбда с фигурными скобками, обязательно нужен return. Если "
 "без них, то return не нужен!"
 msgstr ""
 
-#: lecture.adoc:764
+#: lecture.adoc:763
 msgid "== Чему можно присваивать лямбды?"
 msgstr ""
 
-#: lecture.adoc:768
+#: lecture.adoc:767
 msgid ""
 "* Функциональный интерфейс -- такой, у которого не более одного абстрактного "
 "метода (понятно, что запускать).\n"
@@ -1228,7 +1226,7 @@ msgid ""
 "лямбды -- welcome."
 msgstr ""
 
-#: lecture.adoc:776
+#: lecture.adoc:775
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1239,35 +1237,35 @@ msgid ""
 "== Void-compatibility "
 msgstr ""
 
-#: lecture.adoc:778
+#: lecture.adoc:777
 msgid "Оба варианта скомпилируются:"
 msgstr ""
 
-#: lecture.adoc:782
+#: lecture.adoc:781
 msgid ""
 "[source,java]\n"
 "----\n"
 "final List<String> list = ..."
 msgstr ""
 
-#: lecture.adoc:785
+#: lecture.adoc:784
 msgid ""
 "//Predicate.test возвращает boolean\n"
 "Predicate<String> p = s -> list.add(s);"
 msgstr ""
 
-#: lecture.adoc:789
+#: lecture.adoc:788
 msgid ""
 "//Consumer.accept возвращает void!\n"
 "Consumer<String> c = s -> list.add(s);\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:791
+#: lecture.adoc:790
 msgid "== Object -- не функциональный интерфейс!"
 msgstr ""
 
-#: lecture.adoc:796
+#: lecture.adoc:795
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1275,20 +1273,20 @@ msgid ""
 "Object o = ()->{};"
 msgstr ""
 
-#: lecture.adoc:799
+#: lecture.adoc:798
 msgid ""
 "//Скомпилируется!\n"
 "Runnable r = ()->{};"
 msgstr ""
 
-#: lecture.adoc:803
+#: lecture.adoc:802
 msgid ""
 "//Тоже скомпилируется\n"
 "Object o = (Runnable) ()->{};\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:845
+#: lecture.adoc:844
 msgid ""
 "== В итоге имеем\n"
 "[cols=\"55a,45a\"]\n"
@@ -1332,11 +1330,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:847
+#: lecture.adoc:846
 msgid "== Замыкания (closures)"
 msgstr ""
 
-#: lecture.adoc:856
+#: lecture.adoc:855
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1348,13 +1346,13 @@ msgid ""
 "  new Timer(delay, listener).start();"
 msgstr ""
 
-#: lecture.adoc:859
+#: lecture.adoc:858
 msgid ""
 "}\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:864
+#: lecture.adoc:863
 msgid ""
 "* «Ингридиенты» лямбды:\n"
 "** Код\n"
@@ -1363,25 +1361,25 @@ msgid ""
 "final"
 msgstr ""
 
-#: lecture.adoc:866
+#: lecture.adoc:865
 msgid "== Effectively final only "
 msgstr ""
 
-#: lecture.adoc:870
+#: lecture.adoc:869
 msgid ""
 "[source,java]\n"
 "----\n"
 "int start = ..."
 msgstr ""
 
-#: lecture.adoc:874
+#: lecture.adoc:873
 msgid ""
 "for (int i = 0; i < count; i++) {\n"
 "  ActionListener linstener = event -> {\n"
 "    start--; //ERROR: Can't mutate captured value"
 msgstr ""
 
-#: lecture.adoc:879
+#: lecture.adoc:878
 msgid ""
 "    //ERROR: Cannot refer to changing i\n"
 "    System.out.println(i);\n"
@@ -1389,22 +1387,22 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:881
-msgctxt "lecture.adoc:881"
+#: lecture.adoc:880
+msgctxt "lecture.adoc:880"
 msgid "----"
 msgstr ""
 
-#: lecture.adoc:883
+#: lecture.adoc:882
 msgid ""
 "(Effectively final переменные -- это такие, что они либо уже `final`, либо, "
 "если на них проставить `final`, код всё равно будет компилироваться)"
 msgstr ""
 
-#: lecture.adoc:885
+#: lecture.adoc:884
 msgid "== Method references: ещё короче, ещё эффективнее"
 msgstr ""
 
-#: lecture.adoc:907
+#: lecture.adoc:906
 msgid ""
 "[cols=\"55a,45a\"]\n"
 "|===\n"
@@ -1429,11 +1427,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:909
+#: lecture.adoc:908
 msgid "== Три способа определить Method reference"
 msgstr ""
 
-#: lecture.adoc:919
+#: lecture.adoc:918
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|===\n"
@@ -1446,11 +1444,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:921
+#: lecture.adoc:920
 msgid "== Constructor/Array Constructor Reference"
 msgstr ""
 
-#: lecture.adoc:929
+#: lecture.adoc:928
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|===\n"
@@ -1461,25 +1459,25 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:931
+#: lecture.adoc:930
 msgid "== IDE поможет, но разница есть!"
 msgstr ""
 
-#: lecture.adoc:935
+#: lecture.adoc:934
 msgid ""
 "[source,java]\n"
 "----\n"
 "obj = null;"
 msgstr ""
 
-#: lecture.adoc:939
+#: lecture.adoc:938
 msgid ""
 "//NPE только в момент запуска лямбды!!\n"
 "//obj должен быть effectively final!\n"
 "doSmth(x -> obj.method(x)); "
 msgstr ""
 
-#: lecture.adoc:944
+#: lecture.adoc:943
 msgid ""
 "//NPE здесь и сейчас\n"
 "//obj не обязан быть effectively final\n"
@@ -1487,7 +1485,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:951
+#: lecture.adoc:950
 msgid ""
 "== Методы, специально созданные, чтобы быть method references\n"
 "[source,java]\n"
@@ -1497,21 +1495,21 @@ msgid ""
 "Objects.nonNull(Object ob)..."
 msgstr ""
 
-#: lecture.adoc:954
+#: lecture.adoc:953
 msgid "list.removeIf(Objects::isNull);"
 msgstr ""
 
-#: lecture.adoc:957
+#: lecture.adoc:956
 msgid ""
 "stream.filter(Objects::nonNull)...\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:959
+#: lecture.adoc:958
 msgid "== Готовые функциональные типы"
 msgstr ""
 
-#: lecture.adoc:964
+#: lecture.adoc:963
 msgid ""
 "[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
 "|===\n"
@@ -1519,7 +1517,7 @@ msgid ""
 "Type | Abstract Method Name | Default Methods "
 msgstr ""
 
-#: lecture.adoc:970
+#: lecture.adoc:969
 msgid ""
 "| Runnable    | none | void | run |\n"
 "| Supplier<T> | none | T |  get |\n"
@@ -1528,11 +1526,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:972
+#: lecture.adoc:971
 msgid "== Комбинирование консьюмеров"
 msgstr ""
 
-#: lecture.adoc:977
+#: lecture.adoc:976
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1540,23 +1538,23 @@ msgid ""
 "List<String> list = ..."
 msgstr ""
 
-#: lecture.adoc:981
+#: lecture.adoc:980
 msgid ""
 "//Составной консьюмер, отправляющий\n"
 "//объект сначала в первый, потом во второй\n"
 "Consumer<String> bar = foo.andThen(list::add);"
 msgstr ""
 
-#: lecture.adoc:983
-msgctxt "lecture.adoc:983"
+#: lecture.adoc:982
+msgctxt "lecture.adoc:982"
 msgid "----"
 msgstr ""
 
-#: lecture.adoc:985
+#: lecture.adoc:984
 msgid "== Функции"
 msgstr ""
 
-#: lecture.adoc:993
+#: lecture.adoc:992
 msgid ""
 "[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
 "|===\n"
@@ -1567,11 +1565,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:995
+#: lecture.adoc:994
 msgid "== Композиция функций и identity"
 msgstr ""
 
-#: lecture.adoc:1004
+#: lecture.adoc:1003
 msgid ""
 "[cols=\"50a,^50a\"]\n"
 "|===\n"
@@ -1581,15 +1579,15 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:1006
+#: lecture.adoc:1005
 msgid "Почему у `BiFunction` нет `compose`, только `andThen`?"
 msgstr ""
 
-#: lecture.adoc:1008
+#: lecture.adoc:1007
 msgid "== Операторы"
 msgstr ""
 
-#: lecture.adoc:1016
+#: lecture.adoc:1015
 msgid ""
 "[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
 "|===\n"
@@ -1600,7 +1598,7 @@ msgid ""
 "identity"
 msgstr ""
 
-#: lecture.adoc:1022
+#: lecture.adoc:1021
 msgid ""
 "|BinaryOperator<T> |T, T | T | apply| \n"
 "andThen,\n"
@@ -1609,33 +1607,33 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:1024
+#: lecture.adoc:1023
 msgid "== Композиция операторов"
 msgstr ""
 
-#: lecture.adoc:1026
+#: lecture.adoc:1025
 msgid ""
 "* `UnaryOperator<T> extends Function<T,T>`, поэтому `compose`, `andThen` и "
 "`identity` работают так же."
 msgstr ""
 
-#: lecture.adoc:1028
+#: lecture.adoc:1027
 msgid ""
 "* `BinaryOperator<T> extends BiFunction<T,T,T>`, поэтому `andThen` работает "
 "так же"
 msgstr ""
 
-#: lecture.adoc:1030
+#: lecture.adoc:1029
 msgid ""
 "* Статические методы `minBy` и `maxBy` формируют операторы `min(x,y)` и "
 "`max(x,y)` из компаратора."
 msgstr ""
 
-#: lecture.adoc:1033
+#: lecture.adoc:1032
 msgid "== {zsp}Предикаты{zsp}"
 msgstr ""
 
-#: lecture.adoc:1041
+#: lecture.adoc:1040
 msgid ""
 "[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
 "|===\n"
@@ -1646,18 +1644,18 @@ msgid ""
 "isEqual"
 msgstr ""
 
-#: lecture.adoc:1045
+#: lecture.adoc:1044
 msgid ""
 "| BiPredicate<T, U> |T, U |boolean| test |and, or,\n"
 "negate\n"
 "|==="
 msgstr ""
 
-#: lecture.adoc:1047
+#: lecture.adoc:1046
 msgid "== Композиция предикатов"
 msgstr ""
 
-#: lecture.adoc:1052
+#: lecture.adoc:1051
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1665,30 +1663,30 @@ msgid ""
 "Predicate<T> b = ..."
 msgstr ""
 
-#: lecture.adoc:1054
+#: lecture.adoc:1053
 msgid "a.and(b).negate(); // ! (a(x) & b(x)"
 msgstr ""
 
-#: lecture.adoc:1057
+#: lecture.adoc:1056
 msgid ""
 "//Двуместный предикат (x,y)-> Objects.equals(x, y)\n"
 "Objects::equals "
 msgstr ""
 
-#: lecture.adoc:1061
+#: lecture.adoc:1060
 msgid ""
 "//Одноместный предикат y -> Objects.equals(x, y)\n"
 "Predicate.isEqual(x)\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:1064
+#: lecture.adoc:1063
 msgid ""
 "== Функциональные интерфейсы для примитивных типов\n"
 "p, q is `int`, `long`, `double`; P, Q is `Int`, `Long`, `Double`"
 msgstr ""
 
-#: lecture.adoc:1077
+#: lecture.adoc:1076
 msgid ""
 "[cols=\"35a,20a,20a,25a\", options=\"header\"]\n"
 "|===\n"
@@ -1705,11 +1703,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:1079
+#: lecture.adoc:1078
 msgid "== Функциональные интерфейсы для примитивных типов (продолжение)"
 msgstr ""
 
-#: lecture.adoc:1087
+#: lecture.adoc:1086
 msgid ""
 "[cols=\"35a,20a,20a,25a\", options=\"header\"]\n"
 "|===\n"
@@ -1721,15 +1719,15 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:1089
+#: lecture.adoc:1088
 msgid "== Дефолтные методы Map interface"
 msgstr ""
 
-#: lecture.adoc:1091
+#: lecture.adoc:1090
 msgid "Работают атомарно в `ConcurrentHashMap`!"
 msgstr ""
 
-#: lecture.adoc:1096
+#: lecture.adoc:1095
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1737,30 +1735,30 @@ msgid ""
 "  Function<? super K, ? extends V> mappingFunction)"
 msgstr ""
 
-#: lecture.adoc:1099
+#: lecture.adoc:1098
 msgid ""
 "V computeIfPresent(K key,\n"
 "  BiFunction<? super K, ? super V, ? extends V> remappingFunction)"
 msgstr ""
 
-#: lecture.adoc:1102
+#: lecture.adoc:1101
 msgid ""
 "V compute(K key,\n"
 "  BiFunction<? super K, ? super V, ? extends V> remappingFunction)"
 msgstr ""
 
-#: lecture.adoc:1106
+#: lecture.adoc:1105
 msgid ""
 "V merge(K key, V value,\n"
 "  BiFunction<? super V, ? super V, ? extends V> remappingFunction)\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:1108
+#: lecture.adoc:1107
 msgid "== Компараторы"
 msgstr ""
 
-#: lecture.adoc:1120
+#: lecture.adoc:1119
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1775,11 +1773,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:1122
+#: lecture.adoc:1121
 msgid "== Сортируем по фамилии"
 msgstr ""
 
-#: lecture.adoc:1145
+#: lecture.adoc:1144
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1805,11 +1803,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:1147
+#: lecture.adoc:1146
 msgid "== {zsp}Сортируем по фамилии, потом по имени{zsp}"
 msgstr ""
 
-#: lecture.adoc:1161
+#: lecture.adoc:1160
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1826,11 +1824,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:1163
+#: lecture.adoc:1162
 msgid "== Правильно так:"
 msgstr ""
 
-#: lecture.adoc:1172
+#: lecture.adoc:1171
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1842,11 +1840,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:1174
+#: lecture.adoc:1173
 msgid "== Также:"
 msgstr ""
 
-#: lecture.adoc:1182
+#: lecture.adoc:1181
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1857,12 +1855,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:1185
+#: lecture.adoc:1184
 msgid ""
 "[%notitle]\n"
 "== Хотя не без проблем"
 msgstr ""
 
-#: lecture.adoc:1186
+#: lecture.adoc:1185
 msgid "image::doctor.jpg[{image-30-width}]"
 msgstr ""
