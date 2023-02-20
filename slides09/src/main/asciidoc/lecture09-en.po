@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 09\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2022-03-08 16:53+0200\n"
+"POT-Creation-Date: 2023-02-20 21:26+0300\n"
+"PO-Revision-Date: 2023-02-20 21:30+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lecture.adoc:24
 msgid ""
@@ -63,27 +63,23 @@ msgstr ""
 ":revealjs_width: 1600\n"
 ":revealjs_height: 900"
 
-#: lecture.adoc:28
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
-msgstr ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+#: lecture.adoc:27
+msgid ":!figure-caption:"
+msgstr ":!figure-caption:"
 
-#: lecture.adoc:30
+#: lecture.adoc:29
 msgid "ponomarev@corchestra.ru"
 msgstr "ponomarev@corchestra.ru"
 
-#: lecture.adoc:32
+#: lecture.adoc:31
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
-#: lecture.adoc:34
+#: lecture.adoc:33
 msgid "== Streams"
 msgstr "== Streams"
 
-#: lecture.adoc:39
+#: lecture.adoc:38
 msgid ""
 "* Появились в Java8, вместе с lambdas & method references.\n"
 "* Обработка конечных и потенциально бесконечных наборов данных.\n"
@@ -97,12 +93,12 @@ msgstr ""
 "get, not *how* we will get it.\n"
 "* Transparent parallelism."
 
-#: lecture.adoc:41
+#: lecture.adoc:40
 msgid "== Преобразуем поток в поток"
 msgstr "== Convert stream to stream"
 
-#: lecture.adoc:44
-msgctxt "lecture.adoc:44"
+#: lecture.adoc:43
+msgctxt "lecture.adoc:43"
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
@@ -110,7 +106,7 @@ msgstr ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
 
-#: lecture.adoc:47
+#: lecture.adoc:46
 msgid ""
 "|\n"
 "`blockStream`"
@@ -118,11 +114,11 @@ msgstr ""
 "|\n"
 "`blockStream`"
 
-#: lecture.adoc:49
+#: lecture.adoc:48
 msgid "image::map.svg[]"
 msgstr "image::map.svg[]"
 
-#: lecture.adoc:54
+#: lecture.adoc:53
 msgid ""
 "`squashedStream`\n"
 "|[source,java]\n"
@@ -134,11 +130,11 @@ msgstr ""
 "----\n"
 "List<Block> blocks = ...;"
 
-#: lecture.adoc:56
+#: lecture.adoc:55
 msgid "Stream<Block> blocksStream = blocks.stream();"
 msgstr "Stream<Block> blocksStream = blocks.stream();"
 
-#: lecture.adoc:60
+#: lecture.adoc:59
 msgid ""
 "Stream<SquashedBlock> squashedStream =\n"
 "  blocksStream.map(Block::squash);\n"
@@ -148,7 +144,7 @@ msgstr ""
 "  blocksStream.map(Block::squash);\n"
 "----"
 
-#: lecture.adoc:63
+#: lecture.adoc:62
 msgid ""
 "(Автор анимаций -- Тагир Валеев, движущиеся картинки см. https://"
 "stackoverflow.com/questions/35150231/java-streams-lazy-vs-fusion-vs-short-"
@@ -160,12 +156,12 @@ msgstr ""
 "circuiting[here])\n"
 "|==="
 
-#: lecture.adoc:66
+#: lecture.adoc:65
 msgid "== Фильтруем"
 msgstr "== Filtering"
 
-#: lecture.adoc:69
-msgctxt "lecture.adoc:69"
+#: lecture.adoc:68
+msgctxt "lecture.adoc:68"
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
@@ -173,7 +169,7 @@ msgstr ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
 
-#: lecture.adoc:72
+#: lecture.adoc:71
 msgid ""
 "|\n"
 "`squashedStream`"
@@ -181,11 +177,11 @@ msgstr ""
 "|\n"
 "`squashedStream`"
 
-#: lecture.adoc:74
+#: lecture.adoc:73
 msgid "image::filter.svg[]"
 msgstr "image::filter.svg[]"
 
-#: lecture.adoc:83
+#: lecture.adoc:82
 msgid ""
 "`filteredStream`\n"
 "|[source,java]\n"
@@ -205,12 +201,12 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:85
+#: lecture.adoc:84
 msgid "== Отображаем в консоль (терминальная операция)"
 msgstr "== Display in the console (terminal operation)"
 
-#: lecture.adoc:88
-msgctxt "lecture.adoc:88"
+#: lecture.adoc:87
+msgctxt "lecture.adoc:87"
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
@@ -218,7 +214,7 @@ msgstr ""
 "[cols=\"^40a,60a\"]\n"
 "|==="
 
-#: lecture.adoc:91
+#: lecture.adoc:90
 msgid ""
 "|\n"
 "`filteredStream`"
@@ -226,11 +222,11 @@ msgstr ""
 "|\n"
 "`filteredStream`"
 
-#: lecture.adoc:93
+#: lecture.adoc:92
 msgid "image::display.svg[]"
 msgstr "image::display.svg[]"
 
-#: lecture.adoc:100
+#: lecture.adoc:99
 msgid ""
 "|[source,java]\n"
 "----\n"
@@ -246,11 +242,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:103
+#: lecture.adoc:102
 msgid "== Всё вместе в одну строку"
 msgstr "== All together in one line"
 
-#: lecture.adoc:116
+#: lecture.adoc:115
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|===\n"
@@ -278,11 +274,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:118
+#: lecture.adoc:117
 msgid "== Ничего не напоминает?"
 msgstr "== Does it resemble something?"
 
-#: lecture.adoc:120
+#: lecture.adoc:119
 msgid ""
 "«Соединить два файла, привести их строки к lowercase, отсортировать, вывести "
 "три последних строки в алфавитном порядке»"
@@ -290,7 +286,7 @@ msgstr ""
 "\"Merge two files, convert lines to lowercase, sort, display the last three "
 "lines in alphabetical order\""
 
-#: lecture.adoc:123
+#: lecture.adoc:122
 msgid ""
 "[source,sh]\n"
 "cat file1 file2 | tr \"[A-Z]\" \"[a-z]\" | sort | tail -3"
@@ -298,11 +294,11 @@ msgstr ""
 "[source,sh]\n"
 "cat file1 file2 | tr \"[A-Z]\" \"[a-z]\" | sort | tail -3"
 
-#: lecture.adoc:125
+#: lecture.adoc:124
 msgid "== Зачем это нужно?"
 msgstr "== Why?"
 
-#: lecture.adoc:134
+#: lecture.adoc:133
 msgid ""
 "[cols=\"55a,45a\"]\n"
 "|===\n"
@@ -322,7 +318,7 @@ msgstr ""
 "Map<Currency, List<Transaction>>\n"
 " transactionsByCurrencies = new HashMap<>();"
 
-#: lecture.adoc:162
+#: lecture.adoc:161
 msgid ""
 "for (Transaction transaction : transactions) {\n"
 " Currency currency =transaction.getCurrency();\n"
@@ -380,11 +376,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:164
+#: lecture.adoc:163
 msgid "== Три категории методов Stream API"
 msgstr "== Three categories of Stream API methods"
 
-#: lecture.adoc:169
+#: lecture.adoc:168
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -396,7 +392,7 @@ msgstr ""
 "//Create a stream\n"
 "List<String> names = menu.stream()"
 
-#: lecture.adoc:174
+#: lecture.adoc:173
 msgid ""
 "//Промежуточные операции\n"
 "  .filter(d -> d.getCalories() > 300\n"
@@ -408,7 +404,7 @@ msgstr ""
 "  .map(Dish::getName)\n"
 "  .limit(3)"
 
-#: lecture.adoc:178
+#: lecture.adoc:177
 msgid ""
 "//Терминальная операция\n"
 "  .collect(Collectors.toList());\n"
@@ -418,11 +414,11 @@ msgstr ""
 "  .collect(Collectors.toList());\n"
 "----"
 
-#: lecture.adoc:180
+#: lecture.adoc:179
 msgid "== Создание стрима"
 msgstr "== Creating a stream"
 
-#: lecture.adoc:185
+#: lecture.adoc:184
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -434,7 +430,7 @@ msgstr ""
 "//Empty stream\n"
 "Stream<Foo> stream0 = Stream.empty();"
 
-#: lecture.adoc:195
+#: lecture.adoc:194
 msgid ""
 "//Перечислением элементов\n"
 "Stream<String> stream1 = \n"
@@ -456,7 +452,7 @@ msgstr ""
 "List<String> strings = ...\n"
 "Stream<String> stream3 = strings.stream();"
 
-#: lecture.adoc:200
+#: lecture.adoc:199
 msgid ""
 "//Из API\n"
 "Path path = Paths.get(...);\n"
@@ -468,11 +464,11 @@ msgstr ""
 "Stream<Path> stream4 = Files.list(path);\n"
 "----"
 
-#: lecture.adoc:202
+#: lecture.adoc:201
 msgid "== Конкатенация стримов"
 msgstr "== Concatenation of streams"
 
-#: lecture.adoc:209
+#: lecture.adoc:208
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -488,11 +484,11 @@ msgstr ""
 "Stream<Foo> s = Stream.concat(s1, s2);\n"
 "----"
 
-#: lecture.adoc:211
+#: lecture.adoc:210
 msgid "== Порождение стримов (generate)"
 msgstr "== Generating streams"
 
-#: lecture.adoc:218
+#: lecture.adoc:217
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -508,8 +504,8 @@ msgstr ""
 "    Stream.generate(Math::random);\n"
 "----"
 
-#: lecture.adoc:222
-msgctxt "lecture.adoc:222"
+#: lecture.adoc:221
+msgctxt "lecture.adoc:221"
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -519,7 +515,7 @@ msgstr ""
 "[source,java]\n"
 "----"
 
-#: lecture.adoc:227
+#: lecture.adoc:226
 msgid ""
 "          //ХОТЯ ЛУЧШЕ\n"
 "          DoubleStream doubles =\n"
@@ -531,11 +527,11 @@ msgstr ""
 "            ThreadLocalRandom.current().doubles()\n"
 "----"
 
-#: lecture.adoc:229
+#: lecture.adoc:228
 msgid "== Порождение стримов (iterate)"
 msgstr "== Producing stream elements with `iterate`"
 
-#: lecture.adoc:236
+#: lecture.adoc:235
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -551,8 +547,8 @@ msgstr ""
 "    Stream.iterate(0, x -> x + 1);\n"
 "----"
 
-#: lecture.adoc:240
-msgctxt "lecture.adoc:240"
+#: lecture.adoc:239
+msgctxt "lecture.adoc:239"
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -562,7 +558,7 @@ msgstr ""
 "[source,java]\n"
 "----"
 
-#: lecture.adoc:244
+#: lecture.adoc:243
 msgid ""
 "          //ХОТЯ ЛУЧШЕ\n"
 "          IntStream range = IntStream.range(0, 1000);\n"
@@ -572,7 +568,7 @@ msgstr ""
 "          IntStream range = IntStream.range(0, 1000);\n"
 "----"
 
-#: lecture.adoc:253
+#: lecture.adoc:252
 msgid ""
 "== Что будет в этом стриме?\n"
 "[source,java]\n"
@@ -590,7 +586,7 @@ msgstr ""
 "    .mapToInt(t -> t[0]);\n"
 "----"
 
-#: lecture.adoc:264
+#: lecture.adoc:263
 msgid ""
 "== Spliterator: самый общий способ создания стрима\n"
 "[source,java]\n"
@@ -614,7 +610,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:269
+#: lecture.adoc:268
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -626,7 +622,7 @@ msgstr ""
 "StreamSupport.stream(Spliterator<T> spliterator, boolean parallel)\n"
 "----"
 
-#: lecture.adoc:281
+#: lecture.adoc:280
 msgid ""
 "== Ветвление сплитераторов\n"
 "[graphviz,\"split1.png\"]\n"
@@ -652,7 +648,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:290
+#: lecture.adoc:289
 msgid ""
 "== Ветвление сплитераторов\n"
 "[graphviz,\"split2.png\"]\n"
@@ -672,7 +668,7 @@ msgstr ""
 "try[shape=\"none\"; label=\"trySplit()\"]\n"
 "try2[shape=\"none\"; label=\"trySplit()\"]"
 
-#: lecture.adoc:296
+#: lecture.adoc:295
 msgid ""
 "Spliterator1 -> Spliterator2 ;\n"
 "Spliterator1 -> try2 -> Spliterator3;\n"
@@ -686,11 +682,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:298
+#: lecture.adoc:297
 msgid "== Характеристики сплитератора"
 msgstr "== Spliterator properties"
 
-#: lecture.adoc:313
+#: lecture.adoc:312
 msgid ""
 "[cols=\"15a,85a\"]\n"
 "|===\n"
@@ -734,7 +730,7 @@ msgstr ""
 "resulting from its split are `SIZED`.\n"
 "|==="
 
-#: lecture.adoc:316
+#: lecture.adoc:315
 msgid ""
 "== Промежуточные итоги\n"
 "* Есть много стандартных способов порождения стримов, для простых случаев не "
@@ -744,11 +740,11 @@ msgstr ""
 "* There are many standard ways to generate streams, for simple cases you do "
 "not need to \"reinvent the wheel\""
 
-#: lecture.adoc:319
+#: lecture.adoc:318
 msgid "* Скорей всего, вам не понадобится самому реализовывать `Spliterator`."
 msgstr "* Most likely, you will not need to implement `Spliterator` yourself."
 
-#: lecture.adoc:324
+#: lecture.adoc:323
 msgid ""
 "* Быстродействия ради, есть \"примитивные стримы\" (три типа):\n"
 "** `IntStream` (эффективнее, чем `Stream<Integer>`)\n"
@@ -761,11 +757,11 @@ msgstr ""
 "** `LongStream` (more efficient than`<Long>Stream`)\n"
 "** `DoubleStream` (more efficient than`<Double>Stream`)"
 
-#: lecture.adoc:326
+#: lecture.adoc:325
 msgid "== Преобразования стримов в стримы: получение «головы» и «хвоста»"
 msgstr "== Convert streams to streams: getting \"head\" and \"tail\""
 
-#: lecture.adoc:330
+#: lecture.adoc:329
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -775,7 +771,7 @@ msgstr ""
 "----\n"
 "//Stream interface methods"
 
-#: lecture.adoc:334
+#: lecture.adoc:333
 msgid ""
 "//голова\n"
 "Stream<T> limit(long maxSize)\n"
@@ -785,7 +781,7 @@ msgstr ""
 "Stream<T> limit(long maxSize)\n"
 "Stream<T> takeWhile(Predicate<? super T> predicate)"
 
-#: lecture.adoc:339
+#: lecture.adoc:338
 msgid ""
 "//хвост\n"
 "Stream<T> skip(long n)\n"
@@ -797,11 +793,11 @@ msgstr ""
 "Stream<T> dropWhile(Predicate<? super T> predicate)\n"
 "----"
 
-#: lecture.adoc:341
+#: lecture.adoc:340
 msgid "== filter "
 msgstr "== filter "
 
-#: lecture.adoc:352
+#: lecture.adoc:351
 msgid ""
 "[cols=\"^40a,60a\"]\n"
 "|===\n"
@@ -825,7 +821,7 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:370
+#: lecture.adoc:369
 msgid ""
 "== map \n"
 "[cols=\"^40a,60a\"]\n"
@@ -863,11 +859,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:372
+#: lecture.adoc:371
 msgid "== flatMap"
 msgstr "== flatMap"
 
-#: lecture.adoc:381
+#: lecture.adoc:380
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -883,11 +879,11 @@ msgstr ""
 "Path path = ...\n"
 "Pattern separator = Pattern.compile(\"\\\\s\");\n"
 "try(Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {\n"
-"    //НЕ ТО, что нам надо!\n"
+"    //NOT what we need!\n"
 "    //Stream<Stream<String>> streamStream = \n"
 "    //                  lines.map(separator::splitAsStream);"
 
-#: lecture.adoc:386
+#: lecture.adoc:385
 msgid ""
 "    //ТО, что нам надо!\n"
 "    Stream<String> words = lines.flatMap(separator::splitAsStream);\n"
@@ -899,7 +895,7 @@ msgstr ""
 "    words.forEach(System.out::println);\n"
 "}"
 
-#: lecture.adoc:393
+#: lecture.adoc:392
 msgid ""
 "/*А также:\n"
 "  flatMapToDouble\n"
@@ -915,11 +911,11 @@ msgstr ""
 "  */\n"
 "----"
 
-#: lecture.adoc:396
+#: lecture.adoc:395
 msgid "== distinct"
 msgstr "== distinct"
 
-#: lecture.adoc:400
+#: lecture.adoc:399
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -929,7 +925,7 @@ msgstr ""
 "----\n"
 "//Internal Set"
 
-#: lecture.adoc:404
+#: lecture.adoc:403
 msgid ""
 "Stream.of(1, 5, 8, 7, 8, 5, 9, 9)\n"
 "    .distinct()\n"
@@ -939,7 +935,7 @@ msgstr ""
 "    .distinct()\n"
 "    .forEach(System.out::println);"
 
-#: lecture.adoc:407
+#: lecture.adoc:406
 msgid ""
 "//Выведет 1, 5, 8, 7, 9\n"
 "----"
@@ -947,7 +943,7 @@ msgstr ""
 "//Outputs 1, 5, 8, 7, 9\n"
 "----"
 
-#: lecture.adoc:415
+#: lecture.adoc:414
 msgid ""
 "== Что произойдёт при выполнении такого кода?\n"
 "[source,java]\n"
@@ -965,7 +961,7 @@ msgstr ""
 "  .forEach(System.out::println);\n"
 "----"
 
-#: lecture.adoc:418
+#: lecture.adoc:417
 msgid ""
 "[.fragment]\n"
 "Программа зависнет, когда исчерпаются все значения от 1 до 10. Можно "
@@ -975,11 +971,11 @@ msgstr ""
 "The program will hang when all values from 1 to 10 are exhausted. You can "
 "fix it, for example, by specifying `limit(9)` after `distinct`."
 
-#: lecture.adoc:421
+#: lecture.adoc:420
 msgid "== sorted"
 msgstr "== sorted"
 
-#: lecture.adoc:425
+#: lecture.adoc:424
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -989,7 +985,7 @@ msgstr ""
 "----\n"
 "//Internal sorted list"
 
-#: lecture.adoc:429
+#: lecture.adoc:428
 msgid ""
 "Stream.of(1, 5, 8, 7, 8, 5, 9, 9)\n"
 "    .sorted()\n"
@@ -999,11 +995,11 @@ msgstr ""
 "    .sorted()\n"
 "    .forEach(System.out::println);"
 
-#: lecture.adoc:431
+#: lecture.adoc:430
 msgid "//Выведет 1, 5, 5, 7, 8, 8, 9, 9"
 msgstr "//Outputs 1, 5, 5, 7, 8, 8, 9, 9"
 
-#: lecture.adoc:434
+#: lecture.adoc:433
 msgid ""
 "//Не имеет смысла для бесконечных стримов\n"
 "----"
@@ -1011,11 +1007,11 @@ msgstr ""
 "//Doesn't make sense for infinite streams\n"
 "----"
 
-#: lecture.adoc:436
+#: lecture.adoc:435
 msgid "== peek -- отладочный метод"
 msgstr "== peek -- debug method"
 
-#: lecture.adoc:441
+#: lecture.adoc:440
 msgid ""
 "* Не меняет исходный стрим.\n"
 "* Предназначен для «подглядывания» за промежуточным состоянием элементов. \n"
@@ -1029,7 +1025,7 @@ msgstr ""
 "* In parallel computations, it can be called in any order on in an arbitrary "
 "thread."
 
-#: lecture.adoc:444
+#: lecture.adoc:443
 msgid ""
 "[source,java]\n"
 "Stream<T> peek(Consumer<? super T> action);"
@@ -1037,11 +1033,11 @@ msgstr ""
 "[source,java]\n"
 "Stream<T> peek(Consumer<? super T> action);"
 
-#: lecture.adoc:446
+#: lecture.adoc:445
 msgid "== Терминальные операции"
 msgstr "== Terminal operations"
 
-#: lecture.adoc:453
+#: lecture.adoc:452
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1057,7 +1053,7 @@ msgstr ""
 "//Present any element\n"
 "Optional<T> findAny();"
 
-#: lecture.adoc:461
+#: lecture.adoc:460
 msgid ""
 "//Проверь, удовлетворяет ли условию...\n"
 "//...какой-то\n"
@@ -1075,7 +1071,7 @@ msgstr ""
 "//...no element\n"
 "boolean noneMatch(Predicate<? super T> predicate);"
 
-#: lecture.adoc:464
+#: lecture.adoc:463
 msgid ""
 "//КОРОТКИЕ ЗАМЫКАНИЯ!\n"
 "----"
@@ -1083,11 +1079,11 @@ msgstr ""
 "//SHORT CIRCUITING!\n"
 "----"
 
-#: lecture.adoc:466
+#: lecture.adoc:465
 msgid "== forEach"
 msgstr "== forEach"
 
-#: lecture.adoc:471
+#: lecture.adoc:470
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1099,7 +1095,7 @@ msgstr ""
 "void forEach(Consumer<? super T> action);\n"
 "----"
 
-#: lecture.adoc:474
+#: lecture.adoc:473
 msgid ""
 "* В случае параллельного выполнения нет гарантий последовательности\n"
 "* Нет гарантий относительно того, в каком потоке будет выполнена лямбда"
@@ -1107,11 +1103,11 @@ msgstr ""
 "* In the case of parallel execution, there are no guarantees of consistency\n"
 "* There is no guarantee as to which thread the lambda will be executed on"
 
-#: lecture.adoc:476
+#: lecture.adoc:475
 msgid "== reduce (with identity)"
 msgstr "== reduce (with identity)"
 
-#: lecture.adoc:484
+#: lecture.adoc:483
 msgid ""
 "[cols=\"40a,60a\"]\n"
 "|===\n"
@@ -1129,7 +1125,7 @@ msgstr ""
 "digraph G {\n"
 "  graph [ dpi = 140 ];"
 
-#: lecture.adoc:495
+#: lecture.adoc:494
 msgid ""
 "  \"4\"[shape=\"square\"];\n"
 "  \"5\"[shape=\"square\"];\n"
@@ -1153,7 +1149,7 @@ msgstr ""
 "  \"4\" -> \"p1\";\n"
 "  \"0\" -> \"p1\";"
 
-#: lecture.adoc:506
+#: lecture.adoc:505
 msgid ""
 "  \"p1\" -> \"s1\";\n"
 "  \"5\" -> \"p2\";\n"
@@ -1177,7 +1173,7 @@ msgstr ""
 "  \"s3\"->\"p4\";\n"
 "  \"p4\"->\"s4\";"
 
-#: lecture.adoc:512
+#: lecture.adoc:511
 msgid ""
 "  \"0\"[shape=\"square\"];\n"
 "  \"s1\"[shape=\"square\";label=\"4\"];\n"
@@ -1191,12 +1187,12 @@ msgstr ""
 "  \"s3\"[shape=\"square\";label=\"12\"];\n"
 "  \"s4\"[shape=\"square\";label=\"21\"];"
 
-#: lecture.adoc:514
-msgctxt "lecture.adoc:514"
+#: lecture.adoc:513
+msgctxt "lecture.adoc:513"
 msgid "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 msgstr "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 
-#: lecture.adoc:523
+#: lecture.adoc:522
 msgid ""
 "  {rank = same; \"4\"; \"5\"; \"3\"; \"9\";}\n"
 "  {rank = same; \"0\"; \"p1\";}\n"
@@ -1216,7 +1212,7 @@ msgstr ""
 "----\n"
 "| "
 
-#: lecture.adoc:533
+#: lecture.adoc:532
 msgid ""
 "* Ассоциативная функция + \"identity value\"\n"
 "* Промежуточные результаты -- immutable values\n"
@@ -1239,11 +1235,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:535
+#: lecture.adoc:534
 msgid "== Parallel reduce"
 msgstr "== Parallel reduce"
 
-#: lecture.adoc:552
+#: lecture.adoc:551
 msgid ""
 "[graphviz, \"reduce-par.png\"]\n"
 "----\n"
@@ -1279,7 +1275,7 @@ msgstr ""
 "  \"0\" -> \"p1\";\n"
 "  \"0\" -> \"p3\";"
 
-#: lecture.adoc:565
+#: lecture.adoc:564
 msgid ""
 "  \"p1\" -> \"s1\";\n"
 "  \"5\" -> \"p2\";\n"
@@ -1307,11 +1303,11 @@ msgstr ""
 "  \"p5\"->\"s4\"[dir=back];\n"
 "  \"s2\"->\"p5\";"
 
-#: lecture.adoc:567
+#: lecture.adoc:566
 msgid "  \"p5\"->\"s5\";"
 msgstr "  \"p5\"->\"s5\";"
 
-#: lecture.adoc:575
+#: lecture.adoc:574
 msgid ""
 "  \"0\"[shape=\"square\"];\n"
 "  \"s1\"[shape=\"square\";label=\"4\"];\n"
@@ -1327,12 +1323,12 @@ msgstr ""
 "  \"s4\"[shape=\"square\";label=\"12\"];\n"
 "  \"s5\"[shape=\"square\";label=\"21\"];"
 
-#: lecture.adoc:578
-msgctxt "lecture.adoc:578"
+#: lecture.adoc:577
+msgctxt "lecture.adoc:577"
 msgid "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 msgstr "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 
-#: lecture.adoc:587
+#: lecture.adoc:586
 msgid ""
 "  {rank = same; \"4\"; \"5\"; \"3\"; \"9\";}\n"
 "  {rank = same; \"0\"; \"p1\"; \"p3\"}\n"
@@ -1352,7 +1348,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:600
+#: lecture.adoc:599
 msgid ""
 "== reduce без identity\n"
 "[cols=\"40a,60a\"]\n"
@@ -1380,7 +1376,7 @@ msgstr ""
 "  \"3\"[shape=\"square\"];\n"
 "  \"9\"[shape=\"square\"];"
 
-#: lecture.adoc:614
+#: lecture.adoc:613
 msgid ""
 "  \"p2\"[label=\"max\"; shape=\"circle\"];\n"
 "  \"p3\"[label=\"max\"; shape=\"circle\"];\n"
@@ -1410,7 +1406,7 @@ msgstr ""
 "  \"s3\"->\"p4\";\n"
 "  \"p4\"->\"s4\";"
 
-#: lecture.adoc:619
+#: lecture.adoc:618
 msgid ""
 "  \"s1\"[shape=\"square\";label=\"4\"];\n"
 "  \"s2\"[shape=\"square\";label=\"5\"];\n"
@@ -1422,11 +1418,11 @@ msgstr ""
 "  \"s3\"[shape=\"square\";label=\"5\"];\n"
 "  \"s4\"[shape=\"square\";label=\"9\"];"
 
-#: lecture.adoc:622
+#: lecture.adoc:621
 msgid "  \"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 msgstr "  \"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
 
-#: lecture.adoc:630
+#: lecture.adoc:629
 msgid ""
 "  {rank = same; \"4\"; \"5\"; \"3\"; \"9\";}\n"
 "  {rank = same; \"s1\"; \"p2\";}\n"
@@ -1446,7 +1442,7 @@ msgstr ""
 "| * identity is not required, but the result may be empty (if the stream "
 "itself is empty)"
 
-#: lecture.adoc:635
+#: lecture.adoc:634
 msgid ""
 "[source,java]\n"
 "Optional<T> reduce(\n"
@@ -1458,11 +1454,11 @@ msgstr ""
 "  BinaryOperator<T> accumulator);\n"
 "|==="
 
-#: lecture.adoc:637
+#: lecture.adoc:636
 msgid "== Готовые редьюсы"
 msgstr "== Ready-made 'reduce' operations"
 
-#: lecture.adoc:645
+#: lecture.adoc:644
 msgid ""
 "* Доступный во всех стримах:\n"
 "** `count` -- в общем случае требует пересчёта всех элементов!\n"
@@ -1480,11 +1476,11 @@ msgstr ""
 "** `average`\n"
 "** `summaryStatistics` -- count, sum, min and max in a single method."
 
-#: lecture.adoc:647
+#: lecture.adoc:646
 msgid "== collect: самый гибкий метод сборки результатов"
 msgstr "== collect: the most flexible method of assembling the results"
 
-#: lecture.adoc:653
+#: lecture.adoc:652
 msgid ""
 "* Типовые параметры:\n"
 "** `T` -- тип элементов стрима\n"
@@ -1502,7 +1498,7 @@ msgstr ""
 "* Unlike `reduce`, which works with immutable objects, it mutates the "
 "accumulator."
 
-#: lecture.adoc:656
+#: lecture.adoc:655
 msgid ""
 "[source,java]\n"
 "<R, A> R collect(Collector<? super T, A, R> collector);"
@@ -1510,11 +1506,11 @@ msgstr ""
 "[source,java]\n"
 "<R, A> R collect(Collector<? super T, A, R> collector);"
 
-#: lecture.adoc:658
+#: lecture.adoc:657
 msgid "== Интерфейс Collector<T, A, R>"
 msgstr "== `Collector<T, A, R>` interface"
 
-#: lecture.adoc:662
+#: lecture.adoc:661
 msgid ""
 "* `T` -- тип элементов стрима\n"
 "* `A` -- тип аккумулятора, промежуточной структуры данных, в которой всё "
@@ -1526,7 +1522,7 @@ msgstr ""
 "everything is collected\n"
 "* `R` -- result type"
 
-#: lecture.adoc:672
+#: lecture.adoc:671
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1548,7 +1544,7 @@ msgstr ""
 "  Set<Characteristics> characteristics();\n"
 "}"
 
-#: lecture.adoc:677
+#: lecture.adoc:676
 msgid ""
 "//например:\n"
 "class ToListCollector<T> implements\n"
@@ -1560,11 +1556,11 @@ msgstr ""
 "   Collector<T, List<T>, List<T>>\n"
 "----"
 
-#: lecture.adoc:679
+#: lecture.adoc:678
 msgid "== Характеристики коллектора"
 msgstr "== Collector properties"
 
-#: lecture.adoc:687
+#: lecture.adoc:686
 msgid ""
 "[cols=\"20a,80a\"]\n"
 "|===\n"
@@ -1594,7 +1590,7 @@ msgstr ""
 "cast from A to R will succeed.\n"
 "|==="
 
-#: lecture.adoc:691
+#: lecture.adoc:690
 msgid ""
 "== Промежуточные выводы\n"
 "* Сделать свой коллектор непросто,\n"
@@ -1605,11 +1601,11 @@ msgstr ""
 "* But good news is that there are many ready-made ones and they can be "
 "combined!"
 
-#: lecture.adoc:693
+#: lecture.adoc:692
 msgid "== Наиболее употребимые коллекторы"
 msgstr "== Most used collectors"
 
-#: lecture.adoc:701
+#: lecture.adoc:700
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1627,7 +1623,7 @@ msgstr ""
 "Collector<T, ?, C extends Collection<T>> \n"
 "  toCollection(Supplier<C> collectionFactory)"
 
-#: lecture.adoc:706
+#: lecture.adoc:705
 msgid ""
 "//Пример применения\n"
 "Stream<Foo> myStream = ...\n"
@@ -1639,7 +1635,7 @@ msgstr ""
 "List<Foo> list = myStream.collect(Collectors.toList());\n"
 "----"
 
-#: lecture.adoc:713
+#: lecture.adoc:712
 msgid ""
 "== Собирание в мапы\n"
 "[source,java]\n"
@@ -1655,7 +1651,7 @@ msgstr ""
 "  Function<? super T, ? extends K> keyMapper,\n"
 "  Function<? super T, ? extends U> valueMapper)"
 
-#: lecture.adoc:719
+#: lecture.adoc:718
 msgid ""
 "//Пример применения\n"
 "Stream<Person> people = ...\n"
@@ -1669,15 +1665,15 @@ msgstr ""
 "  Collectors.toMap(Person::getId, p->p);\n"
 "----"
 
-#: lecture.adoc:721
+#: lecture.adoc:720
 msgid "* Также можно указать `mergeFunction` и `mapSupplier`."
 msgstr "* You can also specify `mergeFunction` and `mapSupplier`."
 
-#: lecture.adoc:724
+#: lecture.adoc:723
 msgid "== Вариации на тему сборки в коллекции"
 msgstr "== Variations on the theme of the collecting"
 
-#: lecture.adoc:727
+#: lecture.adoc:726
 msgid ""
 "* с помощью `toUnmodifiable(List|Set|Map)` можно сразу получить неизменяемую "
 "коллекцию\n"
@@ -1686,11 +1682,11 @@ msgstr ""
 "* `toUnmodifiable(List| Set| Map)` yields an immutable collection\n"
 "* `toConcurrentMap` yields a thread-safe map."
 
-#: lecture.adoc:729
+#: lecture.adoc:728
 msgid "== Строка с разделителями"
 msgstr "== Delimited string"
 
-#: lecture.adoc:733
+#: lecture.adoc:732
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1700,7 +1696,7 @@ msgstr ""
 "----\n"
 "static Collector<CharSequence, ?, String> joining()"
 
-#: lecture.adoc:736
+#: lecture.adoc:735
 msgid ""
 "//Пример использования\n"
 "menuStream.map(Dish::getName).collect(Collectors.joining(\", \");"
@@ -1708,7 +1704,7 @@ msgstr ""
 "//Usage example\n"
 "menuStream.map(Dish::getName).collect(Collectors.joining(\", \");"
 
-#: lecture.adoc:741
+#: lecture.adoc:740
 msgid ""
 "//Не забываем про то, что это же можно сделать и без стримов:\n"
 "static String join(CharSequence delimiter,\n"
@@ -1720,11 +1716,11 @@ msgstr ""
 "            Iterable<? extends CharSequence> elements)\n"
 "----"
 
-#: lecture.adoc:743
+#: lecture.adoc:742
 msgid "== Группировки"
 msgstr "== Groupings"
 
-#: lecture.adoc:749
+#: lecture.adoc:748
 msgid ""
 "[graphviz, \"groupby.png\"]\n"
 "----\n"
@@ -1738,12 +1734,12 @@ msgstr ""
 "graph [ dpi = 150 ];\n"
 "node[shape=\"record\"]"
 
-#: lecture.adoc:751
-msgctxt "lecture.adoc:751"
+#: lecture.adoc:750
+msgctxt "lecture.adoc:750"
 msgid "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 msgstr "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 
-#: lecture.adoc:758
+#: lecture.adoc:757
 msgid ""
 "flist[label=\"{salmon|prawns}\"];\n"
 "mlist[label=\"{pork|beef|chicken}\"];\n"
@@ -1759,7 +1755,7 @@ msgstr ""
 "map:f1->mlist;\n"
 "map:f2->olist;"
 
-#: lecture.adoc:766
+#: lecture.adoc:765
 msgid ""
 "}\n"
 "----\n"
@@ -1777,7 +1773,7 @@ msgstr ""
 "  menu.stream().collect(Collectors.groupingBy(Dish::getType));\n"
 "----"
 
-#: lecture.adoc:773
+#: lecture.adoc:772
 msgid ""
 "== Downstream Collectors\n"
 "[graphviz, \"groupbyby.png\"]\n"
@@ -1793,24 +1789,24 @@ msgstr ""
 "graph [ dpi = 150 ];\n"
 "node[shape=\"record\"]"
 
-#: lecture.adoc:775
-msgctxt "lecture.adoc:775"
+#: lecture.adoc:774
+msgctxt "lecture.adoc:774"
 msgid "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 msgstr "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 
-#: lecture.adoc:777
+#: lecture.adoc:776
 msgid "fmap[label=\"<f0>NORMAL|<f1>DIET\"];"
 msgstr "fmap[label=\"<f0>NORMAL|<f1>DIET\"];"
 
-#: lecture.adoc:779
+#: lecture.adoc:778
 msgid "mmap[label=\"<f0>FAT|<f1>NORMAL|<f2>DIET\"];"
 msgstr "mmap[label=\"<f0>FAT|<f1>NORMAL|<f2>DIET\"];"
 
-#: lecture.adoc:781
+#: lecture.adoc:780
 msgid "omap[label=\"<f0>NORMAL|<f1>DIET\"];"
 msgstr "omap[label=\"<f0>NORMAL|<f1>DIET\"];"
 
-#: lecture.adoc:784
+#: lecture.adoc:783
 msgid ""
 "olist1[label=\"{pizza|french fries}\"];\n"
 "olist2[label=\"{fruit|rice}\"];"
@@ -1818,7 +1814,7 @@ msgstr ""
 "olist1[label=\"{pizza|french fries}\"];\n"
 "olist2[label=\"{fruit|rice}\"];"
 
-#: lecture.adoc:788
+#: lecture.adoc:787
 msgid ""
 "map:f0->fmap;\n"
 "map:f1->mmap;\n"
@@ -1828,7 +1824,7 @@ msgstr ""
 "map:f1->mmap;\n"
 "map:f2->omap;"
 
-#: lecture.adoc:791
+#: lecture.adoc:790
 msgid ""
 "fmap:f0->salmon;\n"
 "fmap:f1->prawns;"
@@ -1836,7 +1832,7 @@ msgstr ""
 "fmap:f0->salmon;\n"
 "fmap:f1->prawns;"
 
-#: lecture.adoc:795
+#: lecture.adoc:794
 msgid ""
 "mmap:f0->pork;\n"
 "mmap:f1->beef;\n"
@@ -1846,7 +1842,7 @@ msgstr ""
 "mmap:f1->beef;\n"
 "mmap:f2->chicken;"
 
-#: lecture.adoc:798
+#: lecture.adoc:797
 msgid ""
 "omap:f0->olist1;\n"
 "omap:f1->olist2;"
@@ -1854,8 +1850,8 @@ msgstr ""
 "omap:f0->olist1;\n"
 "omap:f1->olist2;"
 
-#: lecture.adoc:801
-msgctxt "lecture.adoc:801"
+#: lecture.adoc:800
+msgctxt "lecture.adoc:800"
 msgid ""
 "}\n"
 "----"
@@ -1863,7 +1859,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:810
+#: lecture.adoc:809
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1883,11 +1879,11 @@ msgstr ""
 "         Collectors.groupingBy(Dish::getCaloricLevel)));\n"
 "----"
 
-#: lecture.adoc:812
+#: lecture.adoc:811
 msgid "== Но мы можем не только группировать в цепочке!"
 msgstr "== But we can perform other operations as well!"
 
-#: lecture.adoc:817
+#: lecture.adoc:816
 msgid ""
 "[graphviz, \"groupbyandcount.png\"]\n"
 "----\n"
@@ -1899,11 +1895,11 @@ msgstr ""
 "digraph G {\n"
 "graph [ dpi = 150 ];"
 
-#: lecture.adoc:819
+#: lecture.adoc:818
 msgid "map[shape=\"record\";label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 msgstr "map[shape=\"record\";label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
 
-#: lecture.adoc:826
+#: lecture.adoc:825
 msgid ""
 "flist[label=\"2\"];\n"
 "mlist[label=\"3\"];\n"
@@ -1919,8 +1915,8 @@ msgstr ""
 "map:f1->mlist;\n"
 "map:f2->olist;"
 
-#: lecture.adoc:829
-msgctxt "lecture.adoc:829"
+#: lecture.adoc:828
+msgctxt "lecture.adoc:828"
 msgid ""
 "}\n"
 "----"
@@ -1928,7 +1924,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:836
+#: lecture.adoc:835
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1944,11 +1940,11 @@ msgstr ""
 "    .groupingBy(Dish::getType, Collectors.counting()));\n"
 "----"
 
-#: lecture.adoc:838
+#: lecture.adoc:837
 msgid "== Набор downstream collectors"
 msgstr "== Downstream collectors set"
 
-#: lecture.adoc:843
+#: lecture.adoc:842
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1960,7 +1956,7 @@ msgstr ""
 "/*All this is already present in the Stream API, but we need to apply it\n"
 "to the \"branched\" stream.*/ "
 
-#: lecture.adoc:853
+#: lecture.adoc:852
 msgid ""
 "/*\"Терминальные\"*/\n"
 "counting()\n"
@@ -1980,7 +1976,7 @@ msgstr ""
 "minBy(Comparator<? super T> comparator)\n"
 "----"
 
-#: lecture.adoc:862
+#: lecture.adoc:861
 msgid ""
 "== Downstream collectors--продолжение\n"
 "[source,java]\n"
@@ -2000,7 +1996,7 @@ msgstr ""
 "flatMapping(Function<? super T, \n"
 "  ? extends Stream<? extends U>> mapper, downstream)"
 
-#: lecture.adoc:867
+#: lecture.adoc:866
 msgid ""
 "/*Адаптор*/\n"
 "collectingAndThen(Collector<T,A,R> downstream, \n"
@@ -2012,11 +2008,11 @@ msgstr ""
 "  Function<R,RR> finisher)\n"
 "----"
 
-#: lecture.adoc:869
+#: lecture.adoc:868
 msgid "== Когда может быть нужен collectingAndThen?"
 msgstr "== When might `collectingAndThen` be needed?"
 
-#: lecture.adoc:881
+#: lecture.adoc:880
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2042,11 +2038,11 @@ msgstr ""
 "       Optional::get)));\n"
 "----"
 
-#: lecture.adoc:883
+#: lecture.adoc:882
 msgid "== Параллельные стримы"
 msgstr "== Parallel streams"
 
-#: lecture.adoc:887
+#: lecture.adoc:886
 msgid ""
 "* Метод `.parallel()` включает параллелизацию обработки.\n"
 "* `parallel` можно вызвать в любом месте цепочки вызовов.\n"
@@ -2057,15 +2053,15 @@ msgstr ""
 "* It should be used with caution, understanding the limitations and "
 "applicability."
 
-#: lecture.adoc:889
+#: lecture.adoc:888
 msgid "== Optional: Контейнер, который содержит объект. Или не содержит."
 msgstr "== Optional: The container that contains an object. Or it doesn't."
 
-#: lecture.adoc:891
+#: lecture.adoc:890
 msgid "* Цитата из книги Java 8 in Action:"
 msgstr "* Quote from 'Java 8 in Action':"
 
-#: lecture.adoc:893
+#: lecture.adoc:892
 msgid ""
 "* \"Tony Hoare, one of the giants of computer science, said in a "
 "presentation at QCon London 2009: _I call it my billion-dollar mistake. It "
@@ -2079,11 +2075,11 @@ msgstr ""
 "temptation to put in a null reference, simply because it was so easy to "
 "implement._\""
 
-#: lecture.adoc:896
+#: lecture.adoc:895
 msgid "== Optional<T> -- как стрим из 0 или 1 элемента"
 msgstr "== Optional<T> is like a stream of 0 or 1 element"
 
-#: lecture.adoc:903
+#: lecture.adoc:902
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2099,7 +2095,7 @@ msgstr ""
 "Optional.of(x); //NPE if x == null\n"
 "Optional.ofNullable(x); //empty or containing x"
 
-#: lecture.adoc:910
+#: lecture.adoc:909
 msgid ""
 "//Расчехление\n"
 "o.get();\n"
@@ -2115,7 +2111,7 @@ msgstr ""
 "o.orElseThrow(()->new IllegalStateException());\n"
 "----"
 
-#: lecture.adoc:917
+#: lecture.adoc:916
 msgid ""
 "== Optional.map \n"
 "[source,java]\n"
@@ -2131,7 +2127,7 @@ msgstr ""
 "Optional<String> name = optInsurance.map(Insurance::getName);\n"
 "----"
 
-#: lecture.adoc:922
+#: lecture.adoc:921
 msgid ""
 "== Optional.flatMap\n"
 "[source,java]\n"
@@ -2143,11 +2139,11 @@ msgstr ""
 "----\n"
 "Optional<Person> person = ..."
 
-#: lecture.adoc:924
+#: lecture.adoc:923
 msgid "//person.map(Person::getCar) вернёт Optional<Optional<Car>>!!"
-msgstr "//person.map(Person::getCar) вернёт Optional<Optional<Car>>!!"
+msgstr "//person.map(Person::getCar) returns Optional<Optional<Car>>!!"
 
-#: lecture.adoc:930
+#: lecture.adoc:929
 msgid ""
 "String insuranceName = person.flatMap(Person::getCar)\n"
 "                             .flatMap(Car::getInsurance)\n"
@@ -2161,11 +2157,11 @@ msgstr ""
 "                             .orElse(\"Unknown\");\n"
 "----"
 
-#: lecture.adoc:932
+#: lecture.adoc:931
 msgid "== Optional.filter"
 msgstr "== Optional.filter"
 
-#: lecture.adoc:940
+#: lecture.adoc:939
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2183,20 +2179,20 @@ msgstr ""
 "                             .map(Insurance::getName)\n"
 "                             .orElse(\"Unknown\");"
 
-#: lecture.adoc:942
+#: lecture.adoc:941
 msgid "----"
 msgstr "----"
 
-#: lecture.adoc:944
-msgctxt "lecture.adoc:944"
+#: lecture.adoc:943
+msgctxt "lecture.adoc:943"
 msgid "== Правила использования Optional"
 msgstr "== Rules of using Optional"
 
-#: lecture.adoc:946
+#: lecture.adoc:945
 msgid "«Лобовое» использование `Optional` -- хуже, чем `null`:"
 msgstr "Dumb usage of `Optional` is worse than `null`:"
 
-#: lecture.adoc:962
+#: lecture.adoc:961
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -2230,16 +2226,16 @@ msgstr ""
 "  o.someMethod();\n"
 "----"
 
-#: lecture.adoc:964
+#: lecture.adoc:963
 msgid "|==="
 msgstr "|==="
 
-#: lecture.adoc:966
-msgctxt "lecture.adoc:966"
+#: lecture.adoc:965
+msgctxt "lecture.adoc:965"
 msgid "== Правила использования Optional"
 msgstr "== Rules of using Optional"
 
-#: lecture.adoc:971
+#: lecture.adoc:970
 msgid ""
 "* Переменная с типом `Optional` никогда не должна быть `null`.\n"
 "* Поля с типом `Optional` бесполезны: проверка на «непустоту» этого поля не "
@@ -2255,11 +2251,11 @@ msgstr ""
 "* Never put `Optional` in a collection.\n"
 "* In general, `Optional` is for return values, not method arguments."
 
-#: lecture.adoc:973
+#: lecture.adoc:972
 msgid "== Когда стримы использовать не нужно"
 msgstr "== When streams should not be used"
 
-#: lecture.adoc:977
+#: lecture.adoc:976
 msgid ""
 "* Стримы многим нравятся\n"
 "* Иногда люди перестают думать, и случается «стримоз»\n"
@@ -2272,12 +2268,12 @@ msgstr ""
 "dont-use-it-at-all-ea0a44a4b1ff[Use Stream API simpler (or don't use it at "
 "all)]"
 
-#: lecture.adoc:979
-msgctxt "lecture.adoc:979"
+#: lecture.adoc:978
+msgctxt "lecture.adoc:978"
 msgid "== Что не так?"
 msgstr "== What's wrong?"
 
-#: lecture.adoc:982
+#: lecture.adoc:981
 msgid ""
 "[source,java]\n"
 "collection.stream().forEach(...)"
@@ -2285,7 +2281,7 @@ msgstr ""
 "[source,java]\n"
 "collection.stream().forEach(...)"
 
-#: lecture.adoc:985
+#: lecture.adoc:984
 msgid ""
 "[.fragment]\n"
 "У класса `Collection` уже есть метод `forEach`, стрим создавать не нужно."
@@ -2294,12 +2290,12 @@ msgstr ""
 "The `Collection` class already has a `forEach` method, you do not need to "
 "create a stream."
 
-#: lecture.adoc:987
-msgctxt "lecture.adoc:987"
+#: lecture.adoc:986
+msgctxt "lecture.adoc:986"
 msgid "== Что не так?"
 msgstr "== What's wrong?"
 
-#: lecture.adoc:991
+#: lecture.adoc:990
 msgid ""
 "[source,java]\n"
 "collection.stream().collect(Collectors.toList())\n"
@@ -2309,7 +2305,7 @@ msgstr ""
 "collection.stream().collect(Collectors.toList())\n"
 "collection.stream().collect(Collectors.toSet())"
 
-#: lecture.adoc:997
+#: lecture.adoc:996
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2323,12 +2319,12 @@ msgstr ""
 "new ArrayList<>(collection)\n"
 "new HashSet<>(collection)"
 
-#: lecture.adoc:999
-msgctxt "lecture.adoc:999"
+#: lecture.adoc:998
+msgctxt "lecture.adoc:998"
 msgid "== Что не так?"
 msgstr "== What's wrong?"
 
-#: lecture.adoc:1002
+#: lecture.adoc:1001
 msgid ""
 "[source,java]\n"
 "collection.stream().max(Comparator.naturalOrder()).get()"
@@ -2336,7 +2332,7 @@ msgstr ""
 "[source,java]\n"
 "collection.stream().max(Comparator.naturalOrder()).get()"
 
-#: lecture.adoc:1007
+#: lecture.adoc:1006
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2348,7 +2344,7 @@ msgstr ""
 "/*Same with less garbage*/\n"
 "Collections.max(collection)"
 
-#: lecture.adoc:1011
+#: lecture.adoc:1010
 msgid ""
 "== Что хотел сказать автор?\n"
 "[source,java]\n"
@@ -2358,7 +2354,7 @@ msgstr ""
 "[source,java]\n"
 "stream.sorted(comparator).findFirst()"
 
-#: lecture.adoc:1015
+#: lecture.adoc:1014
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2368,12 +2364,12 @@ msgstr ""
 "[source,java]\n"
 "stream.min(comparator)"
 
-#: lecture.adoc:1017
-msgctxt "lecture.adoc:1017"
+#: lecture.adoc:1016
+msgctxt "lecture.adoc:1016"
 msgid "== Как улучшить?"
 msgstr "== How to improve?"
 
-#: lecture.adoc:1020
+#: lecture.adoc:1019
 msgid ""
 "[source,java]\n"
 "stream.collect(Collectors.counting())"
@@ -2381,7 +2377,7 @@ msgstr ""
 "[source,java]\n"
 "stream.collect(Collectors.counting())"
 
-#: lecture.adoc:1026
+#: lecture.adoc:1025
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2395,11 +2391,11 @@ msgstr ""
 "are intended to be used in cascading groupingBy operations only!*/\n"
 "stream.count()"
 
-#: lecture.adoc:1028
+#: lecture.adoc:1027
 msgid "== Что не так?!"
 msgstr "== What's wrong?!"
 
-#: lecture.adoc:1031
+#: lecture.adoc:1030
 msgid ""
 "[source,java]\n"
 "collection.stream().count()"
@@ -2407,7 +2403,7 @@ msgstr ""
 "[source,java]\n"
 "collection.stream().count()"
 
-#: lecture.adoc:1037
+#: lecture.adoc:1036
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2419,7 +2415,7 @@ msgstr ""
 "/*Without counting the elements one after another!*/\n"
 "collection.size()"
 
-#: lecture.adoc:1042
+#: lecture.adoc:1041
 msgid ""
 "== Как улучшить?\n"
 "[source,java]\n"
@@ -2429,7 +2425,7 @@ msgstr ""
 "[source,java]\n"
 "listOfLists.stream().flatMap(List::stream).count()"
 
-#: lecture.adoc:1047
+#: lecture.adoc:1046
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2441,12 +2437,12 @@ msgstr ""
 "/*The number of elements in each sublist is nown!*/\n"
 "listOfLists.stream().mapToInt(List::size).sum()"
 
-#: lecture.adoc:1049
-msgctxt "lecture.adoc:1049"
+#: lecture.adoc:1048
+msgctxt "lecture.adoc:1048"
 msgid "== Как улучшить?"
 msgstr "== How to improve?"
 
-#: lecture.adoc:1052
+#: lecture.adoc:1051
 msgid ""
 "[source,java]\n"
 "stream.filter(condition).findFirst().isPresent()"
@@ -2454,7 +2450,7 @@ msgstr ""
 "[source,java]\n"
 "stream.filter(condition).findFirst().isPresent()"
 
-#: lecture.adoc:1057
+#: lecture.adoc:1056
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2466,12 +2462,12 @@ msgstr ""
 "/*Why getting the element itself if we just need to check its presence?*/\n"
 "stream.anyMatch(condition)"
 
-#: lecture.adoc:1059
-msgctxt "lecture.adoc:1059"
+#: lecture.adoc:1058
+msgctxt "lecture.adoc:1058"
 msgid "== Как улучшить?"
 msgstr "== How to improve?"
 
-#: lecture.adoc:1065
+#: lecture.adoc:1064
 msgid ""
 "[source,java]\n"
 "stream.filter(condition).anyMatch(x -> true)\n"
@@ -2485,7 +2481,7 @@ msgstr ""
 "stream.map(condition).anyMatch(Boolean::booleanValue)\n"
 "stream.map(condition).anyMatch(Boolean.TRUE::equals)"
 
-#: lecture.adoc:1070
+#: lecture.adoc:1069
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2497,12 +2493,12 @@ msgstr ""
 "/*Intricate variations on a trivial theme*/\n"
 "stream.anyMatch(condition)"
 
-#: lecture.adoc:1073
-msgctxt "lecture.adoc:1073"
+#: lecture.adoc:1072
+msgctxt "lecture.adoc:1072"
 msgid "== Как улучшить?!"
 msgstr "== How to improve?!"
 
-#: lecture.adoc:1076
+#: lecture.adoc:1075
 msgid ""
 "[source,java]\n"
 "if(stream.filter(condition).count() > 0)"
@@ -2510,7 +2506,7 @@ msgstr ""
 "[source,java]\n"
 "if(stream.filter(condition).count() > 0)"
 
-#: lecture.adoc:1082
+#: lecture.adoc:1081
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2524,12 +2520,12 @@ msgstr ""
 "because it traverses the whole stream! And the solution is the same:*/\n"
 "if(stream.anyMatch(condition)) "
 
-#: lecture.adoc:1084
-msgctxt "lecture.adoc:1084"
+#: lecture.adoc:1083
+msgctxt "lecture.adoc:1083"
 msgid "== Как улучшить?!"
 msgstr "== How to improve?!"
 
-#: lecture.adoc:1087
+#: lecture.adoc:1086
 msgid ""
 "[source,java]\n"
 "if(stream.count() > 2)"
@@ -2537,7 +2533,7 @@ msgstr ""
 "[source,java]\n"
 "if(stream.count() > 2)"
 
-#: lecture.adoc:1092
+#: lecture.adoc:1091
 msgid ""
 "[.fragment]\n"
 "[source,java]\n"
@@ -2549,11 +2545,11 @@ msgstr ""
 "/*We don't care how many there are if there are more than two*/\n"
 "stream.limit(3).count()"
 
-#: lecture.adoc:1094
+#: lecture.adoc:1093
 msgid "== Выводы"
 msgstr "== Conclusions"
 
-#: lecture.adoc:1096
+#: lecture.adoc:1095
 msgid ""
 "* «Декларативный» подход к использованию стримов, «описываем _что_, а не "
 "_как_» не отменяет понимания того, _как_ происходит вычисление. \n"
@@ -2563,6 +2559,79 @@ msgstr ""
 "devalue the understanding of _how_ the calculation occurs. \n"
 "* Streams should be used wisely, and there are many cases where they should "
 "not be used."
+
+#~ msgid ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+#~ msgstr ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+
+#~ msgctxt "lecture.adoc:69"
+#~ msgid ""
+#~ "[cols=\"^40a,60a\"]\n"
+#~ "|==="
+#~ msgstr ""
+#~ "[cols=\"^40a,60a\"]\n"
+#~ "|==="
+
+#~ msgctxt "lecture.adoc:88"
+#~ msgid ""
+#~ "[cols=\"^40a,60a\"]\n"
+#~ "|==="
+#~ msgstr ""
+#~ "[cols=\"^40a,60a\"]\n"
+#~ "|==="
+
+#~ msgctxt "lecture.adoc:240"
+#~ msgid ""
+#~ "[.fragment]\n"
+#~ "[source,java]\n"
+#~ "----"
+#~ msgstr ""
+#~ "[.fragment]\n"
+#~ "[source,java]\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:578"
+#~ msgid "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
+#~ msgstr "  \"0\"->\"4\"->\"5\"->\"3\"->\"9\"[style=\"invis\"]"
+
+#~ msgctxt "lecture.adoc:775"
+#~ msgid "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
+#~ msgstr "map[label=\"<f0>FISH|<f1>MEAT|<f2>OTHER\"];"
+
+#~ msgctxt "lecture.adoc:829"
+#~ msgid ""
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:966"
+#~ msgid "== Правила использования Optional"
+#~ msgstr "== Rules of using Optional"
+
+#~ msgctxt "lecture.adoc:987"
+#~ msgid "== Что не так?"
+#~ msgstr "== What's wrong?"
+
+#~ msgctxt "lecture.adoc:999"
+#~ msgid "== Что не так?"
+#~ msgstr "== What's wrong?"
+
+#~ msgctxt "lecture.adoc:1049"
+#~ msgid "== Как улучшить?"
+#~ msgstr "== How to improve?"
+
+#~ msgctxt "lecture.adoc:1059"
+#~ msgid "== Как улучшить?"
+#~ msgstr "== How to improve?"
+
+#~ msgctxt "lecture.adoc:1084"
+#~ msgid "== Как улучшить?!"
+#~ msgstr "== How to improve?!"
 
 #~ msgctxt "./slides09/src/main/asciidoc/lecture.adoc:69"
 #~ msgid ""
