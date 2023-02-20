@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 13:36+0300\n"
+"POT-Creation-Date: 2023-02-21 01:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.2.5\n"
 
-#: lecture.adoc:24
+#: lecture.adoc:25
 msgid ""
 "= Core Java. Лекция 5: Регулярные выражения. Wrapper classes. IO classes. "
 "DateTime API\n"
@@ -38,13 +38,12 @@ msgid ""
 ":revealjs_center: false\n"
 ":revealjs_transition: none\n"
 ":revealjs_width: 1600\n"
-":revealjs_height: 900"
+":revealjs_height: 900\n"
+":zsp: &#8203;"
 msgstr ""
 
 #: lecture.adoc:28
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+msgid ":!figure-caption:"
 msgstr ""
 
 #: lecture.adoc:30
@@ -751,7 +750,7 @@ msgstr ""
 
 #: lecture.adoc:511
 msgid ""
-"== Комбинирование потоков: чтение Zip-файла\n"
+"== {zsp}Комбинирование потоков: чтение Zip-файла{zsp}\n"
 "[source,java]\n"
 "----\n"
 "Path path = Paths.get(\"path/to/file.zip\");"

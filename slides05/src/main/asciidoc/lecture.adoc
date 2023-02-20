@@ -21,9 +21,9 @@ include::_doc_general_attributes.adoc[]
 :revealjs_transition: none
 :revealjs_width: 1600
 :revealjs_height: 900
+:zsp: &#8203;
+	
 
-
-//== Часть 1. Введение
 :!figure-caption:
 
 ponomarev@corchestra.ru
@@ -504,7 +504,7 @@ try (DataInputStream dis =
 }
 ----
 
-== Комбинирование потоков: чтение Zip-файла
+== {zsp}Комбинирование потоков: чтение Zip-файла{zsp}
 [source,java]
 ----
 Path path = Paths.get("path/to/file.zip");
