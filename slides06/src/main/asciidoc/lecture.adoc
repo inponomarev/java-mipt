@@ -23,7 +23,6 @@ include::_doc_general_attributes.adoc[]
 :revealjs_height: 900
 
 
-//== Часть 1. Введение
 :!figure-caption:
 
 ponomarev@corchestra.ru
@@ -842,7 +841,7 @@ employees.addAllTo(managers);
 //можно переносить только одинаково типизированные списки
 class List<E> {
     void addAllFrom (List<E> list){
-       for (Е item: list)
+       for (E item: list)
          add(item);
     }
     
@@ -885,7 +884,7 @@ class "List<Manager>" {
 class List<E> {
     //для List<Employee> "пролезет" List<Manager>!!
     void addAllFrom (List<? extends E> list){
-       for (Е item: list)
+       for (E item: list)
          add(item);
     }
 }
@@ -941,7 +940,7 @@ class "List<Person>" {
 class List<E> {
     //для List<Employee> "пролезет" List<Person>!!
     void addAllTo (List<? super E> list){
-       for (Е item: this)
+       for (E item: this)
          list.add(item);
     }
 }
