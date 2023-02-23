@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 06\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 17:10+0300\n"
-"PO-Revision-Date: 2023-02-23 17:21+0200\n"
+"POT-Creation-Date: 2023-02-23 18:12+0300\n"
+"PO-Revision-Date: 2023-02-23 18:12+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -1875,13 +1875,13 @@ msgstr ""
 msgid ""
 "[source,java]\n"
 "----\n"
-"List<Manager> managers = ...\n"
-"List<Employee> employees = ..."
+"MyList<Manager> managers = ...\n"
+"MyList<Employee> employees = ..."
 msgstr ""
 "[source,java]\n"
 "----\n"
-"List<Manager> managers = ...\n"
-"List<Employee> employees = ..."
+"MyList<Manager> managers = ...\n"
+"MyList<Employee> employees = ..."
 
 #: lecture.adoc:830
 msgid ""
@@ -1912,47 +1912,49 @@ msgstr "----"
 msgid "== Так не получится..."
 msgstr "== It won't work this way..."
 
-#: lecture.adoc:847
+#: lecture.adoc:852
 msgid ""
 "[source,java]\n"
 "----\n"
 "//можно переносить только одинаково типизированные списки\n"
-"class List<E> {\n"
-"    void addAllFrom (List<E> list){\n"
-"       for (E item: list)\n"
-"         add(item);\n"
-"    }"
+"class MyList<E> implements Iterable<E> {\n"
+"    void add(E item) { ... }\n"
+"    void addAllFrom(MyList<E> list) {\n"
+"        for (E item : list) this.add(item);\n"
+"    }\n"
+"    void addAllTo(MyList<E> list) {\n"
+"        for (E item : this) list.add(item);\n"
+"    }\n"
+"  ...}\n"
+"MyList<Manager> managers = ...;  MyList<Employee> employees = ...;"
 msgstr ""
 "[source,java]\n"
 "----\n"
 "//only identically typed lists can be copied\n"
-"class List<E> {\n"
-"    void addAllFrom (List<E> list){\n"
-"       for (E item: list)\n"
-"         add(item);\n"
-"    }"
-
-#: lecture.adoc:854
-msgid ""
-"    void addAllTo (List<E> list){\n"
-"       for (E item: this)\n"
-"         list.add(item);\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    void add(E item) { ... }\n"
+"    void addAllFrom(MyList<E> list) {\n"
+"        for (E item : list) this.add(item);\n"
 "    }\n"
-"}\n"
+"    void addAllTo(MyList<E> list) {\n"
+"        for (E item : this) list.add(item);\n"
+"    }\n"
+"  ...}\n"
+"MyList<Manager> managers = ...;  MyList<Employee> employees = ...;"
+
+#: lecture.adoc:855
+msgid ""
+"employees.addAllFrom(managers); managers.addAllTo(employees);\n"
 "----"
 msgstr ""
-"    void addAllTo (List<E> list){\n"
-"       for (E item: this)\n"
-"         list.add(item);\n"
-"    }\n"
-"}\n"
+"employees.addAllFrom(managers); managers.addAllTo(employees);\n"
 "----"
 
-#: lecture.adoc:856
-msgid "== Wildcard Types"
-msgstr "== Wildcard Types"
+#: lecture.adoc:857
+msgid "== Java Covariant Wildcard Types"
+msgstr "== Java Covariant Wildcard Types"
 
-#: lecture.adoc:860
+#: lecture.adoc:861
 msgid ""
 "[plantuml, wildext, png]\n"
 "----\n"
@@ -1962,48 +1964,48 @@ msgstr ""
 "----\n"
 "@startuml"
 
-#: lecture.adoc:862
-msgctxt "lecture.adoc:862"
+#: lecture.adoc:863
+msgctxt "lecture.adoc:863"
 msgid "skinparam dpi 150 "
 msgstr "skinparam dpi 150 "
 
-#: lecture.adoc:865
+#: lecture.adoc:866
 msgid ""
-"class \"List<? extends Employee>\" {\n"
+"class \"MyList<? extends Employee>\" {\n"
 "}"
 msgstr ""
-"class \"List<? extends Employee>\" {\n"
+"class \"MyList<? extends Employee>\" {\n"
 "}"
 
-#: lecture.adoc:868
-msgctxt "lecture.adoc:868"
-msgid "class \"List<Employee>\" {"
-msgstr "class \"List<Employee>\" {"
+#: lecture.adoc:869
+msgctxt "lecture.adoc:869"
+msgid "class \"MyList<Employee>\" {"
+msgstr "class \"MyList<Employee>\" {"
 
-#: lecture.adoc:870
-msgctxt "lecture.adoc:870"
+#: lecture.adoc:871
+msgctxt "lecture.adoc:871"
 msgid "}"
 msgstr "}"
 
-#: lecture.adoc:872
-msgid "class \"List<Manager>\" {"
-msgstr "class \"List<Manager>\" {"
+#: lecture.adoc:873
+msgid "class \"MyList<Manager>\" {"
+msgstr "class \"MyList<Manager>\" {"
 
-#: lecture.adoc:874
-msgctxt "lecture.adoc:874"
+#: lecture.adoc:875
+msgctxt "lecture.adoc:875"
 msgid "}"
 msgstr "}"
 
-#: lecture.adoc:876
-msgid "\"List<? extends Employee>\" <|-- \"List<Employee>\""
-msgstr "\"List<? extends Employee>\" <|-- \"List<Employee>\""
+#: lecture.adoc:877
+msgid "\"MyList<? extends Employee>\" <|-- \"MyList<Employee>\""
+msgstr "\"MyList<? extends Employee>\" <|-- \"MyList<Employee>\""
 
-#: lecture.adoc:878
-msgid "\"List<? extends Employee>\" <|-- \"List<Manager>\""
-msgstr "\"List<? extends Employee>\" <|-- \"List<Manager>\""
+#: lecture.adoc:879
+msgid "\"MyList<? extends Employee>\" <|-- \"MyList<Manager>\""
+msgstr "\"MyList<? extends Employee>\" <|-- \"MyList<Manager>\""
 
-#: lecture.adoc:881
-msgctxt "lecture.adoc:881"
+#: lecture.adoc:882
+msgctxt "lecture.adoc:882"
 msgid ""
 "@enduml\n"
 "----"
@@ -2015,24 +2017,21 @@ msgstr ""
 msgid ""
 "[source,java]\n"
 "----\n"
-"class List<E> {\n"
-"    //для List<Employee> \"пролезет\" List<Manager>!!\n"
-"    void addAllFrom (List<? extends E> list){\n"
-"       for (E item: list)\n"
-"         add(item);\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    //для MyList<Employee> \"пролезет\" MyList<Manager>!!\n"
+"    void addAllFrom (MyList<? extends E> list){\n"
+"       for (E item: list) add(item); \n"
 "    }\n"
 "}\n"
 "----"
 msgstr ""
 "[source,java]\n"
 "----\n"
-"class List<E> {\n"
-"    //List<Manager> will \"fit through\" List<Employee>!!\n"
-"    void addAllFrom (List<? extends E> list){\n"
-"       for (E item: list)\n"
-"         add(item);\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    //MyList<Manager> will do as a MyList<Employee>!!\n"
+"    void addAllFrom (MyList<? extends E> list){\n"
+"       for (E item: list) add(item);  \n"
 "    }\n"
-"\n"
 "}\n"
 "----"
 
@@ -2099,16 +2098,16 @@ msgstr "skinparam dpi 150 "
 
 #: lecture.adoc:921
 msgid ""
-"class \"List<? super Employee>\" {\n"
+"class \"MyList<? super Employee>\" {\n"
 "}"
 msgstr ""
-"class \"List<? super Employee>\" {\n"
+"class \"MyList<? super Employee>\" {\n"
 "}"
 
 #: lecture.adoc:924
 msgctxt "lecture.adoc:924"
-msgid "class \"List<Employee>\" {"
-msgstr "class \"List<Employee>\" {"
+msgid "class \"MyList<Employee>\" {"
+msgstr "class \"MyList<Employee>\" {"
 
 #: lecture.adoc:926
 msgctxt "lecture.adoc:926"
@@ -2116,8 +2115,8 @@ msgid "}"
 msgstr "}"
 
 #: lecture.adoc:928
-msgid "class \"List<Person>\" {"
-msgstr "class \"List<Person>\" {"
+msgid "class \"MyList<Person>\" {"
+msgstr "class \"MyList<Person>\" {"
 
 #: lecture.adoc:930
 msgctxt "lecture.adoc:930"
@@ -2125,12 +2124,12 @@ msgid "}"
 msgstr "}"
 
 #: lecture.adoc:932
-msgid "\"List<? super Employee>\" <|-- \"List<Person>\""
-msgstr "\"List<? super Employee>\" <|-- \"List<Person>\""
+msgid "\"MyList<? super Employee>\" <|-- \"MyList<Person>\""
+msgstr "\"MyList<? super Employee>\" <|-- \"MyList<Person>\""
 
 #: lecture.adoc:934
-msgid "\"List<? super Employee>\" <|-- \"List<Employee>\""
-msgstr "\"List<? super Employee>\" <|-- \"List<Employee>\""
+msgid "\"MyList<? super Employee>\" <|-- \"MyList<Employee>\""
+msgstr "\"MyList<? super Employee>\" <|-- \"MyList<Employee>\""
 
 #: lecture.adoc:937
 msgctxt "lecture.adoc:937"
@@ -2141,35 +2140,33 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:948
+#: lecture.adoc:947
 msgid ""
 "[source,java]\n"
 "----\n"
-"class List<E> {\n"
-"    //для List<Employee> \"пролезет\" List<Person>!!\n"
-"    void addAllTo (List<? super E> list){\n"
-"       for (E item: this)\n"
-"         list.add(item);\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    //для MyList<Employee> \"пролезет\" MyList<Person>!!\n"
+"    void addAllTo (MyList<? super E> list) {\n"
+"       for (E item: this) list.add(item); \n"
 "    }\n"
 "}\n"
 "----"
 msgstr ""
 "[source,java]\n"
 "----\n"
-"class List<E> {\n"
-"    //List<Person> will \"fit through\" List<Employee>!!\n"
-"    void addAllTo (List<? super E> list){\n"
-"       for (E item: this)\n"
-"         list.add(item);\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    //MyList<Person> will do as MyList<Employee>!!\n"
+"    void addAllTo (MyList<? super E> list) {\n"
+"       for (E item: this) list.add(item); \n"
 "    }\n"
 "}\n"
 "----"
 
-#: lecture.adoc:950
+#: lecture.adoc:949
 msgid "== Что можно сделать с объектом, типизированным `? super`?"
 msgstr "== What can be done with an object typed `? super`?"
 
-#: lecture.adoc:954
+#: lecture.adoc:953
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2179,7 +2176,7 @@ msgstr ""
 "----\n"
 "List<? super E> list = ..."
 
-#: lecture.adoc:959
+#: lecture.adoc:958
 msgid ""
 "E e1 = ...;\n"
 "//скомпилируется!\n"
@@ -2191,7 +2188,7 @@ msgstr ""
 "list.add(e1);\n"
 "list.add(null);"
 
-#: lecture.adoc:963
+#: lecture.adoc:962
 msgid ""
 "//Только Object. ПОЧЕМУ??\n"
 "Object e2 = list.get(...);\n"
@@ -2201,11 +2198,11 @@ msgstr ""
 "Object e2 = list.get(...);\n"
 "----"
 
-#: lecture.adoc:965
+#: lecture.adoc:964
 msgid "== Unbounded wildcard"
 msgstr "== Unbounded wildcard"
 
-#: lecture.adoc:969
+#: lecture.adoc:968
 msgid ""
 "* `List<?>` -- это то же, что `List<? extends Object>`. (Вопрос: почему не "
 "`<? super Object>`?)\n"
@@ -2217,19 +2214,19 @@ msgstr ""
 "* We can read elements, but only as `Object`.\n"
 "* We can put only `null`s."
 
-#: lecture.adoc:971
+#: lecture.adoc:970
 msgid "== Мнемоническое правило"
 msgstr "== Mnemonic rule"
 
-#: lecture.adoc:973
+#: lecture.adoc:972
 msgid "*PECS*"
 msgstr "*PECS*"
 
-#: lecture.adoc:975
+#: lecture.adoc:974
 msgid "*Producer Extends, Consumer Super*"
 msgstr "*Producer Extends, Consumer Super*"
 
-#: lecture.adoc:980
+#: lecture.adoc:979
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2241,11 +2238,11 @@ msgstr ""
 "public static <T> T max (Collection<? extends T> coll,\n"
 "                         Comparator<? super T> comp)"
 
-#: lecture.adoc:982
+#: lecture.adoc:981
 msgid "Collections.max(List<Integer>, Comparator<Number>)"
 msgstr "Collections.max(List<Integer>, Comparator<Number>)"
 
-#: lecture.adoc:985
+#: lecture.adoc:984
 msgid ""
 "Collections.max(List<String>, Comparator<Object>)\n"
 "----"
@@ -2253,11 +2250,11 @@ msgstr ""
 "Collections.max(List<String>, Comparator<Object>)\n"
 "----"
 
-#: lecture.adoc:987
+#: lecture.adoc:986
 msgid "== Правила использования wildcard-типов"
 msgstr "== Rules for using wildcard types"
 
-#: lecture.adoc:992
+#: lecture.adoc:991
 msgid ""
 "* Используются в аргументах методов и локальных переменных.\n"
 "* Невидимы пользователю API, не должны возвращаться.\n"
@@ -2273,11 +2270,11 @@ msgstr ""
 "* Must be used in the API, otherwise the API will be too \"oburate\" and "
 "unusable."
 
-#: lecture.adoc:994
+#: lecture.adoc:993
 msgid "== Wildcard Capture"
 msgstr "== Wildcard Capture"
 
-#: lecture.adoc:1006
+#: lecture.adoc:1005
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2303,16 +2300,16 @@ msgstr ""
 "  p.setSecond(...);\n"
 "}"
 
-#: lecture.adoc:1008
-msgctxt "lecture.adoc:1008"
+#: lecture.adoc:1007
+msgctxt "lecture.adoc:1007"
 msgid "----"
 msgstr "----"
 
-#: lecture.adoc:1010
+#: lecture.adoc:1009
 msgid "== Метод с type capture"
 msgstr "== Method with type capture"
 
-#: lecture.adoc:1016
+#: lecture.adoc:1015
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2326,7 +2323,7 @@ msgstr ""
 "  swapHelper(p);\n"
 "}"
 
-#: lecture.adoc:1023
+#: lecture.adoc:1022
 msgid ""
 "private static <T> void swapHelper(Pair<T> p) {\n"
 "  T f = p.getFirst();\n"
@@ -2342,11 +2339,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1026
+#: lecture.adoc:1025
 msgid "== Recursive Generics"
 msgstr "== Recursive Generics"
 
-#: lecture.adoc:1036
+#: lecture.adoc:1035
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2368,7 +2365,7 @@ msgstr ""
 "    }\n"
 "}"
 
-#: lecture.adoc:1040
+#: lecture.adoc:1039
 msgid ""
 "class StringHolder extends Holder<String, StringHolder> {\n"
 "    void doSmth() {...};\n"
@@ -2378,7 +2375,7 @@ msgstr ""
 "    void doSmth() {...};\n"
 "}"
 
-#: lecture.adoc:1043
+#: lecture.adoc:1042
 msgid ""
 "new StringHolder().setValue(\"aaa\").doSmth();\n"
 "----"
@@ -2386,11 +2383,11 @@ msgstr ""
 "new StringHolder().setValue(\"aaa\").doSmth();\n"
 "----"
 
-#: lecture.adoc:1045
+#: lecture.adoc:1044
 msgid "== Что почитать-посмотреть"
 msgstr "== What to read and watch"
 
-#: lecture.adoc:1048
+#: lecture.adoc:1047
 msgid ""
 "* Полезное\n"
 "** J. Bloch, Effective Java, 3rd ed. Chapter 5 -- Generics. Addison-Wesley, "
@@ -2400,7 +2397,7 @@ msgstr ""
 "** J. Bloch, Effective Java, 3rd ed. Chapter 5 -- Generics. Addison-Wesley, "
 "2018"
 
-#: lecture.adoc:1050
+#: lecture.adoc:1049
 msgid ""
 "** https://www.youtube.com/watch?v=_0c9Fd9FacU[Александр Маторин — "
 "Неочевидные Дженерики. JPoint 2016]"
@@ -2408,11 +2405,11 @@ msgstr ""
 "** https://www.youtube.com/watch?v=_0c9Fd9FacU[Александр Маторин — "
 "Неочевидные Дженерики. JPoint 2016]"
 
-#: lecture.adoc:1052
+#: lecture.adoc:1051
 msgid "* Дичь"
 msgstr "* Craziness"
 
-#: lecture.adoc:1054
+#: lecture.adoc:1053
 msgid ""
 "** https://dev.to/rosstate/java-is-unsound-the-industry-perspective[Ross "
 "Tate. Java is Unsound: The Industry Perspective] (2017-01-24)."
@@ -2420,7 +2417,7 @@ msgstr ""
 "** https://dev.to/rosstate/java-is-unsound-the-industry-perspective[Ross "
 "Tate. Java is Unsound: The Industry Perspective] (2017-01-24)."
 
-#: lecture.adoc:1056
+#: lecture.adoc:1055
 msgid ""
 "** https://habr.com/ru/post/330724/[Иван Бессонов. Тьюринг-полнота Generic "
 "типов Java] (2017-08-24, на базе публикации от ноября 2016)."
@@ -2428,11 +2425,11 @@ msgstr ""
 "** https://arxiv.org/pdf/1605.05274.pdf[Radu Grigore. Java Generics are "
 "Turing Complete]."
 
-#: lecture.adoc:1058
+#: lecture.adoc:1057
 msgid "== Nada Amin & Rose Tate's example"
 msgstr "== Nada Amin & Rose Tate's example"
 
-#: lecture.adoc:1079
+#: lecture.adoc:1078
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2476,11 +2473,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1081
+#: lecture.adoc:1080
 msgid "== Radu Grigore's Example"
 msgstr "== Radu Grigore's Example"
 
-#: lecture.adoc:1085
+#: lecture.adoc:1084
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2490,13 +2487,13 @@ msgstr ""
 "----\n"
 "class Sample {"
 
-#: lecture.adoc:1087
+#: lecture.adoc:1086
 msgid ""
 "  interface BadList<T> extends List<List<? super BadList<? super T>>> {}"
 msgstr ""
 "  interface BadList<T> extends List<List<? super BadList<? super T>>> {}"
 
-#: lecture.adoc:1093
+#: lecture.adoc:1092
 msgid ""
 "  public static void main(String[] args) {\n"
 "    BadList<? super String> badList = null;\n"
@@ -2511,6 +2508,45 @@ msgstr ""
 "  }\n"
 "}\n"
 "----"
+
+#~ msgid ""
+#~ "    void addAllTo (List<E> list){\n"
+#~ "       for (E item: this)\n"
+#~ "         list.add(item);\n"
+#~ "    }\n"
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "    void addAllTo (List<E> list){\n"
+#~ "       for (E item: this)\n"
+#~ "         list.add(item);\n"
+#~ "    }\n"
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:862"
+#~ msgid "skinparam dpi 150 "
+#~ msgstr "skinparam dpi 150 "
+
+#~ msgctxt "lecture.adoc:870"
+#~ msgid "}"
+#~ msgstr "}"
+
+#~ msgctxt "lecture.adoc:874"
+#~ msgid "}"
+#~ msgstr "}"
+
+#~ msgctxt "lecture.adoc:881"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:1008"
+#~ msgid "----"
+#~ msgstr "----"
 
 #~ msgid ""
 #~ "//== Часть 1. Введение\n"
@@ -2594,26 +2630,6 @@ msgstr ""
 #~ msgctxt "lecture.adoc:837"
 #~ msgid "----"
 #~ msgstr "----"
-
-#~ msgctxt "lecture.adoc:863"
-#~ msgid "skinparam dpi 150 "
-#~ msgstr "skinparam dpi 150 "
-
-#~ msgctxt "lecture.adoc:871"
-#~ msgid "}"
-#~ msgstr "}"
-
-#~ msgctxt "lecture.adoc:875"
-#~ msgid "}"
-#~ msgstr "}"
-
-#~ msgctxt "lecture.adoc:882"
-#~ msgid ""
-#~ "@enduml\n"
-#~ "----"
-#~ msgstr ""
-#~ "@enduml\n"
-#~ "----"
 
 #~ msgctxt "lecture.adoc:919"
 #~ msgid "skinparam dpi 150 "

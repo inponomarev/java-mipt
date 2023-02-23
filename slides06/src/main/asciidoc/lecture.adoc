@@ -821,8 +821,8 @@ Employee <|- Manager
 
 [source,java]
 ----
-List<Manager> managers = ...
-List<Employee> employees = ...
+MyList<Manager> managers = ...
+MyList<Employee> employees = ...
 
 //Допустимые варианты, хотим чтоб компилировалось!
 employees.addAllFrom(managers);
@@ -839,20 +839,21 @@ employees.addAllTo(managers);
 [source,java]
 ----
 //можно переносить только одинаково типизированные списки
-class List<E> {
-    void addAllFrom (List<E> list){
-       for (E item: list)
-         add(item);
+class MyList<E> implements Iterable<E> {
+    void add(E item) { ... }
+    void addAllFrom(MyList<E> list) {
+        for (E item : list) this.add(item);
     }
-    
-    void addAllTo (List<E> list){
-       for (E item: this)
-         list.add(item);
+    void addAllTo(MyList<E> list) {
+        for (E item : this) list.add(item);
     }
-}
+  ...}
+MyList<Manager> managers = ...;  MyList<Employee> employees = ...;
+
+employees.addAllFrom(managers); managers.addAllTo(employees);
 ----
 
-== Wildcard Types
+== Java Covariant Wildcard Types
 
 [plantuml, wildext, png]
 ----
@@ -860,32 +861,31 @@ class List<E> {
 
 skinparam dpi 150 
 
-class "List<? extends Employee>" {
+class "MyList<? extends Employee>" {
 }
 
 
-class "List<Employee>" {
+class "MyList<Employee>" {
 
 }
 
-class "List<Manager>" {
+class "MyList<Manager>" {
 
 }
 
-"List<? extends Employee>" <|-- "List<Employee>"
+"MyList<? extends Employee>" <|-- "MyList<Employee>"
 
-"List<? extends Employee>" <|-- "List<Manager>"
+"MyList<? extends Employee>" <|-- "MyList<Manager>"
 
 @enduml
 ----
 
 [source,java]
 ----
-class List<E> {
-    //для List<Employee> "пролезет" List<Manager>!!
-    void addAllFrom (List<? extends E> list){
-       for (E item: list)
-         add(item);
+class MyList<E> implements Iterable<E> {
+    //для MyList<Employee> "пролезет" MyList<Manager>!!
+    void addAllFrom (MyList<? extends E> list){
+       for (E item: list) add(item); 
     }
 }
 ----
@@ -916,32 +916,31 @@ list.add(null);
 
 skinparam dpi 150 
 
-class "List<? super Employee>" {
+class "MyList<? super Employee>" {
 }
 
 
-class "List<Employee>" {
+class "MyList<Employee>" {
 
 }
 
-class "List<Person>" {
+class "MyList<Person>" {
 
 }
 
-"List<? super Employee>" <|-- "List<Person>"
+"MyList<? super Employee>" <|-- "MyList<Person>"
 
-"List<? super Employee>" <|-- "List<Employee>"
+"MyList<? super Employee>" <|-- "MyList<Employee>"
 
 @enduml
 ----
 
 [source,java]
 ----
-class List<E> {
-    //для List<Employee> "пролезет" List<Person>!!
-    void addAllTo (List<? super E> list){
-       for (E item: this)
-         list.add(item);
+class MyList<E> implements Iterable<E> {
+    //для MyList<Employee> "пролезет" MyList<Person>!!
+    void addAllTo (MyList<? super E> list) {
+       for (E item: this) list.add(item); 
     }
 }
 ----
