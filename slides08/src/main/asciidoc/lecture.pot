@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 19:20+0300\n"
+"POT-Creation-Date: 2023-02-23 18:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,25 +40,23 @@ msgid ""
 ":revealjs_height: 900"
 msgstr ""
 
-#: lecture.adoc:28
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+#: lecture.adoc:27
+msgid ":!figure-caption:"
 msgstr ""
 
-#: lecture.adoc:30
+#: lecture.adoc:29
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: lecture.adoc:32
+#: lecture.adoc:31
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: lecture.adoc:34
+#: lecture.adoc:33
 msgid "== RDBMS -- реляционные базы данных"
 msgstr ""
 
-#: lecture.adoc:40
+#: lecture.adoc:39
 msgid ""
 "* Существуют с 1970-х годов.\n"
 "* Наиболее распространённый способ хранения информации в самых разнообразных "
@@ -70,11 +68,11 @@ msgid ""
 "но пока ещё лидируют по распространённости"
 msgstr ""
 
-#: lecture.adoc:42
+#: lecture.adoc:41
 msgid "== JDBC"
 msgstr ""
 
-#: lecture.adoc:48
+#: lecture.adoc:47
 msgid ""
 "* \"Java Database Connectivity\"\n"
 "* Стандарт взаимодействия с реляционными СУБД\n"
@@ -84,11 +82,11 @@ msgid ""
 "* Активно используется десятилетиями"
 msgstr ""
 
-#: lecture.adoc:50
+#: lecture.adoc:49
 msgid "== Структура приложения"
 msgstr ""
 
-#: lecture.adoc:64
+#: lecture.adoc:63
 msgid ""
 "[plantuml, app, png]\n"
 "----\n"
@@ -105,58 +103,58 @@ msgid ""
 "driver-->db"
 msgstr ""
 
-#: lecture.adoc:67
-msgctxt "lecture.adoc:67"
+#: lecture.adoc:66
+msgctxt "lecture.adoc:66"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:69
+#: lecture.adoc:68
 msgid "== JDBC Drivers"
 msgstr ""
 
-#: lecture.adoc:72
+#: lecture.adoc:71
 msgid ""
 "* Разрабатываются производителями БД или сообществами\n"
 "* У хороших БД -- стабильные, высокого качества драйверы"
 msgstr ""
 
-#: lecture.adoc:74
+#: lecture.adoc:73
 msgid "== Connection Strings aka Database URLs"
 msgstr ""
 
-#: lecture.adoc:76
+#: lecture.adoc:75
 msgid ""
 "В специфичной для каждого драйвера манере указывают сервер, порт, базу "
 "данных и иные параметры подключения:"
 msgstr ""
 
-#: lecture.adoc:79
+#: lecture.adoc:78
 msgid ""
 "----\n"
 "jdbc:sqlserver://172.16.1.114:52836;databaseName=celesta"
 msgstr ""
 
-#: lecture.adoc:81
+#: lecture.adoc:80
 msgid "jdbc:postgresql://127.0.0.1:5432/celesta"
 msgstr ""
 
-#: lecture.adoc:83
+#: lecture.adoc:82
 msgid "jdbc:oracle:thin:192.168.110.128:1521:XE"
 msgstr ""
 
-#: lecture.adoc:86
+#: lecture.adoc:85
 msgid ""
 "jdbc:derby://localhost:1527/corejava;create=true\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:88
+#: lecture.adoc:87
 msgid "== Создание Connection, Statement, получение и итерация по ResultSet"
 msgstr ""
 
-#: lecture.adoc:95
+#: lecture.adoc:94
 msgid ""
 "[plantuml, sequence, png]\n"
 "----\n"
@@ -166,25 +164,25 @@ msgid ""
 "DataSource -> connection **: new"
 msgstr ""
 
-#: lecture.adoc:97
+#: lecture.adoc:96
 msgid "connection-->client: connection"
 msgstr ""
 
-#: lecture.adoc:101
+#: lecture.adoc:100
 msgid ""
 "client->connection: createStatement()\n"
 "connection->statement **:new\n"
 "statement-->client: statement"
 msgstr ""
 
-#: lecture.adoc:105
+#: lecture.adoc:104
 msgid ""
 "client->statement: executeQuery()\n"
 "statement->resultSet **:new\n"
 "resultSet-->client: resultSet"
 msgstr ""
 
-#: lecture.adoc:110
+#: lecture.adoc:109
 msgid ""
 "client->resultSet: next()\n"
 "client->resultSet: next()\n"
@@ -192,11 +190,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:112
+#: lecture.adoc:111
 msgid "== Получение данных и итерация"
 msgstr ""
 
-#: lecture.adoc:117
+#: lecture.adoc:116
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -204,30 +202,30 @@ msgid ""
 "     Statement stmt = conn.createStatement()){"
 msgstr ""
 
-#: lecture.adoc:119
+#: lecture.adoc:118
 msgid "  ResultSet result = stmt.executeQuery(\"select name from speaker\");"
 msgstr ""
 
-#: lecture.adoc:121
+#: lecture.adoc:120
 msgid "  while (result.next()) {"
 msgstr ""
 
-#: lecture.adoc:123
+#: lecture.adoc:122
 msgid "      System.out.println(result.getString(\"name\"));"
 msgstr ""
 
-#: lecture.adoc:127
+#: lecture.adoc:126
 msgid ""
 "  }\n"
 "}\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:129
+#: lecture.adoc:128
 msgid "== Как получить JDBC Connection"
 msgstr ""
 
-#: lecture.adoc:136
+#: lecture.adoc:135
 msgid ""
 "То, что написано во многих тьюториалах и учебниках, и то, что вы *никогда* "
 "не будете делать в реальной жизни:\n"
@@ -238,11 +236,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:138
+#: lecture.adoc:137
 msgid "== JDBC Connection: особенности"
 msgstr ""
 
-#: lecture.adoc:145
+#: lecture.adoc:144
 msgid ""
 "* Корневой объект, «входная точка» ко всем возможностям взаимодействия с "
 "СУБД.\n"
@@ -253,12 +251,12 @@ msgid ""
 "* Выход: connection pooling."
 msgstr ""
 
-#: lecture.adoc:147
-msgctxt "lecture.adoc:147"
+#: lecture.adoc:146
+msgctxt "lecture.adoc:146"
 msgid "== Connection Pool"
 msgstr ""
 
-#: lecture.adoc:165
+#: lecture.adoc:164
 msgid ""
 "[plantuml, pool, png]\n"
 "----\n"
@@ -279,12 +277,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:167
-msgctxt "lecture.adoc:167"
+#: lecture.adoc:166
+msgctxt "lecture.adoc:166"
 msgid "== Connection Pool"
 msgstr ""
 
-#: lecture.adoc:171
+#: lecture.adoc:170
 msgid ""
 "* Грамотно реализовать самостоятельно -- сложно\n"
 "* Предоставляет ваш фреймворк / JDBC driver\n"
@@ -292,7 +290,7 @@ msgid ""
 "Connection Pool."
 msgstr ""
 
-#: lecture.adoc:179
+#: lecture.adoc:178
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -303,22 +301,22 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:181
+#: lecture.adoc:180
 msgid "== Реализации Connection Pools (`DataSource`)"
 msgstr ""
 
-#: lecture.adoc:185
+#: lecture.adoc:184
 msgid ""
 "* Apache Commons DBCP\n"
 "* Hikari CP\n"
 "* Другие фреймворки или JDBC-драйверы (например, H2)"
 msgstr ""
 
-#: lecture.adoc:187
+#: lecture.adoc:186
 msgid "== Методы Connection"
 msgstr ""
 
-#: lecture.adoc:196
+#: lecture.adoc:195
 msgid ""
 "* управление транзакциями\n"
 "** `setAutoCommit`\n"
@@ -332,22 +330,22 @@ msgid ""
 "** `prepareCall(String sql)` -- cоздаёт шаблон для вызова хранимой процедуры"
 msgstr ""
 
-#: lecture.adoc:198
+#: lecture.adoc:197
 msgid "== Разновидности Statement"
 msgstr ""
 
-#: lecture.adoc:202
+#: lecture.adoc:201
 msgid ""
 "[plantuml, iostreams, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:204
+#: lecture.adoc:203
 msgid "skinparam dpi 180 "
 msgstr ""
 
-#: lecture.adoc:210
+#: lecture.adoc:209
 msgid ""
 "interface AutoCloseable\n"
 "interface Statement {\n"
@@ -356,27 +354,27 @@ msgid ""
 "ResultSet executeQuery(String sql)"
 msgstr ""
 
-#: lecture.adoc:213
+#: lecture.adoc:212
 msgid ""
 "ResultSet getResultSet()\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:217
+#: lecture.adoc:216
 msgid ""
 "interface PreparedStatement {\n"
 "void setXXX(int parameterIndex, XXX x)\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:221
+#: lecture.adoc:220
 msgid ""
 "interface CallableStatement {\n"
 "void registerOutParameter(int parameterIndex, int sqlType)\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:227
+#: lecture.adoc:226
 msgid ""
 "AutoCloseable <|- Statement\n"
 "Statement <|- PreparedStatement\n"
@@ -385,11 +383,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:229
+#: lecture.adoc:228
 msgid "== Statement и PreparedStatement"
 msgstr ""
 
-#: lecture.adoc:239
+#: lecture.adoc:238
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -402,7 +400,7 @@ msgid ""
 "  stmt.setInt(1, confId);"
 msgstr ""
 
-#: lecture.adoc:244
+#: lecture.adoc:243
 msgid ""
 "  ResultSet result = stmt.executeQuery();\n"
 "  while (result.next()) {\n"
@@ -410,24 +408,24 @@ msgid ""
 "  }"
 msgstr ""
 
-#: lecture.adoc:247
+#: lecture.adoc:246
 msgid ""
 "} \n"
 "----"
 msgstr ""
 
-#: lecture.adoc:249
-msgctxt "lecture.adoc:249"
+#: lecture.adoc:248
+msgctxt "lecture.adoc:248"
 msgid "== SQL Injection"
 msgstr ""
 
-#: lecture.adoc:251
+#: lecture.adoc:250
 msgid ""
 "* Запомним раз и навсегда: нельзя конструировать запросы в базу на основании "
 "данных от пользователя"
 msgstr ""
 
-#: lecture.adoc:273
+#: lecture.adoc:272
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -452,62 +450,62 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:275
-msgctxt "lecture.adoc:275"
+#: lecture.adoc:274
+msgctxt "lecture.adoc:274"
 msgid "== SQL Injection"
 msgstr ""
 
-#: lecture.adoc:278
+#: lecture.adoc:277
 msgid ""
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:281
+#: lecture.adoc:280
 msgid "sql = \"SELECT * FROM users WHERE name = '\" + userName + \"'\""
 msgstr ""
 
-#: lecture.adoc:283
+#: lecture.adoc:282
 msgid "userName = \"' OR '1'='1\""
 msgstr ""
 
-#: lecture.adoc:285
+#: lecture.adoc:284
 msgid "userName = \"a';DROP TABLE users;\""
 msgstr ""
 
-#: lecture.adoc:288
+#: lecture.adoc:287
 msgid ""
 "//... и много другой гадости\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:290
-msgctxt "lecture.adoc:290"
+#: lecture.adoc:289
+msgctxt "lecture.adoc:289"
 msgid "== SQL Injection"
 msgstr ""
 
-#: lecture.adoc:292
+#: lecture.adoc:291
 msgid "image::sqlinjection.jpeg[]"
 msgstr ""
 
-#: lecture.adoc:295
+#: lecture.adoc:294
 msgid "== Демо-пример"
 msgstr ""
 
-#: lecture.adoc:297
+#: lecture.adoc:296
 msgid "* Пишем базу данных выступлений на Java-конференциях"
 msgstr ""
 
-#: lecture.adoc:299
+#: lecture.adoc:298
 msgid ""
 "* Основные сущности: на *конференциях* выступают *докладчики* с *докладами*. "
 msgstr ""
 
-#: lecture.adoc:301
+#: lecture.adoc:300
 msgid "* Бывает, что один доклад делают несколько докладчиков одновременно."
 msgstr ""
 
-#: lecture.adoc:307
+#: lecture.adoc:306
 msgid ""
 "== ER model\n"
 "[plantuml, systemtables, png]\n"
@@ -516,11 +514,11 @@ msgid ""
 "skinparam dpi 180"
 msgstr ""
 
-#: lecture.adoc:309
+#: lecture.adoc:308
 msgid "hide circle"
 msgstr ""
 
-#: lecture.adoc:314
+#: lecture.adoc:313
 msgid ""
 "class speaker {\n"
 "  id: INT\n"
@@ -528,7 +526,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:319
+#: lecture.adoc:318
 msgid ""
 "class conference {\n"
 "  id: INT\n"
@@ -536,7 +534,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:325
+#: lecture.adoc:324
 msgid ""
 "class talk {\n"
 "  id: INT\n"
@@ -545,7 +543,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:330
+#: lecture.adoc:329
 msgid ""
 "class talkspeakers {\n"
 " talkid: INT\n"
@@ -553,30 +551,30 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:332
+#: lecture.adoc:331
 msgid "talk --> conference: conferenceid "
 msgstr ""
 
-#: lecture.adoc:334
+#: lecture.adoc:333
 msgid "talkspeakers --> speaker: speakerid "
 msgstr ""
 
-#: lecture.adoc:336
+#: lecture.adoc:335
 msgid "talkspeakers --> talk: talkid "
 msgstr ""
 
-#: lecture.adoc:339
-msgctxt "lecture.adoc:339"
+#: lecture.adoc:338
+msgctxt "lecture.adoc:338"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:341
+#: lecture.adoc:340
 msgid "== Наш учебный пример про доклады и спикеров"
 msgstr ""
 
-#: lecture.adoc:352
+#: lecture.adoc:351
 msgid ""
 "[plantuml, objects, png]\n"
 "----\n"
@@ -590,7 +588,7 @@ msgid ""
 "object Controller"
 msgstr ""
 
-#: lecture.adoc:362
+#: lecture.adoc:361
 msgid ""
 "JdbcTemplate --> ConnectionPool\n"
 "SpeakerDao --> JdbcTemplate\n"
@@ -603,11 +601,11 @@ msgid ""
 "----    "
 msgstr ""
 
-#: lecture.adoc:364
+#: lecture.adoc:363
 msgid "== Реальная «слоистая» архитектура серверного приложения"
 msgstr ""
 
-#: lecture.adoc:371
+#: lecture.adoc:370
 msgid ""
 "[plantuml, layers, png]\n"
 "----\n"
@@ -617,21 +615,21 @@ msgid ""
 "object Controller2"
 msgstr ""
 
-#: lecture.adoc:375
+#: lecture.adoc:374
 msgid ""
 "object Service1\n"
 "object Service2\n"
 "object Service3"
 msgstr ""
 
-#: lecture.adoc:379
+#: lecture.adoc:378
 msgid ""
 "object Dao1\n"
 "object Dao2\n"
 "object Dao3"
 msgstr ""
 
-#: lecture.adoc:390
+#: lecture.adoc:389
 msgid ""
 "Controller1 --> Service1\n"
 "Controller1 --> Service2\n"
@@ -645,7 +643,7 @@ msgid ""
 "end note"
 msgstr ""
 
-#: lecture.adoc:396
+#: lecture.adoc:395
 msgid ""
 "Service1 --> Dao1\n"
 "Service2 --> Dao1\n"
@@ -654,7 +652,7 @@ msgid ""
 "Service1 --> Dao2"
 msgstr ""
 
-#: lecture.adoc:399
+#: lecture.adoc:398
 msgid ""
 "@enduml\n"
 "----    "

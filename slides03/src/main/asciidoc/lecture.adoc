@@ -24,7 +24,7 @@ include::_doc_general_attributes.adoc[]
 :stem: latexmath
 :zsp: &#8203;
 
-//== Часть 1. Введение
+
 :!figure-caption:
 
 ponomarev@corchestra.ru

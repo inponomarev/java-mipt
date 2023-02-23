@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 08\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 19:20+0300\n"
-"PO-Revision-Date: 2023-01-29 19:21+0200\n"
+"POT-Creation-Date: 2023-02-23 18:33+0300\n"
+"PO-Revision-Date: 2023-02-23 18:38+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -63,27 +63,23 @@ msgstr ""
 ":revealjs_width: 1600\n"
 ":revealjs_height: 900"
 
-#: lecture.adoc:28
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
-msgstr ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+#: lecture.adoc:27
+msgid ":!figure-caption:"
+msgstr ":!figure-caption:"
 
-#: lecture.adoc:30
+#: lecture.adoc:29
 msgid "ponomarev@corchestra.ru"
 msgstr "ponomarev@corchestra.ru"
 
-#: lecture.adoc:32
+#: lecture.adoc:31
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
-#: lecture.adoc:34
+#: lecture.adoc:33
 msgid "== RDBMS -- реляционные базы данных"
 msgstr "== RDBMS -- Relational Database Management Systems"
 
-#: lecture.adoc:40
+#: lecture.adoc:39
 msgid ""
 "* Существуют с 1970-х годов.\n"
 "* Наиболее распространённый способ хранения информации в самых разнообразных "
@@ -103,11 +99,11 @@ msgstr ""
 "* In modern \"big data\" realities various NoSQL systems are being used for "
 "different tasks, but RDBMS is still the leader in prevalence"
 
-#: lecture.adoc:42
+#: lecture.adoc:41
 msgid "== JDBC"
 msgstr "== JDBC"
 
-#: lecture.adoc:48
+#: lecture.adoc:47
 msgid ""
 "* \"Java Database Connectivity\"\n"
 "* Стандарт взаимодействия с реляционными СУБД\n"
@@ -123,11 +119,11 @@ msgstr ""
 "* First version in 1996, current version is 4.3 (2017-09-21)\n"
 "* Actively used for decades"
 
-#: lecture.adoc:50
+#: lecture.adoc:49
 msgid "== Структура приложения"
 msgstr "== Application structure"
 
-#: lecture.adoc:64
+#: lecture.adoc:63
 msgid ""
 "[plantuml, app, png]\n"
 "----\n"
@@ -157,8 +153,8 @@ msgstr ""
 "app->JDBC\n"
 "driver-->db"
 
-#: lecture.adoc:67
-msgctxt "lecture.adoc:67"
+#: lecture.adoc:66
+msgctxt "lecture.adoc:66"
 msgid ""
 "@enduml\n"
 "----"
@@ -166,11 +162,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:69
+#: lecture.adoc:68
 msgid "== JDBC Drivers"
 msgstr "== JDBC Drivers"
 
-#: lecture.adoc:72
+#: lecture.adoc:71
 msgid ""
 "* Разрабатываются производителями БД или сообществами\n"
 "* У хороших БД -- стабильные, высокого качества драйверы"
@@ -178,11 +174,11 @@ msgstr ""
 "* Developed by database vendors or communities\n"
 "* Good databases have stable, high quality drivers"
 
-#: lecture.adoc:74
+#: lecture.adoc:73
 msgid "== Connection Strings aka Database URLs"
 msgstr "== Connection Strings aka Database URLs"
 
-#: lecture.adoc:76
+#: lecture.adoc:75
 msgid ""
 "В специфичной для каждого драйвера манере указывают сервер, порт, базу "
 "данных и иные параметры подключения:"
@@ -190,7 +186,7 @@ msgstr ""
 "In a manner specific to each driver, specify the server, port, database and "
 "other connection parameters:"
 
-#: lecture.adoc:79
+#: lecture.adoc:78
 msgid ""
 "----\n"
 "jdbc:sqlserver://172.16.1.114:52836;databaseName=celesta"
@@ -198,15 +194,15 @@ msgstr ""
 "----\n"
 "jdbc:sqlserver://172.16.1.114:52836;databaseName=celesta"
 
-#: lecture.adoc:81
+#: lecture.adoc:80
 msgid "jdbc:postgresql://127.0.0.1:5432/celesta"
 msgstr "jdbc:postgresql://127.0.0.1:5432/celesta"
 
-#: lecture.adoc:83
+#: lecture.adoc:82
 msgid "jdbc:oracle:thin:192.168.110.128:1521:XE"
 msgstr "jdbc:oracle:thin:192.168.110.128:1521:XE"
 
-#: lecture.adoc:86
+#: lecture.adoc:85
 msgid ""
 "jdbc:derby://localhost:1527/corejava;create=true\n"
 "----"
@@ -214,12 +210,12 @@ msgstr ""
 "jdbc:derby://localhost:1527/corejava;create=true\n"
 "----"
 
-#: lecture.adoc:88
+#: lecture.adoc:87
 msgid "== Создание Connection, Statement, получение и итерация по ResultSet"
 msgstr ""
 "== Creating Connection, Statement, getting ResultSet and iterating over it"
 
-#: lecture.adoc:95
+#: lecture.adoc:94
 msgid ""
 "[plantuml, sequence, png]\n"
 "----\n"
@@ -235,11 +231,11 @@ msgstr ""
 "client-> DataSource : getConnection()\n"
 "DataSource -> connection **: new"
 
-#: lecture.adoc:97
+#: lecture.adoc:96
 msgid "connection-->client: connection"
 msgstr "connection-->client: connection"
 
-#: lecture.adoc:101
+#: lecture.adoc:100
 msgid ""
 "client->connection: createStatement()\n"
 "connection->statement **:new\n"
@@ -249,7 +245,7 @@ msgstr ""
 "connection->statement **:new\n"
 "statement-->client: statement"
 
-#: lecture.adoc:105
+#: lecture.adoc:104
 msgid ""
 "client->statement: executeQuery()\n"
 "statement->resultSet **:new\n"
@@ -259,7 +255,7 @@ msgstr ""
 "statement->resultSet **:new\n"
 "resultSet-->client: resultSet"
 
-#: lecture.adoc:110
+#: lecture.adoc:109
 msgid ""
 "client->resultSet: next()\n"
 "client->resultSet: next()\n"
@@ -271,11 +267,11 @@ msgstr ""
 "client->resultSet: next()\n"
 "----"
 
-#: lecture.adoc:112
+#: lecture.adoc:111
 msgid "== Получение данных и итерация"
 msgstr "== Getting the data and iteration"
 
-#: lecture.adoc:117
+#: lecture.adoc:116
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -287,19 +283,19 @@ msgstr ""
 "try (Connection conn = dataSource.getConnection();\n"
 "     Statement stmt = conn.createStatement()){"
 
-#: lecture.adoc:119
+#: lecture.adoc:118
 msgid "  ResultSet result = stmt.executeQuery(\"select name from speaker\");"
 msgstr "  ResultSet result = stmt.executeQuery(\"select name from speaker\");"
 
-#: lecture.adoc:121
+#: lecture.adoc:120
 msgid "  while (result.next()) {"
 msgstr "  while (result.next()) {"
 
-#: lecture.adoc:123
+#: lecture.adoc:122
 msgid "      System.out.println(result.getString(\"name\"));"
 msgstr "      System.out.println(result.getString(\"name\"));"
 
-#: lecture.adoc:127
+#: lecture.adoc:126
 msgid ""
 "  }\n"
 "}\n"
@@ -309,11 +305,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:129
+#: lecture.adoc:128
 msgid "== Как получить JDBC Connection"
 msgstr "== How to obtain JDBC Connection"
 
-#: lecture.adoc:136
+#: lecture.adoc:135
 msgid ""
 "То, что написано во многих тьюториалах и учебниках, и то, что вы *никогда* "
 "не будете делать в реальной жизни:\n"
@@ -331,11 +327,11 @@ msgstr ""
 "Connection conn = DriverManager.getConnection(connString);\n"
 "----"
 
-#: lecture.adoc:138
+#: lecture.adoc:137
 msgid "== JDBC Connection: особенности"
 msgstr "== JDBC Connection features"
 
-#: lecture.adoc:145
+#: lecture.adoc:144
 msgid ""
 "* Корневой объект, «входная точка» ко всем возможностям взаимодействия с "
 "СУБД.\n"
@@ -353,12 +349,12 @@ msgstr ""
 "* *Not thread-safe*. Thread confinement is needed.\n"
 "* Workaround: connection pooling."
 
-#: lecture.adoc:147
-msgctxt "lecture.adoc:147"
+#: lecture.adoc:146
+msgctxt "lecture.adoc:146"
 msgid "== Connection Pool"
 msgstr "== Connection Pool"
 
-#: lecture.adoc:165
+#: lecture.adoc:164
 msgid ""
 "[plantuml, pool, png]\n"
 "----\n"
@@ -396,12 +392,12 @@ msgstr ""
 "pooledConnection->pool: add(this)\n"
 "----"
 
-#: lecture.adoc:167
-msgctxt "lecture.adoc:167"
+#: lecture.adoc:166
+msgctxt "lecture.adoc:166"
 msgid "== Connection Pool"
 msgstr "== Connection Pool"
 
-#: lecture.adoc:171
+#: lecture.adoc:170
 msgid ""
 "* Грамотно реализовать самостоятельно -- сложно\n"
 "* Предоставляет ваш фреймворк / JDBC driver\n"
@@ -413,7 +409,7 @@ msgstr ""
 "* There is `javax.sql.DataSource` which is a standard interface for "
 "Connection Pool."
 
-#: lecture.adoc:179
+#: lecture.adoc:178
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -431,11 +427,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:181
+#: lecture.adoc:180
 msgid "== Реализации Connection Pools (`DataSource`)"
 msgstr "== Connection Pools (`DataSource`) implementations"
 
-#: lecture.adoc:185
+#: lecture.adoc:184
 msgid ""
 "* Apache Commons DBCP\n"
 "* Hikari CP\n"
@@ -445,11 +441,11 @@ msgstr ""
 "* Hikari CP\n"
 "* Other frameworks or JDBC drivers (H2, for example)"
 
-#: lecture.adoc:187
+#: lecture.adoc:186
 msgid "== Методы Connection"
 msgstr "== Connection methods"
 
-#: lecture.adoc:196
+#: lecture.adoc:195
 msgid ""
 "* управление транзакциями\n"
 "** `setAutoCommit`\n"
@@ -473,11 +469,11 @@ msgstr ""
 "** `prepareCall(String sql)` -- creates a template for calling a stored "
 "procedure"
 
-#: lecture.adoc:198
+#: lecture.adoc:197
 msgid "== Разновидности Statement"
 msgstr "== Varieties of Statements"
 
-#: lecture.adoc:202
+#: lecture.adoc:201
 msgid ""
 "[plantuml, iostreams, png]\n"
 "----\n"
@@ -487,11 +483,11 @@ msgstr ""
 "----\n"
 "@startuml"
 
-#: lecture.adoc:204
+#: lecture.adoc:203
 msgid "skinparam dpi 180 "
 msgstr "skinparam dpi 180 "
 
-#: lecture.adoc:210
+#: lecture.adoc:209
 msgid ""
 "interface AutoCloseable\n"
 "interface Statement {\n"
@@ -505,7 +501,7 @@ msgstr ""
 "int executeUpdate(String sql)\n"
 "ResultSet executeQuery(String sql)"
 
-#: lecture.adoc:213
+#: lecture.adoc:212
 msgid ""
 "ResultSet getResultSet()\n"
 "}"
@@ -513,7 +509,7 @@ msgstr ""
 "ResultSet getResultSet()\n"
 "}"
 
-#: lecture.adoc:217
+#: lecture.adoc:216
 msgid ""
 "interface PreparedStatement {\n"
 "void setXXX(int parameterIndex, XXX x)\n"
@@ -523,7 +519,7 @@ msgstr ""
 "void setXXX(int parameterIndex, XXX x)\n"
 "}"
 
-#: lecture.adoc:221
+#: lecture.adoc:220
 msgid ""
 "interface CallableStatement {\n"
 "void registerOutParameter(int parameterIndex, int sqlType)\n"
@@ -533,7 +529,7 @@ msgstr ""
 "void registerOutParameter(int parameterIndex, int sqlType)\n"
 "}"
 
-#: lecture.adoc:227
+#: lecture.adoc:226
 msgid ""
 "AutoCloseable <|- Statement\n"
 "Statement <|- PreparedStatement\n"
@@ -547,11 +543,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:229
+#: lecture.adoc:228
 msgid "== Statement и PreparedStatement"
 msgstr "== Statement and PreparedStatement"
 
-#: lecture.adoc:239
+#: lecture.adoc:238
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -573,7 +569,7 @@ msgstr ""
 "  //we count parameters starting from one, not zero!!\n"
 "  stmt.setInt(1, confId);"
 
-#: lecture.adoc:244
+#: lecture.adoc:243
 msgid ""
 "  ResultSet result = stmt.executeQuery();\n"
 "  while (result.next()) {\n"
@@ -585,7 +581,7 @@ msgstr ""
 "      System.out.println(result.getString(\"name\"));\n"
 "  }"
 
-#: lecture.adoc:247
+#: lecture.adoc:246
 msgid ""
 "} \n"
 "----"
@@ -593,12 +589,12 @@ msgstr ""
 "} \n"
 "----"
 
-#: lecture.adoc:249
-msgctxt "lecture.adoc:249"
+#: lecture.adoc:248
+msgctxt "lecture.adoc:248"
 msgid "== SQL Injection"
 msgstr "== SQL Injection"
 
-#: lecture.adoc:251
+#: lecture.adoc:250
 msgid ""
 "* Запомним раз и навсегда: нельзя конструировать запросы в базу на основании "
 "данных от пользователя"
@@ -606,7 +602,7 @@ msgstr ""
 "* Let's remember once and for all: you cannot build queries to the database "
 "based on the input from the user"
 
-#: lecture.adoc:273
+#: lecture.adoc:272
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -652,12 +648,12 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:275
-msgctxt "lecture.adoc:275"
+#: lecture.adoc:274
+msgctxt "lecture.adoc:274"
 msgid "== SQL Injection"
 msgstr "== SQL Injection"
 
-#: lecture.adoc:278
+#: lecture.adoc:277
 msgid ""
 "[source,java]\n"
 "----"
@@ -665,19 +661,19 @@ msgstr ""
 "[source,java]\n"
 "----"
 
-#: lecture.adoc:281
+#: lecture.adoc:280
 msgid "sql = \"SELECT * FROM users WHERE name = '\" + userName + \"'\""
 msgstr "sql = \"SELECT * FROM users WHERE name = '\" + userName + \"'\""
 
-#: lecture.adoc:283
+#: lecture.adoc:282
 msgid "userName = \"' OR '1'='1\""
 msgstr "userName = \"' OR '1'='1\""
 
-#: lecture.adoc:285
+#: lecture.adoc:284
 msgid "userName = \"a';DROP TABLE users;\""
 msgstr "userName = \"a';DROP TABLE users;\""
 
-#: lecture.adoc:288
+#: lecture.adoc:287
 msgid ""
 "//... и много другой гадости\n"
 "----"
@@ -685,34 +681,34 @@ msgstr ""
 "//... and many other nasty things\n"
 "----"
 
-#: lecture.adoc:290
-msgctxt "lecture.adoc:290"
+#: lecture.adoc:289
+msgctxt "lecture.adoc:289"
 msgid "== SQL Injection"
 msgstr "== SQL Injection"
 
-#: lecture.adoc:292
+#: lecture.adoc:291
 msgid "image::sqlinjection.jpeg[]"
 msgstr "image::sqlinjection.jpeg[]"
 
-#: lecture.adoc:295
+#: lecture.adoc:294
 msgid "== Демо-пример"
 msgstr "== Demo example"
 
-#: lecture.adoc:297
+#: lecture.adoc:296
 msgid "* Пишем базу данных выступлений на Java-конференциях"
 msgstr "* Let's write a database for talks at Java conferences"
 
-#: lecture.adoc:299
+#: lecture.adoc:298
 msgid ""
 "* Основные сущности: на *конференциях* выступают *докладчики* с *докладами*. "
 msgstr ""
 "* Main entities: at *conferences* there are *speakers* with their *talks*. "
 
-#: lecture.adoc:301
+#: lecture.adoc:300
 msgid "* Бывает, что один доклад делают несколько докладчиков одновременно."
 msgstr "* It happens that one talk is delivered with more than one speaker."
 
-#: lecture.adoc:307
+#: lecture.adoc:306
 msgid ""
 "== ER model\n"
 "[plantuml, systemtables, png]\n"
@@ -726,11 +722,11 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 180"
 
-#: lecture.adoc:309
+#: lecture.adoc:308
 msgid "hide circle"
 msgstr "hide circle"
 
-#: lecture.adoc:314
+#: lecture.adoc:313
 msgid ""
 "class speaker {\n"
 "  id: INT\n"
@@ -742,7 +738,7 @@ msgstr ""
 "  name: VARCHAR\n"
 "}"
 
-#: lecture.adoc:319
+#: lecture.adoc:318
 msgid ""
 "class conference {\n"
 "  id: INT\n"
@@ -754,7 +750,7 @@ msgstr ""
 "  name: VARCHAR\n"
 "}"
 
-#: lecture.adoc:325
+#: lecture.adoc:324
 msgid ""
 "class talk {\n"
 "  id: INT\n"
@@ -768,7 +764,7 @@ msgstr ""
 "  name: VARCHAR\n"
 "}"
 
-#: lecture.adoc:330
+#: lecture.adoc:329
 msgid ""
 "class talkspeakers {\n"
 " talkid: INT\n"
@@ -780,20 +776,20 @@ msgstr ""
 " speakerid: INT\n"
 "}"
 
-#: lecture.adoc:332
+#: lecture.adoc:331
 msgid "talk --> conference: conferenceid "
 msgstr "talk --> conference: conferenceid "
 
-#: lecture.adoc:334
+#: lecture.adoc:333
 msgid "talkspeakers --> speaker: speakerid "
 msgstr "talkspeakers --> speaker: speakerid "
 
-#: lecture.adoc:336
+#: lecture.adoc:335
 msgid "talkspeakers --> talk: talkid "
 msgstr "talkspeakers --> talk: talkid "
 
-#: lecture.adoc:339
-msgctxt "lecture.adoc:339"
+#: lecture.adoc:338
+msgctxt "lecture.adoc:338"
 msgid ""
 "@enduml\n"
 "----"
@@ -801,11 +797,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:341
+#: lecture.adoc:340
 msgid "== Наш учебный пример про доклады и спикеров"
 msgstr "== Our case study about talks and speakers"
 
-#: lecture.adoc:352
+#: lecture.adoc:351
 msgid ""
 "[plantuml, objects, png]\n"
 "----\n"
@@ -829,7 +825,7 @@ msgstr ""
 "object TalkDao\n"
 "object Controller"
 
-#: lecture.adoc:362
+#: lecture.adoc:361
 msgid ""
 "JdbcTemplate --> ConnectionPool\n"
 "SpeakerDao --> JdbcTemplate\n"
@@ -851,11 +847,11 @@ msgstr ""
 "@enduml\n"
 "----    "
 
-#: lecture.adoc:364
+#: lecture.adoc:363
 msgid "== Реальная «слоистая» архитектура серверного приложения"
 msgstr "== The real \"layered\" application architecture"
 
-#: lecture.adoc:371
+#: lecture.adoc:370
 msgid ""
 "[plantuml, layers, png]\n"
 "----\n"
@@ -871,7 +867,7 @@ msgstr ""
 "object Controller1\n"
 "object Controller2"
 
-#: lecture.adoc:375
+#: lecture.adoc:374
 msgid ""
 "object Service1\n"
 "object Service2\n"
@@ -881,7 +877,7 @@ msgstr ""
 "object Service2\n"
 "object Service3"
 
-#: lecture.adoc:379
+#: lecture.adoc:378
 msgid ""
 "object Dao1\n"
 "object Dao2\n"
@@ -891,7 +887,7 @@ msgstr ""
 "object Dao2\n"
 "object Dao3"
 
-#: lecture.adoc:390
+#: lecture.adoc:389
 msgid ""
 "Controller1 --> Service1\n"
 "Controller1 --> Service2\n"
@@ -913,7 +909,7 @@ msgstr ""
 "  \"wiring\"\n"
 "end note"
 
-#: lecture.adoc:396
+#: lecture.adoc:395
 msgid ""
 "Service1 --> Dao1\n"
 "Service2 --> Dao1\n"
@@ -927,13 +923,40 @@ msgstr ""
 "Service3 --> Dao3\n"
 "Service1 --> Dao2"
 
-#: lecture.adoc:399
+#: lecture.adoc:398
 msgid ""
 "@enduml\n"
 "----    "
 msgstr ""
 "@enduml\n"
 "----    "
+
+#~ msgid ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+#~ msgstr ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+
+#~ msgctxt "lecture.adoc:167"
+#~ msgid "== Connection Pool"
+#~ msgstr "== Connection Pool"
+
+#~ msgctxt "lecture.adoc:275"
+#~ msgid "== SQL Injection"
+#~ msgstr "== SQL Injection"
+
+#~ msgctxt "lecture.adoc:290"
+#~ msgid "== SQL Injection"
+#~ msgstr "== SQL Injection"
+
+#~ msgctxt "lecture.adoc:339"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
 
 #~ msgctxt "./slides08/src/main/asciidoc/lecture.adoc:167"
 #~ msgid "== Connection Pool"
