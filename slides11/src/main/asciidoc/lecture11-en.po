@@ -1,9 +1,10 @@
+#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
-"PO-Revision-Date: 2023-01-01 14:17+0200\n"
+"POT-Creation-Date: 2023-02-24 21:31+0300\n"
+"PO-Revision-Date: 2023-02-24 21:23+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -65,36 +66,32 @@ msgstr ""
 ":revealjs_height: 900\n"
 ":stem: latexmath"
 
-#: lecture.adoc:29
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
-msgstr ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+#: lecture.adoc:28
+msgid ":!figure-caption:"
+msgstr ":!figure-caption:"
 
-#: lecture.adoc:31
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr "ponomarev@corchestra.ru"
 
-#: lecture.adoc:33
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
-#: lecture.adoc:35
+#: lecture.adoc:34
 msgid "== Часть 3. Потокобезопасные структуры данных"
 msgstr "== Part 3. Thread-safe data structures"
 
-#: lecture.adoc:37
-msgctxt "lecture.adoc:37"
+#: lecture.adoc:36
+msgctxt "lecture.adoc:36"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
-#: lecture.adoc:39
+#: lecture.adoc:38
 msgid "== Неблокирующие алгоритмы"
 msgstr "== Non-blocking algorithms"
 
-#: lecture.adoc:44
+#: lecture.adoc:43
 msgid ""
 "* Блокировка (через `synchronized` или `ReentrantLock`) решает вопрос "
 "координации действий разных тредов с переменной.\n"
@@ -116,11 +113,11 @@ msgstr ""
 "collections_ are available, including those implementing non-blocking "
 "algorithms."
 
-#: lecture.adoc:46
+#: lecture.adoc:45
 msgid "== Atomics "
 msgstr "== Atomics "
 
-#: lecture.adoc:53
+#: lecture.adoc:52
 msgid ""
 "* `package java.util.concurrent.atomic`\n"
 "** `AtomicBoolean`, `AtomicInteger`, `AtomicLong`, `AtomicReference`.\n"
@@ -136,11 +133,11 @@ msgstr ""
 "is visible to other threads via `get(...)`\n"
 "* Support atomic operations."
 
-#: lecture.adoc:55
+#: lecture.adoc:54
 msgid "== Aтомарные операции в классах атомарных переменных"
 msgstr "== Atomic operations in atomic variable classes"
 
-#: lecture.adoc:58
+#: lecture.adoc:57
 msgid ""
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
@@ -148,19 +145,19 @@ msgstr ""
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
 
-#: lecture.adoc:60
+#: lecture.adoc:59
 msgid "incrementAndGet()      decrementAndGet()"
 msgstr "incrementAndGet()      decrementAndGet()"
 
-#: lecture.adoc:62
+#: lecture.adoc:61
 msgid "getAndIncrement()      getAndDecrement()"
 msgstr "getAndIncrement()      getAndDecrement()"
 
-#: lecture.adoc:64
+#: lecture.adoc:63
 msgid "getAndAdd(delta)       addAndGet(delta)"
 msgstr "getAndAdd(delta)       addAndGet(delta)"
 
-#: lecture.adoc:67
+#: lecture.adoc:66
 msgid ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
@@ -168,7 +165,7 @@ msgstr ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
 
-#: lecture.adoc:71
+#: lecture.adoc:70
 msgid ""
 "getAndAccumulate(x, accumulatorBiFunction)\n"
 "accumulateAndGet(x, accumulatorBiFunction)\n"
@@ -178,11 +175,11 @@ msgstr ""
 "accumulateAndGet(x, accumulatorBiFunction)\n"
 "----"
 
-#: lecture.adoc:74
+#: lecture.adoc:73
 msgid "== Потокобезопасные коллекции"
 msgstr "== Thread-safe collections"
 
-#: lecture.adoc:79
+#: lecture.adoc:78
 msgid ""
 "* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, "
 "обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой "
@@ -204,7 +201,7 @@ msgstr ""
 "fewer locks.\n"
 "* Their use is _preferred_."
 
-#: lecture.adoc:87
+#: lecture.adoc:86
 msgid ""
 "== CopyOnWriteArrayList и CopyOnWriteArraySet\n"
 "[source,java]\n"
@@ -220,7 +217,7 @@ msgstr ""
 "class CopyOnWriteArraySet<E> extends AbstractSet<E>\n"
 "----"
 
-#: lecture.adoc:92
+#: lecture.adoc:91
 msgid ""
 "* Структуры данных на основе массива.\n"
 "* Пересоздают всё заново при каждой модификации.\n"
@@ -232,12 +229,12 @@ msgstr ""
 "* It's expensive, but all reading iterators are stable.\n"
 "* Good when there are multiple read operations per one write operation."
 
-#: lecture.adoc:94
-msgctxt "lecture.adoc:94"
+#: lecture.adoc:93
+msgctxt "lecture.adoc:93"
 msgid "== ConcurrentLinkedQueue/Deque"
 msgstr "== ConcurrentLinkedQueue/Deque"
 
-#: lecture.adoc:102
+#: lecture.adoc:101
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -255,7 +252,7 @@ msgstr ""
 "        implements Deque<E>\n"
 "----"
 
-#: lecture.adoc:106
+#: lecture.adoc:105
 msgid ""
 "* Основаны на неблокирующем алгоритме (CAS-операции)\n"
 "* `poll()` вернёт `null`, если очередь пуста\n"
@@ -265,12 +262,12 @@ msgstr ""
 "* `poll()` returns `null` if the queue is empty\n"
 "* Under the hood there are (double) linked lists"
 
-#: lecture.adoc:108
-msgctxt "lecture.adoc:108"
+#: lecture.adoc:107
+msgctxt "lecture.adoc:107"
 msgid "== ConcurrentLinkedQueue/Deque"
 msgstr "== ConcurrentLinkedQueue/Deque"
 
-#: lecture.adoc:182
+#: lecture.adoc:181
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -420,12 +417,12 @@ msgstr ""
 "\tn1 -> n3[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:184
-msgctxt "lecture.adoc:184"
+#: lecture.adoc:183
+msgctxt "lecture.adoc:183"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:265
+#: lecture.adoc:264
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -589,17 +586,17 @@ msgstr ""
 "\tn1 -> n6[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:267
-msgctxt "lecture.adoc:267"
+#: lecture.adoc:266
+msgctxt "lecture.adoc:266"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:270
+#: lecture.adoc:269
 msgid "== Блокирующие очереди: средство реализации producer-consumer pattern"
 msgstr ""
 "== Blocking queues: a means of implementing the producer-consumer pattern"
 
-#: lecture.adoc:274
+#: lecture.adoc:273
 msgid ""
 "[plantuml, blockingqueue, png]\n"
 "----\n"
@@ -609,11 +606,11 @@ msgstr ""
 "----\n"
 "@startuml"
 
-#: lecture.adoc:276
+#: lecture.adoc:275
 msgid "skinparam dpi 150 "
 msgstr "skinparam dpi 150 "
 
-#: lecture.adoc:281
+#: lecture.adoc:280
 msgid ""
 "interface BlockingQueue<E> {\n"
 "  void put(E e) throws InterruptedException;\n"
@@ -625,7 +622,7 @@ msgstr ""
 "  E take() throws InterruptedException;\n"
 "}"
 
-#: lecture.adoc:286
+#: lecture.adoc:285
 msgid ""
 "class ArrayBlockingQueue<E>\n"
 "class LinkedBlockingDeque<E>\n"
@@ -637,7 +634,7 @@ msgstr ""
 "class PriorityBlockingQueue<E>\n"
 "class SynchronousQueue<E>"
 
-#: lecture.adoc:293
+#: lecture.adoc:292
 msgid ""
 "BlockingQueue <|.. ArrayBlockingQueue\n"
 "BlockingQueue <|.. LinkedBlockingDeque\n"
@@ -653,7 +650,7 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:298
+#: lecture.adoc:297
 msgid ""
 "* Могут быть ограничены по размеру (capacity constrained).\n"
 "* Методы `put()` и `take()` ждут, пока не появится возможность положить или "
@@ -668,11 +665,11 @@ msgstr ""
 "* `SynchronousQueue` has no capacity at all, passes elements to processing "
 "threads directly. "
 
-#: lecture.adoc:300
+#: lecture.adoc:299
 msgid "== ConcurrentHashMap"
 msgstr "== ConcurrentHashMap"
 
-#: lecture.adoc:313
+#: lecture.adoc:312
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -700,11 +697,11 @@ msgstr ""
 "** `remove(key, value)`\n"
 "** `replace(key, oldValue, newValue)`"
 
-#: lecture.adoc:315
+#: lecture.adoc:314
 msgid "== ConcurrentHashMap: Java 7-"
 msgstr "== ConcurrentHashMap: Java 7-"
 
-#: lecture.adoc:366
+#: lecture.adoc:365
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -836,11 +833,11 @@ msgstr ""
 "}\n"
 "--"
 
-#: lecture.adoc:368
+#: lecture.adoc:367
 msgid "== ConcurrentHashMap: Java 8+"
 msgstr "== ConcurrentHashMap: Java 8+"
 
-#: lecture.adoc:520
+#: lecture.adoc:519
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -1146,12 +1143,12 @@ msgstr ""
 "}\n"
 "--"
 
-#: lecture.adoc:522
-msgctxt "lecture.adoc:522"
+#: lecture.adoc:521
+msgctxt "lecture.adoc:521"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:531
+#: lecture.adoc:530
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1171,7 +1168,7 @@ msgstr ""
 "* Does not allow `null` as a key or a value.\n"
 "* Has atomic methods."
 
-#: lecture.adoc:562
+#: lecture.adoc:561
 msgid ""
 "== ConcurrentSkipListMap: идея\n"
 "[graphviz]\n"
@@ -1205,7 +1202,7 @@ msgid ""
 "}\n"
 "--"
 msgstr ""
-"== ConcurrentSkipListMap: идея\n"
+"== ConcurrentSkipListMap: the principle\n"
 "[graphviz]\n"
 "--\n"
 "digraph G {\n"
@@ -1237,16 +1234,16 @@ msgstr ""
 "}\n"
 "--"
 
-#: lecture.adoc:566
-msgctxt "lecture.adoc:566"
+#: lecture.adoc:565
+msgctxt "lecture.adoc:565"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:568
+#: lecture.adoc:567
 msgid "//A"
 msgstr "//A"
 
-#: lecture.adoc:612
+#: lecture.adoc:611
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -1336,17 +1333,17 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:614
-msgctxt "lecture.adoc:614"
+#: lecture.adoc:613
+msgctxt "lecture.adoc:613"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:616
-msgctxt "lecture.adoc:616"
+#: lecture.adoc:615
+msgctxt "lecture.adoc:615"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:671
+#: lecture.adoc:670
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -1458,17 +1455,17 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:673
-msgctxt "lecture.adoc:673"
+#: lecture.adoc:672
+msgctxt "lecture.adoc:672"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:675
-msgctxt "lecture.adoc:675"
+#: lecture.adoc:674
+msgctxt "lecture.adoc:674"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:769
+#: lecture.adoc:768
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -1658,17 +1655,17 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:771
-msgctxt "lecture.adoc:771"
+#: lecture.adoc:770
+msgctxt "lecture.adoc:770"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:773
-msgctxt "lecture.adoc:773"
+#: lecture.adoc:772
+msgctxt "lecture.adoc:772"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:887
+#: lecture.adoc:886
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -1898,17 +1895,17 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:889
-msgctxt "lecture.adoc:889"
+#: lecture.adoc:888
+msgctxt "lecture.adoc:888"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:891
-msgctxt "lecture.adoc:891"
+#: lecture.adoc:890
+msgctxt "lecture.adoc:890"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:1026
+#: lecture.adoc:1025
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -2180,12 +2177,12 @@ msgstr ""
 "}\n"
 "--"
 
-#: lecture.adoc:1028
-msgctxt "lecture.adoc:1028"
+#: lecture.adoc:1027
+msgctxt "lecture.adoc:1027"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:1182
+#: lecture.adoc:1181
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -2495,17 +2492,17 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:1184
-msgctxt "lecture.adoc:1184"
+#: lecture.adoc:1183
+msgctxt "lecture.adoc:1183"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:1186
-msgctxt "lecture.adoc:1186"
+#: lecture.adoc:1185
+msgctxt "lecture.adoc:1185"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:1370
+#: lecture.adoc:1369
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -2875,17 +2872,17 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:1372
-msgctxt "lecture.adoc:1372"
+#: lecture.adoc:1371
+msgctxt "lecture.adoc:1371"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:1374
-msgctxt "lecture.adoc:1374"
+#: lecture.adoc:1373
+msgctxt "lecture.adoc:1373"
 msgid "== ConcurrentSkipListMap"
 msgstr "== ConcurrentSkipListMap"
 
-#: lecture.adoc:1569
+#: lecture.adoc:1568
 msgid ""
 "[graphviz]\n"
 "--\n"
@@ -3277,26 +3274,26 @@ msgstr ""
 "\tn1 -> n2[label=\"head\",fontsize=12];\n"
 "}"
 
-#: lecture.adoc:1571
-msgctxt "lecture.adoc:1571"
+#: lecture.adoc:1570
+msgctxt "lecture.adoc:1570"
 msgid "--"
 msgstr "--"
 
-#: lecture.adoc:1573
+#: lecture.adoc:1572
 msgid "== Часть 4. Executor Framework"
 msgstr "== Part 4. Executor Framework"
 
-#: lecture.adoc:1575
-msgctxt "lecture.adoc:1575"
+#: lecture.adoc:1574
+msgctxt "lecture.adoc:1574"
 msgid "image::hydra2.jpg[{image-90-width}]"
 msgstr "image::hydra2.jpg[{image-90-width}]"
 
-#: lecture.adoc:1577
-msgctxt "lecture.adoc:1577"
+#: lecture.adoc:1576
+msgctxt "lecture.adoc:1576"
 msgid "== Executor Framework"
 msgstr "== Executor Framework"
 
-#: lecture.adoc:1584
+#: lecture.adoc:1583
 msgid ""
 "* Тред -- дорогой ресурс, поэтому мы хотим:\n"
 "** ограничивать количество наших тредов, чтобы не устроить Out of Memory,\n"
@@ -3317,12 +3314,12 @@ msgstr ""
 "need to implement anything yourself.\n"
 "* No one uses the Thread API directly."
 
-#: lecture.adoc:1586
-msgctxt "lecture.adoc:1586"
+#: lecture.adoc:1585
+msgctxt "lecture.adoc:1585"
 msgid "== Executor Framework"
 msgstr "== Executor Framework"
 
-#: lecture.adoc:1593
+#: lecture.adoc:1592
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -3338,7 +3335,7 @@ msgstr ""
 "  V call() throws Exception;\n"
 "}</V>"
 
-#: lecture.adoc:1600
+#: lecture.adoc:1599
 msgid ""
 "//Абстракция «менджера тредов»\n"
 "public interface ExecutorService {\n"
@@ -3354,11 +3351,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1602
+#: lecture.adoc:1601
 msgid "== Future"
 msgstr "== Future"
 
-#: lecture.adoc:1616
+#: lecture.adoc:1615
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -3388,11 +3385,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1618
+#: lecture.adoc:1617
 msgid "== Task, Executor, Future"
 msgstr "== Task, Executor, Future"
 
-#: lecture.adoc:1624
+#: lecture.adoc:1623
 msgid ""
 "[plantuml, taskexecfuture, png]\n"
 "----\n"
@@ -3406,7 +3403,7 @@ msgstr ""
 "skinparam dpi 150\n"
 "hide footbox"
 
-#: lecture.adoc:1629
+#: lecture.adoc:1628
 msgid ""
 "participant Client\n"
 "participant Task\n"
@@ -3418,7 +3415,7 @@ msgstr ""
 "participant Executor\n"
 "participant Future"
 
-#: lecture.adoc:1632
+#: lecture.adoc:1631
 msgid ""
 "Client -> Task **: new()\n"
 "Task --> Client: task"
@@ -3426,7 +3423,7 @@ msgstr ""
 "Client -> Task **: new()\n"
 "Task --> Client: task"
 
-#: lecture.adoc:1637
+#: lecture.adoc:1636
 msgid ""
 "Client -> Executor: submit(task)\n"
 "Executor -> Future **: new(task)\n"
@@ -3438,7 +3435,7 @@ msgstr ""
 "Future --> Executor: Future\n"
 "Executor --> Client: Future "
 
-#: lecture.adoc:1643
+#: lecture.adoc:1642
 msgid ""
 "Executor -> Future: run()\n"
 "note right\n"
@@ -3452,7 +3449,7 @@ msgstr ""
 "  of execution\n"
 "end note"
 
-#: lecture.adoc:1646
+#: lecture.adoc:1645
 msgid ""
 "Future -> Task: call()\n"
 "activate Task"
@@ -3460,7 +3457,7 @@ msgstr ""
 "Future -> Task: call()\n"
 "activate Task"
 
-#: lecture.adoc:1653
+#: lecture.adoc:1652
 msgid ""
 "Client -> Future: get()\n"
 "activate Future\n"
@@ -3476,7 +3473,7 @@ msgstr ""
 "Future --> Client: result\n"
 "deactivate Future"
 
-#: lecture.adoc:1656
+#: lecture.adoc:1655
 msgid ""
 "@enduml\n"
 "----"
@@ -3484,11 +3481,11 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:1658
+#: lecture.adoc:1657
 msgid "== Как создать ExecutorService?"
 msgstr "== How do I create an ExecutorService?"
 
-#: lecture.adoc:1673
+#: lecture.adoc:1672
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -3520,7 +3517,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1682
+#: lecture.adoc:1681
 msgid ""
 "== Обработка задач «пачками»\n"
 "[source,java]\n"
@@ -3540,7 +3537,7 @@ msgstr ""
 "    Collection <? extends Callable <T>> tasks)\n"
 "        throws InterruptedException"
 
-#: lecture.adoc:1688
+#: lecture.adoc:1687
 msgid ""
 "//Запускаем, возвращаем первый успешный результат, \n"
 "//отменяем остальные\n"
@@ -3554,11 +3551,11 @@ msgstr ""
 "        throws InterruptedException, ExecutionException;\n"
 "----"
 
-#: lecture.adoc:1690
+#: lecture.adoc:1689
 msgid "== Отмена задач и «прекращение обслуживания»"
 msgstr "== Cancellation of tasks and \"termination of service\""
 
-#: lecture.adoc:1697
+#: lecture.adoc:1696
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -3574,7 +3571,7 @@ msgstr ""
 "//request task interruption (details ahead)\n"
 "future.cancel(true)"
 
-#: lecture.adoc:1706
+#: lecture.adoc:1705
 msgid ""
 "//Запретить приём новых задач\n"
 "executorService.shutdown();\n"
@@ -3594,11 +3591,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1708
+#: lecture.adoc:1707
 msgid "== Прерывание задач"
 msgstr "== Interruption of tasks"
 
-#: lecture.adoc:1713
+#: lecture.adoc:1712
 msgid ""
 "* В ранних версиях Java существовали (ныне deprecated) методы принудительной "
 "остановки и приостановки/возобновления тредов, но _это оказалось плохой "
@@ -3616,11 +3613,11 @@ msgstr ""
 "* All this now is deprecated in favor of _cooperative_ interruption "
 "mechanism."
 
-#: lecture.adoc:1715
+#: lecture.adoc:1714
 msgid "== Прерывание тредов"
 msgstr "== Interrupting threads"
 
-#: lecture.adoc:1719
+#: lecture.adoc:1718
 msgid ""
 "* `ExecutorService.shutdownNow()` вызывает метод `Thread.interrupt()` на "
 "потоках выполнения.\n"
@@ -3636,11 +3633,11 @@ msgstr ""
 "method _happens before_ the interrupted thread knows that it has been "
 "interrupted."
 
-#: lecture.adoc:1721
+#: lecture.adoc:1720
 msgid "== Кооперативный механизм прерывания"
 msgstr "== Cooperative termination mechanism"
 
-#: lecture.adoc:1723
+#: lecture.adoc:1722
 msgid ""
 "* Если вычисления в цикле, тред обязан периодически проверять статус `Thread."
 "currentThread().isInterrupted()` и, если флаг выставлен, _записав в лог факт "
@@ -3650,7 +3647,7 @@ msgstr ""
 "check the status of `Thread.currentThread().isInterrupted()` and, if the "
 "flag is set, _write to the log the fact of interruption_ and exit the method."
 
-#: lecture.adoc:1725
+#: lecture.adoc:1724
 msgid ""
 "* На ждущих методах может быть выброшен `InterruptedException`. Что с ним "
 "делать?"
@@ -3658,11 +3655,11 @@ msgstr ""
 "* `InterruptedException` may be thrown on waiting methods. What should we do "
 "with it?"
 
-#: lecture.adoc:1727
+#: lecture.adoc:1726
 msgid "== Что делать с `InterruptedException`"
 msgstr "== What should we do with `InterruptedException`"
 
-#: lecture.adoc:1729
+#: lecture.adoc:1728
 msgid ""
 "* Если контекст позволяет, его всегда следует пробрасывать выше (декларируя "
 "в `throws`)."
@@ -3670,7 +3667,7 @@ msgstr ""
 "* If circumstances allow, it is best to declare it in `throws` and not to "
 "handle it at all."
 
-#: lecture.adoc:1731
+#: lecture.adoc:1730
 msgid ""
 "* Если выше пробрасывать нельзя (например, мы находимся в методе `run` "
 "интерфейса `Runnable`), то: "
@@ -3679,7 +3676,7 @@ msgstr ""
 "`run` method of `Runnable` interface which doesn't throw checked exceptions) "
 "then: "
 
-#: lecture.adoc:1745
+#: lecture.adoc:1744
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -3710,11 +3707,11 @@ msgstr ""
 "* You should *never* silently \"swallow\" an `InterruptedException` !\n"
 "* It is recommended to log the fact of interruption to facilitate debugging."
 
-#: lecture.adoc:1747
+#: lecture.adoc:1746
 msgid "== CompletableFuture"
 msgstr "== CompletableFuture"
 
-#: lecture.adoc:1751
+#: lecture.adoc:1750
 msgid ""
 "* Появились в Java 8, расширяют `Future`.\n"
 "* Позволяют явно задать результат (отсюда 'Completable') и собрать цепочку "
@@ -3726,7 +3723,7 @@ msgstr ""
 "a chain of asynchronous calculations.\n"
 "* Can be used as follows: "
 
-#: lecture.adoc:1758
+#: lecture.adoc:1757
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -3742,7 +3739,7 @@ msgstr ""
 "  int n = workHard(arg);\n"
 "  f.complete(n); });"
 
-#: lecture.adoc:1762
+#: lecture.adoc:1761
 msgid ""
 "executor.execute(() -> {\n"
 "  int n = workSmart(arg);\n"
@@ -3752,7 +3749,7 @@ msgstr ""
 "  int n = workSmart(arg);\n"
 "  f.complete(n); });"
 
-#: lecture.adoc:1767
+#: lecture.adoc:1766
 msgid ""
 "executor.execute(() -> {\n"
 "  Throwable t = ...;\n"
@@ -3764,12 +3761,12 @@ msgstr ""
 "  f.completeExceptionally(t); });\n"
 "----"
 
-#: lecture.adoc:1769
-msgctxt "lecture.adoc:1769"
+#: lecture.adoc:1768
+msgctxt "lecture.adoc:1768"
 msgid "== Композиция CompletableFuture с действием"
 msgstr "== CompletableFuture composition with action"
 
-#: lecture.adoc:1779
+#: lecture.adoc:1778
 msgid ""
 "[cols=\"20a,20a,60a\"]\n"
 "|===\n"
@@ -3801,12 +3798,12 @@ msgstr ""
 "result.\n"
 "|==="
 
-#: lecture.adoc:1782
-msgctxt "lecture.adoc:1782"
+#: lecture.adoc:1781
+msgctxt "lecture.adoc:1781"
 msgid "== Композиция CompletableFuture с действием"
 msgstr "== CompletableFuture composition with action"
 
-#: lecture.adoc:1790
+#: lecture.adoc:1789
 msgid ""
 "[cols=\"20a,20a,60a\"]\n"
 "|===\n"
@@ -3830,11 +3827,11 @@ msgstr ""
 "void result.\n"
 "|==="
 
-#: lecture.adoc:1792
+#: lecture.adoc:1791
 msgid "== Композиция нескольких CompletableFuture"
 msgstr "== Composition of several CompletableFutures"
 
-#: lecture.adoc:1803
+#: lecture.adoc:1802
 msgid ""
 "[cols=\"20a,20a,60a\"]\n"
 "|===\n"
@@ -3864,7 +3861,7 @@ msgstr ""
 "both complete.\n"
 "|==="
 
-#: lecture.adoc:1817
+#: lecture.adoc:1816
 msgid ""
 "== Композиция нескольких CompletableFuture\n"
 "[cols=\"20a,20a,60a\"]\n"
@@ -3904,7 +3901,7 @@ msgstr ""
 "given futures completes, with the same result cast to `Object`.\n"
 "|==="
 
-#: lecture.adoc:1820
+#: lecture.adoc:1819
 msgid ""
 "== Если этого показалось мало...\n"
 "* Каждый из этих методов имеет вариант с постфиксом `Async` (например, "
@@ -3916,11 +3913,11 @@ msgstr ""
 "`thenApplyAsync`) that allows you to perform an additional action in another "
 "thread of the specified Executor."
 
-#: lecture.adoc:1822
+#: lecture.adoc:1821
 msgid "== Мы только прошлись по основам"
 msgstr "== We just scratched the surface"
 
-#: lecture.adoc:1832
+#: lecture.adoc:1831
 msgid ""
 "[cols=\"30a,70a\"]\n"
 "|===\n"
@@ -3944,11 +3941,11 @@ msgstr ""
 "Java programming.\n"
 "|==="
 
-#: lecture.adoc:1834
+#: lecture.adoc:1833
 msgid "== Code Review Checklist"
 msgstr "== Code Review Checklist"
 
-#: lecture.adoc:1836
+#: lecture.adoc:1835
 msgid ""
 "* *Roman Leventov*: https://github.com/code-review-checklists/java-"
 "concurrency[Code Review Checklist: Java Concurrency]"
@@ -3956,23 +3953,23 @@ msgstr ""
 "* *Roman Leventov*: https://github.com/code-review-checklists/java-"
 "concurrency[Code Review Checklist: Java Concurrency]"
 
-#: lecture.adoc:1838
+#: lecture.adoc:1837
 msgid ""
 "* Порядка 100 пунктов, по которым можно проверить concurrency код на "
 "распространённые ошибки"
 msgstr "* About 100 points to check the concurrency code for common errors"
 
-#: lecture.adoc:1842
+#: lecture.adoc:1841
 msgid "== Благодарности "
 msgstr "== Acknowledgements "
 
-#: lecture.adoc:1844
+#: lecture.adoc:1843
 msgid "Эти люди дали свой фидбэк и помогли улучшить материал этой лекции:"
 msgstr ""
 "These people gave their feedback and helped to improve the material of this "
 "lecture:"
 
-#: lecture.adoc:1849
+#: lecture.adoc:1848
 msgid ""
 "icon:twitter[size=lg]@2caco3\n"
 "icon:twitter[size=lg]@asm0dey\n"
@@ -3984,7 +3981,7 @@ msgstr ""
 "icon:twitter[size=lg]@dolzhenko\n"
 "icon:twitter[size=lg]@DrEdwardHyde"
 
-#: lecture.adoc:1853
+#: lecture.adoc:1852
 msgid ""
 "icon:twitter[size=lg]@dyer_the\n"
 "icon:twitter[size=lg]@krems5\n"
@@ -3994,7 +3991,7 @@ msgstr ""
 "icon:twitter[size=lg]@krems5\n"
 "icon:twitter[size=lg]@LordOfBoredom"
 
-#: lecture.adoc:1857
+#: lecture.adoc:1856
 msgid ""
 "icon:twitter[size=lg]@miha_x64\n"
 "icon:twitter[size=lg]@vaddyacom\n"
@@ -4004,15 +4001,15 @@ msgstr ""
 "icon:twitter[size=lg]@vaddyacom\n"
 "icon:twitter[size=lg]@vdimir"
 
-#: lecture.adoc:1860
+#: lecture.adoc:1859
 msgid "(все ошибки и неточности -- мои)"
 msgstr "(all errors and inaccuracies are mine)"
 
-#: lecture.adoc:1863
+#: lecture.adoc:1862
 msgid "== Иногда при чтении кода начинает рябить в глазах..."
 msgstr "== Sometimes you feel the smell while reading the code..."
 
-#: lecture.adoc:1883
+#: lecture.adoc:1882
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4047,18 +4044,18 @@ msgstr ""
 "        .format(DateTimeFormatter.ISO_LOCAL_DATE));\n"
 "      result.put(...)\n"
 "      result.put(...)\n"
-"      //ещё 20 полей\n"
+"      //20 more fields\n"
 "      result.put(...)\n"
 "      return result.toString();\n"
 "  }\n"
 "}\n"
 "----"
 
-#: lecture.adoc:1885
+#: lecture.adoc:1884
 msgid "== Возникает ощущение, что что-то не так..."
 msgstr "== There is a feeling that something is wrong..."
 
-#: lecture.adoc:1905
+#: lecture.adoc:1904
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4091,7 +4088,7 @@ msgstr ""
 "      case \"bar\":\n"
 "        service.bar(); break;\n"
 "      case ...\n"
-"      //Ещё 15 веток...\n"
+"      //15 more branches...\n"
 "      case \"help\":\n"
 "      default:\n"
 "        service.help(); break;\n"
@@ -4100,11 +4097,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1907
+#: lecture.adoc:1906
 msgid "== Coupling & Cohesion"
 msgstr "== Coupling & Cohesion"
 
-#: lecture.adoc:1909
+#: lecture.adoc:1908
 msgid ""
 "* Coupling: the degree of interdependence between software modules; a "
 "measure of how closely connected two routines or modules are; the strength "
@@ -4114,7 +4111,7 @@ msgstr ""
 "measure of how closely connected two routines or modules are; the strength "
 "of the relationships between modules."
 
-#: lecture.adoc:1911
+#: lecture.adoc:1910
 msgid ""
 "* Cohesion refers to the degree to which the elements inside a module belong "
 "together."
@@ -4122,23 +4119,23 @@ msgstr ""
 "* Cohesion refers to the degree to which the elements inside a module belong "
 "together."
 
-#: lecture.adoc:1913
+#: lecture.adoc:1912
 msgid "* Low coupling often correlates with high cohesion, and vice versa."
 msgstr "* Low coupling often correlates with high cohesion, and vice versa."
 
-#: lecture.adoc:1915
+#: lecture.adoc:1914
 msgid "== Coupling vs. Cohesion"
 msgstr "== Coupling vs. Cohesion"
 
-#: lecture.adoc:1917
+#: lecture.adoc:1916
 msgid "image::coupling-cohesion.png[{image-70-width}]"
 msgstr "image::coupling-cohesion.png[{image-70-width}]"
 
-#: lecture.adoc:1920
+#: lecture.adoc:1919
 msgid "== Вопросы"
 msgstr "== Questions"
 
-#: lecture.adoc:1923
+#: lecture.adoc:1922
 msgid ""
 "* За счёт чего в приведённых примерах high coupling + low cohesion?\n"
 "* Чем это опасно для проекта?"
@@ -4146,11 +4143,11 @@ msgstr ""
 "* Why coupling is high and cohesion is low in the above examples?\n"
 "* What danger does it impose on the project?"
 
-#: lecture.adoc:1925
+#: lecture.adoc:1924
 msgid "== Как бы мы хотели решить эту проблему?"
 msgstr "== How would we like to solve this problem?"
 
-#: lecture.adoc:1939
+#: lecture.adoc:1938
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4180,7 +4177,7 @@ msgstr ""
 "    //... as many other fields as you like\n"
 "}"
 
-#: lecture.adoc:1944
+#: lecture.adoc:1943
 msgid ""
 "//Как вариант...\n"
 "JsonSerializer<Person> ser = new JsonSerializer<>(Person.class);\n"
@@ -4192,7 +4189,7 @@ msgstr ""
 "JSONObject json = ser.serialize(p);\n"
 "----"
 
-#: lecture.adoc:1950
+#: lecture.adoc:1949
 msgid ""
 "== Контроллер\n"
 "[source,java]\n"
@@ -4206,7 +4203,7 @@ msgstr ""
 "public class Controller {\n"
 "  private final Service service;"
 
-#: lecture.adoc:1953
+#: lecture.adoc:1952
 msgid ""
 "  @Command(\"foo\")\n"
 "  void doSomething() { service.foo(); }"
@@ -4214,7 +4211,7 @@ msgstr ""
 "  @Command(\"foo\")\n"
 "  void doSomething() { service.foo(); }"
 
-#: lecture.adoc:1956
+#: lecture.adoc:1955
 msgid ""
 "  @Command(\"bar\")\n"
 "  void bar() { service.bar(); }"
@@ -4222,11 +4219,11 @@ msgstr ""
 "  @Command(\"bar\")\n"
 "  void bar() { service.bar(); }"
 
-#: lecture.adoc:1958
+#: lecture.adoc:1957
 msgid "  //ещё 15 команд"
 msgstr "  //15 more commands"
 
-#: lecture.adoc:1962
+#: lecture.adoc:1961
 msgid ""
 "  @Command() //дефолтная\n"
 "  void help() { service.help(); }\n"
@@ -4236,7 +4233,7 @@ msgstr ""
 "  void help() { service.help(); }\n"
 "}"
 
-#: lecture.adoc:1965
+#: lecture.adoc:1964
 msgid ""
 "new CommandDispatcher(new Controller(srv)).executeCommand(\"foo\");\n"
 "----"
@@ -4244,11 +4241,11 @@ msgstr ""
 "new CommandDispatcher(new Controller(srv)).executeCommand(\"foo\");\n"
 "----"
 
-#: lecture.adoc:1967
+#: lecture.adoc:1966
 msgid "== Аннотации"
 msgstr "== Annotations"
 
-#: lecture.adoc:1974
+#: lecture.adoc:1973
 msgid ""
 "* Аннотация -- способ разметки кода на Java, через добавление метаинформации "
 "к различным элементам программы на Java.\n"
@@ -4270,11 +4267,11 @@ msgstr ""
 "** at the stage of instrumentation of bytecode (Instrumentation API),\n"
 "** at the stage of code execution (via Reflection API)."
 
-#: lecture.adoc:1976
+#: lecture.adoc:1975
 msgid "== Синтаксис определения аннотаций"
 msgstr "== Annotation definition syntax"
 
-#: lecture.adoc:1984
+#: lecture.adoc:1983
 msgid ""
 "----\n"
 "modifiers @interface AnnotationName {\n"
@@ -4292,7 +4289,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1994
+#: lecture.adoc:1993
 msgid ""
 "== Пример\n"
 "[source,java]\n"
@@ -4314,7 +4311,7 @@ msgstr ""
 "----\n"
 "== Annotation Interfaces"
 
-#: lecture.adoc:1999
+#: lecture.adoc:1998
 msgid ""
 "* Подобно тому, как `enum`-классы -- это специальный вид классов, annotation-"
 "интерфейсы -- это специальный вид интерфейсов.\n"
@@ -4329,11 +4326,11 @@ msgstr ""
 "generics.\n"
 "* Methods cannot have parameters."
 
-#: lecture.adoc:2001
+#: lecture.adoc:2000
 msgid "== Допустимые типы методов аннотации (JLS 9.6.1)"
 msgstr "== Valid return types of annotation methods (JLS 9.6.1)"
 
-#: lecture.adoc:2008
+#: lecture.adoc:2007
 msgid ""
 "* Примитивы (`int`, `short`, `long`, `byte`, `char`, `double`, `float`, "
 "`boolean`),\n"
@@ -4353,11 +4350,11 @@ msgstr ""
 "* other annotations,\n"
 "* arrays of the above (but not arrays of arrays)."
 
-#: lecture.adoc:2010
+#: lecture.adoc:2009
 msgid "== Пример определения интерфейса аннотации"
 msgstr "== Annotation Interface Definition Example"
 
-#: lecture.adoc:2018
+#: lecture.adoc:2017
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4375,7 +4372,7 @@ msgstr ""
 "  boolean showStopper() default false;\n"
 "  String assignedTo() default \"\";"
 
-#: lecture.adoc:2022
+#: lecture.adoc:2021
 msgid ""
 "  //метакласс, речь впереди\n"
 "  Class<?> testCase() default Void.class;\n"
@@ -4385,7 +4382,7 @@ msgstr ""
 "  Class<?> testCase() default Void.class;\n"
 "  Status status() default Status.UNCONFIRMED;"
 
-#: lecture.adoc:2029
+#: lecture.adoc:2028
 msgid ""
 "  //Тип аннотации. При конструировании используется синтаксис\n"
 "  //аннотации, речь впереди\n"
@@ -4401,12 +4398,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:2031
-msgctxt "lecture.adoc:2031"
+#: lecture.adoc:2030
+msgctxt "lecture.adoc:2030"
 msgid "== Использование аннотаций"
 msgstr "== Use of annotations"
 
-#: lecture.adoc:2034
+#: lecture.adoc:2033
 msgid ""
 "----\n"
 "@AnnotationName(elementName1=value1, elementName2=value2,...)"
@@ -4414,11 +4411,11 @@ msgstr ""
 "----\n"
 "@AnnotationName(elementName1=value1, elementName2=value2,...)"
 
-#: lecture.adoc:2036
+#: lecture.adoc:2035
 msgid "@AnnotationName(singleValue)"
 msgstr "@AnnotationName(singleValue)"
 
-#: lecture.adoc:2039
+#: lecture.adoc:2038
 msgid ""
 "@AnnotationName //no values, no parens\n"
 "----"
@@ -4426,12 +4423,12 @@ msgstr ""
 "@AnnotationName //no values, no parens\n"
 "----"
 
-#: lecture.adoc:2041
-msgctxt "lecture.adoc:2041"
+#: lecture.adoc:2040
+msgctxt "lecture.adoc:2040"
 msgid "== Использование аннотаций"
 msgstr "== Use of annotations"
 
-#: lecture.adoc:2045
+#: lecture.adoc:2044
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4441,7 +4438,7 @@ msgstr ""
 "----\n"
 "@BugReport(assignedTo=\"Harry\", severity=10)"
 
-#: lecture.adoc:2048
+#: lecture.adoc:2047
 msgid ""
 "//порядок не имеет значения\n"
 "@BugReport(severity=10, assignedTo=\"Harry\")"
@@ -4449,7 +4446,7 @@ msgstr ""
 "//order doesn't matter\n"
 "@BugReport(severity=10, assignedTo=\"Harry\")"
 
-#: lecture.adoc:2051
+#: lecture.adoc:2050
 msgid ""
 "//если заданы значения по умолчанию, то можно пропускать\n"
 "@BugReport(severity=10)"
@@ -4457,7 +4454,7 @@ msgstr ""
 "//if default values are set, you can skip the parameters\n"
 "@BugReport(severity=10)"
 
-#: lecture.adoc:2055
+#: lecture.adoc:2054
 msgid ""
 "//если параметров нет или все имеют умолчания, \n"
 "//то можно не ставить скобки\n"
@@ -4467,7 +4464,7 @@ msgstr ""
 "//then brackets can be omitted\n"
 "@BugReport"
 
-#: lecture.adoc:2059
+#: lecture.adoc:2058
 msgid ""
 "//Если на параметр не задан default, его надо  обязательно определять \n"
 "//(иначе ошибка компиляции).\n"
@@ -4477,11 +4474,11 @@ msgstr ""
 "//(otherwise a compilation error).\n"
 "----"
 
-#: lecture.adoc:2061
+#: lecture.adoc:2060
 msgid "== Single-value annotations"
 msgstr "== Single-value annotations"
 
-#: lecture.adoc:2068
+#: lecture.adoc:2067
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4497,7 +4494,7 @@ msgstr ""
 "  int priority() default 0;\n"
 "}"
 
-#: lecture.adoc:2071
+#: lecture.adoc:2070
 msgid ""
 "//использование\n"
 "@ActionListenerFor(\"yellowButton\")"
@@ -4505,7 +4502,7 @@ msgstr ""
 "//use\n"
 "@ActionListenerFor(\"yellowButton\")"
 
-#: lecture.adoc:2074
+#: lecture.adoc:2073
 msgid ""
 "//что эквивалентно\n"
 "@ActionListenerFor(value = \"yellowButton\")"
@@ -4513,7 +4510,7 @@ msgstr ""
 "//which is equivalent to\n"
 "@ActionListenerFor(value = \"yellowButton\")"
 
-#: lecture.adoc:2078
+#: lecture.adoc:2077
 msgid ""
 "//в то же время:\n"
 "@ActionListenerFor(value = \"yellowButton\", priority = 1)\n"
@@ -4523,11 +4520,11 @@ msgstr ""
 "@ActionListenerFor(value = \"yellowButton\", priority = 1)\n"
 "----"
 
-#: lecture.adoc:2082
+#: lecture.adoc:2081
 msgid "== Массивы и другие аннотации"
 msgstr "== Arrays and other annotations"
 
-#: lecture.adoc:2087
+#: lecture.adoc:2086
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -4539,7 +4536,7 @@ msgstr ""
 "//Arrays are specified in curly braces\n"
 "@BugReport(..., reportedBy = {\"Harry\", \"Carl\"})"
 
-#: lecture.adoc:2090
+#: lecture.adoc:2089
 msgid ""
 "//То же самое, что {\"Harry\"}\n"
 "@BugReport(..., reportedBy = \"Harry\")"
@@ -4547,7 +4544,7 @@ msgstr ""
 "//Same as {\"Harry\"}\n"
 "@BugReport(..., reportedBy = \"Harry\")"
 
-#: lecture.adoc:2093
+#: lecture.adoc:2092
 msgid ""
 "//Конструирование вложенных аннотаций\n"
 "@BugReport(..., ref = @Reference(id = \"12345\"))"
@@ -4555,7 +4552,7 @@ msgstr ""
 "//Constructing nested annotations\n"
 "@BugReport(..., ref = @Reference(id = \"12345\"))"
 
-#: lecture.adoc:2097
+#: lecture.adoc:2096
 msgid ""
 "//...Как видим, используя разрешённые типы,\n"
 "//можно задать сколь угодно сложную структуру данных\n"
@@ -4565,13 +4562,104 @@ msgstr ""
 "//you can specify an arbitrarily complex data structure\n"
 "----"
 
-#: lecture.adoc:2099
+#: lecture.adoc:2098
 msgid ""
 "WARNING: Значение аннотации не может быть установлено в `null`. Не "
 "допускатся `null` даже в `default`-значениях. "
 msgstr ""
 "WARNING: The annotation value cannot be set to `null`. `null` will not be "
 "allowed even for `default` values. "
+
+#~ msgid ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+#~ msgstr ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+
+#~ msgctxt "lecture.adoc:108"
+#~ msgid "== ConcurrentLinkedQueue/Deque"
+#~ msgstr "== ConcurrentLinkedQueue/Deque"
+
+#~ msgctxt "lecture.adoc:267"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:566"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:614"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:616"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:673"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:675"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:771"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:773"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:889"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:891"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:1028"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:1184"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:1186"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:1372"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:1374"
+#~ msgid "== ConcurrentSkipListMap"
+#~ msgstr "== ConcurrentSkipListMap"
+
+#~ msgctxt "lecture.adoc:1571"
+#~ msgid "--"
+#~ msgstr "--"
+
+#~ msgctxt "lecture.adoc:1575"
+#~ msgid "image::hydra2.jpg[{image-90-width}]"
+#~ msgstr "image::hydra2.jpg[{image-90-width}]"
+
+#~ msgctxt "lecture.adoc:1586"
+#~ msgid "== Executor Framework"
+#~ msgstr "== Executor Framework"
+
+#~ msgctxt "lecture.adoc:1782"
+#~ msgid "== Композиция CompletableFuture с действием"
+#~ msgstr "== CompletableFuture composition with action"
+
+#~ msgctxt "lecture.adoc:2041"
+#~ msgid "== Использование аннотаций"
+#~ msgstr "== Use of annotations"
 
 #~ msgctxt "./slides11/src/main/asciidoc/lecture.adoc:108"
 #~ msgid "== ConcurrentLinkedQueue/Deque"

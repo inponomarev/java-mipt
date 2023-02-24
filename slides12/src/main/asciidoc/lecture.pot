@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 14:05+0300\n"
+"POT-Creation-Date: 2023-02-24 21:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,25 +42,23 @@ msgid ""
 ":stem: latexmath"
 msgstr ""
 
-#: lecture.adoc:29
-msgid ""
-"//== Часть 1. Введение\n"
-":!figure-caption:"
+#: lecture.adoc:28
+msgid ":!figure-caption:"
 msgstr ""
 
-#: lecture.adoc:31
+#: lecture.adoc:30
 msgid "ponomarev@corchestra.ru"
 msgstr ""
 
-#: lecture.adoc:33
+#: lecture.adoc:32
 msgid "icon:twitter[size=lg] @inponomarev"
 msgstr ""
 
-#: lecture.adoc:35
+#: lecture.adoc:34
 msgid "== Массивы и другие аннотации"
 msgstr ""
 
-#: lecture.adoc:40
+#: lecture.adoc:39
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -68,46 +66,46 @@ msgid ""
 "@BugReport(..., reportedBy = {\"Harry\", \"Carl\"})"
 msgstr ""
 
-#: lecture.adoc:43
+#: lecture.adoc:42
 msgid ""
 "//То же самое, что {\"Harry\"}\n"
 "@BugReport(..., reportedBy = \"Harry\")"
 msgstr ""
 
-#: lecture.adoc:46
+#: lecture.adoc:45
 msgid ""
 "//Конструирование вложенных аннотаций\n"
 "@BugReport(..., ref = @Reference(id = \"12345\"))"
 msgstr ""
 
-#: lecture.adoc:50
+#: lecture.adoc:49
 msgid ""
 "//...Как видим, используя разрешённые типы,\n"
 "//можно задать сколь угодно сложную структуру данных\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:52
+#: lecture.adoc:51
 msgid ""
 "WARNING: Значение аннотации не может быть установлено в `null`. Не "
 "допускатся `null` даже в `default`-значениях. "
 msgstr ""
 
-#: lecture.adoc:54
+#: lecture.adoc:53
 msgid "== Где можно использовать аннотации"
 msgstr ""
 
-#: lecture.adoc:57
+#: lecture.adoc:56
 msgid ""
 "* В декларациях\n"
 "* При использовании типов"
 msgstr ""
 
-#: lecture.adoc:59
+#: lecture.adoc:58
 msgid "== Использование аннотаций в декларациях"
 msgstr ""
 
-#: lecture.adoc:69
+#: lecture.adoc:68
 msgid ""
 "* Packages\n"
 "* Classes (включая `enum`)\n"
@@ -120,11 +118,11 @@ msgid ""
 "* Type parameters"
 msgstr ""
 
-#: lecture.adoc:71
+#: lecture.adoc:70
 msgid "== Примеры использования аннотаций в декларациях"
 msgstr ""
 
-#: lecture.adoc:76
+#: lecture.adoc:75
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -132,13 +130,13 @@ msgid ""
 "public class User {"
 msgstr ""
 
-#: lecture.adoc:79
+#: lecture.adoc:78
 msgid ""
 "  @Caption(\"user\")\n"
 "  public User getUser(@Param(\"id\") String userId) {"
 msgstr ""
 
-#: lecture.adoc:84
+#: lecture.adoc:83
 msgid ""
 "    @SuppressWarnings(\"unchecked\")\n"
 "    List<User> users = ....\n"
@@ -146,7 +144,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:90
+#: lecture.adoc:89
 msgid ""
 "class Cache<@Immutable V> {\n"
 " ...\n"
@@ -154,11 +152,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:93
+#: lecture.adoc:92
 msgid "== Аннотирование пакетов -- в package-info.java"
 msgstr ""
 
-#: lecture.adoc:101
+#: lecture.adoc:100
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -169,11 +167,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:103
+#: lecture.adoc:102
 msgid "== Аннотирование использования типов"
 msgstr ""
 
-#: lecture.adoc:108
+#: lecture.adoc:107
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -181,7 +179,7 @@ msgid ""
 "User getUser(@NonNull String userId) { ... }"
 msgstr ""
 
-#: lecture.adoc:113
+#: lecture.adoc:112
 msgid ""
 "//Аннотированные использования типа: каждая строчка не `null`\n"
 "List<@NonNull String> list = ...\n"
@@ -189,30 +187,30 @@ msgid ""
 "class Warning extends @Localized Message { ... }"
 msgstr ""
 
-#: lecture.adoc:115
+#: lecture.adoc:114
 msgid "List<@Localized ? extends Message> = ..."
 msgstr ""
 
-#: lecture.adoc:117
+#: lecture.adoc:116
 msgid "(@Localized String) text"
 msgstr ""
 
-#: lecture.adoc:119
+#: lecture.adoc:118
 msgid "if (text instanceof @Localized String) ..."
 msgstr ""
 
-#: lecture.adoc:123
+#: lecture.adoc:122
 msgid ""
 "//и т. д., список примеров не полный. \n"
 "// Аннотации могут быть почти везде!\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:126
+#: lecture.adoc:125
 msgid "== Java8+: аннотирование использования типа в `this`"
 msgstr ""
 
-#: lecture.adoc:134
+#: lecture.adoc:133
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -223,7 +221,7 @@ msgid ""
 "  }"
 msgstr ""
 
-#: lecture.adoc:143
+#: lecture.adoc:142
 msgid ""
 "  class Bar {\n"
 "    //аннотируется использование типа!\n"
@@ -235,11 +233,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:145
+#: lecture.adoc:144
 msgid "== Знакомые стандартные (встроенные в язык) аннотации "
 msgstr ""
 
-#: lecture.adoc:162
+#: lecture.adoc:161
 msgid ""
 "[cols=\"20a,18a,62a\"]\n"
 "|===\n"
@@ -263,11 +261,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:164
+#: lecture.adoc:163
 msgid "== Стандартные (встроенные в язык) аннотации "
 msgstr ""
 
-#: lecture.adoc:181
+#: lecture.adoc:180
 msgid ""
 "[cols=\"20a,20a,60a\"]\n"
 "|===\n"
@@ -290,11 +288,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:183
+#: lecture.adoc:182
 msgid "== Аннотации управляются аннотациями"
 msgstr ""
 
-#: lecture.adoc:188
+#: lecture.adoc:187
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -302,7 +300,7 @@ msgid ""
 "@Target({ElementType.TYPE, ElementType.METHOD})"
 msgstr ""
 
-#: lecture.adoc:195
+#: lecture.adoc:194
 msgid ""
 "//На каком уровне сохраняются эти аннотации\n"
 "@Retention(RetentionPolicy.Source)\n"
@@ -312,11 +310,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:197
+#: lecture.adoc:196
 msgid "== Target"
 msgstr ""
 
-#: lecture.adoc:212
+#: lecture.adoc:211
 msgid ""
 "[cols=\"25a,75a\"]\n"
 "|===\n"
@@ -335,11 +333,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:215
+#: lecture.adoc:214
 msgid "== RetentionPolicy"
 msgstr ""
 
-#: lecture.adoc:227
+#: lecture.adoc:226
 msgid ""
 "[graphviz,\"retention.png\"]\n"
 "----\n"
@@ -355,7 +353,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:242
+#: lecture.adoc:241
 msgid ""
 "[cols=\"25a,50a,25a\"]\n"
 "|===\n"
@@ -374,7 +372,7 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:250
+#: lecture.adoc:249
 msgid ""
 "== Другие мета-аннотации\n"
 "[cols=\"25a,75a\"]\n"
@@ -388,11 +386,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:252
+#: lecture.adoc:251
 msgid "== Рефлексия (Reflection API)"
 msgstr ""
 
-#: lecture.adoc:257
+#: lecture.adoc:256
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -400,27 +398,27 @@ msgid ""
 "Employee m = ... //присваиваем Manager"
 msgstr ""
 
-#: lecture.adoc:261
+#: lecture.adoc:260
 msgid ""
 "//Получаем информацию в Runtime\n"
 "Class<? extends Employee> ce = e.getClass();\n"
 "Class<? extends Employee> cm = m.getClass();"
 msgstr ""
 
-#: lecture.adoc:264
+#: lecture.adoc:263
 msgid ""
 "System.out.printf(\"%s, %s%n\", ce.getName(), cm.getName());\n"
 "//edu.phystech.hello.Employee, edu.phystech.hello.Manager"
 msgstr ""
 
-#: lecture.adoc:268
+#: lecture.adoc:267
 msgid ""
 "System.out.printf(\"%s, %s%n\", ce.getSimpleName(), cm.getSimpleName());\n"
 "//Employee, Manager\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:271
+#: lecture.adoc:270
 msgid ""
 "== Класс `Class<T>` параметризован\n"
 "Документация: _\"The actual result type of `getClass()` is `Class<? extends "
@@ -428,38 +426,38 @@ msgid ""
 "which `getClass` is called.\"_"
 msgstr ""
 
-#: lecture.adoc:275
+#: lecture.adoc:274
 msgid ""
 "[source,java]\n"
 "----\n"
 "Employee e = ...; "
 msgstr ""
 
-#: lecture.adoc:278
+#: lecture.adoc:277
 msgid ""
 "//No cast needed!\n"
 "Class<? extends Employee> c = e.getClass();"
 msgstr ""
 
-#: lecture.adoc:282
+#: lecture.adoc:281
 msgid ""
 "//No cast needed!\n"
 "Employee newEmployee =\n"
 "  ce.getDeclaredConstructor().newInstance();"
 msgstr ""
 
-#: lecture.adoc:286
+#: lecture.adoc:285
 msgid ""
 "//Compile-time error!\n"
 "Class<? extends Number> cn = e.getClass();\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:288
+#: lecture.adoc:287
 msgid "== Class literals"
 msgstr ""
 
-#: lecture.adoc:291
+#: lecture.adoc:290
 msgid ""
 "* Литералы -- строки в коде, порождающие объекты или значения. Например, `\""
 "foo\"` -- литерал, порождающий объект `String` с содержимым \"foo\".\n"
@@ -467,11 +465,11 @@ msgid ""
 "типом `Class<...>`."
 msgstr ""
 
-#: lecture.adoc:293
+#: lecture.adoc:292
 msgid "== Class literals -- примеры"
 msgstr ""
 
-#: lecture.adoc:299
+#: lecture.adoc:298
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -480,31 +478,31 @@ msgid ""
 "Class<Integer> c2 = Integer.class;"
 msgstr ""
 
-#: lecture.adoc:303
+#: lecture.adoc:302
 msgid ""
 "//Да, так можно!! \n"
 "Class<Integer> c3 = int.class;\n"
 "//А ещё double.class, boolean.class и т. д."
 msgstr ""
 
-#: lecture.adoc:306
+#: lecture.adoc:305
 msgid ""
 "//При этом c2 и с3 -- существенно РАЗНЫЕ объекты \n"
 "//(например, c3.getConstructors() возвращает пустой массив)."
 msgstr ""
 
-#: lecture.adoc:310
+#: lecture.adoc:309
 msgid ""
 "//Тут ничего неожиданного нет, массивами можно параметризовать:\n"
 "Class<int[]> c4 = int[].class;\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:312
+#: lecture.adoc:311
 msgid "== NB: странные имена классов-массивов"
 msgstr ""
 
-#: lecture.adoc:327
+#: lecture.adoc:326
 msgid ""
 "При чтении логов ошибок можно встретиться с таким:\n"
 "[width=\"50%\"]\n"
@@ -522,7 +520,7 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:335
+#: lecture.adoc:334
 msgid ""
 "== Динамический способ получения мета-класса\n"
 "[source,java]\n"
@@ -533,18 +531,18 @@ msgid ""
 "  Class.forName(\"edu.phystech.hello.Manager\");"
 msgstr ""
 
-#: lecture.adoc:337
+#: lecture.adoc:336
 msgid "//Есть две формы: "
 msgstr ""
 
-#: lecture.adoc:341
+#: lecture.adoc:340
 msgid ""
 "//загрузчик вызвавшего метода, статическая инициализация\n"
 "static Class<?> forName(String className)\n"
 "                         throws ClassNotFoundException"
 msgstr ""
 
-#: lecture.adoc:346
+#: lecture.adoc:345
 msgid ""
 "//кастомный загрузчик, статическая инициализация по запросу\n"
 "static Class<?> forName(String name, boolean initialize,\n"
@@ -552,11 +550,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:348
+#: lecture.adoc:347
 msgid "== Загрузка ресурсных файлов"
 msgstr ""
 
-#: lecture.adoc:354
+#: lecture.adoc:353
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -565,34 +563,34 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:356
+#: lecture.adoc:355
 msgid "image::resource.png[{image-100-width}]"
 msgstr ""
 
-#: lecture.adoc:358
+#: lecture.adoc:357
 msgid "== Анализ возможностей класса и взаимодействие с элементами класса"
 msgstr ""
 
-#: lecture.adoc:362
+#: lecture.adoc:361
 msgid ""
 "[plantuml, metaclass, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:364
-msgctxt "lecture.adoc:364"
+#: lecture.adoc:363
+msgctxt "lecture.adoc:363"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: lecture.adoc:368
+#: lecture.adoc:367
 msgid ""
 "class Class<T> {\n"
 "  Class<? super T> getSuperclass()\n"
 "   Class<?>[] getInterfaces()"
 msgstr ""
 
-#: lecture.adoc:378
+#: lecture.adoc:377
 msgid ""
 "  Field[] getDeclaredFields()\n"
 "  Field[] getFields()\n"
@@ -605,7 +603,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:384
+#: lecture.adoc:383
 msgid ""
 "abstract class Executable {\n"
 "Class<?>[] getParameterTypes()\n"
@@ -613,7 +611,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:389
+#: lecture.adoc:388
 msgid ""
 "interface Member {\n"
 "  String getName();\n"
@@ -621,54 +619,54 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:391
+#: lecture.adoc:390
 msgid "Member <|. Executable "
 msgstr ""
 
-#: lecture.adoc:395
+#: lecture.adoc:394
 msgid ""
 "class Constructor {\n"
 "T newInstance(Object ... initargs)\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:398
+#: lecture.adoc:397
 msgid ""
 "class Method {\n"
 "Class<?> getReturnType()"
 msgstr ""
 
-#: lecture.adoc:401
+#: lecture.adoc:400
 msgid ""
 "Object invoke(Object obj, Object... args)\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:404
+#: lecture.adoc:403
 msgid ""
 "class Field {\n"
 "  Class<?> getType()"
 msgstr ""
 
-#: lecture.adoc:407
+#: lecture.adoc:406
 msgid ""
 "  Object get(Object obj)\n"
 "  void set(Object obj, Object value)"
 msgstr ""
 
-#: lecture.adoc:409
-msgctxt "lecture.adoc:409"
+#: lecture.adoc:408
+msgctxt "lecture.adoc:408"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:413
+#: lecture.adoc:412
 msgid ""
 "Executable <|-- Constructor\n"
 "Executable <|-- Method\n"
 "Member     <|. Field"
 msgstr ""
 
-#: lecture.adoc:418
+#: lecture.adoc:417
 msgid ""
 "Class .. Constructor\n"
 "Class .. Method\n"
@@ -676,41 +674,41 @@ msgid ""
 "Class .. Class"
 msgstr ""
 
-#: lecture.adoc:421
-msgctxt "lecture.adoc:421"
+#: lecture.adoc:420
+msgctxt "lecture.adoc:420"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:423
+#: lecture.adoc:422
 msgid "== Получение членов класса"
 msgstr ""
 
-#: lecture.adoc:426
+#: lecture.adoc:425
 msgid ""
 "* `getXXX` -- все публичные элементы (поля, конструкторы, методы)\n"
 "* `getDeclaredXXX` -- все элементы, задекларированные в данном классе (без "
 "унаследованных)"
 msgstr ""
 
-#: lecture.adoc:429
+#: lecture.adoc:428
 msgid "== Доступ к элементам"
 msgstr ""
 
-#: lecture.adoc:433
+#: lecture.adoc:432
 msgid ""
 "[plantuml, accessible, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:435
-msgctxt "lecture.adoc:435"
+#: lecture.adoc:434
+msgctxt "lecture.adoc:434"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: lecture.adoc:441
+#: lecture.adoc:440
 msgid ""
 "class AccessibleObject {\n"
 "boolean isAccessible()\n"
@@ -718,22 +716,22 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:444
+#: lecture.adoc:443
 msgid ""
 "abstract class Executable {\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:446
+#: lecture.adoc:445
 msgid "class Field {"
 msgstr ""
 
-#: lecture.adoc:448
-msgctxt "lecture.adoc:448"
+#: lecture.adoc:447
+msgctxt "lecture.adoc:447"
 msgid "}"
 msgstr ""
 
-#: lecture.adoc:453
+#: lecture.adoc:452
 msgid ""
 "AccessibleObject <|-- Executable\n"
 "Executable <|-- Constructor\n"
@@ -741,37 +739,37 @@ msgid ""
 "AccessibleObject     <|-- Field"
 msgstr ""
 
-#: lecture.adoc:457
-msgctxt "lecture.adoc:457"
+#: lecture.adoc:456
+msgctxt "lecture.adoc:456"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:460
+#: lecture.adoc:459
 msgid ""
 "* По умолчанию доступ определяется уровнями видимости (например, приватные "
 "элементы недоступны)\n"
 "* Можно открыть через `setAccessible(true)`"
 msgstr ""
 
-#: lecture.adoc:463
+#: lecture.adoc:462
 msgid "== Анализ аннотаций в runtime"
 msgstr ""
 
-#: lecture.adoc:467
+#: lecture.adoc:466
 msgid ""
 "[plantuml, annotated, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:469
-msgctxt "lecture.adoc:469"
+#: lecture.adoc:468
+msgctxt "lecture.adoc:468"
 msgid "skinparam dpi 150 "
 msgstr ""
 
-#: lecture.adoc:477
+#: lecture.adoc:476
 msgid ""
 "interface AnnotatedElement {\n"
 "boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)\n"
@@ -782,49 +780,49 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:481
+#: lecture.adoc:480
 msgid ""
 "abstract class Executable {\n"
 "  {abstract} Annotation[][] getParameterAnnotations()\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:485
+#: lecture.adoc:484
 msgid ""
 "AnnotatedElement <|.. AccessibleObject\n"
 "AnnotatedElement <|..Class\n"
 "AccessibleObject <|-- Executable"
 msgstr ""
 
-#: lecture.adoc:488
-msgctxt "lecture.adoc:488"
+#: lecture.adoc:487
+msgctxt "lecture.adoc:487"
 msgid ""
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:490
+#: lecture.adoc:489
 msgid "== Рефлексия и Generics"
 msgstr ""
 
-#: lecture.adoc:492
+#: lecture.adoc:491
 msgid ""
 "* В runtime по объекту нельзя определить параметры типов (например, отличить "
 "`List<Employee>` от `List<Integer>`)."
 msgstr ""
 
-#: lecture.adoc:494
+#: lecture.adoc:493
 msgid ""
 "* Анализируя параметризованнные классы (например, `List<T>`) или методы ("
 "например, `<T extends Comparable<? super T>> T min (T[] a)`), с помощью "
 "рефлексии можно узнать всю информацию про его параметры типов."
 msgstr ""
 
-#: lecture.adoc:496
+#: lecture.adoc:495
 msgid "== ReflectionUtils"
 msgstr ""
 
-#: lecture.adoc:500
+#: lecture.adoc:499
 msgid ""
 "* Reflection API довольно старое, использует массивы (неудобно в эпоху "
 "Streams & Collections).\n"
@@ -834,11 +832,11 @@ msgid ""
 "(https://github.com/ronmamo/reflections)."
 msgstr ""
 
-#: lecture.adoc:502
+#: lecture.adoc:501
 msgid "== Класс с аннотированными полями"
 msgstr ""
 
-#: lecture.adoc:514
+#: lecture.adoc:513
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -853,15 +851,15 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:516
+#: lecture.adoc:515
 msgid "----"
 msgstr ""
 
-#: lecture.adoc:518
+#: lecture.adoc:517
 msgid "== JsonSerializer: определение полей, помеченных @Published"
 msgstr ""
 
-#: lecture.adoc:523
+#: lecture.adoc:522
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -869,7 +867,7 @@ msgid ""
 "  private final Set<Field> publishedFields;"
 msgstr ""
 
-#: lecture.adoc:531
+#: lecture.adoc:530
 msgid ""
 "  public JsonSerializer(Class<T> serializedClass) {\n"
 "    publishedFields = ReflectionUtils\n"
@@ -880,11 +878,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:533
+#: lecture.adoc:532
 msgid "== JsonSerializer: сериализация объекта"
 msgstr ""
 
-#: lecture.adoc:553
+#: lecture.adoc:552
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -907,11 +905,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:555
+#: lecture.adoc:554
 msgid "== Пример с Controller"
 msgstr ""
 
-#: lecture.adoc:560
+#: lecture.adoc:559
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -919,7 +917,7 @@ msgid ""
 "    private final Service service;"
 msgstr ""
 
-#: lecture.adoc:575
+#: lecture.adoc:574
 msgid ""
 "    @Command(\"foo\")\n"
 "    void doSomething() {\n"
@@ -937,11 +935,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:577
+#: lecture.adoc:576
 msgid "== CommandDispatcher"
 msgstr ""
 
-#: lecture.adoc:586
+#: lecture.adoc:585
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -953,11 +951,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:588
+#: lecture.adoc:587
 msgid "== CommandDispatcher: инициализация"
 msgstr ""
 
-#: lecture.adoc:609
+#: lecture.adoc:608
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -981,11 +979,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:611
+#: lecture.adoc:610
 msgid "== CommandDispatcher: выполнение команды"
 msgstr ""
 
-#: lecture.adoc:623
+#: lecture.adoc:622
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1000,11 +998,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:626
+#: lecture.adoc:625
 msgid "== Наш учебный пример про доклады и спикеров"
 msgstr ""
 
-#: lecture.adoc:637
+#: lecture.adoc:636
 msgid ""
 "[plantuml, objects, png]\n"
 "----\n"
@@ -1018,7 +1016,7 @@ msgid ""
 "object Controller"
 msgstr ""
 
-#: lecture.adoc:647
+#: lecture.adoc:646
 msgid ""
 "JdbcTemplate -->ConnectionPool\n"
 "SpeakerDao --> JdbcTemplate\n"
@@ -1031,24 +1029,24 @@ msgid ""
 "----   "
 msgstr ""
 
-#: lecture.adoc:650
+#: lecture.adoc:649
 msgid ""
 "[%notitle]\n"
 "== Wiring"
 msgstr ""
 
-#: lecture.adoc:654
+#: lecture.adoc:653
 msgid ""
 "//https://i.pinimg.com/originals/ce/9b/0d/ce9b0d180e893a8c2dedf239919b9721."
 "jpg\n"
 "image::wiring.jpg[]"
 msgstr ""
 
-#: lecture.adoc:657
+#: lecture.adoc:656
 msgid "== Реальная «слоистая» архитектура серверного приложения"
 msgstr ""
 
-#: lecture.adoc:664
+#: lecture.adoc:663
 msgid ""
 "[plantuml, layers, png]\n"
 "----\n"
@@ -1058,21 +1056,21 @@ msgid ""
 "object Controller2"
 msgstr ""
 
-#: lecture.adoc:668
+#: lecture.adoc:667
 msgid ""
 "object Service1\n"
 "object Service2\n"
 "object Service3"
 msgstr ""
 
-#: lecture.adoc:672
+#: lecture.adoc:671
 msgid ""
 "object Dao1\n"
 "object Dao2\n"
 "object Dao3"
 msgstr ""
 
-#: lecture.adoc:683
+#: lecture.adoc:682
 msgid ""
 "Controller1 --> Service1\n"
 "Controller1 --> Service2\n"
@@ -1086,7 +1084,7 @@ msgid ""
 "end note"
 msgstr ""
 
-#: lecture.adoc:689
+#: lecture.adoc:688
 msgid ""
 "Service1 --> Dao1\n"
 "Service2 --> Dao1\n"
@@ -1095,30 +1093,30 @@ msgid ""
 "Service1 --> Dao2"
 msgstr ""
 
-#: lecture.adoc:692
+#: lecture.adoc:691
 msgid ""
 "@enduml\n"
 "----    "
 msgstr ""
 
-#: lecture.adoc:695
+#: lecture.adoc:694
 msgid ""
 "[%notitle]\n"
 "== Coupling & Cohesion"
 msgstr ""
 
-#: lecture.adoc:699
+#: lecture.adoc:698
 msgid ""
 "//https://i.redd.it/yb17mu4cdn8z.jpg\n"
 "image::wiring-coupling.jpg[{image-50-width}]"
 msgstr ""
 
-#: lecture.adoc:702
+#: lecture.adoc:701
 msgid ""
 "== Попытка №1, наивная. «Пусть объекты сами создают себе то, что им надо»"
 msgstr ""
 
-#: lecture.adoc:710
+#: lecture.adoc:709
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1129,7 +1127,7 @@ msgid ""
 "}                             "
 msgstr ""
 
-#: lecture.adoc:715
+#: lecture.adoc:714
 msgid ""
 "public class SpeakerDao {\n"
 "  private DataSource ds = new DataSource(); \n"
@@ -1137,7 +1135,7 @@ msgid ""
 "}                             "
 msgstr ""
 
-#: lecture.adoc:723
+#: lecture.adoc:722
 msgid ""
 "public class TalkDao {\n"
 "  private DataSource ds = ??? \n"
@@ -1148,11 +1146,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:725
+#: lecture.adoc:724
 msgid "== Попытка №2. Выложим ссылку на единичный объект в статическое поле"
 msgstr ""
 
-#: lecture.adoc:737
+#: lecture.adoc:736
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1167,18 +1165,18 @@ msgid ""
 "  private ConnectionPool(...){"
 msgstr ""
 
-#: lecture.adoc:741
+#: lecture.adoc:740
 msgid ""
 "  }\n"
 "}\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:743
+#: lecture.adoc:742
 msgid "== Попытка №2. (продолжение)"
 msgstr ""
 
-#: lecture.adoc:751
+#: lecture.adoc:750
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1189,11 +1187,11 @@ msgid ""
 "  }"
 msgstr ""
 
-#: lecture.adoc:753
+#: lecture.adoc:752
 msgid "  private ConnectionPool pool = ConnectionPool.getInstance();"
 msgstr ""
 
-#: lecture.adoc:759
+#: lecture.adoc:758
 msgid ""
 "  private DataSource() {\n"
 "    ...\n"
@@ -1202,11 +1200,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:761
+#: lecture.adoc:760
 msgid "== Мы только что изобрели дизайн-паттерн «Одиночка»!"
 msgstr ""
 
-#: lecture.adoc:766
+#: lecture.adoc:765
 msgid ""
 "[cols=\"30a,70a\"]\n"
 "|===\n"
@@ -1214,7 +1212,7 @@ msgid ""
 "|"
 msgstr ""
 
-#: lecture.adoc:772
+#: lecture.adoc:771
 msgid ""
 "* *Erich Gamma et al.*, Design Patterns: Elements of Reusable Object-"
 "Oriented Software\n"
@@ -1224,11 +1222,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:774
+#: lecture.adoc:773
 msgid "== Singleton Pattern"
 msgstr ""
 
-#: lecture.adoc:779
+#: lecture.adoc:778
 msgid ""
 "* Прямое создание невозможно (инксапсулировано в приватном конструкторе).\n"
 "* Доступ к единственному экземпляру только через статический метод "
@@ -1237,11 +1235,11 @@ msgid ""
 "* Но сначала отвлечёмся и попробуем правильно «сварить» синглетон."
 msgstr ""
 
-#: lecture.adoc:781
+#: lecture.adoc:780
 msgid "== Синглетоноварение: подход №1"
 msgstr ""
 
-#: lecture.adoc:787
+#: lecture.adoc:786
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1250,14 +1248,14 @@ msgid ""
 "  private static final Singleton instance = new Singleton();"
 msgstr ""
 
-#: lecture.adoc:791
+#: lecture.adoc:790
 msgid ""
 "  public static Singleton getInstance() {\n"
 "    return instance;\n"
 "  }"
 msgstr ""
 
-#: lecture.adoc:797
+#: lecture.adoc:796
 msgid ""
 "  //Лишаем возможности создать экземпляр объекта \"извне\"\n"
 "  private Singleton(){\n"
@@ -1266,18 +1264,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:800
+#: lecture.adoc:799
 msgid ""
 "[.fragment]\n"
 "\"Тяжёлый\" объект создаётся всегда, даже если `getInstance` не будет вызван?"
 msgstr ""
 
-#: lecture.adoc:802
+#: lecture.adoc:801
 msgid "== Подход №2"
 msgstr ""
 
-#: lecture.adoc:807
-msgctxt "lecture.adoc:807"
+#: lecture.adoc:806
+msgctxt "lecture.adoc:806"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1285,7 +1283,7 @@ msgid ""
 "    private static Singleton instance;"
 msgstr ""
 
-#: lecture.adoc:820
+#: lecture.adoc:819
 msgid ""
 "    public static Singleton getInstance() {\n"
 "        if (instance == null) {\n"
@@ -1301,11 +1299,11 @@ msgid ""
 "Что с многопоточным доступом к переменной `instance`?"
 msgstr ""
 
-#: lecture.adoc:822
+#: lecture.adoc:821
 msgid "== Подход №3 ?!"
 msgstr ""
 
-#: lecture.adoc:827
+#: lecture.adoc:826
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1313,7 +1311,7 @@ msgid ""
 "    private static volatile Singleton instance;"
 msgstr ""
 
-#: lecture.adoc:840
+#: lecture.adoc:839
 msgid ""
 "    public static Singleton getInstance() {\n"
 "        if (instance == null) {\n"
@@ -1329,12 +1327,12 @@ msgid ""
 "Теперь нет гарантии, что экземпляр создаётся только один раз!"
 msgstr ""
 
-#: lecture.adoc:843
+#: lecture.adoc:842
 msgid "== Подход №4 ?! ?!"
 msgstr ""
 
-#: lecture.adoc:848
-msgctxt "lecture.adoc:848"
+#: lecture.adoc:847
+msgctxt "lecture.adoc:847"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1342,7 +1340,7 @@ msgid ""
 "    private static Singleton instance;"
 msgstr ""
 
-#: lecture.adoc:861
+#: lecture.adoc:860
 msgid ""
 "    public static synchronized Singleton getInstance() {\n"
 "        if (instance == null) {\n"
@@ -1359,11 +1357,11 @@ msgid ""
 "переменной instance?  "
 msgstr ""
 
-#: lecture.adoc:863
+#: lecture.adoc:862
 msgid "== Подход №5 ?! ?! ?!"
 msgstr ""
 
-#: lecture.adoc:883
+#: lecture.adoc:882
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1388,11 +1386,11 @@ msgid ""
 "конструктор `Singleton` заинлайнен)."
 msgstr ""
 
-#: lecture.adoc:885
+#: lecture.adoc:884
 msgid "== Подход №6 . . ."
 msgstr ""
 
-#: lecture.adoc:905
+#: lecture.adoc:904
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1416,14 +1414,14 @@ msgid ""
 "`volatile`-переменную."
 msgstr ""
 
-#: lecture.adoc:909
+#: lecture.adoc:908
 msgid ""
 "== Подход №7. Код из книги \"Effective Java, 3rd edition\"\n"
 "Joshua Bloch: \"On my machine, this method is about 1.4 times as fast as the "
 "obvious version without a local variable\". [EJ, 3rd ed., pp. 334-335]"
 msgstr ""
 
-#: lecture.adoc:927
+#: lecture.adoc:926
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1444,17 +1442,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:929
+#: lecture.adoc:928
 msgid "== Подход №7. Код из книги \"Effective Java, 3rd edition\""
 msgstr ""
 
-#: lecture.adoc:932
+#: lecture.adoc:931
 msgid ""
 "Вы уже видите баг в этом коде? +\n"
 "{nbsp}"
 msgstr ""
 
-#: lecture.adoc:952
+#: lecture.adoc:951
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1477,27 +1475,27 @@ msgid ""
 "Если при входе в `synchronized`-блок `instance != null`, на выходе -- `null`."
 msgstr ""
 
-#: lecture.adoc:955
+#: lecture.adoc:954
 msgid ""
 "[%notitle]\n"
 "== Как так получилось"
 msgstr ""
 
-#: lecture.adoc:957
+#: lecture.adoc:956
 msgid "image::bloch.png[{image-100-width}]"
 msgstr ""
 
-#: lecture.adoc:960
+#: lecture.adoc:959
 msgid ""
 "[%notitle]\n"
 "== WTF?"
 msgstr ""
 
-#: lecture.adoc:962
+#: lecture.adoc:961
 msgid "image::scream.jpg[canvas, size=cover]"
 msgstr ""
 
-#: lecture.adoc:974
+#: lecture.adoc:973
 msgid ""
 "== Единственно Верный Ленивый Потокобезопасный Синглетон \n"
 "[source,java]\n"
@@ -1511,7 +1509,7 @@ msgid ""
 "            return result;"
 msgstr ""
 
-#: lecture.adoc:984
+#: lecture.adoc:983
 msgid ""
 "        synchronized (lock) {\n"
 "            if (instance == null)\n"
@@ -1524,17 +1522,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:987
+#: lecture.adoc:986
 msgid ""
 "[.fragment]\n"
 "Или нет?"
 msgstr ""
 
-#: lecture.adoc:989
+#: lecture.adoc:988
 msgid "== Подход №8"
 msgstr ""
 
-#: lecture.adoc:997
+#: lecture.adoc:996
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1545,7 +1543,7 @@ msgid ""
 "    }"
 msgstr ""
 
-#: lecture.adoc:1005
+#: lecture.adoc:1004
 msgid ""
 "    public static Singleton getInstance() {\n"
 "        return SingletonHolder.instance;\n"

@@ -25,7 +25,6 @@ include::_doc_general_attributes.adoc[]
 :zsp: &#8203;
 
 
-//== Часть 1. Введение
 :!figure-caption:
 
 ponomarev@corchestra.ru
@@ -785,13 +784,13 @@ public class Main {
 * Плюсы: удобно. 
 * Минусы: классы должны быть проаннторированы как `@Component`, `@Service` и т. п., что не всегда возможно для сторонних библиотек.
 
-== `@Configuration` сlass
+== `@Configuration` class
 
 * Класс конфигурации должен быть либо явно указан через конструктор `AnnotationConfigApplicationContext`, либо доступен сканирование пакетов (тогда нужно аннотировать класс как `@Configuration`). 
 
 * Чтобы прописывать в классе бины, надо пользоваться `@Bean`.
 
-== `@Configuration` сlass -- пример
+== `@Configuration` class -- пример
 
 [source,java]
 ----
