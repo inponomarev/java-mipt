@@ -727,7 +727,7 @@ public interface Prism
 
 [source,java]
 ----
-puplic class Parallelepiped implements Prism {
+public class Parallelepiped implements Prism {
     private double a;
     private double b;
     private double h;
