@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: slides 04\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-01 00:17+0100\n"
-"PO-Revision-Date: 2024-02-01 00:27+0000\n"
+"PO-Revision-Date: 2024-02-01 16:14+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -794,7 +794,7 @@ msgstr "----"
 
 #: lecture.adoc:339
 msgid "...*но так делать не надо!* "
-msgstr "...*but you shoud not do this!* "
+msgstr "...*but you should not do this!* "
 
 #: lecture.adoc:341
 msgid "== Если не понятно, что делать с исключением "
