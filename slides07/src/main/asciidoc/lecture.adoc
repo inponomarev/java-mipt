@@ -114,39 +114,60 @@ NavigableMap <|.. ConcurrentSkipListMap
 
 skinparam dpi 200
 
+left to right direction
+
 interface Iterable {
+   Iterator<T> iterator()
 }
-
 interface Collection {
+   int size()
+   boolean isEmpty()
+   boolean contains(Object o)
+   <T> T[] toArray(T[] a)
+   boolean add(E e)
+   boolean remove(Object o)
 }
-
 interface List {
-}
+   E get(int index)
+   E set(int index, E element)
+   void add(int index, E element)
+   E remove(int index)
 
-interface Set {
 }
-
+interface Set
 interface SortedSet {
-
+   subSet(E fromElement, E toElement)
+   headSet(E toElement)
+   tailSet(E fromElement)
+   first()
+   last()
 }
-
 interface NavigableSet {
-
+   E lower(E e)
+   E floor(E e)
+   E ceiling(E e)
+   E higher(E e)
 }
-
 interface Queue {
 
 }
 
 interface Deque {
-
+  void addFirst/Last(E e)
+  boolean offerFirst/Last(E e)
+  E removeFirst/Last()
+  E pollFirst/Last()
+  E getFirst/Last()
+  E peekFirst/Last()
+  void push(E e) = addFirst
+  E pop() = removeFirst
 }
 
-Iterable <|. Collection
+Iterable <|.. Collection
 Collection <|.. List
 Collection <|.. Set
 Set <|.. SortedSet
-SortedSet <|. NavigableSet
+SortedSet <|.. NavigableSet
 Collection <|.. Queue
 Queue <|.. Deque
 @enduml

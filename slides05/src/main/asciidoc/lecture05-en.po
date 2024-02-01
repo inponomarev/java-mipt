@@ -1,9 +1,10 @@
+#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 05\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-21 01:01+0300\n"
-"PO-Revision-Date: 2023-02-21 01:02+0200\n"
+"POT-Creation-Date: 2024-02-01 00:17+0100\n"
+"PO-Revision-Date: 2024-02-01 00:23+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -1249,13 +1250,13 @@ msgid ""
 "[source,java]\n"
 "----\n"
 "Path path = Paths.get(\"path/to/file.txt\");\n"
-"List<String> lines = new List<String>();\n"
+"List<String> lines = new ArrayList<>();\n"
 "lines.add(...)"
 msgstr ""
 "[source,java]\n"
 "----\n"
 "Path path = Paths.get(\"path/to/file.txt\");\n"
-"List<String> lines = new List<String>();\n"
+"List<String> lines = new ArrayList<>();\n"
 "lines.add(...)"
 
 #: lecture.adoc:558
@@ -1293,7 +1294,7 @@ msgstr ""
 "----"
 
 #: lecture.adoc:572
-msgctxt "lecture.adoc:572"
+msgctxt "lecture.adoc:572lecture.adoc:572"
 msgid "== Работа с файловой системой"
 msgstr "== Working with the file system"
 

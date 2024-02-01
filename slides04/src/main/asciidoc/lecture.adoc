@@ -93,25 +93,27 @@ s.getAbbreviation(); // вернёт S, M, L или XL
 ----
 @startuml
 
-skinparam dpi 150 
+skinparam dpi 150
 
 class Throwable {
   + getMessage(): String
   + getCause(): Throwable
+  + initCause(): Throwable
   + getStackTrace(): StackTraceElement[]
 }
+
+class Error
+note bottom: For system use only
+
 
 Throwable <|-- Error
 Throwable <|-- Exception
 Exception <|-- RuntimeException
 
 
-RuntimeException <|-- ClassCastException
-RuntimeException <|-- IndexOutOfBoundsException
+RuntimeException <|-- "<Any unchecked exception>"
 
-Exception <|-- IOException
-
-
+Exception <|-- "<Any checked exception>"
 @enduml
 ----
 

@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 19:42+0300\n"
+"POT-Creation-Date: 2024-02-01 00:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.2.5\n"
+"X-Generator: Translate Toolkit 3.6.0\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -173,47 +173,48 @@ msgid ""
 msgstr ""
 
 #: lecture.adoc:97
-msgid "skinparam dpi 150 "
+msgid "skinparam dpi 150"
 msgstr ""
 
-#: lecture.adoc:103
+#: lecture.adoc:104
 msgid ""
 "class Throwable {\n"
 "  + getMessage(): String\n"
 "  + getCause(): Throwable\n"
+"  + initCause(): Throwable\n"
 "  + getStackTrace(): StackTraceElement[]\n"
 "}"
 msgstr ""
 
 #: lecture.adoc:107
 msgid ""
+"class Error\n"
+"note bottom: For system use only"
+msgstr ""
+
+#: lecture.adoc:112
+msgid ""
 "Throwable <|-- Error\n"
 "Throwable <|-- Exception\n"
 "Exception <|-- RuntimeException"
 msgstr ""
 
-#: lecture.adoc:111
-msgid ""
-"RuntimeException <|-- ClassCastException\n"
-"RuntimeException <|-- IndexOutOfBoundsException"
+#: lecture.adoc:115
+msgid "RuntimeException <|-- \"<Any unchecked exception>\""
 msgstr ""
 
-#: lecture.adoc:113
-msgctxt "lecture.adoc:113"
-msgid "Exception <|-- IOException"
-msgstr ""
-
-#: lecture.adoc:117
+#: lecture.adoc:119
 msgid ""
+"Exception <|-- \"<Any checked exception>\"\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:120
+#: lecture.adoc:122
 msgid "== Что делаем?"
 msgstr ""
 
-#: lecture.adoc:124
+#: lecture.adoc:126
 msgid ""
 "* `Error` и наследники -- не обрабатываем (что-то катастрофическое "
 "случилось).\n"
@@ -222,11 +223,11 @@ msgid ""
 "* Checked exceptions -- их обрабатываем."
 msgstr ""
 
-#: lecture.adoc:126
+#: lecture.adoc:128
 msgid "== Декларирование checked-исключений"
 msgstr ""
 
-#: lecture.adoc:133
+#: lecture.adoc:135
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -236,7 +237,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:148
+#: lecture.adoc:150
 msgid ""
 "== Декларирование более чем одного исключения\n"
 "[source,java]\n"
@@ -254,12 +255,12 @@ msgid ""
 "* Правда жизни: вам поможет IDE"
 msgstr ""
 
-#: lecture.adoc:150
-msgctxt "lecture.adoc:150"
+#: lecture.adoc:152
+msgctxt "lecture.adoc:152"
 msgid "== Выбрасывание исключений"
 msgstr ""
 
-#: lecture.adoc:156
+#: lecture.adoc:158
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -267,22 +268,22 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:158
+#: lecture.adoc:160
 msgid ""
 "(Если мы выбрасываем checked exception, компилятор позволит это сделать либо "
 "если оно задекларировано, либо если оно обрабатывается в самом методе.)"
 msgstr ""
 
-#: lecture.adoc:160
-msgctxt "lecture.adoc:160"
+#: lecture.adoc:162
+msgctxt "lecture.adoc:162"
 msgid "== Выбрасывание исключений"
 msgstr ""
 
-#: lecture.adoc:162
+#: lecture.adoc:164
 msgid "_Не следует_ выбрасывать явно"
 msgstr ""
 
-#: lecture.adoc:167
+#: lecture.adoc:169
 msgid ""
 "* `Exception`\n"
 "* `RuntimeException`\n"
@@ -290,37 +291,37 @@ msgid ""
 "* `Error`"
 msgstr ""
 
-#: lecture.adoc:169
+#: lecture.adoc:171
 msgid "(J. Bloch, Effective Java, Item 72)"
 msgstr ""
 
-#: lecture.adoc:171
+#: lecture.adoc:173
 msgid "== Откуда наследовать своё собственное исключение? Вот в чём вопрос"
 msgstr ""
 
-#: lecture.adoc:173
+#: lecture.adoc:175
 msgid ""
 "* Если наследовать от Exception -- надо быть готовым, что его придётся "
 "декларировать или ловить всюду. Хорошо это или плохо?"
 msgstr ""
 
-#: lecture.adoc:175
+#: lecture.adoc:177
 msgid "* Можно унаследоваться от RuntimeException. И забыть его поймать."
 msgstr ""
 
-#: lecture.adoc:177
+#: lecture.adoc:179
 msgid "* В эпоху лямбд и стримов checked exceptions это скорее головная боль."
 msgstr ""
 
-#: lecture.adoc:179
+#: lecture.adoc:181
 msgid "* Споры не прекращаются."
 msgstr ""
 
-#: lecture.adoc:181
+#: lecture.adoc:183
 msgid "== Как поймать исключение: try-catch блок"
 msgstr ""
 
-#: lecture.adoc:193
+#: lecture.adoc:195
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -335,37 +336,37 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:195
+#: lecture.adoc:197
 msgid "== Как поймать несколько типов исключений"
 msgstr ""
 
-#: lecture.adoc:199
-msgctxt "lecture.adoc:199"
+#: lecture.adoc:201
+msgctxt "lecture.adoc:201"
 msgid ""
 "[plantuml, iomultiple, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:201
-msgctxt "lecture.adoc:201"
+#: lecture.adoc:203
+msgctxt "lecture.adoc:203"
 msgid "skinparam dpi 180 "
 msgstr ""
 
-#: lecture.adoc:203
-msgctxt "lecture.adoc:203"
+#: lecture.adoc:205
+msgctxt "lecture.adoc:205"
 msgid "IOException <|-- FileNotFoundException"
 msgstr ""
 
-#: lecture.adoc:207
-msgctxt "lecture.adoc:207"
+#: lecture.adoc:209
+msgctxt "lecture.adoc:209"
 msgid ""
 "IOException <|-- UnknownHostException\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:220
+#: lecture.adoc:222
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -381,37 +382,37 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:222
+#: lecture.adoc:224
 msgid "== try-multicatch"
 msgstr ""
 
-#: lecture.adoc:226
-msgctxt "lecture.adoc:226"
+#: lecture.adoc:228
+msgctxt "lecture.adoc:228"
 msgid ""
 "[plantuml, iomultiple, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:228
-msgctxt "lecture.adoc:228"
+#: lecture.adoc:230
+msgctxt "lecture.adoc:230"
 msgid "skinparam dpi 180 "
 msgstr ""
 
-#: lecture.adoc:230
-msgctxt "lecture.adoc:230"
+#: lecture.adoc:232
+msgctxt "lecture.adoc:232"
 msgid "IOException <|-- FileNotFoundException"
 msgstr ""
 
-#: lecture.adoc:234
-msgctxt "lecture.adoc:234"
+#: lecture.adoc:236
+msgctxt "lecture.adoc:236"
 msgid ""
 "IOException <|-- UnknownHostException\n"
 "@enduml\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:241
+#: lecture.adoc:243
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -421,7 +422,7 @@ msgid ""
 "  //emergency action for missing files or unknown hosts"
 msgstr ""
 
-#: lecture.adoc:246
+#: lecture.adoc:248
 msgid ""
 "  //e type is the most specific common supertype \n"
 "  //of the throwable types\n"
@@ -429,18 +430,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:248
+#: lecture.adoc:250
 msgid "== Перевыбрасывание исключений (с умной проверкой типов)"
 msgstr ""
 
-#: lecture.adoc:252
+#: lecture.adoc:254
 msgid ""
 "[source,java]\n"
 "----\n"
 ". . . throws SQLException . . ."
 msgstr ""
 
-#: lecture.adoc:263
+#: lecture.adoc:265
 msgid ""
 "try {\n"
 "  //доступ к БД -- может выбросить SQLException \n"
@@ -454,18 +455,18 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:265
+#: lecture.adoc:267
 msgid "== Обёртывание исключений"
 msgstr ""
 
-#: lecture.adoc:269
+#: lecture.adoc:271
 msgid ""
 "[source,java]\n"
 "----\n"
 ". . . throws ServletException . . ."
 msgstr ""
 
-#: lecture.adoc:279
+#: lecture.adoc:281
 msgid ""
 "try {\n"
 "  //доступ к БД -- может выбросить SQLException\n"
@@ -478,45 +479,45 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:281
+#: lecture.adoc:283
 msgid "== Переопределение методов с исключениями"
 msgstr ""
 
-#: lecture.adoc:286
+#: lecture.adoc:288
 msgid ""
 "[plantuml, overriding, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:288
-msgctxt "lecture.adoc:288"
+#: lecture.adoc:290
+msgctxt "lecture.adoc:290"
 msgid "skinparam dpi 200 "
 msgstr ""
 
-#: lecture.adoc:292
+#: lecture.adoc:294
 msgid ""
 "class Foo {\n"
 "    + foo() throws FooException \n"
 "}"
 msgstr ""
 
-#: lecture.adoc:294
+#: lecture.adoc:296
 msgid "Foo <|-- Bar"
 msgstr ""
 
-#: lecture.adoc:298
+#: lecture.adoc:300
 msgid ""
 "class Bar {\n"
 "    + foo() throws BarException\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:301
+#: lecture.adoc:303
 msgid "FooException <|-- BarException"
 msgstr ""
 
-#: lecture.adoc:306
+#: lecture.adoc:308
 msgid ""
 "Foo . FooException\n"
 "Bar . BarException\n"
@@ -524,21 +525,21 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:309
+#: lecture.adoc:311
 msgid ""
 "* Исключение может быть того же типа или субтипа\n"
 "* Не возбраняется, если его не будет вообще"
 msgstr ""
 
-#: lecture.adoc:311
+#: lecture.adoc:313
 msgid "== Стандартные типы переиспользуемых unchecked-exceptions"
 msgstr ""
 
-#: lecture.adoc:313
+#: lecture.adoc:315
 msgid "J.{nbsp}Bloch 'Effective Java', Item 72:"
 msgstr ""
 
-#: lecture.adoc:321
+#: lecture.adoc:323
 msgid ""
 "[cols=\"30a,70a\"]\n"
 "|===\n"
@@ -552,11 +553,11 @@ msgid ""
 "|==="
 msgstr ""
 
-#: lecture.adoc:323
+#: lecture.adoc:325
 msgid "== Вам будет очень хотеться сделать так..."
 msgstr ""
 
-#: lecture.adoc:333
+#: lecture.adoc:335
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -569,19 +570,19 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:335
+#: lecture.adoc:337
 msgid "----"
 msgstr ""
 
-#: lecture.adoc:337
+#: lecture.adoc:339
 msgid "...*но так делать не надо!* "
 msgstr ""
 
-#: lecture.adoc:339
+#: lecture.adoc:341
 msgid "== Если не понятно, что делать с исключением "
 msgstr ""
 
-#: lecture.adoc:345
+#: lecture.adoc:347
 msgid ""
 "* Задекларируйте checked exception в методе\n"
 "* Оберните с помощью `initCause` или параметра конструктора\n"
@@ -590,11 +591,11 @@ msgid ""
 "* Лучше не надо: Lobmok's `@SneakyThrows` (самая спорная фича Lombok)"
 msgstr ""
 
-#: lecture.adoc:347
+#: lecture.adoc:349
 msgid "== Общее правило"
 msgstr ""
 
-#: lecture.adoc:351
+#: lecture.adoc:353
 msgid ""
 "* _Throw early, catch late._\n"
 "* Не откладывайте выбрасывание исключения, как только стала ясна причина "
@@ -603,11 +604,11 @@ msgid ""
 "механизм обработки."
 msgstr ""
 
-#: lecture.adoc:353
+#: lecture.adoc:355
 msgid "== finally-блок"
 msgstr ""
 
-#: lecture.adoc:372
+#: lecture.adoc:374
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -629,12 +630,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:374
-msgctxt "lecture.adoc:374"
+#: lecture.adoc:376
+msgctxt "lecture.adoc:376"
 msgid "== Беда с finally-block"
 msgstr ""
 
-#: lecture.adoc:379
+#: lecture.adoc:381
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -642,26 +643,26 @@ msgid ""
 "//Один ресурс"
 msgstr ""
 
-#: lecture.adoc:381
+#: lecture.adoc:383
 msgid "BufferedReader br = new BufferedReader(new FileReader(path));"
 msgstr ""
 
-#: lecture.adoc:383
+#: lecture.adoc:385
 msgid "try {return br.readLine();} "
 msgstr ""
 
-#: lecture.adoc:386
+#: lecture.adoc:388
 msgid ""
 "finally {br.close();}\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:388
-msgctxt "lecture.adoc:388"
+#: lecture.adoc:390
+msgctxt "lecture.adoc:390"
 msgid "== Беда с finally-block"
 msgstr ""
 
-#: lecture.adoc:393
+#: lecture.adoc:395
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -669,7 +670,7 @@ msgid ""
 "//Два ресурса"
 msgstr ""
 
-#: lecture.adoc:404
+#: lecture.adoc:406
 msgid ""
 "InputStream in = new FileInputStream(src);\n"
 "try {\n"
@@ -683,11 +684,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:407
+#: lecture.adoc:409
 msgid "== try-with-resources-блок"
 msgstr ""
 
-#: lecture.adoc:415
+#: lecture.adoc:417
 msgid ""
 "Общая схема\n"
 "[source,java]\n"
@@ -698,7 +699,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:425
+#: lecture.adoc:427
 msgid ""
 "Пример:\n"
 "[source,java]\n"
@@ -711,11 +712,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:427
+#: lecture.adoc:429
 msgid "== Множество ресурсов"
 msgstr ""
 
-#: lecture.adoc:437
+#: lecture.adoc:439
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -728,46 +729,45 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:439
+#: lecture.adoc:441
 msgid "== Интерфейсы Closeable и AutoCloseable"
 msgstr ""
 
-#: lecture.adoc:443
+#: lecture.adoc:445
 msgid ""
 "[plantuml, closeable, png]\n"
 "----\n"
 "@startuml"
 msgstr ""
 
-#: lecture.adoc:445
-msgctxt "lecture.adoc:445"
+#: lecture.adoc:447
+msgctxt "lecture.adoc:447"
 msgid "skinparam dpi 200 "
 msgstr ""
 
-#: lecture.adoc:449
+#: lecture.adoc:451
 msgid ""
 "interface AutoCloseable {\n"
 "    + close() throws Exception \n"
 "}"
 msgstr ""
 
-#: lecture.adoc:451
+#: lecture.adoc:453
 msgid "AutoCloseable <|-- Closeable"
 msgstr ""
 
-#: lecture.adoc:455
+#: lecture.adoc:457
 msgid ""
 "interface Closeable {\n"
 "    + close() throws IOException\n"
 "}"
 msgstr ""
 
-#: lecture.adoc:458
-msgctxt "lecture.adoc:458"
+#: lecture.adoc:460
 msgid "Exception <|-- IOException"
 msgstr ""
 
-#: lecture.adoc:463
+#: lecture.adoc:465
 msgid ""
 "Closeable . IOException\n"
 "AutoCloseable . Exception\n"
@@ -775,12 +775,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:465
-msgctxt "lecture.adoc:465"
+#: lecture.adoc:467
+msgctxt "lecture.adoc:467"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr ""
 
-#: lecture.adoc:475
+#: lecture.adoc:477
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -793,7 +793,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:480
+#: lecture.adoc:482
 msgid ""
 "//ДЕЛАЙТЕ ТАК!!\n"
 "for (Mountain m: range) \n"
@@ -801,12 +801,12 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:484
-msgctxt "lecture.adoc:484"
+#: lecture.adoc:486
+msgctxt "lecture.adoc:486"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr ""
 
-#: lecture.adoc:495
+#: lecture.adoc:497
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -819,7 +819,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:502
+#: lecture.adoc:504
 msgid ""
 "//ДЕЛАЙТЕ ТАК!!\n"
 "for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
@@ -829,25 +829,25 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:504
+#: lecture.adoc:506
 msgid "== Не используйте исключения для контроля выполнения"
 msgstr ""
 
-#: lecture.adoc:508
+#: lecture.adoc:510
 msgid ""
 "* Это *маскирует* настоящие ошибки и делает код трудным для поддержки.\n"
 "* Это *затратно* по ресурсам (исключения несут в себе Stack Trace).\n"
 "* Это *медленно*: компилятор не оптимизирует под исключения."
 msgstr ""
 
-#: lecture.adoc:510
+#: lecture.adoc:512
 msgid "== Исключение вылезло в production. Что делать?"
 msgstr ""
 
-#: lecture.adoc:568
+#: lecture.adoc:570
 msgid ""
-"  2019-08-24 11:14:55.545 ERROR 30413 --- [0.1-8080-exec-6] "
-"o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet "
+"  2019-08-24 11:14:55.545 ERROR 30413 --- [0.1-8080-exec-6] o.a.c.c."
+"C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet "
 "[dispatcherServlet] in context with path [] threw exception [Request "
 "processing failed; nested exception is java.lang.NullPointerException] with "
 "root cause\n"
@@ -857,143 +857,163 @@ msgid ""
 "\tat guess.controller.AnswerController.addAnswer(AnswerController.java:31) "
 "~[classes!/:na]\n"
 "\tat sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source) ~[na:na]\n"
-"\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessor"
-"Impl.java:43) ~[na:1.8.0_222]\n"
+"\tat sun.reflect.DelegatingMethodAccessorImpl."
+"invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_222]\n"
 "\tat java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_222]\n"
-"\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(I"
-"nvocableHandlerMethod.java:190) ~[spring-"
-"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForR"
-"equest(InvocableHandlerMethod.java:138) ~[spring-"
-"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHa"
-"ndlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104) ~[spring-"
-"webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHand"
-"lerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892) "
-"~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHand"
-"lerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-"
-"webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.method.support.InvocableHandlerMethod."
+"doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.1.8.RELEASE.jar!/:5."
+"1.8.RELEASE]\n"
+"\tat org.springframework.web.method.support.InvocableHandlerMethod."
+"invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.8.RELEASE."
+"jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.annotation."
+"ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod."
+"java:104) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.annotation."
+"RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter"
+".java:892) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.mvc.method.annotation."
+"RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter."
+"java:797) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
 "\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter."
-"handle(AbstractHandlerMethodAdapter.java:87) ~[spring-"
-"webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherS"
-"ervlet.java:1039) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherSe"
-"rvlet.java:942) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.servlet.FrameworkServlet.processRequest(Framewor"
-"kServlet.java:1005) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.8.RELEASE."
+"jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.DispatcherServlet."
+"doDispatch(DispatcherServlet.java:1039) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5"
+".1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.DispatcherServlet."
+"doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1"
+".8.RELEASE]\n"
+"\tat org.springframework.web.servlet.FrameworkServlet."
+"processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.8.RELEASE."
+"jar!/:5.1.8.RELEASE]\n"
 "\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet"
 ".java:908) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
 "\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-"
 "embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServle"
-"t.java:882) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.servlet.FrameworkServlet."
+"service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.8.RELEASE.jar!/:5.1.8."
+"RELEASE]\n"
 "\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-"
 "embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
-"tionFilterChain.java:231) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
-"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.21."
+"jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9."
+"0.21]\n"
 "\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) "
 "~[tomcat-embed-websocket-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
-"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
-"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(Req"
-"uestContextFilter.java:99) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
-"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
-"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
-"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormCo"
-"ntentFilter.java:92) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
-"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
-"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
-"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(H"
-"iddenHttpMethodFilter.java:93) ~[spring-"
-"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
-"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
-"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
-"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal("
-"CharacterEncodingFilter.java:200) ~[spring-"
-"web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequ"
-"estFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1.8.RELEASE]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(Applica"
-"tionFilterChain.java:193) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilt"
-"erChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValv"
-"e.java:202) ~[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValv"
-"e.java:96) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(Authenticator"
-"Base.java:490) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat "
-"org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)"
-" [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat "
-"org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) "
-"[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21."
+"jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9."
+"0.21]\n"
+"\tat org.springframework.web.filter.RequestContextFilter."
+"doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.8.RELEASE."
+"jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter."
+"doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1."
+"8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21."
+"jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9."
+"0.21]\n"
+"\tat org.springframework.web.filter.FormContentFilter."
+"doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.8.RELEASE."
+"jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter."
+"doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1."
+"8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21."
+"jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9."
+"0.21]\n"
+"\tat org.springframework.web.filter.HiddenHttpMethodFilter."
+"doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.8.RELEASE."
+"jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter."
+"doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1."
+"8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21."
+"jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9."
+"0.21]\n"
+"\tat org.springframework.web.filter.CharacterEncodingFilter."
+"doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.8.RELEASE"
+".jar!/:5.1.8.RELEASE]\n"
+"\tat org.springframework.web.filter.OncePerRequestFilter."
+"doFilter(OncePerRequestFilter.java:109) ~[spring-web-5.1.8.RELEASE.jar!/:5.1."
+"8.RELEASE]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.21."
+"jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.ApplicationFilterChain."
+"doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.21.jar!/:9."
+"0.21]\n"
+"\tat org.apache.catalina.core.StandardWrapperValve."
+"invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.21.jar!/:9.0."
+"21]\n"
+"\tat org.apache.catalina.core.StandardContextValve."
+"invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.21.jar!/:9.0.21]"
+"\n"
+"\tat org.apache.catalina.authenticator.AuthenticatorBase."
+"invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve."
+"java:139) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve."
+"java:92) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
 "\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve."
 "java:74) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat "
-"org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) "
-"[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat "
-"org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) "
-"[tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter."
+"java:343) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor."
+"java:408) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
 "\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight."
 "java:66) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractPro"
-"tocol.java:853) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.coyote.AbstractProtocol$ConnectionHandler."
+"process(AbstractProtocol.java:853) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
 "\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint"
 ".java:1587) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.j"
-"ava:49) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
-"\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.jav"
-"a:1149) [na:1.8.0_222]\n"
-"\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.ja"
-"va:624) [na:1.8.0_222]\n"
-"\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThrea"
-"d.java:61) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase."
+"java:49) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
+"\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor."
+"java:1149) [na:1.8.0_222]\n"
+"\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor."
+"java:624) [na:1.8.0_222]\n"
+"\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable."
+"run(TaskThread.java:61) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
 "\tat java.lang.Thread.run(Thread.java:748) [na:1.8.0_222]"
 msgstr ""
 
-#: lecture.adoc:570
+#: lecture.adoc:572
 msgid "== Analyze -> Analyze Stack Trace..."
 msgstr ""
 
-#: lecture.adoc:572
+#: lecture.adoc:574
 msgid "image::analyzestacktrace.png[]"
 msgstr ""
 
-#: lecture.adoc:576
+#: lecture.adoc:578
 msgid ""
 "== Исследуем стек вызовов\n"
 "image::stacktracereading.png[]"
 msgstr ""
 
-#: lecture.adoc:578
+#: lecture.adoc:580
 msgid ""
 "== Здесь мы делаем паузу в изучении особенностей языка ради изучения "
 "библиотеки"
 msgstr ""
 
-#: lecture.adoc:583
+#: lecture.adoc:585
 msgid ""
 "* J. Bloch, 'Effective Java': 'By using a standard library, you take "
 "advantage of the knowledge of the experts who wrote it and the experience of "
@@ -1007,11 +1027,11 @@ msgid ""
 "в примерах в интернете и т. п. не оправдывает их использование в новом коде. "
 msgstr ""
 
-#: lecture.adoc:585
+#: lecture.adoc:587
 msgid "== Отдельный пример из книги Effective Java: ThreadLocalRandom"
 msgstr ""
 
-#: lecture.adoc:590
+#: lecture.adoc:592
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1019,7 +1039,7 @@ msgid ""
 "double rnd = (new Random()).nextDouble();"
 msgstr ""
 
-#: lecture.adoc:596
+#: lecture.adoc:598
 msgid ""
 "//До Java 7+ так было нормально, но теперь НЕТ!!\n"
 "static final Random r = new Random();\n"
@@ -1028,13 +1048,13 @@ msgid ""
 "}"
 msgstr ""
 
-#: lecture.adoc:599
+#: lecture.adoc:601
 msgid ""
 "//Java 7-16: в 3.6 раз быстрее, проще, качественнее\n"
 "double rnd = ThreadLocalRandom.current().nextDouble();"
 msgstr ""
 
-#: lecture.adoc:604
+#: lecture.adoc:606
 msgid ""
 "//Java 17+: JEP356. Not thread safe!\n"
 "RandomGenerator generator = RandomGenerator.getDefault();\n"
@@ -1042,11 +1062,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:606
+#: lecture.adoc:608
 msgid "== Класс String"
 msgstr ""
 
-#: lecture.adoc:612
+#: lecture.adoc:614
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1055,15 +1075,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:614
+#: lecture.adoc:616
 msgid "== Строка -- иммутабельный объект."
 msgstr ""
 
-#: lecture.adoc:616
+#: lecture.adoc:618
 msgid "Нужна другая строка? Сооружаем новую:"
 msgstr ""
 
-#: lecture.adoc:622
+#: lecture.adoc:624
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1072,15 +1092,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:624
+#: lecture.adoc:626
 msgid "Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!"
 msgstr ""
 
-#: lecture.adoc:626
+#: lecture.adoc:628
 msgid "== Внутреннее представление строк"
 msgstr ""
 
-#: lecture.adoc:631
+#: lecture.adoc:633
 msgid ""
 "* До Java 9 -- `char[]`\n"
 "* После Java 9 -- `byte[]` и `byte coder`\n"
@@ -1089,19 +1109,20 @@ msgid ""
 "the Strings: Two Scours]"
 msgstr ""
 
-#: lecture.adoc:633
+#: lecture.adoc:635
 msgid "== Пул строковых констант"
 msgstr ""
 
-#: lecture.adoc:637
-msgctxt "lecture.adoc:637"
+#: lecture.adoc:639
+msgctxt "lecture.adoc:639"
+"lecture.adoc:639"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: lecture.adoc:647
+#: lecture.adoc:649
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1114,7 +1135,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: lecture.adoc:654
+#: lecture.adoc:656
 msgid ""
 "[graphviz, \"stringpool.png\"]\n"
 "----\n"
@@ -1124,8 +1145,8 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: lecture.adoc:661
-msgctxt "lecture.adoc:661"
+#: lecture.adoc:663
+msgctxt "lecture.adoc:663"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1135,7 +1156,7 @@ msgid ""
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: lecture.adoc:670
+#: lecture.adoc:672
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1147,11 +1168,11 @@ msgid ""
 "|===="
 msgstr ""
 
-#: lecture.adoc:672
+#: lecture.adoc:674
 msgid "== Сравнение строк"
 msgstr ""
 
-#: lecture.adoc:680
+#: lecture.adoc:682
 msgid ""
 "[%step]\n"
 "* `if (a == \"John Doe\")` -- *неправильно*, ошибка новичка.\n"
@@ -1163,20 +1184,20 @@ msgid ""
 "пробелов, табуляций, переносов и проч.!"
 msgstr ""
 
-#: lecture.adoc:683
-msgctxt "lecture.adoc:683"
+#: lecture.adoc:685
+msgctxt "lecture.adoc:685"
 msgid "== Интернирование строк"
 msgstr ""
 
-#: lecture.adoc:687
-msgctxt "lecture.adoc:687"
+#: lecture.adoc:689
+msgctxt "lecture.adoc:689"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: lecture.adoc:697
+#: lecture.adoc:699
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1189,7 +1210,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: lecture.adoc:704
+#: lecture.adoc:706
 msgid ""
 "[graphviz, \"stringpool-intern1.png\"]\n"
 "----\n"
@@ -1199,8 +1220,8 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: lecture.adoc:711
-msgctxt "lecture.adoc:711"
+#: lecture.adoc:713
+msgctxt "lecture.adoc:713"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1210,11 +1231,11 @@ msgid ""
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: lecture.adoc:713
+#: lecture.adoc:715
 msgid "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr ""
 
-#: lecture.adoc:722
+#: lecture.adoc:724
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1226,20 +1247,20 @@ msgid ""
 "|===="
 msgstr ""
 
-#: lecture.adoc:724
-msgctxt "lecture.adoc:724"
+#: lecture.adoc:726
+msgctxt "lecture.adoc:726"
 msgid "== Интернирование строк"
 msgstr ""
 
-#: lecture.adoc:728
-msgctxt "lecture.adoc:728"
+#: lecture.adoc:730
+msgctxt "lecture.adoc:730"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
 ".^a|"
 msgstr ""
 
-#: lecture.adoc:736
+#: lecture.adoc:738
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1250,7 +1271,7 @@ msgid ""
 "^.^a|"
 msgstr ""
 
-#: lecture.adoc:743
+#: lecture.adoc:745
 msgid ""
 "[graphviz, \"stringpool-intern2.png\"]\n"
 "----\n"
@@ -1260,7 +1281,7 @@ msgid ""
 "  rankdir=\"LR\";"
 msgstr ""
 
-#: lecture.adoc:750
+#: lecture.adoc:752
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1270,7 +1291,7 @@ msgid ""
 "          }"
 msgstr ""
 
-#: lecture.adoc:761
+#: lecture.adoc:763
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1282,11 +1303,11 @@ msgid ""
 "|===="
 msgstr ""
 
-#: lecture.adoc:764
+#: lecture.adoc:766
 msgid "== Конкатенация строк"
 msgstr ""
 
-#: lecture.adoc:769
+#: lecture.adoc:771
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1294,17 +1315,17 @@ msgid ""
 "String bar = \"bar\";"
 msgstr ""
 
-#: lecture.adoc:772
+#: lecture.adoc:774
 msgid ""
 "System.out.println(foo + bar); //foobar\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:774
+#: lecture.adoc:776
 msgid "Ситуация такова:"
 msgstr ""
 
-#: lecture.adoc:778
+#: lecture.adoc:780
 msgid ""
 "* Пользовательской перегрузки операторов в Java не предусмотрено.\n"
 "* Оператор `+` для строк перегружен на уровне языка.\n"
@@ -1312,11 +1333,11 @@ msgid ""
 "строк и не имеет смысла :-("
 msgstr ""
 
-#: lecture.adoc:780
+#: lecture.adoc:782
 msgid "== {zsp}Конкатенация строк: проблема производительности{zsp}"
 msgstr ""
 
-#: lecture.adoc:789
+#: lecture.adoc:791
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1328,11 +1349,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:792
+#: lecture.adoc:794
 msgid "== {zsp}Конкатенация строк: используйте StringBuilder!{zsp}"
 msgstr ""
 
-#: lecture.adoc:802
+#: lecture.adoc:804
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1345,15 +1366,15 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:804
+#: lecture.adoc:806
 msgid "== Длина строки"
 msgstr ""
 
-#: lecture.adoc:806
+#: lecture.adoc:808
 msgid "Длина строки в UTF-16 code units:"
 msgstr ""
 
-#: lecture.adoc:812
+#: lecture.adoc:814
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1362,7 +1383,7 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:818
+#: lecture.adoc:820
 msgid ""
 "«Реальная» длина строки в code points:\n"
 "[source,java]\n"
@@ -1371,17 +1392,17 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:820
+#: lecture.adoc:822
 msgid "== Символ на i-й позиции"
 msgstr ""
 
-#: lecture.adoc:823
+#: lecture.adoc:825
 msgid ""
 "[source,java]\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:828
+#: lecture.adoc:830
 msgid ""
 "//работает за время O(1)\n"
 "char first = greeting.charAt(0); // first is 'H'\n"
@@ -1389,11 +1410,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:830
+#: lecture.adoc:832
 msgid "Если нужны code points:"
 msgstr ""
 
-#: lecture.adoc:835
+#: lecture.adoc:837
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1401,11 +1422,11 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:837
+#: lecture.adoc:839
 msgid "== Полезные методы "
 msgstr ""
 
-#: lecture.adoc:852
+#: lecture.adoc:854
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1423,24 +1444,24 @@ msgid ""
 "----"
 msgstr ""
 
-#: lecture.adoc:854
+#: lecture.adoc:856
 msgid "== Вредные методы "
 msgstr ""
 
-#: lecture.adoc:858
+#: lecture.adoc:860
 msgid ""
 "* `indexOf..` / `lastIndexOf..`\n"
 "* `replace..`\n"
 "* `split..` "
 msgstr ""
 
-#: lecture.adoc:860
+#: lecture.adoc:862
 msgid ""
 "В комбинации c `substring` и конкатенацией их используют для извлечения "
 "данных / преобразования строк."
 msgstr ""
 
-#: lecture.adoc:862
+#: lecture.adoc:864
 msgid ""
 "_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
 "бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"

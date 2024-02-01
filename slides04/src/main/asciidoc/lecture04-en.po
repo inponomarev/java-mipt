@@ -1,9 +1,10 @@
+#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 04\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 19:42+0300\n"
-"PO-Revision-Date: 2023-02-19 19:46+0200\n"
+"POT-Creation-Date: 2024-02-01 00:17+0100\n"
+"PO-Revision-Date: 2024-02-01 00:27+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -234,25 +235,35 @@ msgstr ""
 "@startuml"
 
 #: lecture.adoc:97
-msgid "skinparam dpi 150 "
-msgstr "skinparam dpi 150 "
+msgid "skinparam dpi 150"
+msgstr "skinparam dpi 150"
 
-#: lecture.adoc:103
+#: lecture.adoc:104
 msgid ""
 "class Throwable {\n"
 "  + getMessage(): String\n"
 "  + getCause(): Throwable\n"
+"  + initCause(): Throwable\n"
 "  + getStackTrace(): StackTraceElement[]\n"
 "}"
 msgstr ""
 "class Throwable {\n"
 "  + getMessage(): String\n"
 "  + getCause(): Throwable\n"
+"  + initCause(): Throwable\n"
 "  + getStackTrace(): StackTraceElement[]\n"
 "}"
 
 #: lecture.adoc:107
 msgid ""
+"class Error\n"
+"note bottom: For system use only"
+msgstr ""
+"class Error\n"
+"note bottom: For system use only"
+
+#: lecture.adoc:112
+msgid ""
 "Throwable <|-- Error\n"
 "Throwable <|-- Exception\n"
 "Exception <|-- RuntimeException"
@@ -261,32 +272,25 @@ msgstr ""
 "Throwable <|-- Exception\n"
 "Exception <|-- RuntimeException"
 
-#: lecture.adoc:111
-msgid ""
-"RuntimeException <|-- ClassCastException\n"
-"RuntimeException <|-- IndexOutOfBoundsException"
-msgstr ""
-"RuntimeException <|-- ClassCastException\n"
-"RuntimeException <|-- IndexOutOfBoundsException"
+#: lecture.adoc:115
+msgid "RuntimeException <|-- \"<Any unchecked exception>\""
+msgstr "RuntimeException <|-- \"<Any unchecked exception>\""
 
-#: lecture.adoc:113
-msgctxt "lecture.adoc:113"
-msgid "Exception <|-- IOException"
-msgstr "Exception <|-- IOException"
-
-#: lecture.adoc:117
+#: lecture.adoc:119
 msgid ""
+"Exception <|-- \"<Any checked exception>\"\n"
 "@enduml\n"
 "----"
 msgstr ""
+"Exception <|-- \"<Any checked exception>\"\n"
 "@enduml\n"
 "----"
 
-#: lecture.adoc:120
+#: lecture.adoc:122
 msgid "== Что делаем?"
 msgstr "== What should we do when we got an exception?"
 
-#: lecture.adoc:124
+#: lecture.adoc:126
 msgid ""
 "* `Error` и наследники -- не обрабатываем (что-то катастрофическое "
 "случилось).\n"
@@ -294,16 +298,16 @@ msgid ""
 "так просто).\n"
 "* Checked exceptions -- их обрабатываем."
 msgstr ""
-"* `Error` and sublasses -- don't handle (something catastrophic happened).\n"
-"* `RuntimeException` and sublasses -- fix the code, there should be none! "
+"* `Error` and subclasses -- don't handle (something catastrophic happened).\n"
+"* `RuntimeException` and subclasses -- fix the code, there should be none! "
 "(in fact, it's more complex than that).\n"
 "* Checked exceptions -- handle them."
 
-#: lecture.adoc:126
+#: lecture.adoc:128
 msgid "== Декларирование checked-исключений"
 msgstr "== Declaring checked exceptions"
 
-#: lecture.adoc:133
+#: lecture.adoc:135
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -319,7 +323,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:148
+#: lecture.adoc:150
 msgid ""
 "== Декларирование более чем одного исключения\n"
 "[source,java]\n"
@@ -348,15 +352,15 @@ msgstr ""
 "}\n"
 "----\n"
 "* No need to declare unchecked exceptions\n"
-"* No need to declare two exceptions, if one is a sublass of the othern\n"
+"* No need to declare two exceptions, if one is a subclass of the other\n"
 "* Truth of Life: IDE does everything for you"
 
-#: lecture.adoc:150
-msgctxt "lecture.adoc:150"
+#: lecture.adoc:152
+msgctxt "lecture.adoc:152"
 msgid "== Выбрасывание исключений"
 msgstr "== Throwing exceptions"
 
-#: lecture.adoc:156
+#: lecture.adoc:158
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -368,7 +372,7 @@ msgstr ""
 "throw new EOFException();\n"
 "----"
 
-#: lecture.adoc:158
+#: lecture.adoc:160
 msgid ""
 "(Если мы выбрасываем checked exception, компилятор позволит это сделать либо "
 "если оно задекларировано, либо если оно обрабатывается в самом методе.)"
@@ -376,16 +380,16 @@ msgstr ""
 "(If we throw a checked exception, the compiler will let us do it only if "
 "it's either declared or handled in the same method.)"
 
-#: lecture.adoc:160
-msgctxt "lecture.adoc:160"
+#: lecture.adoc:162
+msgctxt "lecture.adoc:162"
 msgid "== Выбрасывание исключений"
 msgstr "== Throwing exceptions"
 
-#: lecture.adoc:162
+#: lecture.adoc:164
 msgid "_Не следует_ выбрасывать явно"
 msgstr "_We should not_ explicitly throw"
 
-#: lecture.adoc:167
+#: lecture.adoc:169
 msgid ""
 "* `Exception`\n"
 "* `RuntimeException`\n"
@@ -397,16 +401,16 @@ msgstr ""
 "* `Throwable`\n"
 "* `Error`"
 
-#: lecture.adoc:169
+#: lecture.adoc:171
 msgid "(J. Bloch, Effective Java, Item 72)"
 msgstr "(J. Bloch, Effective Java, Item 72)"
 
-#: lecture.adoc:171
+#: lecture.adoc:173
 msgid "== Откуда наследовать своё собственное исключение? Вот в чём вопрос"
 msgstr ""
 "== What base class should we choose for our exception? This is the question"
 
-#: lecture.adoc:173
+#: lecture.adoc:175
 msgid ""
 "* Если наследовать от Exception -- надо быть готовым, что его придётся "
 "декларировать или ловить всюду. Хорошо это или плохо?"
@@ -414,25 +418,25 @@ msgstr ""
 "* If we inherit it from `Exception` -- we should be ready to either declare "
 "or catch it everywhere. Is it good or bad?"
 
-#: lecture.adoc:175
+#: lecture.adoc:177
 msgid "* Можно унаследоваться от RuntimeException. И забыть его поймать."
 msgstr "* We can inherit from `RuntimeException`. And forget to catch it."
 
-#: lecture.adoc:177
+#: lecture.adoc:179
 msgid "* В эпоху лямбд и стримов checked exceptions это скорее головная боль."
 msgstr ""
 "* In the age of lambdas and streams, checked exceptions are rather an "
 "unneeded headache."
 
-#: lecture.adoc:179
+#: lecture.adoc:181
 msgid "* Споры не прекращаются."
 msgstr "* People are still arguing about checked exceptions."
 
-#: lecture.adoc:181
+#: lecture.adoc:183
 msgid "== Как поймать исключение: try-catch блок"
 msgstr "== How to catch an exception: the `try-catch` block"
 
-#: lecture.adoc:193
+#: lecture.adoc:195
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -458,12 +462,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:195
+#: lecture.adoc:197
 msgid "== Как поймать несколько типов исключений"
 msgstr "== How to catch several types of exceptions"
 
-#: lecture.adoc:199
-msgctxt "lecture.adoc:199"
+#: lecture.adoc:201
+msgctxt "lecture.adoc:201"
 msgid ""
 "[plantuml, iomultiple, png]\n"
 "----\n"
@@ -472,83 +476,19 @@ msgstr ""
 "[plantuml, iomultiple, png]\n"
 "----\n"
 "@startuml"
-
-#: lecture.adoc:201
-msgctxt "lecture.adoc:201"
-msgid "skinparam dpi 180 "
-msgstr "skinparam dpi 180 "
 
 #: lecture.adoc:203
 msgctxt "lecture.adoc:203"
-msgid "IOException <|-- FileNotFoundException"
-msgstr "IOException <|-- FileNotFoundException"
-
-#: lecture.adoc:207
-msgctxt "lecture.adoc:207"
-msgid ""
-"IOException <|-- UnknownHostException\n"
-"@enduml\n"
-"----"
-msgstr ""
-"IOException <|-- UnknownHostException\n"
-"@enduml\n"
-"----"
-
-#: lecture.adoc:220
-msgid ""
-"[source,java]\n"
-"----\n"
-"try {\n"
-"  //code that might throw exceptions\n"
-"} catch (FileNotFoundException e) {\n"
-"  //emergency action for missing files\n"
-"} catch (UnknownHostException e) {\n"
-"  // emergency action for unknown hosts\n"
-"} catch (IOException e) {\n"
-"  // emergency action for all other I/O problems\n"
-"}\n"
-"----"
-msgstr ""
-"[source,java]\n"
-"----\n"
-"try {\n"
-"  //code that might throw exceptions\n"
-"} catch (FileNotFoundException e) {\n"
-"  //emergency action for missing files\n"
-"} catch (UnknownHostException e) {\n"
-"  // emergency action for unknown hosts\n"
-"} catch (IOException e) {\n"
-"  // emergency action for all other I/O problems\n"
-"}\n"
-"----"
-
-#: lecture.adoc:222
-msgid "== try-multicatch"
-msgstr "== try-multicatch"
-
-#: lecture.adoc:226
-msgctxt "lecture.adoc:226"
-msgid ""
-"[plantuml, iomultiple, png]\n"
-"----\n"
-"@startuml"
-msgstr ""
-"[plantuml, iomultiple, png]\n"
-"----\n"
-"@startuml"
-
-#: lecture.adoc:228
-msgctxt "lecture.adoc:228"
 msgid "skinparam dpi 180 "
 msgstr "skinparam dpi 180 "
 
-#: lecture.adoc:230
-msgctxt "lecture.adoc:230"
+#: lecture.adoc:205
+msgctxt "lecture.adoc:205"
 msgid "IOException <|-- FileNotFoundException"
 msgstr "IOException <|-- FileNotFoundException"
 
-#: lecture.adoc:234
-msgctxt "lecture.adoc:234"
+#: lecture.adoc:209
+msgctxt "lecture.adoc:209"
 msgid ""
 "IOException <|-- UnknownHostException\n"
 "@enduml\n"
@@ -558,7 +498,71 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:241
+#: lecture.adoc:222
+msgid ""
+"[source,java]\n"
+"----\n"
+"try {\n"
+"  //code that might throw exceptions\n"
+"} catch (FileNotFoundException e) {\n"
+"  //emergency action for missing files\n"
+"} catch (UnknownHostException e) {\n"
+"  // emergency action for unknown hosts\n"
+"} catch (IOException e) {\n"
+"  // emergency action for all other I/O problems\n"
+"}\n"
+"----"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"try {\n"
+"  //code that might throw exceptions\n"
+"} catch (FileNotFoundException e) {\n"
+"  //emergency action for missing files\n"
+"} catch (UnknownHostException e) {\n"
+"  // emergency action for unknown hosts\n"
+"} catch (IOException e) {\n"
+"  // emergency action for all other I/O problems\n"
+"}\n"
+"----"
+
+#: lecture.adoc:224
+msgid "== try-multicatch"
+msgstr "== try-multicatch"
+
+#: lecture.adoc:228
+msgctxt "lecture.adoc:228"
+msgid ""
+"[plantuml, iomultiple, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+"[plantuml, iomultiple, png]\n"
+"----\n"
+"@startuml"
+
+#: lecture.adoc:230
+msgctxt "lecture.adoc:230"
+msgid "skinparam dpi 180 "
+msgstr "skinparam dpi 180 "
+
+#: lecture.adoc:232
+msgctxt "lecture.adoc:232"
+msgid "IOException <|-- FileNotFoundException"
+msgstr "IOException <|-- FileNotFoundException"
+
+#: lecture.adoc:236
+msgctxt "lecture.adoc:236"
+msgid ""
+"IOException <|-- UnknownHostException\n"
+"@enduml\n"
+"----"
+msgstr ""
+"IOException <|-- UnknownHostException\n"
+"@enduml\n"
+"----"
+
+#: lecture.adoc:243
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -573,24 +577,24 @@ msgstr ""
 "  //code that might throw exceptions\n"
 "} catch (FileNotFoundException | UnknownHostException e) {\n"
 "  //emergency action for missing files or unknown hosts"
-
-#: lecture.adoc:246
-msgid ""
-"  //e type is the most specific common supertype \n"
-"  //of the throwable types\n"
-"} \n"
-"----"
-msgstr ""
-"  //e type is the most specific common supertype \n"
-"  //of the throwable types\n"
-"} \n"
-"----"
 
 #: lecture.adoc:248
+msgid ""
+"  //e type is the most specific common supertype \n"
+"  //of the throwable types\n"
+"} \n"
+"----"
+msgstr ""
+"  //e type is the most specific common supertype \n"
+"  //of the throwable types\n"
+"} \n"
+"----"
+
+#: lecture.adoc:250
 msgid "== Перевыбрасывание исключений (с умной проверкой типов)"
 msgstr "== Rethrowing exceptions (with smart type check)"
 
-#: lecture.adoc:252
+#: lecture.adoc:254
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -600,7 +604,7 @@ msgstr ""
 "----\n"
 ". . . throws SQLException . . ."
 
-#: lecture.adoc:263
+#: lecture.adoc:265
 msgid ""
 "try {\n"
 "  //доступ к БД -- может выбросить SQLException \n"
@@ -623,11 +627,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:265
+#: lecture.adoc:267
 msgid "== Обёртывание исключений"
 msgstr "== Wrapping exceptions"
 
-#: lecture.adoc:269
+#: lecture.adoc:271
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -637,7 +641,7 @@ msgstr ""
 "----\n"
 ". . . throws ServletException . . ."
 
-#: lecture.adoc:279
+#: lecture.adoc:281
 msgid ""
 "try {\n"
 "  //доступ к БД -- может выбросить SQLException\n"
@@ -659,11 +663,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:281
+#: lecture.adoc:283
 msgid "== Переопределение методов с исключениями"
 msgstr "== Overriding methods with declared exceptions"
 
-#: lecture.adoc:286
+#: lecture.adoc:288
 msgid ""
 "[plantuml, overriding, png]\n"
 "----\n"
@@ -673,12 +677,12 @@ msgstr ""
 "----\n"
 "@startuml"
 
-#: lecture.adoc:288
-msgctxt "lecture.adoc:288"
+#: lecture.adoc:290
+msgctxt "lecture.adoc:290"
 msgid "skinparam dpi 200 "
 msgstr "skinparam dpi 200 "
 
-#: lecture.adoc:292
+#: lecture.adoc:294
 msgid ""
 "class Foo {\n"
 "    + foo() throws FooException \n"
@@ -688,11 +692,11 @@ msgstr ""
 "    + foo() throws FooException \n"
 "}"
 
-#: lecture.adoc:294
+#: lecture.adoc:296
 msgid "Foo <|-- Bar"
 msgstr "Foo <|-- Bar"
 
-#: lecture.adoc:298
+#: lecture.adoc:300
 msgid ""
 "class Bar {\n"
 "    + foo() throws BarException\n"
@@ -702,11 +706,11 @@ msgstr ""
 "    + foo() throws BarException\n"
 "}"
 
-#: lecture.adoc:301
+#: lecture.adoc:303
 msgid "FooException <|-- BarException"
 msgstr "FooException <|-- BarException"
 
-#: lecture.adoc:306
+#: lecture.adoc:308
 msgid ""
 "Foo . FooException\n"
 "Bar . BarException\n"
@@ -718,7 +722,7 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:309
+#: lecture.adoc:311
 msgid ""
 "* Исключение может быть того же типа или субтипа\n"
 "* Не возбраняется, если его не будет вообще"
@@ -726,15 +730,15 @@ msgstr ""
 "* Exception can be of the same type or subtype\n"
 "* It is not prohibited if there will be no exception at all"
 
-#: lecture.adoc:311
+#: lecture.adoc:313
 msgid "== Стандартные типы переиспользуемых unchecked-exceptions"
 msgstr "== Standard reusable types of unchecked exceptions"
 
-#: lecture.adoc:313
+#: lecture.adoc:315
 msgid "J.{nbsp}Bloch 'Effective Java', Item 72:"
 msgstr "J.{nbsp}Bloch 'Effective Java', Item 72:"
 
-#: lecture.adoc:321
+#: lecture.adoc:323
 msgid ""
 "[cols=\"30a,70a\"]\n"
 "|===\n"
@@ -758,11 +762,11 @@ msgstr ""
 "bigger than maximum value\n"
 "|==="
 
-#: lecture.adoc:323
+#: lecture.adoc:325
 msgid "== Вам будет очень хотеться сделать так..."
 msgstr "== You will be tempted to do this..."
 
-#: lecture.adoc:333
+#: lecture.adoc:335
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -784,19 +788,19 @@ msgstr ""
 " //(but your colleague who does the code review is not)\n"
 "}"
 
-#: lecture.adoc:335
+#: lecture.adoc:337
 msgid "----"
 msgstr "----"
 
-#: lecture.adoc:337
+#: lecture.adoc:339
 msgid "...*но так делать не надо!* "
 msgstr "...*but you shoud not do this!* "
 
-#: lecture.adoc:339
+#: lecture.adoc:341
 msgid "== Если не понятно, что делать с исключением "
 msgstr "== If you can't understand what to do with the exception "
 
-#: lecture.adoc:345
+#: lecture.adoc:347
 msgid ""
 "* Задекларируйте checked exception в методе\n"
 "* Оберните с помощью `initCause` или параметра конструктора\n"
@@ -811,11 +815,11 @@ msgstr ""
 "* Better don't do this: Lobmok's `@SneakyThrows` (the most arguable feature "
 "of Lombok)"
 
-#: lecture.adoc:347
+#: lecture.adoc:349
 msgid "== Общее правило"
 msgstr "== The general rule"
 
-#: lecture.adoc:351
+#: lecture.adoc:353
 msgid ""
 "* _Throw early, catch late._\n"
 "* Не откладывайте выбрасывание исключения, как только стала ясна причина "
@@ -827,11 +831,11 @@ msgstr ""
 "* Throw an exception as soon as it is clear that something is wrong.\n"
 "* Do not handle an exception until it is clear how exactly you should do it."
 
-#: lecture.adoc:353
+#: lecture.adoc:355
 msgid "== finally-блок"
 msgstr "== `finally` block"
 
-#: lecture.adoc:372
+#: lecture.adoc:374
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -871,12 +875,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:374
-msgctxt "lecture.adoc:374"
+#: lecture.adoc:376
+msgctxt "lecture.adoc:376"
 msgid "== Беда с finally-block"
 msgstr "== A problem with `finally` block"
 
-#: lecture.adoc:379
+#: lecture.adoc:381
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -888,15 +892,15 @@ msgstr ""
 "...throws IOException...\n"
 "//One resource"
 
-#: lecture.adoc:381
+#: lecture.adoc:383
 msgid "BufferedReader br = new BufferedReader(new FileReader(path));"
 msgstr "BufferedReader br = new BufferedReader(new FileReader(path));"
 
-#: lecture.adoc:383
+#: lecture.adoc:385
 msgid "try {return br.readLine();} "
 msgstr "try {return br.readLine();} "
 
-#: lecture.adoc:386
+#: lecture.adoc:388
 msgid ""
 "finally {br.close();}\n"
 "----"
@@ -904,12 +908,12 @@ msgstr ""
 "finally {br.close();}\n"
 "----"
 
-#: lecture.adoc:388
-msgctxt "lecture.adoc:388"
+#: lecture.adoc:390
+msgctxt "lecture.adoc:390"
 msgid "== Беда с finally-block"
 msgstr "== A problem with `finally` block"
 
-#: lecture.adoc:393
+#: lecture.adoc:395
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -921,7 +925,7 @@ msgstr ""
 "...throws IOException...\n"
 "//Two resources"
 
-#: lecture.adoc:404
+#: lecture.adoc:406
 msgid ""
 "InputStream in = new FileInputStream(src);\n"
 "try {\n"
@@ -945,11 +949,11 @@ msgstr ""
 "finally {in.close();}\n"
 "----"
 
-#: lecture.adoc:407
+#: lecture.adoc:409
 msgid "== try-with-resources-блок"
 msgstr "== try-with-resources"
 
-#: lecture.adoc:415
+#: lecture.adoc:417
 msgid ""
 "Общая схема\n"
 "[source,java]\n"
@@ -967,7 +971,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:425
+#: lecture.adoc:427
 msgid ""
 "Пример:\n"
 "[source,java]\n"
@@ -989,11 +993,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:427
+#: lecture.adoc:429
 msgid "== Множество ресурсов"
 msgstr "== Multiple resources"
 
-#: lecture.adoc:437
+#: lecture.adoc:439
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1015,11 +1019,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:439
+#: lecture.adoc:441
 msgid "== Интерфейсы Closeable и AutoCloseable"
 msgstr "== `Closeable` and `AutoCloseable` interfaces"
 
-#: lecture.adoc:443
+#: lecture.adoc:445
 msgid ""
 "[plantuml, closeable, png]\n"
 "----\n"
@@ -1029,12 +1033,12 @@ msgstr ""
 "----\n"
 "@startuml"
 
-#: lecture.adoc:445
-msgctxt "lecture.adoc:445"
+#: lecture.adoc:447
+msgctxt "lecture.adoc:447"
 msgid "skinparam dpi 200 "
 msgstr "skinparam dpi 200 "
 
-#: lecture.adoc:449
+#: lecture.adoc:451
 msgid ""
 "interface AutoCloseable {\n"
 "    + close() throws Exception \n"
@@ -1044,11 +1048,11 @@ msgstr ""
 "    + close() throws Exception \n"
 "}"
 
-#: lecture.adoc:451
+#: lecture.adoc:453
 msgid "AutoCloseable <|-- Closeable"
 msgstr "AutoCloseable <|-- Closeable"
 
-#: lecture.adoc:455
+#: lecture.adoc:457
 msgid ""
 "interface Closeable {\n"
 "    + close() throws IOException\n"
@@ -1058,29 +1062,28 @@ msgstr ""
 "    + close() throws IOException\n"
 "}"
 
-#: lecture.adoc:458
-msgctxt "lecture.adoc:458"
+#: lecture.adoc:460
 msgid "Exception <|-- IOException"
 msgstr "Exception <|-- IOException"
 
-#: lecture.adoc:463
-msgid ""
-"Closeable . IOException\n"
-"AutoCloseable . Exception\n"
-"@enduml\n"
-"----"
-msgstr ""
-"Closeable . IOException\n"
-"AutoCloseable . Exception\n"
-"@enduml\n"
-"----"
-
 #: lecture.adoc:465
-msgctxt "lecture.adoc:465"
+msgid ""
+"Closeable . IOException\n"
+"AutoCloseable . Exception\n"
+"@enduml\n"
+"----"
+msgstr ""
+"Closeable . IOException\n"
+"AutoCloseable . Exception\n"
+"@enduml\n"
+"----"
+
+#: lecture.adoc:467
+msgctxt "lecture.adoc:467"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr "== Exceptions are for exceptional cases only!"
 
-#: lecture.adoc:475
+#: lecture.adoc:477
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1102,7 +1105,7 @@ msgstr ""
 "} catch (ArrayIndexOutOfBoundsException e) {\n"
 "}"
 
-#: lecture.adoc:480
+#: lecture.adoc:482
 msgid ""
 "//ДЕЛАЙТЕ ТАК!!\n"
 "for (Mountain m: range) \n"
@@ -1114,12 +1117,12 @@ msgstr ""
 "  m.climb();\n"
 "----"
 
-#: lecture.adoc:484
-msgctxt "lecture.adoc:484"
+#: lecture.adoc:486
+msgctxt "lecture.adoc:486"
 msgid "== Исключения -- для исключительных случаев!"
 msgstr "== Exceptions are for exceptional cases only!"
 
-#: lecture.adoc:495
+#: lecture.adoc:497
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1140,28 +1143,28 @@ msgstr ""
 "    Foo foo = i.next();\n"
 "} catch (NoSuchElementException e) {\n"
 "}"
-
-#: lecture.adoc:502
-msgid ""
-"//ДЕЛАЙТЕ ТАК!!\n"
-"for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
-"    Foo foo = i.next();\n"
-"    . . .\n"
-"}\n"
-"----"
-msgstr ""
-"//DO THIS!!\n"
-"for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
-"    Foo foo = i.next();\n"
-"    . . .\n"
-"}\n"
-"----"
 
 #: lecture.adoc:504
+msgid ""
+"//ДЕЛАЙТЕ ТАК!!\n"
+"for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
+"    Foo foo = i.next();\n"
+"    . . .\n"
+"}\n"
+"----"
+msgstr ""
+"//DO THIS!!\n"
+"for (Iterator<Foo> i = collection.iterator(); i.hasNext(); ) {\n"
+"    Foo foo = i.next();\n"
+"    . . .\n"
+"}\n"
+"----"
+
+#: lecture.adoc:506
 msgid "== Не используйте исключения для контроля выполнения"
 msgstr "== Don't use exceptions for control flow"
 
-#: lecture.adoc:508
+#: lecture.adoc:510
 msgid ""
 "* Это *маскирует* настоящие ошибки и делает код трудным для поддержки.\n"
 "* Это *затратно* по ресурсам (исключения несут в себе Stack Trace).\n"
@@ -1171,11 +1174,11 @@ msgstr ""
 "* It is *resource consuming* (exceptions have huge stack traces attached).\n"
 "* It is *slow*: compiler never optimizes for exceptions."
 
-#: lecture.adoc:510
+#: lecture.adoc:512
 msgid "== Исключение вылезло в production. Что делать?"
 msgstr "== Exception is in production. What should we do?"
 
-#: lecture.adoc:568
+#: lecture.adoc:570
 msgid ""
 "  2019-08-24 11:14:55.545 ERROR 30413 --- [0.1-8080-exec-6] o.a.c.c.C.[.[."
 "[/].[dispatcherServlet]    : Servlet.service() for servlet "
@@ -1473,15 +1476,15 @@ msgstr ""
 "run(TaskThread.java:61) [tomcat-embed-core-9.0.21.jar!/:9.0.21]\n"
 "\tat java.lang.Thread.run(Thread.java:748) [na:1.8.0_222]"
 
-#: lecture.adoc:570
+#: lecture.adoc:572
 msgid "== Analyze -> Analyze Stack Trace..."
 msgstr "== Analyze -> Analyze Stack Trace..."
 
-#: lecture.adoc:572
+#: lecture.adoc:574
 msgid "image::analyzestacktrace.png[]"
 msgstr "image::analyzestacktrace.png[]"
 
-#: lecture.adoc:576
+#: lecture.adoc:578
 msgid ""
 "== Исследуем стек вызовов\n"
 "image::stacktracereading.png[]"
@@ -1489,7 +1492,7 @@ msgstr ""
 "== Expore the stack trace\n"
 "image::stacktracereading.png[]"
 
-#: lecture.adoc:578
+#: lecture.adoc:580
 msgid ""
 "== Здесь мы делаем паузу в изучении особенностей языка ради изучения "
 "библиотеки"
@@ -1497,7 +1500,7 @@ msgstr ""
 "== Here we make a pause in learning the language features in favor of "
 "learning the library"
 
-#: lecture.adoc:583
+#: lecture.adoc:585
 msgid ""
 "* J. Bloch, 'Effective Java': 'By using a standard library, you take "
 "advantage of the knowledge of the experts who wrote it and the experience of "
@@ -1521,11 +1524,11 @@ msgstr ""
 "* Be careful: the fact that you saw them in legacy code, some outdated "
 "tutorial on Internet etc. does not justify their usage in the new code "
 
-#: lecture.adoc:585
+#: lecture.adoc:587
 msgid "== Отдельный пример из книги Effective Java: ThreadLocalRandom"
 msgstr "== A specific example from 'Effective Java' book: `ThreadLocalRandom`"
 
-#: lecture.adoc:590
+#: lecture.adoc:592
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1537,7 +1540,7 @@ msgstr ""
 "//Bad: seed is calculated at each invocation. DON'T!!\n"
 "double rnd = (new Random()).nextDouble();"
 
-#: lecture.adoc:596
+#: lecture.adoc:598
 msgid ""
 "//До Java 7+ так было нормально, но теперь НЕТ!!\n"
 "static final Random r = new Random();\n"
@@ -1551,7 +1554,7 @@ msgstr ""
 "  return r.nextDouble();\n"
 "}"
 
-#: lecture.adoc:599
+#: lecture.adoc:601
 msgid ""
 "//Java 7-16: в 3.6 раз быстрее, проще, качественнее\n"
 "double rnd = ThreadLocalRandom.current().nextDouble();"
@@ -1559,7 +1562,7 @@ msgstr ""
 "//Java 7-16: 3.6 times faster, statistically better\n"
 "double rnd = ThreadLocalRandom.current().nextDouble();"
 
-#: lecture.adoc:604
+#: lecture.adoc:606
 msgid ""
 "//Java 17+: JEP356. Not thread safe!\n"
 "RandomGenerator generator = RandomGenerator.getDefault();\n"
@@ -1571,11 +1574,11 @@ msgstr ""
 "generator.nextDouble();\n"
 "----"
 
-#: lecture.adoc:606
+#: lecture.adoc:608
 msgid "== Класс String"
 msgstr "== String class"
 
-#: lecture.adoc:612
+#: lecture.adoc:614
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1589,15 +1592,15 @@ msgstr ""
 "String java = \"Java\\u2122\"; //Java™\n"
 "----"
 
-#: lecture.adoc:614
+#: lecture.adoc:616
 msgid "== Строка -- иммутабельный объект."
 msgstr "== String is an immutable object."
 
-#: lecture.adoc:616
+#: lecture.adoc:618
 msgid "Нужна другая строка? Сооружаем новую:"
 msgstr "Need another string? Build another one from scratch:"
 
-#: lecture.adoc:622
+#: lecture.adoc:624
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1611,16 +1614,16 @@ msgstr ""
 "greeting = greeting.substring(0, 3) + \"p!\"; //Help!\n"
 "----"
 
-#: lecture.adoc:624
+#: lecture.adoc:626
 msgid "Хотя внутри строки -- массив, изменить его отдельные элементы нельзя!"
 msgstr ""
 "Although there is an array inside the String, you cannot change its elements!"
 
-#: lecture.adoc:626
+#: lecture.adoc:628
 msgid "== Внутреннее представление строк"
 msgstr "== Internal representation of strings"
 
-#: lecture.adoc:631
+#: lecture.adoc:633
 msgid ""
 "* До Java 9 -- `char[]`\n"
 "* После Java 9 -- `byte[]` и `byte coder`\n"
@@ -1634,12 +1637,12 @@ msgstr ""
 "* https://www.youtube.com/watch?v=HWkVJkoo1_Q[Alexey Shipilev — The Lord of "
 "the Strings: Two Scours]"
 
-#: lecture.adoc:633
+#: lecture.adoc:635
 msgid "== Пул строковых констант"
 msgstr "== Internal String constants pool"
 
-#: lecture.adoc:637
-msgctxt "lecture.adoc:637"
+#: lecture.adoc:639
+msgctxt "lecture.adoc:639lecture.adoc:639"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -1649,7 +1652,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: lecture.adoc:647
+#: lecture.adoc:649
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1671,7 +1674,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:654
+#: lecture.adoc:656
 msgid ""
 "[graphviz, \"stringpool.png\"]\n"
 "----\n"
@@ -1687,8 +1690,8 @@ msgstr ""
 "  graph [ dpi = 180 ];\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:661
-msgctxt "lecture.adoc:661"
+#: lecture.adoc:663
+msgctxt "lecture.adoc:663"
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1703,32 +1706,32 @@ msgstr ""
 "            label=\"String Constant Pool\"\n"
 "          }\n"
 "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
-
-#: lecture.adoc:670
-msgid ""
-"        label=\"Memory Heap\"\n"
-"      }\n"
-"  name1->o1\n"
-"  name2->o1\n"
-"  name3->o2\n"
-"}\n"
-"----\n"
-"|===="
-msgstr ""
-"        label=\"Memory Heap\"\n"
-"      }\n"
-"  name1->o1\n"
-"  name2->o1\n"
-"  name3->o2\n"
-"}\n"
-"----\n"
-"|===="
 
 #: lecture.adoc:672
+msgid ""
+"        label=\"Memory Heap\"\n"
+"      }\n"
+"  name1->o1\n"
+"  name2->o1\n"
+"  name3->o2\n"
+"}\n"
+"----\n"
+"|===="
+msgstr ""
+"        label=\"Memory Heap\"\n"
+"      }\n"
+"  name1->o1\n"
+"  name2->o1\n"
+"  name3->o2\n"
+"}\n"
+"----\n"
+"|===="
+
+#: lecture.adoc:674
 msgid "== Сравнение строк"
 msgstr "== Comparing strings"
 
-#: lecture.adoc:680
+#: lecture.adoc:682
 msgid ""
 "[%step]\n"
 "* `if (a == \"John Doe\")` -- *неправильно*, ошибка новичка.\n"
@@ -1748,13 +1751,13 @@ msgstr ""
 "* `if(str != null && !str.isBlank())` -- there is something in this string "
 "besides spaces, tabs, carriage returns etc.!"
 
-#: lecture.adoc:683
-msgctxt "lecture.adoc:683"
+#: lecture.adoc:685
+msgctxt "lecture.adoc:685"
 msgid "== Интернирование строк"
 msgstr "== String interning"
 
-#: lecture.adoc:687
-msgctxt "lecture.adoc:687"
+#: lecture.adoc:689
+msgctxt "lecture.adoc:689"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -1764,7 +1767,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: lecture.adoc:697
+#: lecture.adoc:699
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1786,7 +1789,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:704
+#: lecture.adoc:706
 msgid ""
 "[graphviz, \"stringpool-intern1.png\"]\n"
 "----\n"
@@ -1801,29 +1804,29 @@ msgstr ""
 "  node [shape=\"rectangle\"]\n"
 "  graph [ dpi = 180 ];\n"
 "  rankdir=\"LR\";"
-
-#: lecture.adoc:711
-msgctxt "lecture.adoc:711"
-msgid ""
-"      subgraph cluster_s2{\n"
-"          subgraph cluster_s3 {\n"
-"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
-"            label=\"String Constant Pool\"\n"
-"          }\n"
-"        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
-msgstr ""
-"      subgraph cluster_s2{\n"
-"          subgraph cluster_s3 {\n"
-"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
-"            label=\"String Constant Pool\"\n"
-"          }\n"
-"        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
 
 #: lecture.adoc:713
+msgctxt "lecture.adoc:713"
+msgid ""
+"      subgraph cluster_s2{\n"
+"          subgraph cluster_s3 {\n"
+"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+"            label=\"String Constant Pool\"\n"
+"          }\n"
+"        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+msgstr ""
+"      subgraph cluster_s2{\n"
+"          subgraph cluster_s3 {\n"
+"            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+"            label=\"String Constant Pool\"\n"
+"          }\n"
+"        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+
+#: lecture.adoc:715
 msgid "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 msgstr "        o3[label=\"Jane Roe\"; style=filled; fillcolor=\"#ffffcc\"]"
 
-#: lecture.adoc:722
+#: lecture.adoc:724
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1843,13 +1846,13 @@ msgstr ""
 "----\n"
 "|===="
 
-#: lecture.adoc:724
-msgctxt "lecture.adoc:724"
+#: lecture.adoc:726
+msgctxt "lecture.adoc:726"
 msgid "== Интернирование строк"
 msgstr "== String interning"
 
-#: lecture.adoc:728
-msgctxt "lecture.adoc:728"
+#: lecture.adoc:730
+msgctxt "lecture.adoc:730"
 msgid ""
 "[cols=\"35a,65a\"]\n"
 "|====\n"
@@ -1859,7 +1862,7 @@ msgstr ""
 "|====\n"
 ".^a|"
 
-#: lecture.adoc:736
+#: lecture.adoc:738
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1877,7 +1880,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:743
+#: lecture.adoc:745
 msgid ""
 "[graphviz, \"stringpool-intern2.png\"]\n"
 "----\n"
@@ -1893,7 +1896,7 @@ msgstr ""
 "  graph [ dpi = 180 ];\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:750
+#: lecture.adoc:752
 msgid ""
 "      subgraph cluster_s2{\n"
 "          subgraph cluster_s3 {\n"
@@ -1909,7 +1912,7 @@ msgstr ""
 "            label=\"String Constant Pool\"\n"
 "          }"
 
-#: lecture.adoc:761
+#: lecture.adoc:763
 msgid ""
 "        label=\"Memory Heap\"\n"
 "      }\n"
@@ -1929,11 +1932,11 @@ msgstr ""
 "----\n"
 "|===="
 
-#: lecture.adoc:764
+#: lecture.adoc:766
 msgid "== Конкатенация строк"
 msgstr "== String concatenation"
 
-#: lecture.adoc:769
+#: lecture.adoc:771
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1944,20 +1947,20 @@ msgstr ""
 "----\n"
 "String foo = \"foo\";\n"
 "String bar = \"bar\";"
-
-#: lecture.adoc:772
-msgid ""
-"System.out.println(foo + bar); //foobar\n"
-"----"
-msgstr ""
-"System.out.println(foo + bar); //foobar\n"
-"----"
 
 #: lecture.adoc:774
+msgid ""
+"System.out.println(foo + bar); //foobar\n"
+"----"
+msgstr ""
+"System.out.println(foo + bar); //foobar\n"
+"----"
+
+#: lecture.adoc:776
 msgid "Ситуация такова:"
 msgstr "The situation is following:"
 
-#: lecture.adoc:778
+#: lecture.adoc:780
 msgid ""
 "* Пользовательской перегрузки операторов в Java не предусмотрено.\n"
 "* Оператор `+` для строк перегружен на уровне языка.\n"
@@ -1970,11 +1973,11 @@ msgstr ""
 "* `==` operator is not overloaded, although its non-overloaded version does "
 "not make sense :-("
 
-#: lecture.adoc:780
+#: lecture.adoc:782
 msgid "== {zsp}Конкатенация строк: проблема производительности{zsp}"
 msgstr "== String concatenation: performance problem"
 
-#: lecture.adoc:789
+#: lecture.adoc:791
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1994,11 +1997,11 @@ msgstr ""
 "return result;\n"
 "----"
 
-#: lecture.adoc:792
+#: lecture.adoc:794
 msgid "== {zsp}Конкатенация строк: используйте StringBuilder!{zsp}"
 msgstr "== String concatenation: use `StringBuilder`!"
 
-#: lecture.adoc:802
+#: lecture.adoc:804
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2020,15 +2023,15 @@ msgstr ""
 "return b.toString();\n"
 "----"
 
-#: lecture.adoc:804
+#: lecture.adoc:806
 msgid "== Длина строки"
 msgstr "== String length"
 
-#: lecture.adoc:806
+#: lecture.adoc:808
 msgid "Длина строки в UTF-16 code units:"
 msgstr "String length in UTF-16 code units:"
 
-#: lecture.adoc:812
+#: lecture.adoc:814
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2042,7 +2045,7 @@ msgstr ""
 "int n = greeting.length(); // is 5.\n"
 "----"
 
-#: lecture.adoc:818
+#: lecture.adoc:820
 msgid ""
 "«Реальная» длина строки в code points:\n"
 "[source,java]\n"
@@ -2056,11 +2059,11 @@ msgstr ""
 "int cpCount = greeting.codePointCount(0, greeting.length());\n"
 "----"
 
-#: lecture.adoc:820
+#: lecture.adoc:822
 msgid "== Символ на i-й позиции"
 msgstr "== Character at a given position"
 
-#: lecture.adoc:823
+#: lecture.adoc:825
 msgid ""
 "[source,java]\n"
 "----"
@@ -2068,7 +2071,7 @@ msgstr ""
 "[source,java]\n"
 "----"
 
-#: lecture.adoc:828
+#: lecture.adoc:830
 msgid ""
 "//работает за время O(1)\n"
 "char first = greeting.charAt(0); // first is 'H'\n"
@@ -2080,11 +2083,11 @@ msgstr ""
 "char last = greeting.charAt(4); // last is 'o'\n"
 "----"
 
-#: lecture.adoc:830
+#: lecture.adoc:832
 msgid "Если нужны code points:"
 msgstr "If you need code points:"
 
-#: lecture.adoc:835
+#: lecture.adoc:837
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2096,11 +2099,11 @@ msgstr ""
 "int[] codePoints = str.codePoints().toArray();\n"
 "----"
 
-#: lecture.adoc:837
+#: lecture.adoc:839
 msgid "== Полезные методы "
 msgstr "== Useful methods "
 
-#: lecture.adoc:852
+#: lecture.adoc:854
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2132,11 +2135,11 @@ msgstr ""
 "String join(CharSequence delimiter, CharSequence... elements)\n"
 "----"
 
-#: lecture.adoc:854
+#: lecture.adoc:856
 msgid "== Вредные методы "
 msgstr "== Harmful methods "
 
-#: lecture.adoc:858
+#: lecture.adoc:860
 msgid ""
 "* `indexOf..` / `lastIndexOf..`\n"
 "* `replace..`\n"
@@ -2146,7 +2149,7 @@ msgstr ""
 "* `replace..`\n"
 "* `split..` "
 
-#: lecture.adoc:860
+#: lecture.adoc:862
 msgid ""
 "В комбинации c `substring` и конкатенацией их используют для извлечения "
 "данных / преобразования строк."
@@ -2154,13 +2157,115 @@ msgstr ""
 "In combination with `substring` and concatenation they are sometimes used "
 "for string parsing/transformation."
 
-#: lecture.adoc:862
+#: lecture.adoc:864
 msgid ""
 "_Не делайте так. Это путь к бесконечным багам, бесконечной боли и "
 "бесконечному стыду. Используйте конечные автоматы или регулярные выражения._"
 msgstr ""
 "_Don't do that. This is the way for endless pain, endless bugs and endless "
 "shame. Use definite state machines or regular expressions instead._"
+
+#~ msgid ""
+#~ "RuntimeException <|-- ClassCastException\n"
+#~ "RuntimeException <|-- IndexOutOfBoundsException"
+#~ msgstr ""
+#~ "RuntimeException <|-- ClassCastException\n"
+#~ "RuntimeException <|-- IndexOutOfBoundsException"
+
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:160"
+#~ msgid "== Выбрасывание исключений"
+#~ msgstr "== Throwing exceptions"
+
+#~ msgctxt "lecture.adoc:226"
+#~ msgid ""
+#~ "[plantuml, iomultiple, png]\n"
+#~ "----\n"
+#~ "@startuml"
+#~ msgstr ""
+#~ "[plantuml, iomultiple, png]\n"
+#~ "----\n"
+#~ "@startuml"
+
+#~ msgctxt "lecture.adoc:228"
+#~ msgid "skinparam dpi 180 "
+#~ msgstr "skinparam dpi 180 "
+
+#~ msgctxt "lecture.adoc:230"
+#~ msgid "IOException <|-- FileNotFoundException"
+#~ msgstr "IOException <|-- FileNotFoundException"
+
+#~ msgctxt "lecture.adoc:234"
+#~ msgid ""
+#~ "IOException <|-- UnknownHostException\n"
+#~ "@enduml\n"
+#~ "----"
+#~ msgstr ""
+#~ "IOException <|-- UnknownHostException\n"
+#~ "@enduml\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:388"
+#~ msgid "== Беда с finally-block"
+#~ msgstr "== A problem with `finally` block"
+
+#~ msgctxt "lecture.adoc:445"
+#~ msgid "skinparam dpi 200 "
+#~ msgstr "skinparam dpi 200 "
+
+#~ msgctxt "lecture.adoc:458"
+#~ msgid "Exception <|-- IOException"
+#~ msgstr "Exception <|-- IOException"
+
+#~ msgctxt "lecture.adoc:484"
+#~ msgid "== Исключения -- для исключительных случаев!"
+#~ msgstr "== Exceptions are for exceptional cases only!"
+
+#~ msgctxt "lecture.adoc:687"
+#~ msgid ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
+#~ msgstr ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
+
+#~ msgctxt "lecture.adoc:711"
+#~ msgid ""
+#~ "      subgraph cluster_s2{\n"
+#~ "          subgraph cluster_s3 {\n"
+#~ "            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+#~ "            label=\"String Constant Pool\"\n"
+#~ "          }\n"
+#~ "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+#~ msgstr ""
+#~ "      subgraph cluster_s2{\n"
+#~ "          subgraph cluster_s3 {\n"
+#~ "            o1[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]\n"
+#~ "            label=\"String Constant Pool\"\n"
+#~ "          }\n"
+#~ "        o2[label=\"John Doe\"; style=filled; fillcolor=\"#ffffcc\"]"
+
+#~ msgctxt "lecture.adoc:724"
+#~ msgid "== Интернирование строк"
+#~ msgstr "== String interning"
+
+#~ msgctxt "lecture.adoc:728"
+#~ msgid ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
+#~ msgstr ""
+#~ "[cols=\"35a,65a\"]\n"
+#~ "|====\n"
+#~ ".^a|"
 
 #~ msgid ""
 #~ "//== Часть 1. Введение\n"

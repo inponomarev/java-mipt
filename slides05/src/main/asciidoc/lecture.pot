@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-21 01:01+0300\n"
+"POT-Creation-Date: 2024-02-01 00:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.2.5\n"
+"X-Generator: Translate Toolkit 3.6.0\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -86,8 +86,8 @@ msgstr ""
 msgid ""
 "== Поиск/замена в цикле\n"
 "Пример на https://stackoverflow.com/questions/9605716/java-regular-"
-"expression-find-and-replace[StackOverflow]: xотим получить на выходе \""
-"1xxxx23\":"
+"expression-find-and-replace[StackOverflow]: xотим получить на выходе "
+"\"1xxxx23\":"
 msgstr ""
 
 #: lecture.adoc:59
@@ -635,8 +635,8 @@ msgstr ""
 
 #: lecture.adoc:439
 msgid ""
-"IBM2741 terminal, 1965 (источник: "
-"https://en.wikipedia.org/wiki/IBM_2741[Wikipedia])"
+"IBM2741 terminal, 1965 (источник: https://en.wikipedia.org/wiki/"
+"IBM_2741[Wikipedia])"
 msgstr ""
 
 #: lecture.adoc:442
@@ -822,7 +822,7 @@ msgid ""
 "[source,java]\n"
 "----\n"
 "Path path = Paths.get(\"path/to/file.txt\");\n"
-"List<String> lines = new List<String>();\n"
+"List<String> lines = new ArrayList<>();\n"
 "lines.add(...)"
 msgstr ""
 
@@ -849,6 +849,7 @@ msgstr ""
 
 #: lecture.adoc:572
 msgctxt "lecture.adoc:572"
+"lecture.adoc:572"
 msgid "== Работа с файловой системой"
 msgstr ""
 
