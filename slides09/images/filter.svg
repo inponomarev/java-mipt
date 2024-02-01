@@ -1,0 +1,28 @@
+<svg version="1.1" width="280" height="240" xmlns="http://www.w3.org/2000/svg">
+<g id="filter-guy">
+  <path d="M100,20 q0,20 -20,20 q-20,0 -20,20 l0,120 q0,20 20,20 q20,0 20,20 l50,0 q0,-20 20,-20 l80,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-80,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="packman_yellow" from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,120 l15,0 l0,20 l-15,0 z" begin="0;packman_blue.end" dur="500ms" fill="remove"/>
+  </path>
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="packman_green" from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="packman_yellow.end+500ms" dur="1000ms" fill="freeze"/>
+  </path>
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="packman_blue" from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="packman_green.end" dur="1000ms" fill="freeze"/>
+  </path>
+
+  <path d="M95,0 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+  <path d="M95,220 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <path d="M200,120 l-54,-1 a56,56 0 1,1 0,2 z" fill="red" stroke="blue" stroke-width="3">
+    <animate id="packman_body_close" attributeType="XML" attributeName="d" from="M200,120 l-40,-40 a56,56 0 1,1 0,80 z" to="M150,120 l-54,-1 a56,56 0 1,1 0,2 z" begin="packman_body_open.end+100ms" dur="100ms" fill="freeze"/>
+    <animate id="packman_body_retreat" attributeType="XML" attributeName="d" from="M150,120 l-54,-1 a56,56 0 1,1 0,2 z" to="M200,120 l-54,-1 a56,56 0 1,1 0,2 z" begin="packman_body_close.end+200ms" dur="300ms" fill="freeze"/>
+    <animate id="packman_body_open" attributeType="XML" attributeName="d" from="M200,120 l-54,-1 a56,56 0 1,1 0,2 z" to="M200,120 l-40,-40 a56,56 0 1,1 0,80 z" begin="packman_yellow.begin" dur="300ms" fill="freeze"/>
+  </path>
+  <ellipse cx="200" cy="90" rx="5" ry="5" fill="yellow" stroke="blue" stroke-width="3">
+    <animate id="packman_eye_close" attributeType="XML" attributeName="cx" from="200" to="150" begin="packman_body_open.end+100ms" dur="100ms" fill="freeze"/>
+    <animate id="packman_eye_retreat" attributeType="XML" attributeName="cx" from="150" to="200" begin="packman_body_close.end+200ms" dur="300ms" fill="freeze"/>
+  </ellipse>
+</g>
+</svg>
