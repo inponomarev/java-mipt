@@ -109,10 +109,11 @@ System.out.println(sb.toString()); //1xxxx23
 
 == Конечный автомат!
 
-[graphviz, "dfa.png"]
+[graphviz,dfa]
 ----
 digraph G {
   graph [ dpi = 140 ];
+  node[shape=block, style="rounded"];
   rankdir="LR";
   START -> QUOTED_BODY [label="quote"];
   QUOTED_BODY -> QUOTE_READ [label="quote"];
@@ -131,30 +132,31 @@ digraph G {
 ----
 enum State {START, QUOTED_BODY, QUOTE_READ, UNQUOTED_BODY}
 List<String> parse(String line) {
-    State state = State.START;
-    List<String> result = new ArrayList<>();
-    StringBuilder fieldValue = new StringBuilder();
-    for (char c : line.toCharArray()) {
-        switch (state) {
-            case START: . . .
-            case QUOTED_BODY: . . .
-            case QUOTE_READ: . . .
-            case UNQUOTED_BODY: . . .
-        }
+  State state = State.START;
+  List<String> result = new ArrayList<>();
+  StringBuilder fieldValue = new StringBuilder();
+  for (char c : line.toCharArray()) {
+    switch (state) {
+        case START -> { . . .  }
+        case QUOTED_BODY -> { . . .  }
+        case QUOTE_READ -> { . . . }
+        case UNQUOTED_BODY -> { . . . }
     }
-    result.add(fieldValue.toString());
-    return result;
+  }
+  result.add(fieldValue.toString());
+  return result;
 }
 ----
 
 [transition="none"]
 == Начали читать поле
-[graphviz, "start.png"]
+[graphviz,start]
 ----
 digraph G {
   graph [ dpi = 140 ];
+  node[shape=block, style="rounded"];
   rankdir="LR";
-  START [style="filled",color="yellow", fillcolor="yellow"]
+  START [style="rounded,filled", fillcolor="yellow"]
   START -> QUOTED_BODY [label="quote", color="red"];
   QUOTED_BODY -> QUOTE_READ [label="quote"];
   QUOTED_BODY -> QUOTED_BODY [label = ""];
@@ -169,26 +171,26 @@ digraph G {
 
 [source,java]
 ----
-case START:
+case START -> {
     fieldValue = new StringBuilder();
     if (c == '"')
         state = State.QUOTED_BODY;
     else {
         fieldValue.append(c);
         state = State.UNQUOTED_BODY;
-    }
-    break;
+    }}
 ----
 
 [transition="none"]
 == Закавыченное значение
-[graphviz, "quoted_body.png"]
+[graphviz,quoted_body]
 ----
 digraph G {
   graph [ dpi = 140 ];
+  node[shape=block, style="rounded"];
   rankdir="LR";
   START -> QUOTED_BODY [label="quote"];
-  QUOTED_BODY [style="filled",color="yellow", fillcolor="yellow"]
+  QUOTED_BODY [style="rounded,filled", fillcolor="yellow"]
   QUOTED_BODY -> QUOTE_READ [label="quote", color="red"];
   QUOTED_BODY -> QUOTED_BODY [label = "", color="red"];
   QUOTE_READ -> QUOTED_BODY [label="quote"];
@@ -201,26 +203,25 @@ digraph G {
 
 [source,java]
 ----
-case QUOTED_BODY:
+case QUOTED_BODY -> {
     if (c == '"')
         state = State.QUOTE_READ;
     else {
         fieldValue.append(c);
-        state = State.QUOTED_BODY;
-    }
-    break;
+    }}
 ----
 
 [transition="none"]
 == Встретилась кавычка
-[graphviz, "quote_read.png"]
+[graphviz,quote_read]
 ----
 digraph G {
   graph [ dpi = 140 ];
+  node[shape=block, style="rounded"];
   rankdir="LR";
   START -> QUOTED_BODY [label="quote"];
   QUOTED_BODY -> QUOTE_READ [label="quote"];
-  QUOTE_READ [style="filled",color="yellow", fillcolor="yellow"]
+  QUOTE_READ [style="rounded,filled", fillcolor="yellow"]
   QUOTED_BODY -> QUOTED_BODY [label = ""];
   QUOTE_READ -> QUOTED_BODY [label="quote", color="red"];
   START -> UNQUOTED_BODY;
@@ -233,31 +234,30 @@ digraph G {
 
 [source,java]
 ----
-case QUOTE_READ:
-    if (c == '"') {
-        fieldValue.append(c);
-        state = State.QUOTED_BODY;
-    } else if (c == ',') {
-        result.add(fieldValue.toString());
-        state = State.START;
-    } else { //invalid input format
-        throw new IllegalStateException();
-    } break;
+case QUOTE_READ -> {
+    if (c == '"') {        fieldValue.append(c);
+                           state = State.QUOTED_BODY;
+    } else if (c == ',') { result.add(fieldValue.toString());
+                           state = State.START;
+    } else {               //invalid input format
+                           throw new IllegalStateException();
+    }}
 ----
 
 [transition="none"]
 == Незакавыченное значение
-[graphviz, "unquoted_body.png"]
+[graphviz,unquoted_body]
 ----
 digraph G {
   graph [ dpi = 140 ];
+  node[shape=block, style="rounded"];
   rankdir="LR";
   START -> QUOTED_BODY [label="quote"];
   QUOTED_BODY -> QUOTE_READ [label="quote"];
   QUOTED_BODY -> QUOTED_BODY [label = ""];
   QUOTE_READ -> QUOTED_BODY [label="quote"];
   START -> UNQUOTED_BODY;
-  UNQUOTED_BODY [style="filled",color="yellow", fillcolor="yellow"]
+  UNQUOTED_BODY [style="rounded,filled", fillcolor="yellow"]
   UNQUOTED_BODY -> UNQUOTED_BODY [color="red"];
   QUOTE_READ -> START [xlabel="delimiter"]
   UNQUOTED_BODY -> START [label="delimiter", color="red"]
@@ -266,14 +266,11 @@ digraph G {
 
 [source,java]
 ----
-case UNQUOTED_BODY:
-    if (c == ',') {
-        result.add(fieldValue.toString());
-        state = State.START;
-    } else {
-        fieldValue.append(c);
-    }
-    break;
+case UNQUOTED_BODY -> {
+    if (c == ',') { result.add(fieldValue.toString());
+                    state = State.START;
+    } else {        fieldValue.append(c);
+    }}
 ----
 
 == В завершение
