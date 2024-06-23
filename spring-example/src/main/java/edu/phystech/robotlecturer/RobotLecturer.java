@@ -3,10 +3,9 @@ package edu.phystech.robotlecturer;
 
 import edu.phystech.robotlecturer.annotation.InjectRandomInt;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.Map;
 
 @Component
