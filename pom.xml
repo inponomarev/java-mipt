@@ -34,16 +34,12 @@
         <module>slides12</module>
         <module>slides13</module>
         <module>slides14</module>
-        <!--
+
         <module>spring-example</module>
-        <module>overview</module>
-        
         <module>helloworld</module>
         <module>reflection-example</module>
-
         <module>jdbc-example</module>
         <module>di-example</module>
-        <module>spring-example</module>-->
     </modules>
 
     <organization>
