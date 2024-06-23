@@ -5,14 +5,13 @@ import edu.phystech.di.annotation.InjectRandomInt;
 
 import javax.annotation.PostConstruct;
 
-public class RobotLecturer {
+public class RobotLecturer implements Lecturer{
     @InjectByType
     private Lecture lecture;
     @InjectByType
     private Speaker speaker;
     @InjectByType
     private SlideShow slideShow;
-
     @InjectRandomInt(min = 1, max = 3)
     private int repeat;
 
