@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.inponomarev</groupId>
+    <artifactId>java-mipt-plan</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Java lectures plan</name>
+    <description>Java lectures plan</description>
+
+    <organization>
+        <name>MIPT</name>
+        <url>https://mipt.ru/</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Ivan Ponomarev</name>
+            <email>ponomarev@phystech.edu</email>
+        </developer>
+    </developers>
+
+    <build>
+        <sourceDirectory>src/main/asciidoc</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-diagram</artifactId>
+                        <version>2.3.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-diagram-jsyntrax</artifactId>
+                        <version>1.38.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <requires>
+                        <require>asciidoctor-diagram</require>
+                    </requires>
+                    <logHandler>
+                        <outputToConsole>true</outputToConsole>
+                        <failIf>
+                            <severity>WARN</severity>
+                        </failIf>
+                    </logHandler>
+                    <backend>html5</backend>
+                    <attributes>
+                        <project-version>${project.version}</project-version>
+                    </attributes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>asciidoc-to-html-ru</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDocumentName>0000_index.adoc</sourceDocumentName>
+                            <outputDirectory>target/generated-docs</outputDirectory>
+                            <outputFile>index.html</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
