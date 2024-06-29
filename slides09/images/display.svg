@@ -1,0 +1,32 @@
+<svg version="1.1" width="280" height="240" xmlns="http://www.w3.org/2000/svg">
+<g id="display-guy">
+  <path d="M100,20 q0,20 -20,20 l-40,0 q-20,0 -20,20 l0,120 q0,20 20,20 l170,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-40,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="display_green" from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,88 l15,0 l0,20 l-15,0 z" begin="0;display_blue.end+1600ms" dur="400ms" fill="freeze"/>
+  </path>
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="display_blue" from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,88 l15,0 l0,20 l-15,0 z" begin="display_green.end+600ms" dur="400ms" fill="freeze"/>
+  </path>
+
+  <path d="M115,140 l0,10 q0,5 -5,5 l-5,0 q-3,0 -3,3 l46,0 q0,-3 -3,-3 l-5,0 q-5,0 -5,-5 l0,-10" fill="#333" stroke-width="3" stroke="#111"/>
+
+  <path d="M70,80 l0,60 q0,5 5,5 l100,0 q5,0 5,-5 l0,-60 q0,-5 -5,-5 l-100,0 q-5,0 -5,5" fill="#333" stroke-width="3" stroke="#111"/>
+  <path d="M75,85 l0,50 q0,5 5,5 l90,0 q5,0 5,-5 l0,-50 q0,-5 -5,-5 l-90,0 q-5,0 -5,5" fill="#EEE" stroke-width="3" stroke="#666"/>
+
+  <path d="M95,0 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <path d="M125,110 l0,0 l0,0 l0,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="display_green_2" from="M125,110 l0,0 l0,0 l0,0 z" to="M110,90 l30,0 l0,40 l-30,0 z" begin="display_green.end" dur="300ms"/>
+    <animate attributeType="XML" attributeName="d" id="display_green_3" from="M110,90 l30,0 l0,40 l-30,0 z" to="M118,100 l15,0 l0,20 l-15,0 z" begin="display_green_2.end" dur="200ms"/>
+    <animate attributeType="XML" attributeName="d" from="M118,100 l15,0 l0,20 l-15,0 z" to="M118,100 l15,0 l0,20 l-15,0 z" begin="display_green_3.end" dur="500ms" fill="remove"/>
+  </path>
+
+  <path d="M125,110 l0,0 l0,0 l0,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="display_blue_2" from="M125,110 l0,0 l0,0 l0,0 z" to="M110,90 l30,0 l0,40 l-30,0 z" begin="display_blue.end" dur="300ms"/>
+    <animate attributeType="XML" attributeName="d" id="display_blue_3" from="M110,90 l30,0 l0,40 l-30,0 z" to="M118,100 l15,0 l0,20 l-15,0 z" begin="display_blue_2.end" dur="200ms"/>
+    <animate attributeType="XML" attributeName="d" from="M118,100 l15,0 l0,20 l-15,0 z" to="M118,100 l15,0 l0,20 l-15,0 z" begin="display_blue_3.end" dur="500ms" fill="remove"/>
+  </path>
+</g>
+
+</svg>
