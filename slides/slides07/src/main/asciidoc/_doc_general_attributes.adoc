@@ -13,6 +13,7 @@
 :hyph: &#173;
 :zsp: &#8203;
 :numbered:
+:sectnums!:
 :toc: center
 ifdef::basebackend-docbook[]
 :for-print:
