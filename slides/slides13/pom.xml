@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ru.inponomarev</groupId>
+        <artifactId>java-mipt-slides-base</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../slides-base</relativePath>
+    </parent>
+
+    <artifactId>java-mipt-slides13</artifactId>
+
+    <name>Java lecture 13</name>
+    <description>Java lectures slides</description>
+</project>

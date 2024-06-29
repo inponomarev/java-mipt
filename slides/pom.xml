@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.inponomarev</groupId>
+    <artifactId>java-mipt-slides-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Java MIPT slides</name>
+    <description>Slides for MIPT Java lectures</description>
+    <packaging>pom</packaging>
+    <organization>
+        <name>MIPT</name>
+        <url>https://mipt.ru/</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Ivan Ponomarev</name>
+            <email>ponomarev@phystech.edu</email>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>plan</module>
+        <module>slides01</module>
+        <module>slides02</module>
+        <module>slides03</module>
+        <module>slides04</module>
+        <module>slides05</module>
+        <module>slides06</module>
+        <module>slides07</module>
+        <module>slides08</module>
+        <module>slides09</module>
+        <module>slides10</module>
+        <module>slides11</module>
+        <module>slides12</module>
+        <module>slides13</module>
+        <module>slides14</module>
+    </modules>
+</project>
