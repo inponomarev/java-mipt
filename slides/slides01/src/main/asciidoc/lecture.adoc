@@ -37,7 +37,6 @@ icon:twitter[size=lg] @inponomarev
 .^|image::me.jpg[]
 .^|
 * Выпускник МФТИ 2003 г., к.ф.-м.н
-* Tech Lead at KURS
 * ERP systems & Java background
 * Speaker at conferences
 * Heisenbug Program Committee Member 
@@ -45,7 +44,11 @@ icon:twitter[size=lg] @inponomarev
 
 == Как со мной связаться?
 
-* icon:home[size=lg] https://inponomarev.ru/
+[none]
+
+* icon:home[size=lg] https://inponomarev.ru/ (RU)
+
+* icon:home[size=lg] https://ponomarev.uk/ (EN)
 
 * icon:twitter[size=lg] https://twitter.com/inponomarev[@inponomarev]
 
@@ -70,8 +73,7 @@ image::kotlin.png[canvas, size=cover]
 
 == Полезные ссылки
 
-* https://bit.ly/java21-join (Telegram MIPT. Java-2021)
-* https://inponomarev.ru/corejava
+* https://ponomarev.uk/javacourse.html
 
 
 == Полезные книги
@@ -105,9 +107,8 @@ image::goetz.jpg[]
 * *Joshua Bloch* Effective Java
 * *Brian Goetz et al.* Java Concurrency in Practice
 
-== TIOBE Index
+== TIOBE Index (https://www.tiobe.com/tiobe-index/)
 
-[%step]
 * number of search engine results for queries containing the name of the language
 * covers searches in Google, Google Blogs, MSN, Yahoo!, Baidu, Wikipedia and YouTube
 * reflects the number of skilled engineers, courses and jobs worldwide
@@ -118,41 +119,76 @@ image::goetz.jpg[]
 
 image::tiobe.png[{image-100-width}]
 
+https://www.tiobe.com/tiobe-index/
 
-== RedMonk Index
+== RedMonk
 
 * GitHub & StackOverflow
 
 [%notitle]
 == RedMonk
 
-image::redmonk2022.png[{image-60-width}]
+image::redmonk2024.png[{image-60-width}]
+https://redmonk.com/
 
-== 27 лет Джавы
+[%notitle]
+== RedMonk
+
+image::redmonk-rankings-2024.png[{image-60-width}]
+https://redmonk.com/
+
+== Three Decades of Java: Before Java 9
 
 [source]
 ----
-JDK 1.0 (January 23, 1996)      |  -- 6-monthly release cadence --
-JDK 1.1 (February 19, 1997)     |  Java SE 10     (March 20, 2018)
-J2SE 1.2 (December 8, 1998)     |  Java SE 11 LTS (September 25, 2018)
-J2SE 1.3 (May 8, 2000)          |  Java SE 12     (March 19, 2019)
-J2SE 1.4 (February 6, 2002)     |  Java SE 13     (September 17, 2019)
-J2SE 5.0 (September 30, 2004)   |  Java SE 14     (March 17, 2020)
-Java SE 6 (December 11, 2006)   |  Java SE 15     (September 15, 2020)
--- Sun acquisition by Oracle--  |  Java SE 16     (March 16, 2021)
-Java SE 7 (July 28, 2011)       |  Java SE 17 LTS (September 14, 2021)
-Java SE 8 (March 18, 2014)      |  Java SE 18     (March 22, 2022)
-Java SE 9 (September 21, 2017)  |  Java SE 19     (September 20, 2022)
-                                |  Java SE 20     (due to in March 2023)
-                                |  Java SE 21 LTS (due to in September 2023)
+JDK 1.0 (January 23, 1996)
+JDK 1.1 (February 19, 1997)
+J2SE 1.2 (December 8, 1998)
+J2SE 1.3 (May 8, 2000)
+J2SE 1.4 (February 6, 2002)
+J2SE 5.0 (September 30, 2004)   <--- Scala: early 2004
+Java SE 6 (December 11, 2006)
+-- Sun acquisition by Oracle--  <--- Groovy 1.0: January 2, 2007
+Java SE 7 (July 28, 2011)
+Java SE 8 (March 18, 2014)      <--- Kotlin 1.0: February 15, 2016
+Java SE 9 (September 21, 2017)
 ----
 
-== 6-monthly Release Cadence
+(source: Wikipedia)
 
-image::6-monthly.png[{image-70-width}]
+== Three Decades of Java: After Java 9
 
-*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature evolution in Java 13 and beyond]
+6-monthly release cadence
 
+[cols="50a,50a"]
+|===
+|
+
+[source]
+10     (March 20, 2018)
+11 LTS (September 25, 2018)
+12     (March 19, 2019)
+13     (September 17, 2019)
+14     (March 17, 2020)
+15     (September 15, 2020)
+16     (March 16, 2021)
+17 LTS (September 14, 2021)
+
+|
+
+[source]
+18     (March 22, 2022)
+19     (September 20, 2022)
+20     (March 21, 2023)
+21 LTS (September 19, 2023)
+22     (March 19, 2024)
+23     (due to in September 2024)
+24     (due to in March 2025)
+25 LTS (due to in September 2025)
+|===
+
+
+(source: Wikipedia)
 
 == Истоки
 
@@ -168,7 +204,8 @@ image::gosling-lotr.jpg[]
 |===
 
 [.fragment]
-icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: https://www.youtube.com/watch?v=XThhlihqTXI
+icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: +
+https://www.youtube.com/watch?v=XThhlihqTXI
 
 == Вопрос
 
@@ -312,9 +349,10 @@ image::seesaw.jpg[{image-40-width}]
 
 * JDK 1.8: `CompletableFuture`
 
+* Java SE 21: Project Loom: virtual threads
+
 // https://howtodoinjava.com/java/multi-threading/java-multi-threading-evolution-and-topics/
 
-* Будущее: Project Loom: lightweight user-mode threads (fibers)
 
 == Модель памяти
 
@@ -384,12 +422,7 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 
 * Proxy и AOP
 
-== Стандартная библиотека
-
-image::lib-evolution.png[{image-100-width}]
-*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature evolution in Java 13 and beyond]
-
-== Стандартная библиотека
+== Постоянно совершенствуемая стандартная библиотека
 
 [%step]
 * Независимая от системы часть 
@@ -407,21 +440,32 @@ image::lib-evolution.png[{image-100-width}]
 * Любой, как угодно давно скомпилированный .jar-файл может быть запущен на любой современной JVM
 * Дар или проклятие?
 
-[%notitle]
 == Критика языка и платформы Джава
 
-image::javasirs.jpg[{image-40-width}]
+* Тормозит
+* Потребяет слишком много памяти
+* Медленно стартует
+* Многословна (слишком много "boilerplate code")
+* Язык консервативен, медленно развивается
 
-== Развитие языка, начиная с восьмой версии
+== Критика языка и платформы Джава
+
+* Тормозит -- *нет*
+* Потребяет слишком много памяти -- *нет*
+* Медленно стартует -- *отчасти да*
+* Многословна (слишком много "boilerplate code") -- *что да то да, но с Lombok и современной джавой это чинится*
+* Язык консервативен, медленно развивается -- *уже нет*
+
+== Развитие языка c 9й версии (6-months release cadence)
 
 [%step]
-* lambdas & functional programming, 
-* modules, 
-* compact strings, 
 * type inference,
 * switch expressions,
+* sealed classes,
 * pattern matching,
-* records...
+* records,
+* unnamed main classes,
+* string templates (to be dropped?)...
 
 == Текущие проекты
 
@@ -451,11 +495,11 @@ image::pirates.png[{image-10-width}]
 * 20-30 языков
 
 ** Специально созданные: Groovy, Scala, Kotlin...
-** Реимплементация для JVM: JRuby, Nashorn/Graal.js... 
+** Реимплементация для JVM: JRuby, Clojure (Lisp dialect), Nashorn/Graal.js...
 
 * https://jaxenter.com/wp-content/uploads/2017/03/Pirates-of-the-JVM-JAXenter-768x4245.png
 
-== Важнейшие элементы экосистемы
+== Важнейшие элементы экосистемы (за рамками стандартной библиотеки)
 
 * Бибилиотеки и фреймворки (в т. ч. для тестирования)
 * Среды разработки
@@ -470,51 +514,73 @@ image::junit5.jpg[]
 
 == Spring Framework
 
-
-DI container and application framework, 
+DI container and application framework
 
 image::springframework.png[{image-40-width}]
 
-
 == Среды разработки
 
-
-
-[cols="30a,30a,40a"]
+[cols="^50a,^50a"]
 |===
-.^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}] IDEA +
+
+.^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}]
+
+IDEA
+
 (proprietary, JetBrains)
-.^|image:Apache_NetBeans_Logo.svg[{image-20-width}] NetBeans +
+
+.^|image:Apache_NetBeans_Logo.svg[{image-20-width}]
+
+NetBeans
+
 (ASF / Oracle)
-.^|image:Eclipse-Luna-Logo.svg[] +
+
+.^|image:Eclipse-Luna-Logo.svg[]
+
 Eclipse Foundation
+
+.^|image:vscode.png[{image-30-width}]
+
+VS Code
+
+(Microsoft)
 |===
 
 == Системы сборки
 
-image::mavenlogo.svg[{image-20-width}]
+[cols="^50a,^50a"]
+|===
+|
 
-* XML-конфигурация, Maven project layout, Maven Central 
+image::mavenlogo.svg[{image-40-width}]
 
-image::gradlelogo.png[{image-30-width}]
+XML configuration +
+Maven project layout +
+Maven Central +
+plugins +
+declarative
 
-* Groovy/Kotlin DSL
+|
+image::gradlelogo.png[{image-50-width}]
 
-== Jenkins CI
+Groovy DSL / Kotlin DSL +
+plugins +
+scripts +
+mixed declarative/imperative
 
-image::jenkins-logo-title.png[]
-
+|===
 == Java community
 
-* JUGs (Москва, Санкт-Петербург, Новосибирск)
-* Conferences (Joker, JPoint)
-* Приходите на московский JUG (когда закончится пандемия)
+* JUGs (в крупных городах)
+* Conferences (Joker/JPoint/SnowOne, DevoXX etc.)
 
-image::jugmsk.jpg[]
+image::duke.svg[]
 
 == Oracle certification exams
 
-* OCA/OCP
+OCA/OCP (search for "Oracle Java Certification")
+
+image::oca.png[{image-60-width}]
 
 == Hello, world!
 

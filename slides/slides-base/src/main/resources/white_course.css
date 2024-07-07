@@ -495,3 +495,7 @@ body {
 section.title {
   height: 100%;
 }
+
+ul.none {
+  list-style: none;
+}
