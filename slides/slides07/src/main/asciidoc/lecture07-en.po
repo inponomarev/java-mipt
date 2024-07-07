@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 07\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 00:17+0100\n"
-"PO-Revision-Date: 2024-02-01 11:54+0000\n"
+"POT-Creation-Date: 2024-07-07 22:28+0100\n"
+"PO-Revision-Date: 2024-07-07 22:30+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: lecture.adoc:24
 msgid ""
@@ -77,7 +77,7 @@ msgid "icon:twitter[size=lg] @inponomarev"
 msgstr "icon:twitter[size=lg] @inponomarev"
 
 #: lecture.adoc:34
-msgctxt "lecture.adoc:34lecture.adoc:34"
+msgctxt "lecture.adoc:34"
 msgid ""
 "[%notitle]\n"
 "== Эпиграф"
@@ -200,7 +200,8 @@ msgid "class TreeMap<K,V> {"
 msgstr "class TreeMap<K,V> {"
 
 #: lecture.adoc:87
-msgctxt "lecture.adoc:87lecture.adoc:87"
+#, fuzzy
+msgctxt "lecture.adoc:87"
 msgid "}"
 msgstr "}"
 
@@ -1108,7 +1109,8 @@ msgstr ""
 "}"
 
 #: lecture.adoc:475
-msgctxt "lecture.adoc:475lecture.adoc:475"
+#, fuzzy
+msgctxt "lecture.adoc:475"
 msgid "----"
 msgstr "----"
 
@@ -1117,7 +1119,8 @@ msgid "== Коллизии хэша"
 msgstr "== Hash collisions"
 
 #: lecture.adoc:481
-msgctxt "lecture.adoc:481lecture.adoc:481"
+#, fuzzy
+msgctxt "lecture.adoc:481"
 msgid ""
 "[cols=\"60a,40a\"]\n"
 "|===\n"
@@ -2054,7 +2057,7 @@ msgstr ""
 
 #: lecture.adoc:884
 msgid ""
-"* «Ингридиенты» лямбды:\n"
+"* «Ингредиенты» лямбды:\n"
 "** Код\n"
 "** Параметры\n"
 "** Свободные («захваченные») переменные, которые должны быть effectively "
@@ -2449,7 +2452,7 @@ msgstr ""
 
 #: lecture.adoc:1053
 msgid "== {zsp}Предикаты{zsp}"
-msgstr "== Predicates"
+msgstr "==  Predicates"
 
 #: lecture.adoc:1061
 msgid ""

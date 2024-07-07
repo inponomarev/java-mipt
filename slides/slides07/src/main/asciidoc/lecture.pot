@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 00:17+0100\n"
+"POT-Creation-Date: 2024-07-07 22:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.6.0\n"
+"X-Generator: Translate Toolkit 3.13.1\n"
 
 #: lecture.adoc:24
 msgid ""
@@ -54,7 +54,6 @@ msgstr ""
 
 #: lecture.adoc:34
 msgctxt "lecture.adoc:34"
-"lecture.adoc:34"
 msgid ""
 "[%notitle]\n"
 "== Эпиграф"
@@ -146,7 +145,6 @@ msgstr ""
 
 #: lecture.adoc:87
 msgctxt "lecture.adoc:87"
-"lecture.adoc:87"
 msgid "}"
 msgstr ""
 
@@ -748,7 +746,6 @@ msgstr ""
 
 #: lecture.adoc:475
 msgctxt "lecture.adoc:475"
-"lecture.adoc:475"
 msgid "----"
 msgstr ""
 
@@ -758,7 +755,6 @@ msgstr ""
 
 #: lecture.adoc:481
 msgctxt "lecture.adoc:481"
-"lecture.adoc:481"
 msgid ""
 "[cols=\"60a,40a\"]\n"
 "|===\n"
@@ -1361,7 +1357,7 @@ msgstr ""
 
 #: lecture.adoc:884
 msgid ""
-"* «Ингридиенты» лямбды:\n"
+"* «Ингредиенты» лямбды:\n"
 "** Код\n"
 "** Параметры\n"
 "** Свободные («захваченные») переменные, которые должны быть effectively "
