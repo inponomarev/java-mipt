@@ -1,9 +1,10 @@
+#. extracted from lecture.adoc
 msgid ""
 msgstr ""
 "Project-Id-Version: slides 02\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 18:34+0300\n"
-"PO-Revision-Date: 2023-02-23 18:36+0200\n"
+"POT-Creation-Date: 2024-09-26 11:33+0100\n"
+"PO-Revision-Date: 2024-09-26 11:49+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -1017,12 +1018,12 @@ msgid ""
 "* Без короткого замыкания: `&`, `|`, `^`, `!`  (вместо тильды -- "
 "восклицательный знак!)"
 msgstr ""
-"* Without short circuiting: '&', '|', '^', '!' (exclamation instead of a "
+"* Without short circuiting: `&`, `|`, `^`, `!` (exclamation instead of a "
 "tilde)"
 
 #: lecture.adoc:451
 msgid "* С коротким замыканием `&&`, `||`."
-msgstr "* With short-circuiting '&&', '|| `."
+msgstr "* With short-circuiting `&&`, `||`."
 
 #: lecture.adoc:457
 msgid ""
@@ -1078,12 +1079,14 @@ msgstr ""
 msgid ""
 "* `a{plus}{plus}`, `{plus}{plus}a`\n"
 "* `a--`, `--a`\n"
-"* `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `+<<=+`, `>>=`, `>>>=`\n"
+"* `{plus}=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `+<<=+`, `>>=`, "
+"`>>>=`\n"
 "* ВНИМАНИЕ: может показаться, что эти операции атомарны. Но это не так."
 msgstr ""
 "* `a{plus}{plus}`, `{plus}{plus}a`\n"
 "* `a--`, `--a`\n"
-"* `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `+<<=+`, `>>=`, `>>>=`\n"
+"* `{plus}=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `+<<=+`, `>>=`, "
+"`>>>=`\n"
 "* WARNING: These operations may appear to be atomic. But they are not."
 
 #: lecture.adoc:483
@@ -1186,16 +1189,16 @@ msgid ""
 "|===\n"
 "| *Operators* | *Associativity*\n"
 "| `? :` | Right to left\n"
-"| `=` `+=` `-=` `*=` `/=` `%=` `&=` `\\|=` `^=` `+<<=+` `>>=` `>>>=` | Right "
-"to left\n"
+"| `=` `{plus}=` `-=` `*=` `/=` `%=` `&=` `\\|=` `^=` `+<<=+` `>>=` `>>>=` | "
+"Right to left\n"
 "|==="
 msgstr ""
 "[cols=\"80a,20a\"] \n"
 "|===\n"
 "| *Operators* | *Associativity*\n"
 "| `? :` | Right to left\n"
-"| `=` `+=` `-=` `*=` `/=` `%=` `&=` `\\|=` `^=` `+<<=+` `>>=` `>>>=` | Right "
-"to left\n"
+"| `=` `{plus}=` `-=` `*=` `/=` `%=` `&=` `\\|=` `^=` `+<<=+` `>>=` `>>>=` | "
+"Right to left\n"
 "|==="
 
 #: lecture.adoc:543
@@ -1229,14 +1232,34 @@ msgstr "== What about the comma operator?"
 #: lecture.adoc:548
 msgid ""
 "* А его нет!\n"
-"* Можно несколько statement-ов перечислить через запятую в блоке `for(...)`, "
-"или в блоке `try(...)`"
+"* Можно несколько statement-ов перечислить через запятую в блоке `for(...)` "
+"(дань уважения языку C):"
 msgstr ""
 "* There isn't one!\n"
-"* You can list multiple statements separated by commas in `for(...)` and "
-"`try(...)` blocks"
+"* You can list multiple statements separated by commas in `for(...)` blocks "
+"(a tribute to the C language):"
 
-#: lecture.adoc:551
+#: lecture.adoc:553
+msgid ""
+"[source,java]\n"
+"----\n"
+"double r;\n"
+"for (int i = 0; i < 10; i++, r = Math.random()) {"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"double r;\n"
+"for (int i = 0; i < 10; i++, r = Math.random()) {"
+
+#: lecture.adoc:556
+msgid ""
+"}\n"
+"----"
+msgstr ""
+"}\n"
+"----"
+
+#: lecture.adoc:559
 msgid ""
 "== Конструкция `if`\n"
 "[cols=\"70a,30a\"]"
@@ -1244,7 +1267,7 @@ msgstr ""
 "== `if` statement\n"
 "[cols=\"70a,30a\"]"
 
-#: lecture.adoc:560
+#: lecture.adoc:568
 msgid ""
 "|===\n"
 ".^a|\n"
@@ -1264,7 +1287,7 @@ msgstr ""
 "----\n"
 "|"
 
-#: lecture.adoc:565
+#: lecture.adoc:573
 msgid ""
 "[plantuml, if, png]\n"
 "----\n"
@@ -1276,32 +1299,32 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 200 "
 
-#: lecture.adoc:567
-msgctxt "lecture.adoc:567"
+#: lecture.adoc:575
+msgctxt "lecture.adoc:575"
 msgid "start"
 msgstr "start"
-
-#: lecture.adoc:571
-msgid ""
-"if (yourSales >= target) then (true)\n"
-"    :performance = \"Satisfactory\";\n"
-"    else (false)"
-msgstr ""
-"if (yourSales >= target) then (true)\n"
-"    :performance = \"Satisfactory\";\n"
-"    else (false)"
-
-#: lecture.adoc:574
-msgctxt "lecture.adoc:574"
-msgid ""
-"endif\n"
-"stop"
-msgstr ""
-"endif\n"
-"stop"
 
 #: lecture.adoc:579
 msgid ""
+"if (yourSales >= target) then (true)\n"
+"    :performance = \"Satisfactory\";\n"
+"    else (false)"
+msgstr ""
+"if (yourSales >= target) then (true)\n"
+"    :performance = \"Satisfactory\";\n"
+"    else (false)"
+
+#: lecture.adoc:582
+msgctxt "lecture.adoc:582"
+msgid ""
+"endif\n"
+"stop"
+msgstr ""
+"endif\n"
+"stop"
+
+#: lecture.adoc:587
+msgid ""
 "@enduml\n"
 "----\n"
 "|===\n"
@@ -1312,7 +1335,7 @@ msgstr ""
 "|===\n"
 "== `if` + block"
 
-#: lecture.adoc:592
+#: lecture.adoc:600
 msgid ""
 "[cols=\"70a,30a\"]\n"
 "|===\n"
@@ -1340,7 +1363,7 @@ msgstr ""
 "----\n"
 "|"
 
-#: lecture.adoc:597
+#: lecture.adoc:605
 msgid ""
 "[plantuml, ifblock, png]\n"
 "----\n"
@@ -1351,100 +1374,100 @@ msgstr ""
 "----\n"
 "@startuml\n"
 "skinparam dpi 200 "
-
-#: lecture.adoc:599
-msgctxt "lecture.adoc:599"
-msgid "start"
-msgstr "start"
-
-#: lecture.adoc:604
-msgid ""
-"if (yourSales >= target) then (true)\n"
-"    :performance = \"Satisfactory\";\n"
-"    :bonus = 100;\n"
-"    else (false)"
-msgstr ""
-"if (yourSales >= target) then (true)\n"
-"    :performance = \"Satisfactory\";\n"
-"    :bonus = 100;\n"
-"    else (false)"
 
 #: lecture.adoc:607
 msgctxt "lecture.adoc:607"
-msgid ""
-"endif\n"
-"stop"
-msgstr ""
-"endif\n"
-"stop"
-
-#: lecture.adoc:611
-msgctxt "lecture.adoc:611"
-msgid ""
-"@enduml\n"
-"----\n"
-"|==="
-msgstr ""
-"@enduml\n"
-"----\n"
-"|==="
-
-#: lecture.adoc:613
-msgid "== `if` + block + `else`"
-msgstr "== `if` + block + `else`"
-
-#: lecture.adoc:629
-msgid ""
-"[cols=\"50a,50a\"]\n"
-"|===\n"
-".^a|\n"
-"[source,java]\n"
-"----\n"
-"if (yourSales >= target) {\n"
-"  performance = \"Satisfactory\";\n"
-"  bonus = 100 + \n"
-"    0.01 * (yourSales - target);\n"
-"} else {\n"
-"  performance = \"Unsatisfactory\";\n"
-"  bonus = 0;\n"
-"}\n"
-"----\n"
-"|"
-msgstr ""
-"[cols=\"50a,50a\"]\n"
-"|===\n"
-".^a|\n"
-"[source,java]\n"
-"----\n"
-"if (yourSales >= target) {\n"
-"  performance = \"Satisfactory\";\n"
-"  bonus = 100 + \n"
-"    0.01 * (yourSales - target);\n"
-"} else {\n"
-"  performance = \"Unsatisfactory\";\n"
-"  bonus = 0;\n"
-"}\n"
-"----\n"
-"|"
-
-#: lecture.adoc:634
-msgid ""
-"[plantuml, ifelseblock, png]\n"
-"----\n"
-"@startuml\n"
-"skinparam dpi 200 "
-msgstr ""
-"[plantuml, ifelseblock, png]\n"
-"----\n"
-"@startuml\n"
-"skinparam dpi 200 "
-
-#: lecture.adoc:636
-msgctxt "lecture.adoc:636"
 msgid "start"
 msgstr "start"
 
-#: lecture.adoc:646
+#: lecture.adoc:612
+msgid ""
+"if (yourSales >= target) then (true)\n"
+"    :performance = \"Satisfactory\";\n"
+"    :bonus = 100;\n"
+"    else (false)"
+msgstr ""
+"if (yourSales >= target) then (true)\n"
+"    :performance = \"Satisfactory\";\n"
+"    :bonus = 100;\n"
+"    else (false)"
+
+#: lecture.adoc:615
+msgctxt "lecture.adoc:615"
+msgid ""
+"endif\n"
+"stop"
+msgstr ""
+"endif\n"
+"stop"
+
+#: lecture.adoc:619
+msgctxt "lecture.adoc:619"
+msgid ""
+"@enduml\n"
+"----\n"
+"|==="
+msgstr ""
+"@enduml\n"
+"----\n"
+"|==="
+
+#: lecture.adoc:621
+msgid "== `if` + block + `else`"
+msgstr "== `if` + block + `else`"
+
+#: lecture.adoc:637
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+".^a|\n"
+"[source,java]\n"
+"----\n"
+"if (yourSales >= target) {\n"
+"  performance = \"Satisfactory\";\n"
+"  bonus = 100 + \n"
+"    0.01 * (yourSales - target);\n"
+"} else {\n"
+"  performance = \"Unsatisfactory\";\n"
+"  bonus = 0;\n"
+"}\n"
+"----\n"
+"|"
+msgstr ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+".^a|\n"
+"[source,java]\n"
+"----\n"
+"if (yourSales >= target) {\n"
+"  performance = \"Satisfactory\";\n"
+"  bonus = 100 + \n"
+"    0.01 * (yourSales - target);\n"
+"} else {\n"
+"  performance = \"Unsatisfactory\";\n"
+"  bonus = 0;\n"
+"}\n"
+"----\n"
+"|"
+
+#: lecture.adoc:642
+msgid ""
+"[plantuml, ifelseblock, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 200 "
+msgstr ""
+"[plantuml, ifelseblock, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 200 "
+
+#: lecture.adoc:644
+msgctxt "lecture.adoc:644"
+msgid "start"
+msgstr "start"
+
+#: lecture.adoc:654
 msgid ""
 "if (yourSales >= target) then (true)\n"
 "    :performance = \"Satisfactory\";\n"
@@ -1466,8 +1489,8 @@ msgstr ""
 "endif\n"
 "stop"
 
-#: lecture.adoc:650
-msgctxt "lecture.adoc:650"
+#: lecture.adoc:658
+msgctxt "lecture.adoc:658"
 msgid ""
 "@enduml\n"
 "----\n"
@@ -1477,11 +1500,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:652
+#: lecture.adoc:660
 msgid "== `else` группируется с ближайшим `if`"
 msgstr "== `else` is grouped with the nearest `if`"
 
-#: lecture.adoc:659
+#: lecture.adoc:667
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1497,7 +1520,7 @@ msgstr ""
 "----\n"
 "/* Better add curly braces!!*/"
 
-#: lecture.adoc:667
+#: lecture.adoc:675
 msgid ""
 "if (x <= 0) \n"
 "  if (x == 0) \n"
@@ -1515,7 +1538,7 @@ msgstr ""
 "----\n"
 "|"
 
-#: lecture.adoc:672
+#: lecture.adoc:680
 msgid ""
 "[plantuml, sign, png]\n"
 "----\n"
@@ -1527,12 +1550,12 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 200 "
 
-#: lecture.adoc:674
-msgctxt "lecture.adoc:674"
+#: lecture.adoc:682
+msgctxt "lecture.adoc:682"
 msgid "start"
 msgstr "start"
 
-#: lecture.adoc:679
+#: lecture.adoc:687
 msgid ""
 "if (x <= 0) then (true)\n"
 "    if (x == 0) then (true)\n"
@@ -1544,7 +1567,7 @@ msgstr ""
 "      :sign = 0;\n"
 "    else (false)"
 
-#: lecture.adoc:684
+#: lecture.adoc:692
 msgid ""
 "      :sign = -1;\n"
 "    endif\n"
@@ -1556,8 +1579,8 @@ msgstr ""
 "endif\n"
 "stop"
 
-#: lecture.adoc:688
-msgctxt "lecture.adoc:688"
+#: lecture.adoc:696
+msgctxt "lecture.adoc:696"
 msgid ""
 "@enduml\n"
 "----\n"
@@ -1567,12 +1590,12 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:690
+#: lecture.adoc:698
 msgid "== Цепочки `else if`"
 msgstr "== `else if` chains"
 
-#: lecture.adoc:694
-msgctxt "lecture.adoc:694"
+#: lecture.adoc:702
+msgctxt "lecture.adoc:702"
 msgid ""
 "[cols=\"40a,60a\"]\n"
 "|===\n"
@@ -1582,7 +1605,7 @@ msgstr ""
 "|===\n"
 ".^a|"
 
-#: lecture.adoc:711
+#: lecture.adoc:719
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1618,7 +1641,7 @@ msgstr ""
 "----\n"
 "|"
 
-#: lecture.adoc:716
+#: lecture.adoc:724
 msgid ""
 "[plantuml, elif, png]\n"
 "----\n"
@@ -1630,12 +1653,12 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 200 "
 
-#: lecture.adoc:718
-msgctxt "lecture.adoc:718"
+#: lecture.adoc:726
+msgctxt "lecture.adoc:726"
 msgid "start"
 msgstr "start"
 
-#: lecture.adoc:732
+#: lecture.adoc:740
 msgid ""
 "if (sales >= 2 * target) then (true)\n"
 "    :performance = \"Excellent\";\n"
@@ -1665,8 +1688,8 @@ msgstr ""
 "    endif\n"
 "stop"
 
-#: lecture.adoc:736
-msgctxt "lecture.adoc:736"
+#: lecture.adoc:744
+msgctxt "lecture.adoc:744"
 msgid ""
 "@enduml\n"
 "----\n"
@@ -1676,16 +1699,16 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:739
+#: lecture.adoc:747
 msgid "== `switch`"
 msgstr "== `switch`"
 
-#: lecture.adoc:741
+#: lecture.adoc:749
 msgid "Та же ерунда, что и в C/C++:"
 msgstr "Same nonsense as in C/C++:"
 
-#: lecture.adoc:746
-msgctxt "lecture.adoc:746"
+#: lecture.adoc:754
+msgctxt "lecture.adoc:754"
 msgid ""
 "[cols=\"40a,60a\"]\n"
 "|===\n"
@@ -1695,7 +1718,7 @@ msgstr ""
 "|===\n"
 ".^a|"
 
-#: lecture.adoc:763
+#: lecture.adoc:771
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1729,11 +1752,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:765
+#: lecture.adoc:773
 msgid "|"
 msgstr "|"
 
-#: lecture.adoc:770
+#: lecture.adoc:778
 msgid ""
 "[plantuml, swibr, png]\n"
 "----\n"
@@ -1745,12 +1768,12 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 200 "
 
-#: lecture.adoc:772
-msgctxt "lecture.adoc:772"
+#: lecture.adoc:780
+msgctxt "lecture.adoc:780"
 msgid "start"
 msgstr "start"
 
-#: lecture.adoc:783
+#: lecture.adoc:791
 msgid ""
 "if (choise == 1 ) then (true)\n"
 "    :...;\n"
@@ -1774,16 +1797,16 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:785
-msgctxt "lecture.adoc:785"
+#: lecture.adoc:793
+msgctxt "lecture.adoc:793"
 msgid "|==="
 msgstr "|==="
 
-#: lecture.adoc:787
+#: lecture.adoc:795
 msgid "== `switch`-`case` особенности:"
 msgstr "== `switch`-`case` peculiarities:"
 
-#: lecture.adoc:790
+#: lecture.adoc:798
 msgid ""
 "* Не забываем `break`-и (утилиты типа Checkstyle напоминают), иначе "
 "выполняем всё до конца `switch`, как в C!\n"
@@ -1796,11 +1819,11 @@ msgstr ""
 "* You can use `switch` with integers, `char`-s, `String`-s (Java 7+) and "
 "`enum`-s."
 
-#: lecture.adoc:792
+#: lecture.adoc:800
 msgid "== Switch Expressions "
 msgstr "== Switch Expressions "
 
-#: lecture.adoc:795
+#: lecture.adoc:803
 msgid ""
 "* JDK 12 & 13 — Preview Feature\n"
 "* JDK 14 — Standard Feature"
@@ -1808,7 +1831,7 @@ msgstr ""
 "* JDK 12 & 13 — Preview Feature\n"
 "* JDK 14 — Standard Feature"
 
-#: lecture.adoc:805
+#: lecture.adoc:813
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1830,11 +1853,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:807
+#: lecture.adoc:815
 msgid "== Switch in Java 14+: no Fallthrough"
 msgstr "== Switch in Java 14+: no Fallthrough"
 
-#: lecture.adoc:839
+#: lecture.adoc:847
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1900,11 +1923,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:842
+#: lecture.adoc:850
 msgid "== Switch in Java 14+: with Fallthrough"
 msgstr "== Switch in Java 14+: with Fallthrough"
 
-#: lecture.adoc:885
+#: lecture.adoc:893
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -1992,11 +2015,11 @@ msgstr ""
 "----\n"
 "|==="
 
-#: lecture.adoc:888
+#: lecture.adoc:896
 msgid "== Массивы"
 msgstr "== Arrays"
 
-#: lecture.adoc:894
+#: lecture.adoc:902
 msgid ""
 "* Из любого типа можно построить массив данного типа.\n"
 "* Длина массива может быть определена в runtime, но после создания не может "
@@ -2015,11 +2038,11 @@ msgstr ""
 "('ArrayIndexOutOfBoundsException') in the run time.\n"
 "* Harsh Truth of Life: Chances are you won't use arrays in modern code."
 
-#: lecture.adoc:896
+#: lecture.adoc:904
 msgid "== Декларирование и инициализация массива"
 msgstr "== Declaring and initializing an array"
 
-#: lecture.adoc:900
+#: lecture.adoc:908
 msgid ""
 "* Два варианта:\n"
 "** `int[] a` \n"
@@ -2029,7 +2052,7 @@ msgstr ""
 "** `int[] a` \n"
 "** 'int a[]' -- don't do that"
 
-#: lecture.adoc:905
+#: lecture.adoc:913
 msgid ""
 "* Инициализация:\n"
 "** `int[] a = new int[100];`\n"
@@ -2041,11 +2064,11 @@ msgstr ""
 "** `int[] a = {1, 3, 5};`\n"
 "** anonymous array: `foo(new int[] {2, 4, 6});`"
 
-#: lecture.adoc:907
+#: lecture.adoc:915
 msgid "== {zsp}Массивы передаются по ссылке{zsp}"
 msgstr "== Arrays are passed by reference"
 
-#: lecture.adoc:912
+#: lecture.adoc:920
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2057,7 +2080,7 @@ msgstr ""
 "int[] luckyNumbers = smallPrimes;\n"
 "luckyNumbers[5] = 12; // now smallPrimes[5] is also 12"
 
-#: lecture.adoc:917
+#: lecture.adoc:925
 msgid ""
 "luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);\n"
 "//теперь luckyNumbers это отдельный массив\n"
@@ -2069,11 +2092,11 @@ msgstr ""
 "//and it became twice as long\n"
 "----"
 
-#: lecture.adoc:921
+#: lecture.adoc:929
 msgid "== {zsp}Массивы ковариантны{zsp}"
 msgstr "== Arrays are covariant"
 
-#: lecture.adoc:931
+#: lecture.adoc:939
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2095,7 +2118,7 @@ msgstr ""
 " b[0] = 5;\n"
 "----"
 
-#: lecture.adoc:933
+#: lecture.adoc:941
 msgid ""
 "(Всё это страшно не совместимо с дженериками и коллекциями, которые пытаются "
 "ловить ошибки типов во время компиляции, но об этом речь впереди.)"
@@ -2103,15 +2126,15 @@ msgstr ""
 "(All this is terribly incompatible with generics and Collections API that "
 "try to catch type errors at compile time, but more on that later.)"
 
-#: lecture.adoc:935
+#: lecture.adoc:943
 msgid "== «Многомерные» массивы"
 msgstr "== \"Multidimensional\" arrays"
 
-#: lecture.adoc:937
+#: lecture.adoc:945
 msgid "На самом деле их нет, но есть массивы массивов"
 msgstr "There are none really, but use can build arrays of arrays."
 
-#: lecture.adoc:950
+#: lecture.adoc:958
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|====\n"
@@ -2139,7 +2162,7 @@ msgstr ""
 " {4, 15, 14, 1}\n"
 "};"
 
-#: lecture.adoc:954
+#: lecture.adoc:962
 msgid ""
 "/* magicSquare[1][2] == ?? */\n"
 "----\n"
@@ -2149,7 +2172,7 @@ msgstr ""
 "----\n"
 "^.^a|"
 
-#: lecture.adoc:970
+#: lecture.adoc:978
 msgid ""
 "[graphviz, \"twodim.png\"]\n"
 "-----\n"
@@ -2183,7 +2206,7 @@ msgstr ""
 " arr3 [shape=record, width=2,\n"
 "   label=\"{<p0>4\\|<p1>15\\|<p2>14\\|<p3>1}\"]"
 
-#: lecture.adoc:977
+#: lecture.adoc:985
 msgid ""
 " arr:p0->arr0:p0;\n"
 " arr:p1->arr1:p0;\n"
@@ -2199,90 +2222,90 @@ msgstr ""
 "}\n"
 "-----"
 
-#: lecture.adoc:979
+#: lecture.adoc:987
 msgid "|===="
 msgstr "|===="
 
-#: lecture.adoc:985
+#: lecture.adoc:993
 msgid "== Треугольные матрицы"
 msgstr "== Triangular matrices"
 
-#: lecture.adoc:994
-msgid ""
-"[cols=\"50a,50a\"]\n"
-"|====\n"
-".^a|\n"
-"[source,java]\n"
-"----\n"
-"double[][] odds = new double[ROWNUM][];\n"
-"for (int n = 0; n < ROWNUM; n++)\n"
-"  odds[n] = new int[n + 1];"
-msgstr ""
-"[cols=\"50a,50a\"]\n"
-"|====\n"
-".^a|\n"
-"[source,java]\n"
-"----\n"
-"double[][] odds = new double[ROWNUM][];\n"
-"for (int n = 0; n < ROWNUM; n++)\n"
-"  odds[n] = new int[n + 1];"
-
 #: lecture.adoc:1002
 msgid ""
+"[cols=\"50a,50a\"]\n"
+"|====\n"
+".^a|\n"
+"[source,java]\n"
+"----\n"
+"double[][] odds = new double[ROWNUM][];\n"
 "for (int n = 0; n < ROWNUM; n++)\n"
-" for (int k = 0; k <= n; k++){\n"
-"   /* compute lotteryOdds*/\n"
-"   . . .\n"
-"   odds[n][k] = lotteryOdds;\n"
-" }\n"
-"----"
+"  odds[n] = new int[n + 1];"
 msgstr ""
+"[cols=\"50a,50a\"]\n"
+"|====\n"
+".^a|\n"
+"[source,java]\n"
+"----\n"
+"double[][] odds = new double[ROWNUM][];\n"
 "for (int n = 0; n < ROWNUM; n++)\n"
-" for (int k = 0; k <= n; k++){\n"
-"   /* compute lotteryOdds*/\n"
-"   . . .\n"
-"   odds[n][k] = lotteryOdds;\n"
-" }\n"
-"----"
+"  odds[n] = new int[n + 1];"
 
-#: lecture.adoc:1019
+#: lecture.adoc:1010
 msgid ""
-"^.^a|\n"
-"[graphviz, \"triangle.png\"]\n"
-"-----\n"
-"digraph G {\n"
-" graph [ dpi = 140 ];\n"
-" rankdir=\"LR\";\n"
-" arr[shape=record,\n"
-"   label=\"<p0>\\|<p1>\\|<p2>\\|<p3>\"]\n"
-" arr0 [shape=record,width=.5, \n"
-"   label=\"{<p0>}\"]\n"
-" arr1 [shape=record,width=1, \n"
-"   label=\"{<p0>\\|<p1>}\"]\n"
-" arr2 [shape=record,width=1.5,\n"
-"   label=\"{<p0>\\|<p1>\\|<p2>}\"]\n"
-" arr3 [shape=record,width=2, \n"
-"   label=\"{<p0>\\|<p1>\\|<p2>\\|<p3>}\"]"
+"for (int n = 0; n < ROWNUM; n++)\n"
+" for (int k = 0; k <= n; k++){\n"
+"   /* compute lotteryOdds*/\n"
+"   . . .\n"
+"   odds[n][k] = lotteryOdds;\n"
+" }\n"
+"----"
 msgstr ""
-"^.^a|\n"
-"[graphviz, \"triangle.png\"]\n"
-"-----\n"
-"digraph G {\n"
-" graph [ dpi = 140 ];\n"
-" rankdir=\"LR\";\n"
-" arr[shape=record,\n"
-"   label=\"<p0>\\|<p1>\\|<p2>\\|<p3>\"]\n"
-" arr0 [shape=record,width=.5, \n"
-"   label=\"{<p0>}\"]\n"
-" arr1 [shape=record,width=1, \n"
-"   label=\"{<p0>\\|<p1>}\"]\n"
-" arr2 [shape=record,width=1.5,\n"
-"   label=\"{<p0>\\|<p1>\\|<p2>}\"]\n"
-" arr3 [shape=record,width=2, \n"
-"   label=\"{<p0>\\|<p1>\\|<p2>\\|<p3>}\"]"
+"for (int n = 0; n < ROWNUM; n++)\n"
+" for (int k = 0; k <= n; k++){\n"
+"   /* compute lotteryOdds*/\n"
+"   . . .\n"
+"   odds[n][k] = lotteryOdds;\n"
+" }\n"
+"----"
 
 #: lecture.adoc:1027
 msgid ""
+"^.^a|\n"
+"[graphviz, \"triangle.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 140 ];\n"
+" rankdir=\"LR\";\n"
+" arr[shape=record,\n"
+"   label=\"<p0>\\|<p1>\\|<p2>\\|<p3>\"]\n"
+" arr0 [shape=record,width=.5, \n"
+"   label=\"{<p0>}\"]\n"
+" arr1 [shape=record,width=1, \n"
+"   label=\"{<p0>\\|<p1>}\"]\n"
+" arr2 [shape=record,width=1.5,\n"
+"   label=\"{<p0>\\|<p1>\\|<p2>}\"]\n"
+" arr3 [shape=record,width=2, \n"
+"   label=\"{<p0>\\|<p1>\\|<p2>\\|<p3>}\"]"
+msgstr ""
+"^.^a|\n"
+"[graphviz, \"triangle.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 140 ];\n"
+" rankdir=\"LR\";\n"
+" arr[shape=record,\n"
+"   label=\"<p0>\\|<p1>\\|<p2>\\|<p3>\"]\n"
+" arr0 [shape=record,width=.5, \n"
+"   label=\"{<p0>}\"]\n"
+" arr1 [shape=record,width=1, \n"
+"   label=\"{<p0>\\|<p1>}\"]\n"
+" arr2 [shape=record,width=1.5,\n"
+"   label=\"{<p0>\\|<p1>\\|<p2>}\"]\n"
+" arr3 [shape=record,width=2, \n"
+"   label=\"{<p0>\\|<p1>\\|<p2>\\|<p3>}\"]"
+
+#: lecture.adoc:1035
+msgid ""
 " arr:p0->arr0:p0;\n"
 " arr:p1->arr1:p0;\n"
 " arr:p2->arr2:p0;\n"
@@ -2299,12 +2322,12 @@ msgstr ""
 "-----\n"
 "|===="
 
-#: lecture.adoc:1029
+#: lecture.adoc:1037
 msgid "== Цикл `while`: то же, что и в C"
 msgstr "== `while` loop: same as in C"
 
-#: lecture.adoc:1033
-msgctxt "lecture.adoc:1033"
+#: lecture.adoc:1041
+msgctxt "lecture.adoc:1041"
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -2314,7 +2337,7 @@ msgstr ""
 "|===\n"
 ".^a|"
 
-#: lecture.adoc:1047
+#: lecture.adoc:1055
 msgid ""
 "[source, java]\n"
 "----\n"
@@ -2344,7 +2367,7 @@ msgstr ""
 "----\n"
 "|"
 
-#: lecture.adoc:1052
+#: lecture.adoc:1060
 msgid ""
 "[plantuml, while, png]\n"
 "----\n"
@@ -2356,12 +2379,12 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 170 "
 
-#: lecture.adoc:1054
-msgctxt "lecture.adoc:1054"
+#: lecture.adoc:1062
+msgctxt "lecture.adoc:1062"
 msgid "start"
 msgstr "start"
 
-#: lecture.adoc:1061
+#: lecture.adoc:1069
 msgid ""
 "while(balance < goal)\n"
 "  :balance += payment;\n"
@@ -2377,7 +2400,7 @@ msgstr ""
 "  :years++;\n"
 "endwhile"
 
-#: lecture.adoc:1064
+#: lecture.adoc:1072
 msgid ""
 ":System.out.println(years + \" years.\");\n"
 "stop"
@@ -2385,21 +2408,21 @@ msgstr ""
 ":System.out.println(years + \" years.\");\n"
 "stop"
 
-#: lecture.adoc:1066
-msgctxt "lecture.adoc:1066"
+#: lecture.adoc:1074
+msgctxt "lecture.adoc:1074"
 msgid "@enduml"
 msgstr "@enduml"
 
-#: lecture.adoc:1068
-msgctxt "lecture.adoc:1068"
+#: lecture.adoc:1076
+msgctxt "lecture.adoc:1076"
 msgid "|==="
 msgstr "|==="
 
-#: lecture.adoc:1070
+#: lecture.adoc:1078
 msgid "== То же, да не то же!"
 msgstr "== Same, but not the same!"
 
-#: lecture.adoc:1079
+#: lecture.adoc:1087
 msgid ""
 "[source, java]\n"
 "----\n"
@@ -2419,12 +2442,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1081
+#: lecture.adoc:1089
 msgid "==  `do while`: цикл с постусловием"
 msgstr "== `do while`: loop with postcondition"
 
-#: lecture.adoc:1085
-msgctxt "lecture.adoc:1085"
+#: lecture.adoc:1093
+msgctxt "lecture.adoc:1093"
 msgid ""
 "[cols=\"50a,50a\"]\n"
 "|===\n"
@@ -2434,7 +2457,7 @@ msgstr ""
 "|===\n"
 ".^a|"
 
-#: lecture.adoc:1099
+#: lecture.adoc:1107
 msgid ""
 "[source, java]\n"
 "----\n"
@@ -2464,7 +2487,7 @@ msgstr ""
 "----\n"
 "|"
 
-#: lecture.adoc:1104
+#: lecture.adoc:1112
 msgid ""
 "[plantuml, dowhile, png]\n"
 "----\n"
@@ -2476,12 +2499,12 @@ msgstr ""
 "@startuml\n"
 "skinparam dpi 120 "
 
-#: lecture.adoc:1106
-msgctxt "lecture.adoc:1106"
+#: lecture.adoc:1114
+msgctxt "lecture.adoc:1114"
 msgid "start"
 msgstr "start"
 
-#: lecture.adoc:1113
+#: lecture.adoc:1121
 msgid ""
 "repeat\n"
 "  :balance += payment;\n"
@@ -2497,16 +2520,16 @@ msgstr ""
 "  :years++;\n"
 "repeat while(input.equals(\"N\"))"
 
-#: lecture.adoc:1115
+#: lecture.adoc:1123
 msgid "stop"
 msgstr "stop"
 
-#: lecture.adoc:1117
-msgctxt "lecture.adoc:1117"
+#: lecture.adoc:1125
+msgctxt "lecture.adoc:1125"
 msgid "@enduml"
 msgstr "@enduml"
 
-#: lecture.adoc:1120
+#: lecture.adoc:1128
 msgid ""
 "|===\n"
 "Правда жизни: `do-while` бывает нужен _очень_, _ОЧЕНЬ_ редко."
@@ -2514,17 +2537,17 @@ msgstr ""
 "|===\n"
 "Harsh Truth of Life: `do-while` is needed _very_ rarely."
 
-#: lecture.adoc:1122
+#: lecture.adoc:1130
 msgid "== Циклы `for`"
 msgstr "== `for` loops"
 
-#: lecture.adoc:1124
+#: lecture.adoc:1132
 msgid "Снова всё то же, что и в C (по сути, сокращение цикла `while`):"
 msgstr ""
 "Again, everything is the same as in C (in fact, the abbreviation of the "
 "`while` loop):"
 
-#: lecture.adoc:1130
+#: lecture.adoc:1138
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2538,7 +2561,7 @@ msgstr ""
 "  System.out.println(i);\n"
 "----"
 
-#: lecture.adoc:1137
+#: lecture.adoc:1145
 msgid ""
 "И даже, хотя оператора «запятая» нет, можно так (но не нужно):\n"
 "[source,java]\n"
@@ -2555,11 +2578,11 @@ msgstr ""
 "  System.out.println(i);\n"
 "----"
 
-#: lecture.adoc:1139
+#: lecture.adoc:1147
 msgid "== Видимость переменной цикла"
 msgstr "== Scope of the cycle variable"
 
-#: lecture.adoc:1148
+#: lecture.adoc:1156
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2579,7 +2602,7 @@ msgstr ""
 "// i no longer defined here\n"
 "----"
 
-#: lecture.adoc:1158
+#: lecture.adoc:1166
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2601,15 +2624,15 @@ msgstr ""
 "// i is still defined here\n"
 "----"
 
-#: lecture.adoc:1160
+#: lecture.adoc:1168
 msgid "== Использование `break` и `continue`"
 msgstr "== Using `break` and `continue`"
 
-#: lecture.adoc:1162
+#: lecture.adoc:1170
 msgid "Прерывание цикла целиком:"
 msgstr "To interrupt the entire cycle:"
 
-#: lecture.adoc:1173
+#: lecture.adoc:1181
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2633,7 +2656,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1185
+#: lecture.adoc:1193
 msgid ""
 "Переход к следующему циклу:\n"
 "[source,java]\n"
@@ -2659,12 +2682,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:1187
+#: lecture.adoc:1195
 msgid "== У нас нет `goto`, но есть метки для `break` и `continue`!"
 msgstr ""
 "== We don't have `goto`, but there are labels for `break` and `continue`!"
 
-#: lecture.adoc:1209
+#: lecture.adoc:1217
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -2711,6 +2734,104 @@ msgstr ""
 "  // carry out normal processing\n"
 "}\n"
 "----"
+
+#~ msgctxt "lecture.adoc:599"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:607"
+#~ msgid ""
+#~ "endif\n"
+#~ "stop"
+#~ msgstr ""
+#~ "endif\n"
+#~ "stop"
+
+#~ msgctxt "lecture.adoc:636"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:650"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----\n"
+#~ "|==="
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----\n"
+#~ "|==="
+
+#~ msgctxt "lecture.adoc:674"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:688"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----\n"
+#~ "|==="
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----\n"
+#~ "|==="
+
+#~ msgctxt "lecture.adoc:718"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:736"
+#~ msgid ""
+#~ "@enduml\n"
+#~ "----\n"
+#~ "|==="
+#~ msgstr ""
+#~ "@enduml\n"
+#~ "----\n"
+#~ "|==="
+
+#~ msgctxt "lecture.adoc:746"
+#~ msgid ""
+#~ "[cols=\"40a,60a\"]\n"
+#~ "|===\n"
+#~ ".^a|"
+#~ msgstr ""
+#~ "[cols=\"40a,60a\"]\n"
+#~ "|===\n"
+#~ ".^a|"
+
+#~ msgctxt "lecture.adoc:772"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:785"
+#~ msgid "|==="
+#~ msgstr "|==="
+
+#~ msgctxt "lecture.adoc:1054"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:1068"
+#~ msgid "|==="
+#~ msgstr "|==="
+
+#~ msgctxt "lecture.adoc:1085"
+#~ msgid ""
+#~ "[cols=\"50a,50a\"]\n"
+#~ "|===\n"
+#~ ".^a|"
+#~ msgstr ""
+#~ "[cols=\"50a,50a\"]\n"
+#~ "|===\n"
+#~ ".^a|"
+
+#~ msgctxt "lecture.adoc:1106"
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgctxt "lecture.adoc:1117"
+#~ msgid "@enduml"
+#~ msgstr "@enduml"
 
 #~ msgid ""
 #~ "//== Часть 1. Введение\n"
