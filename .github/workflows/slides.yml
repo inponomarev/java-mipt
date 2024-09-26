@@ -24,7 +24,7 @@ jobs:
       - name: Set up dot
         run: sudo apt-get install -y graphviz
       - name: Set up translate toolkit
-        run: pip install translate-toolkit
+        run: pipx install translate-toolkit
       - name: Allow script execution
         run: sudo chmod +x generate-en.sh
       - name: Generate English adocs
