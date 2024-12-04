@@ -572,6 +572,7 @@ public @interface Benchmark {
 }
 ----
 
+[source,text]
 ----
 [[[BENCHMARK method speak
 Speaking: blah-blah-blah
@@ -952,3 +953,18 @@ public class Foo {
 }
 ----
 
+== Другой способ: `ObjectFactory` injection
+
+[source,java]
+----
+@Component
+public class Foo {
+    @Autowired
+    private ObjectFactory<Bar> barFactory;
+
+    public  void bar(){
+        Bar bar = barFactory.getObject();
+        ...
+    }
+}
+----

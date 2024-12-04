@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 21:31+0300\n"
-"PO-Revision-Date: 2023-02-24 21:14+0200\n"
+"POT-Creation-Date: 2024-12-04 14:18+0100\n"
+"PO-Revision-Date: 2024-12-04 14:19+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -202,25 +202,27 @@ msgstr ""
 "@enduml\n"
 "----"
 
-#: lecture.adoc:95
+#: lecture.adoc:96
 msgid ""
+"[source,text]\n"
 "----\n"
 "NoUniqueBeanDefinitionException: No qualifying bean of\n"
 "type 'edu.phystech.robotlecturer.Bar' available: expected\n"
 "single matching bean but found 3: bar1,bar2,bar3\n"
 "----"
 msgstr ""
+"[source,text]\n"
 "----\n"
 "NoUniqueBeanDefinitionException: No qualifying bean of\n"
 "type 'edu.phystech.robotlecturer.Bar' available: expected\n"
 "single matching bean but found 3: bar1,bar2,bar3\n"
 "----"
 
-#: lecture.adoc:97
+#: lecture.adoc:98
 msgid "== Привязка по имени (неявная)"
 msgstr "== Binding by name (implicit)"
 
-#: lecture.adoc:105
+#: lecture.adoc:106
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -238,7 +240,7 @@ msgstr ""
 "    @Autowired\n"
 "    private Bar bar;"
 
-#: lecture.adoc:112
+#: lecture.adoc:113
 msgid ""
 "    //Работает!! :-)\n"
 "    @Autowired\n"
@@ -254,11 +256,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:114
+#: lecture.adoc:115
 msgid "== Привязка по имени (явная)"
 msgstr "== Binding by name (explicit)"
 
-#: lecture.adoc:125
+#: lecture.adoc:126
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -282,11 +284,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:127
+#: lecture.adoc:128
 msgid "== Помечаем одну из имплементаций как @Primary"
 msgstr "== Mark one of the implementations as @Primary"
 
-#: lecture.adoc:133
+#: lecture.adoc:134
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -300,7 +302,7 @@ msgstr ""
 "@Primary\n"
 "public class Bar1 implements Bar {...}"
 
-#: lecture.adoc:144
+#: lecture.adoc:145
 msgid ""
 "@Component\n"
 "public class Foo {\n"
@@ -328,11 +330,11 @@ msgstr ""
 "otherwise \"NoUniqueBeanDefinitionException: more than one 'primary' bean "
 "found among candidates\"."
 
-#: lecture.adoc:146
+#: lecture.adoc:147
 msgid "== Но гораздо чаще нам нужны сразу все!"
 msgstr "== But more often we need everything at once!"
 
-#: lecture.adoc:149
+#: lecture.adoc:150
 msgid ""
 "[source,java]\n"
 "----"
@@ -340,7 +342,7 @@ msgstr ""
 "[source,java]\n"
 "----"
 
-#: lecture.adoc:152
+#: lecture.adoc:153
 msgid ""
 "@Component\n"
 "public class Foo {"
@@ -348,7 +350,7 @@ msgstr ""
 "@Component\n"
 "public class Foo {"
 
-#: lecture.adoc:155
+#: lecture.adoc:156
 msgid ""
 "    @Autowired\n"
 "    private List<Bar> bar;"
@@ -356,11 +358,11 @@ msgstr ""
 "    @Autowired\n"
 "    private List<Bar> bar;"
 
-#: lecture.adoc:157
+#: lecture.adoc:158
 msgid "    //ИЛИ"
 msgstr "    //OR"
 
-#: lecture.adoc:160
+#: lecture.adoc:161
 msgid ""
 "    @Autowired\n"
 "    private Map<String,Bar> bar;"
@@ -368,15 +370,15 @@ msgstr ""
 "    @Autowired\n"
 "    private Map<String,Bar> bar;"
 
-#: lecture.adoc:162
+#: lecture.adoc:163
 msgid "---- "
 msgstr "---- "
 
-#: lecture.adoc:164
+#: lecture.adoc:165
 msgid "== Впрыскивать можно не только бины, но и что-то попроще"
 msgstr "== You can inject not only beans, but also something simpler"
 
-#: lecture.adoc:171
+#: lecture.adoc:172
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -392,11 +394,11 @@ msgstr ""
 "@PropertySource(\"classpath:config.properties\")\n"
 "public class Config {"
 
-#: lecture.adoc:173
+#: lecture.adoc:174
 msgid "}"
 msgstr "}"
 
-#: lecture.adoc:178
+#: lecture.adoc:179
 msgid ""
 "@Component\n"
 "public class Foo {\n"
@@ -408,7 +410,7 @@ msgstr ""
 "    @Value(\"${url}\")\n"
 "    String url;"
 
-#: lecture.adoc:182
+#: lecture.adoc:183
 msgid ""
 "    @Value(\"${password}\")\n"
 "    String password;\n"
@@ -418,15 +420,15 @@ msgstr ""
 "    String password;\n"
 "----"
 
-#: lecture.adoc:184
+#: lecture.adoc:185
 msgid "Также можно использовать SpEL-выражения, например `#{bar.url}`."
 msgstr "You can also use SpEL expressions, such as `#{bar.url}`."
 
-#: lecture.adoc:186
+#: lecture.adoc:187
 msgid "== Инициализация"
 msgstr "== Object Initialization"
 
-#: lecture.adoc:195
+#: lecture.adoc:196
 msgid ""
 "[graphviz,\"postconstruct.png\"]\n"
 "----\n"
@@ -444,8 +446,8 @@ msgstr ""
 "node[shape=box];\n"
 "Constructor -> configurer1;"
 
-#: lecture.adoc:201
-msgctxt "lecture.adoc:201"
+#: lecture.adoc:202
+msgctxt "lecture.adoc:202"
 msgid ""
 "subgraph cluster_1 {\n"
 "  label = \"Configuration\";\n"
@@ -459,7 +461,7 @@ msgstr ""
 "  {rank=same configurer1 configurer2}\n"
 "}"
 
-#: lecture.adoc:212
+#: lecture.adoc:213
 msgid ""
 "subgraph cluster_2{\n"
 "  label=\"Initialization\";\n"
@@ -483,15 +485,15 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:214
+#: lecture.adoc:215
 msgid "Конструктор не годится в качестве инициализирующего метода!"
 msgstr "The constructor is not suitable as an initializing method!"
 
-#: lecture.adoc:216
+#: lecture.adoc:217
 msgid "== Инициализация "
 msgstr "== Object Initialization"
 
-#: lecture.adoc:219
+#: lecture.adoc:220
 msgid ""
 "* `@PostConstruct` -- стандартная Java-аннотация, может быть установлена над "
 "методом инициализации.\n"
@@ -502,12 +504,12 @@ msgstr ""
 "* If you cannot edit the class to insert an annotation, then "
 "`@Bean(initMethod= \"init\")`"
 
-#: lecture.adoc:222
-msgctxt "lecture.adoc:222"
+#: lecture.adoc:223
+msgctxt "lecture.adoc:223"
 msgid "== Финализация"
 msgstr "== Finalization"
 
-#: lecture.adoc:230
+#: lecture.adoc:231
 msgid ""
 "[graphviz,\"predestroy.png\"]\n"
 "----\n"
@@ -525,8 +527,8 @@ msgstr ""
 "node[shape=box];\n"
 "Constructor -> configurer1;"
 
-#: lecture.adoc:236
-msgctxt "lecture.adoc:236"
+#: lecture.adoc:237
+msgctxt "lecture.adoc:237"
 msgid ""
 "subgraph cluster_1 {\n"
 "  label = \"Configuration\";\n"
@@ -540,7 +542,8 @@ msgstr ""
 "  {rank=same configurer1 configurer2}\n"
 "}"
 
-#: lecture.adoc:243
+#: lecture.adoc:244
+msgctxt "lecture.adoc:244"
 msgid ""
 "subgraph cluster_2{\n"
 "  label=\"Initialization\";\n"
@@ -556,7 +559,8 @@ msgstr ""
 "}\n"
 "configurer2 -> postConstruct1;"
 
-#: lecture.adoc:247
+#: lecture.adoc:248
+msgctxt "lecture.adoc:248"
 msgid ""
 "subgraph cluster_3 {\n"
 "  label = \"Wrapping\";"
@@ -564,7 +568,7 @@ msgstr ""
 "subgraph cluster_3 {\n"
 "  label = \"Wrapping\";"
 
-#: lecture.adoc:252
+#: lecture.adoc:253
 msgid ""
 "  proxyconfigurer2 -> proxyconfigurer1  [dir=\"back\"];\n"
 "  {rank=same proxyconfigurer2 proxyconfigurer1}\n"
@@ -576,7 +580,7 @@ msgstr ""
 "} \n"
 "postConstruct2 -> proxyconfigurer1;"
 
-#: lecture.adoc:260
+#: lecture.adoc:261
 msgid ""
 "subgraph cluster_4 {\n"
 "  style=\"filled\";\n"
@@ -594,13 +598,13 @@ msgstr ""
 "  {rank=same preDestroy1 preDestroy2}\n"
 "} "
 
-#: lecture.adoc:262
-msgctxt "lecture.adoc:262"
+#: lecture.adoc:263
+msgctxt "lecture.adoc:263"
 msgid "proxyconfigurer2 -> preDestroy1;"
 msgstr "proxyconfigurer2 -> preDestroy1;"
 
-#: lecture.adoc:265
-msgctxt "lecture.adoc:265"
+#: lecture.adoc:266
+msgctxt "lecture.adoc:266"
 msgid ""
 "}\n"
 "----"
@@ -608,12 +612,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:267
-msgctxt "lecture.adoc:267"
+#: lecture.adoc:268
+msgctxt "lecture.adoc:268"
 msgid "== Финализация"
 msgstr "== Finalization"
 
-#: lecture.adoc:272
+#: lecture.adoc:273
 msgid ""
 "* Симметрично инициализации -- при завершении работы контейнера.\n"
 "* При завершении приложения вызывается `context.destroy()`, запускающий "
@@ -628,11 +632,11 @@ msgstr ""
 "* `@PreDestroy` is a standard Java annotation.\n"
 "* If you cannot edit a class, then `@Bean(destroyMethod = \"destroy\")`"
 
-#: lecture.adoc:274
+#: lecture.adoc:275
 msgid "== Практическая задача"
 msgstr "== Practical task"
 
-#: lecture.adoc:281
+#: lecture.adoc:282
 msgid ""
 "* Хотим сделать трейсинг приложения: перед началом и после завершения метода "
 "должно выводиться в лог его название и штамп времени.\n"
@@ -650,11 +654,11 @@ msgstr ""
 "** Will we forget any of the methods?\n"
 "** Mixing business logic and utility code?"
 
-#: lecture.adoc:283
+#: lecture.adoc:284
 msgid "== Aspect-oriented programming спешит на помощь"
 msgstr "== Aspect-oriented programming to the rescue"
 
-#: lecture.adoc:290
+#: lecture.adoc:291
 msgid ""
 "* Типичные задачи:\n"
 "** _Логирование_: каждый вызов метода должен отмечаться в логе!\n"
@@ -675,28 +679,28 @@ msgstr ""
 "methods.\n"
 "* A large number of aspects have already been written."
 
-#: lecture.adoc:292
-msgctxt "lecture.adoc:292"
+#: lecture.adoc:293
+msgctxt "lecture.adoc:293"
 msgid "== Терминология AOP"
 msgstr "== AOP terminology"
 
-#: lecture.adoc:294
+#: lecture.adoc:295
 msgid ""
 "* *Joinpoint* -- место в коде, в выполнение которого мы  «вмешиваемся» (и "
 "начинаем выполнять что-то своё). В теории может соответствовать вызовам "
 "методов, инициализации классов и инстанцированию объектов, но в Spring AOP "
 "-- это всегда _вызов метода_."
 msgstr ""
-"* *Joinpoint* - a place in the code, in the execution of which we \"interfere"
-"\" (and begin to execute something of our own). In theory, it can correspond "
-"to method calls, class initialization, and object instantiation, but in "
-"Spring AOP it is always a _method call_."
+"* *Joinpoint* - a place in the code, in the execution of which we "
+"\"interfere\" (and begin to execute something of our own). In theory, it can "
+"correspond to method calls, class initialization, and object instantiation, "
+"but in Spring AOP it is always a _method call_."
 
-#: lecture.adoc:297
+#: lecture.adoc:298
 msgid "* *Advice* -- код, который «впрыскивается» и выполняется в joinpoint. "
 msgstr "* *Advice* -- code that is \"injected\" and executed in joinpoint. "
 
-#: lecture.adoc:300
+#: lecture.adoc:301
 msgid ""
 "* *Pointcut* -- тем или иным способом определённое множество joinpoint-ов. "
 "Например, «все методы, начинающиеся со слова get». Или: «все методы, "
@@ -704,15 +708,16 @@ msgid ""
 "мы определяем, что именно и когда будет работать."
 msgstr ""
 "* *Pointcut* -- a certain set of joinpoints. For example, \"all methods that "
-"begin with the word get.\" Or: \"all methods annotated with `@Benchmarked`"
-"\". By linking pointcuts to advices, we determine what will work and when."
+"begin with the word get.\" Or: \"all methods annotated with "
+"`@Benchmarked`\". By linking pointcuts to advices, we determine what will "
+"work and when."
 
-#: lecture.adoc:302
-msgctxt "lecture.adoc:302"
+#: lecture.adoc:303
+msgctxt "lecture.adoc:303"
 msgid "== Терминология AOP"
 msgstr "== AOP terminology"
 
-#: lecture.adoc:304
+#: lecture.adoc:305
 msgid ""
 "* *Aspect* -- комбинация advices+pointcuts, оформленная в виде отдельного "
 "класса. Определяет добавляемую в приложение логику, ответственную за какую-"
@@ -722,7 +727,7 @@ msgstr ""
 "class. Defines the logic to add to your app that is responsible for a "
 "specific task (such as tracing)."
 
-#: lecture.adoc:306
+#: lecture.adoc:307
 msgid ""
 "* *Weaving* -- процесс «вплетения» кода advices в нужные места кода "
 "приложения."
@@ -730,15 +735,15 @@ msgstr ""
 "* *Weaving* is the process of \"weaving\" the advices code into the right "
 "places in the application code."
 
-#: lecture.adoc:308
+#: lecture.adoc:309
 msgid "* *Target* -- метод, чьё поведение изменяется с помощью AOP."
 msgstr "* *Target* -- A method whose behavior is changed using AOP."
 
-#: lecture.adoc:310
+#: lecture.adoc:311
 msgid "== Как можно реализовать AOP?"
 msgstr "== How can AOP be implemented?"
 
-#: lecture.adoc:315
+#: lecture.adoc:316
 msgid ""
 "* Статически: вплетение на уровне исходников или байт-кода.\n"
 "* Динамически: создавая прокси и используя вплетение в runtime.\n"
@@ -750,11 +755,11 @@ msgstr ""
 "* Spring uses dynamic AOP.\n"
 "* *Question*: What are the advantages and disadvantages of both methods?"
 
-#: lecture.adoc:317
+#: lecture.adoc:318
 msgid "== Прокси-объект: реализация"
 msgstr "== Proxy Object: Implementation"
 
-#: lecture.adoc:324
+#: lecture.adoc:325
 msgid ""
 "[graphviz,\"proxy.png\"]\n"
 "----\n"
@@ -770,11 +775,11 @@ msgstr ""
 "  compound=true;\n"
 "  rankdir=\"LR\";"
 
-#: lecture.adoc:326
+#: lecture.adoc:327
 msgid "  splines=\"line\";"
 msgstr "  splines=\"line\";"
 
-#: lecture.adoc:330
+#: lecture.adoc:331
 msgid ""
 "  caller [shape=\"rectangle\", style=rounded];\n"
 "  caller -> inv[lhead=cluster0;label=\"       \"];\n"
@@ -784,11 +789,11 @@ msgstr ""
 "  caller -> inv[lhead=cluster0;label=\"       \"];\n"
 "  caller -> inv[arrowhead=none];"
 
-#: lecture.adoc:333
+#: lecture.adoc:334
 msgid "  subgraph cluster0 {"
 msgstr "  subgraph cluster0 {"
 
-#: lecture.adoc:336
+#: lecture.adoc:337
 msgid ""
 "    inv[style=invis, shape=point];\n"
 "    target[shape=\"rectangle\", style=\"rounded\";]"
@@ -796,7 +801,7 @@ msgstr ""
 "    inv[style=invis, shape=point];\n"
 "    target[shape=\"rectangle\", style=\"rounded\";]"
 
-#: lecture.adoc:339
+#: lecture.adoc:340
 msgid ""
 "    label=\"proxy\";\n"
 "    style=\"dashed,rounded\";"
@@ -804,7 +809,7 @@ msgstr ""
 "    label=\"proxy\";\n"
 "    style=\"dashed,rounded\";"
 
-#: lecture.adoc:344
+#: lecture.adoc:345
 msgid ""
 "    inv -> target[style=dashed;];\n"
 "  }\n"
@@ -816,7 +821,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:348
+#: lecture.adoc:349
 msgid ""
 "* Создаётся по необходимости.\n"
 "* Перехватывает вызовы всех методов на target.\n"
@@ -826,11 +831,11 @@ msgstr ""
 "* Intercepts calls to all methods on target.\n"
 "* Checks if the pointcut has not worked -- and invokes advice."
 
-#: lecture.adoc:350
+#: lecture.adoc:351
 msgid "== Использование AOP в Spring"
 msgstr "== Using AOP in Spring"
 
-#: lecture.adoc:352
+#: lecture.adoc:353
 msgid ""
 "Для активизации `BeanPostProcessor`-а, сканирующего AOP-аннотации, надо в "
 "конфигурации включить аннотацию `@EnableAspectJAutoProxy`"
@@ -838,7 +843,7 @@ msgstr ""
 "To activate a `BeanPostProcessor` that scans AOP annotations, you need to "
 "include the `@EnableAspectJAutoProxy` annotation in the configuration"
 
-#: lecture.adoc:359
+#: lecture.adoc:360
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -854,8 +859,8 @@ msgstr ""
 "public class AppConfig{\n"
 "  ..."
 
-#: lecture.adoc:362
-msgctxt "lecture.adoc:362"
+#: lecture.adoc:363
+msgctxt "lecture.adoc:363"
 msgid ""
 "}\n"
 "----"
@@ -863,7 +868,7 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:364
+#: lecture.adoc:365
 msgid ""
 "(что такое `BeanPostProcessor` -- мы увидим в дальнейшем, но вы уже знаете, "
 "что это конфигуратор объекта)"
@@ -871,13 +876,13 @@ msgstr ""
 "(what is `BeanPostProcessor` -- we'll see later, but you already guess it's "
 "an object configurator)"
 
-#: lecture.adoc:366
-msgctxt "lecture.adoc:366"
+#: lecture.adoc:367
+msgctxt "lecture.adoc:367"
 msgid "== Пример аспекта"
 msgstr "== Example of an aspect"
 
-#: lecture.adoc:385
-msgctxt "lecture.adoc:385"
+#: lecture.adoc:386
+msgctxt "lecture.adoc:386"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -917,12 +922,12 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:387
-msgctxt "lecture.adoc:387"
+#: lecture.adoc:388
+msgctxt "lecture.adoc:388"
 msgid "== Spring AOP checklist"
 msgstr "== Spring AOP checklist"
 
-#: lecture.adoc:392
+#: lecture.adoc:393
 msgid ""
 "* `@EnableAspectJAutoProxy` над конфигурацией.\n"
 "* `@Aspect` над аспектом.\n"
@@ -938,12 +943,12 @@ msgstr ""
 "* The aspect does not intercept methods that are called by the "
 "`@PostConstruct`. *Question*: Why?"
 
-#: lecture.adoc:395
-msgctxt "lecture.adoc:395"
+#: lecture.adoc:396
+msgctxt "lecture.adoc:396"
 msgid "== Spring AOP checklist"
 msgstr "== Spring AOP checklist"
 
-#: lecture.adoc:400
+#: lecture.adoc:401
 msgid ""
 "* `@EnableAspectJAutoProxy` над конфигурацией.\n"
 "* `@Aspect` над аспектом.\n"
@@ -958,13 +963,13 @@ msgstr ""
 "* The aspect does not intercept methods that are called by the "
 "`@PostConstruct`."
 
-#: lecture.adoc:402
-msgctxt "lecture.adoc:402"
+#: lecture.adoc:403
+msgctxt "lecture.adoc:403"
 msgid "== Пример аспекта"
 msgstr "== Example of an aspect"
 
-#: lecture.adoc:421
-msgctxt "lecture.adoc:421"
+#: lecture.adoc:422
+msgctxt "lecture.adoc:422"
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1004,11 +1009,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:423
+#: lecture.adoc:424
 msgid "== Какие бывают advices"
 msgstr "== What kinds of the advices are there"
 
-#: lecture.adoc:429
+#: lecture.adoc:430
 msgid ""
 "* `@Before`\n"
 "* `@AfterReturning` (нормальное завершение)\n"
@@ -1022,7 +1027,7 @@ msgstr ""
 "* `@After` (normal completion and exception)\n"
 "* `@Around`"
 
-#: lecture.adoc:439
+#: lecture.adoc:440
 msgid ""
 "== `@Before`\n"
 "[source,java]\n"
@@ -1044,11 +1049,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:441
+#: lecture.adoc:442
 msgid "== `@After`"
 msgstr "== `@After`"
 
-#: lecture.adoc:449
+#: lecture.adoc:450
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1066,7 +1071,7 @@ msgstr ""
 "  System.out.println(\"AFTER foo()\" + retVal);\n"
 "}"
 
-#: lecture.adoc:457
+#: lecture.adoc:458
 msgid ""
 "@AfterThrowing(\n"
 "    pointcut= \"execution(* aop.example.application..*.*(..))\", \n"
@@ -1085,10 +1090,217 @@ msgstr ""
 "----"
 
 #: lecture.adoc:460
+msgid "== Неувядающая классика"
+msgstr "== Timeless classic"
+
+#: lecture.adoc:462
+msgid "вызов `@Tranasctional`-метода из самого бина"
+msgstr "calling `@Tranasctional` method from within the bean itself"
+
+#: lecture.adoc:467
+msgctxt "lecture.adoc:467"
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Service\n"
+"public class MyService {"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"@Primary\n"
+"public class Bar1 implements Bar {...}"
+
+#: lecture.adoc:472
+msgid ""
+"    public void doSomething() {\n"
+"        // ...\n"
+"        doSomethingElse();\n"
+"    }"
+msgstr ""
+"    public void doSomething() {\n"
+"        // ...\n"
+"        doSomethingElse();\n"
+"    }"
+
+#: lecture.adoc:481
+msgid ""
+"    //Transactional тут не работает... :-(((\n"
+"    @Transactional\n"
+"    public void doSomethingElse() {\n"
+"        // ...\n"
+"    }\n"
+"}\n"
+"----\n"
+"== В чем причина?"
+msgstr ""
+"    //Transactional does not work here:-(((\n"
+"    @Transactional\n"
+"    public void doSomethingElse() {\n"
+"        // ...\n"
+"    }\n"
+"}\n"
+"----\n"
+"== What is the reason?"
+
+#: lecture.adoc:489
+msgid ""
+"[graphviz,\"fullpicture.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+msgstr ""
+"[graphviz,\"fullpicture.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Constructor -> configurer1;"
+
+#: lecture.adoc:495
+msgctxt "lecture.adoc:495"
+msgid ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2}\n"
+"}"
+msgstr ""
+"subgraph cluster_1 {\n"
+"  label = \"Configuration\";\n"
+"  configurer2 -> configurer1 [dir=\"back\"];\n"
+"  {rank=same configurer1 configurer2}\n"
+"}"
+
+#: lecture.adoc:502
+msgctxt "lecture.adoc:502"
+msgid ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same postConstruct1 postConstruct2}\n"
+"}\n"
+"configurer2 -> postConstruct1;"
+msgstr ""
+"subgraph cluster_2{\n"
+"  label=\"Initialization\";\n"
+"  postConstruct2 -> postConstruct1 [dir=\"back\"];\n"
+"  {rank=same postConstruct1 postConstruct2}\n"
+"}\n"
+"configurer2 -> postConstruct1;"
+
+#: lecture.adoc:506
+msgctxt "lecture.adoc:506"
+msgid ""
+"subgraph cluster_3 {\n"
+"  label = \"Wrapping\";"
+msgstr ""
+"subgraph cluster_3 {\n"
+"  label = \"Wrapping\";"
+
+#: lecture.adoc:511
+msgid ""
+"  proxyconfigurer2 -> proxyconfigurer1  [dir=\"back\"];\n"
+"  {rank=same proxyconfigurer2 proxyconfigurer1}\n"
+"}\n"
+"postConstruct2 -> proxyconfigurer1;"
+msgstr ""
+"  proxyconfigurer2 -> proxyconfigurer1  [dir=\"back\"];\n"
+"  {rank=same proxyconfigurer2 proxyconfigurer1}\n"
+"} \n"
+"postConstruct2 -> proxyconfigurer1;"
+
+#: lecture.adoc:517
+msgid ""
+"subgraph cluster_4 {\n"
+"  label = \"PreDestroy\";\n"
+"  preDestroy2 -> preDestroy1  [dir=\"back\"];\n"
+"  {rank=same preDestroy1 preDestroy2}\n"
+"}"
+msgstr ""
+"subgraph cluster_4 {\n"
+"  label = \"PreDestroy\";\n"
+"  preDestroy2 -> preDestroy1  [dir=\"back\"];\n"
+"  {rank=same preDestroy1 preDestroy2}\n"
+"}"
+
+#: lecture.adoc:519
+msgctxt "lecture.adoc:519"
+msgid "proxyconfigurer2 -> preDestroy1;"
+msgstr "proxyconfigurer2 -> preDestroy1;"
+
+#: lecture.adoc:522
+msgctxt "lecture.adoc:522"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+"}\n"
+"----"
+
+#: lecture.adoc:524
+msgid "== Workaround"
+msgstr "== Workaround"
+
+#: lecture.adoc:529
+msgctxt "lecture.adoc:529"
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Service\n"
+"public class MyService {"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"@Primary\n"
+"public class Bar1 implements Bar {...}"
+
+#: lecture.adoc:532
+msgid ""
+"    @Autowired\n"
+"    ObjectFactory<MyService> self;"
+msgstr ""
+"    @Autowired\n"
+"    ObjectFactory<MyService> self;"
+
+#: lecture.adoc:537
+msgid ""
+"    public void doSomething() {\n"
+"        // ...\n"
+"        self.getObject().doSomethingElse();\n"
+"    }"
+msgstr ""
+"    public void doSomething() {\n"
+"        // ...\n"
+"        self.getObject().doSomethingElse();\n"
+"    }"
+
+#: lecture.adoc:544
+msgid ""
+"    @Transactional\n"
+"    public void doSomethingElse() {\n"
+"        // ...\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+"    @Transactional\n"
+"    public void doSomethingElse() {\n"
+"        // ...\n"
+"    }\n"
+"}\n"
+"----"
+
+#: lecture.adoc:547
 msgid "== BeanPostProcessor interface"
 msgstr "== BeanPostProcessor interface"
 
-#: lecture.adoc:469
+#: lecture.adoc:556
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1108,7 +1320,7 @@ msgstr ""
 "\t\treturn bean;\n"
 "  }"
 
-#: lecture.adoc:477
+#: lecture.adoc:564
 msgid ""
 "  //возвращаем обёртку над бином\n"
 "  default Object postProcessAfterInitialization(\n"
@@ -1126,11 +1338,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:479
+#: lecture.adoc:566
 msgid "== BeanPostProcessor"
 msgstr "== BeanPostProcessor"
 
-#: lecture.adoc:488
+#: lecture.adoc:575
 msgid ""
 "[graphviz,\"bpp.png\"]\n"
 "----\n"
@@ -1150,7 +1362,7 @@ msgstr ""
 "node[shape=box];\n"
 "Constructor -> configurer1;"
 
-#: lecture.adoc:496
+#: lecture.adoc:583
 msgid ""
 "subgraph cluster_1 {\n"
 "  label = \"BeanPostProcessor#\\npostProcessBeforeInitialization\";\n"
@@ -1168,7 +1380,7 @@ msgstr ""
 "  {rank=same configurer1 configurer2}\n"
 "}"
 
-#: lecture.adoc:503
+#: lecture.adoc:590
 msgid ""
 "subgraph cluster_2{\n"
 "  label=\"Initialization\";\n"
@@ -1184,7 +1396,7 @@ msgstr ""
 "}\n"
 "configurer2 -> postConstruct1;"
 
-#: lecture.adoc:513
+#: lecture.adoc:600
 msgid ""
 "subgraph cluster_3 {\n"
 "  label = \"BeanPostProcessor#\\npostProcessAfterInitialization\";\n"
@@ -1204,11 +1416,11 @@ msgstr ""
 "} \n"
 "postConstruct2 -> proxyconfigurer1;"
 
-#: lecture.adoc:515
+#: lecture.adoc:602
 msgid "subgraph cluster_4 {"
 msgstr "subgraph cluster_4 {"
 
-#: lecture.adoc:520
+#: lecture.adoc:607
 msgid ""
 "  label = \"PreDestroy\";\n"
 "  preDestroy2 -> preDestroy1  [dir=\"back\"];\n"
@@ -1220,13 +1432,13 @@ msgstr ""
 "  {rank=same preDestroy1 preDestroy2}\n"
 "} "
 
-#: lecture.adoc:522
-msgctxt "lecture.adoc:522"
+#: lecture.adoc:609
+msgctxt "lecture.adoc:609"
 msgid "proxyconfigurer2 -> preDestroy1;"
 msgstr "proxyconfigurer2 -> preDestroy1;"
 
-#: lecture.adoc:525
-msgctxt "lecture.adoc:525"
+#: lecture.adoc:612
+msgctxt "lecture.adoc:612"
 msgid ""
 "}\n"
 "----"
@@ -1234,11 +1446,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:527
+#: lecture.adoc:614
 msgid "== Собственный BeanPostProcessor"
 msgstr "== Own BeanPostProcessor"
 
-#: lecture.adoc:548
+#: lecture.adoc:635
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1282,12 +1494,12 @@ msgstr ""
 "} }\n"
 "----"
 
-#: lecture.adoc:550
-msgctxt "lecture.adoc:550"
+#: lecture.adoc:637
+msgctxt "lecture.adoc:637"
 msgid "== Демо"
 msgstr "== Demo"
 
-#: lecture.adoc:556
+#: lecture.adoc:643
 msgid ""
 "* AnnotationConfigApplicationContext\n"
 "* DI\n"
@@ -1301,21 +1513,21 @@ msgstr ""
 "* BeanPostProcessor\n"
 "* Test with ContextConfiguration"
 
-#: lecture.adoc:558
-msgctxt "lecture.adoc:558"
+#: lecture.adoc:645
+msgctxt "lecture.adoc:645"
 msgid "== Spring Boot"
 msgstr "== Spring Boot"
 
-#: lecture.adoc:560
+#: lecture.adoc:647
 msgid "image::spring-boot-logo.jpg[]"
 msgstr "image::spring-boot-logo.jpg[]"
 
-#: lecture.adoc:562
-msgctxt "lecture.adoc:562"
+#: lecture.adoc:649
+msgctxt "lecture.adoc:649"
 msgid "== Spring Boot"
 msgstr "== Spring Boot"
 
-#: lecture.adoc:568
+#: lecture.adoc:655
 msgid ""
 "* Convention over configuration\n"
 "* Подключение готовых сконфигурированных блоков через «стартеры»\n"
@@ -1329,11 +1541,11 @@ msgstr ""
 "* Metrics, health checks, application configuration via configuration file\n"
 "* Everything is annotations-based"
 
-#: lecture.adoc:571
+#: lecture.adoc:658
 msgid "== Dependency Management"
 msgstr "== Dependency Management"
 
-#: lecture.adoc:581
+#: lecture.adoc:668
 msgid ""
 "[source,xml]\n"
 "----\n"
@@ -1355,11 +1567,11 @@ msgstr ""
 "</parent>\n"
 "----"
 
-#: lecture.adoc:583
+#: lecture.adoc:670
 msgid "== Подключаем стартеры"
 msgstr "== Connect the starters"
 
-#: lecture.adoc:593
+#: lecture.adoc:680
 msgid ""
 "[source,xml]\n"
 "----\n"
@@ -1381,11 +1593,11 @@ msgstr ""
 "</dependency>\n"
 "----"
 
-#: lecture.adoc:595
+#: lecture.adoc:682
 msgid "== Пишем Main-класс"
 msgstr "== Writing Main class"
 
-#: lecture.adoc:608
+#: lecture.adoc:695
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1415,11 +1627,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:610
+#: lecture.adoc:697
 msgid "== Пишем контроллер"
 msgstr "== Writing a controller"
 
-#: lecture.adoc:622
+#: lecture.adoc:709
 msgid ""
 "[source,java]\n"
 "----\n"
@@ -1445,11 +1657,11 @@ msgstr ""
 "}\n"
 "----"
 
-#: lecture.adoc:624
+#: lecture.adoc:711
 msgid "== За сборку jar-ника отвечает spring-boot-maven-plugin"
 msgstr "== Spring-boot-maven-plugin is responsible for building the jar file"
 
-#: lecture.adoc:632
+#: lecture.adoc:719
 msgid ""
 "[source,xml]\n"
 "----\n"
@@ -1467,7 +1679,7 @@ msgstr ""
 "</plugin>\n"
 "----"
 
-#: lecture.adoc:635
+#: lecture.adoc:722
 msgid ""
 "* Получается «жирный» executable jar.\n"
 "* Можно сделать так, что он будет в буквальном смысле executable."
@@ -1475,27 +1687,27 @@ msgstr ""
 "* It turns out to be a \"fat\" executable jar.\n"
 "* You can make it literally executable."
 
-#: lecture.adoc:637
+#: lecture.adoc:724
 msgid "== Как Spring Boot Starter поднимает свои бины?"
 msgstr "== How does Spring Boot Starter finds its beans?"
 
-#: lecture.adoc:639
+#: lecture.adoc:726
 msgid ""
 "* Spring Boot сканирует файловую систему ClassPath на наличие файлов `spring."
 "factories`."
 msgstr ""
 "* Spring Boot scans the ClassPath file system for `spring.factories` files."
 
-#: lecture.adoc:641
+#: lecture.adoc:728
 msgid "image::spring-factories.png[{image-100-width}]"
 msgstr "image::spring-factories.png[{image-100-width}]"
 
-#: lecture.adoc:643
-msgctxt "lecture.adoc:643"
+#: lecture.adoc:730
+msgctxt "lecture.adoc:730"
 msgid "== Демо"
 msgstr "== Demo"
 
-#: lecture.adoc:647
+#: lecture.adoc:734
 msgid ""
 "* Spring Boot\n"
 "* Spring JDBC Template\n"
@@ -1505,31 +1717,29 @@ msgstr ""
 "* Spring JDBC Template\n"
 "* Spring Boot Test"
 
-#: lecture.adoc:649
+#: lecture.adoc:736
 msgid "== Пришла пора закругляться :-)"
 msgstr "== It's time to round off :-)"
 
-#: lecture.adoc:656
+#: lecture.adoc:742
 msgid ""
 "* Всё, что я рассказал в этом курсе -- уже Legacy.\n"
-"* Мы работали на Java 17 (LTS), но...\n"
-"** март 2022 -- Java 18,\n"
-"** сентябрь 2022 -- Java 19,\n"
-"** март 2023 -- Java 20,\n"
-"** сентябрь 2023 -- Java 21 (новый LTS)."
+"* Мы работали на Java 21 (LTS), но...\n"
+"** март 2024 -- Java 22\n"
+"** сентябрь 2024 -- Java 23\n"
+"** март 2025 -- Java 24"
 msgstr ""
 "* Everything I've covered in this course is legacy already.\n"
-"* We worked on Java 17 (LTS), but...\n"
-"** March 2022 -- Java 18,\n"
-"** September 2022 -- Java 19,\n"
-"** March 2023 -- Java 20,\n"
-"** September 2023 -- Java 21 (next LTS)."
+"* We used (LTS), but...\n"
+"** March 2024 -- Java 22\n"
+"** September 2024 -- Java 23\n"
+"** March 2025 -- Java 24"
 
-#: lecture.adoc:658
+#: lecture.adoc:744
 msgid "== Синтаксис Java развивается"
 msgstr "== Java syntax is evolving"
 
-#: lecture.adoc:664
+#: lecture.adoc:750
 msgid ""
 "** Modularization (Java 9+)\n"
 "** Type Inference (Java 10+)\n"
@@ -1543,23 +1753,23 @@ msgstr ""
 "** Multiline Strings (Java 13+)\n"
 "** Records (Java 14+)"
 
-#: lecture.adoc:666
+#: lecture.adoc:752
 msgid "== Все ждут проектов"
 msgstr "== Everyone is waiting for projects"
 
-#: lecture.adoc:669
+#: lecture.adoc:755
 msgid ""
 "* Valhalla\n"
-"* Loom"
+"* [line-through]#Loom#"
 msgstr ""
 "* Valhalla\n"
-"* Loom"
+"* [line-through]#Loom#"
 
-#: lecture.adoc:671
+#: lecture.adoc:757
 msgid "== «Вселенная Java» расширяется со скоростью света"
 msgstr "== \"Java Universe\" is expanding at the speed of light"
 
-#: lecture.adoc:678
+#: lecture.adoc:764
 msgid ""
 "* Не только Spring:\n"
 "** Microframeworks -- for serverless\n"
@@ -1575,15 +1785,15 @@ msgstr ""
 "** Kotlin\n"
 "** Scala"
 
-#: lecture.adoc:680
+#: lecture.adoc:766
 msgid "== Выводы — напутствия"
 msgstr "== Conclusions — parting words"
 
-#: lecture.adoc:682
+#: lecture.adoc:768
 msgid "== Никогда не переставайте изучать новое"
 msgstr "== Never stop learning new things"
 
-#: lecture.adoc:684
+#: lecture.adoc:770
 msgid ""
 "_\"Here, you see, it takes all the running you can do, to keep in the same "
 "place. If you want to get somewhere else, you must run at least twice as "
@@ -1593,15 +1803,15 @@ msgstr ""
 "place. If you want to get somewhere else, you must run at least twice as "
 "fast as that!”_"
 
-#: lecture.adoc:686
+#: lecture.adoc:772
 msgid "image::alice_queen.jpg[{image-40-width}]"
 msgstr "image::alice_queen.jpg[{image-40-width}]"
 
-#: lecture.adoc:688
+#: lecture.adoc:774
 msgid "== Старое тоже полезно изучать"
 msgstr "== The old is also useful to learn"
 
-#: lecture.adoc:700
+#: lecture.adoc:786
 msgid ""
 "[cols=\"25a,25a,25a,25a\"]\n"
 "|===\n"
@@ -1627,11 +1837,11 @@ msgstr ""
 "image::urma.jpg[]\n"
 "|==="
 
-#: lecture.adoc:702
+#: lecture.adoc:788
 msgid "== Помните про свою профессиональную ответственность"
 msgstr "== Remember about your professional responsibility"
 
-#: lecture.adoc:710
+#: lecture.adoc:796
 msgid ""
 "* От работы программистов в XXI веке зависят судьбы людей\n"
 "* Даже если это не программа, управляющая самолётом или аппаратом ИВЛ\n"
@@ -1649,38 +1859,43 @@ msgstr ""
 "** *Accessibility*\n"
 "* Make the world a better place!"
 
-#: lecture.adoc:715
+#: lecture.adoc:800
 msgid ""
 "== Становитесь частью community!\n"
 "* JUGs: Москва, Санкт-Петербург, Новосибирск.\n"
-"* Conferences: Joker, JPoint, SnowOne.\n"
-"* Когда это всё закончится, приходите на московский JUG!"
+"* Conferences: JPoint, Joker, SnowOne."
 msgstr ""
 "== Become a part of the community!\n"
 "* JUGs: Moscow, St. Petersburg, Novosibirsk.\n"
-"* Conferences: Joker, JPoint, SnowOne.\n"
-"* When it's all over, come to moscow's JUG!"
+"* Conferences: Joker, JPoint, SnowOne."
 
-#: lecture.adoc:717
-msgid "image::jugmsk.jpg[]"
-msgstr "image::jugmsk.jpg[]"
-
-#: lecture.adoc:720
+#: lecture.adoc:803
 msgid "== Добро пожаловать во вселенную Java :-)"
 msgstr "== Welcome to the Java universe :-)"
 
-#: lecture.adoc:721
+#: lecture.adoc:804
 msgid "image::duke.svg[{image-20-width}]"
 msgstr "image::duke.svg[{image-20-width}]"
 
+#~ msgctxt "lecture.adoc:489"
 #~ msgid ""
-#~ "//== Часть 1. Введение\n"
-#~ ":!figure-caption:"
+#~ "[graphviz,\"predestroy.png\"]\n"
+#~ "----\n"
+#~ "digraph G {\n"
+#~ "graph [ dpi = 180 ];\n"
+#~ "rankdir=\"LR\";\n"
+#~ "node[shape=box];\n"
+#~ "Constructor -> configurer1;"
 #~ msgstr ""
-#~ "//== Часть 1. Введение\n"
-#~ ":!figure-caption:"
+#~ "[graphviz,\"predestroy.png\"]\n"
+#~ "----\n"
+#~ "digraph G {\n"
+#~ "graph [ dpi = 180 ];\n"
+#~ "rankdir=\"LR\";\n"
+#~ "node[shape=box];\n"
+#~ "Constructor -> configurer1;"
 
-#~ msgctxt "lecture.adoc:237"
+#~ msgctxt "lecture.adoc:236"
 #~ msgid ""
 #~ "subgraph cluster_1 {\n"
 #~ "  label = \"Configuration\";\n"
@@ -1694,15 +1909,15 @@ msgstr "image::duke.svg[{image-20-width}]"
 #~ "  {rank=same configurer1 configurer2}\n"
 #~ "}"
 
-#~ msgctxt "lecture.adoc:268"
+#~ msgctxt "lecture.adoc:267"
 #~ msgid "== Финализация"
 #~ msgstr "== Finalization"
 
-#~ msgctxt "lecture.adoc:303"
+#~ msgctxt "lecture.adoc:302"
 #~ msgid "== Терминология AOP"
 #~ msgstr "== AOP terminology"
 
-#~ msgctxt "lecture.adoc:363"
+#~ msgctxt "lecture.adoc:362"
 #~ msgid ""
 #~ "}\n"
 #~ "----"
@@ -1710,15 +1925,15 @@ msgstr "image::duke.svg[{image-20-width}]"
 #~ "}\n"
 #~ "----"
 
-#~ msgctxt "lecture.adoc:396"
+#~ msgctxt "lecture.adoc:395"
 #~ msgid "== Spring AOP checklist"
 #~ msgstr "== Spring AOP checklist"
 
-#~ msgctxt "lecture.adoc:403"
+#~ msgctxt "lecture.adoc:402"
 #~ msgid "== Пример аспекта"
 #~ msgstr "== Example of an aspect"
 
-#~ msgctxt "lecture.adoc:422"
+#~ msgctxt "lecture.adoc:421"
 #~ msgid ""
 #~ "[source,java]\n"
 #~ "----\n"
@@ -1757,6 +1972,36 @@ msgstr "image::duke.svg[{image-20-width}]"
 #~ "  }\n"
 #~ "}\n"
 #~ "----"
+
+#~ msgctxt "lecture.adoc:522"
+#~ msgid "proxyconfigurer2 -> preDestroy1;"
+#~ msgstr "proxyconfigurer2 -> preDestroy1;"
+
+#~ msgctxt "lecture.adoc:525"
+#~ msgid ""
+#~ "}\n"
+#~ "----"
+#~ msgstr ""
+#~ "}\n"
+#~ "----"
+
+#~ msgctxt "lecture.adoc:562"
+#~ msgid "== Spring Boot"
+#~ msgstr "== Spring Boot"
+
+#~ msgctxt "lecture.adoc:643"
+#~ msgid "== Демо"
+#~ msgstr "== Demo"
+
+#~ msgid "image::jugmsk.jpg[]"
+#~ msgstr "image::jugmsk.jpg[]"
+
+#~ msgid ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+#~ msgstr ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
 
 #~ msgctxt "lecture.adoc:523"
 #~ msgid "proxyconfigurer2 -> preDestroy1;"
@@ -1958,23 +2203,6 @@ msgstr "image::duke.svg[{image-20-width}]"
 #~ msgctxt "lecture.adoc:684"
 #~ msgid "== Демо"
 #~ msgstr "== Demo"
-
-#~ msgid ""
-#~ "[graphviz,\"beanlife1.png\"]\n"
-#~ "----\n"
-#~ "digraph G {\n"
-#~ "graph [ dpi = 180 ];\n"
-#~ "rankdir=\"LR\";\n"
-#~ "node[shape=box];\n"
-#~ "Constructor -> configurer1;"
-#~ msgstr ""
-#~ "[graphviz,\"beanlife1.png\"]\n"
-#~ "----\n"
-#~ "digraph G {\n"
-#~ "graph [ dpi = 180 ];\n"
-#~ "rankdir=\"LR\";\n"
-#~ "node[shape=box];\n"
-#~ "Constructor -> configurer1;"
 
 #~ msgid ""
 #~ "[graphviz,\"beanlife2.png\"]\n"

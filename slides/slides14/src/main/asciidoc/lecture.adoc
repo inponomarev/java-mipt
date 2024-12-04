@@ -87,6 +87,7 @@ Foo -> "bar" Bar
 @enduml
 ----
 
+[source,text]
 ----
 NoUniqueBeanDefinitionException: No qualifying bean of
 type 'edu.phystech.robotlecturer.Bar' available: expected
@@ -455,6 +456,92 @@ public void dbException(DatabaseRuntimeException ex){
 }
 ----
 
+== Неувядающая классика
+
+вызов `@Tranasctional`-метода из самого бина
+
+[source,java]
+----
+@Service
+public class MyService {
+
+    public void doSomething() {
+        // ...
+        doSomethingElse();
+    }
+
+    //Transactional тут не работает... :-(((
+    @Transactional
+    public void doSomethingElse() {
+        // ...
+    }
+}
+----
+== В чем причина?
+
+[graphviz,"fullpicture.png"]
+----
+digraph G {
+graph [ dpi = 180 ];
+rankdir="LR";
+node[shape=box];
+Constructor -> configurer1;
+
+subgraph cluster_1 {
+  label = "Configuration";
+  configurer2 -> configurer1 [dir="back"];
+  {rank=same configurer1 configurer2}
+}
+
+subgraph cluster_2{
+  label="Initialization";
+  postConstruct2 -> postConstruct1 [dir="back"];
+  {rank=same postConstruct1 postConstruct2}
+}
+configurer2 -> postConstruct1;
+
+
+subgraph cluster_3 {
+  label = "Wrapping";
+
+  proxyconfigurer2 -> proxyconfigurer1  [dir="back"];
+  {rank=same proxyconfigurer2 proxyconfigurer1}
+}
+postConstruct2 -> proxyconfigurer1;
+
+subgraph cluster_4 {
+  label = "PreDestroy";
+  preDestroy2 -> preDestroy1  [dir="back"];
+  {rank=same preDestroy1 preDestroy2}
+}
+
+proxyconfigurer2 -> preDestroy1;
+
+}
+----
+
+== Workaround
+
+[source,java]
+----
+@Service
+public class MyService {
+
+    @Autowired
+    ObjectFactory<MyService> self;
+
+    public void doSomething() {
+        // ...
+        self.getObject().doSomethingElse();
+    }
+
+    @Transactional
+    public void doSomethingElse() {
+        // ...
+    }
+}
+----
+
 
 == BeanPostProcessor interface
 
@@ -648,11 +735,10 @@ image::spring-factories.png[{image-100-width}]
 == Пришла пора закругляться :-)
 
 * Всё, что я рассказал в этом курсе -- уже Legacy.
-* Мы работали на Java 17 (LTS), но...
-** март 2022 -- Java 18,
-** сентябрь 2022 -- Java 19,
-** март 2023 -- Java 20,
-** сентябрь 2023 -- Java 21 (новый LTS).
+* Мы работали на Java 21 (LTS), но...
+** март 2024 -- Java 22
+** сентябрь 2024 -- Java 23
+** март 2025 -- Java 24
 
 == Синтаксис Java развивается
 
@@ -665,7 +751,7 @@ image::spring-factories.png[{image-100-width}]
 == Все ждут проектов
 
 * Valhalla
-* Loom
+* [line-through]#Loom#
 
 == «Вселенная Java» расширяется со скоростью света
 
@@ -710,10 +796,7 @@ image::urma.jpg[]
 
 == Становитесь частью community!
 * JUGs: Москва, Санкт-Петербург, Новосибирск.
-* Conferences: Joker, JPoint, SnowOne.
-* Когда это всё закончится, приходите на московский JUG!
-
-image::jugmsk.jpg[]
+* Conferences: JPoint, Joker, SnowOne.
 
 
 == Добро пожаловать во вселенную Java :-)
