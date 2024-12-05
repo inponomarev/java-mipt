@@ -227,6 +227,7 @@ String txt =
 
 '''
 
+[source,text]
 ----
 Some        
   Nested          
@@ -250,6 +251,7 @@ Here
 
 '''
 
+[source,text]
 ----
 //Максимальное число пробелов впереди убрано:
 Some        

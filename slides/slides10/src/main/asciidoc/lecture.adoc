@@ -870,6 +870,7 @@ image::hydra2.jpg[{image-90-width}]
 
 == Aтомарные операции в классах атомарных переменных
 
+[source,text]
 ----
 getAndSet(newValue)    compareAndSet(expect, update) 
 

@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 21:31+0300\n"
+"POT-Creation-Date: 2024-12-05 17:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.2.5\n"
+"X-Generator: Translate Toolkit 3.13.1\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -110,8 +110,8 @@ msgid ""
 "[stem] \n"
 "++++\n"
 "\\Huge\n"
-"S = \\frac{1}{\\alpha+\\frac{1-\\alpha}{N}} = \\frac{N}{1+\\alpha(N-1)} \\"
-"leq \\frac{1}{\\alpha}\n"
+"S = \\frac{1}{\\alpha+\\frac{1-\\alpha}{N}} = \\frac{N}{1+\\alpha(N-1)} \\leq"
+" \\frac{1}{\\alpha}\n"
 "++++"
 msgstr ""
 
@@ -273,8 +273,8 @@ msgid ""
 "[stem] \n"
 "++++\n"
 "\\Large\n"
-"S = \\frac{N}{1+\\alpha(N-1) + \\beta N (N-1)} = \\frac{N}{1+(\\alpha + \\"
-"beta N) (N-1)}\n"
+"S = \\frac{N}{1+\\alpha(N-1) + \\beta N (N-1)} = \\frac{N}{1+(\\alpha + "
+"\\beta N) (N-1)}\n"
 "++++\n"
 "== USL: поведение"
 msgstr ""
@@ -1427,42 +1427,43 @@ msgstr ""
 msgid "== Aтомарные операции в классах атомарных переменных"
 msgstr ""
 
-#: lecture.adoc:875
+#: lecture.adoc:876
 msgid ""
+"[source,text]\n"
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
 msgstr ""
 
-#: lecture.adoc:877
+#: lecture.adoc:878
 msgid "incrementAndGet()      decrementAndGet()"
 msgstr ""
 
-#: lecture.adoc:879
+#: lecture.adoc:880
 msgid "getAndIncrement()      getAndDecrement()"
 msgstr ""
 
-#: lecture.adoc:881
+#: lecture.adoc:882
 msgid "getAndAdd(delta)       addAndGet(delta)"
 msgstr ""
 
-#: lecture.adoc:884
+#: lecture.adoc:885
 msgid ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
 msgstr ""
 
-#: lecture.adoc:888
+#: lecture.adoc:889
 msgid ""
 "getAndAccumulate(x, accumulatorBiFunction)\n"
 "accumulateAndGet(x, accumulatorBiFunction)\n"
 "----"
 msgstr ""
 
-#: lecture.adoc:891
+#: lecture.adoc:892
 msgid "== Потокобезопасные коллекции"
 msgstr ""
 
-#: lecture.adoc:895
+#: lecture.adoc:896
 msgid ""
 "* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, "
 "обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой "

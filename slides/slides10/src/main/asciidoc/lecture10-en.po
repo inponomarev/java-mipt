@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: slides 10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 21:31+0300\n"
-"PO-Revision-Date: 2023-02-24 21:08+0200\n"
+"POT-Creation-Date: 2024-12-05 17:33+0100\n"
+"PO-Revision-Date: 2024-12-05 17:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_UK\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: lecture.adoc:25
 msgid ""
@@ -2083,27 +2083,29 @@ msgstr ""
 msgid "== Aтомарные операции в классах атомарных переменных"
 msgstr "== Atomic operations in atomic variable classes"
 
-#: lecture.adoc:875
+#: lecture.adoc:876
 msgid ""
+"[source,text]\n"
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
 msgstr ""
+"[source,text]\n"
 "----\n"
 "getAndSet(newValue)    compareAndSet(expect, update) "
 
-#: lecture.adoc:877
+#: lecture.adoc:878
 msgid "incrementAndGet()      decrementAndGet()"
 msgstr "incrementAndGet()      decrementAndGet()"
 
-#: lecture.adoc:879
+#: lecture.adoc:880
 msgid "getAndIncrement()      getAndDecrement()"
 msgstr "getAndIncrement()      getAndDecrement()"
 
-#: lecture.adoc:881
+#: lecture.adoc:882
 msgid "getAndAdd(delta)       addAndGet(delta)"
 msgstr "getAndAdd(delta)       addAndGet(delta)"
 
-#: lecture.adoc:884
+#: lecture.adoc:885
 msgid ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
@@ -2111,7 +2113,7 @@ msgstr ""
 "getAndUpdate(updateFunction)\n"
 "updateAndGet(updateFunction)"
 
-#: lecture.adoc:888
+#: lecture.adoc:889
 msgid ""
 "getAndAccumulate(x, accumulatorBiFunction)\n"
 "accumulateAndGet(x, accumulatorBiFunction)\n"
@@ -2121,11 +2123,11 @@ msgstr ""
 "accumulateAndGet(x, accumulatorBiFunction)\n"
 "----"
 
-#: lecture.adoc:891
+#: lecture.adoc:892
 msgid "== Потокобезопасные коллекции"
 msgstr "== Thread-safe collections"
 
-#: lecture.adoc:895
+#: lecture.adoc:896
 msgid ""
 "* В ранних версиях Java можно было «сделать» коллекцию потокобезопасной, "
 "обернув в `Collections.synchronizedXXX(...)`. Это сериализовывало любой "
