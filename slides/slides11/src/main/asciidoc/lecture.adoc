@@ -1667,6 +1667,8 @@ public class  Executors {
   //позволяет выполнять задачи с задержкой или периодичностью
   public static 
     ScheduledExecutorService newScheduledThreadPool(int corePoolSize)
+  //запускает виртуальный поток под каждую из задач
+  public static ExecutorService newVirtualThreadPerTaskExecutor()
   ...
 }
 ----
