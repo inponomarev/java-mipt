@@ -755,8 +755,7 @@ stop
 
 == `switch`
 
-Та же ерунда, что и в C/C++:
-
+Полностью совместим с классическим `switch` в языке C, но имеет мощные расширения. Пожалуй, наиболее сильно переработанная синтаксическая конструкция из унаследованных из C.
 
 [cols="40a,60a"]
 |===
@@ -803,25 +802,11 @@ stop
 
 == `switch`-`case` особенности:
 
-* Не забываем `break`-и (утилиты типа Checkstyle напоминают), иначе выполняем всё до конца `switch`, как в C!
-* switch бывает: по целому, по `char`-у, по `String`-у (Java 7+) и по `enum`-у.
+* Используя "C-style" `switch`, не забываем `break`-и (утилиты типа Checkstyle напоминают), иначе выполняем всё до конца `switch`, как в C!
+* Обычный `switch` бывает: по целому, по `char`-у, по `String`-у (Java 7+), по `enum`-у.
+* Бывает также `switch` c pattern matching (Java 21+), о котором мы расскажем в других лекциях.
 
-== Switch Expressions 
-
-* JDK 12 & 13 — Preview Feature
-* JDK 14 — Standard Feature
-
-[source,java]
-----
-int numLetters = switch(day) {
-  case MONDAY, FRIDAY, SUNDAY -> 6;
-  case TUESDAY -> 7;
-  case SATURDAY -> 8;
-  default -> 9;
-}
-----
-
-== Switch in Java 14+: no Fallthrough
+== Switch statements/expressions in Java 14+: no Fallthrough
 
 [cols="50a,50a"]
 |===
@@ -856,7 +841,7 @@ switch(day) {
 |===
 
 
-== Switch in Java 14+: with Fallthrough
+== Switch statements/expressions in Java 14+: with Fallthrough
 
 [cols="50a,50a"]
 |===
@@ -1205,8 +1190,7 @@ while (sum < goal) {
 
 [source,java]
 ----
-Scanner in = new Scanner(System.in);
-int n;
+Scanner in = new Scanner(System.in); int n;
 read_data: while (. . .) { // <<<label is here!
   . . .
   for (. . .) {

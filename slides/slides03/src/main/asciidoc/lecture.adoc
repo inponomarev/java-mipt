@@ -812,29 +812,7 @@ if (obj instanceof String s && s.length() > 5) {
 if (obj instanceof String s || s.length() > 5) {...}
 ----
 
-== Все меньше избыточного кода
-
-[source,java]
-----
-//Before Java 10
-if (obj instanceof Number) {
-  Number n = (Number) obj;
-  System.out.println(n.longValue());
-}
-
-//Java 10+
-if (obj instanceof Number) {
-  var n = (Number) obj;
-  System.out.println(n.longValue());
-}
-
-//Java 14+
-if (obj instanceof Number n) {
-  System.out.println(n.longValue());
-}
-----
-
-== Pattern matching for switch (JEP406, preview feature in Java 17)
+== Pattern matching for switch (Java 21+)
 
 [source,java]
 ----
@@ -846,6 +824,24 @@ public int calculate(Expr expr) {
     case Multiply m -> calculate(m.left()) * calculate(m.right());
     case Add a -> calculate(a.left()) + calculate(a.right());
     case Subtract s -> calculate(s.left()) - calculate(s.right());
+  };
+}
+----
+
+== `when` guards (Java 21)
+
+[source,java]
+----
+static String describe(Object o) {
+  return switch (o) {
+    case null -> "got null";
+
+    case String s when s.isBlank() -> "blank string";
+    case String s                  -> "string(" + s.length() + " chars)";
+    case Integer i when i < 0 -> "negative int " + (-i);
+    case Integer i            -> "int " + i;
+
+    default -> "something else";
   };
 }
 ----
