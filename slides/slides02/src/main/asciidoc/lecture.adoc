@@ -40,7 +40,7 @@ icon:twitter[size=lg] @inponomarev
 * psvm -- sout
 * Манифест (runnable jar) 
 
-== Ключевые слова языка (keywords) [JLS17, 3.9]
+== Ключевые слова языка (keywords) [JLS21, 3.9]
 [source]
 ----
 abstract   continue   for          new         switch
@@ -67,7 +67,12 @@ _ (underscore)
              null       true        false
 ----
 
-== Restricted Keywords & Identifiers
+== Contextual Keywords
+
+[source,java]
+----
+var var = 42;
+----
 
 [source]
 ----
@@ -76,13 +81,16 @@ open     module      requires    transitive    exports
 opens    to          uses        provides      with
 
 (Java 10)
-var 
+var
 
 (Java 14)
 yield    record
 
 (Java 15)
 sealed   non-sealed  permits
+
+(Java 21)
+when
 ----
 
 == Комментарии
@@ -408,7 +416,7 @@ var reader = new BufferedReader(
 
 | `-5`
 | `1111 ... 1111 1011`
-|
+| Дополнительный код (two's complement), инверсия и добавление 1.
 
 | `-5 << 1 == -10`
 | `1111 ... 1111 0110`
@@ -1199,8 +1207,7 @@ while (sum < goal) {
 ----
 Scanner in = new Scanner(System.in);
 int n;
-// label is here!
-read_data: while (. . .) {
+read_data: while (. . .) { // <<<label is here!
   . . .
   for (. . .) {
     System.out.print("Enter a number >= 0: ");

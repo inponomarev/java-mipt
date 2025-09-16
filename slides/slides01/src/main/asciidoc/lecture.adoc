@@ -128,13 +128,13 @@ https://www.tiobe.com/tiobe-index/
 [%notitle]
 == RedMonk
 
-image::redmonk2024.png[{image-60-width}]
+image::redmonk2025.png[{image-60-width}]
 https://redmonk.com/
 
 [%notitle]
 == RedMonk
 
-image::redmonk-rankings-2024.png[{image-60-width}]
+image::redmonk-rankings-2025.png[{image-60-width}]
 https://redmonk.com/
 
 == Three Decades of Java: Before Java 9
@@ -182,9 +182,9 @@ Java SE 9 (September 21, 2017)
 20     (March 21, 2023)
 21 LTS (September 19, 2023)
 22     (March 19, 2024)
-23     (due to in September 2024)
-24     (due to in March 2025)
-25 LTS (due to in September 2025)
+23     (September 17, 2024)
+24     (March 18, 2025)
+25 LTS (September 16, 2025)
 |===
 
 
@@ -216,10 +216,10 @@ https://www.youtube.com/watch?v=XThhlihqTXI
 
 == Продолжение истории
 
-* Апплеты
+* Браузерные "Апплеты"
 * Built-in security
 * Но Security сделать оказалось непросто 
-* Апплеты не пошли (победил JavaScript)
+* Апплеты не пошли (в браузерах победил JavaScript)
 
 == Сегодняшний день
 
@@ -456,16 +456,17 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 * Многословна (слишком много "boilerplate code") -- *что да то да, но с Lombok и современной джавой это чинится*
 * Язык консервативен, медленно развивается -- *уже нет*
 
-== Развитие языка c 9й версии (6-months release cadence)
+== Развитие языка c 10й версии (6-months release cadence)
 
-[%step]
-* type inference,
+* type inference (`var`),
 * switch expressions,
+* text blocks
 * sealed classes,
-* pattern matching,
+* pattern matching (`instanceof`, `switch`),
 * records,
 * unnamed main classes,
-* string templates (to be dropped?)...
+* virtual threads,
+* string templates (dropped)...
 
 == Текущие проекты
 
@@ -473,13 +474,6 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 * Project Loom: fibers & continuators
 * Project Valhalla: value types & generic specialization
 * Graal, Panama, Kulla, Sumatra...
-
-== Битва за новые возможности
-
-* *Алексей Шипилёв*, 2015: The Lord of the Strings: Two Scours
-* *Тагир Валеев*, 2018: Pattern matching и его воображаемые друзья
-* *Сергей Куксенко*, 2020: Valhalla is coming
-* *Сергей Куксенко*, 2020: Java threads are losing weight, performance review of Project Loom
 
 [%notitle]
 == Языки
