@@ -159,6 +159,7 @@
                     <requires>
                         <require>asciidoctor-revealjs</require>
                         <require>asciidoctor-diagram</require>
+                        <require>asciidoctor-diagram-plantuml</require>
                     </requires>
                     <outputDirectory>${project.slides.directory}</outputDirectory>
                     <backend>revealjs</backend>
