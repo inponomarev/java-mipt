@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
         <asciidoctorj.version>3.0.0</asciidoctorj.version>
-        <asciidoctorj.diagram.version>3.0.1</asciidoctorj.diagram.version>
+        <asciidoctorj.diagram.version>2.3.2</asciidoctorj.diagram.version>
         <jruby.version>9.4.12.1</jruby.version>
         <revealjs.version>3.9.2</revealjs.version>
         <!-- Use 'master' as version and remove the 'v' prefixing the download url to use the current snapshot version  -->
@@ -159,7 +159,6 @@
                     <requires>
                         <require>asciidoctor-revealjs</require>
                         <require>asciidoctor-diagram</require>
-                        <require>asciidoctor-diagram-plantuml</require>
                     </requires>
                     <outputDirectory>${project.slides.directory}</outputDirectory>
                     <backend>revealjs</backend>
