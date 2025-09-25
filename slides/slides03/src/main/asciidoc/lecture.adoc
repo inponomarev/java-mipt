@@ -587,7 +587,8 @@ public class Person {
 
 == Переопределение конструкторов при наследовании классов
 
-* Если у суперкласса нет конструктора без аргументов, первым вызовом должен быть `super(...)`. 
+* До Java25: если у суперкласса нет конструктора без аргументов, первым вызовом должен был быть `super(...)`.
+* После Java25: пишем как угодно, главное в конструкторе субдкласса не брать значения не проинстанцированных полей суперкласса. 
 
 [source,java]
 ----
@@ -608,6 +609,7 @@ class Employee extends Person{
 == Перегрузка конструкторов
 
 * Вызов `this(...)`
+* Java 25+: свобода в плане того, где он может быть вызван.
 
 [source,java]
 ----
@@ -706,7 +708,7 @@ public class Student extends Person
 
 [source,java]
 ----
-//его нельзя инстацировать!
+//его нельзя инстанцировать!
 public interface Prism
 {
    //это --- final-переменная!
@@ -837,7 +839,7 @@ static String describe(Object o) {
     case null -> "got null";
 
     case String s when s.isBlank() -> "blank string";
-    case String s                  -> "string(" + s.length() + " chars)";
+    case String s -> "string(" + s.length() + " chars)";
     case Integer i when i < 0 -> "negative int " + (-i);
     case Integer i            -> "int " + i;
 
