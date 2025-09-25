@@ -1,4 +1,4 @@
-= Core Java. Лекция 3: Классы. Интерфейсы. Класс Object и его стандартные методы
+= Core Java. Лекция 3: Classes. Interfaces. Records. Enums
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css
@@ -650,6 +650,178 @@ class Employee {
 * Даже не пытайтесь переопределять `finalize`
 * Почему метод `finalize` оказался плохой идеей
 
+== Вложенные классы
+
+[source, java]
+----
+class Outer { 
+   int field = 42; 
+   class Inner { 
+      public void show() { 
+           //есть доступ к состоянию внешнего класса!
+           System.out.println(field);
+           //печатает 42
+      } 
+   } 
+   void initInner(){
+     //инициализация вложенного класса внутри
+     new Inner();
+   }
+} 
+
+//инициализация вложенного класса извне
+Outer.Inner in = new Outer().new Inner(); 
+----
+
+== Вложенные классы
+
+Каждый экземпляр `Inner` имеет неявную ссылку на `Outer`.
+
+[plantuml, inner, png]
+----
+@startuml
+skinparam dpi 200 
+class Outer
+class Inner
+Outer *-- Inner
+@enduml
+----
+
+== Вложенные классы
+
+[source, java]
+----
+class Outer { 
+   int field = 42; 
+   class Inner { 
+      //поле вложенного класса перекрывает поле внешнего класса 
+      int field = 18;
+      public void show() {
+           System.out.println(field);
+           //печатает 18
+      } 
+   } 
+} 
+----
+
+== Вложенные классы
+
+[source, java]
+----
+class Outer { 
+   int field = 42; 
+   class Inner { 
+      //поле вложенного класса перекрывает поле внешнего класса 
+      int field = 18;
+      public void show() {
+           System.out.println(Outer.this.field);
+           //печатает 42!
+      } 
+   } 
+} 
+----
+
+== Локальные вложенные классы
+
+[source,java]
+----
+class Outer { 
+   void outerMethod() { 
+      //final (или effectively final) тут существенно
+      final int x = 98; 
+      System.out.println("inside outerMethod"); 
+      class Inner { 
+         void innerMethod() { 
+            System.out.println("x = " + x); 
+         } 
+      } 
+      Inner y = new Inner(); 
+      y.innerMethod(); 
+   } 
+}
+----
+
+== Java 15+: локальные record-ы, enum-ы и интерфейсы
+
+[source,java]
+----
+class Outer { 
+   void outerMethod() { 
+      //они не захватывают внешнее состояние
+      record Foo (int a, int b) {};
+      enum Bar {A, B};
+      interface Baz {};
+      
+      //NB:
+      //static not allowed here!
+      static class X {};
+   } 
+}
+----
+
+
+== Вложенные статические классы
+
+По сути, ничем не отличаются от просто классов:
+
+[source,java]
+----
+class Outer { 
+   private static void outerMethod() { 
+     System.out.println("inside outerMethod"); 
+   } 
+   static class Inner { 
+     public static void main(String[] args) { 
+        System.out.println("inside inner class Method"); 
+        outerMethod(); 
+     } 
+   }
+}
+. . .
+Outer.Inner x = new Outer.Inner();
+// в отличие от не статического: new Outer().new Inner();
+----
+
+== Анонимные классы
+
+[source,java]
+----
+class Demo {
+    void show() {
+        System.out.println("superclass");
+    }
+}
+class Flavor1Demo {
+    public static void main(String[] args){
+        Demo d = new Demo() {
+            void show() {
+                super.show();
+                System.out.println("subclass");
+            }
+        };
+        d.show();
+    }
+}
+----
+
+== Использование анонимных классов
+
+* Чаще всего -- как реализация абстрактных классов и интерфейсов «по месту»
+* Анонимный класс -- вложенный класс, поэтому до появления лямбд и ссылок на методы это был единственный способ организовать коллбэк
+
+[source,java]
+----
+. . . 
+button.onMouseClick(new EventListener(){
+  void onClick(Event e) {
+     //здесь у нас доступ ко всем внешним полям
+     //и effectively final-переменным 
+  }
+});
+
+----
+
+
 == Абстрактные классы и методы
 
 [plantuml, abstractsample, png]
@@ -752,442 +924,111 @@ public class Parallelepiped implements Prism {
 * Можно наследоваться (`extends`) только от одного класса, но реализовывать (`implements`) сколько угодно интерфейсов -- _множественное наследование_.
 * Поэтому как абстракция, интерфейс предпочтительнее.
 
+== Специальные виды типов
 
-== Оператор instanceof
+* Enumeration Classes
+* Records
+* Annotation Interfaces (о них речь пойдёт значительно позже)
 
-[plantuml, instanceof, png]
-----
-@startuml
-skinparam dpi 150 
-class C1
-class C2
-class C3
-interface I1
-C1 <|-- C2
-I1 <|.. C2
-@enduml
-----
-[source,java]
-----
-C1 c1; C2 c2; C3 c3; I1 i1;
-
-x instanceof A //  false, если x == null
-c1 instanceof С2 // true или false
-i1 instanceof C2 // true или false 
-c2 instanceof C1 // всегда возвращает true
-с3 instanceof C2 // не скомпилируется
-----
-
-== Приведение типов (до Java 14)
-
+== Enumeration Classes (Java 5+)
 
 [source,java]
 ----
-Person p = . . .;
-if (p instanceof Student) {
-    //если не защитить instanceof, возможен ClassCastException
-    Student s = (Student) p;
-    . . .
-}
-----
-
-== Pattern Matching for instanceof (Java 14+, JEP305)
-
-
-[source,java]
-----
-Person p = . . .;
-if (p instanceof Student s) {
-   //здесь доступна переменная Student s
-    . . .
-} else {
-   //здесь недоступна переменная Student s
-}
-
-//Скомпилируется
-if (obj instanceof String s && s.length() > 5) { 
-   . . .
-   s.contains(..)
-}
-
-//НЕ скомпилируется
-if (obj instanceof String s || s.length() > 5) {...}
-----
-
-== Pattern matching for switch (Java 21+)
-
-[source,java]
-----
-public int calculate(Expr expr) {
-  return switch (expr) {
-    //Не скомпилируется, если мы забудем что-то из реализаций Expr!
-    case Literal l -> l.value();
-    case Divide d -> calculate(d.left()) / calculate(d.right());
-    case Multiply m -> calculate(m.left()) * calculate(m.right());
-    case Add a -> calculate(a.left()) + calculate(a.right());
-    case Subtract s -> calculate(s.left()) - calculate(s.right());
-  };
-}
-----
-
-== `when` guards (Java 21)
-
-[source,java]
-----
-static String describe(Object o) {
-  return switch (o) {
-    case null -> "got null";
-
-    case String s when s.isBlank() -> "blank string";
-    case String s -> "string(" + s.length() + " chars)";
-    case Integer i when i < 0 -> "negative int " + (-i);
-    case Integer i            -> "int " + i;
-
-    default -> "something else";
-  };
-}
-----
-
-== Вложенные классы
-
-[source, java]
-----
-class Outer { 
-   int field = 42; 
-   class Inner { 
-      public void show() { 
-           //есть доступ к состоянию внешнего класса!
-           System.out.println(field);
-           //печатает 42
-      } 
-   } 
-   void initInner(){
-     //инициализация вложенного класса внутри
-     new Inner();
-   }
-} 
-
-//инициализация вложенного класса извне
-Outer.Inner in = new Outer().new Inner(); 
-----
-
-== Вложенные классы
-
-Каждый экземпляр `Inner` имеет неявную ссылку на `Outer`.
-
-[plantuml, inner, png]
-----
-@startuml
-skinparam dpi 200 
-class Outer
-class Inner
-Outer *-- Inner
-@enduml
-----
-
-== Вложенные классы
-
-[source, java]
-----
-class Outer { 
-   int field = 42; 
-   class Inner { 
-      //поле вложенного класса перекрывает поле внешнего класса 
-      int field = 18;
-      public void show() {
-           System.out.println(field);
-           //печатает 18
-      } 
-   } 
-} 
-----
-
-== Вложенные классы
-
-[source, java]
-----
-class Outer { 
-   int field = 42; 
-   class Inner { 
-      //поле вложенного класса перекрывает поле внешнего класса 
-      int field = 18;
-      public void show() {
-           System.out.println(Outer.this.field);
-           //печатает 42!
-      } 
-   } 
-} 
-----
-
-== Локальные вложенные классы
-
-[source,java]
-----
-class Outer { 
-   void outerMethod() { 
-      //final (или effectively final) тут существенно
-      final int x = 98; 
-      System.out.println("inside outerMethod"); 
-      class Inner { 
-         void innerMethod() { 
-            System.out.println("x = " + x); 
-         } 
-      } 
-      Inner y = new Inner(); 
-      y.innerMethod(); 
-   } 
-}
-----
-
-== Java 15: локальные record-ы, enum-ы и интерфейсы
-
-[source,java]
-----
-class Outer { 
-   void outerMethod() { 
-      //они не захватывают внешнее состояние
-      record Foo (int a, int b) {};
-      enum Bar {A, B};
-      interface Baz {};
-      
-      //NB:
-      //static not allowed here!
-      static class X {};
-   } 
-}
-----
-
-
-== Вложенные статические классы
-
-По сути, ничем не отличаются от просто классов:
-
-[source,java]
-----
-class Outer { 
-   private static void outerMethod() { 
-     System.out.println("inside outerMethod"); 
-   } 
-   static class Inner { 
-     public static void main(String[] args) { 
-        System.out.println("inside inner class Method"); 
-        outerMethod(); 
-     } 
-   }
-}
-. . .
-Outer.Inner x = new Outer.Inner();
-// в отличие от не статического: new Outer().new Inner();
-----
-
-== Анонимные классы
-
-[source,java]
-----
-class Demo {
-    void show() {
-        System.out.println("superclass");
-    }
-}
-class Flavor1Demo {
-    public static void main(String[] args){
-        Demo d = new Demo() {
-            void show() {
-                super.show();
-                System.out.println("subclass");
-            }
-        };
-        d.show();
-    }
-}
-----
-
-== Использование анонимных классов
-
-* Чаще всего -- как реализация абстрактных классов и интерфейсов «по месту»
-* Анонимный класс -- вложенный класс, поэтому до появления лямбд и ссылок на методы это был единственный способ организовать коллбэк
-
-[source,java]
-----
-. . . 
-button.onMouseClick(new EventListener(){
-  void onClick(Event e) {
-     //здесь у нас доступ ко всем внешним полям
-     //и effectively final-переменным 
-  }
-});
-
-----
-
-== Object: the Cosmic Superclass
-
-* Любой класс в Java является наследником `Object`
-* Писать `class Employee extends Object` не надо
-* В этом классе определены важные методы
-** `equals` и `hashCode`
-** `toString`
-
-== `equals()` и `hashCode()`
-
-* `boolean equals(Object other)` возвращает `true` т. и т. т., когда внутреннее состояние совпадает
-* `int hashCode()` возвращает целое значение, которое обязано совпадать для объектов с одинаковым внутренним состоянием
-* Это нужно для хеш-таблиц (и, пожалуй, является __протекшей абстракцией__)
-
-== Формальный контракт `equals`
-
-1. Рефлексивность: +
-stem:[\forall x \ne \mathrm{null} (x.equals(x))]
-2. Симметричность: +
-stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} (x.equals(y) \iff y.equals(x))]
-3. Транзитивность: +
-stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} \, \forall z \ne \mathrm{null} (x.equals(y) \& y.equals(z) \Rightarrow x.equals(z))]
-4. Консистентность: если сравниваемые объекты не изменялись, повторный вызов `equals` должен возвращать одно и то же значение.
-5. stem:[\forall x \ne \mathrm{null} (x.equals(\mathrm{null}) = \mathrm{false})]
-
-== Формальный контракт `hashCode`
-
-1. Консистентность: если объект не изменялся, повторный вызов `hashCode` должен возвращать одно и то же значение (но не обязательно одно и то же между разными запусками приложения)
-2. Связь с `equals`: +
-stem:[\forall x \forall y (x.equals(y) \Rightarrow x.hashCode() = y.hashCode())]
-3. Хотя +
-stem:[x.hashCode() = y.hashCode() \Rightarrow x.equals(y)] +
-и не обязательно, но желательно для большинства случаев.
-
-== Выводы
-
-1. Переопределять `equals` и `hashCode` нужно только вместе и согласованно, чтобы выполнить контракт stem:[x.equals(y) \Rightarrow x.hashCode() = y.hashCode()]
-2. Грамотно реализовать `equals` и `hashCode` трудно, но, к счастью, самостоятельно это делать не нужно.
-3. Для тестирования есть специальная библиотка https://jqno.nl/equalsverifier/[EqualsVerifier].
-4. Для генерации `equals` и `hashCode` можно использовать возможности IDE или библиотеки https://projectlombok.org/[Lombok].
-
-== Генерация `equals` и `hashCode`
-
-image::generateequals.png[{image-50-width}]
-
-== Генерация `equals` и `hashCode`
-
-[source,java]
-----
-public class Person {
-    private String name;
-    private int age;
-    @Override
-    public boolean equals(Object o) {
-       // никогда, НИКОГДА не пишите это сами
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return age == person.age &&
-                Objects.equals(name, person.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
-}
-----
-
-== Или, если у нас Lombok
-
-[source,java]
-----
-import lombok.EqualsAndHashCode;
-
-@EqualsAndHashCode
-public class Person {
-    private  int age;
-    private  String name;
-}
-----
-
-
-== Переопределение toString
-
-[source,java]
-----
-public class Person {
-    private String name;
-    private int age;
-    . . .
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
-}
-. . .
-Person person = . . .
-System.out.println(person);
-----
-
-== Или, если у нас Lombok
-
-[source,java]
-----
-import lombok.ToString;
-
-@ToString
-public class Person {
-    private  int age;
-    private  String name;
-}
-----
-
-== Полный «обвес» класса
-
-[source,java]
-----
-public class Point {
-  private final int x;
-  private final int y;
+public enum Size 
+  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
   
-  /*Подождите! Нам нужны:
-   * конструктор
-   * getX() и getY()
-   * equals и hashCode
-   * toString
-   * 40 строчек кода из ничего!
-   */
-   
-  public double distance(Point other) {
-    ...
-  }
+. . .
+
+Size s = Size.MEDIUM;
+
+for (Size s: Size.values()) . . .
+
+switch (s) {
+  case SMALL: . . .
+  case LARGE: . . .
 }
 ----
 
+== Поля, методы и конструкторы для перечислений
+[source,java]
+----
+public enum Size
+{
+   SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
+   private final String abbreviation;
+   private Size(String abbreviation) {
+     this.abbreviation = abbreviation; 
+   }
+   public String getAbbreviation() { 
+     return abbreviation; 
+   }
+}
 
-== Или, если у нас Lombok
+. . .
+
+Size s = . . .
+s.getAbbreviation(); // вернёт S, M, L или XL
+----
+
+== Enums: интерфейсы и абстрактные методы
 
 [source,java]
 ----
-import lombok.Data;
-
-@Data
-public class Point {
-  private final int x;
-  private final int y;
-  public double distance(Point other) {
-    ...
-  }
+interface Rule { boolean canGo();  }
+enum TrafficLight implements Rule {
+    RED {
+        @Override public boolean canGo() { return false; }
+        @Override int durationSeconds()  { return 55; }
+    },
+    YELLOW {
+        @Override public boolean canGo() { return false; }
+        @Override int durationSeconds()  { return 5; }
+    },
+    GREEN {
+        @Override public boolean canGo() { return true; }
+        @Override int durationSeconds()  { return 45; }
+    };
+    // Abstract method implemented individually by each constant
+    abstract int durationSeconds();
 }
 ----
 
-== Или, если у нас Java 14+
+
+== Records (Java 16+)
+
+* Иммутабельные объекты (один раз создав, нельзя менять состояние)
+* Компактный синтаксис
+* Наследование запрещено, но можно реализовывать интерфейс
+* Автоматическая поддержка `equals`/`hashCode` (что это, мы узнаем вскоре).
 
 [source,java]
 ----
-record Point(int x, int y) { 
-  public double distance(Point other) {
-    ...
-  }
-}
+//Defines a record with two int fields
+public record Point(int x, int y) { }
 ----
 
-* `private final` поля
-* конструктор
-* доступ через `x()` и `y()`
-* `equals`, `hashCode` и `toString`
-* невозможно наследование от класса и от рекорда, но возможна реализация интерфейсов
+== Records
+
+[source,java]
+----
+public record Point(int x, int y) {
+    public double distance(Point other) {
+        int dx = x - other.x;
+        int dy = y - other.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+}
+
+Point p1 = new Point(1, 2);
+//Get value via implicit accessor method
+System.out.println(p1.x());
+System.out.println(p1.distance(new Point(3, 4)));
+----
+
+== Базовые принципы проектирования классов
+
+* Минимизируйте область видимости (`private` всё, что только можно)
+
+* Минимизируйте мутабельность (`final` на всём, что только можно)
+
+* Документируйте точки расширения через наследование, или запрещайте  наследование (`final`, `sealed`)

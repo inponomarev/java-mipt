@@ -1,4 +1,4 @@
-= Core Java. Лекция 4: Enumerations. Исключения. Строки
+= Core Java. Лекция 4: instanceof и Pattern Matching. Класс Object. Исключения. Строки
 Иван Пономарёв, КУРС/МФТИ
 :revealjs_theme: black
 :revealjs_customtheme: white_course.css
@@ -29,53 +29,297 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
-== Enumeration Classes
+== Оператор instanceof
+
+[plantuml, instanceof, png]
+----
+@startuml
+skinparam dpi 150 
+class C1
+class C2
+class C3
+interface I1
+C1 <|-- C2
+I1 <|.. C2
+@enduml
+----
+[source,java]
+----
+C1 c1; C2 c2; C3 c3; I1 i1;
+
+x instanceof A //  false, если x == null
+c1 instanceof С2 // true или false
+i1 instanceof C2 // true или false 
+c2 instanceof C1 // всегда возвращает true
+с3 instanceof C2 // не скомпилируется
+----
+
+== Приведение типов в эпоху до Pattern Matching (Java 14+)
 
 [source,java]
 ----
-public enum Size 
-  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
+Person p = . . .;
+if (p instanceof Student) {
+    //если не защитить instanceof, возможен ClassCastException
+    Student s = (Student) p;
+    . . .
+}
+----
+
+== Pattern Matching for instanceof (Java 14+, JEP305)
+
+
+[source,java]
+----
+Person p = . . .;
+if (p instanceof Student s) {
+   //здесь доступна переменная Student s
+    . . .
+} else {
+   //здесь недоступна переменная Student s
+}
+
+//Скомпилируется
+if (obj instanceof String s && s.length() > 5) { 
+   . . .
+   s.contains(..)
+}
+
+//НЕ скомпилируется
+if (obj instanceof String s || s.length() > 5) {...}
+----
+
+== Pattern matching for switch (Java 21+)
+
+[source,java]
+----
+public int calculate(Expr expr) {
+  return switch (expr) {
+    //Не скомпилируется, если мы забудем что-то из реализаций Expr!
+    case Literal l -> l.value();
+    case Divide d -> calculate(d.left()) / calculate(d.right());
+    case Multiply m -> calculate(m.left()) * calculate(m.right());
+    case Add a -> calculate(a.left()) + calculate(a.right());
+    case Subtract s -> calculate(s.left()) - calculate(s.right());
+  };
+}
+----
+
+== `when` guards (Java 21)
+
+[source,java]
+----
+static String describe(Object o) {
+  return switch (o) {
+    case null -> "got null";
+
+    case String s when s.isBlank() -> "blank string";
+    case String s -> "string(" + s.length() + " chars)";
+    case Integer i when i < 0 -> "negative int " + (-i);
+    case Integer i            -> "int " + i;
+
+    default -> "something else";
+  };
+}
+----
+
+== Предупреждение про pattern matching
+
+* Pattern matching -- это красивая возможность языка, но у неё ограничена область применения: Visitor Pattern, в основном нужный при разработке компиляторов / интерпретаторов формальных языков.
+* Не надо использовать pattern matching там, где достаточно обычного полиморфизма
+
+== Полиморфизм vs Pattern matching
+
+[source,java]
+----
+sealed interface Animal permits Dog, Cat { String vocalize(); }
+
+final class Dog implements Animal {
+    public String vocalize() { return "woof"; }
+}
+final class Cat implements Animal {
+    public String vocalize() { return "meow"; }
+}
+
+static String whatDoesItSay(Animal a) {
+    return a.vocalize();
+    //VS
+    return switch (a) {
+        case Dog d -> "woof";
+        case Cat c -> "meow";
+    };
+}
+----
+
+
+== Object: the Cosmic Superclass
+
+* Любой класс в Java является наследником `Object`
+* Писать `class Employee extends Object` не надо
+* В этом классе определены важные методы:
+** `equals`, `hashCode`, `toString` -- рассмотрим прямо сейчас
+** `notify`, `notifyAll`, `wait` -- рассмотрим в лекциях по Concurrency
+** `getClass` -- в лекции про Reflection API
+** `clone`, `finalize` -- не обращайте на них внимания, OK?
+
+== `equals()` и `hashCode()`
+
+* `boolean equals(Object other)` возвращает `true` т. и т. т., когда внутреннее состояние совпадает
+* `int hashCode()` возвращает целое значение, которое обязано совпадать для объектов с одинаковым внутренним состоянием
+* Это нужно для хеш-таблиц (и, пожалуй, является __протекшей абстракцией__)
+
+== Формальный контракт `equals`
+
+1. Рефлексивность: +
+stem:[\forall x \ne \mathrm{null} (x.equals(x))]
+2. Симметричность: +
+stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} (x.equals(y) \iff y.equals(x))]
+3. Транзитивность: +
+stem:[\forall x \ne \mathrm{null} \, \forall y \ne \mathrm{null} \, \forall z \ne \mathrm{null} (x.equals(y) \& y.equals(z) \Rightarrow x.equals(z))]
+4. Консистентность: если сравниваемые объекты не изменялись, повторный вызов `equals` должен возвращать одно и то же значение.
+5. stem:[\forall x \ne \mathrm{null} (x.equals(\mathrm{null}) = \mathrm{false})]
+
+== Формальный контракт `hashCode`
+
+1. Консистентность: если объект не изменялся, повторный вызов `hashCode` должен возвращать одно и то же значение (но не обязательно одно и то же между разными запусками приложения)
+2. Связь с `equals`: +
+stem:[\forall x \forall y (x.equals(y) \Rightarrow x.hashCode() = y.hashCode())]
+3. Хотя +
+stem:[x.hashCode() = y.hashCode() \Rightarrow x.equals(y)] +
+и не обязательно, но желательно для большинства случаев.
+
+== Выводы
+
+1. Переопределять `equals` и `hashCode` нужно только вместе и согласованно, чтобы выполнить контракт stem:[x.equals(y) \Rightarrow x.hashCode() = y.hashCode()]
+2. Грамотно реализовать `equals` и `hashCode` трудно, но, к счастью, самостоятельно это делать не нужно.
+3. Для тестирования есть специальная библиотка https://jqno.nl/equalsverifier/[EqualsVerifier].
+4. Для генерации `equals` и `hashCode` можно использовать возможности IDE или библиотеки https://projectlombok.org/[Lombok].
+
+== Генерация `equals` и `hashCode`
+
+image::generateequals.png[{image-50-width}]
+
+== Генерация `equals` и `hashCode`
+
+[source,java]
+----
+public class Person {
+    private String name;
+    private int age;
+    @Override
+    public boolean equals(Object o) {
+       // никогда, НИКОГДА не пишите это сами
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+}
+----
+
+== Или, если у нас Lombok
+
+[source,java]
+----
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
+public class Person {
+    private  int age;
+    private  String name;
+}
+----
+
+
+== Переопределение toString
+
+[source,java]
+----
+public class Person {
+    private String name;
+    private int age;
+    . . .
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+. . .
+Person person = . . .
+System.out.println(person);
+----
+
+== Или, если у нас Lombok
+
+[source,java]
+----
+import lombok.ToString;
+
+@ToString
+public class Person {
+    private  int age;
+    private  String name;
+}
+----
+
+== Полный «обвес» класса
+
+[source,java]
+----
+public class Point {
+  private final int x;
+  private final int y;
   
-. . .
-
-Size s = Size.MEDIUM;
-
-for (Size s: Size.values()) . . .
-
-switch (s) {
-  case SMALL: . . .
-  case LARGE: . . .
+  /*Подождите! Нам нужны:
+   * конструктор
+   * getX() и getY()
+   * equals и hashCode
+   * toString
+   * 40 строчек кода из ничего!
+   */
+   
+  public double distance(Point other) {
+    ...
+  }
 }
 ----
 
-== Поля, методы и конструкторы для перечислений
+
+== Или, если у нас Lombok
+
 [source,java]
 ----
-public enum Size
-{
-   SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
-   private final String abbreviation;
-   private Size(String abbreviation) {
-     this.abbreviation = abbreviation; 
-   }
-   public String getAbbreviation() { 
-     return abbreviation; 
-   }
+import lombok.Data;
+
+@Data
+public class Point {
+  private final int x;
+  private final int y;
+  public double distance(Point other) {
+    ...
+  }
 }
-
-. . .
-
-Size s = . . .
-s.getAbbreviation(); // вернёт S, M, L или XL
 ----
 
-== Базовые принципы проектирования классов
+== Или, если у нас Java 14+
 
-* Минимизируйте область видимости (`private` всё, что только можно)
+[source,java]
+----
+record Point(int x, int y) { 
+  
+}
+----
 
-* Минимизируйте мутабельность (`final` на всём, что только можно)
-
-* Документируйте точки расширения через наследование, или запрещайте  наследование (`final`)
+* `equals`, `hashCode` и `toString` создаются неявно и автоматически
 
 == Исключительные ситуации
 
