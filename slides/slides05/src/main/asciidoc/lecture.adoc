@@ -430,7 +430,7 @@ public static BigDecimal calculateTotalAmount(
 
 == Ввод-вывод
 
-image::IBM2741.JPG[{image-50-width}]
+image::ibm2741.JPG[{image-50-width}]
 
 IBM2741 terminal, 1965 (источник: https://en.wikipedia.org/wiki/IBM_2741[Wikipedia])
 
@@ -726,6 +726,7 @@ dt1.toLocalTime(); //13:45:20
 * `Duration`: количество времени между двумя точками на временной прямой с наносекундной точностью.
 * `Period`: разница во времени между `LocalDate` в днях (например, «сколько дней действует договор?»)
 * Оба реализуют интерфейс `TemporalAmount`.
+
 [source,java]
 ----
 //В качестве аргументов годятся LocalTime, LocalDateTime и Instant
