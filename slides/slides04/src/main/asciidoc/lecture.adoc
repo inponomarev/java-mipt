@@ -106,7 +106,7 @@ public int calculate(Expr expr) {
 }
 ----
 
-== `when` guards (Java 21)
+== `when` guards for pattern matching
 
 [source,java]
 ----
@@ -129,29 +129,50 @@ static String describe(Object o) {
 * Pattern matching -- это красивая возможность языка, но у неё ограничена область применения: Visitor Pattern, в основном нужный при разработке компиляторов / интерпретаторов формальных языков.
 * Не надо использовать pattern matching там, где достаточно обычного полиморфизма
 
+
 == Полиморфизм vs Pattern matching
+
+* Полиморфизм: поведение внутри класса
 
 [source,java]
 ----
-sealed interface Animal permits Dog, Cat { String vocalize(); }
+sealed interface Animal permits Dog, Cat { String speak(); }
 
 final class Dog implements Animal {
-    public String vocalize() { return "woof"; }
+    public String speak() { return "woof"; }
 }
 final class Cat implements Animal {
-    public String vocalize() { return "meow"; }
+    public String speak() { return "meow"; }
 }
 
-static String whatDoesItSay(Animal a) {
-    return a.vocalize();
-    //VS
+static String speak(Animal a) {
+    return a.speak();
+}
+----
+
+
+== Полиморфизм vs Pattern matching
+
+* Pattern matching: поведение вынесено из класса
+
+[source,java]
+----
+sealed interface Animal permits Dog, Cat { }
+
+final class Dog implements Animal {
+    
+}
+final class Cat implements Animal {
+    
+}
+
+static String speak(Animal a) {
     return switch (a) {
         case Dog d -> "woof";
         case Cat c -> "meow";
     };
 }
 ----
-
 
 == Object: the Cosmic Superclass
 
