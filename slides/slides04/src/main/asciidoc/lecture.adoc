@@ -21,6 +21,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_transition: none
 :revealjs_width: 1600
 :revealjs_height: 900
+:stem: latexmath
 :zsp: &#8203;
 
 :!figure-caption:
