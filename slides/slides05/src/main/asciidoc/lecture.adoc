@@ -430,7 +430,7 @@ public static BigDecimal calculateTotalAmount(
 
 == Ввод-вывод
 
-image::ibm2741.JPG[{image-50-width}]
+image::ibm2741.jpg[{image-50-width}]
 
 IBM2741 terminal, 1965 (источник: https://en.wikipedia.org/wiki/IBM_2741[Wikipedia])
 
