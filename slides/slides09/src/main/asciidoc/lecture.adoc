@@ -423,6 +423,7 @@ Stream<List<Integer>> fixed =
 println(fixed.toList());
 ----
 
+[source]
 ----
 [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 ----
@@ -443,6 +444,7 @@ Stream<List<Integer>> sliding =
 println(sliding.toList());
 ----
 
+[source]
 ----
 [[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6]]
 ----
@@ -465,6 +467,7 @@ Stream<Integer> sum =
 println(sum.toList());
 ----
 
+[source]
 ----
 [3, 8, 6, 13]
 ----
@@ -702,19 +705,9 @@ class ToListCollector<T> implements
    Collector<T, List<T>, List<T>>
 ----
 
-== Характеристики коллектора
-
-[cols="20a,80a"]
-|===
-|*Characteristic* | *Meaning*
-|`CONCURRENT`| Indicates that this collector is_concurrent_, meaning that the result container can support the accumulator function being called concurrently with the same result container from multiple threads.
-|`UNORDERED`| Indicates that the collection operation does not commit to preserving the encounter order of input elements.  (This might be true if the result container has no intrinsic order, such as a `Set`.)
-|`IDENTITY_FINISH`| Indicates that the finisher function is the identity function and can be elided.  If set, it must be the case that an unchecked cast from A to R will succeed.
-|===
-
-== Промежуточные выводы
-* Сделать свой коллектор непросто,
-* Но сила коллекторов в том, что есть много готовых и их можно комбинировать!
+== Интерфейс Collector<T, A, R>
+* Сделать собственный коллектор (как и собственный сплитератор) непросто,
+* Но и не нужно: есть много готовых и их можно комбинировать!
 
 == Наиболее употребимые коллекторы
 
