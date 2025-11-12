@@ -340,11 +340,7 @@ try(Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
     words.forEach(System.out::println);
 }
 
-/*А также:
-  flatMapToDouble
-  flatMapToInt
-  flatMapToLong
-  */
+/*А также flatMapToDouble, flatMapToInt, flatMapToLong*/
 ----
 
 * `filter` и `map` -- это частные случаи `flatMap`!
@@ -501,6 +497,23 @@ void forEach(Consumer<? super T> action);
 
 * В случае параллельного выполнения нет гарантий последовательности
 * Нет гарантий относительно того, в каком потоке будет выполнена лямбда
+
+== toList (Java16+)
+
+[source,java]
+----
+List<T> toList()
+----
+
+[source,java]
+----
+Stream<Foo> myStream = ...
+List<Foo> list = myStream.toList();
+----
+
+* Материализует поток в список.
+* Возвращаемый список -- неизменяемый.
+* Доступно с версии 16.
 
 == reduce (with identity)
 
@@ -715,14 +728,14 @@ class ToListCollector<T> implements
 [source,java]
 ----
 //java.util.stream.Collectors
-Collector<T, ?, List<T>> toList()
+Collector<T, ?, List<T>> toList() // << use stream.toList() instead!
 Collector<T, ?, Set<T>> toSet()
 Collector<T, ?, C extends Collection<T>> 
   toCollection(Supplier<C> collectionFactory)
 
-//Пример применения
+//Usage example
 Stream<Foo> myStream = ...
-List<Foo> list = myStream.collect(Collectors.toList());
+Set<Foo> set = myStream.collect(Collectors.toSet());
 ----
 
 == Собирание в мапы
@@ -732,7 +745,7 @@ Collector<T, ?, Map<K,U>> toMap(
   Function<? super T, ? extends K> keyMapper,
   Function<? super T, ? extends U> valueMapper)
 
-//Пример применения
+//Usage example
 Stream<Person> people = ...
 Map<Integer, Person> idToPerson = people.collect(
   Collectors.toMap(Person::getId, p->p);
@@ -1010,6 +1023,7 @@ collection.stream().forEach(...)
 [source,java]
 collection.stream().collect(Collectors.toList())
 collection.stream().collect(Collectors.toSet())
+collection.stream().toList()
 
 [.fragment]
 [source,java]
