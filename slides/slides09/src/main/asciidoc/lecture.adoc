@@ -554,6 +554,7 @@ digraph G {
 * Ассоциативная функция + "identity value"
 * Промежуточные результаты -- immutable values
 * Вопрос: назовите примеры ассоциативных операций в математике?
+
 [source,java]
 ----
 T reduce(T identity, 
@@ -911,6 +912,7 @@ Map<Dish.Type, Dish> mostCaloricByType =
 
 * "Tony Hoare, one of the giants of computer science, said in a presentation at QCon London 2009: _I call it my billion-dollar mistake. It was the invention of the null reference in 1965.... I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement._"
 
+image::optional.png[{image-40-width}]
 
 == Optional<T> -- как стрим из 0 или 1 элемента
 
