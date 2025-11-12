@@ -266,49 +266,6 @@ public interface Spliterator<T> {
 StreamSupport.stream(Spliterator<T> spliterator, boolean parallel)
 ----
 
-== Ветвление сплитераторов
-[graphviz,"split1.png"]
-----
-digraph G {
-graph [ dpi = 150 ];
-node[shape="box"]
-try[shape="none"; label="trySplit()"]
-Spliterator1 -> try ;
-try -> Spliterator2;
-}
-----
-
-== Ветвление сплитераторов
-[graphviz,"split2.png"]
-----
-digraph G {
-graph [ dpi = 150 ];
-node[shape="box"]
-try[shape="none"; label="trySplit()"]
-try2[shape="none"; label="trySplit()"]
-
-Spliterator1 -> Spliterator2 ;
-Spliterator1 -> try2 -> Spliterator3;
-Spliterator2 -> try -> Spliterator4;
-}
-----
-
-== Характеристики сплитератора
-
-[cols="15a,85a"]
-|===
-|`ORDERED` |Elements have a defined order (for example, a `List`), so the `Spliterator` enforces this
-order when traversing and partitioning them.
-|`DISTINCT`| For each pair of elements `x` and `y`, `x.equals(y)` returns `false`.
-|`SORTED`| The traversed elements follow a predefined sort order.
-|`SIZED`| This `Spliterator` has been created from a source with a known size, so the value returned by `estimatedSize()` is precise.
-|`NONNULL`| It’s guaranteed that the traversed elements won’t be null.
-|`IMMUTABLE`| The source of this `Spliterator` can’t be modified. This implies that no elements can be
-added, removed, or modified during their traversal.
-|`CONCURRENT`| The source of this `Spliterator` may be safely concurrently modified by other threads
-without any synchronization.
-|`SUBSIZED`| Both this `Spliterator` and all further `Spliterators` resulting from its split are `SIZED`.
-|===
 
 == Промежуточные итоги
 * Есть много стандартных способов порождения стримов, для простых случаев не надо "изобретать велосипед"
@@ -390,6 +347,8 @@ try(Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
   */
 ----
 
+* `filter` и `map` -- это частные случаи `flatMap`!
+
 
 == distinct
 
@@ -433,6 +392,12 @@ Stream.of(1, 5, 8, 7, 8, 5, 9, 9)
 
 == peek -- отладочный метод
 
+[cols="^40a,60a"]
+|===
+|
+image::peek.svg[]
+|
+
 * Не меняет исходный стрим.
 * Предназначен для «подглядывания» за промежуточным состоянием элементов. 
 * В качестве аргумента часто используется `System.out::println`.
@@ -440,6 +405,69 @@ Stream.of(1, 5, 8, 7, 8, 5, 9, 9)
 
 [source,java]
 Stream<T> peek(Consumer<? super T> action);
+
+|===
+
+== Gatherers: Фиксированное окно  
+
+`flatMap` наоборот
+
+[source,java]
+----
+Stream<List<Integer>> fixed =
+        
+        Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+                
+                .gather(Gatherers.windowFixed(3));
+                
+println(fixed.toList());
+----
+
+----
+[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+----
+
+
+== Gatherers: Скользящее окно
+
+Отлично подходит для расчёта moving average:
+
+[source,java]
+----
+Stream<List<Integer>> sliding =
+
+        Stream.of(1, 2, 3, 4, 5, 6)
+
+                .gather(Gatherers.windowSliding(3));
+
+println(sliding.toList());
+----
+
+----
+[[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6]]
+----
+
+
+== Gatherers: scan
+
+Подсчёт накопленного итога
+
+
+[source,java]
+----
+Stream<Integer> sum =
+    Stream.of(3, 5, -2, 7)
+        .gather(Gatherers.scan(
+            //initial value supplier
+            () -> 0,
+            //scanner function to apply to each element
+            Integer::sum));
+println(sum.toList());
+----
+
+----
+[3, 8, 6, 13]
+----
 
 == Терминальные операции
 
