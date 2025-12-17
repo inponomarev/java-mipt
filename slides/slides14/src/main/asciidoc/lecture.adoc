@@ -802,7 +802,8 @@ image::urma.jpg[]
 * Делайте мир лучше!
 
 == Становитесь частью community!
-* [line-through]#JUGs: Москва, Санкт-Петербург, Новосибирск.# Будете на Кипре -- посетите JUG.CY
+* [line-through]#JUGs: Москва, Санкт-Петербург, Новосибирск.# +
+Будете на Кипре -- посетите JUG.CY
 * Conferences: JPoint, Joker, SnowOne.
 
 
