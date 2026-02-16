@@ -78,10 +78,10 @@ package org.megacompany.staff;
 class Employee {
   // instance fields
   private String name;
-  private double salary;
+  private int salary;
   private LocalDate hireDay;
   // constructor
-  public Employee(String n, double s, int year, int month, int day) {
+  public Employee(String n, int s, int year, int month, int day) {
     name = n;
     salary = s;
     hireDay = LocalDate.of(year, month, day);
@@ -298,9 +298,9 @@ Employee <|- Manager
 [source,java]
 ----
 public class Manager extends Employee {
-  private double bonus;
+  private int bonus;
   . . .
-  public void setBonus(double bonus) {
+  public void setBonus(int bonus) {
     this.bonus = bonus;
   }
 }
