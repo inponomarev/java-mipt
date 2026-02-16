@@ -1,0 +1,1564 @@
+# Automatically generated <>, 2021.
+#. extracted from lecture.adoc
+msgid ""
+msgstr ""
+"Project-Id-Version: slides 01\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-08 18:21+0100\n"
+"PO-Revision-Date: 2024-07-08 18:22+0100\n"
+"Last-Translator: Automatically generated <>\n"
+"Language-Team: none <>\n"
+"Language: en_UK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: lecture.adoc:24
+msgid ""
+"= Core Java. Лекция 1: Обзор истории, возможностей и особенностей экосистемы "
+"Java\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900"
+msgstr ""
+"= Core Java. Lecture #1: Overview of the history, features, and facilities "
+"of Java ecosystem\n"
+"Ivan Ponomarev, Synthesized.io/MIPT\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900"
+
+#: lecture.adoc:27
+msgid ":!figure-caption:"
+msgstr ":!figure-caption:"
+
+#: lecture.adoc:29
+msgid "ponomarev@corchestra.ru"
+msgstr "ponomarev@corchestra.ru"
+
+#: lecture.adoc:31
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr "icon:twitter[size=lg] @inponomarev"
+
+#: lecture.adoc:34
+msgid ""
+"[%notitle]\n"
+"== Кто я такой"
+msgstr ""
+"[%notitle]\n"
+"== Who am I"
+
+#: lecture.adoc:44
+msgid ""
+"[cols=\"30a,70a\"]\n"
+"|===\n"
+".^|image::me.jpg[]\n"
+".^|\n"
+"* Выпускник МФТИ 2003 г., к.ф.-м.н\n"
+"* ERP systems & Java background\n"
+"* Speaker at conferences\n"
+"* Heisenbug Program Committee Member \n"
+"|==="
+msgstr ""
+"[cols=\"30a,70a\"]\n"
+"|===\n"
+".^|image::me.jpg[]\n"
+".^|\n"
+"* MIPT alumni 2003, PhD\n"
+"* ERP systems & Java background\n"
+"* Speaker at conferences\n"
+"* Heisenbug Program Committee Member \n"
+"|==="
+
+#: lecture.adoc:46
+msgid "== Как со мной связаться?"
+msgstr "== How to get in touch with me?"
+
+#: lecture.adoc:48
+msgid "[none]"
+msgstr "[none]"
+
+#: lecture.adoc:50
+msgid "* icon:home[size=lg] https://inponomarev.ru/ (RU)"
+msgstr "* icon:home[size=lg] https://inponomarev.ru/ (RU)"
+
+#: lecture.adoc:52
+msgid "* icon:home[size=lg] https://ponomarev.uk/ (EN)"
+msgstr "* icon:home[size=lg] https://ponomarev.uk/ (EN)"
+
+#: lecture.adoc:54
+msgid "* icon:twitter[size=lg] https://twitter.com/inponomarev[@inponomarev]"
+msgstr "* icon:twitter[size=lg] https://twitter.com/inponomarev[@inponomarev]"
+
+#: lecture.adoc:56
+msgid "* icon:telegram[size=lg] https://t.me/ivan_ponomarev[ivan_ponomarev]"
+msgstr "* icon:telegram[size=lg] https://t.me/ivan_ponomarev[ivan_ponomarev]"
+
+#: lecture.adoc:59
+msgid "== Как будет проходить курс?"
+msgstr "== Course structure"
+
+#: lecture.adoc:64
+msgid ""
+"* Лекции\n"
+"* Семинарские занятия\n"
+"* Домашние работы\n"
+"* Баллы за сдачу ДЗ определяют финальную оценку"
+msgstr ""
+"* Lectures\n"
+"* Labs\n"
+"* Homework\n"
+"* Labs and homework marks will define your final mark"
+
+#: lecture.adoc:68
+msgid ""
+"[%notitle]\n"
+"== What is Java?\n"
+"image::indonesia.png[canvas, size=cover]"
+msgstr ""
+"[%notitle]\n"
+"== What is Java?\n"
+"image::indonesia.png[canvas, size=cover]"
+
+#: lecture.adoc:72
+msgid ""
+"[%notitle]\n"
+"== Ещё про острова\n"
+"image::kotlin.png[canvas, size=cover]"
+msgstr ""
+"[%notitle]\n"
+"== More islands\n"
+"image::kotlin.png[canvas, size=cover]"
+
+#: lecture.adoc:75
+msgid "== Полезные ссылки"
+msgstr "== Useful links"
+
+#: lecture.adoc:77
+msgid "* https://ponomarev.uk/javacourse.html"
+msgstr "* https://ponomarev.uk/javacourse.html"
+
+#: lecture.adoc:80
+msgid "== Полезные книги"
+msgstr "== Useful books"
+
+#: lecture.adoc:91
+msgid ""
+"[cols=\"25a,25a,25a,25a\"]\n"
+"|===\n"
+"|\n"
+"image::horstmann.jpg[]\n"
+"|\n"
+"image::horstmann2.jpg[]\n"
+"|\n"
+"image::urma.jpg[]\n"
+"|\n"
+"|==="
+msgstr ""
+"[cols=\"25a,25a,25a,25a\"]\n"
+"|===\n"
+"|\n"
+"image::horstmann.jpg[]\n"
+"|\n"
+"image::horstmann2.jpg[]\n"
+"|\n"
+"image::urma.jpg[]\n"
+"|\n"
+"|==="
+
+#: lecture.adoc:94
+msgid ""
+"* *Cay S. Horstmann.* Core Java vol 1 & 2\n"
+"* *Raoul-Gabriel Urma et al.* Modern Java in Action"
+msgstr ""
+"* *Cay S. Horstmann.* Core Java vol 1 & 2\n"
+"* *Raoul-Gabriel Urma et al.* Modern Java in Action"
+
+#: lecture.adoc:96
+msgid "== Полезные книги*"
+msgstr "== Useful books (for advanced students)"
+
+#: lecture.adoc:106
+msgid ""
+"[cols=\"25a,25a,25a,25a\"]\n"
+"|===\n"
+"|\n"
+"|\n"
+"image::bloch.jpg[]\n"
+"|\n"
+"image::goetz.jpg[]\n"
+"|\n"
+"|==="
+msgstr ""
+"[cols=\"25a,25a,25a,25a\"]\n"
+"|===\n"
+"|\n"
+"|\n"
+"image::bloch.jpg[]\n"
+"|\n"
+"image::goetz.jpg[]\n"
+"|\n"
+"|==="
+
+#: lecture.adoc:109
+msgid ""
+"* *Joshua Bloch* Effective Java\n"
+"* *Brian Goetz et al.* Java Concurrency in Practice"
+msgstr ""
+"* *Joshua Bloch* Effective Java\n"
+"* *Brian Goetz et al.* Java Concurrency in Practice"
+
+#: lecture.adoc:111
+msgid "== TIOBE Index (https://www.tiobe.com/tiobe-index/)"
+msgstr "== TIOBE Index (https://www.tiobe.com/tiobe-index/)"
+
+#: lecture.adoc:115
+msgid ""
+"* number of search engine results for queries containing the name of the "
+"language\n"
+"* covers searches in Google, Google Blogs, MSN, Yahoo!, Baidu, Wikipedia and "
+"YouTube\n"
+"* reflects the number of skilled engineers, courses and jobs worldwide"
+msgstr ""
+"* number of search engine results for queries containing the name of the "
+"language\n"
+"* covers searches in Google, Google Blogs, MSN, Yahoo!, Baidu, Wikipedia and "
+"YouTube\n"
+"* reflects the number of skilled engineers, courses and jobs worldwide"
+
+#: lecture.adoc:119
+msgid ""
+"[%notitle]\n"
+"== TIOBE"
+msgstr ""
+"[%notitle]\n"
+"== TIOBE"
+
+#: lecture.adoc:121
+msgid "image::tiobe.png[{image-100-width}]"
+msgstr "image::tiobe.png[{image-100-width}]"
+
+#: lecture.adoc:123
+msgid "https://www.tiobe.com/tiobe-index/"
+msgstr "https://www.tiobe.com/tiobe-index/"
+
+#: lecture.adoc:125
+msgid "== RedMonk"
+msgstr "== RedMonk"
+
+#: lecture.adoc:127
+msgid "* GitHub & StackOverflow"
+msgstr "* GitHub & StackOverflow"
+
+#: lecture.adoc:130
+msgctxt "lecture.adoc:130"
+msgid ""
+"[%notitle]\n"
+"== RedMonk"
+msgstr ""
+"[%notitle]\n"
+"== RedMonk"
+
+#: lecture.adoc:133
+msgid ""
+"image::redmonk2024.png[{image-60-width}]\n"
+"https://redmonk.com/"
+msgstr ""
+"image::redmonk2024.png[{image-60-width}]\n"
+"https://redmonk.com/"
+
+#: lecture.adoc:136
+msgctxt "lecture.adoc:136"
+msgid ""
+"[%notitle]\n"
+"== RedMonk"
+msgstr ""
+"[%notitle]\n"
+"== RedMonk"
+
+#: lecture.adoc:139
+msgid ""
+"image::redmonk-rankings-2024.png[{image-60-width}]\n"
+"https://redmonk.com/"
+msgstr ""
+"image::redmonk-rankings-2024.png[{image-60-width}]\n"
+"https://redmonk.com/"
+
+#: lecture.adoc:141
+msgid "== Three Decades of Java: Before Java 9"
+msgstr "== Three Decades of Java: Before Java 9"
+
+#: lecture.adoc:156
+msgid ""
+"[source]\n"
+"----\n"
+"JDK 1.0 (January 23, 1996)\n"
+"JDK 1.1 (February 19, 1997)\n"
+"J2SE 1.2 (December 8, 1998)\n"
+"J2SE 1.3 (May 8, 2000)\n"
+"J2SE 1.4 (February 6, 2002)\n"
+"J2SE 5.0 (September 30, 2004)   <--- Scala: early 2004\n"
+"Java SE 6 (December 11, 2006)\n"
+"-- Sun acquisition by Oracle--  <--- Groovy 1.0: January 2, 2007\n"
+"Java SE 7 (July 28, 2011)\n"
+"Java SE 8 (March 18, 2014)      <--- Kotlin 1.0: February 15, 2016\n"
+"Java SE 9 (September 21, 2017)\n"
+"----"
+msgstr ""
+"[source]\n"
+"----\n"
+"JDK 1.0 (January 23, 1996)\n"
+"JDK 1.1 (February 19, 1997)\n"
+"J2SE 1.2 (December 8, 1998)\n"
+"J2SE 1.3 (May 8, 2000)\n"
+"J2SE 1.4 (February 6, 2002)\n"
+"J2SE 5.0 (September 30, 2004)   <--- Scala: early 2004\n"
+"Java SE 6 (December 11, 2006)\n"
+"-- Sun acquisition by Oracle--  <--- Groovy 1.0: January 2, 2007\n"
+"Java SE 7 (July 28, 2011)\n"
+"Java SE 8 (March 18, 2014)      <--- Kotlin 1.0: February 15, 2016\n"
+"Java SE 9 (September 21, 2017)\n"
+"----"
+
+#: lecture.adoc:158
+msgctxt "lecture.adoc:158"
+msgid "(source: Wikipedia)"
+msgstr "(source: Wikipedia)"
+
+#: lecture.adoc:160
+msgid "== Three Decades of Java: After Java 9"
+msgstr "== Three Decades of Java: After Java 9"
+
+#: lecture.adoc:162
+msgid "6-monthly release cadence"
+msgstr "6-monthly release cadence"
+
+#: lecture.adoc:166
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|"
+msgstr ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|"
+
+#: lecture.adoc:176
+msgid ""
+"[source]\n"
+"10     (March 20, 2018)\n"
+"11 LTS (September 25, 2018)\n"
+"12     (March 19, 2019)\n"
+"13     (September 17, 2019)\n"
+"14     (March 17, 2020)\n"
+"15     (September 15, 2020)\n"
+"16     (March 16, 2021)\n"
+"17 LTS (September 14, 2021)"
+msgstr ""
+"[source]\n"
+"10     (March 20, 2018)\n"
+"11 LTS (September 25, 2018)\n"
+"12     (March 19, 2019)\n"
+"13     (September 17, 2019)\n"
+"14     (March 17, 2020)\n"
+"15     (September 15, 2020)\n"
+"16     (March 16, 2021)\n"
+"17 LTS (September 14, 2021)"
+
+#: lecture.adoc:178
+msgid "|"
+msgstr "|"
+
+#: lecture.adoc:189
+msgid ""
+"[source]\n"
+"18     (March 22, 2022)\n"
+"19     (September 20, 2022)\n"
+"20     (March 21, 2023)\n"
+"21 LTS (September 19, 2023)\n"
+"22     (March 19, 2024)\n"
+"23     (due to in September 2024)\n"
+"24     (due to in March 2025)\n"
+"25 LTS (due to in September 2025)\n"
+"|==="
+msgstr ""
+"[source]\n"
+"18     (March 22, 2022)\n"
+"19     (September 20, 2022)\n"
+"20     (March 21, 2023)\n"
+"21 LTS (September 19, 2023)\n"
+"22     (March 19, 2024)\n"
+"23     (due to in September 2024)\n"
+"24     (due to in March 2025)\n"
+"25 LTS (due to in September 2025)\n"
+"|==="
+
+#: lecture.adoc:192
+msgctxt "lecture.adoc:192"
+msgid "(source: Wikipedia)"
+msgstr "(source: Wikipedia)"
+
+#: lecture.adoc:194
+msgid "== Истоки"
+msgstr "== Java origins"
+
+#: lecture.adoc:205
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+".^|\n"
+"image::gosling-lotr.jpg[]\n"
+".^|\n"
+"* Язык для приставок кабельного телевидения\n"
+"* Вдохновлён C++ \n"
+"* *WORA*\n"
+"* Было и другое, но WORA -- самое главное\n"
+"|==="
+msgstr ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+".^|\n"
+"image::gosling-lotr.jpg[]\n"
+".^|\n"
+"* Language for set-top boxes \n"
+"* Inspired by C++ \n"
+"* *WORA*\n"
+"* There were other things, but  WORA was most important\n"
+"|==="
+
+#: lecture.adoc:209
+msgid ""
+"[.fragment]\n"
+"icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: +\n"
+"https://www.youtube.com/watch?v=XThhlihqTXI"
+msgstr ""
+"[.fragment]\n"
+"icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: +\n"
+"https://www.youtube.com/watch?v=XThhlihqTXI"
+
+#: lecture.adoc:211
+msgctxt "lecture.adoc:211"
+msgid "== Вопрос"
+msgstr "== Question"
+
+#: lecture.adoc:213
+msgid "Как бы вы реализовали WORA?"
+msgstr "How would you implement WORA?"
+
+#: lecture.adoc:216
+msgid ""
+"* Endianness...\n"
+"* Размер регистров..."
+msgstr ""
+"* Endianness...\n"
+"* Register size..."
+
+#: lecture.adoc:218
+msgid "== Продолжение истории"
+msgstr "== Continued"
+
+#: lecture.adoc:223
+msgid ""
+"* Апплеты\n"
+"* Built-in security\n"
+"* Но Security сделать оказалось непросто \n"
+"* Апплеты не пошли (победил JavaScript)"
+msgstr ""
+"* Applets\n"
+"* Built-in security\n"
+"* But security turned out to be a tricky thing\n"
+"* Applets died (JavaScript won)"
+
+#: lecture.adoc:225
+msgid "== Сегодняшний день"
+msgstr "== Nowadays"
+
+#: lecture.adoc:230
+msgid ""
+"* Desktop (?)\n"
+"* Embedded Systems\n"
+"* *Server-side (backend)*\n"
+"* Mobile Devices (Android) -- отдельная история (see https://en.wikipedia."
+"org/wiki/Google_v._Oracle_America[Google vs. Oracle] case)"
+msgstr ""
+"* Desktop (?)\n"
+"* Embedded Systems\n"
+"* *Server-side (backend)*\n"
+"* Mobile Devices (Android) -- a separate story (see https://en.wikipedia.org/"
+"wiki/Google_v._Oracle_America[Google vs. Oracle] case)"
+
+#: lecture.adoc:232
+msgid "== Безопасность в design-time и в run-time"
+msgstr "== Security and safety in design-time and in run-time"
+
+#: lecture.adoc:234
+msgid "image::rtvscompiletime.png[]"
+msgstr "image::rtvscompiletime.png[]"
+
+#: lecture.adoc:236
+msgid "== Виртуальная машина"
+msgstr "== Virtual machine"
+
+#: lecture.adoc:238
+msgid "WORA + Две взаимосвязанные задачи:"
+msgstr "WORA + two dependant tasks:"
+
+#: lecture.adoc:241
+msgid ""
+"* Безопасность\n"
+"* Исключение фатальных сбоев на сервере "
+msgstr ""
+"* Safety\n"
+"* No fatal faults on server"
+
+#: lecture.adoc:244
+msgid ""
+"[.fragment]\n"
+"Генерируем байт-код, верифицируем и исполняем его в безопасной среде"
+msgstr ""
+"[.fragment]\n"
+"Byte code generation and execution in a safe environment"
+
+#: lecture.adoc:246
+msgctxt "lecture.adoc:246"
+msgid "== Вопрос"
+msgstr "== Question"
+
+#: lecture.adoc:252
+msgid ""
+"[source,java]\n"
+"----\n"
+"int i = 2;\n"
+"i = ++i + ++i + ++i;\n"
+"----"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"int i = 2;\n"
+"i = ++i + ++i + ++i;\n"
+"----"
+
+#: lecture.adoc:257
+msgid ""
+"[.fragment]\n"
+"*Java* -- 12, +\n"
+"*C* -- undefined behaviour +\n"
+"(https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)"
+msgstr ""
+"[.fragment]\n"
+"*Java* -- 12, +\n"
+"*C* -- undefined behaviour +\n"
+"(https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)"
+
+#: lecture.adoc:259
+msgid "== Runtime-ошибки не катастрофичны"
+msgstr "== Runtime errors are not catastrophic"
+
+#: lecture.adoc:262
+msgid ""
+"* `NullPointerException`\n"
+"* `ArrayIndexOutOfBoundsException`"
+msgstr ""
+"* `NullPointerException`\n"
+"* `ArrayIndexOutOfBoundsException`"
+
+#: lecture.adoc:265
+msgid "== Виртуальные машины Java"
+msgstr "== Java Virtual Machines"
+
+#: lecture.adoc:267
+msgid "Reference implementation: Oracle HotSpot"
+msgstr "Reference implementation: Oracle HotSpot"
+
+#: lecture.adoc:269
+msgid "https://en.wikipedia.org/wiki/List_of_Java_virtual_machines"
+msgstr "https://en.wikipedia.org/wiki/List_of_Java_virtual_machines"
+
+#: lecture.adoc:271
+msgid "~ 20 реализаций"
+msgstr "~ 20 implementations"
+
+#: lecture.adoc:273
+msgid "== Сервисы виртуальной машины и платформы"
+msgstr "== Virtual machine and platform services"
+
+#: lecture.adoc:281
+msgid ""
+"[%step]\n"
+"* Byte code, интерпретация и JIT-компиляция.\n"
+"* Garbage Collection\n"
+"* MultiThreading & Memory Model\n"
+"* Загрузка и исполнение кода в runtime\n"
+"* Рефлексия\n"
+"* Стандартная библиотека"
+msgstr ""
+"[%step]\n"
+"* Byte code, interpretation and JIT-compilation.\n"
+"* Garbage Collection\n"
+"* MultiThreading & Memory Model\n"
+"* Loading and running code in runtime\n"
+"* Reflection API\n"
+"* Standard library"
+
+#: lecture.adoc:283
+msgid "== Верификация байт-кода"
+msgstr "== Byte code verification"
+
+#: lecture.adoc:285
+msgid ""
+"https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.10"
+msgstr ""
+"https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.10"
+
+#: lecture.adoc:287
+msgid "* There are no operand stack overflows or underflows."
+msgstr "* There are no operand stack overflows or underflows."
+
+#: lecture.adoc:289
+msgid "* All local variable uses and stores are valid."
+msgstr "* All local variable uses and stores are valid."
+
+#: lecture.adoc:291
+msgid ""
+"* The arguments to all the Java Virtual Machine instructions are of valid "
+"types."
+msgstr ""
+"* The arguments to all the Java Virtual Machine instructions are of valid "
+"types."
+
+#: lecture.adoc:293
+msgid "== Интерпретация и JIT-компиляция"
+msgstr "== Interpretation and JIT compilation"
+
+#: lecture.adoc:295
+msgid "image::java-bytecode-exec.jpg[]"
+msgstr "image::java-bytecode-exec.jpg[]"
+
+#: lecture.adoc:297
+msgid "//https://advancedweb.hu/2016/05/27/jvm_jit_optimization_techniques/"
+msgstr "//https://advancedweb.hu/2016/05/27/jvm_jit_optimization_techniques/"
+
+#: lecture.adoc:299
+msgid "== Оптимизация «на лету»"
+msgstr "== On-the-fly optimization"
+
+#: lecture.adoc:301
+msgid "image::codecache.png[{image-50-width}]"
+msgstr "image::codecache.png[{image-50-width}]"
+
+#: lecture.adoc:304
+msgid "== Garbage Collection"
+msgstr "== Garbage Collection"
+
+#: lecture.adoc:315
+msgid ""
+"[%step]\n"
+"* Разработчику не нужно заботиться о высвобождении памяти\n"
+"* Ссылок на объект нет? -- garbage collection\n"
+"* Достоинства:\n"
+"** Меньше кода \n"
+"** Не бывает некорректных ссылок (на разрушенный объект)\n"
+"** Меньше утечек памяти\n"
+"* Недостатки:\n"
+"** Не контролируем время работы GC\n"
+"** STW-паузы (бывает, в неподходящий момент)"
+msgstr ""
+"[%step]\n"
+"* The developer does not need to worry about freeing up memory\n"
+"* Garbage collection when there are no references to the object\n"
+"* Advantages:\n"
+"** Less code \n"
+"** There are no invalid links (to destroyed objects)\n"
+"** Fewer memory leaks\n"
+"* Disadvantages:\n"
+"** We do not control the operating time of the GC\n"
+"** STW-pauses (sometimes at the inappropriate time)"
+
+#: lecture.adoc:317
+msgid "== Как может быть устроен GC?"
+msgstr "== How can GC be implemented?"
+
+#: lecture.adoc:319
+msgid "* Reference counting -- циклы?"
+msgstr "* Reference counting -- cycles?"
+
+#: lecture.adoc:321
+msgid "* Mark & sweep"
+msgstr "* Mark & sweep"
+
+#: lecture.adoc:323
+msgid "* Гипотеза поколений"
+msgstr "* Generational hypothesis"
+
+#: lecture.adoc:325
+msgid "== Гипотеза поколений"
+msgstr "== Generational Hypothesis"
+
+#: lecture.adoc:327
+msgid "image::generations.png[{image-50-width}]"
+msgstr "image::generations.png[{image-50-width}]"
+
+#: lecture.adoc:329
+msgid "== Типы коллекторов"
+msgstr "== GC Types"
+
+#: lecture.adoc:336
+msgid ""
+"* Serial (for single-threaded, client environments) \n"
+"* Parallel (default)\n"
+"* CMS (Concurrent mark and Sweep -- shorter pauses, share processor "
+"resources)\n"
+"* G1 (Garbage First -- big heaps)\n"
+"* Shenandoah (submillisecond pauses)\n"
+"* Epsilon (no GC)"
+msgstr ""
+"* Serial (for single-threaded, client environments) \n"
+"* Parallel (default)\n"
+"* CMS (Concurrent mark and Sweep -- shorter pauses, share processor "
+"resources, deprecated in Java 9)\n"
+"* G1 (Garbage First -- big heaps)\n"
+"* Shenandoah (submillisecond pauses)\n"
+"* Epsilon (no GC)"
+
+#: lecture.adoc:339
+msgid "== Latency vs. Throughput tradeoff"
+msgstr "== Latency vs. Throughput tradeoff"
+
+#: lecture.adoc:341
+msgid "image::seesaw.jpg[{image-40-width}]"
+msgstr "image::seesaw.jpg[{image-40-width}]"
+
+#: lecture.adoc:343
+msgid "== Многопоточность "
+msgstr "== Multithreading "
+
+#: lecture.adoc:345
+msgid ""
+"* Возможность запуска параллельных потоков выполнения встроена в язык с "
+"первой версии (`Thread`, `Runnable` etc)"
+msgstr ""
+"* The ability to run parallel threads of execution is built into the "
+"language from the first version (`Thread`, `Runnable` etc)"
+
+#: lecture.adoc:347
+msgid ""
+"* JDK 1.5: существенные дополнения (executor, semaphore, mutex, barrier, "
+"latches, concurrent collections,  blocking queues)"
+msgstr ""
+"* JDK 1.5: significant improvements (executor, semaphore, mutex, barrier, "
+"latches, concurrent collections, blocking queues)"
+
+#: lecture.adoc:349
+msgid "* JDK 1.7: `ForkJoinPool` (work-stealing technique)"
+msgstr "* JDK 1.7: `ForkJoinPool` (work-stealing technique)"
+
+#: lecture.adoc:351
+msgid "* JDK 1.8: `CompletableFuture`"
+msgstr "* JDK 1.8: `CompletableFuture`"
+
+#: lecture.adoc:353
+msgid "* Java SE 21: Project Loom: virtual threads"
+msgstr "* Java SE 21: Project Loom: virtual threads"
+
+#: lecture.adoc:355
+msgid ""
+"// https://howtodoinjava.com/java/multi-threading/java-multi-threading-"
+"evolution-and-topics/"
+msgstr ""
+"// https://howtodoinjava.com/java/multi-threading/java-multi-threading-"
+"evolution-and-topics/"
+
+#: lecture.adoc:358
+msgid "== Модель памяти"
+msgstr "== Memory model"
+
+#: lecture.adoc:360
+msgid ""
+"* Memory Model: часть спецификации VM: модель того, как работает хранилище "
+"данных"
+msgstr ""
+"* Memory Model: Part of the VM specification: a model of how the memory works"
+
+#: lecture.adoc:362
+msgid ""
+"* Отвечает на вопрос: «какие значения может прочитать конкретный read в "
+"программе?»"
+msgstr ""
+"* Answers the question: \"what values can we possibly seen when we read a "
+"variable?\""
+
+#: lecture.adoc:364
+msgctxt "lecture.adoc:364"
+msgid "== Когда нужна memory model?"
+msgstr "== When do we need a memory model?"
+
+#: lecture.adoc:369
+msgid ""
+"[source,java]\n"
+"----\n"
+"class DumbWayToFallAsleep implements Runnable {\n"
+"  private boolean asleep;"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"class DumbWayToFallAsleep implements Runnable {\n"
+"  private boolean asleep;"
+
+#: lecture.adoc:373
+msgctxt "lecture.adoc:373"
+msgid ""
+"  public void setAsleep(boolean asleep){\n"
+"    this.asleep = asleep;\n"
+"  }"
+msgstr ""
+"  public void setAsleep(boolean asleep){\n"
+"    this.asleep = asleep;\n"
+"  }"
+
+#: lecture.adoc:383
+msgid ""
+"  @Override\n"
+"  public void run() {\n"
+"    while (!asleep){\n"
+"      //countSomeSheep\n"
+"      //УСНЁМ ЛИ МЫ?\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+"  @Override\n"
+"  public void run() {\n"
+"    while (!asleep){\n"
+"      //countSomeSheep\n"
+"      //WILL WE FALL ASLEEP?\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+
+#: lecture.adoc:385
+msgctxt "lecture.adoc:385"
+msgid "== Когда нужна memory model?"
+msgstr "== When do we need a memory model?"
+
+#: lecture.adoc:390
+msgid ""
+"[source,java]\n"
+"----\n"
+"class NotSoDumbWayToFallAsleep implements Runnable {\n"
+"  private volatile boolean asleep;"
+msgstr ""
+"[source,java]\n"
+"----\n"
+"class NotSoDumbWayToFallAsleep implements Runnable {\n"
+"  private volatile boolean asleep;"
+
+#: lecture.adoc:394
+msgctxt "lecture.adoc:394"
+msgid ""
+"  public void setAsleep(boolean asleep){\n"
+"    this.asleep = asleep;\n"
+"  }"
+msgstr ""
+"  public void setAsleep(boolean asleep){\n"
+"    this.asleep = asleep;\n"
+"  }"
+
+#: lecture.adoc:404
+msgid ""
+"  @Override\n"
+"  public void run() {\n"
+"    while (!asleep){\n"
+"      //countSomeSheep\n"
+"      //...\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+"  @Override\n"
+"  public void run() {\n"
+"    while (!asleep){\n"
+"      //countSomeSheep\n"
+"      //...\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+
+#: lecture.adoc:408
+msgid "== Загрузка и исполнение кода в runtime"
+msgstr "== Loading and executing code in the runtime"
+
+#: lecture.adoc:410
+msgid ""
+"* Скомпилированный байт-код класса может быть доставлен на любую систему в "
+"runtime (чаще всего «подкладыванием файла» на файловую систему)."
+msgstr ""
+"* Compiled class bytecode can be delivered to any system in the runtime "
+"(most often by saving a file to the file system)."
+
+#: lecture.adoc:412
+msgid "* Пересборка/линковка не требуется."
+msgstr "* Recompilation/linking is not required."
+
+#: lecture.adoc:414
+msgid "== Сериализация объектов, встроенная в язык"
+msgstr "== Built-in Serialization"
+
+#: lecture.adoc:416
+msgid "* Идея, в начале казавшаяся очень хорошей!"
+msgstr "* An idea that seemed very good at first!"
+
+#: lecture.adoc:418
+msgid "== Рефлексия"
+msgstr "== Reflection API"
+
+#: lecture.adoc:420
+msgid ""
+"* Исследование информации о классах, полях, методах и т. д. во время "
+"выполнения "
+msgstr ""
+"* Explore information about classes, fields, methods, etc. at run time "
+
+#: lecture.adoc:422
+msgid ""
+"* Чтение/модификация полей (в том числе private!) и динамический вызов "
+"методов (в том числе private!)"
+msgstr ""
+"* Read/modify fields (including private!) and dynamically call methods "
+"(including private!)"
+
+#: lecture.adoc:424
+msgid "* Proxy и AOP"
+msgstr "* Proxy and AOP"
+
+#: lecture.adoc:426
+msgid "== Постоянно совершенствуемая стандартная библиотека"
+msgstr "== Continuously Improving Standard Library"
+
+#: lecture.adoc:436
+msgid ""
+"[%step]\n"
+"* Независимая от системы часть \n"
+"** Структуры данных\n"
+"** Математика\n"
+"* Зависимая от системы часть\n"
+"** Дата и время\n"
+"** Доступ к файловой системе\n"
+"** Доступ к сети\n"
+"** Пользовательский интерфейс"
+msgstr ""
+"[%step]\n"
+"* System-independent part \n"
+"** Data structures\n"
+"** Mathematics\n"
+"* System-dependent part\n"
+"** Date and time\n"
+"** File system access\n"
+"** Network access\n"
+"** User Interface"
+
+#: lecture.adoc:438
+msgid "== Обратная совместимость"
+msgstr "== Backward compatibility"
+
+#: lecture.adoc:442
+msgid ""
+"[%step]\n"
+"* Любой, как угодно давно скомпилированный .jar-файл может быть запущен на "
+"любой современной JVM\n"
+"* Дар или проклятие?"
+msgstr ""
+"[%step]\n"
+"* Any .jar file compiled many years ago can be run on any modern JVM\n"
+"* A gift or a curse?"
+
+#: lecture.adoc:444
+msgctxt "lecture.adoc:444"
+msgid "== Критика языка и платформы Джава"
+msgstr "== Criticism of the Java platform and language"
+
+#: lecture.adoc:450
+msgid ""
+"* Тормозит\n"
+"* Потребляет слишком много памяти\n"
+"* Медленно стартует\n"
+"* Многословна (слишком много \"boilerplate code\")\n"
+"* Язык консервативен, медленно развивается"
+msgstr ""
+"* Poor performance\n"
+"* Memory consumption\n"
+"* Slow startup\n"
+"* Verbose (too much \"boilerplate code\")\n"
+"* The language is conservative and is developing slowly"
+
+#: lecture.adoc:452
+msgctxt "lecture.adoc:452"
+msgid "== Критика языка и платформы Джава"
+msgstr "== Criticism of the Java platform and language"
+
+#: lecture.adoc:458
+msgid ""
+"* Тормозит -- *нет*\n"
+"* Потребляет слишком много памяти -- *нет*\n"
+"* Медленно стартует -- *отчасти да*\n"
+"* Многословна (слишком много \"boilerplate code\") -- *что да то да, но с "
+"Lombok и современной джавой это чинится*\n"
+"* Язык консервативен, медленно развивается -- *уже нет*"
+msgstr ""
+"* Poor performance -- *no*\n"
+"* Memory consumption -- *no*\n"
+"* Slow startup -- *partially es*\n"
+"* Verbose (too much \"boilerplate code\") -- *that's true, but Lombok and "
+"modern Java versions fix this*\n"
+"* The language is conservative and is developing slowly -- *nowadays, no*"
+
+#: lecture.adoc:460
+msgid "== Развитие языка c 9й версии (6-months release cadence)"
+msgstr "== Language development since version 9 (6-months release cadence)"
+
+#: lecture.adoc:469
+msgid ""
+"[%step]\n"
+"* type inference,\n"
+"* switch expressions,\n"
+"* sealed classes,\n"
+"* pattern matching,\n"
+"* records,\n"
+"* unnamed main classes,\n"
+"* string templates (to be dropped?)..."
+msgstr ""
+"[%step]\n"
+"* type inference,\n"
+"* switch expressions,\n"
+"* sealed classes,\n"
+"* pattern matching,\n"
+"* records,\n"
+"* unnamed main classes,\n"
+"* string templates (to be dropped?)..."
+
+#: lecture.adoc:471
+msgid "== Текущие проекты"
+msgstr "== Current projects"
+
+#: lecture.adoc:476
+msgid ""
+"* Project Amber: productivity-oriented features\n"
+"* Project Loom: fibers & continuators\n"
+"* Project Valhalla: value types & generic specialization\n"
+"* Graal, Panama, Kulla, Sumatra..."
+msgstr ""
+"* Project Amber: productivity-oriented features\n"
+"* Project Loom: fibers & continuators\n"
+"* Project Valhalla: value types & generic specialization\n"
+"* Graal, Panama, Kulla, Sumatra..."
+
+#: lecture.adoc:478
+msgid "== Битва за новые возможности"
+msgstr "== Battle for new features"
+
+#: lecture.adoc:483
+msgid ""
+"* *Алексей Шипилёв*, 2015: The Lord of the Strings: Two Scours\n"
+"* *Тагир Валеев*, 2018: Pattern matching и его воображаемые друзья\n"
+"* *Сергей Куксенко*, 2020: Valhalla is coming\n"
+"* *Сергей Куксенко*, 2020: Java threads are losing weight, performance "
+"review of Project Loom"
+msgstr ""
+"* *Alexey Shipilev*, 2015: The Lord of the Strings: Two Scours\n"
+"* *Tagir Valeev*, 2018: Pattern matching and his imaginary friends\n"
+"* *Sergey Kuksenko*, 2020: Valhalla is coming\n"
+"* *Sergey Kuksenko*, 2020: Java threads are losing weight, performance "
+"review of Project Loom"
+
+#: lecture.adoc:486
+msgid ""
+"[%notitle]\n"
+"== Языки"
+msgstr ""
+"[%notitle]\n"
+"== JVM Languages"
+
+#: lecture.adoc:488
+msgid "image::pirates.png[{image-10-width}]"
+msgstr "image::pirates.png[{image-10-width}]"
+
+#: lecture.adoc:490
+msgid "== Разнообразие языков для Java-машины"
+msgstr "== Variety of JVM languages"
+
+#: lecture.adoc:492
+msgid "* Есть виртуальная машина -- можно компилировать из любого языка!"
+msgstr ""
+"* There is a virtual machine: you can compile to the byte code from any "
+"language!"
+
+#: lecture.adoc:494
+msgid "* https://en.wikipedia.org/wiki/List_of_JVM_languages"
+msgstr "* https://en.wikipedia.org/wiki/List_of_JVM_languages"
+
+#: lecture.adoc:496
+msgid "* 20-30 языков"
+msgstr "* 20-30 languages"
+
+#: lecture.adoc:499
+msgid ""
+"** Специально созданные: Groovy, Scala, Kotlin...\n"
+"** Реимплементация для JVM: JRuby, Clojure (Lisp dialect), Nashorn/Graal."
+"js..."
+msgstr ""
+"** Specially created for JVM: Groovy, Scala, Kotlin...\n"
+"** Re-implemented for JVM: JRuby, Clojure (Lisp dialect), Nashorn/Graal.js..."
+
+#: lecture.adoc:501
+msgid ""
+"* https://jaxenter.com/wp-content/uploads/2017/03/Pirates-of-the-JVM-"
+"JAXenter-768x4245.png"
+msgstr ""
+"* https://jaxenter.com/wp-content/uploads/2017/03/Pirates-of-the-JVM-"
+"JAXenter-768x4245.png"
+
+#: lecture.adoc:503
+msgid "== Важнейшие элементы экосистемы (за рамками стандартной библиотеки)"
+msgstr "== Essential elements of the ecosystem (beyond the standard library)"
+
+#: lecture.adoc:508
+msgid ""
+"* Библиотеки и фреймворки (в т. ч. для тестирования)\n"
+"* Среды разработки\n"
+"* Системы сборки\n"
+"* CI"
+msgstr ""
+"* Libraries and frameworks (including testing)\n"
+"* Integrated Development Environments (IDEs)\n"
+"* Build systems\n"
+"* CI"
+
+#: lecture.adoc:510
+msgid "== JUnit"
+msgstr "== JUnit"
+
+#: lecture.adoc:512
+msgid "модульное тестирование и автоматизация тестов"
+msgstr "unit testing and test automation"
+
+#: lecture.adoc:514
+msgid "image::junit5.jpg[]"
+msgstr "image::junit5.jpg[]"
+
+#: lecture.adoc:516
+msgid "== Spring Framework"
+msgstr "== Spring Framework"
+
+#: lecture.adoc:518
+msgid "DI container and application framework"
+msgstr "DI container and application framework"
+
+#: lecture.adoc:520
+msgid "image::springframework.png[{image-40-width}]"
+msgstr "image::springframework.png[{image-40-width}]"
+
+#: lecture.adoc:522
+msgid "== Среды разработки"
+msgstr "== Integrated Development Environments"
+
+#: lecture.adoc:525
+msgid ""
+"[cols=\"^50a,^50a\"]\n"
+"|==="
+msgstr ""
+"[cols=\"^50a,^50a\"]\n"
+"|==="
+
+#: lecture.adoc:527
+msgid ".^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}]"
+msgstr ".^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}]"
+
+#: lecture.adoc:529
+msgid "IDEA"
+msgstr "IDEA"
+
+#: lecture.adoc:531
+msgid "(proprietary, JetBrains)"
+msgstr "(proprietary, JetBrains)"
+
+#: lecture.adoc:533
+msgid ".^|image:Apache_NetBeans_Logo.svg[{image-20-width}]"
+msgstr ".^|image:Apache_NetBeans_Logo.svg[{image-20-width}]"
+
+#: lecture.adoc:535
+msgid "NetBeans"
+msgstr "NetBeans"
+
+#: lecture.adoc:537
+msgid "(ASF / Oracle)"
+msgstr "(ASF / Oracle)"
+
+#: lecture.adoc:539
+msgid ".^|image:Eclipse-Luna-Logo.svg[]"
+msgstr ".^|image:Eclipse-Luna-Logo.svg[]"
+
+#: lecture.adoc:541
+msgid "Eclipse Foundation"
+msgstr "Eclipse Foundation"
+
+#: lecture.adoc:543
+msgid ".^|image:vscode.png[{image-30-width}]"
+msgstr ".^|image:vscode.png[{image-30-width}]"
+
+#: lecture.adoc:545
+msgid "VS Code"
+msgstr "VS Code"
+
+#: lecture.adoc:548
+msgid ""
+"(Microsoft)\n"
+"|==="
+msgstr ""
+"(Microsoft)\n"
+"|==="
+
+#: lecture.adoc:550
+msgid "== Системы сборки"
+msgstr "== Build systems"
+
+#: lecture.adoc:554
+msgid ""
+"[cols=\"^50a,^50a\"]\n"
+"|===\n"
+"|"
+msgstr ""
+"[cols=\"^50a,^50a\"]\n"
+"|===\n"
+"|"
+
+#: lecture.adoc:556
+msgid "image::mavenlogo.svg[{image-40-width}]"
+msgstr "image::mavenlogo.svg[{image-40-width}]"
+
+#: lecture.adoc:562
+msgid ""
+"XML configuration +\n"
+"Maven project layout +\n"
+"Maven Central +\n"
+"plugins +\n"
+"declarative"
+msgstr ""
+"XML configuration +\n"
+"Maven project layout +\n"
+"Maven Central +\n"
+"plugins +\n"
+"declarative"
+
+#: lecture.adoc:565
+msgid ""
+"|\n"
+"image::gradlelogo.png[{image-50-width}]"
+msgstr ""
+"|\n"
+"image::gradlelogo.png[{image-50-width}]"
+
+#: lecture.adoc:570
+msgid ""
+"Groovy DSL / Kotlin DSL +\n"
+"plugins +\n"
+"scripts +\n"
+"mixed declarative/imperative"
+msgstr ""
+"Groovy DSL / Kotlin DSL +\n"
+"plugins +\n"
+"scripts +\n"
+"mixed declarative/imperative"
+
+#: lecture.adoc:573
+msgid ""
+"|===\n"
+"== Java community"
+msgstr ""
+"|===\n"
+"== Java community"
+
+#: lecture.adoc:576
+msgid ""
+"* JUGs (в крупных городах)\n"
+"* Conferences (Joker/JPoint/SnowOne, DevoXX etc.)"
+msgstr ""
+"* JUGs (in big cities)\n"
+"* Conferences (Joker/JPoint/SnowOne, DevoXX etc.)"
+
+#: lecture.adoc:578
+msgid "image::duke.svg[]"
+msgstr "image::duke.svg[]"
+
+#: lecture.adoc:580
+msgid "== Oracle certification exams"
+msgstr "== Oracle certification exams"
+
+#: lecture.adoc:582
+msgid "OCA/OCP (search for \"Oracle Java Certification\")"
+msgstr "OCA/OCP (search for \"Oracle Java Certification\")"
+
+#: lecture.adoc:584
+msgid "image::oca.png[{image-60-width}]"
+msgstr "image::oca.png[{image-60-width}]"
+
+#: lecture.adoc:586
+msgid "== Hello, world!"
+msgstr "== Hello, world!"
+
+#: lecture.adoc:587
+msgid "Сборка и запуск jar-файла"
+msgstr "Build and run the jar file"
+
+#~ msgid ""
+#~ "* https://bit.ly/java21-join (Telegram MIPT. Java-2021)\n"
+#~ "* https://inponomarev.ru/corejava"
+#~ msgstr ""
+#~ "* https://bit.ly/java21-join (Telegram MIPT. Java-2021)\n"
+#~ "* https://inponomarev.ru/corejava"
+
+#~ msgid "== TIOBE Index"
+#~ msgstr "== TIOBE Index"
+
+#~ msgid "== 27 лет Джавы"
+#~ msgstr "== 27 years of Java"
+
+#~ msgid ""
+#~ "[source]\n"
+#~ "----\n"
+#~ "JDK 1.0 (January 23, 1996)      |  -- 6-monthly release cadence --\n"
+#~ "JDK 1.1 (February 19, 1997)     |  Java SE 10     (March 20, 2018)\n"
+#~ "J2SE 1.2 (December 8, 1998)     |  Java SE 11 LTS (September 25, 2018)\n"
+#~ "J2SE 1.3 (May 8, 2000)          |  Java SE 12     (March 19, 2019)\n"
+#~ "J2SE 1.4 (February 6, 2002)     |  Java SE 13     (September 17, 2019)\n"
+#~ "J2SE 5.0 (September 30, 2004)   |  Java SE 14     (March 17, 2020)\n"
+#~ "Java SE 6 (December 11, 2006)   |  Java SE 15     (September 15, 2020)\n"
+#~ "-- Sun acquisition by Oracle--  |  Java SE 16     (March 16, 2021)\n"
+#~ "Java SE 7 (July 28, 2011)       |  Java SE 17 LTS (September 14, 2021)\n"
+#~ "Java SE 8 (March 18, 2014)      |  Java SE 18     (March 22, 2022)\n"
+#~ "Java SE 9 (September 21, 2017)  |  Java SE 19     (September 20, 2022)\n"
+#~ "                                |  Java SE 20     (due to in March 2023)\n"
+#~ "                                |  Java SE 21 LTS (due to in September "
+#~ "2023)\n"
+#~ "----"
+#~ msgstr ""
+#~ "[source]\n"
+#~ "----\n"
+#~ "JDK 1.0 (January 23, 1996)      |  -- 6-monthly release cadence --\n"
+#~ "JDK 1.1 (February 19, 1997)     |  Java SE 10     (March 20, 2018)\n"
+#~ "J2SE 1.2 (December 8, 1998)     |  Java SE 11 LTS (September 25, 2018)\n"
+#~ "J2SE 1.3 (May 8, 2000)          |  Java SE 12     (March 19, 2019)\n"
+#~ "J2SE 1.4 (February 6, 2002)     |  Java SE 13     (September 17, 2019)\n"
+#~ "J2SE 5.0 (September 30, 2004)   |  Java SE 14     (March 17, 2020)\n"
+#~ "Java SE 6 (December 11, 2006)   |  Java SE 15     (September 15, 2020)\n"
+#~ "-- Sun acquisition by Oracle--  |  Java SE 16     (March 16, 2021)\n"
+#~ "Java SE 7 (July 28, 2011)       |  Java SE 17 LTS (September 14, 2021)\n"
+#~ "Java SE 8 (March 18, 2014)      |  Java SE 18     (March 22, 2022)\n"
+#~ "Java SE 9 (September 21, 2017)  |  Java SE 19     (September 20, 2022)\n"
+#~ "                                |  Java SE 20     (due to in March 2023)\n"
+#~ "                                |  Java SE 21 LTS (due to in September "
+#~ "2023)\n"
+#~ "----"
+
+#~ msgid "image::6-monthly.png[{image-70-width}]"
+#~ msgstr "image::6-monthly.png[{image-70-width}]"
+
+#~ msgid ""
+#~ "*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature "
+#~ "evolution in Java 13 and beyond]"
+#~ msgstr ""
+#~ "*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature "
+#~ "evolution in Java 13 and beyond]"
+
+#~ msgctxt "lecture.adoc:209"
+#~ msgid "== Вопрос"
+#~ msgstr "== Question"
+
+#~ msgid "* Будущее: Project Loom: lightweight user-mode threads (fibers)"
+#~ msgstr "* Future: Project Loom: lightweight user-mode threads (fibers)"
+
+#~ msgctxt "lecture.adoc:347"
+#~ msgid "== Когда нужна memory model?"
+#~ msgstr "== When do we need a memory model?"
+
+#~ msgctxt "lecture.adoc:356"
+#~ msgid ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+#~ msgstr ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+
+#~ msgid ""
+#~ "image::lib-evolution.png[{image-100-width}]\n"
+#~ "*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature "
+#~ "evolution in Java 13 and beyond]"
+#~ msgstr ""
+#~ "image::lib-evolution.png[{image-100-width}]\n"
+#~ "*Cay Horstmann* https://live.jugru.org/online/100063r10003019/[Feature "
+#~ "evolution in Java 13 and beyond]"
+
+#~ msgctxt "lecture.adoc:393"
+#~ msgid "== Стандартная библиотека"
+#~ msgstr "== Standard Library"
+
+#~ msgid "image::javasirs.jpg[{image-40-width}]"
+#~ msgstr "image::javasirs.jpg[{image-40-width}]"
+
+#~ msgid ""
+#~ "[%step]\n"
+#~ "* lambdas & functional programming, \n"
+#~ "* modules, \n"
+#~ "* compact strings, \n"
+#~ "* type inference,\n"
+#~ "* switch expressions,\n"
+#~ "* pattern matching,\n"
+#~ "* records..."
+#~ msgstr ""
+#~ "[%step]\n"
+#~ "* lambdas & functional programming, \n"
+#~ "* modules, \n"
+#~ "* compact strings, \n"
+#~ "* type inference,\n"
+#~ "* switch expressions,\n"
+#~ "* pattern matching,\n"
+#~ "* records..."
+
+#~ msgid ""
+#~ "[cols=\"30a,30a,40a\"]\n"
+#~ "|===\n"
+#~ ".^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}] IDEA +\n"
+#~ "(proprietary, JetBrains)\n"
+#~ ".^|image:Apache_NetBeans_Logo.svg[{image-20-width}] NetBeans +\n"
+#~ "(ASF / Oracle)\n"
+#~ ".^|image:Eclipse-Luna-Logo.svg[] +\n"
+#~ "Eclipse Foundation\n"
+#~ "|==="
+#~ msgstr ""
+#~ "[cols=\"30a,30a,40a\"]\n"
+#~ "|===\n"
+#~ ".^|image:IntelliJ_IDEA_Logo.svg[{image-20-width}] IDEA +\n"
+#~ "(proprietary, JetBrains)\n"
+#~ ".^|image:Apache_NetBeans_Logo.svg[{image-20-width}] NetBeans +\n"
+#~ "(ASF / Oracle)\n"
+#~ ".^|image:Eclipse-Luna-Logo.svg[] +\n"
+#~ "Eclipse Foundation\n"
+#~ "|==="
+
+#~ msgid "* XML-конфигурация, Maven project layout, Maven Central "
+#~ msgstr "* XML configuration, Maven project layout, Maven Central "
+
+#~ msgid "* Groovy/Kotlin DSL"
+#~ msgstr "* Groovy/Kotlin DSL"
+
+#~ msgid "== Jenkins CI"
+#~ msgstr "== Jenkins CI"
+
+#~ msgid "image::jenkins-logo-title.png[]"
+#~ msgstr "image::jenkins-logo-title.png[]"
+
+#~ msgid ""
+#~ "* JUGs (Москва, Санкт-Петербург, Новосибирск)\n"
+#~ "* Conferences (Joker, JPoint)\n"
+#~ "* Приходите на московский JUG (когда закончится пандемия)"
+#~ msgstr ""
+#~ "* JUGs (Moscow, St. Petersburg, Novosibirsk)\n"
+#~ "* Conferences (Joker, JPoint)\n"
+#~ "* Come to Moscow JUG (when the pandemic is over)"
+
+#~ msgid "* OCA/OCP"
+#~ msgstr "* OCA/OCP"
+
+#~ msgid ""
+#~ "//== Часть 1. Введение\n"
+#~ ":!figure-caption:"
+#~ msgstr ""
+#~ "//== Part 1. Introduction\n"
+#~ ":!figure-caption:"
+
+#~ msgctxt "lecture.adoc:210"
+#~ msgid "== Вопрос"
+#~ msgstr "== Question"
+
+#~ msgctxt "lecture.adoc:348"
+#~ msgid "== Когда нужна memory model?"
+#~ msgstr "== When do we need a memory model?"
+
+#~ msgctxt "lecture.adoc:357"
+#~ msgid ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+#~ msgstr ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+
+#~ msgctxt "lecture.adoc:394"
+#~ msgid "== Стандартная библиотека"
+#~ msgstr "== Standard Library"
+
+#~ msgctxt "lecture.adoc:208"
+#~ msgid "== Вопрос"
+#~ msgstr "== Question"
+
+#~ msgctxt "lecture.adoc:346"
+#~ msgid "== Когда нужна memory model?"
+#~ msgstr "== When do we need a memory model?"
+
+#~ msgctxt "lecture.adoc:355"
+#~ msgid ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+#~ msgstr ""
+#~ "  public void setAsleep(boolean asleep){\n"
+#~ "    this.asleep = asleep;\n"
+#~ "  }"
+
+#~ msgctxt "lecture.adoc:392"
+#~ msgid "== Стандартная библиотека"
+#~ msgstr "== Standard Library"

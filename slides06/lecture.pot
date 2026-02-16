@@ -1,0 +1,1765 @@
+#. extracted from lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-23 18:56+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.13.1\n"
+
+#: lecture.adoc:24
+msgid ""
+"= Core Java. Лекция 6: Generics\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900"
+msgstr ""
+
+#: lecture.adoc:27
+msgid ":!figure-caption:"
+msgstr ""
+
+#: lecture.adoc:29
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: lecture.adoc:31
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: lecture.adoc:34
+msgid "== До появления дженериков"
+msgstr ""
+
+#: lecture.adoc:43
+msgid ""
+"[source,java]\n"
+"----\n"
+"Manager ceo = ...;\n"
+"Manager cto = ...;\n"
+"Employee cleaner = ...;\n"
+"List managers = new ArrayList();\n"
+"managers.add(ceo);\n"
+"managers.add(cto);"
+msgstr ""
+
+#: lecture.adoc:46
+msgid ""
+"//bug!!\n"
+"managers.add(cleaner);"
+msgstr ""
+
+#: lecture.adoc:50
+msgid ""
+"//typecast with runtime exception -- too late!\n"
+"Manager m = (Manager) managers.get(2); \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:53
+msgid ""
+"[%notitle]\n"
+"== Runtime vs Compile Time Errors"
+msgstr ""
+
+#: lecture.adoc:55
+msgid "image::rtvscompiletime.png[]"
+msgstr ""
+
+#: lecture.adoc:57
+msgid "== После появления дженериков"
+msgstr ""
+
+#: lecture.adoc:64
+msgid ""
+"[source,java]\n"
+"----\n"
+"Manager ceo = ...;\n"
+"Manager cto = ...;\n"
+"Employee cleaner = ...;\n"
+"List<Manager> managers = new ArrayList<>();"
+msgstr ""
+
+#: lecture.adoc:69
+msgid ""
+"managers.add(ceo);\n"
+"managers.add(cto);\n"
+"// не скомпилируется!\n"
+"// managers.add(cleaner);"
+msgstr ""
+
+#: lecture.adoc:73
+msgid ""
+"// приводить тип не нужно!\n"
+"Manager m = managers.get(1); \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:75
+msgid "== Определяем собственный параметризованный класс"
+msgstr ""
+
+#: lecture.adoc:92
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Pair<T> {\n"
+"  private T first;\n"
+"  private T second;\n"
+"  public Pair() { first = null; second = null; }\n"
+"  public Pair(T first, T second) { \n"
+"    this.first = first; \n"
+"    this.second = second; \n"
+"  }\n"
+"  public T getFirst() { return first; }\n"
+"  public T getSecond() { return second; }\n"
+"  public void setFirst(T newValue) { first = newValue; }\n"
+"  public void setSecond(T newValue) { second = newValue; }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:94
+msgid "== Определение и использование"
+msgstr ""
+
+#: lecture.adoc:98
+msgid ""
+"[source,java]\n"
+"----\n"
+"Pair<String> pair = new Pair<>(\"Ваня\", \"Маша\");"
+msgstr ""
+
+#: lecture.adoc:105
+msgid ""
+"//ЧТО ЭКВИВАЛЕНТНО ЗАМЕНЕ T НА String\n"
+"Pair(String, String)\n"
+"String getFirst()\n"
+"String getSecond()\n"
+"void setFirst(String)\n"
+"void setSecond(String)"
+msgstr ""
+
+#: lecture.adoc:107
+msgctxt "lecture.adoc:107"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:109
+msgid "== Generic methods"
+msgstr ""
+
+#: lecture.adoc:115
+msgid ""
+"[source,java]\n"
+"----\n"
+"public <T> T getRandomItem(T... items) {\n"
+"  return items[ThreadLocalRandom.current().nextInt(items.length)];\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:119
+msgid ""
+"String s = getRandomItem(\"A\", \"B\", \"C\");\n"
+"Manager m = getRandomItem(ceo, cto, cfo);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:121
+msgid "== Другой пример"
+msgstr ""
+
+#: lecture.adoc:131
+msgid ""
+"[source,java]\n"
+"----\n"
+"public <T> T getRandomItem(List<T> items) {\n"
+"  T result = \n"
+"    items.get(\n"
+"      ThreadLocalRandom.current().nextInt(items.size()));\n"
+"  return result;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:133
+msgid "== Промежуточные выводы"
+msgstr ""
+
+#: lecture.adoc:137
+msgid ""
+"* Использование параметризованных классов -- простое (просто укажите "
+"параметры, `List<Manager>`)\n"
+"* Использование параметризованных методов -- ещё проще: type inference: `"
+"Manager m = getRandomItem(...);`\n"
+"* Написание собственных параметризованных классов и методов -- задачка более "
+"сложная."
+msgstr ""
+
+#: lecture.adoc:139
+msgid "== Bounded types"
+msgstr ""
+
+#: lecture.adoc:145
+msgid ""
+"[source,java]\n"
+"----\n"
+"public <T extends Person> String getRandomPersonName(List<T> items) {\n"
+"  Person result = //можно написать и T result = \n"
+"    items.get(ThreadLocalRandom.current().nextInt(items.size()));"
+msgstr ""
+
+#: lecture.adoc:149
+msgid ""
+"  return result.getName();\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:151
+msgid "== Intersection types"
+msgstr ""
+
+#: lecture.adoc:156
+msgid ""
+"[plantuml, intersections, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:159
+msgid ""
+"class Employee {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:162
+msgid ""
+"class Retiree {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:166
+msgid ""
+"class Person {\n"
+"  + getName(): String\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:170
+msgid ""
+"interface Payable {\n"
+"  + getMonthPayment: BigDecimal\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:179
+msgid ""
+"Payable <|.. Employee\n"
+"Payable <|.. Retiree\n"
+"Person <|-- Employee \n"
+"Person <|-- Retiree\n"
+"Person <|-- Visitor\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:194
+msgid ""
+"[source,java]\n"
+"----\n"
+"//через амперсанд сколько угодно интерфейсов, \n"
+"//но не более одного класса\n"
+"public <T extends Person & Payable> \n"
+"  String getRandomNameAndPayment(List<T> items) {\n"
+"  T result =\n"
+"    items.get(\n"
+"        ThreadLocalRandom.current().nextInt(items.size()));\n"
+"    return result.getName() //из Person! \n"
+"         + result.getPayment(); //из Payable!\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:200
+msgid ""
+"== Реализация дженериков\n"
+"* Появились в Java 5\n"
+"* Стояла задача обратной совместимости\n"
+"* Generics -- возможность языка, а не платформы\n"
+"* Type Erasure, будь он неладен!"
+msgstr ""
+
+#: lecture.adoc:202
+msgid "== Сырые типы"
+msgstr ""
+
+#: lecture.adoc:248
+msgid ""
+"[cols=\"45a,55a\"]\n"
+"|===\n"
+"^|*Generic Type (source)*\n"
+"^|*Raw Type (compiled)*\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class Pair<T> {\n"
+"  private T first;\n"
+"  private T second;\n"
+"  Pair(T first, \n"
+"       T second)\n"
+"   {this.first = first; \n"
+"    this.second = second;}\n"
+"  T getFirst() \n"
+"   {return first; }\n"
+"  T getSecond() \n"
+"   {return second; }\n"
+"  void setFirst(T newValue)\n"
+"   {first = newValue;}\n"
+"  void setSecond(T newValue)\n"
+"   {second = newValue;}\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class Pair {\n"
+"  private Object first;\n"
+"  private Object second;\n"
+"  Pair(Object first, \n"
+"       Object second)\n"
+"   {this.first = first; \n"
+"    this.second = second;}\n"
+"  Object getFirst() \n"
+"   {return first; }\n"
+"  Object getSecond() \n"
+"   {return second; }\n"
+"  void setFirst(Object newValue)\n"
+"   {first = newValue;}\n"
+"  void setSecond(Object newValue)\n"
+"   {second = newValue;}\n"
+"}\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:251
+msgid "== Ограниченные типы вместо Object"
+msgstr ""
+
+#: lecture.adoc:297
+msgid ""
+"[cols=\"45a,55a\"]\n"
+"|===\n"
+"^|*Generic Type (source)*\n"
+"^|*Raw Type (compiled)*\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class Pair<T extends Employee>{\n"
+"  private T first;\n"
+"  private T second;\n"
+"  Pair(T first, \n"
+"       T second)\n"
+"   {this.first = first; \n"
+"    this.second = second;}\n"
+"  T getFirst() \n"
+"   {return first; }\n"
+"  T getSecond() \n"
+"   {return second; }\n"
+"  void setFirst(T newValue)\n"
+"   {first = newValue;}\n"
+"  void setSecond(T newValue)\n"
+"   {second = newValue;}\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class Pair {\n"
+"  private Employee first;\n"
+"  private Employee second;\n"
+"  Pair(Employee first, \n"
+"       Employee second)\n"
+"   {this.first = first; \n"
+"    this.second = second;}\n"
+"  Employee getFirst() \n"
+"   {return first; }\n"
+"  Employee getSecond() \n"
+"   {return second; }\n"
+"  void setFirst(Employee newValue)\n"
+"   {first = newValue;}\n"
+"  void setSecond(Employee newValue)\n"
+"   {second = newValue;}\n"
+"}\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:299
+msgid "== Вызовы методов"
+msgstr ""
+
+#: lecture.adoc:310
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"^|*Source code*\n"
+"^|*Compiled*\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Pair<Manager> buddies = \n"
+"  new Pair<>();"
+msgstr ""
+
+#: lecture.adoc:315
+msgid ""
+"/*контроль типов --\n"
+"на этапе компиляции*/\n"
+"buddies.setFirst(cfo);\n"
+"buddies.setSecond(cto);"
+msgstr ""
+
+#: lecture.adoc:325
+msgid ""
+"/*type cast не нужен*/\n"
+"Manager buddy = \n"
+"  buddies.getFirst();\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Pair buddies = \n"
+"  new Pair();"
+msgstr ""
+
+#: lecture.adoc:330
+msgid ""
+"/*контроль типов не нужен --\n"
+"на этапе компиляции проверили!*/\n"
+"buddies.setFirst(cfo);\n"
+"buddies.setSecond(cto);"
+msgstr ""
+
+#: lecture.adoc:336
+msgid ""
+"/*type cast вставлен компилятором*/\n"
+"Manager buddy = \n"
+"  (Manager) buddies.getFirst();\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:338
+msgid "== Bridge methods для сохранения полиморфизма"
+msgstr ""
+
+#: lecture.adoc:348
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"^|*Source code*\n"
+"^|*Compiled*\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class DateInterval extends \n"
+" Pair<LocalDate> {"
+msgstr ""
+
+#: lecture.adoc:363
+msgid ""
+" @Override\n"
+" void setSecond(\n"
+"        LocalDate second){\n"
+"  if (second\n"
+"   .compareTo(getFirst())>=0){\n"
+"      super.setSecond(second);\n"
+"  }\n"
+" }\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class DateInterval extends Pair {"
+msgstr ""
+
+#: lecture.adoc:371
+msgid ""
+" void setSecond(\n"
+"        LocalDate second){\n"
+"  if (second\n"
+"   .compareTo(getFirst())>=0){\n"
+"      super.setSecond(second);\n"
+"  }\n"
+" }"
+msgstr ""
+
+#: lecture.adoc:380
+msgid ""
+" //bridge method!!\n"
+" @Override\n"
+" void setSecond(Object second){\n"
+"   setSecond((LocalDate) second);\n"
+" }\n"
+"}\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:386
+msgid ""
+"== Итог: как это работает\n"
+"* Параметризованных классов в JVM нет, только обычные классы и методы.\n"
+"* Типовые параметры заменяются на Object или на свою границу.\n"
+"* Для сохранения полиморфизма добавляются связывающие методы (bridge "
+"methods).\n"
+"* Сведение типов добавляется по мере необходимости."
+msgstr ""
+
+#: lecture.adoc:388
+msgid "== Никогда не употребляйте сырые типы"
+msgstr ""
+
+#: lecture.adoc:391
+msgid ""
+"* Возможность назначать переменным сырые типы оставлена для обратной "
+"совместимости с кодом, написанным до Java5.\n"
+"* Java5 вышла в 2004 году."
+msgstr ""
+
+#: lecture.adoc:404
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<Manager> a = new ArrayList<>();\n"
+"//Употребили сырой тип.\n"
+"List b = a;\n"
+"//Компилируется и выполняется, список испорчен!\n"
+"b.add(\"manager\");\n"
+"//Выполняется: list.get вернул String как Object\n"
+"System.out.println(b.get(0));\n"
+"//ClassCastException при выполнении\n"
+"Manager m = a.get(0);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:407
+msgid ""
+"[%notitle]\n"
+"== Понимание дженериков в Джаве"
+msgstr ""
+
+#: lecture.adoc:409
+msgid ""
+"_Понимание дженериков в Джаве -- это не про то, что с ними делать можно, а "
+"про то, что с ними делать нельзя._"
+msgstr ""
+
+#: lecture.adoc:412
+msgid "== Стирание типов -> невозможность определить параметр типа в Runtime"
+msgstr ""
+
+#: lecture.adoc:416
+msgid ""
+"[plantuml, rawtype, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:418
+msgctxt "lecture.adoc:418"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:424
+msgid ""
+"class Pair {\n"
+"(raw type)\n"
+"---\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:426
+msgid "class \"Pair<String>\" {"
+msgstr ""
+
+#: lecture.adoc:428
+msgctxt "lecture.adoc:428"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:430
+msgid "class \"Pair<Manager>\" {"
+msgstr ""
+
+#: lecture.adoc:432
+msgctxt "lecture.adoc:432"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:436
+msgid "Pair <|-- \"Pair<String>\""
+msgstr ""
+
+#: lecture.adoc:438
+msgid "Pair <|-- \"Pair<Manager>\""
+msgstr ""
+
+#: lecture.adoc:441
+msgctxt "lecture.adoc:441"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:446
+msgid ""
+"[source,java]\n"
+"----\n"
+"//ошибка компиляции! не знаем мы в рантайме параметр типа!\n"
+"if (a instanceof Pair<String>) ..."
+msgstr ""
+
+#: lecture.adoc:450
+msgid ""
+"//вот так -- получится...\n"
+"if (a instanceof Pair<?>) ...\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:452
+msgid ""
+"== Стирание типов до Object -> невозможность использовать примитивные типы в "
+"качестве параметров"
+msgstr ""
+
+#: lecture.adoc:457
+msgid ""
+"[source,java]\n"
+"----\n"
+"//увы, невозможно!\n"
+"List<int>  integers = ... //ошибка компиляции!"
+msgstr ""
+
+#: lecture.adoc:464
+msgid ""
+"List<Integer> integers = ...\n"
+"integers.add(42); /*под капотом будет autoboxing:\n"
+"integers.add(Integer.valueOf(42);*/\n"
+"int v = integers.get(0); /*под капотом будет\n"
+"unboxing: v = integers.get(0).intValue();*/\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:466
+msgid "== Примитивы и дженерики"
+msgstr ""
+
+#: lecture.adoc:475
+msgid ""
+"* День сегодняшний: нужна производительность? -- пишем специальные "
+"реализации.\n"
+"** В стандартной библиотеке:  \n"
+"*** `Stream<Integer>` -> `IntStream`\n"
+"*** `Stream<Double>` -> `DoubleStream`.\n"
+"** В специализированных библиотеках вроде http://fastutil.di.unimi.it/"
+"[fastutil]: \n"
+"*** `ArrayList<Integer>` -> `IntArrayList`,\n"
+"*** `HashMap<Integer, V>` -> `Int2ObjectMap<V>` (ВНИМАНИЕ: реальная "
+"потребность в таких библиотеках возникает редко!!) \n"
+"* День завтрашний: Project Valhalla,  specialized generics. Решит проблему "
+"раз и навсегда."
+msgstr ""
+
+#: lecture.adoc:477
+msgid "== Нельзя инстанцировать типы-параметры"
+msgstr ""
+
+#: lecture.adoc:480
+msgid ""
+"[source,java]\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:482
+msgid "class Pair<T> {"
+msgstr ""
+
+#: lecture.adoc:488
+msgid ""
+"    T newValue {\n"
+"      return new T(); //увы, ошибка компиляции!\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:490
+msgid "== Решается с помощью метакласса и рефлексии (о которой речь впереди)"
+msgstr ""
+
+#: lecture.adoc:496
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Container<T> {\n"
+"  //bounded wildcard type, речь впереди\n"
+"  Class<? extends T> clazz;"
+msgstr ""
+
+#: lecture.adoc:500
+msgid ""
+"  Container(Class<? extends T> clazz) {\n"
+"    this.clazz = clazz;\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:506
+msgid ""
+"  T newInstance() throws ReflectiveOperationException {\n"
+"   //если нашёлся открытый конструктор без параметров!\n"
+"    return clazz.newInstance();\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:509
+msgid ""
+"Container<Employee> container1 = new Container<>(Employee.class);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:511
+msgid "== Тем более нельзя инстанцировать массив типа-параметра"
+msgstr ""
+
+#: lecture.adoc:519
+msgid ""
+"[source,java]\n"
+"----\n"
+"public T[] toArray(){\n"
+"    //Не скомпилируется\n"
+"    return new T[size];\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:521
+msgid "Решается передачей параметра, например, в ArrayList:"
+msgstr ""
+
+#: lecture.adoc:528
+msgid ""
+"[source,java]\n"
+"----\n"
+"/* Если массив достаточных размеров -- используем его,\n"
+"если недостаточных -- конструируем новый через рефлексию*/\n"
+"public <T> T[] toArray(T[] a)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:530
+msgid "== Массивы и дженерики -- лютые враги"
+msgstr ""
+
+#: lecture.adoc:538
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Не скомпилируется: Generic Array Creation.\n"
+"List<String>[] a = new ArrayList<String>[10];\n"
+"//...ведь такой массив не будет иметь \n"
+"//полную информацию о своих элементах!\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:544
+msgid ""
+"== Забьём значения кувалдой и устроим heap pollution\n"
+"[source,java]\n"
+"----\n"
+"List<String>[] a = (List<String>[])new List<?>[10];\n"
+"Object[] objArray = a;"
+msgstr ""
+
+#: lecture.adoc:546
+msgid "objArray[0] =  List.of(\"foo\");"
+msgstr ""
+
+#: lecture.adoc:548
+msgid "a[1] = List.of(new Manager()); //не скомпилируется!"
+msgstr ""
+
+#: lecture.adoc:550
+msgid "objArray[1] =  List.of(new Manager()); //скомпилируется и выполнится!"
+msgstr ""
+
+#: lecture.adoc:555
+msgid ""
+"//Runtime error: Manager cannot be cast to String\n"
+"String s = a[1].get(0);\n"
+"//...это и называется heap pollution.\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:557
+msgid "== Varargs -- всё равно массив..."
+msgstr ""
+
+#: lecture.adoc:568
+msgid ""
+"Тот же heap pollution, что и в прошлом примере:\n"
+"[source,java]\n"
+"----\n"
+"static void dangerous(List<String>... stringLists){\n"
+"  List<Integer> intList = List.of(42);\n"
+"  Object[] objects = stringLists;\n"
+"  objects[0] = intList;\n"
+"  //ClassCastException\n"
+"  String s = stringLists[0].get(0);\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:571
+msgid ""
+"dangerous(new ArrayList<>());\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:573
+msgid "== Компилятор что-то предчувствует..."
+msgstr ""
+
+#: lecture.adoc:575
+msgid "image::varargswarning.png[{image-100-width}]"
+msgstr ""
+
+#: lecture.adoc:584
+msgid ""
+"Чтобы успокоить компилятор, надо поставить аннотацию `@SafeVarargs`:\n"
+"[source,java]\n"
+"----\n"
+"/*Я даю честное слово, что не буду \n"
+"устраивать heap pollution!*/\n"
+"@SafeVarargs\n"
+"static void dangerous(List<String>... \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:586
+msgid "...и компилятор успокоится."
+msgstr ""
+
+#: lecture.adoc:588
+msgid "== Зачем?!"
+msgstr ""
+
+#: lecture.adoc:596
+msgid ""
+"* Всё потому, что иметь varargs с параметризованными типами удобно!..\n"
+"** `List.of(E... a)`\n"
+"** `Collections.addAll(Collection<? super T> c, T... elements)`\n"
+"** `EnumSet.of(E first, E... rest)`\n"
+"* Если вести себя хорошо, можно ставить @SafeVarargs, и всё будет хорошо:\n"
+"** Не записывать ничего в элементы массива,\n"
+"** Не раздавать ссылку на массив параметров наружу."
+msgstr ""
+
+#: lecture.adoc:598
+msgid "== Нельзя параметризовать"
+msgstr ""
+
+#: lecture.adoc:605
+msgid ""
+"* Исключения\n"
+"** ловля исключений -- это проверка их типов,\n"
+"** дальше сырых типов мы в рантайме проверить не можем.\n"
+"* Анонимные классы \n"
+"** Инстанцируется по месту, не может быть несколько классов, "
+"параметризованных по-разному.\n"
+"* Enum-ы."
+msgstr ""
+
+#: lecture.adoc:607
+msgid "== Параметры типов нельзя использовать в статическом контексте"
+msgstr ""
+
+#: lecture.adoc:614
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Container<T> {\n"
+"    private static T value; //не скомпилируется.\n"
+"    public static T getValue(); //не скомпилируется\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:619
+msgid ""
+"//Статический контекст ОДИН НА ВСЕХ\n"
+"Container<Foo>.getValue();\n"
+"Container<Bar>.getValue();\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:621
+msgid ""
+"== Нельзя реализовывать разные параметризации одного и того же интерфейса"
+msgstr ""
+
+#: lecture.adoc:652
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"^|*Source code*\n"
+"^|*Compiled*\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class Employee implements\n"
+"  Comparable<Employee>{\n"
+"  @Override\n"
+"  int compareTo(Employee e){\n"
+"    ...\n"
+"  }\n"
+"}\n"
+"class Manager \n"
+"  extends Employee\n"
+"  implements\n"
+"  Comparable<Manager> {\n"
+"  @Override\n"
+"  int compareTo(Manager m){\n"
+"    ...\n"
+"  }\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"class Manager \n"
+"  extends Employee\n"
+"  implements Comparable{"
+msgstr ""
+
+#: lecture.adoc:657
+msgid ""
+"  //bridge method for Employee\n"
+"  int compareTo(Object m) {\n"
+"    return compareTo((Manager) m); \n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:662
+msgid ""
+"  //bridge method for Manager\n"
+"  int compareTo(Object e) {\n"
+"    return compareTo((Employee) e); \n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:665
+msgid ""
+"  //CLASH!!!\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:668
+msgid ""
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:670
+msgid "== Ковариантность массивов vs инвариантность дженериков"
+msgstr ""
+
+#: lecture.adoc:674
+msgid ""
+"[plantuml, manemp, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:676
+msgctxt "lecture.adoc:676"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:678
+msgctxt "lecture.adoc:678"
+msgid "class Employee {"
+msgstr ""
+
+#: lecture.adoc:680
+msgctxt "lecture.adoc:680"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:682
+msgctxt "lecture.adoc:682"
+msgid "class Manager {"
+msgstr ""
+
+#: lecture.adoc:684
+msgctxt "lecture.adoc:684"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:686
+msgctxt "lecture.adoc:686"
+msgid "Employee <|- Manager"
+msgstr ""
+
+#: lecture.adoc:689
+msgctxt "lecture.adoc:689"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:692
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:694
+msgid "a|"
+msgstr ""
+
+#: lecture.adoc:698
+msgid ""
+"[plantuml, covariance, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:700
+msgctxt "lecture.adoc:700"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:703
+msgid ""
+"class \"Employee[]\" as E {\n"
+"} "
+msgstr ""
+
+#: lecture.adoc:705
+msgid ""
+"note \"Контроль типов\\n"
+"в рантайме\" as ArrayNote"
+msgstr ""
+
+#: lecture.adoc:707
+msgid "E .. ArrayNote"
+msgstr ""
+
+#: lecture.adoc:709
+msgid "class \"Manager[]\" as M {"
+msgstr ""
+
+#: lecture.adoc:711
+msgctxt "lecture.adoc:711"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:715
+msgid ""
+"E <\\|- M\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:728
+msgid ""
+"[source,java]\n"
+"----\n"
+"Manager[] managers = ...\n"
+"Employee lowlyEmployee = ...\n"
+"Employee[] e = managers;\n"
+"/*ArrayStoreException in runtime*/\n"
+"e[0] = lowlyEmployee;\n"
+"----\n"
+"a|\n"
+"[plantuml, invariance, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:730
+msgctxt "lecture.adoc:730"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:734
+msgid ""
+"class \"List<Employee>\"{\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:737
+msgid ""
+"class \"List<Manager>\"{ \n"
+"}"
+msgstr ""
+
+#: lecture.adoc:739
+msgid ""
+"note \"Не связаны\\n"
+"наследованием!\" as Note"
+msgstr ""
+
+#: lecture.adoc:744
+msgid ""
+"\"List<Employee>\" .. Note\n"
+"\"List<Manager>\" .. Note\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:753
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<Manager> managers = ...\n"
+"Employee lowlyEmployee = ...\n"
+"/*Тупо не скомпилируется*/\n"
+"List<Employee> e = managers;\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:756
+msgid "== Реальная картина "
+msgstr ""
+
+#: lecture.adoc:760
+msgid ""
+"[plantuml, realpicture, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:762
+msgid "skinparam dpi 170 "
+msgstr ""
+
+#: lecture.adoc:765
+msgid ""
+"class \"ArrayList<Employee>\"{\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:768
+msgid ""
+"class \"ArrayList<Manager>\"{ \n"
+"}"
+msgstr ""
+
+#: lecture.adoc:771
+msgid ""
+"class \"ArrayList\" {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:774
+msgid ""
+"interface \"List<Employee>\"{\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:777
+msgid ""
+"interface \"List<Manager>\"{ \n"
+"}"
+msgstr ""
+
+#: lecture.adoc:780
+msgid ""
+"interface \"List\"{\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:782
+msgid ""
+"note \"Сырые типы.\\n"
+"Использовать нельзя!\" as Note"
+msgstr ""
+
+#: lecture.adoc:789
+msgid ""
+"\"List<Employee>\" <|.. \"ArrayList<Employee>\"  \n"
+"\"List<Manager>\" <|.. \"ArrayList<Manager>\"  \n"
+"\"ArrayList\" <|-- \"ArrayList<Employee>\"  \n"
+"\"ArrayList\" <|-- \"ArrayList<Manager>\"  \n"
+"\"List\" <|-- \"List<Employee>\"\n"
+"\"List\" <|-- \"List<Manager>\""
+msgstr ""
+
+#: lecture.adoc:794
+msgid ""
+"Note.\"List\"\n"
+"Note..\"ArrayList\"\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:796
+msgid "== Как быть, если хочется такого?"
+msgstr ""
+
+#: lecture.adoc:800
+msgid ""
+"[plantuml, manempperson, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:802
+msgctxt "lecture.adoc:802"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:804
+msgid "class Person {"
+msgstr ""
+
+#: lecture.adoc:806
+msgctxt "lecture.adoc:806"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:808
+msgctxt "lecture.adoc:808"
+msgid "class Employee {"
+msgstr ""
+
+#: lecture.adoc:810
+msgctxt "lecture.adoc:810"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:812
+msgctxt "lecture.adoc:812"
+msgid "class Manager {"
+msgstr ""
+
+#: lecture.adoc:814
+msgctxt "lecture.adoc:814"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:816
+msgid "Person <|- Employee"
+msgstr ""
+
+#: lecture.adoc:818
+msgctxt "lecture.adoc:818"
+msgid "Employee <|- Manager"
+msgstr ""
+
+#: lecture.adoc:821
+msgctxt "lecture.adoc:821"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:826
+msgid ""
+"[source,java]\n"
+"----\n"
+"MyList<Manager> managers = ...\n"
+"MyList<Employee> employees = ..."
+msgstr ""
+
+#: lecture.adoc:830
+msgid ""
+"//Допустимые варианты, хотим чтоб компилировалось!\n"
+"employees.addAllFrom(managers);\n"
+"managers.addAllTo(employees);"
+msgstr ""
+
+#: lecture.adoc:834
+msgid ""
+"//Недопустимые варианты, не хотим чтоб компилировалось!\n"
+"managers.addAllFrom(employees);\n"
+"employees.addAllTo(managers);"
+msgstr ""
+
+#: lecture.adoc:836
+msgctxt "lecture.adoc:836"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:838
+msgid "== Так не получится..."
+msgstr ""
+
+#: lecture.adoc:852
+msgid ""
+"[source,java]\n"
+"----\n"
+"//можно переносить только одинаково типизированные списки\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    void add(E item) { ... }\n"
+"    void addAllFrom(MyList<E> list) {\n"
+"        for (E item : list) this.add(item);\n"
+"    }\n"
+"    void addAllTo(MyList<E> list) {\n"
+"        for (E item : this) list.add(item);\n"
+"    }\n"
+"  ...}\n"
+"MyList<Manager> managers = ...;  MyList<Employee> employees = ...;"
+msgstr ""
+
+#: lecture.adoc:855
+msgid ""
+"employees.addAllFrom(managers); managers.addAllTo(employees);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:857
+msgid "== Java Covariant Wildcard Types"
+msgstr ""
+
+#: lecture.adoc:861
+msgid ""
+"[plantuml, wildext, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:863
+msgctxt "lecture.adoc:863"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:866
+msgid ""
+"class \"MyList<? extends Employee>\" {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:869
+msgctxt "lecture.adoc:869"
+msgid "class \"MyList<Employee>\" {"
+msgstr ""
+
+#: lecture.adoc:871
+msgctxt "lecture.adoc:871"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:873
+msgid "class \"MyList<Manager>\" {"
+msgstr ""
+
+#: lecture.adoc:875
+msgctxt "lecture.adoc:875"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:877
+msgid "\"MyList<? extends Employee>\" <|-- \"MyList<Employee>\""
+msgstr ""
+
+#: lecture.adoc:879
+msgid "\"MyList<? extends Employee>\" <|-- \"MyList<Manager>\""
+msgstr ""
+
+#: lecture.adoc:882
+msgctxt "lecture.adoc:882"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:892
+msgid ""
+"[source,java]\n"
+"----\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    //для MyList<Employee> \"пролезет\" MyList<Manager>!!\n"
+"    void addAllFrom (MyList<? extends E> list){\n"
+"       for (E item: list) add(item); \n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:894
+msgid "== Что можно сделать с объектом, типизированным `? extends`?"
+msgstr ""
+
+#: lecture.adoc:898
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<? extends E> list = ..."
+msgstr ""
+
+#: lecture.adoc:901
+msgid ""
+"//это понятно\n"
+"E e1 = list.get(...);"
+msgstr ""
+
+#: lecture.adoc:908
+msgid ""
+"E e2 = ...;\n"
+"//не скомпилируется! ПОЧЕМУ??\n"
+"list.add(e2);\n"
+"//скомпилируется. ПОЧЕМУ??\n"
+"list.add(null); \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:910
+msgid "В общем, `addAllTo` реализовать не получится..."
+msgstr ""
+
+#: lecture.adoc:912
+msgid "== В обратную сторону (контравариантные типы)"
+msgstr ""
+
+#: lecture.adoc:916
+msgid ""
+"[plantuml, wildsup, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:918
+msgctxt "lecture.adoc:918"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:921
+msgid ""
+"class \"MyList<? super Employee>\" {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:924
+msgctxt "lecture.adoc:924"
+msgid "class \"MyList<Employee>\" {"
+msgstr ""
+
+#: lecture.adoc:926
+msgctxt "lecture.adoc:926"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:928
+msgid "class \"MyList<Person>\" {"
+msgstr ""
+
+#: lecture.adoc:930
+msgctxt "lecture.adoc:930"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:932
+msgid "\"MyList<? super Employee>\" <|-- \"MyList<Person>\""
+msgstr ""
+
+#: lecture.adoc:934
+msgid "\"MyList<? super Employee>\" <|-- \"MyList<Employee>\""
+msgstr ""
+
+#: lecture.adoc:937
+msgctxt "lecture.adoc:937"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:947
+msgid ""
+"[source,java]\n"
+"----\n"
+"class MyList<E> implements Iterable<E> {\n"
+"    //для MyList<Employee> \"пролезет\" MyList<Person>!!\n"
+"    void addAllTo (MyList<? super E> list) {\n"
+"       for (E item: this) list.add(item); \n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:949
+msgid "== Что можно сделать с объектом, типизированным `? super`?"
+msgstr ""
+
+#: lecture.adoc:953
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<? super E> list = ..."
+msgstr ""
+
+#: lecture.adoc:958
+msgid ""
+"E e1 = ...;\n"
+"//скомпилируется!\n"
+"list.add(e1);\n"
+"list.add(null);"
+msgstr ""
+
+#: lecture.adoc:962
+msgid ""
+"//Только Object. ПОЧЕМУ??\n"
+"Object e2 = list.get(...);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:964
+msgid "== Unbounded wildcard"
+msgstr ""
+
+#: lecture.adoc:968
+msgid ""
+"* `List<?>` -- это то же, что `List<? extends Object>`. (Вопрос: почему не `"
+"<? super Object>`?)\n"
+"* Брать элементы можем, но тип только `Object`.\n"
+"* Класть можем только null."
+msgstr ""
+
+#: lecture.adoc:970
+msgid "== Мнемоническое правило"
+msgstr ""
+
+#: lecture.adoc:972
+msgid "*PECS*"
+msgstr ""
+
+#: lecture.adoc:974
+msgid "*Producer Extends, Consumer Super*"
+msgstr ""
+
+#: lecture.adoc:979
+msgid ""
+"[source,java]\n"
+"----\n"
+"public static <T> T max (Collection<? extends T> coll,\n"
+"                         Comparator<? super T> comp)"
+msgstr ""
+
+#: lecture.adoc:981
+msgid "Collections.max(List<Integer>, Comparator<Number>)"
+msgstr ""
+
+#: lecture.adoc:984
+msgid ""
+"Collections.max(List<String>, Comparator<Object>)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:986
+msgid "== Правила использования wildcard-типов"
+msgstr ""
+
+#: lecture.adoc:991
+msgid ""
+"* Используются в аргументах методов и локальных переменных.\n"
+"* Невидимы пользователю API, не должны возвращаться.\n"
+"* Их цель -- принимать те аргументы, которые надо принимать, и отвергать те "
+"аргументы, которые надо отвергать.\n"
+"* Должны быть используемы в API, иначе API будет слишком «жёстким» и "
+"непригодным для использования."
+msgstr ""
+
+#: lecture.adoc:993
+msgid "== Wildcard Capture"
+msgstr ""
+
+#: lecture.adoc:1005
+msgid ""
+"[source,java]\n"
+"----\n"
+"public static void swap(Pair<?> p) {\n"
+"  Object f = p.getFirst();\n"
+"  Object s = p.getSecond();\n"
+"  //УУУППС!! \n"
+"  // (мы знаем, что они правильного типа, \n"
+"  //  но ничего не можем поделать)\n"
+"  p.setFirst(...);\n"
+"  p.setSecond(...);\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:1007
+msgctxt "lecture.adoc:1007"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:1009
+msgid "== Метод с type capture"
+msgstr ""
+
+#: lecture.adoc:1015
+msgid ""
+"[source,java]\n"
+"----\n"
+"public static void swap(Pair<?> p) {\n"
+"  swapHelper(p);\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:1022
+msgid ""
+"private static <T> void swapHelper(Pair<T> p) {\n"
+"  T f = p.getFirst();\n"
+"  p.setFirst(p.getSecond());\n"
+"  p.setSecond(f);\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1025
+msgid "== Recursive Generics"
+msgstr ""
+
+#: lecture.adoc:1035
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Holder<E, SELF extends Holder<E, SELF>>{\n"
+"    E value;\n"
+"    SELF setValue(E value){\n"
+"        this.value = value;\n"
+"        return (SELF) this;\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:1039
+msgid ""
+"class StringHolder extends Holder<String, StringHolder> {\n"
+"    void doSmth() {...};\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:1042
+msgid ""
+"new StringHolder().setValue(\"aaa\").doSmth();\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1044
+msgid "== Что почитать-посмотреть"
+msgstr ""
+
+#: lecture.adoc:1047
+msgid ""
+"* Полезное\n"
+"** J. Bloch, Effective Java, 3rd ed. Chapter 5 -- Generics. Addison-Wesley, "
+"2018"
+msgstr ""
+
+#: lecture.adoc:1049
+msgid ""
+"** https://www.youtube.com/watch?v=_0c9Fd9FacU[Александр Маторин — "
+"Неочевидные Дженерики. JPoint 2016]"
+msgstr ""
+
+#: lecture.adoc:1051
+msgid "* Дичь"
+msgstr ""
+
+#: lecture.adoc:1053
+msgid ""
+"** https://dev.to/rosstate/java-is-unsound-the-industry-perspective[Ross "
+"Tate. Java is Unsound: The Industry Perspective] (2017-01-24)."
+msgstr ""
+
+#: lecture.adoc:1055
+msgid ""
+"** https://habr.com/ru/post/330724/[Иван Бессонов. Тьюринг-полнота Generic "
+"типов Java] (2017-08-24, на базе публикации от ноября 2016)."
+msgstr ""
+
+#: lecture.adoc:1057
+msgid "== Nada Amin & Rose Tate's example"
+msgstr ""
+
+#: lecture.adoc:1078
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Unsound {\n"
+"  static class Constrain<A, B extends A> {}\n"
+"  static class Bind<A> {\n"
+"    <B extends A>\n"
+"    A upcast(Constrain<A,B> constrain, B b) {\n"
+"      return b;\n"
+"    }\n"
+"  }\n"
+"  static <T,U> U coerce(T t) {\n"
+"    Constrain<U,? super T> constrain = null;\n"
+"    Bind<U> bind = new Bind<U>();\n"
+"    return bind.upcast(constrain, t);\n"
+"  }\n"
+"  public static void main(String[] args) {\n"
+"    String zero = Unsound.<Integer,String>coerce(0);\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1080
+msgid "== Radu Grigore's Example"
+msgstr ""
+
+#: lecture.adoc:1084
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Sample {"
+msgstr ""
+
+#: lecture.adoc:1086
+msgid ""
+"  interface BadList<T> extends List<List<? super BadList<? super T>>> {}"
+msgstr ""
+
+#: lecture.adoc:1092
+msgid ""
+"  public static void main(String[] args) {\n"
+"    BadList<? super String> badList = null;\n"
+"    List<? super BadList<? super String>> list = badList;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""

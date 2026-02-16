@@ -1,0 +1,1869 @@
+#. extracted from lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-07 22:28+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.13.1\n"
+
+#: lecture.adoc:24
+msgid ""
+"= Core Java. Лекция 7: Collections, lambdas, method references\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900"
+msgstr ""
+
+#: lecture.adoc:27
+msgid ":!figure-caption:"
+msgstr ""
+
+#: lecture.adoc:29
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: lecture.adoc:31
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: lecture.adoc:34
+msgctxt "lecture.adoc:34"
+msgid ""
+"[%notitle]\n"
+"== Эпиграф"
+msgstr ""
+
+#: lecture.adoc:36
+msgid "image::tagir1.png[]"
+msgstr ""
+
+#: lecture.adoc:39
+msgctxt "lecture.adoc:39"
+msgid ""
+"[%notitle]\n"
+"== Эпиграф"
+msgstr ""
+
+#: lecture.adoc:41
+msgid "image::tagir2.png[]"
+msgstr ""
+
+#: lecture.adoc:44
+msgctxt "lecture.adoc:44"
+msgid ""
+"[%notitle]\n"
+"== Эпиграф"
+msgstr ""
+
+#: lecture.adoc:46
+msgid "image::tagir3.png[]"
+msgstr ""
+
+#: lecture.adoc:48
+msgid "== Коллекции: Разделение интерфейсов и реализаций"
+msgstr ""
+
+#: lecture.adoc:52
+msgid ""
+"[plantuml, colintf, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:54
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:66
+msgid ""
+"interface Map<K,V> {\n"
+"V get(Object key)\n"
+"V put(K key, V value)\n"
+"V remove(Object key)\n"
+"void clear()\n"
+"...\n"
+"--default methods--\n"
+"V getOrDefault(Object key, V defaultValue)\n"
+"default V putIfAbsent(K key, V value)\n"
+"...\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:75
+msgid ""
+"interface NavigableMap<K,V> {\n"
+"K lowerKey(K key);\n"
+"K floorKey(K key);\n"
+"K ceilingKey(K key);\n"
+"K higherKey(K key);\n"
+"--\n"
+"...\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:78
+msgid ""
+"class HashMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:81
+msgid ""
+"class LinkedHashMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:85
+msgid "class TreeMap<K,V> {"
+msgstr ""
+
+#: lecture.adoc:87
+msgctxt "lecture.adoc:87"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:90
+msgid ""
+"class IdentityHashMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:93
+msgid ""
+"class ConcurrentSkipListMap<K,V> {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:100
+msgid ""
+"Map <|.. TreeMap\n"
+"Map <|.. HashMap\n"
+"Map <|.. LinkedHashMap\n"
+"Map <|.. IdentityHashMap\n"
+"Map <|.. ConcurrentSkipListMap"
+msgstr ""
+
+#: lecture.adoc:102
+msgid "Map <|- NavigableMap"
+msgstr ""
+
+#: lecture.adoc:105
+msgid ""
+"NavigableMap <|.. TreeMap\n"
+"NavigableMap <|.. ConcurrentSkipListMap"
+msgstr ""
+
+#: lecture.adoc:108
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:110
+msgid "== Интерфейсы коллекций: потомки Collection"
+msgstr ""
+
+#: lecture.adoc:114
+msgid ""
+"[plantuml,intf-coll,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:116
+msgid "skinparam dpi 200"
+msgstr ""
+
+#: lecture.adoc:118
+msgid "left to right direction"
+msgstr ""
+
+#: lecture.adoc:135
+msgid ""
+"interface Iterable {\n"
+"   Iterator<T> iterator()\n"
+"}\n"
+"interface Collection {\n"
+"   int size()\n"
+"   boolean isEmpty()\n"
+"   boolean contains(Object o)\n"
+"   <T> T[] toArray(T[] a)\n"
+"   boolean add(E e)\n"
+"   boolean remove(Object o)\n"
+"}\n"
+"interface List {\n"
+"   E get(int index)\n"
+"   E set(int index, E element)\n"
+"   void add(int index, E element)\n"
+"   E remove(int index)"
+msgstr ""
+
+#: lecture.adoc:152
+msgid ""
+"}\n"
+"interface Set\n"
+"interface SortedSet {\n"
+"   subSet(E fromElement, E toElement)\n"
+"   headSet(E toElement)\n"
+"   tailSet(E fromElement)\n"
+"   first()\n"
+"   last()\n"
+"}\n"
+"interface NavigableSet {\n"
+"   E lower(E e)\n"
+"   E floor(E e)\n"
+"   E ceiling(E e)\n"
+"   E higher(E e)\n"
+"}\n"
+"interface Queue {"
+msgstr ""
+
+#: lecture.adoc:154
+msgctxt "lecture.adoc:154"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:165
+msgid ""
+"interface Deque {\n"
+"  void addFirst/Last(E e)\n"
+"  boolean offerFirst/Last(E e)\n"
+"  E removeFirst/Last()\n"
+"  E pollFirst/Last()\n"
+"  E getFirst/Last()\n"
+"  E peekFirst/Last()\n"
+"  void push(E e) = addFirst\n"
+"  E pop() = removeFirst\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:175
+msgid ""
+"Iterable <|.. Collection\n"
+"Collection <|.. List\n"
+"Collection <|.. Set\n"
+"Set <|.. SortedSet\n"
+"SortedSet <|.. NavigableSet\n"
+"Collection <|.. Queue\n"
+"Queue <|.. Deque\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:180
+msgid ""
+"== Iterable: интерфейс, умеющий участвовать в for loop\n"
+"[plantuml,iterable,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:182
+msgid "skinparam dpi 160"
+msgstr ""
+
+#: lecture.adoc:186
+msgid ""
+"interface Iterable<T> {\n"
+"    Iterator<T> iterator()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:192
+msgid ""
+"interface Iterator<E> {\n"
+"  boolean hasNext()\n"
+"  E next()\n"
+"  default void remove()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:196
+msgid ""
+"Iterable . Iterator\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:223
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Iterable<T> collection = ...\n"
+"for (T e: collection) {\n"
+"  ...\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Iterable<T> collection = ...\n"
+"Iterator<T> i = collection.iterator();\n"
+"while (i.hasNext()) {\n"
+"  T e = i.next();\n"
+"  if (e...)\n"
+"    i.remove();\n"
+"}\n"
+"----\n"
+"|===\n"
+"== ListIterator: расширение для List\n"
+"[plantuml,listiter,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:225
+msgctxt "lecture.adoc:225"
+msgid "skinparam dpi 220"
+msgstr ""
+
+#: lecture.adoc:229
+msgid ""
+"interface List<E> {\n"
+"  ListIterator<E> listIterator()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:232
+msgid ""
+"interface Iterator<E> {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:241
+msgid ""
+"interface ListIterator<E> {\n"
+"  boolean hasPrevious()\n"
+"  E previous()\n"
+"  int nextIndex()\n"
+"  int previousIndex()\n"
+"  void set(E e)\n"
+"  void add(E e)\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:247
+msgid ""
+"List .L ListIterator\n"
+"Iterator <|. ListIterator\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:249
+msgid "== Интерфейсы коллекций: потомки Map"
+msgstr ""
+
+#: lecture.adoc:253
+msgid ""
+"[plantuml,intf-map,png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:255
+msgctxt "lecture.adoc:255"
+msgid "skinparam dpi 220"
+msgstr ""
+
+#: lecture.adoc:259
+msgid ""
+"interface Map {\n"
+"  Set<K> keySet()\n"
+"  Set<Map.Entry<K, V>> entrySet()"
+msgstr ""
+
+#: lecture.adoc:261
+msgctxt "lecture.adoc:261"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:264
+msgid ""
+"interface SortedMap {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:267
+msgid ""
+"interface NavigableMap {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:272
+msgid ""
+"Map <|. SortedMap\n"
+"SortedMap <|. NavigableMap\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:284
+msgid ""
+"==  Comparable и Comparator\n"
+"[source,java]\n"
+"----\n"
+"public interface Comparable<T>{\n"
+"/**\n"
+" * @param  o the object to be compared.\n"
+" * @return a negative integer, zero, or a positive integer as this object\n"
+" *         is less than, equal to, or greater than the specified object.\n"
+" */\n"
+" int compareTo(T o);\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:291
+msgid ""
+"/*Применяется в случае, если сравниваемые объекты \n"
+"не реализуют Comparable*/\n"
+"public interface Comparator<T> {\n"
+"  int compare(T o1, T o2);\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:293
+msgid "== Промежуточные итоги"
+msgstr ""
+
+#: lecture.adoc:295
+msgid ""
+"* Используйте _интерфейсы_ для типов переменных и аргументов в методах. Не "
+"привязывайтесь к конкретным реализациям."
+msgstr ""
+
+#: lecture.adoc:297
+msgid ""
+"* Помимо возможности подмены реализаций, существуют суррогатные коллекции, "
+"например, важные частные случаи:"
+msgstr ""
+
+#: lecture.adoc:306
+msgid ""
+"[source,java]\n"
+"----\n"
+"//ИММУТАБЕЛЬНЫЕ\n"
+"//Пустые                   //Из одного элемента\n"
+"Collections.emptyList();   Collections.singletonList(o);\n"
+"Collections.emptySet();    Collections.singleton(o);\n"
+"Collections.emptyMap();    Collections.singletonMap(k,v);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:308
+msgid "== Иммутабельные коллекции по заданным элементам"
+msgstr ""
+
+#: lecture.adoc:316
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Из заданных элементов\n"
+"List.of(a, b, c...);\n"
+"Set.of(a, b, c...);\n"
+"Map.of(k1, v1, k2, v2...);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:319
+msgid ""
+"[.fragment]\n"
+"_Но как они это сделали для мапы?_"
+msgstr ""
+
+#: lecture.adoc:323
+msgid "== Суррогатные коллекции: защита (частичная) при публикации объекта"
+msgstr ""
+
+#: lecture.adoc:332
+msgid ""
+"[source,java]\n"
+"----\n"
+"Collections.unmodifiableList(List<? extends T> l);\n"
+"Collections.unmodifiableSet(Set<? extends T> s);\n"
+"Collections.unmodifiableMap(Map<? extends K,\n"
+"                                ? extends V> s);\n"
+"...\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:334
+msgid ""
+"В классе `Collections` (как и в классе `Arrays`) вообще очень много всего "
+"полезного!"
+msgstr ""
+
+#: lecture.adoc:336
+msgid "== Его Величество ArrayList"
+msgstr ""
+
+#: lecture.adoc:342
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<String> list = new ArrayList<>();\n"
+"list.add(\"foo\"); list.add(\"bar\"); list.add(\"baz\");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:353
+msgid ""
+"[graphviz, \"arraylist-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"graph [ dpi = 180 ];\n"
+"n356573597[label=\"ArrayList|{size: 3}\",shape=record];\n"
+"n356573597 -> n325040804[label=\"elementData\",fontsize=12];\n"
+"n325040804[shape=record, label=\"foo|bar|baz|null|null|null|null|null|null|"
+"null\"];\n"
+"}\n"
+"-----\n"
+"(Визуализация внутреннего устройства структур данных сделана с помощью "
+"https://www.cs.auckland.ac.nz/~j-hamer/index.html#LJV[Lightweight Java "
+"Visualizer].) "
+msgstr ""
+
+#: lecture.adoc:361
+msgid ""
+"== Свойства `ArrayList`\n"
+"* `get(int index)` is *O(1)*  <- *main benefit of `ArrayList<E>`*\n"
+"* `add(E element)` is *O(1)* amortized, but *O(n)* worst-case since the "
+"array must be resized and copied\n"
+"* `add(int index, E element)` is *O(n)* (with *n/2* steps on average)\n"
+"* `remove(int index)` is *O(n)* (with *n/2* steps on average)\n"
+"* `Iterator.remove()` is *O(n)* (with *n/2* steps on average)\n"
+"* `ListIterator.add(E element)` is *O(n)* (with *n/2* steps on average)"
+msgstr ""
+
+#: lecture.adoc:363
+msgid "== LinkedList"
+msgstr ""
+
+#: lecture.adoc:369
+msgid ""
+"[source,java]\n"
+"----\n"
+"List<String> list = new LinkedList<>();\n"
+"list.add(\"foo\"); list.add(\"bar\"); list.add(\"baz\");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:387
+msgid ""
+"[graphviz, \"linkedlist-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"    rankdir=\"LR\";\n"
+"    graph [ dpi = 150 ];\n"
+"n356573597[label=\"LinkedList|{size: 3}\",shape=record];\n"
+"n356573597 -> n1173230247[label=\"first\",fontsize=12];\n"
+"n1173230247[label=\"Node|{item: foo|prev: null}\",shape=record];\n"
+"n1173230247 -> n856419764[label=\"next\",fontsize=12];\n"
+"n856419764[label=\"Node|{item: bar}\",shape=record];\n"
+"n856419764 -> n621009875[label=\"next\",fontsize=12];\n"
+"n621009875[label=\"Node|{item: baz|next: null}\",shape=record];\n"
+"n621009875 -> n856419764[label=\"prev\",fontsize=12];\n"
+"n856419764 -> n1173230247[label=\"prev\",fontsize=12];\n"
+"n356573597 -> n621009875[label=\"last\",fontsize=12];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:389
+msgid "== Свойства `LinkedList`"
+msgstr ""
+
+#: lecture.adoc:398
+msgid ""
+"* Implements `List` and `Deque`\n"
+"* `get(int index)` is *O(n)* (with *n/4* steps on average)\n"
+"* `add(E element)` is *O(1)*\n"
+"* `add(int index, E element)` is *O(n)* (with *n/4* steps on average),\n"
+"but *O(1)* when `index = 0`  <- *main benefit of `LinkedList<E>`*\n"
+"* `remove(int index)` is *O(n)* (with *n/4* steps on average)\n"
+"* `Iterator.remove()` is *O(1)* <- *main benefit of `LinkedList<E>`*\n"
+"* `ListIterator.add(E element)` is *O(1)*  This is one of the main benefits "
+"of `LinkedList<E>`"
+msgstr ""
+
+#: lecture.adoc:400
+msgid "== Does anyone use LinkedList?"
+msgstr ""
+
+#: lecture.adoc:402
+msgid "image::blochonlinkedlist.png[{image-70-width}]"
+msgstr ""
+
+#: lecture.adoc:404
+msgid "== А если всё-таки нужен Deque?"
+msgstr ""
+
+#: lecture.adoc:408
+msgid ""
+"* `ArrayDeque`\n"
+"* Circular array\n"
+"* Более быстрый, чем `LinkedList`."
+msgstr ""
+
+#: lecture.adoc:418
+msgid ""
+"[graphviz, \"arraydeque-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"graph [ dpi = 180 ];\n"
+"n356573597[label=\"ArrayDeque|{head: 0|tail: 3}\",shape=record];\n"
+"n356573597 -> n325040804[label=\"elements\",fontsize=12];\n"
+"n325040804[shape=record, label=\"foo"
+"|bar|baz|null|null|null|null|null|null|null|null|null|null|null|null|null\"];"
+"\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:420
+msgid "== PriorityQueue"
+msgstr ""
+
+#: lecture.adoc:423
+msgid ""
+"* Постановка в очередь с сортировкой по приоритету за счёт `Comparable` или "
+"`Comparator`.\n"
+"* Balanced binary heap: \"the two children of `queue[n]` are `queue[2*n+1]` "
+"and `queue[2*n+2]` \""
+msgstr ""
+
+#: lecture.adoc:429
+msgid ""
+"[source,java]\n"
+"----\n"
+"PriorityQueue<String> q = new PriorityQueue<>();\n"
+"q.add(\"foo\"); q.add(\"bar\"); q.add(\"baz\");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:439
+msgid ""
+"[graphviz, \"priority-inside.png\"]\n"
+"-----\n"
+"digraph Java {\n"
+"graph [ dpi = 180 ];\n"
+"n1735600054[label=\"PriorityQueue|{size: 3}\",shape=record];\n"
+"n1735600054 -> n856419764[label=\"queue\",fontsize=12];\n"
+"n856419764[shape=record, label=\"bar"
+"|foo|baz|null|null|null|null|null|null|null|null\"];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:441
+msgid "[%notitle]"
+msgstr ""
+
+#: lecture.adoc:443
+msgid "== Выводы"
+msgstr ""
+
+#: lecture.adoc:449
+msgid ""
+"* Теоретическая асимптотика не полностью описывает пригодность той или иной "
+"структуры данных: вмешивается ряд обстоятельств, таких как \n"
+"** частные «удачные» случаи и частота их использования,\n"
+"** эффективность использования кэша,\n"
+"** количество производимого «мусора» \n"
+"** и т. п."
+msgstr ""
+
+#: lecture.adoc:451
+msgid ""
+"* `ArrayList` и `ArrayDeque` являются предпочтительным выбором реализации "
+"`List` и `Deque` в подавляющем большинстве случаев."
+msgstr ""
+
+#: lecture.adoc:453
+msgid "== Его Величество HashMap"
+msgstr ""
+
+#: lecture.adoc:459
+msgid ""
+"[source,java]\n"
+"----\n"
+"Map<String, Integer> map = new HashMap<>();\n"
+"map.put(\"foo\", 1); map.put(\"bar\", 2); map.put(\"baz\", 3);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:473
+msgid ""
+"[graphviz, \"hm-nocollisions.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"n1735600054[label=\"HashMap|{entrySet: null|size: 3|threshold: 12|loadFactor:"
+" 0.75|keySet: null|values: null}\",shape=record];\n"
+"n1735600054 -> n1265094477[label=\"table\",fontsize=12];\n"
+"n1265094477[label=\"<f0>|<f1>|<f2>|<f3>|<f4>|<f5>|<f6>|<f7>|<f8>|<f9>|<f10>|<"
+"f11>|<f12>|<f13>|<f14>|<f15>\",shape=record];\n"
+"n1265094477:f2 -> n1554874502[label=\"2\",fontsize=12];\n"
+"n1554874502[label=\"Node|{hash: 97298|key: bar|value: 2|next: null}\""
+",shape=record];\n"
+"n1265094477:f7 -> n1846274136[label=\"7\",fontsize=12];\n"
+"n1846274136[label=\"Node|{hash: 101575|key: foo|value: 1|next: null}\""
+",shape=record];\n"
+"n1265094477:f10 -> n1639705018[label=\"10\",fontsize=12];\n"
+"n1639705018[label=\"Node|{hash: 97306|key: baz|value: 3|next: null}\""
+",shape=record];\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:475
+msgctxt "lecture.adoc:475"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:477
+msgid "== Коллизии хэша"
+msgstr ""
+
+#: lecture.adoc:481
+msgctxt "lecture.adoc:481"
+msgid ""
+"[cols=\"60a,40a\"]\n"
+"|===\n"
+"^|"
+msgstr ""
+
+#: lecture.adoc:506
+msgid ""
+"[graphviz, \"hm-collisions.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"n1735600054[label=\"HashMap\\|{entrySet: null\\|size: 3\\|threshold: 12\\"
+"|loadFactor: 0.75\\|keySet: null\\|values: null}\",shape=record];\n"
+"n1735600054 -> n1265094477[label=\"table\",fontsize=12];\n"
+"n1265094477[label=\"<f0>\\|<f1>\\|<f2>\\|<f3>\\|<f4>\\|<f5>\\|<f6>\\|<f7>\\"
+"|<f8>\\|<f9>\\|<f10>\\|<f11>\\|<f12>\\|<f13>\\|<f14>\\|<f15>\",shape=record];"
+"\n"
+"n1265094477:f0 -> n1554874502[label=\"0\",fontsize=12];\n"
+"n1554874502[label=\"Node\\|{hash: 2112\\|key: Aa\\|value: 2}\",shape=record];"
+"\n"
+"n1554874502 -> n1846274136[label=\"next\",fontsize=12];\n"
+"n1846274136[label=\"Node\\|{hash: 2112\\|key: BB\\|value: 3\\|next: null}\""
+",shape=record];\n"
+"n1265094477:f7 -> n1639705018[label=\"7\",fontsize=12];\n"
+"n1639705018[label=\"Node\\|{hash: 101575\\|key: foo\\|value: 1\\|next: null}"
+"\",shape=record];\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Map<String, \n"
+"  Integer> map \n"
+"  = new HashMap<>();\n"
+"map.put(\"foo\", 1);\n"
+"map.put(\"Aa\", 2);\n"
+"map.put(\"BB\", 3);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:510
+msgid ""
+"* При большом кол-ве коллизий на одной ячейке, если значение реализует "
+"`Comparable`, связный список заменяется на дерево.\n"
+"* Реализуйте `Comparable`!!\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:512
+msgid "== LinkedHashMap"
+msgstr ""
+
+#: lecture.adoc:516
+msgctxt "lecture.adoc:516"
+msgid ""
+"[cols=\"60a,40a\"]\n"
+"|===\n"
+"^|"
+msgstr ""
+
+#: lecture.adoc:550
+msgid ""
+"[graphviz, \"hm-lhm.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"n1735600054[label=\"LinkedHashMap\\|{size: 3\\|threshold: 12\\|loadFactor: 0."
+"75}\",shape=record];\n"
+"n1735600054 -> n1554874502[label=\"head\",fontsize=12];\n"
+"n1554874502[label=\"Entry\\|{before: null\\|key: foo\\|value: 1\\|next: null}"
+"\",shape=record];\n"
+"n1554874502 -> n1846274136[label=\"after\",fontsize=12];\n"
+"n1846274136[label=\"Entry\\|{key: bar\\|value: 2\\|next: null}\""
+",shape=record];\n"
+"n1846274136 -> n1554874502[label=\"before\",fontsize=12];\n"
+"n1846274136 -> n1639705018[label=\"after\",fontsize=12];\n"
+"n1639705018[label=\"Entry\\|{after: null\\|key: baz\\|value: 3\\|next: null}"
+"\",shape=record];\n"
+"n1639705018 -> n1846274136[label=\"before\",fontsize=12];\n"
+"n1735600054 -> n1639705018[label=\"tail\",fontsize=12];\n"
+"n1735600054 -> n1627674070[label=\"table\",fontsize=12];\n"
+"n1627674070[label=\"<f0>\\|<f1>\\|<f2>\\|<f3>\\|<f4>\\|<f5>\\|<f6>\\|<f7>\\"
+"|<f8>\\|<f9>\\|<f10>\\|<f11>\\|<f12>\\|<f13>\\|<f14>\\|<f15>\",shape=record];"
+"\n"
+"n1627674070:f2 -> n1846274136[label=\"2\",fontsize=12];\n"
+"n1627674070:f7 -> n1554874502[label=\"7\",fontsize=12];\n"
+"n1627674070:f10 -> n1639705018[label=\"10\",fontsize=12];\n"
+"}\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Map<String, \n"
+"  Integer> map =  \n"
+"  new LinkedHashMap<>();\n"
+"map.put(\"foo\", 1); \n"
+"map.put(\"bar\", 2); \n"
+"map.put(\"baz\", 3);\n"
+"----\n"
+"* Помнит порядок вставки элементов.\n"
+"* Хорош для LRU-кэширования.\n"
+"* Хорош для хранения настроек вида «ключ-значение», задаваемых текстом."
+msgstr ""
+
+#: lecture.adoc:552
+msgid "|==="
+msgstr ""
+
+#: lecture.adoc:554
+msgid "== Ещё вариации на тему хэш-таблицы"
+msgstr ""
+
+#: lecture.adoc:557
+msgid ""
+"* `IdentityHashMap` -- ключи сравниваются по `==`, а не по `equals()`.\n"
+"* `WeakHashMap` -- значения могут быть собраны сборщиком мусора, если не "
+"используются где-то ещё."
+msgstr ""
+
+#: lecture.adoc:559
+msgid "== TreeMap"
+msgstr ""
+
+#: lecture.adoc:563
+msgctxt "lecture.adoc:563"
+msgid ""
+"[cols=\"60a,40a\"]\n"
+"|===\n"
+"^|"
+msgstr ""
+
+#: lecture.adoc:578
+msgid ""
+"[graphviz, \"tm.png\"]\n"
+"----\n"
+"digraph Java {\n"
+"graph [ dpi = 100 ];\n"
+"n1735600054[label=\"TreeMap\\|{size: 3}\",shape=record];\n"
+"n1735600054 -> n1846274136[label=\"root\",fontsize=12];\n"
+"n1846274136[label=\"Entry\\|{key: baz\\|value: 3\\|parent: null\\|color: "
+"true}\",shape=record];\n"
+"n1846274136 -> n1627674070[label=\"left\",fontsize=12];\n"
+"n1627674070[label=\"Entry\\|{key: bar\\|value: 2\\|left: null\\|right: null\\"
+"|color: false}\",shape=record];\n"
+"n1627674070 -> n1846274136[label=\"parent\",fontsize=12];\n"
+"n1846274136 -> n1360875712[label=\"right\",fontsize=12];\n"
+"n1360875712[label=\"Entry\\|{key: foo\\|value: 1\\|left: null\\|right: null\\"
+"|color: false}\",shape=record];\n"
+"n1360875712 -> n1846274136[label=\"parent\",fontsize=12];\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:594
+msgid ""
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Map<String, \n"
+"  Integer> map =  \n"
+"  new TreeMap<>();\n"
+"map.put(\"foo\", 1); \n"
+"map.put(\"bar\", 2); \n"
+"map.put(\"baz\", 3);\n"
+"----\n"
+"* Красно-чёрное дерево, ключи сравниваются по `Comparable` или `Comparator`."
+"\n"
+"* Как обычный `Map` уступает `HashMap`-у,\n"
+"* Незаменим в ситуациях, когда ключ известен только приблизительно.\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:596
+msgid "== Множества (Sets)"
+msgstr ""
+
+#: lecture.adoc:602
+msgid ""
+"* Коллекции, в которых объект может присутствовать только один раз.\n"
+"* Реализованы на базе соответствующих Maps:\n"
+"** `HashSet`, \n"
+"** `LinkedHashSet`, \n"
+"** `TreeSet`."
+msgstr ""
+
+#: lecture.adoc:608
+msgid ""
+"[source,java]\n"
+"----\n"
+"private transient HashMap<E,Object> map;\n"
+"// Dummy value to associate with an Object in the backing Map\n"
+"private static final Object PRESENT = new Object();"
+msgstr ""
+
+#: lecture.adoc:613
+msgid ""
+"public boolean add(E e) {\n"
+"    return map.put(e, PRESENT)==null;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:615
+msgid "== Множества на основе битовых масок"
+msgstr ""
+
+#: lecture.adoc:618
+msgid ""
+"* `EnumSet` -- на базе единственного значения типа `long`. _Используйте "
+"только его для enum-ов!_\n"
+"* `BitSet` -- массив long-ов."
+msgstr ""
+
+#: lecture.adoc:620
+msgid "== Алгоритмы: сортировка и перемешивание"
+msgstr ""
+
+#: lecture.adoc:629
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"/*Реализует Comparable*/\n"
+"List<String> names = ...\n"
+"Collections.sort(names);"
+msgstr ""
+
+#: lecture.adoc:635
+msgid ""
+"/*Предлагаем Comparator*/\n"
+"List<Employee> staff = ...\n"
+"Collections.sort(staff,\n"
+"  Comparator.comparingLong(\n"
+"    Employee::getSalary));"
+msgstr ""
+
+#: lecture.adoc:646
+msgid ""
+"/*Иногда надо перемешать*/\n"
+"List<Card> cards = ...\n"
+"Collections.shuffle(cards);\n"
+"---- \n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"/*Реализует Comparable*/\n"
+"String[] names = ...\n"
+"Arrays.sort(names);"
+msgstr ""
+
+#: lecture.adoc:652
+msgid ""
+"/*Предлагаем Comparator*/\n"
+"Employee[] staff = ...\n"
+"Arrays.sort(staff,\n"
+"  Comparator.comparingLong(\n"
+"    Employee::getSalary));"
+msgstr ""
+
+#: lecture.adoc:656
+msgid ""
+"/*Arrays.shuffle отсутствует!*/\n"
+"---- \n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:658
+msgid "== Алгоритмы: бинарный поиск"
+msgstr ""
+
+#: lecture.adoc:665
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"List<Employee> staff = ..."
+msgstr ""
+
+#: lecture.adoc:669
+msgid ""
+"Collections.sort(staff,\n"
+"  Comparator.comparing(\n"
+"    Employee::getName));"
+msgstr ""
+
+#: lecture.adoc:671
+msgctxt "lecture.adoc:671"
+msgid "Employee p = ..."
+msgstr ""
+
+#: lecture.adoc:682
+msgid ""
+"int i = \n"
+"  Collections.binarySearch(\n"
+"    staff, p,\n"
+"    Comparator.comparing(\n"
+"      Employee::getName));\n"
+"---- \n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Employee[] staff = ..."
+msgstr ""
+
+#: lecture.adoc:686
+msgid ""
+"Arrays.sort(staff,\n"
+"  Comparator.comparing(\n"
+"    Employee::getName));"
+msgstr ""
+
+#: lecture.adoc:688
+msgctxt "lecture.adoc:688"
+msgid "Employee p = ..."
+msgstr ""
+
+#: lecture.adoc:696
+msgid ""
+"int i = \n"
+"  Arrays.binarySearch(\n"
+"    staff, p,\n"
+"    Comparator.comparing(\n"
+"      Employee::getName));\n"
+"---- \n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:698
+msgid "== Также уже реализованы"
+msgstr ""
+
+#: lecture.adoc:704
+msgid ""
+"* поиск min/max\n"
+"* копирование \n"
+"* разворачивание «задом наперёд»\n"
+"* объединение и разность\n"
+"* ... -- ищите и найдёте!"
+msgstr ""
+
+#: lecture.adoc:707
+msgid "== Callbacks: До появления лямбд"
+msgstr ""
+
+#: lecture.adoc:713
+msgid ""
+"[source,java]\n"
+"----\n"
+"public interface ActionListener {\n"
+"  void actionPerformed(ActionEvent event);\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:723
+msgid ""
+"// ----использование----\n"
+"String text = ...\n"
+"new Timer(1000, new ActionListener(){\n"
+"  @Override\n"
+"  public void actionPerformed(ActionEvent e) {\n"
+"    ... //'text' var is available here\n"
+"    }\n"
+"  });\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:725
+msgid "== Callbacks: Comparator"
+msgstr ""
+
+#: lecture.adoc:729
+msgid ""
+"[source,java]\n"
+"----\n"
+"String[] friends = {\"Peter\", \"Paul\", \"Mary\"};"
+msgstr ""
+
+#: lecture.adoc:738
+msgid ""
+"Arrays.sort(friends,\n"
+"  new Comparator<String>() {\n"
+"    @Override\n"
+"    public int compare(String o1, String o2) {\n"
+"      return o1.length() - o2.length();\n"
+"  }\n"
+"});\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:740
+msgid "== Предикат"
+msgstr ""
+
+#: lecture.adoc:751
+msgid ""
+"[source,java]\n"
+"----\n"
+"File[] hiddenFiles = new File(\".\").listFiles(\n"
+"  new FileFilter() {\n"
+"    public boolean accept(File file) {\n"
+"      return file.isHidden();\n"
+"    }\n"
+"  }\n"
+");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:754
+msgid "== Welcome lambda expressions!"
+msgstr ""
+
+#: lecture.adoc:760
+msgid ""
+"[source,java]\n"
+"----\n"
+"//single-line\n"
+"(String first, String second) -> \n"
+"  first.length() - second.length()"
+msgstr ""
+
+#: lecture.adoc:767
+msgid ""
+"//multi-line with int return\n"
+"(String first, String second) -> {\n"
+"  if (first.length() < second.length()) return -1;\n"
+"  else if (first.length() > second.length()) return 1;\n"
+"  else return 0;\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:771
+msgid ""
+"//no-arg, void return\n"
+"() -> System.out.println(\"Hello!\");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:773
+msgid "== Что из этого -- валидные лямбда-выражения?"
+msgstr ""
+
+#: lecture.adoc:779
+msgid ""
+"1. `() -> {}`\n"
+"2. `() -> \"Raoul\"`\n"
+"3. `() -> {return \"Mario\";}`\n"
+"4. `(Integer i) -> return \"Alan\" + i`\n"
+"5. `(String s) -> {\"Iron Man\"}`"
+msgstr ""
+
+#: lecture.adoc:782
+msgid ""
+"[.fragment]\n"
+"Ответ: 1-3. Если лямбда с фигурными скобками, обязательно нужен return. Если "
+"без них, то return не нужен!"
+msgstr ""
+
+#: lecture.adoc:784
+msgid "== Чему можно присваивать лямбды?"
+msgstr ""
+
+#: lecture.adoc:788
+msgid ""
+"* Функциональный интерфейс -- такой, у которого не более одного абстрактного "
+"метода (понятно, что запускать).\n"
+"* Может быть помечен аннотацией `@FunctionalInterface`, хотя это не "
+"обязательно.\n"
+"* Если метод интерфейса подходит по параметрам и возвращаемому значению "
+"лямбды -- welcome."
+msgstr ""
+
+#: lecture.adoc:796
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Типы аргументов лямбд указывать не надо: type inference!\n"
+"ActionListener = e -> {...}\n"
+"Comparator<String> c = (s1, s2) -> s1.length() - s2.length();\n"
+"----\n"
+"== Void-compatibility "
+msgstr ""
+
+#: lecture.adoc:798
+msgid "Оба варианта скомпилируются:"
+msgstr ""
+
+#: lecture.adoc:802
+msgid ""
+"[source,java]\n"
+"----\n"
+"final List<String> list = ..."
+msgstr ""
+
+#: lecture.adoc:805
+msgid ""
+"//Predicate.test возвращает boolean\n"
+"Predicate<String> p = s -> list.add(s);"
+msgstr ""
+
+#: lecture.adoc:809
+msgid ""
+"//Consumer.accept возвращает void!\n"
+"Consumer<String> c = s -> list.add(s);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:811
+msgid "== Object -- не функциональный интерфейс!"
+msgstr ""
+
+#: lecture.adoc:816
+msgid ""
+"[source,java]\n"
+"----\n"
+"//не скомпилируется\n"
+"Object o = ()->{};"
+msgstr ""
+
+#: lecture.adoc:819
+msgid ""
+"//Скомпилируется!\n"
+"Runnable r = ()->{};"
+msgstr ""
+
+#: lecture.adoc:823
+msgid ""
+"//Тоже скомпилируется\n"
+"Object o = (Runnable) ()->{};\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:865
+msgid ""
+"== В итоге имеем\n"
+"[cols=\"55a,45a\"]\n"
+"|===\n"
+"^| *Anonymous Class*\n"
+"^| *Lambda*\n"
+"|\n"
+"[source,java]\n"
+"-----\n"
+"new Timer(100, new ActionListener(){\n"
+" @Override\n"
+" public void \n"
+"   actionPerformed(ActionEvent e) {\n"
+"     ...\n"
+"   }\n"
+"});\n"
+"-----\n"
+"|\n"
+"[source,java]\n"
+"-----\n"
+"new Timer(100, e -> {...});\n"
+"-----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"Arrays.sort(friends,\n"
+" new Comparator<String>() {\n"
+"   @Override\n"
+"   public int compare(\n"
+"     String o1, String o2) {\n"
+"    return o1.length()-o2.length();\n"
+" }\n"
+"});\n"
+"----\n"
+"| \n"
+"[source,java]\n"
+"----\n"
+"Arrays.sort(friends, (s1, s2)-> \n"
+"  s1.length() - s2.length());\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:867
+msgid "== Замыкания (closures)"
+msgstr ""
+
+#: lecture.adoc:876
+msgid ""
+"[source,java]\n"
+"----\n"
+"void repeatMessage(String text, int delay) {\n"
+"  ActionListener  listener = event -> {\n"
+"    //переменная text доступна внутри лямбды!\n"
+"    System.out.println(text);\n"
+"  }\n"
+"  new Timer(delay, listener).start();"
+msgstr ""
+
+#: lecture.adoc:879
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:884
+msgid ""
+"* «Ингредиенты» лямбды:\n"
+"** Код\n"
+"** Параметры\n"
+"** Свободные («захваченные») переменные, которые должны быть effectively "
+"final"
+msgstr ""
+
+#: lecture.adoc:886
+msgid "== Effectively final only "
+msgstr ""
+
+#: lecture.adoc:890
+msgid ""
+"[source,java]\n"
+"----\n"
+"int start = ..."
+msgstr ""
+
+#: lecture.adoc:894
+msgid ""
+"for (int i = 0; i < count; i++) {\n"
+"  ActionListener linstener = event -> {\n"
+"    start--; //ERROR: Can't mutate captured value"
+msgstr ""
+
+#: lecture.adoc:899
+msgid ""
+"    //ERROR: Cannot refer to changing i\n"
+"    System.out.println(i);\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:901
+msgctxt "lecture.adoc:901"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:903
+msgid ""
+"(Effectively final переменные -- это такие, что они либо уже `final`, либо, "
+"если на них проставить `final`, код всё равно будет компилироваться)"
+msgstr ""
+
+#: lecture.adoc:905
+msgid "== Method references: ещё короче, ещё эффективнее"
+msgstr ""
+
+#: lecture.adoc:927
+msgid ""
+"[cols=\"55a,45a\"]\n"
+"|===\n"
+"| \n"
+"[source,java]\n"
+"event -> System.out.println(event)\n"
+"| \n"
+"[source,java] \n"
+"System.out::println\n"
+"| \n"
+"[source,java] \n"
+"(s1,s2)->s1.compareToIgnoreCase(s2)\n"
+"| \n"
+"[source,java]\n"
+"String::compareToIgnoreCase\n"
+"| \n"
+"[source,java]\n"
+"(x, y) -> Math.pow(x,y)\n"
+"| \n"
+"[source,java]\n"
+"Math::pow\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:929
+msgid "== Три способа определить Method reference"
+msgstr ""
+
+#: lecture.adoc:939
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|===\n"
+"| `object::method`\n"
+"| `(x, y, z...) -> object.method(x, y, z...)`\n"
+"| `Class::instanceMethod`\n"
+"| `(x, y, z...) -> x.instanceMethod(y, z...)`\n"
+"| `Class::staticMethod`\n"
+"| `(x, y, z...) -> Class.staticMethod(x, y, z...)`\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:941
+msgid "== Constructor/Array Constructor Reference"
+msgstr ""
+
+#: lecture.adoc:949
+msgid ""
+"[cols=\"35a,65a\"]\n"
+"|===\n"
+"| `Class::new`\n"
+"| `(x, y, z...) -> new Class(x, y, z...)`\n"
+"| `Class[]::new`\n"
+"| `(int i) -> new Class[i]`\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:951
+msgid "== IDE поможет, но разница есть!"
+msgstr ""
+
+#: lecture.adoc:955
+msgid ""
+"[source,java]\n"
+"----\n"
+"obj = null;"
+msgstr ""
+
+#: lecture.adoc:959
+msgid ""
+"//NPE только в момент запуска лямбды!!\n"
+"//obj должен быть effectively final!\n"
+"doSmth(x -> obj.method(x)); "
+msgstr ""
+
+#: lecture.adoc:964
+msgid ""
+"//NPE здесь и сейчас\n"
+"//obj не обязан быть effectively final\n"
+"doSmth(obj::method)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:971
+msgid ""
+"== Методы, специально созданные, чтобы быть method references\n"
+"[source,java]\n"
+"----\n"
+"//Да ладно, разве трудно на null проверить??\n"
+"Objects.isNull(Object obj)...\n"
+"Objects.nonNull(Object ob)..."
+msgstr ""
+
+#: lecture.adoc:974
+msgid "list.removeIf(Objects::isNull);"
+msgstr ""
+
+#: lecture.adoc:977
+msgid ""
+"stream.filter(Objects::nonNull)...\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:979
+msgid "== Готовые функциональные типы"
+msgstr ""
+
+#: lecture.adoc:984
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods "
+msgstr ""
+
+#: lecture.adoc:990
+msgid ""
+"| Runnable    | none | void | run |\n"
+"| Supplier<T> | none | T |  get |\n"
+"| Consumer<T> | T | void | accept | andThen\n"
+"| BiConsumer<T, U> | T, U | void | accept | andThen\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:992
+msgid "== Комбинирование консьюмеров"
+msgstr ""
+
+#: lecture.adoc:997
+msgid ""
+"[source,java]\n"
+"----\n"
+"Consumer<String> foo = ...\n"
+"List<String> list = ..."
+msgstr ""
+
+#: lecture.adoc:1001
+msgid ""
+"//Составной консьюмер, отправляющий\n"
+"//объект сначала в первый, потом во второй\n"
+"Consumer<String> bar = foo.andThen(list::add);"
+msgstr ""
+
+#: lecture.adoc:1003
+msgctxt "lecture.adoc:1003"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:1005
+msgid "== Функции"
+msgstr ""
+
+#: lecture.adoc:1013
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods \n"
+"|Function<T, R> | T | R | apply | compose, andThen, identity\n"
+"| BiFunction<T, U, R> |T, U| R |apply | andThen\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1015
+msgid "== Композиция функций и identity"
+msgstr ""
+
+#: lecture.adoc:1024
+msgid ""
+"[cols=\"50a,^50a\"]\n"
+"|===\n"
+"|`f.andThen(g)` | `g(f(x))`\n"
+"|`f.compose(g)` | `f(g(x))`\n"
+"|`Function.identity()` |  `x -> x`\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1026
+msgid "Почему у `BiFunction` нет `compose`, только `andThen`?"
+msgstr ""
+
+#: lecture.adoc:1028
+msgid "== Операторы"
+msgstr ""
+
+#: lecture.adoc:1036
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods \n"
+"|UnaryOperator<T> |T | T | apply | compose,\n"
+"andThen,\n"
+"identity"
+msgstr ""
+
+#: lecture.adoc:1042
+msgid ""
+"|BinaryOperator<T> |T, T | T | apply| \n"
+"andThen,\n"
+"maxBy,\n"
+"minBy\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1044
+msgid "== Композиция операторов"
+msgstr ""
+
+#: lecture.adoc:1046
+msgid ""
+"* `UnaryOperator<T> extends Function<T,T>`, поэтому `compose`, `andThen` и "
+"`identity` работают так же."
+msgstr ""
+
+#: lecture.adoc:1048
+msgid ""
+"* `BinaryOperator<T> extends BiFunction<T,T,T>`, поэтому `andThen` работает "
+"так же"
+msgstr ""
+
+#: lecture.adoc:1050
+msgid ""
+"* Статические методы `minBy` и `maxBy` формируют операторы `min(x,y)` и "
+"`max(x,y)` из компаратора."
+msgstr ""
+
+#: lecture.adoc:1053
+msgid "== {zsp}Предикаты{zsp}"
+msgstr ""
+
+#: lecture.adoc:1061
+msgid ""
+"[cols=\"30a,^15a,^15a,^20a,^20a\", options=\"header\"]\n"
+"|===\n"
+"| Functional Interface | Parameter Types | Return\n"
+"Type | Abstract Method Name | Default Methods \n"
+"|Predicate<T> | T| boolean| test| and, or,\n"
+"negate,\n"
+"isEqual"
+msgstr ""
+
+#: lecture.adoc:1065
+msgid ""
+"| BiPredicate<T, U> |T, U |boolean| test |and, or,\n"
+"negate\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1067
+msgid "== Композиция предикатов"
+msgstr ""
+
+#: lecture.adoc:1072
+msgid ""
+"[source,java]\n"
+"----\n"
+"Predicate<T> a = ...\n"
+"Predicate<T> b = ..."
+msgstr ""
+
+#: lecture.adoc:1074
+msgid "a.and(b).negate(); // ! (a(x) & b(x)"
+msgstr ""
+
+#: lecture.adoc:1077
+msgid ""
+"//Двуместный предикат (x,y)-> Objects.equals(x, y)\n"
+"Objects::equals "
+msgstr ""
+
+#: lecture.adoc:1081
+msgid ""
+"//Одноместный предикат y -> Objects.equals(x, y)\n"
+"Predicate.isEqual(x)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1084
+msgid ""
+"== Функциональные интерфейсы для примитивных типов\n"
+"p, q is `int`, `long`, `double`; P, Q is `Int`, `Long`, `Double`"
+msgstr ""
+
+#: lecture.adoc:1097
+msgid ""
+"[cols=\"35a,20a,20a,25a\", options=\"header\"]\n"
+"|===\n"
+"|*Functional Interface*| *Parameter Types* | *Return Type* | *Abstract "
+"Method Name*\n"
+"|BooleanSupplier | none | boolean | getAsBoolean\n"
+"|PSupplier | none |p | getAsP\n"
+"|PConsumer |p | void | accept\n"
+"|ObjPConsumer<T> | T, p |void | accept\n"
+"|PFunction<T> | p | T | apply\n"
+"|PToQFunction | p | q | applyAsQ\n"
+"|ToPFunction<T> |T|  p | applyAsP\n"
+"|ToPBiFunction<T, U> |T, U |p | applyAsP\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1099
+msgid "== Функциональные интерфейсы для примитивных типов (продолжение)"
+msgstr ""
+
+#: lecture.adoc:1107
+msgid ""
+"[cols=\"35a,20a,20a,25a\", options=\"header\"]\n"
+"|===\n"
+"|*Functional Interface*| *Parameter Types* | *Return Type* | *Abstract "
+"Method Name*\n"
+"|PUnaryOperator |p |p | applyAsP\n"
+"|PBinaryOperator |p, p | p |applyAsP\n"
+"|PPredicate |p | boolean | test\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1109
+msgid "== Дефолтные методы Map interface"
+msgstr ""
+
+#: lecture.adoc:1111
+msgid "Работают атомарно в `ConcurrentHashMap`!"
+msgstr ""
+
+#: lecture.adoc:1116
+msgid ""
+"[source,java]\n"
+"----\n"
+"V computeIfAbsent(K key,\n"
+"  Function<? super K, ? extends V> mappingFunction)"
+msgstr ""
+
+#: lecture.adoc:1119
+msgid ""
+"V computeIfPresent(K key,\n"
+"  BiFunction<? super K, ? super V, ? extends V> remappingFunction)"
+msgstr ""
+
+#: lecture.adoc:1122
+msgid ""
+"V compute(K key,\n"
+"  BiFunction<? super K, ? super V, ? extends V> remappingFunction)"
+msgstr ""
+
+#: lecture.adoc:1126
+msgid ""
+"V merge(K key, V value,\n"
+"  BiFunction<? super V, ? super V, ? extends V> remappingFunction)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1128
+msgid "== Компараторы"
+msgstr ""
+
+#: lecture.adoc:1140
+msgid ""
+"[source,java]\n"
+"----\n"
+"@AllArgsConstructor\n"
+"public class Person {\n"
+"    @Getter\n"
+"    private final String firstName;\n"
+"    @Getter\n"
+"    private final String lastName;\n"
+"}\n"
+"List<Person> people = new ArrayList<>();\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1142
+msgid "== Сортируем по фамилии"
+msgstr ""
+
+#: lecture.adoc:1165
+msgid ""
+"[cols=\"50a,50a\"]\n"
+"|===\n"
+"[source,java]\n"
+"----\n"
+"/*НЕПРАВИЛЬНО*/\n"
+"Collections.sort(people,\n"
+" (p1, p2) -> \n"
+"   p1.getLastName()\n"
+"   .compareTo(\n"
+"     p2.getLastName());\n"
+");\n"
+"----\n"
+"|\n"
+"[source,java]\n"
+"----\n"
+"/*ПРАВИЛЬНО*/ \n"
+"Collections.sort(people,\n"
+"  Comparator.comparing\n"
+"   (Person::getLastName));\n"
+");\n"
+"----\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:1167
+msgid "== {zsp}Сортируем по фамилии, потом по имени{zsp}"
+msgstr ""
+
+#: lecture.adoc:1181
+msgid ""
+"[source,java]\n"
+"----\n"
+"//НЕ ПИШИТЕ ВЕСЬ ЭТОТ КОШМАР\n"
+"Collections.sort(people,\n"
+"  (p1, p2) -> {\n"
+"    int result = p1.getFirstName().compareTo(p2.getFirstName());\n"
+"    if (result == 0) {\n"
+"      result = p2.getLastName().compareTo(p2.getLastName());\n"
+"    }\n"
+"    return result;\n"
+"  }\n"
+");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1183
+msgid "== Правильно так:"
+msgstr ""
+
+#: lecture.adoc:1192
+msgid ""
+"[source,java]\n"
+"----\n"
+"Collections.sort(people,\n"
+"  Comparator\n"
+"    .comparing(Person::getLastName)\n"
+"    .thenComparing(Person::getFirstName));\n"
+");\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1194
+msgid "== Также:"
+msgstr ""
+
+#: lecture.adoc:1202
+msgid ""
+"[source,java]\n"
+"----\n"
+"Comparator.comparing(keyExtractor, keyComparator)\n"
+"Comparator.comparingInt/Double(...)\n"
+"Comparator.reversed()\n"
+"Comparator.nullsFirst/nullsLast(Comparator c)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1205
+msgid ""
+"[%notitle]\n"
+"== Хотя не без проблем"
+msgstr ""
+
+#: lecture.adoc:1206
+msgid "image::doctor.jpg[{image-30-width}]"
+msgstr ""
