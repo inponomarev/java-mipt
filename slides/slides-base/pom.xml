@@ -77,7 +77,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.5.0</version>
                 <configuration>
                     <outputDirectory>${basedir}/target/generated-slides</outputDirectory>
                     <!---
