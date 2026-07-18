@@ -1,0 +1,26 @@
+version: 2
+updates:
+  # Maven dependencies for the slides module (aggregator + all sub-modules)
+  - package-ecosystem: "maven"
+    directories:
+      - "/slides"
+      - "/slides/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 16
+
+  # Maven dependencies for the examples module (aggregator + all sub-modules)
+  - package-ecosystem: "maven"
+    directories:
+      - "/examples"
+      - "/examples/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 16
+
+  # GitHub Actions used in the CI workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
