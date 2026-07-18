@@ -91,7 +91,7 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.10.0</version>
+                <version>1.13.0</version>
                 <executions>
                     <execution>
                         <id>install-revealjs</id>
