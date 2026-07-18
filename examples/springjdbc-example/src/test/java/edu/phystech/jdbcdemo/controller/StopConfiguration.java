@@ -2,7 +2,7 @@ package edu.phystech.jdbcdemo.controller;
 
 import org.springframework.boot.SpringBootConfiguration;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 @SpringBootConfiguration
 public class StopConfiguration {

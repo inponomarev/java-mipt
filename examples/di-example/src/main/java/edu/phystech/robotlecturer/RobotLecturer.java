@@ -3,7 +3,7 @@ package edu.phystech.robotlecturer;
 import edu.phystech.di.annotation.InjectByType;
 import edu.phystech.di.annotation.InjectRandomInt;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 public class RobotLecturer implements Lecturer{
     @InjectByType
