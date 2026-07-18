@@ -18,7 +18,7 @@
         <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <asciidoctorj.diagram.version>3.2.1</asciidoctorj.diagram.version>
 		<asciidoctorj.diagram.plantuml.version>1.2023.12</asciidoctorj.diagram.plantuml.version>
-        <jruby.version>9.4.12.1</jruby.version>
+        <jruby.version>10.1.0.0</jruby.version>
         <revealjs.version>3.9.2</revealjs.version>
         <!-- Use 'master' as version and remove the 'v' prefixing the download url to use the current snapshot version  -->
         <asciidoctor-revealjs.version>master</asciidoctor-revealjs.version>
