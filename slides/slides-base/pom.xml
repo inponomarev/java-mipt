@@ -66,7 +66,7 @@
                 <!-- this allows us to download gems -->
                 <groupId>org.jruby.maven</groupId>
                 <artifactId>mavengem-wagon</artifactId>
-                <version>2.0.2</version>
+                <version>2.0.3</version>
             </extension>
         </extensions>
         <resources>
