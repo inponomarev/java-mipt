@@ -2,7 +2,7 @@ package edu.phystech.di;
 
 import org.reflections.Reflections;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

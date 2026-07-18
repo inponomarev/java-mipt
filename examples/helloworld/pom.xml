@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <junit.version>5.7.0</junit.version>
-        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <junit.version>6.1.2</junit.version>
+        <maven.surefire.plugin.version>3.5.6</maven.surefire.plugin.version>
     </properties>
 
     <dependencies>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
+            <version>1.18.46</version>
         </dependency>
     </dependencies>
 
@@ -32,7 +32,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.5.0</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -44,9 +44,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.15.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>21</release>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
