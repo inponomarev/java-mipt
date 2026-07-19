@@ -1,0 +1,1512 @@
+#. extracted from lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 14:04+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.13.1\n"
+
+#: lecture.adoc:26
+msgid ""
+"= Core Java. Лекция 13: Dependency Injection. Принцип работы DI-контейнера. "
+"Принцип работы DI-контейнера (окончание). Spring Framework (Spring DI, "
+"Spring AOP)\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900\n"
+":stem: latexmath\n"
+":zsp: &#8203;"
+msgstr ""
+
+#: lecture.adoc:29
+msgid ":!figure-caption:"
+msgstr ""
+
+#: lecture.adoc:31
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: lecture.adoc:33
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: lecture.adoc:35
+msgctxt "lecture.adoc:35"
+msgid "== Проблемы GoF-cинглетона"
+msgstr ""
+
+#: lecture.adoc:37
+msgid ""
+"Как автоматически тестировать компоненты, которые жёстко связаны со своими "
+"зависимостями через статические поля/методы?"
+msgstr ""
+
+#: lecture.adoc:40
+msgid ""
+"[.fragment]\n"
+"-- Да никак!"
+msgstr ""
+
+#: lecture.adoc:42
+msgctxt "lecture.adoc:42"
+msgid "== Проблемы GoF-cинглетона"
+msgstr ""
+
+#: lecture.adoc:46
+msgid ""
+"* Увеличивает Coupling\n"
+"* Нарушает Single Responsibility Principle\n"
+"* Невозможно нормально тестировать"
+msgstr ""
+
+#: lecture.adoc:49
+msgid "== Наш учебный пример про доклады и спикеров"
+msgstr ""
+
+#: lecture.adoc:60
+msgid ""
+"[plantuml, objects, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 180 \n"
+"object ConnectionPool\n"
+"object JdbcTemplate\n"
+"object ConferenceDao\n"
+"object SpeakerDao\n"
+"object TalkDao\n"
+"object Controller"
+msgstr ""
+
+#: lecture.adoc:70
+msgid ""
+"JdbcTemplate -->ConnectionPool\n"
+"SpeakerDao --> JdbcTemplate\n"
+"TalkDao --> JdbcTemplate\n"
+"ConferenceDao --> JdbcTemplate\n"
+"Controller --> SpeakerDao\n"
+"Controller --> TalkDao\n"
+"Controller --> ConferenceDao\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:72
+msgctxt "lecture.adoc:72"
+msgid "== Фабрика"
+msgstr ""
+
+#: lecture.adoc:85
+msgid ""
+"[source,java]\n"
+"----\n"
+"// вынесли весь \"wiring\" из классов в фабричный метод\n"
+"public static Controller makeController() {\n"
+"  DataSource dataSource = \n"
+"                new DataSource(ConnectionPool.getInstance());\n"
+"  ConferenceDao conferenceDao = new ConferenceDao(dataSource);\n"
+"  SpeakerDao speakerDao = new SpeakerDao(dataSource);\n"
+"  TalkDao talkDao = new TalkDao(dataSource);\n"
+"  return new Controller(conferenceDao, speakerDao, talkDao);\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:87
+msgctxt "lecture.adoc:87"
+msgid "== Фабрика"
+msgstr ""
+
+#: lecture.adoc:91
+msgid ""
+"* Мы отвязались от «wiring» и можем создавать компоненты по отдельности, что "
+"позволяет тестировать.\n"
+"* Однако в фабричном методе много повторяющихся действий, фабрика должна "
+"«знать» про все компоненты.\n"
+"* Вообще этот процесс можно автоматизировать!"
+msgstr ""
+
+#: lecture.adoc:93
+msgctxt "lecture.adoc:93"
+msgid "== Dependency Injection"
+msgstr ""
+
+#: lecture.adoc:99
+msgid ""
+"[plantuml, di-class, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 180\n"
+"hide footbox"
+msgstr ""
+
+#: lecture.adoc:106
+msgid ""
+"class Injector\n"
+"interface ServiceA\n"
+"interface ServiceB\n"
+"class ServiceAImpl\n"
+"class ServiceBImpl\n"
+"class Client"
+msgstr ""
+
+#: lecture.adoc:109
+msgid ""
+"Client --> ServiceA\n"
+"Client --> ServiceB"
+msgstr ""
+
+#: lecture.adoc:112
+msgid ""
+"ServiceA <|.. ServiceAImpl\n"
+"ServiceB <|.. ServiceBImpl"
+msgstr ""
+
+#: lecture.adoc:116
+msgid ""
+"Injector .> Client: <<create>>\\n"
+"<<inject>>\n"
+"Injector ..> ServiceAImpl: <<create>>\n"
+"Injector ..> ServiceBImpl: <<create>>"
+msgstr ""
+
+#: lecture.adoc:119
+msgctxt "lecture.adoc:119"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:123
+msgctxt "lecture.adoc:123"
+msgid "== Dependency Injection"
+msgstr ""
+
+#: lecture.adoc:129
+msgid ""
+"[plantuml, di-seq, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 180\n"
+"hide footbox"
+msgstr ""
+
+#: lecture.adoc:134
+msgid ""
+"participant Injector\n"
+"participant ServiceAImpl\n"
+"participant ServiceBImpl\n"
+"participant Client"
+msgstr ""
+
+#: lecture.adoc:140
+msgid ""
+"activate Injector\n"
+"Injector -> ServiceAImpl **: new()\n"
+"Injector -> ServiceBImpl **: new()\n"
+"Injector -> Client **: new()\n"
+"Injector -> Client: inject(ServiceAImpl, ServiceBImpl)"
+msgstr ""
+
+#: lecture.adoc:143
+msgctxt "lecture.adoc:143"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:145
+msgid "== DI Frameworks"
+msgstr ""
+
+#: lecture.adoc:150
+msgid ""
+"* Google Guice\n"
+"* JBoss Seam Framework\n"
+"* PicoContainer\n"
+"* *Spring*"
+msgstr ""
+
+#: lecture.adoc:152
+msgid "== Построим свой DI-фреймворк «на коленке»"
+msgstr ""
+
+#: lecture.adoc:155
+msgid ""
+"* Пример на базе тренинга Евгения Борисова «Spring Ripper»\n"
+"* Позволяет понять логику и внутреннее устройство Spring Framework"
+msgstr ""
+
+#: lecture.adoc:157
+msgctxt "lecture.adoc:157"
+msgid "== Лектор-робот"
+msgstr ""
+
+#: lecture.adoc:166
+msgctxt "lecture.adoc:166"
+msgid ""
+"[plantuml, robotlecturer, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 150 \n"
+"object RobotLecturer\n"
+"object Lecture\n"
+"object Speaker\n"
+"object SlideShow"
+msgstr ""
+
+#: lecture.adoc:172
+msgid ""
+"RobotLecturer --> Lecture\n"
+"RobotLecturer --> Speaker\n"
+"RobotLecturer --> SlideShow\n"
+"@enduml\n"
+"----    "
+msgstr ""
+
+#: lecture.adoc:186
+msgctxt "lecture.adoc:186"
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class RobotLecturer {\n"
+"    //«магическим» образом пусть тут появится то, что нужно!\n"
+"    @InjectByType\n"
+"    private Lecture lecture;\n"
+"    @InjectByType\n"
+"    private Speaker speaker;\n"
+"    @InjectByType\n"
+"    private SlideShow slideShow;\n"
+"    ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:188
+msgctxt "lecture.adoc:188"
+msgid "== Режим лектора"
+msgstr ""
+
+#: lecture.adoc:200
+msgctxt "lecture.adoc:200"
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Читать лекции просто\n"
+"public void lecture() {\n"
+"    lecture.getSlides().forEach(\n"
+"        slide -> {\n"
+"            slideShow.show(slide.getText());\n"
+"            speaker.speak(slide.getComment());\n"
+"        }\n"
+"    );\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:209
+msgctxt "lecture.adoc:209"
+msgid ""
+"//Main-метод\n"
+"public static void main(String[] args) \n"
+"                  throws ReflectiveOperationException {\n"
+"    RobotLecturer lecturer = \n"
+"        new ObjectFactory().createObject(RobotLecturer.class);\n"
+"    lecturer.lecture();\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:211
+msgctxt "lecture.adoc:211"
+msgid "== Конфигуратор объекта"
+msgstr ""
+
+#: lecture.adoc:219
+msgctxt "lecture.adoc:219"
+msgid ""
+"[source,java]\n"
+"----\n"
+"@RequiredArgsConstructor\n"
+"public class InjectByTypeAnnotationObjectConfigurator \n"
+"                             implements ObjectConfigurator {\n"
+"  //передадим сюда через конструктор ObjectFactory\n"
+"  private final ObjectFactory factory;"
+msgstr ""
+
+#: lecture.adoc:232
+msgctxt "lecture.adoc:232"
+msgid ""
+"  @Override\n"
+"  public void configure(Object t) throws ... {\n"
+"    for (Field field : t.getClass().getDeclaredFields()) {\n"
+"      if (field.isAnnotationPresent(InjectByType.class)) {\n"
+"        field.setAccessible(true);\n"
+"        //Мы же умеем по типу создавать объект?\n"
+"        field.set(t, factory.createObject(field.getType()));\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:234
+msgctxt "lecture.adoc:234"
+msgid "== Как создаётся и конфигурируется объект"
+msgstr ""
+
+#: lecture.adoc:243
+msgctxt "lecture.adoc:243"
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class ObjectFactory {\n"
+"  //Правда, тут напрашивается DI?\n"
+"  private final Reflections scanner = \n"
+"                          new Reflections(\"edu.phystech\");\n"
+"  private final List<ObjectConfigurator> configurators = \n"
+"                          new ArrayList<>();"
+msgstr ""
+
+#: lecture.adoc:254
+msgctxt "lecture.adoc:254"
+msgid ""
+"  public <T> T createObject(Class<? extends T> type) throws ... {\n"
+"    //Находим реализацию запрошенного типа\n"
+"    type = resolveImpl(type);\n"
+"    //Создаём объект (с помощью конструктора по умолчанию, TODO)\n"
+"    T t = type.newInstance();\n"
+"    //Конфигурируем\n"
+"    configure(t);\n"
+"    ....\n"
+"  }\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:256
+msgctxt "lecture.adoc:256"
+msgid "== Метод configure очень прост"
+msgstr ""
+
+#: lecture.adoc:258
+msgctxt "lecture.adoc:258"
+msgid "[source,java]"
+msgstr ""
+
+#: lecture.adoc:266
+msgctxt "lecture.adoc:266"
+msgid ""
+"----\n"
+"  private <T> void configure(T t) throws ... {\n"
+"    for (ObjectConfigurator configurator : configurators) {\n"
+"      configurator.configure(t);\n"
+"    }\n"
+"  }\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:268
+msgctxt "lecture.adoc:268"
+msgid "== Как находится подходящая имплементация"
+msgstr ""
+
+#: lecture.adoc:285
+msgctxt "lecture.adoc:285"
+msgid ""
+"[source,java]\n"
+"----\n"
+"private <T> Class<? extends T> resolveImpl(Class<? extends T> type){\n"
+"  if (type.isInterface()) {\n"
+"    Set<Class<? extends T>> classes = \n"
+"                         scanner.getSubTypesOf((Class<T>) type);\n"
+"    if (classes.size() != 1) {\n"
+"      throw new RuntimeException(\n"
+"         \"0 or more than one implementation found for type \" \n"
+"         + type + \" please update your config\");\n"
+"    }\n"
+"    type = classes.iterator().next();\n"
+"  }\n"
+"  return type;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:288
+msgctxt "lecture.adoc:288"
+msgid "== Лектор-робот"
+msgstr ""
+
+#: lecture.adoc:297
+msgctxt "lecture.adoc:297"
+msgid ""
+"[plantuml, robotlecturer, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 150 \n"
+"object RobotLecturer\n"
+"object Lecture\n"
+"object Speaker\n"
+"object SlideShow"
+msgstr ""
+
+#: lecture.adoc:303
+msgid ""
+"RobotLecturer --> Lecture\n"
+"RobotLecturer --> Speaker\n"
+"RobotLecturer --> SlideShow\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:317
+msgctxt "lecture.adoc:317"
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class RobotLecturer {\n"
+"    //«магическим» образом пусть тут появится то, что нужно!\n"
+"    @InjectByType\n"
+"    private Lecture lecture;\n"
+"    @InjectByType\n"
+"    private Speaker speaker;\n"
+"    @InjectByType\n"
+"    private SlideShow slideShow;\n"
+"    ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:319
+msgctxt "lecture.adoc:319"
+msgid "== Режим лектора"
+msgstr ""
+
+#: lecture.adoc:331
+msgctxt "lecture.adoc:331"
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Читать лекции просто\n"
+"public void lecture() {\n"
+"    lecture.getSlides().forEach(\n"
+"        slide -> {\n"
+"            slideShow.show(slide.getText());\n"
+"            speaker.speak(slide.getComment());\n"
+"        }\n"
+"    );\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:340
+msgctxt "lecture.adoc:340"
+msgid ""
+"//Main-метод\n"
+"public static void main(String[] args) \n"
+"                  throws ReflectiveOperationException {\n"
+"    RobotLecturer lecturer = \n"
+"        new ObjectFactory().createObject(RobotLecturer.class);\n"
+"    lecturer.lecture();\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:342
+msgctxt "lecture.adoc:342"
+msgid "== Конфигуратор объекта"
+msgstr ""
+
+#: lecture.adoc:350
+msgctxt "lecture.adoc:350"
+msgid ""
+"[source,java]\n"
+"----\n"
+"@RequiredArgsConstructor\n"
+"public class InjectByTypeAnnotationObjectConfigurator \n"
+"                             implements ObjectConfigurator {\n"
+"  //передадим сюда через конструктор ObjectFactory\n"
+"  private final ObjectFactory factory;"
+msgstr ""
+
+#: lecture.adoc:363
+msgctxt "lecture.adoc:363"
+msgid ""
+"  @Override\n"
+"  public void configure(Object t) throws ... {\n"
+"    for (Field field : t.getClass().getDeclaredFields()) {\n"
+"      if (field.isAnnotationPresent(InjectByType.class)) {\n"
+"        field.setAccessible(true);\n"
+"        //Мы же умеем по типу создавать объект?\n"
+"        field.set(t, factory.createObject(field.getType()));\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:365
+msgctxt "lecture.adoc:365"
+msgid "== Как создаётся и конфигурируется объект"
+msgstr ""
+
+#: lecture.adoc:374
+msgctxt "lecture.adoc:374"
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class ObjectFactory {\n"
+"  //Правда, тут напрашивается DI?\n"
+"  private final Reflections scanner = \n"
+"                          new Reflections(\"edu.phystech\");\n"
+"  private final List<ObjectConfigurator> configurators = \n"
+"                          new ArrayList<>();"
+msgstr ""
+
+#: lecture.adoc:385
+msgctxt "lecture.adoc:385"
+msgid ""
+"  public <T> T createObject(Class<? extends T> type) throws ... {\n"
+"    //Находим реализацию запрошенного типа\n"
+"    type = resolveImpl(type);\n"
+"    //Создаём объект (с помощью конструктора по умолчанию, TODO)\n"
+"    T t = type.newInstance();\n"
+"    //Конфигурируем\n"
+"    configure(t);\n"
+"    ....\n"
+"  }\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:387
+msgctxt "lecture.adoc:387"
+msgid "== Метод configure очень прост"
+msgstr ""
+
+#: lecture.adoc:389
+msgctxt "lecture.adoc:389"
+msgid "[source,java]"
+msgstr ""
+
+#: lecture.adoc:397
+msgctxt "lecture.adoc:397"
+msgid ""
+"----\n"
+"  private <T> void configure(T t) throws ... {\n"
+"    for (ObjectConfigurator configurator : configurators) {\n"
+"      configurator.configure(t);\n"
+"    }\n"
+"  }\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:399
+msgctxt "lecture.adoc:399"
+msgid "== Как находится подходящая имплементация"
+msgstr ""
+
+#: lecture.adoc:416
+msgctxt "lecture.adoc:416"
+msgid ""
+"[source,java]\n"
+"----\n"
+"private <T> Class<? extends T> resolveImpl(Class<? extends T> type){\n"
+"  if (type.isInterface()) {\n"
+"    Set<Class<? extends T>> classes = \n"
+"                         scanner.getSubTypesOf((Class<T>) type);\n"
+"    if (classes.size() != 1) {\n"
+"      throw new RuntimeException(\n"
+"         \"0 or more than one implementation found for type \" \n"
+"         + type + \" please update your config\");\n"
+"    }\n"
+"    type = classes.iterator().next();\n"
+"  }\n"
+"  return type;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:418
+msgid "== Ищем конфигураторы автоматически!"
+msgstr ""
+
+#: lecture.adoc:437
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Конструктор ObjectFactory\n"
+"public ObjectFactory() throws ReflectiveOperationException {\n"
+"  Set<Class<? extends ObjectConfigurator>> classes =\n"
+"              scanner.getSubTypesOf(ObjectConfigurator.class);\n"
+"  for (Class<? extends ObjectConfigurator> aClass : classes) {\n"
+"    try {\n"
+"      Constructor<? extends ObjectConfigurator> constructor =\n"
+"                       aClass.getConstructor(ObjectFactory.class);\n"
+"      //инжектим себя через конструктор, по необходимости\n"
+"      configurators.add(constructor.newInstance(this));\n"
+"    } catch (NoSuchMethodException e){\n"
+"      configurators.add(aClass.newInstance());\n"
+"    }\n"
+"  }\n"
+"....//продолжение следует\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:439
+msgid "== Больше конфигураторов!"
+msgstr ""
+
+#: lecture.adoc:447
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Retention(RUNTIME)\n"
+"public @interface InjectRandomInt {\n"
+"    int min();\n"
+"    int max();\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:449
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:473
+msgid ""
+"== InjectRandomIntObjectConfigurator\n"
+"[source,java]\n"
+"----\n"
+"public class InjectRandomIntObjectConfigurator \n"
+"                                 implements ObjectConfigurator {\n"
+"  @Override\n"
+"  public void configure(Object t) throws IllegalAccessException {\n"
+"    Class<?> type = t.getClass();\n"
+"    for (Field field : ReflectionUtils.getAllFields(type)) {\n"
+"      InjectRandomInt annotation =\n"
+"                        field.getAnnotation(InjectRandomInt.class);\n"
+"      if (annotation != null) {\n"
+"        int min = annotation.min();\n"
+"        int max = annotation.max();\n"
+"        int value = ThreadLocalRandom.current().nextInt(min, max+1);\n"
+"        field.setAccessible(true);\n"
+"        field.set(t, value);\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:475
+msgid "== Итак, первые шаги:"
+msgstr ""
+
+#: lecture.adoc:485
+msgid ""
+"[graphviz,\"init1.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Создание -> конфигуратор1;\n"
+"subgraph cluster_R {\n"
+"label = \"Конфигурация\";"
+msgstr ""
+
+#: lecture.adoc:488
+msgctxt "lecture.adoc:488"
+msgid ""
+"    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+"{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+msgstr ""
+
+#: lecture.adoc:490
+msgctxt "lecture.adoc:490"
+msgid "} "
+msgstr ""
+
+#: lecture.adoc:493
+msgctxt "lecture.adoc:493"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:495
+msgid "== Инициализация объекта"
+msgstr ""
+
+#: lecture.adoc:497
+msgid ""
+"* Почему конструктор не годится для действий, включающих в себя "
+"инъектированные объекты?"
+msgstr ""
+
+#: lecture.adoc:500
+msgid ""
+"[.fragment]\n"
+"* Инъекция может происходить после конструктора. Поэтому нужно специальное "
+"действие, вызываемое после конструктора _и_ инъекции!"
+msgstr ""
+
+#: lecture.adoc:502
+msgid "== PostConstruct"
+msgstr ""
+
+#: lecture.adoc:510
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class RobotLecturer {\n"
+"  @InjectByType\n"
+"  private Lecture lecture;\n"
+"  @InjectRandomInt(min = 1, max = 3)\n"
+"  private int repeat;"
+msgstr ""
+
+#: lecture.adoc:520
+msgid ""
+"  @PostConstruct\n"
+"  public void init() {\n"
+"    //Место, где можно использовать все инжектированные значения\n"
+"    for (int i = 0; i < repeat; i++)\n"
+"      speaker.speak(\"Всем привет\");\n"
+"  }\n"
+"  ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:522
+msgid "== Продолжаем дописывать createObject"
+msgstr ""
+
+#: lecture.adoc:533
+msgid ""
+"[source,java]\n"
+"----\n"
+"public <T> T createObject(Class<? extends T> type) throws ... {\n"
+"  ....\n"
+"  //Конфигурируем\n"
+"  configure(t);\n"
+"  //Запускаем методы PostConstruct\n"
+"  invokeInitMethods(type, t);\n"
+"  ....\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:543
+msgid ""
+"private <T> void invokeInitMethods(Class<? extends T> type, T t)\n"
+"                                                      throws ... {\n"
+"  for (Method method : type.getMethods()) {\n"
+"    if (method.isAnnotationPresent(PostConstruct.class)) {\n"
+"      method.invoke(t);\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:545
+msgid "== Последовательность действий"
+msgstr ""
+
+#: lecture.adoc:555
+msgid ""
+"[graphviz,\"init2.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Создание -> конфигуратор1;\n"
+"subgraph cluster_R {\n"
+"label = \"Конфигурация\";"
+msgstr ""
+
+#: lecture.adoc:558
+msgctxt "lecture.adoc:558"
+msgid ""
+"    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+"{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+msgstr ""
+
+#: lecture.adoc:560
+msgctxt "lecture.adoc:560"
+msgid "} "
+msgstr ""
+
+#: lecture.adoc:562
+msgctxt "lecture.adoc:562"
+msgid "конфигуратор3 -> postConstruct"
+msgstr ""
+
+#: lecture.adoc:565
+msgctxt "lecture.adoc:565"
+msgid ""
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:567
+msgid "== Когда нужно модифицировать действие метода"
+msgstr ""
+
+#: lecture.adoc:574
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Retention(RUNTIME)\n"
+"public @interface Benchmark {\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:581
+msgid ""
+"[source,text]\n"
+"----\n"
+"[[[BENCHMARK method speak\n"
+"Speaking: blah-blah-blah\n"
+"Time: 107100ns]]]\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:583
+msgid "== Прокси-объект"
+msgstr ""
+
+#: lecture.adoc:590
+msgid ""
+"[graphviz,\"proxy.png\"]\n"
+"----\n"
+"digraph G {\n"
+"  graph [ dpi = 150 ];\n"
+"  compound=true;\n"
+"  rankdir=\"LR\";"
+msgstr ""
+
+#: lecture.adoc:592
+msgid "  splines=\"line\";"
+msgstr ""
+
+#: lecture.adoc:596
+msgid ""
+"  caller [shape=\"rectangle\", style=rounded];\n"
+"  caller -> inv[lhead=cluster0;label=\"       \"];\n"
+"  caller -> inv[arrowhead=none];"
+msgstr ""
+
+#: lecture.adoc:599
+msgid "  subgraph cluster0 {"
+msgstr ""
+
+#: lecture.adoc:602
+msgid ""
+"    inv[style=invis,shape=point];\n"
+"    target[shape=\"rectangle\", style=\"rounded\";]"
+msgstr ""
+
+#: lecture.adoc:605
+msgid ""
+"    label=\"proxy\";\n"
+"    style=\"dashed,rounded\";"
+msgstr ""
+
+#: lecture.adoc:610
+msgid ""
+"    inv -> target[style=dashed;];\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:612
+msgid "== BenchmarkProxyConfigurator"
+msgstr ""
+
+#: lecture.adoc:634
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class BenchmarkProxyConfigurator \n"
+"                                     implements ProxyConfigurator {\n"
+"  @Override\n"
+"  public <T> T wrapWithPoxy(T t, Class<? extends T> type) {\n"
+"    boolean isProxyNeeded = type.isAnnotationPresent(Benchmark.class)\n"
+"      || !ReflectionUtils.getAllMethods(type, method ->\n"
+"             method.isAnnotationPresent(Benchmark.class)).isEmpty();\n"
+"    if (isProxyNeeded) {\n"
+"      return (T) Proxy.newProxyInstance(type.getClassLoader(),\n"
+"          type.getInterfaces(), \n"
+"          (proxy, method, args) -> {\n"
+"            Method classMethod = type.getMethod(method.getName(),\n"
+"                                method.getParameterTypes());\n"
+"            return invoke(t, type, method, args, classMethod);\n"
+"          });\n"
+"    }\n"
+"    return t;\n"
+"}}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:636
+msgid "== Proxied method invocation"
+msgstr ""
+
+#: lecture.adoc:654
+msgid ""
+"[source,java]\n"
+"----\n"
+"private Object invoke(Object t, Class type, Method method, \n"
+"            Object[] args, Method classMethod) throws ... {\n"
+"  if (classMethod.isAnnotationPresent(Benchmark.class)\n"
+"        || type.isAnnotationPresent(Benchmark.class)) {\n"
+"    System.out.printf(\"[[[BENCHMARK method %s%n\", method.getName());\n"
+"    long start = System.nanoTime();\n"
+"    Object retVal = method.invoke(t, args);\n"
+"    long end = System.nanoTime();\n"
+"    System.out.printf(\"Time: %dns]]]%n\", end - start);\n"
+"    return retVal;\n"
+"  } else {\n"
+"    return method.invoke(t, args);\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:656
+msgid "== {zsp}Последовательность действий (окончательная картина){zsp}"
+msgstr ""
+
+#: lecture.adoc:667
+msgid ""
+"[graphviz,\"init3.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"Создание -> конфигуратор1;\n"
+"subgraph cluster_R {\n"
+"label = \"Конфигурация\";"
+msgstr ""
+
+#: lecture.adoc:670
+msgctxt "lecture.adoc:670"
+msgid ""
+"    конфигуратор3 -> конфигуратор2 -> конфигуратор1 [dir=\"back\"];\n"
+"{rank=same конфигуратор1 конфигуратор2 конфигуратор3}"
+msgstr ""
+
+#: lecture.adoc:672
+msgctxt "lecture.adoc:672"
+msgid "} "
+msgstr ""
+
+#: lecture.adoc:674
+msgctxt "lecture.adoc:674"
+msgid "конфигуратор3 -> postConstruct"
+msgstr ""
+
+#: lecture.adoc:677
+msgid ""
+"subgraph cluster_S {\n"
+"label = \"Проксирование\";"
+msgstr ""
+
+#: lecture.adoc:680
+msgid ""
+"    проксиконфигуратор2 -> проксиконфигуратор1  [dir=\"back\"];\n"
+"{rank=same проксиконфигуратор2 проксиконфигуратор1}"
+msgstr ""
+
+#: lecture.adoc:682
+msgctxt "lecture.adoc:682"
+msgid "} "
+msgstr ""
+
+#: lecture.adoc:686
+msgid ""
+"postConstruct -> проксиконфигуратор1\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:694
+msgid ""
+"== Промежуточные выводы\n"
+"* DI-контейнер реализует следующие этапы «настройки» объектов:\n"
+"** создание\n"
+"** конфигурация (injections)\n"
+"** инициализация (postconstruct)\n"
+"** проксирование\n"
+"* DI-паттерн повторяет сам себя: многие детали DI-контейнера удобно "
+"настраивать через DI!"
+msgstr ""
+
+#: lecture.adoc:700
+msgid ""
+"[%notitle]\n"
+"== Spring Framework"
+msgstr ""
+
+#: lecture.adoc:704
+msgid "image::springframework.png[{image-80-width}]"
+msgstr ""
+
+#: lecture.adoc:706
+msgid ""
+"_\"Perhaps one of the hardest parts of explaining Spring is classifying "
+"exactly what it is\"_ -- Pro Spring 5, 5th ed., p. 1 "
+msgstr ""
+
+#: lecture.adoc:708
+msgid "== Spring Framework"
+msgstr ""
+
+#: lecture.adoc:714
+msgid ""
+"* DI\n"
+"* AOP\n"
+"* Тестирование\n"
+"* Интеграция с огромным количеством технологий\n"
+"* Очень развитый (и продолжающий активно развиваться)"
+msgstr ""
+
+#: lecture.adoc:716
+msgctxt "lecture.adoc:716"
+msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
+msgstr ""
+
+#: lecture.adoc:728
+msgid ""
+"Было:\n"
+"[source,java]\n"
+"----\n"
+"public class Main {\n"
+"  public static void main(String[] args) throws ... {\n"
+"    RobotLecturer lecturer = new ObjectFactory()\n"
+"                     .createObject(RobotLecturer.class);\n"
+"    lecturer.lecture();\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:730
+msgctxt "lecture.adoc:730"
+msgid "== Переписываем наш пример с «самодельного» фреймворка на Spring"
+msgstr ""
+
+#: lecture.adoc:744
+msgid ""
+"Стало:\n"
+"[source,java]\n"
+"----\n"
+"@ComponentScan(\"edu.phystech.robotlecturer\")\n"
+"public class Main {\n"
+"  public static void main(String[] args) {\n"
+"    ApplicationContext ctx = \n"
+"      new AnnotationConfigApplicationContext(Main.class);\n"
+"    RobotLecturer lecturer = ctx.getBean(RobotLecturer.class);\n"
+"    lecturer.lecture();\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:746
+msgid "== Spring Beans"
+msgstr ""
+
+#: lecture.adoc:754
+msgid ""
+"* В нашем примере -- \n"
+"** `RobotLecturer`, \n"
+"** `FirstLecture`, \n"
+"** `SpeakerImpl`, \n"
+"** `SlideShowImpl`.\n"
+"* _Spring beans_ -- это переиспользуемые программные компоненты.\n"
+"* Годится любой класс, как наш, так и из сторонней библиотеки."
+msgstr ""
+
+#: lecture.adoc:756
+msgid "== Способы конфигурации Spring"
+msgstr ""
+
+#: lecture.adoc:763
+msgid ""
+"* Разновидности конфигураций Spring:\n"
+"** Annotation-based\n"
+"** XML-based\n"
+"** Groovy-based\n"
+"* Мы будем рассматривать только annotation-based, как наиболее употребимую в "
+"настоящее время и практичную. \n"
+"* В огромном количестве тьюториалов (и проектов) ещё встречается "
+"XML-конфигурация."
+msgstr ""
+
+#: lecture.adoc:765
+msgid "== Как определять бины"
+msgstr ""
+
+#: lecture.adoc:773
+msgid ""
+"* Classpath Scanning: ищем проаннотированные классы в заданных пакетах.\n"
+"** @Component\n"
+"*** @Service\n"
+"*** @Controller\n"
+"*** @Repository\n"
+"* Фабричные методы \n"
+"** @Configuration -> @Bean"
+msgstr ""
+
+#: lecture.adoc:775
+msgid "== Classpath scanning"
+msgstr ""
+
+#: lecture.adoc:780
+msgid ""
+"[source,java]\n"
+"----\n"
+"@ComponentScan(\"edu.phystech.robotlecturer\")\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:782
+msgid "Атрибуты аннотации:"
+msgstr ""
+
+#: lecture.adoc:787
+msgid ""
+"* `String[] basePackages` -- базовые пакеты для сканирования в поисках "
+"аннотированных компонент.\n"
+"* `Class<?>[] basePackageClasses` -- как типобезопасная альтернатива, можно "
+"указать классы. Пакеты каждого из указанных классов будут просканированы.\n"
+"* Плюсы: удобно. \n"
+"* Минусы: классы должны быть проаннторированы как `@Component`, `@Service` и "
+"т. п., что не всегда возможно для сторонних библиотек."
+msgstr ""
+
+#: lecture.adoc:789
+msgid "== `@Configuration` class"
+msgstr ""
+
+#: lecture.adoc:791
+msgid ""
+"* Класс конфигурации должен быть либо явно указан через конструктор "
+"`AnnotationConfigApplicationContext`, либо доступен через сканирование "
+"пакетов (тогда нужно аннотировать класс как `@Configuration`). "
+msgstr ""
+
+#: lecture.adoc:793
+msgid "* Чтобы прописывать в классе бины, надо пользоваться `@Bean`."
+msgstr ""
+
+#: lecture.adoc:795
+msgid "== `@Configuration` class -- пример"
+msgstr ""
+
+#: lecture.adoc:800
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Configuration\n"
+"public class AppConfig{"
+msgstr ""
+
+#: lecture.adoc:808
+msgid ""
+"  @Bean\n"
+"  @Scope(BeanDefinition.SCOPE_PROTOTYPE)\n"
+"  public Color randomColor(){\n"
+"    ThreadLocalRandom random = ThreadLocalRandom.current();\n"
+"    return new Color(random.nextInt(256), \n"
+"                random.nextInt(256), random.nextInt(256));\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:812
+msgid ""
+"  ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:816
+msgid "== Bean scope"
+msgstr ""
+
+#: lecture.adoc:820
+msgid ""
+"* `SCOPE_SINGLETON` -- по умолчанию. Создаётся один при первом запросе и "
+"всюду впрыскивается единственный экземпляр.\n"
+"* `SCOPE_PROTOTYPE` -- создаётся новый при каждом запросе.\n"
+"* Есть ещё всякие, и можно создавать свои."
+msgstr ""
+
+#: lecture.adoc:822
+msgid "== @Lazy"
+msgstr ""
+
+#: lecture.adoc:824
+msgid ""
+"* По умолчанию все синглетоны создаются при поднятии контейнера (чтобы fail "
+"fast, и чтобы избежать задержек при работе приложения)."
+msgstr ""
+
+#: lecture.adoc:826
+msgid ""
+"* Для конкретного бина это поведение можно изменить при помощи аннотации "
+"`@Lazy` (см. документацию)."
+msgstr ""
+
+#: lecture.adoc:828
+msgid ""
+"* Ленивая инициализация -- не такая хорошая идея, как кажется на первый "
+"взгляд."
+msgstr ""
+
+#: lecture.adoc:830
+msgid "== Bean name"
+msgstr ""
+
+#: lecture.adoc:834
+msgid ""
+"* Каждый бин получает имя (id).\n"
+"* По умолчанию, имя вычисляется из имени класса (`SpeakerImpl` -> `"
+"\"speakerImpl\"`) или фабричного метода (`getSpeaker` -> `\"speaker\"`).\n"
+"* Имя бина можно задать явно в параметре аннотации `@Component` и других "
+"(например: `@Service(\"bestSpeaker\")`)."
+msgstr ""
+
+#: lecture.adoc:837
+msgid "== Виды injection («впрыскивания»)"
+msgstr ""
+
+#: lecture.adoc:842
+msgid ""
+"* Constructor\n"
+"* Setter\n"
+"* Field\n"
+"* Lookup method"
+msgstr ""
+
+#: lecture.adoc:844
+msgid "== Constructor injection"
+msgstr ""
+
+#: lecture.adoc:855
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"@RequiredArgsConstructor\n"
+"public class RobotLecturer {\n"
+"    //автоматически будут переданы в конструктор\n"
+"    private final Lecture lecture;\n"
+"    private final Speaker speaker;\n"
+"    private final SlideShow slideShow;\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:859
+msgid ""
+"* Внешне может быть незаметен (особенно с Lombok). \n"
+"* Хорош для создания иммутабельных объектов. \n"
+"* Много параметров конструктора? -- А точно столько надо?"
+msgstr ""
+
+#: lecture.adoc:862
+msgid "== Setter injection"
+msgstr ""
+
+#: lecture.adoc:871
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Autowired\n"
+"void setLecture(Lecture lecture) {\n"
+"   //сеттер будет автоматически вызван после конструирования\n"
+"   this.lecture = lecture;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:873
+msgid ""
+"* Хорош в ситуации, когда компонента сама себе способна предоставить "
+"зависимость \"по умолчанию\"."
+msgstr ""
+
+#: lecture.adoc:875
+msgid "== Field injection"
+msgstr ""
+
+#: lecture.adoc:889
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"public class RobotLecturer {\n"
+"    //будут установлены через рефлексию после конструирования\n"
+"    @Autowired\n"
+"    private Lecture lecture;\n"
+"    @Autowired\n"
+"    private Speaker speaker;\n"
+"    @Autowired\n"
+"    private SlideShow slideShow;\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:892
+msgid ""
+"* Не плодит в классе сеттеры и конструкторы, но в целом сильно связывает код "
+"и считается не очень удачной практикой. \n"
+"* Хотя, в классах тестов -- это ровно то, что нужно."
+msgstr ""
+
+#: lecture.adoc:895
+msgctxt "lecture.adoc:895"
+msgid "== Lookup method injection"
+msgstr ""
+
+#: lecture.adoc:897
+msgid "Проблема бинов с разным жизненным циклом: `SCOPE_PROTOTYPE` не спасает."
+msgstr ""
+
+#: lecture.adoc:903
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)\n"
+"public class Bar {...}"
+msgstr ""
+
+#: lecture.adoc:908
+msgid ""
+"@Component\n"
+"public class Foo {\n"
+"    @Autowired\n"
+"    private Bar bar;"
+msgstr ""
+
+#: lecture.adoc:914
+msgid ""
+"    public  void bar(){\n"
+"        //заинжектированный экземпляр bar всегда один и тот же \n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:916
+msgctxt "lecture.adoc:916"
+msgid "== Lookup method injection"
+msgstr ""
+
+#: lecture.adoc:923
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"public abstract class Foo {\n"
+"    @Lookup\n"
+"    abstract Bar getBar();"
+msgstr ""
+
+#: lecture.adoc:930
+msgid ""
+"    public  void bar(){\n"
+"        Bar b = getBar();\n"
+"        //теперь в b будет всякий раз новое (ну или одно и то же, \n"
+"        //если убрать SCOPE_PROTOTYPE, хотя где тогда смысл?)\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:936
+msgid ""
+"Foo foo = ctx.getBean(Foo.class);\n"
+"foo.bar(); foo.bar(); ...\n"
+"----\n"
+"[.fragment]\n"
+"-- Как, мы инстанцируем абстрактный класс?! -- Нет, мы же инстанцируем "
+"обёртку, на самом деле."
+msgstr ""
+
+#: lecture.adoc:938
+msgid "== Lookup-метод может и не быть абстрактным"
+msgstr ""
+
+#: lecture.adoc:955
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"public class Foo {\n"
+"    //главное -- чтобы не был приватным\n"
+"    @Lookup\n"
+"    Bar getBar(){\n"
+"        return null;\n"
+"    };\n"
+"    public  void bar(){\n"
+"        //не null!\n"
+"        Bar b = getBar();\n"
+"        ...\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:957
+msgid "== Другой способ: `ObjectFactory` injection"
+msgstr ""
+
+#: lecture.adoc:964
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Component\n"
+"public class Foo {\n"
+"    @Autowired\n"
+"    private ObjectFactory<Bar> barFactory;"
+msgstr ""
+
+#: lecture.adoc:970
+msgid ""
+"    public  void bar(){\n"
+"        Bar bar = barFactory.getObject();\n"
+"        ...\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
