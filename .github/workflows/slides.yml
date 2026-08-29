@@ -21,8 +21,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Set up dot
-        run: sudo apt-get install -y graphviz
+      - name: Install system dependencies (graphviz, gnuplot)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz gnuplot-nox
       - name: Set up translate toolkit
         run: pipx install translate-toolkit
       - name: Allow script execution
@@ -34,7 +36,7 @@ jobs:
       - name: Build with Maven
         run: mvn verify
       - name: Copy slides
-        run: for file in slides??; do cp -r "$file/target/generated-slides" "output/$file"; done 
+        run: for file in slides??; do cp -r "$file/target/generated-slides" "output/$file"; done
       - name: Copy plan
         run: cp -r "plan/target/generated-docs" "output/plan"
       - name: Deploy to GitHub Pages
