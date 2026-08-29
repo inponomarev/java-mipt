@@ -21,10 +21,22 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Install system dependencies (graphviz, gnuplot)
+      - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y graphviz gnuplot-nox
+          sudo apt-get install -y \
+            graphviz \
+            gnuplot-nox \
+            texlive-latex-extra \
+            texlive-font-utils \
+            ghostscript \
+            poppler-utils
+      - name: Check diagram tools
+        run: |
+          gnuplot --version
+          pdflatex --version | head -1
+          epstopdf --version
+          pdftocairo -v
       - name: Set up translate toolkit
         run: pipx install translate-toolkit
       - name: Allow script execution

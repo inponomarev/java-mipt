@@ -1,4 +1,4 @@
-set term epslatex standalone size 18cm, 11cm 
+set term epslatex standalone size 18cm, 11cm
 # fontscale 0.3
 
 set output 'usl.tex'
@@ -12,7 +12,7 @@ set title "\\scalebox{2.0}{$S = \\frac{N}{1+\\alpha(N-1) + \\beta N (N-1)} = \\f
 #set grid  xtics ytics
 
 a = 1
-f(x) = x / (1 + (a * 0.1 + b * 0.001 * x ) * (x-1) ) 
+f(x) = x / (1 + (a * 0.1 + b * 0.001 * x ) * (x-1) )
 
 set label "\\colorbox{white}{$\\alpha = 0.1$}"  at 10, 8.50 rotate by   0 front
 set label "\\colorbox{white}{$\\beta = 0$}"     at 70, 9.10 rotate by   5 front
@@ -26,9 +26,15 @@ set label "\\colorbox{white}{$\\beta = 0.005$}" at 70, 1.80 rotate by -5 front
 unset key
 
 # Plot
-plot for [b=0:5] f(x) with lines linestyle b linewidth 3 
+plot for [b=0:5] f(x) with lines linestyle b linewidth 3
 
 # title sprintf("%g", b/1000.0)
 
 unset output
-!pdflatex usl.tex
+# Put all LaTeX noise into a log file
+!pdflatex -interaction=nonstopmode usl.tex > temp.log 2>&1
+
+# Emit final PNG bytes to stdout; append diagnostics to the same log
+!pdftocairo -png -singlefile -r 200 usl.pdf - 2>> temp.log
+
+exit status 0

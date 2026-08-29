@@ -68,7 +68,10 @@ S = \frac{1}{\alpha+\frac{1-\alpha}{N}} = \frac{N}{1+\alpha(N-1)} \leq \frac{1}{
 
 == Закон Амдала: поведение
 
-image::amdahl.png[{image-70-width}]
+[gnuplot,{image-70-width}]
+----
+include::amdahl.plot[]
+----
 
 == На самом деле, всё ещё хуже! 
 
@@ -180,7 +183,10 @@ S = \frac{N}{1+\alpha(N-1) + \beta N (N-1)} = \frac{N}{1+(\alpha + \beta N) (N-1
 ++++
 == USL: поведение
 
-image::usl.png[{image-70-width}]
+[gnuplot,{image-70-width}]
+----
+include::usl.plot[]
+----
 
 == Промежуточный вывод
 

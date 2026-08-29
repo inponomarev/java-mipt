@@ -1,4 +1,4 @@
-set term epslatex standalone size 18cm, 11cm 
+set term epslatex standalone size 18cm, 11cm
 # fontscale 0.3
 
 set output 'usl-amdahl.tex'
@@ -11,7 +11,7 @@ set title "\\scalebox{2.0}{$S = \\frac{N}{1+\\alpha(N-1)} < \\frac{1}{\\alpha}$}
 
 #set grid  xtics ytics
 
-f(x) = x / (1 + a * 0.1  * (x-1) ) 
+f(x) = x / (1 + a * 0.1  * (x-1) )
 
 set label "\\colorbox{white}{$\\alpha = 0$}"       at  7,  8.0 rotate by   80 front
 set label "\\colorbox{white}{$\\alpha = 0.1$}"     at 15,  6.6 rotate by   36 front
@@ -26,5 +26,13 @@ unset key
 # Plot
 plot for [a=0:7] f(x) with lines linestyle a  linewidth 3 title sprintf("%g", a/10.0)
 
+
 unset output
-!pdflatex usl-amdahl.tex
+
+# Put all LaTeX noise into a log file
+!pdflatex -interaction=nonstopmode usl-amdahl.tex > temp.log 2>&1
+
+# Emit final PNG bytes to stdout; append diagnostics to the same log
+!pdftocairo -png -singlefile -r 200 usl-amdahl.pdf - 2>> temp.log
+
+exit status 0
