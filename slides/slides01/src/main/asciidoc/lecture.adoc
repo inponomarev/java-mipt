@@ -2371,6 +2371,7 @@ plot \
 
 
 unset multiplot
+exit status 0
 ----
 
 [%notitle]
