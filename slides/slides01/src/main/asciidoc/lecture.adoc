@@ -34,7 +34,7 @@ icon:twitter[size=lg] @inponomarev
 
 [cols="30a,70a"]
 |===
-.^|image::me.jpg[]
+.^|image::profile.jpg[]
 .^|
 * Выпускник МФТИ 2003 г., к.ф.-м.н
 * ERP systems & Java background
@@ -50,28 +50,9 @@ icon:twitter[size=lg] @inponomarev
 
 * icon:home[size=lg] https://ponomarev.uk/ (EN)
 
-* icon:twitter[size=lg] https://twitter.com/inponomarev[@inponomarev]
-
 * icon:telegram[size=lg] https://t.me/ivan_ponomarev[ivan_ponomarev]
 
-
-== Как будет проходить курс?
-
-* Лекции
-* Семинарские занятия
-* Домашние работы
-* Баллы за сдачу ДЗ определяют финальную оценку
-
-[%notitle]
-== What is Java?
-image::indonesia.png[canvas, size=cover]
-
-[%notitle]
-== Ещё про острова
-image::kotlin.png[canvas, size=cover]
-
-
-== Полезные ссылки
+== Весь лекционный материал здесь
 
 * https://ponomarev.uk/javacourse.html
 
@@ -107,143 +88,199 @@ image::goetz.jpg[]
 * *Joshua Bloch* Effective Java
 * *Brian Goetz et al.* Java Concurrency in Practice
 
-== TIOBE Index (https://www.tiobe.com/tiobe-index/)
-
-* number of search engine results for queries containing the name of the language
-* covers searches in Google, Google Blogs, MSN, Yahoo!, Baidu, Wikipedia and YouTube
-* reflects the number of skilled engineers, courses and jobs worldwide
 
 
 [%notitle]
-== TIOBE
-
-image::tiobe.png[{image-100-width}]
-
-https://www.tiobe.com/tiobe-index/
-
-== RedMonk
-
-* GitHub & StackOverflow
+== What is Java?
+image::indonesia.png[canvas, size=cover]
 
 [%notitle]
-== RedMonk
+== Ещё про острова
+image::kotlin.png[canvas, size=cover]
 
-image::redmonk2025.png[{image-60-width}]
-https://redmonk.com/
+== Зачем нужны лекции по Java в 2026м?
 
-[%notitle]
-== RedMonk
+* Устаревший язык, на нём, наверное, уже новых проектов и не пишет никто...
+* Языки вообще учить не надо: Claude всё напишет за нас...
+* Что такого я узнаю на лекциях, чего нет онлайн?..
 
-image::redmonk-rankings-2025.png[{image-60-width}]
-https://redmonk.com/
+-- всё это правильные вопросы! Отвечу на них с конца...
 
-== Three Decades of Java: Before Java 9
+== Чем отличаются эти лекции от типичного онлайн-курса?
 
-[source]
-----
-JDK 1.0 (January 23, 1996)
-JDK 1.1 (February 19, 1997)
-J2SE 1.2 (December 8, 1998)
-J2SE 1.3 (May 8, 2000)
-J2SE 1.4 (February 6, 2002)
-J2SE 5.0 (September 30, 2004)   <--- Scala: early 2004
-Java SE 6 (December 11, 2006)
--- Sun acquisition by Oracle--  <--- Groovy 1.0: January 2, 2007
-Java SE 7 (July 28, 2011)
-Java SE 8 (March 18, 2014)      <--- Kotlin 1.0: February 15, 2016
-Java SE 9 (September 21, 2017)
-----
+* Инженерия -- искусство компромиссов (engineering trade-offs).
+* Осваивать это искусство хорошо на удачных примерах из прошлого. +
+Java -- такой пример.
+* Инженеру в наше время не так важно знать конкретный язык, как понимать, что компромисс неизбежен, и уметь выбирать наилучший.
 
-(source: Wikipedia)
+== Что такое Java вообще? (И что значит «выучить Java»?)
 
-== Three Decades of Java: After Java 9
+* *Язык + виртуальная машина*: https://docs.oracle.com/javase/specs/index.html
+** Java Language Specification (872 стр)
+** Java Virtual Machine Specification (626 стр)
+* *Экосистема*
+** стандартная библиотека,
+** иные JVM-языки (Kotlin, Scala, Groovy), и реализации языков для JVM (JRuby)
+** Репозиторий библиотек Maven Central и огромное количество переиспользуемого кода
+** Тулинг (IDE, инструменты тестирования)
 
-6-monthly release cadence
-
-[cols="50a,50a"]
-|===
-|
-
-[source]
-10     (March 20, 2018)
-11 LTS (September 25, 2018)
-12     (March 19, 2019)
-13     (September 17, 2019)
-14     (March 17, 2020)
-15     (September 15, 2020)
-16     (March 16, 2021)
-17 LTS (September 14, 2021)
-
-|
-
-[source]
-18     (March 22, 2022)
-19     (September 20, 2022)
-20     (March 21, 2023)
-21 LTS (September 19, 2023)
-22     (March 19, 2024)
-23     (September 17, 2024)
-24     (March 18, 2025)
-25 LTS (September 16, 2025)
-|===
-
-
-(source: Wikipedia)
-
-== Истоки
+== Немного истории: как всё начиналось
 
 [cols="50a,50a"]
 |===
 .^|
+.James Gosling (JPoint 2020)
 image::gosling-lotr.jpg[]
 .^|
 * Язык для приставок кабельного телевидения
-* Вдохновлён C++ 
+* Вдохновлён C/C++: знакомый синтаксис `if(...) {}; while(...){};` ...
 * *WORA*
 * Было и другое, но WORA -- самое главное
 |===
 
-[.fragment]
-icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: +
+* icon:youtube-play[size=lg] The Java Story: The Official Documentary, July 2026 +
+https://www.youtube.com/watch?v=ZqGSg4b_cZA
+
+* icon:youtube-play[size=lg] Q&A with James Gosling, June 2020: +
 https://www.youtube.com/watch?v=XThhlihqTXI
 
-== Вопрос
 
-Как бы вы реализовали WORA?
+== Где Java пыталась найти свою нишу
 
-* Endianness...
-* Размер регистров...
+[cols="60a,40a"]
+|===
+|
+* Ранние годы Интернета: браузерные «апплеты» в{nbsp}статических HTML-страницах.
+* Built-in security: виртуальная машина работает в{nbsp}«песочнице»
+* Продвинутые возможности на фоне примитивных браузеров.
+* В итоге технология проиграла  языку JavaScript, выполняющемуся непосредственно в{nbsp}браузере
+* Сотрудничеству Sun и Netscape мы обязаны слову "Java" в "JavaScript".
+>.|
+image::netscape.png[]
+|===
 
-== Продолжение истории
+== Где Java нашла свою нишу?
 
-* Браузерные "Апплеты"
-* Built-in security
-* Но Security сделать оказалось непросто 
-* Апплеты не пошли (в браузерах победил JavaScript)
+Повсюду: от чипов в банковских картах до серверов в дата-центрах.
 
-== Сегодняшний день
-
-* Desktop (?)
+[cols="30a,40a,30a"]
+|===
+|
+// Shutterstock 2073324527
+image::card_full.jpg[]
+|
+* Desktop (cross-platform)
 * Embedded Systems
-* *Server-side (backend)*
-* Mobile Devices (Android) -- отдельная история (see https://en.wikipedia.org/wiki/Google_v._Oracle_America[Google vs. Oracle] case)
+* Server-side (backend)
+* Mobile Devices (Android)
+|
+// https://commons.wikimedia.org/wiki/File:Rack_of_Cisco_Hyperflex_HXAF_240c_M5_nodes.jpg
+image::server_rack.jpg[]
+|===
 
+== Java и Android
+
+* При разработке Android, Google использовали Java как язык, `javac`, стандартные API, байткод, но не виртуальную машину и не реализацию API.
+* 11 лет судов Google с Oracle (2010--2021), пока решение не было вынесено в пользу Google.
+* Kotlin (язык, компилирующийся в тот же JVM байт-код) провозглашён основным языком Android.
+* Oracle не признаёт настоящей «Джавой» то, что работает на Android.
+* https://www.businessofapps.com/data/android-statistics/[По некоторым оценкам], в мире около 3.9 млрд Android-устройств.
+
+image::android.svg[{image-30-width}]
+
+== Синтаксис тот же, типизация строже
+
+[cols="50a,50a"]
+|===
+^.>| image:c.svg[width=7%]
+^.>| image:java_logo2.svg[width=28%]
+|
+[source,c]
+----
+int i = 2;
+if (i = 4) {
+    printf("head\n");
+} else {
+    printf("tail\n");
+}
+----
+[.fragment]
+Напечатает `head` (`i = 4` -- выражение, равное 4, воспринимаемое как «истина»).
+|
+[source,java]
+----
+int i = 2;
+if (i = 4) {
+    println("head");
+} else {
+    println("tail");
+}
+----
+[.fragment]
+Не скомпилируется (как и в C, `i = 4` -- выражение, возвращающее 4, но его тип не `boolean`).
+|===
+
+== Синтаксис тот же, семантика строже
+
+[cols="50a,50a"]
+|===
+^.>| image:c.svg[width=7%]
+^.>| image:java_logo2.svg[width=28%]
+|
+[source,c]
+----
+int rise_salary(int base) {
+ if (base < 0) {
+  return 0;
+  /*bug: misplaced
+           after return*/
+  printf("Invalid salary: %d\n",
+                           base);
+ }
+ return base + 100;
+}
+----
+[.fragment]
+Язык допускает подобный код (компилятор, в зависимости от версии и{nbsp}настроек, может выдать warning).
+|
+[source,java]
+----
+int riseSalary(int base) {
+ if (base < 0) {
+  return 0;
+  /*bug: misplaced
+           after return*/
+  println("Invalid salary: "
+                     + base);
+ }
+ return base + 100;
+}
+----
+[.fragment]
+Не скомпилируется (unreachable statement не допустим).
+|===
+
+[%notitle]
 == Безопасность в design-time и в run-time
 
 image::rtvscompiletime.png[]
 
-== Виртуальная машина
+== Синтаксис тот же, семантика строже!
 
-WORA + Две взаимосвязанные задачи:
-
-* Безопасность
-* Исключение фатальных сбоев на сервере 
-
+[cols="50a,50a"]
+|===
+^.>| image:c.svg[width=7%]
+^.>| image:java_logo2.svg[width=28%]
+|
+[source,c]
+----
+int i = 2;
+i = ++i + ++i + ++i;
+----
 [.fragment]
-Генерируем байт-код, верифицируем и исполняем его в безопасной среде
-
-== Вопрос
-
+Неопределённое поведение +
+(https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
+|
 [source,java]
 ----
 int i = 2;
@@ -251,54 +288,2120 @@ i = ++i + ++i + ++i;
 ----
 
 [.fragment]
-*Java* -- 12, +
-*C* -- undefined behaviour +
-(https://stackoverflow.com/questions/3879176/i-i-i-in-java-vs-c)
+3 + 4 + 5 = 12
+|===
 
-== Runtime-ошибки не катастрофичны
+== Синтаксис тот же, безопасности больше
 
-* `NullPointerException`
-* `ArrayIndexOutOfBoundsException`
+[cols="50a,50a"]
+|===
+^.>| image:c.svg[width=7%]
+^.>| image:java_logo2.svg[width=28%]
+|
+[source,c]
+----
+int array[2];
+printf("%d\n", array[5]);
+----
+[.fragment]
+Неопределенное поведение (включая чтение чужих данных или segmentation fault).
+|
+[source,java]
+----
+int[] array = new int[2];
+println(array[5]);
+----
+[.fragment]
+`ArrayIndexOutOfBoundsException`, который можно перехватить и обработать. Цена: проверка при каждом обращении к элементу массива!
+|===
+
+== Синтаксис (почти) тот же, безопасности больше
+
+[cols="50a,50a"]
+|===
+^.>| image:c.svg[width=7%]
+^.>| image:java_logo2.svg[width=28%]
+|
+[source,c]
+----
+Employee* e = NULL;
+printf("%d\n", e->salary);
+----
+[.fragment]
+Неопределенное поведение (включая аварийное завершение программы).
+|
+[source,java]
+----
+Employee e = null;
+println(e.salary);
+----
+[.fragment]
+`NullPointerException`, который можно перехватить и обработать.
+|===
+
+== Проблема несовместимости платформ
+
+* На разных типах компьютеров разные
+** Endianness...
+** Размер регистров и ссылок (`sizeof(int)`, `sizeof(void *)`...
+** Floating point hardware & format...
+* Приходилось разрабатывать разные версии программ для разных платформ (или писать спагетти из `#ifdef`)
 
 
-== Виртуальные машины Java
 
-Reference implementation: Oracle HotSpot
+== JVM
 
-https://en.wikipedia.org/wiki/List_of_Java_virtual_machines
+* Java bytecode -- исполняемый код _виртуальной машины_. Виртуальные машины (написанные на C++) написаны для разных платформ, все они исполняют байт-код.
+* LLVM intermediate representation -- схожая идея, появившаяся позднее.
+* Решается вопрос не только _кроссплатформенности_, но и _безопасности_.
 
-~ 20 реализаций
+[cols="30a,70a"]
+|===
+.^|
+[graphviz]
+----
+digraph G {
+  graph [dpi=200];
+  node[shape=box,style=rounded,fontname="Helvetica"];
+  edge[fontname="Helvetica"];
+  source[label="C source"]
+  exec[label="x86/Linux executable"]
+  source->exec[label="  compile specifically\nfor x86/Linux"];
+}
+----
+.^|
+[graphviz]
+----
+digraph G {
+  graph [dpi=160];
+  node[shape=box,style=rounded,fontname="Helvetica"];
+  edge[fontname="Helvetica"];
+  source[label="Java source"]
+  scala[label="Scala source"]
+  kotlin[label="Kotlin source"]
+  other[label="..."]
+  bytecode[label="JVM bytecode (*.class)", fillcolor="#E69F00", style="rounded,filled"]
+  source->bytecode[label="  javac"];
+  scala  -> bytecode [label="  scalac"];
+  kotlin -> bytecode [label="  kotlinc"];
+  other -> bytecode[label=" ..."];
+  P1[label="JVM\nx86/Windows"];
+  P2[label="JVM\nx86/Linux"];
+  P3[label="JVM\nARM/MacOS"];
+  P4[label="JVM\n..."]
+  bytecode->P1;
+  bytecode->P2;
+  bytecode->P3;
+  bytecode->P4;
+}
+----
+|===
 
-== Сервисы виртуальной машины и платформы
 
-[%step]
-* Byte code, интерпретация и JIT-компиляция.
+== Путь байткода: верификация, интерпретация и JIT-компиляция
+
+[graphviz]
+----
+
+digraph G {
+  rankdir=LR;
+  compound=true;
+
+  graph [
+    dpi=200,
+
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#FFFFFF",
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=13,
+    margin="0.16,0.10"
+  ];
+
+  edge [
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=11
+  ];
+
+  source [
+    label=".java file"
+  ];
+
+  bytecode [
+    label=".class file\n(bytecode)",
+    fillcolor="#E69F00"
+  ];
+
+  source -> bytecode [
+    label=" javac"
+  ];
+
+  subgraph cluster_jvm {
+    label="JVM";
+    labelloc="t";
+    fontname="Helvetica";
+    fontsize=14;
+    color="#555555";
+    style="dashed,rounded";
+    penwidth=1.5;
+    margin=18;
+
+    verifier [
+      label="class loading\nand bytecode\nverification",
+      fillcolor="#F0E442"
+    ];
+
+    verify_error [
+      label="VerifyError",
+      fillcolor="#D55E00",
+      fontcolor="#FFFFFF"
+    ];
+
+    interpreter [
+      label="interpretation\n+ profiling",
+      fillcolor="#56B4E9",
+      style="invis"
+    ];
+
+    compiled [
+      label="optimized\nmachine code",
+      fillcolor="#009E73",
+      fontcolor="#FFFFFF",
+      style="invis"
+    ];
+
+
+    verifier -> verify_error [
+      label=" invalid",
+      color="#D55E00",
+      fontcolor="#D55E00"
+    ];
+
+    verifier -> interpreter [
+      label=" valid"
+    ];
+
+    interpreter -> compiled [
+      label=" hot code + profile\n optimizing JIT",
+      style="invis"
+    ];
+
+    compiled -> interpreter [
+      label=" uncommon trap\n deoptimization",
+      style=dashed,
+      color="#D55E00",
+      fontcolor="#D55E00",
+      constraint=false,
+      style="invis"
+    ];
+  }
+
+  bytecode -> verifier [
+    label=" load"
+  ];
+}
+
+----
+
+* Перед выполнением байткода, JVM выполняет его статическую проверку (https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-4.html#jvms-4.10)
+* Если код невалидный (например, stack underflow) -- VerifyError
+
+
+== Путь байткода: верификация, интерпретация и JIT-компиляция
+
+[graphviz]
+----
+
+digraph G {
+  rankdir=LR;
+  compound=true;
+
+  graph [
+    dpi=200,
+
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#FFFFFF",
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=13,
+    margin="0.16,0.10"
+  ];
+
+  edge [
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=11
+  ];
+
+  source [
+    label=".java file"
+  ];
+
+  bytecode [
+    label=".class file\n(bytecode)",
+    fillcolor="#E69F00"
+  ];
+
+  source -> bytecode [
+    label=" javac"
+  ];
+
+  subgraph cluster_jvm {
+    label="JVM";
+    labelloc="t";
+    fontname="Helvetica";
+    fontsize=14;
+    color="#555555";
+    style="dashed,rounded";
+    penwidth=1.5;
+    margin=18;
+
+    verifier [
+      label="class loading\nand bytecode\nverification",
+      fillcolor="#F0E442"
+    ];
+
+    verify_error [
+      label="VerifyError",
+      fillcolor="#D55E00",
+      fontcolor="#FFFFFF"
+    ];
+
+    interpreter [
+      label="interpretation\n+ profiling",
+      fillcolor="#56B4E9"
+    ];
+
+    compiled [
+      label="optimized\nmachine code",
+      fillcolor="#009E73",
+      fontcolor="#FFFFFF",
+      style="invis"
+    ];
+
+
+    verifier -> verify_error [
+      label=" invalid",
+      color="#D55E00",
+      fontcolor="#D55E00"
+    ];
+
+    verifier -> interpreter [
+      label=" valid"
+    ];
+
+    interpreter -> compiled [
+      label=" hot code + profile\n optimizing JIT",
+      style="invis"
+    ];
+
+    compiled -> interpreter [
+      label=" uncommon trap\n deoptimization",
+      style=dashed,
+      color="#D55E00",
+      fontcolor="#D55E00",
+      constraint=false,
+      style="invis"
+    ];
+  }
+
+  bytecode -> verifier [
+    label=" load"
+  ];
+}
+
+----
+
+* JVM начинает исполнение с _интерпретации_ байт-кода, накапливая статистику выполнения.
+
+== Путь байткода: верификация, интерпретация и JIT-компиляция
+
+[graphviz]
+----
+
+digraph G {
+  rankdir=LR;
+  compound=true;
+
+  graph [
+    dpi=200,
+
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#FFFFFF",
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=13,
+    margin="0.16,0.10"
+  ];
+
+  edge [
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=11
+  ];
+
+  source [
+    label=".java file"
+  ];
+
+  bytecode [
+    label=".class file\n(bytecode)",
+    fillcolor="#E69F00"
+  ];
+
+  source -> bytecode [
+    label=" javac"
+  ];
+
+  subgraph cluster_jvm {
+    label="JVM";
+    labelloc="t";
+    fontname="Helvetica";
+    fontsize=14;
+    color="#555555";
+    style="dashed,rounded";
+    penwidth=1.5;
+    margin=18;
+
+    verifier [
+      label="class loading\nand bytecode\nverification",
+      fillcolor="#F0E442"
+    ];
+
+    verify_error [
+      label="VerifyError",
+      fillcolor="#D55E00",
+      fontcolor="#FFFFFF"
+    ];
+
+    interpreter [
+      label="interpretation\n+ profiling",
+      fillcolor="#56B4E9"
+    ];
+
+    compiled [
+      label="optimized\nmachine code",
+      fillcolor="#009E73",
+      fontcolor="#FFFFFF"
+    ];
+
+
+    verifier -> verify_error [
+      label=" invalid",
+      color="#D55E00",
+      fontcolor="#D55E00"
+    ];
+
+    verifier -> interpreter [
+      label=" valid"
+    ];
+
+    interpreter -> compiled [
+      label=" hot code + profile\n optimizing JIT"
+    ];
+
+    compiled -> interpreter [
+      label=" uncommon trap\n deoptimization",
+      style=dashed,
+      color="#D55E00",
+      fontcolor="#D55E00",
+      constraint=false,
+      style="invis"
+    ];
+  }
+
+  bytecode -> verifier [
+    label=" load"
+  ];
+}
+----
+
+* По мере того, как накапливается статистика использования кода, код компилируется в оптимизированный машинный код с использованием допущений, накопленных по статистике выполнения.
+* Скомпилированный код хранится в Code Cache (специальном сегменте оперативной памяти).
+
+== Путь байткода: верификация, интерпретация и JIT-компиляция
+
+[graphviz]
+----
+
+digraph G {
+  rankdir=LR;
+  compound=true;
+
+  graph [
+    dpi=200,
+
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#FFFFFF",
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=13,
+    margin="0.16,0.10"
+  ];
+
+  edge [
+    color="#000000",
+    fontname="Helvetica",
+    fontsize=11
+  ];
+
+  source [
+    label=".java file"
+  ];
+
+  bytecode [
+    label=".class file\n(bytecode)",
+    fillcolor="#E69F00"
+  ];
+
+  source -> bytecode [
+    label=" javac"
+  ];
+
+  subgraph cluster_jvm {
+    label="JVM";
+    labelloc="t";
+    fontname="Helvetica";
+    fontsize=14;
+    color="#555555";
+    style="dashed,rounded";
+    penwidth=1.5;
+    margin=18;
+
+    verifier [
+      label="class loading\nand bytecode\nverification",
+      fillcolor="#F0E442"
+    ];
+
+    verify_error [
+      label="VerifyError",
+      fillcolor="#D55E00",
+      fontcolor="#FFFFFF"
+    ];
+
+    interpreter [
+      label="interpretation\n+ profiling",
+      fillcolor="#56B4E9"
+    ];
+
+    compiled [
+      label="optimized\nmachine code",
+      fillcolor="#009E73",
+      fontcolor="#FFFFFF"
+    ];
+
+
+    verifier -> verify_error [
+      label=" invalid",
+      color="#D55E00",
+      fontcolor="#D55E00"
+    ];
+
+    verifier -> interpreter [
+      label=" valid"
+    ];
+
+    interpreter -> compiled [
+      label=" hot code + profile\n optimizing JIT"
+    ];
+
+    compiled -> interpreter [
+      label=" uncommon trap\n deoptimization",
+      style=dashed,
+      color="#D55E00",
+      fontcolor="#D55E00",
+      constraint=false
+    ];
+  }
+
+  bytecode -> verifier [
+    label=" load"
+  ];
+}
+
+----
+
+* Если путь выполнения меняется, срабатывает "uncommon trap" и выполнение возвращается к интерпретатору.
+
+
+//https://advancedweb.hu/2016/05/27/jvm_jit_optimization_techniques/
+
+
+
+== В низкоуровневых языках (например, C) мы контролируем аллокацию данных в памяти
+
+[cols="50a,50a"]
+|===
+|
+[source,c]
+----
+typedef struct {
+    int year;
+    int month;
+    int day;
+} Date;
+/* "stack allocation" */
+Date val_date =
+  {.year = 2026, .month = 8, .day = 15};
+/* "heap allocation" */
+Date* ptr_date = malloc(sizeof(Date));
+
+*ptr_date = val_date; // values copied
+ptr_date->day++; // value on heap increased
+print_date(val_date); // 2026-8-15
+print_date(*ptr_date); // 2026-8-16
+----
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT= "main" ><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="val_date" BGCOLOR="#f2f2f2" COLSPAN="2">Date val_date</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">year</TD>
+                      <TD ALIGN="LEFT">2026</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">month</TD>
+                      <TD ALIGN="LEFT">8</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">day</TD>
+                      <TD ALIGN="LEFT">15</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="ptr_date" BGCOLOR="#f2f2f2">   Date* ptr_date  </TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2026</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">8</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">16</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // ptr_date still points to the heap object
+  stack:ptr_date:e -> heap_date:w[];
+
+    // keep heap on the right
+  stack:main -> heap_date [style=invis];
+
+}
+----
+|===
+
+== В C мы контролируем передачу данных по ссылке или по значению
+[cols="50a,50a"]
+|===
+|
+[source,c]
+----
+Date modify_months(Date date1, Date *date2) {
+  date1.month++;
+  date2->month++;
+  return date1;
+}
+
+Date result =
+  modify_months(
+    *ptr_date, // value at pointer
+    &val_date  // address of value
+);
+
+// passed by pointer, modified
+print_date(val_date); // 2026-9-15
+//  passed by value, unmodified
+print_date(*ptr_date); // 2026-8-16
+// new value
+print_date(result); //2026-9-16
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <!-- modify_months frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT= "modify"><B>modify_months</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">Date date1</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">year</TD>
+                      <TD ALIGN="LEFT">2026</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">month</TD>
+                      <TD ALIGN="LEFT">9</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">day</TD>
+                      <TD ALIGN="LEFT">16</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="date2" BGCOLOR="#f2f2f2">Date* date2</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT= "main" ><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="val_date" BGCOLOR="#f2f2f2" COLSPAN="2">Date val_date</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">year</TD>
+                      <TD ALIGN="LEFT">2026</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">month</TD>
+                      <TD ALIGN="LEFT">9</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">day</TD>
+                      <TD ALIGN="LEFT">15</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="ptr_date" BGCOLOR="#f2f2f2">   Date* ptr_date   </TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // date2 points back into the caller's frame
+  stack:date2:w -> stack:val_date:w;
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2026</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">8</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">16</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // ptr_date still points to the heap object
+  stack:ptr_date:e -> heap_date:w[];
+
+    // keep heap on the right
+  stack:main -> heap_date [style=invis];
+
+}
+----
+|===
+
+== Массивы ссылок и массивы значений
+
+[cols="50a,50a"]
+|===
+.^|
+[source,c]
+----
+Date val_dates[3];
+val_dates[0] = val_date;
+val_dates[1] = *ptr_date;
+val_dates[2] = result;
+
+Date* ptr_dates[3];
+ptr_dates[0] = &val_dates[0];
+ptr_dates[1] = &val_dates[1];
+ptr_dates[2] = &val_dates[1];
+----
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=1.0, ranksep=0.8];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  ptr_dates [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+        <TR>
+          <TD BGCOLOR="#e6e6e6"><B>Date* ptr_dates[3]</B></TD>
+        </TR>
+        <TR>
+          <TD PORT="p0" ALIGN="LEFT">ptr_dates[0]</TD>
+        </TR>
+        <TR>
+          <TD PORT="p1" ALIGN="LEFT">ptr_dates[1]</TD>
+        </TR>
+        <TR>
+          <TD PORT="p2" ALIGN="LEFT">ptr_dates[2]</TD>
+        </TR>
+      </TABLE>
+    >
+  ];
+
+  val_dates [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+        <TR>
+          <TD BGCOLOR="#e6e6e6" COLSPAN="3"><B>Date val_dates[3]</B></TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v0" BGCOLOR="#f2f2f2" ROWSPAN="3">val_dates[0]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">9</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">15</TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v1" BGCOLOR="#f2f2f2" ROWSPAN="3">val_dates[1]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">8</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">16</TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v2" BGCOLOR="#f2f2f2" ROWSPAN="3">val_dates[2]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">9</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">16</TD>
+        </TR>
+      </TABLE>
+    >
+  ];
+
+  ptr_dates:p0:e -> val_dates:v0:w;
+  ptr_dates:p1:e -> val_dates:v1:w;
+  ptr_dates:p2:e -> val_dates:v1:w;
+}
+----
+|===
+
+
+
+== Проблемы C: use after free
+
+[cols="50a,50a"]
+|===
+.^|
+[source,c]
+----
+void fillInterval(Date* from, Date* to) {
+  *from = (Date){.year = 2026,
+    .month = 8, .day = 15};
+  Date dateTo = (Date){.year = 2026,
+    .month = 8, .day = 16};
+  to = &dateTo;
+  free(from);
+}
+
+void main() {
+  Date* from = malloc(sizeof(Date));
+  Date* to = NULL;
+  fillInterval(from, to);
+  print_date(*from); //Access violation
+  print_date(*to);
+}
+----
+|
+
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  // STACK
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <TR>
+          <TD>
+            <TABLE BORDER="1" COLOR="#cc6666" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#f4cccc" PORT="fill"><FONT COLOR="#a61c1c"><B>fillInterval (exited)</B></FONT></TD>
+              </TR>
+
+              <TR>
+                <TD>. . .</TD>
+              </TR>
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" COLOR="#cc6666" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR><TD PORT="dateTo" BGCOLOR="#fde9e7" COLSPAN="2">Date dateTo</TD></TR>
+                    <TR><TD ALIGN="LEFT" BGCOLOR="#fde9e7">year</TD><TD ALIGN="LEFT" BGCOLOR="#fde9e7">2026</TD></TR>
+                    <TR><TD ALIGN="LEFT" BGCOLOR="#fde9e7">month</TD><TD ALIGN="LEFT" BGCOLOR="#fde9e7">8</TD></TR>
+                    <TR><TD ALIGN="LEFT" BGCOLOR="#fde9e7">day</TD><TD ALIGN="LEFT" BGCOLOR="#fde9e7">16</TD></TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR><TD PORT="from" BGCOLOR="#f2f2f2" >Date* from</TD></TR>
+
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR><TD PORT="to" BGCOLOR="#f2f2f2" >Date* to</TD></TR>
+
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // Dangling pointers inside the exited frame
+  stack:to:w   -> stack:dateTo:w   [style=dashed, color="#a61c1c"];
+  stack:from:e -> heap_date:w      [style=dashed, color="#a61c1c"];
+
+
+  // HEAP
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" COLOR="#cc6666" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD ALIGN="LEFT" BGCOLOR="#fde9e7">year</TD><TD ALIGN="LEFT" BGCOLOR="#fde9e7">2026</TD></TR>
+          <TR><TD ALIGN="LEFT" BGCOLOR="#fde9e7">month</TD><TD ALIGN="LEFT" BGCOLOR="#fde9e7">8</TD></TR>
+          <TR><TD ALIGN="LEFT" BGCOLOR="#fde9e7">day</TD><TD ALIGN="LEFT" BGCOLOR="#fde9e7">15</TD></TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // keep heap on the right
+  stack:main -> heap_date [style=invis];
+}
+----
+
+|===
+
+
+== Проблемы C: потерянный указатель / утечка памяти
+
+[cols="50a,50a"]
+|===
+.^|
+[source,c]
+----
+Date* date = malloc(sizeof(Date));
+*date =
+  (Date){.year = 2026,
+         .month = 8,
+         .day = 15};
+date = malloc(sizeof(Date));
+*date =
+  (Date){.year = 2026,
+         .month = 8,
+         .day = 16};
+----
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.2, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  Leak[shape=note, label="This will remain\non heap forever"];
+
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6"><B>main</B></TD>
+              </TR>
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" PORT="date">Date* date</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_lost_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2026</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">8</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">15</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2026</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">8</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">16</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+  }
+
+  stack:date -> heap_date [];
+  Leak -> heap_lost_date[arrowhead=none];
+}
+----
+|===
+
+
+== Java: свобода и производительность в обмен на безопасность
+
+* Нет больше `*` и `&`, всё определено за нас.
+* «Объекты» и «примитивы/value-объекты» ведут себя по-разному.
+
+[cols="50a,50a"]
+|===
+.^|
+[source,java]
+----
+@AllArgsConstructor @ToString
+class Date {
+  int day; int month; int year; }
+
+int modifyMonths(int month, Date date) {
+  month++; date.month++;
+  return month; }
+
+Date d = new Date(15, 8, 2026);
+int month = 8;
+int result = modifyMonths(month, d);
+println(month);  // 8
+println(d);      // Date(d=15, m=9, y=2026)
+println(result); // 9
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <!-- modifyMonths frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="modify">   <B>modifyMonths</B>   </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int month</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">value</TD>
+                      <TD ALIGN="LEFT">9</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="date" BGCOLOR="#f2f2f2">Date date</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Date d</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int month</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">value</TD>
+                      <TD ALIGN="LEFT">8</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">15</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">9</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2026</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // two references to the same heap object
+  stack:d:e -> heap_date:w;
+  stack:date:e -> heap_date:w;
+}
+----
+|===
+
+== Массивы объектов в Java (не value-объектов) -- всегда массивы ссылок
+
+[cols="50a,50a"]
+|===
+.^|
+[source,java]
+----
+Date[] dates = new Date[3];
+
+dates[0] = new Date(1, 1, 2023);
+dates[1] = new Date(2, 2, 2024);
+dates[2] = dates[1];
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="dates" BGCOLOR="#f2f2f2">   Date[] dates   </TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    dates_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD><B>Date[]</B></TD>
+          </TR>
+          <TR>
+            <TD>length = 3</TD>
+          </TR>
+          <TR>
+            <TD PORT="d0" ALIGN="LEFT">dates[0]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d1" ALIGN="LEFT">dates[1]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d2" ALIGN="LEFT">dates[2]</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date0 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2023</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date1 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2024</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // local variable references the array object
+  stack:dates:e -> dates_array:w;
+
+  // array elements contain references to Date objects
+  dates_array:d0:e -> date0:w;
+  dates_array:d1:e -> date1:w;
+  dates_array:d2:e -> date1:w;
+}
+----
+|===
+
+== Потерянная ссылка -- не проблема
+
+[cols="50a,50a"]
+|===
+.^|
+[source,java]
+----
+dates = new Date[0];
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  GC[shape=note, label="Garbage collector\nwill remove this"];
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" >
+                  <B>main</B>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" PORT="date">Date[] dates</TD>
+                    </TR>
+
+                  </TABLE>
+                </TD>
+              </TR>
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    new_dates_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD><B>Date[]</B></TD>
+          </TR>
+          <TR>
+            <TD>length = 0</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    dates_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD><B>Date[]</B></TD>
+          </TR>
+          <TR>
+            <TD>length = 3</TD>
+          </TR>
+          <TR>
+            <TD PORT="d0" ALIGN="LEFT">dates[0]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d1" ALIGN="LEFT">dates[1]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d2" ALIGN="LEFT">dates[2]</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date0 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2023</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date1 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2024</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // local variable references the array object
+  stack:dates:e -> new_dates_array:w[];
+
+  GC -> dates_array:w[arrowhead=none];
+
+  // array elements contain references to Date objects
+  dates_array:d0:e -> date0:w;
+  dates_array:d1:e -> date1:w;
+  dates_array:d2:e -> date1:w;
+}
+----
+|===
+
+== Обоснование решений из 1995-го года
+
+[cols="50a,50a"]
+|===
+|
+* Нет (явных) аллокаций на стеке
+* Нет ручной деаллокации
+|  => нет проблемы «висячих» ссылок
+|
+* Garbage collection
+|=> нет проблемы «потерянных» ссылок
+|
+* 8 предопределенных примитивных типов (`byte`, `short`, `int`, `long`, `char`, `float`, `double`, `boolean`), не являющихся частью иерархи типов объектов.
+| Компромисс ради быстродействия при отсутствии лучшего решения. Осложнил систему типов, обучение языку Java, привёл к дальнейшим проблемам типа использования типов-обёрток в generics.
+|===
+
+== Конечно, подход Java к безопасности -- +++<br/>+++не единственный возможный подход...
+
+[cols="20a,80a"]
+|===
+|
+image::c_sharp_logo_2023.svg[{image-80-width}]
+|
+C#: «соперник Java», на 4 года моложе Джавы
+
+* имеет GC, но также имеет `struct` для типов-значений, аллоцируемых «на стеке», и  `ref` для передачи данных по ссылке.
+* контроль «утечек» `ref` производится компилятором: нельзя передать `ref` на локальную переменную туда, где ссылка сохранится после выхода из функции, создавшей локальную переменную.
+* `List<int>` не использует типы-обёртки.
+|===
+
+== Конечно, подход Java к безопасности -- +++<br/>+++не единственный возможный подход...
+
+[cols="20a,80a"]
+|===
+|
+
+image::rust-logo-blk.svg[{image-80-width}]
+|
+Rust: «соперник C», примерно на  10 лет моложе Джавы
+
+* Имеет `struct`, иммутабельные (`&`) и мутабельные (`&mut`) ссылки.
+* Borrow checking/lifetime checking во время компиляции.
+* `unsafe {...}` в ситуациях, где он нужен.
+|===
+
+== 20 лет Java (наряду с C) оставалась лидером индекса TIOBE
+
+[gnuplot,format=svg]
+----
+set terminal svg size 1800,900 enhanced  font "Arial,20"
+
+set datafile separator comma
+set datafile missing ""
+
+set xdata time
+set timefmt "%Y-%m-%d"
+set format x "%Y"
+
+# Shared horizontal scale
+set xrange ["1995-01-01":"2017-12-31"]
+
+# Shared horizontal geometry for perfect alignment
+set lmargin at screen 0.08
+set rmargin at screen 0.98
+set tmargin at screen 0.96
+set bmargin at screen 0.54
+
+# Okabe-Ito palette
+c_color          = "#000000"
+csharp_color     = "#0072B2"
+cpp_color        = "#56B4E9"
+java_tiobe_color = "#D55E00"
+js_color         = "#009E73"
+python_color     = "#CC79A7"
+
+# Timeline colours
+java_release_color = "#D55E00"   # same as Java curve
+event_color        = "#E69F00"   # separate orange
+
+set multiplot
+
+# ============================================================
+# TOP: TIOBE index
+# ============================================================
+
+set tmargin at screen 0.95
+set bmargin at screen 0.42
+
+set yrange [0:*]
+
+set ylabel "TIOBE index (%)"
+unset xlabel
+
+set format x "%Y"
+set xtics \
+("1995" "1995-01-01", \
+"1997" "1997-01-01", \
+"1999" "1999-01-01", \
+"2001" "2001-01-01", \
+"2003" "2003-01-01", \
+"2005" "2005-01-01", \
+"2007" "2007-01-01", \
+"2009" "2009-01-01", \
+"2011" "2011-01-01", \
+"2013" "2013-01-01", \
+"2015" "2015-01-01", \
+"2017" "2017-01-01", \
+"2019" "2019-01-01")
+
+set xtics font ",18"
+set ytics font ",18"
+
+set grid xtics ytics linewidth 1.5 linecolor black
+set key top right font ",18"
+
+set label 1 "Data: TIOBE Index https://www.tiobe.com/tiobe-index/" \
+at graph 0.02,0.96 font ",18" front boxed
+
+set style line 1 lc rgb c_color          lw 3
+set style line 2 lc rgb csharp_color     lw 3
+set style line 3 lc rgb cpp_color        lw 3
+set style line 4 lc rgb java_tiobe_color lw 3
+set style line 5 lc rgb js_color         lw 3
+set style line 6 lc rgb python_color     lw 3
+
+plot "tiobe-top6-wide.csv" using 1:2 \
+with lines ls 1 title "C", \
+"" using 1:3 \
+with lines ls 2 title "C#", \
+"" using 1:4 \
+with lines ls 3 title "C++", \
+"" using 1:5 \
+with lines ls 4 title "Java", \
+"" using 1:6 \
+with lines ls 5 title "JavaScript", \
+"" using 1:7 \
+with lines ls 6 title "Python"
+
+
+# ============================================================
+# BOTTOM: Java / JVM timeline
+# ============================================================
+
+set datafile separator whitespace
+
+set tmargin at screen 0.38
+set bmargin at screen 0.06
+
+# Deliberately retain generous vertical coordinate space.
+# Labels must not be squeezed against the upper boundary.
+set yrange [-1.75:1.85]
+
+unset key
+unset border
+unset label 1
+
+set xtics \
+    ("" "1995-01-01", \
+     "" "1997-01-01", \
+     "" "1999-01-01", \
+     "" "2001-01-01", \
+     "" "2003-01-01", \
+     "" "2005-01-01", \
+     "" "2007-01-01", \
+     "" "2009-01-01", \
+     "" "2011-01-01", \
+     "" "2013-01-01", \
+     "" "2015-01-01", \
+     "" "2017-01-01", \
+     "" "2019-01-01")
+
+set grid xtics
+set tics nomirror out
+set zeroaxis linewidth 2
+
+unset ytics
+unset ylabel
+
+set style line 11 lc rgb java_release_color lw 3 pt 7 ps 1.0
+set style line 12 lc rgb event_color        lw 3 pt 5 ps 1.0
+
+$java << EOD
+1996-01-23   -0.72   -1.18   "JDK 1.0"       -0.95   "23 Jan 1996"
+1997-02-19   -1.15   -1.66   "JDK 1.1"       -1.43   "19 Feb 1997"
+1998-12-08   -0.72   -1.18   "J2SE 1.2"      -0.95   "8 Dec 1998"
+2000-05-08   -1.15   -1.66   "J2SE 1.3"      -1.43   "8 May 2000"
+2002-02-06   -0.72   -1.18   "J2SE 1.4"      -0.95   "6 Feb 2002"
+2004-09-30   -1.15   -1.66   "J2SE 5.0"      -1.43   "30 Sep 2004"
+2006-12-11   -0.72   -1.18   "Java SE 6"     -0.95   "11 Dec 2006"
+2011-07-28   -1.15   -1.66   "Java SE 7"     -1.43   "28 Jul 2011"
+2014-03-18   -0.72   -1.18   "Java SE 8"     -0.95   "18 Mar 2014"
+2017-09-21   -1.15   -1.66   "Java SE 9"     -1.43   "21 Sep 2017"
+2018-03-20   -0.20    -0.75   "Java SE 10"    -0.52    "20 Mar 2018"
+EOD
+
+$extra << EOD
+2004-01-01    0.40    0.84   "Scala"              0.62   "early 2004"
+2007-01-02    0.80    1.26   "Groovy 1.0"         1.03   "2 Jan 2007"
+2010-01-27    0.55    1.01   "Oracle buys Sun"    0.78   "27 Jan 2010"
+2016-02-15    0.80    1.26   "Kotlin 1.0"         1.03   "15 Feb 2016"
+EOD
+
+set label 1 "Data: Wikipedia https://en.wikipedia.org/wiki/Java\\\_version\\\_history" \
+at graph 0.02,0.80 font ",18" front boxed
+
+
+plot \
+    $java using 1:2 with impulses ls 11 notitle, \
+    $java using 1:2 with points   ls 11 notitle, \
+    $java using 1:3:4 with labels boxed center tc rgb "black" font ",20" notitle, \
+    $java using 1:5:6 with labels boxed center tc rgb "black" font ",16" notitle, \
+    $extra using 1:2 with impulses ls 12 notitle, \
+    $extra using 1:2 with points   ls 12 notitle, \
+    $extra using 1:3:4 with labels boxed center tc rgb "black" font ",20" notitle, \
+    $extra using 1:5:6 with labels boxed center tc rgb "black" font ",16" notitle
+
+
+unset multiplot
+----
+
+== Критика Java в годы «застоя» 2004--2014 (версии 5--8)
+
+* Потребляет слишком много памяти
+* Медленно стартует
+* Многословна (слишком много "boilerplate code")
+* Язык консервативен, медленно развивается (этот аргумент, в частности, привёл к появлению новых JVM языков: Scala, Groovy, Xtend, Kotlin).
+
+С 2018 года Oracle перешёл на 6-месячный цикл релизов.
+
+== 6-месячный цикл Java и взлёт Python
+
+[gnuplot,format=svg]
+----
+set terminal svg size 1800,900 enhanced  font "Arial,20"
+
+set datafile separator comma
+set datafile missing ""
+
+set xdata time
+set timefmt "%Y-%m-%d"
+set format x "%Y"
+
+# Shared horizontal scale
+set xrange ["2018-01-01":"2026-12-31"]
+
+# Shared horizontal geometry for perfect alignment
+set lmargin at screen 0.08
+set rmargin at screen 0.98
+set tmargin at screen 0.96
+set bmargin at screen 0.54
+
+# Okabe-Ito palette
+c_color          = "#000000"
+csharp_color     = "#0072B2"
+cpp_color        = "#56B4E9"
+java_tiobe_color = "#D55E00"
+js_color         = "#009E73"
+python_color     = "#CC79A7"
+
+# Timeline colours
+java_release_color = "#D55E00"   # same as Java curve
+event_color        = "#E69F00"   # separate orange
+
+set multiplot
+
+# ============================================================
+# TOP: TIOBE index
+# ============================================================
+
+set tmargin at screen 0.95
+set bmargin at screen 0.42
+
+set yrange [0:*]
+
+set ylabel "TIOBE index (%)"
+unset xlabel
+
+set format x "%Y"
+set xtics \
+(
+"2018" "2018-01-01", \
+"2019" "2019-01-01", \
+"2020" "2020-01-01", \
+"2021" "2021-01-01", \
+"2022" "2022-01-01", \
+"2023" "2023-01-01", \
+"2024" "2024-01-01", \
+"2025" "2025-01-01", \
+"2026" "2026-01-01")
+
+set xtics font ",18"
+set ytics font ",18"
+
+set grid xtics ytics linewidth 1.5 linecolor black
+set key top right font ",18"
+
+set label 1 "Data: TIOBE Index https://www.tiobe.com/tiobe-index/" \
+at graph 0.02,0.96 font ",18" front boxed
+
+set style line 1 lc rgb c_color          lw 3
+set style line 2 lc rgb csharp_color     lw 3
+set style line 3 lc rgb cpp_color        lw 3
+set style line 4 lc rgb java_tiobe_color lw 3
+set style line 5 lc rgb js_color         lw 3
+set style line 6 lc rgb python_color     lw 3
+
+plot "tiobe-top6-wide.csv" using 1:2 \
+with lines ls 1 title "C", \
+"" using 1:3 \
+with lines ls 2 title "C#", \
+"" using 1:4 \
+with lines ls 3 title "C++", \
+"" using 1:5 \
+with lines ls 4 title "Java", \
+"" using 1:6 \
+with lines ls 5 title "JavaScript", \
+"" using 1:7 \
+with lines ls 6 title "Python"
+
+
+# ============================================================
+# BOTTOM: Java / JVM timeline
+# ============================================================
+
+set datafile separator whitespace
+
+set tmargin at screen 0.38
+set bmargin at screen 0.06
+
+# Deliberately retain generous vertical coordinate space.
+# Labels must not be squeezed against the upper boundary.
+set yrange [-1.75:1.85]
+
+unset key
+unset border
+unset label 1
+
+set xtics \
+    ("" "2018-01-01", \
+     "" "2019-01-01", \
+     "" "2020-01-01", \
+     "" "2021-01-01", \
+     "" "2022-01-01", \
+     "" "2023-01-01", \
+     "" "2024-01-01", \
+     "" "2025-01-01", \
+     "" "2026-01-01")
+
+set grid xtics
+set tics nomirror out
+set zeroaxis linewidth 2
+
+unset ytics
+unset ylabel
+
+set style line 11 lc rgb java_release_color lw 3 pt 7 ps 1.0
+set style line 12 lc rgb event_color        lw 3 pt 5 ps 1.0
+
+$regular << EOD
+2018-03-20   0.72    1.18   "10"   0.95    "20 Mar 2018"
+2019-03-19   0.72    1.18   "12"   0.95    "19 Mar 2019"
+2019-09-17  -0.72   -1.18   "13"  -0.95    "17 Sep 2019"
+2020-03-17   0.72    1.18   "14"   0.95    "17 Mar 2020"
+2020-09-15  -0.72   -1.18   "15"  -0.95    "15 Sep 2020"
+2021-03-16   0.72    1.18   "16"   0.95    "16 Mar 2021"
+2022-03-22   0.72    1.18   "18"   0.95    "22 Mar 2022"
+2022-09-20  -0.72   -1.18   "19"  -0.95    "20 Sep 2022"
+2023-03-21   0.72    1.18   "20"   0.95    "21 Mar 2023"
+2024-03-19   0.72    1.18   "22"   0.95    "19 Mar 2024"
+2024-09-17  -0.72   -1.18   "23"  -0.95    "17 Sep 2024"
+2025-03-18   0.72    1.18   "24"   0.95    "18 Mar 2025"
+2026-03-17   0.72    1.18   "26"   0.95    "17 Mar 2026"
+2026-09-14  -0.72   -1.18   "27"  -0.95    "14 Sep 2026"
+EOD
+
+$lts << EOD
+2018-09-25  -0.95   -1.38   "11 LTS"  -1.15   "25 Sep 2018"
+2021-09-14  -0.95   -1.38   "17 LTS"  -1.15   "14 Sep 2021"
+2023-09-19  -0.95   -1.38   "21 LTS"  -1.15   "19 Sep 2023"
+2025-09-16  -0.95   -1.38   "25 LTS"  -1.15   "16 Sep 2025"
+EOD
+
+$java << EOD
+1996-01-23   -0.72   -1.18   "JDK 1.0"       -0.95   "23 Jan 1996"
+1997-02-19   -1.15   -1.66   "JDK 1.1"       -1.43   "19 Feb 1997"
+1998-12-08   -0.72   -1.18   "J2SE 1.2"      -0.95   "8 Dec 1998"
+2000-05-08   -1.15   -1.66   "J2SE 1.3"      -1.43   "8 May 2000"
+2002-02-06   -0.72   -1.18   "J2SE 1.4"      -0.95   "6 Feb 2002"
+2004-09-30   -1.15   -1.66   "J2SE 5.0"      -1.43   "30 Sep 2004"
+2006-12-11   -0.72   -1.18   "Java SE 6"     -0.95   "11 Dec 2006"
+2011-07-28   -1.15   -1.66   "Java SE 7"     -1.43   "28 Jul 2011"
+2014-03-18   -0.72   -1.18   "Java SE 8"     -0.95   "18 Mar 2014"
+2017-09-21   -1.15   -1.66   "Java SE 9"     -1.43   "21 Sep 2017"
+EOD
+
+$extra << EOD
+2004-01-01    0.40    0.84   "Scala"              0.62   "early 2004"
+2007-01-02    0.80    1.26   "Groovy 1.0"         1.03   "2 Jan 2007"
+2010-01-27    0.55    1.01   "Oracle buys Sun"    0.78   "27 Jan 2010"
+2016-02-15    0.80    1.26   "Kotlin 1.0"         1.03   "15 Feb 2016"
+EOD
+
+set label 1 "Data: Wikipedia https://en.wikipedia.org/wiki/Java\\\_version\\\_history" \
+at graph 0.02,0.93 font ",18" front boxed
+
+
+plot \
+    $regular using 1:2 with impulses ls 11 notitle, \
+    $regular using 1:2 with points   ls 11 notitle, \
+    $regular using 1:3:4 with labels boxed center tc rgb "black" font ",20" notitle, \
+    $regular using 1:5:6 with labels boxed center tc rgb "black" font ",16" notitle, \
+    $lts using 1:2 with impulses ls 12 notitle, \
+    $lts using 1:2 with points   ls 12 notitle, \
+    $lts using 1:3:4 with labels boxed center tc rgb "black" font ",20" notitle, \
+    $lts using 1:5:6 with labels boxed center tc rgb "black" font ",16" notitle
+
+
+unset multiplot
+----
+
+[%notitle]
+== RedMonk: альтернатива TIOBE, измеряют GitHub & StackOverflow
+
+image::redmonk-rankings-2026.png[{image-60-width}]
+
+https://redmonk.com/[] -- Альтернатива TIOBE с 2012{nbsp}г., GitHub+StackOverflow. Проблема: StackOverflow, достигавший пика в 2016м, теперь практически мёртв.
+
+== Что нам говорят TIOBE и RedMonk?
+
+* Мир меняется, языки и платформы развиваются в условиях жёсткой конкуренции -- Java не исключение.
+* Как ни измеряй, *Java/JVM* на протяжении 30 лет была и продолжает быть одной из ведущих *экосистем*.
+
+== Сервисы виртуальной машины и платформы (помимо исполнения байт-кода)
+
 * Garbage Collection
 * MultiThreading & Memory Model
 * Загрузка и исполнение кода в runtime
 * Рефлексия
 * Стандартная библиотека
 
-== Верификация байт-кода
+== Виртуальная машина
 
-https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.10
-
-* There are no operand stack overflows or underflows.
-
-* All local variable uses and stores are valid.
-
-* The arguments to all the Java Virtual Machine instructions are of valid types.
-
-== Интерпретация и JIT-компиляция
-
-image::java-bytecode-exec.jpg[]
-
-//https://advancedweb.hu/2016/05/27/jvm_jit_optimization_techniques/
-
-== Оптимизация «на лету»
-
-image::codecache.png[{image-50-width}]
-
+* Достоинства
+** WORA
+** Safety/техническая безопасность: исключение фатальных сбоев на сервере
+** Security/информационная безопасность: защита от злонамеренных действия
+* Недостатки
+** Overhead по производительности и памяти
+** Отсутствие гибкости, предоставляемой низкоуровневыми языками
 
 == Garbage Collection
 
@@ -313,52 +2416,75 @@ image::codecache.png[{image-50-width}]
 ** Не контролируем время работы GC
 ** STW-паузы (бывает, в неподходящий момент)
 
-== Как может быть устроен GC?
+== Типы коллекторов в современной Java
 
-* Reference counting -- циклы?
+GC полностью изолирован от исполняемого кода. +
+Семантика не меняется при замене одного GC на другой!
 
-* Mark & sweep
+[cols="20a,60a,20a"]
+|===
+.<|
+[graphviz]
+----
+digraph G {
+  graph[dpi=180,
+ranksep=1.0];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+  h [label="high (bad)"];
+  lat[label="latency", shape="none"];
+  l [label="low (good)"];
+  h -> lat[arrowhead="none"];
+  lat -> l;
+}
+----
+|
+* Serial (for single-threaded, small heaps)
+* Parallel (high throughput, potentially 10..100ms or more STW)
+* G1 (Garbage First -- default one since Java 9, generational, balanced on medium-to-large heaps, 200ms is default soft target)
+* ZGC: latency over throughput (normally <1ms)
+* Shenandoah latency over throughput (normally <1ms)
+* Epsilon (*no GC at all*)
+.<|
+[graphviz]
+----
+digraph G {
+  graph[dpi=180,
+ranksep=1.0];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+  h [label="high (good)"];
+  thr[label="throughput", shape="none"];
+  l [label="low (bad)"];
+  h -> thr[dir="back"];
+  thr -> l[arrowhead="none"];
+}
+----
 
-* Гипотеза поколений
 
-== Гипотеза поколений
-
-image::generations.png[{image-50-width}]
-
-== Типы коллекторов
-
-* Serial (for single-threaded, client environments) 
-* Parallel (default)
-* CMS (Concurrent mark and Sweep -- shorter pauses, share processor resources)
-* G1 (Garbage First -- big heaps)
-* Shenandoah (submillisecond pauses)
-* Epsilon (no GC)
-
+|===
 
 == Latency vs. Throughput tradeoff
 
-image::seesaw.jpg[{image-40-width}]
+[cols="20a,60a,20a"]
+|===
+>.^|
+Latency
+^.^|
+image::seesaw.jpg[]
+<.^|
+Throughput
+|===
 
-== Многопоточность 
+== Многопоточность и модель памяти
 
-* Возможность запуска параллельных потоков выполнения встроена в язык с первой версии (`Thread`, `Runnable` etc)
-
-* JDK 1.5: существенные дополнения (executor, semaphore, mutex, barrier, latches, concurrent collections,  blocking queues)
-
-* JDK 1.7: `ForkJoinPool` (work-stealing technique)
-
-* JDK 1.8: `CompletableFuture`
-
-* Java SE 21: Project Loom: virtual threads
+* Многопоточность
+** Возможность запуска параллельных потоков выполнения встроена в язык с первой версии (`Thread`, `Runnable` etc)
+* Memory Model
+** Часть спецификации VM: модель того, как работает хранилище данных в условиях многопоточного доступа
+** Отвечает на вопрос: «какие значения может прочитать конкретный read в программе?»
 
 // https://howtodoinjava.com/java/multi-threading/java-multi-threading-evolution-and-topics/
-
-
-== Модель памяти
-
-* Memory Model: часть спецификации VM: модель того, как работает хранилище данных
-
-* Отвечает на вопрос: «какие значения может прочитать конкретный read в программе?»
 
 == Когда нужна memory model?
 
@@ -416,9 +2542,9 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 
 == Рефлексия
 
-* Исследование информации о классах, полях, методах и т. д. во время выполнения 
+* Исследование информации о классах, полях, методах и т. д. *во время выполнения*
 
-* Чтение/модификация полей (в том числе private!) и динамический вызов методов (в том числе private!)
+* Чтение/модификация полей (в том числе `private`!) и динамический вызов методов (в том числе `private`!)
 
 * Proxy и AOP
 
@@ -440,21 +2566,6 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 * Любой, как угодно давно скомпилированный .jar-файл может быть запущен на любой современной JVM
 * Дар или проклятие?
 
-== Критика языка и платформы Джава
-
-* Тормозит
-* Потребляет слишком много памяти
-* Медленно стартует
-* Многословна (слишком много "boilerplate code")
-* Язык консервативен, медленно развивается
-
-== Критика языка и платформы Джава
-
-* Тормозит -- *нет*
-* Потребляет слишком много памяти -- *нет*
-* Медленно стартует -- *отчасти да*
-* Многословна (слишком много "boilerplate code") -- *что да то да, но с Lombok и современной джавой это чинится*
-* Язык консервативен, медленно развивается -- *уже нет*
 
 == Развитие языка c 10й версии (6-months release cadence)
 
@@ -465,20 +2576,18 @@ class NotSoDumbWayToFallAsleep implements Runnable {
 * pattern matching (`instanceof`, `switch`),
 * records,
 * unnamed main classes,
-* virtual threads,
-* string templates (dropped)...
+* virtual threads...
 
 == Текущие проекты
 
-* Project Amber: productivity-oriented features
+https://openjdk.org/projects/
+
+* Project Amber: productivity-oriented features (например: flexible constructors)
 * Project Loom: fibers & continuators
-* Project Valhalla: value types & generic specialization
-* Graal, Panama, Kulla, Sumatra...
-
-[%notitle]
-== Языки
-
-image::pirates.png[{image-10-width}]
+* Project Valhalla: value objects
+* Panama: Java & native code connection
+* Leyden: improve startup time
+* etc...
 
 == Разнообразие языков для Java-машины
 
@@ -488,29 +2597,37 @@ image::pirates.png[{image-10-width}]
 
 * 20-30 языков
 
-** Специально созданные: Groovy, Scala, Kotlin...
+** Специально созданные: Groovy, Scala, Kotlin, Xtend...
 ** Реимплементация для JVM: JRuby, Clojure (Lisp dialect), Nashorn/Graal.js...
-
-* https://jaxenter.com/wp-content/uploads/2017/03/Pirates-of-the-JVM-JAXenter-768x4245.png
 
 == Важнейшие элементы экосистемы (за рамками стандартной библиотеки)
 
 * Библиотеки и фреймворки (в т. ч. для тестирования)
 * Среды разработки
+* Репозиторий Maven Central
 * Системы сборки
-* CI
 
+[%notitle]
 == JUnit
 
-модульное тестирование и автоматизация тестов
+image::junit-logo.svg[{image-30-width}]
 
-image::junit5.jpg[]
 
+https://junit.org/
+
+Модульное тестирование и автоматизация тестов
+
+
+[%notitle]
 == Spring Framework
+
+image::springframework.png[{image-30-width}]
+
+https://spring.io/
 
 DI container and application framework
 
-image::springframework.png[{image-40-width}]
+
 
 == Среды разработки
 
@@ -540,6 +2657,17 @@ VS Code
 (Microsoft)
 |===
 
+[%notitle]
+== Репозиторий Maven Central
+
+image::maven-central-logo.svg[{image-60-width}]
+
+https://search.maven.org/
+
+* 22 миллиона пакетов, 2-3 млн новых пакетов каждый год (https://mvnrepository.com/repos/central)
+* Условие публикации -- open source (хотя есть исключения), обязательно прикладывать исходники и электронную подпись.
+* В отличие от PyPI и npm, авторы имеют group id, основанный на домене организации (`com.microsoft`, `org.atp-fivt`), и производится процесс верификации домена.
+
 == Системы сборки
 
 [cols="^50a,^50a"]
@@ -550,7 +2678,6 @@ image::mavenlogo.svg[{image-40-width}]
 
 XML configuration +
 Maven project layout +
-Maven Central +
 plugins +
 declarative
 
@@ -565,17 +2692,44 @@ mixed declarative/imperative
 |===
 == Java community
 
-* JUGs (в крупных городах)
 * Conferences (Joker/JPoint/SnowOne, DevoXX etc.)
+* JUGs
 
 image::duke.svg[]
 
-== Oracle certification exams
+== Hello, world! -- страница 1
+`pom.xml`
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.example</groupId>
+    <artifactId>hello-world</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.release>25</maven.compiler.release>
+    </properties>
+</project>
+----
 
-OCA/OCP (search for "Oracle Java Certification")
+== Hello, world! -- страница 2
 
-image::oca.png[{image-60-width}]
+`src/main/java/org/example/Main.java`
 
-== Hello, world!
+[source,java]
+----
+package org.example;
 
-Сборка и запуск jar-файла
+public class Main {
+    static void main() {
+        IO.println("Hello World!");
+    }
+}
+----
+
+[source]
+----
+mvn package
+java -cp target/hello-world-1.0-SNAPSHOT.jar org.example.Main
+----
