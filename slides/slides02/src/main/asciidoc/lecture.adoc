@@ -30,17 +30,100 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
-== Демо
+== Reverse domain name notation
 
-* Hello, World!
+* Современный интернет адрес: `company.com/product` (`com` -- top level domain, `company` -- домен внутри `com`).
+* Более логичный вариант: `com.company/product` -- постоянное движение от общего к частному -- проиграл на заре Интернета по историческим причинам.
+* Reverse domain name notation -- ключевая идея для именования пакетов и библиотек в Java, основанная на уникальности и понятном владении доменными именами.
 
-* New Maven Project
-* New package
-* New class
-* psvm -- sout
-* Манифест (runnable jar) 
+== Пакеты (packages) в Java
 
-== Ключевые слова языка (keywords) [JLS21, 3.9]
+* Reverse domain notation + иерархическая система, которую можно модерировать внутри организации:
+** `edu.phystech.foo`
+** `edu.phystech.foo.bar`
+* Каждый .java-файл начинается с объявления пакета: +
+`package edu.phystech.hello;`
+* В корне пакета может быть файл `package-info.java`, не содержащий код, а только JavaDoc-описание над ключевым словом `package`.
+
+== Пакеты (packages) в Java
+
+* <Имя пакета>.<имя класса> задаёт полный идентификатор любого класса, доступного в исходном коде или через библиотеки (например, `edu.phystech.hello.App`)
+* Пакеты физически -- это дерево папок: `edu/phystech/hello`. Таким образом, в папке `edu` возможны подпапки `edu/phystech` и `edu/berkley`.
+* Пакеты логически -- это _плоский_ список. Два разных пакета полностью независимы, даже если визуально один является «подпакетом» другого.
+
+== Структура репозитория Maven Central
+
+Пример включения зависимости в Maven:
+[source,xml]
+----
+<dependency>
+  <groupId>org.apache.commons</groupId> <!--.-->
+  <artifactId>commons-csv</artifactId> <!--.-->
+  <version>1.14.1</version> <!--.-->
+</dependency>
+----
+<.> домен огранизации в reverse notation (https://commons.apache.org/)
+<.> имя проекта
+<.> версия релиза, например в формате semver (https://semver.org/)
+
+То же самое в Groovy (Kotlin DSL):
+[source]
+----
+implementation("org.apache.commons:commons-csv:1.14.1")
+----
+
+== Reverse domain notation и Maven Central
+
+* Чтобы загрузить собственную библиотеку на Maven Central, нужно доказать владение доменом (например, прописав «магическое» значение в{nbsp}TXT-поле в{nbsp}DNS)
+* Благодаря давней и надёжной инфраструктуре защиты прав на доменные имена, мы гарантированы, что никто не опубликует библиотеку от имени Microsoft, Apple или Oracle.
+* Нет смысла «захватывать» красивые имена для библиотек или заниматься typosquatting-ом: у каждого своё пространство имён
+* Контраст с npm и PyPi: исчерпание «красивых» имён, typosquatting, проблемы с{nbsp}безопасностью. Зато -- просто и изящно, в отличие от Java.
+
+== Создание проекта на Java/Maven с помощью Maven archetype
+
+* Проверьте `mvn --version` (по состоянию на осень 2026, Maven 3.9.x и Java 25.x)
+* Запустите
+
+[source]
+----
+mvn archetype:generate \
+    -DarchetypeGroupId=org.atp-fivt \
+    -DarchetypeArtifactId=homework-quickstart \
+    -DarchetypeVersion=3.0
+----
+
+* Понадобится некоторое время, чтобы скачать и закешировать нужные библиотеки
+* Заполните `groupId`, (например, `edu.phystech`), `artifactId` ( например, `homework1`)
+* Примите значения по умолчанию для `version` и `package`
+* Исследуйте содержимое файла `pom.xml` и структуру папок. "Hello world" пример находится в App.java.
+* Запустите сборку с помощью `mvn verify`.
+
+== Превращение jar-файла в исполняемый jar-файл
+
+[source,xml]
+----
+<build><plugins>
+     ...
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration> <!--.-->
+          <archive><manifest>
+              <mainClass>edu.phystech.App</mainClass>
+            </manifest></archive>
+        </configuration>
+      </plugin>
+----
+<.> Plugin parameters
+
+[source]
+----
+java -jar target\helloworld-1.0-SNAPSHOT.jar
+Hello World!
+----
+
+== Ключевые слова языка (keywords) [JLS26, 3.9]
 [source]
 ----
 abstract   continue   for          new         switch
