@@ -1,0 +1,1555 @@
+#. extracted from lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-24 21:31+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.2.5\n"
+
+#: lecture.adoc:25
+msgid ""
+"= Core Java. Лекция 12: Annotations (окончание). Reflection API. Архитектура "
+"приложения. Singleton (anti)pattern\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900\n"
+":stem: latexmath"
+msgstr ""
+
+#: lecture.adoc:28
+msgid ":!figure-caption:"
+msgstr ""
+
+#: lecture.adoc:30
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: lecture.adoc:32
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: lecture.adoc:34
+msgid "== Массивы и другие аннотации"
+msgstr ""
+
+#: lecture.adoc:39
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Массивы задаются в фигурных скобках\n"
+"@BugReport(..., reportedBy = {\"Harry\", \"Carl\"})"
+msgstr ""
+
+#: lecture.adoc:42
+msgid ""
+"//То же самое, что {\"Harry\"}\n"
+"@BugReport(..., reportedBy = \"Harry\")"
+msgstr ""
+
+#: lecture.adoc:45
+msgid ""
+"//Конструирование вложенных аннотаций\n"
+"@BugReport(..., ref = @Reference(id = \"12345\"))"
+msgstr ""
+
+#: lecture.adoc:49
+msgid ""
+"//...Как видим, используя разрешённые типы,\n"
+"//можно задать сколь угодно сложную структуру данных\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:51
+msgid ""
+"WARNING: Значение аннотации не может быть установлено в `null`. Не "
+"допускатся `null` даже в `default`-значениях. "
+msgstr ""
+
+#: lecture.adoc:53
+msgid "== Где можно использовать аннотации"
+msgstr ""
+
+#: lecture.adoc:56
+msgid ""
+"* В декларациях\n"
+"* При использовании типов"
+msgstr ""
+
+#: lecture.adoc:58
+msgid "== Использование аннотаций в декларациях"
+msgstr ""
+
+#: lecture.adoc:68
+msgid ""
+"* Packages\n"
+"* Classes (включая `enum`)\n"
+"* Interfaces (включая annotation interfaces)\n"
+"* Methods\n"
+"* Constructors\n"
+"* Instance fields (включая константы `enum`)\n"
+"* Local variables' declarations\n"
+"* Parameter variables' declarations\n"
+"* Type parameters"
+msgstr ""
+
+#: lecture.adoc:70
+msgid "== Примеры использования аннотаций в декларациях"
+msgstr ""
+
+#: lecture.adoc:75
+msgid ""
+"[source,java]\n"
+"----\n"
+"@Entity\n"
+"public class User {"
+msgstr ""
+
+#: lecture.adoc:78
+msgid ""
+"  @Caption(\"user\")\n"
+"  public User getUser(@Param(\"id\") String userId) {"
+msgstr ""
+
+#: lecture.adoc:83
+msgid ""
+"    @SuppressWarnings(\"unchecked\")\n"
+"    List<User> users = ....\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:89
+msgid ""
+"class Cache<@Immutable V> {\n"
+" ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:92
+msgid "== Аннотирование пакетов -- в package-info.java"
+msgstr ""
+
+#: lecture.adoc:100
+msgid ""
+"[source,java]\n"
+"----\n"
+"//package-info.java\n"
+"@GPL(version=\"3\")\n"
+"package edu.phystech.corejava;\n"
+"import org.gnu.GPL;\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:102
+msgid "== Аннотирование использования типов"
+msgstr ""
+
+#: lecture.adoc:107
+msgid ""
+"[source,java]\n"
+"----\n"
+"//аннотированный параметр, утверждает, что userId -- не `null`\n"
+"User getUser(@NonNull String userId) { ... }"
+msgstr ""
+
+#: lecture.adoc:112
+msgid ""
+"//Аннотированные использования типа: каждая строчка не `null`\n"
+"List<@NonNull String> list = ...\n"
+"Comparator.<@NonNull String>reverseOrder()\n"
+"class Warning extends @Localized Message { ... }"
+msgstr ""
+
+#: lecture.adoc:114
+msgid "List<@Localized ? extends Message> = ..."
+msgstr ""
+
+#: lecture.adoc:116
+msgid "(@Localized String) text"
+msgstr ""
+
+#: lecture.adoc:118
+msgid "if (text instanceof @Localized String) ..."
+msgstr ""
+
+#: lecture.adoc:122
+msgid ""
+"//и т. д., список примеров не полный. \n"
+"// Аннотации могут быть почти везде!\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:125
+msgid "== Java8+: аннотирование использования типа в `this`"
+msgstr ""
+
+#: lecture.adoc:133
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Foo {\n"
+"  //аннотируется использование типа!\n"
+"  void baz(@ReadOnly Foo this){\n"
+"    ...\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:142
+msgid ""
+"  class Bar {\n"
+"    //аннотируется использование типа!\n"
+"    public Bar(@ReadOnly Foo Foo.this) {\n"
+"      ...\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:144
+msgid "== Знакомые стандартные (встроенные в язык) аннотации "
+msgstr ""
+
+#: lecture.adoc:161
+msgid ""
+"[cols=\"20a,18a,62a\"]\n"
+"|===\n"
+"|*Annotation +\n"
+"interface*\n"
+"|*Применимость* \n"
+"|*Назначение*\n"
+"|`@Override`\n"
+"|Методы\n"
+"|Метод переопределяет метод в базовом классе. Ошибка компиляции, если это не "
+"так (см. лекцию про классы).\n"
+"|`@FunctionalInterface`\n"
+"|Интерфейсы\n"
+"|Помечает интерфейс как функциональный (имеющий единственный абстрактный "
+"метод). Ошибка компиляции, если это не так (см. лекцию про lambdas & method "
+"refs).\n"
+"|`@SafeVarargs`\n"
+"|Методы и конструкторы\n"
+"|Декларирует безопасное использование параметризованного varargs (см. лекцию "
+"про Generics)\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:163
+msgid "== Стандартные (встроенные в язык) аннотации "
+msgstr ""
+
+#: lecture.adoc:180
+msgid ""
+"[cols=\"20a,20a,60a\"]\n"
+"|===\n"
+"|*Annotation +\n"
+"interface*\n"
+"|*Применимость* \n"
+"|*Назначение*\n"
+"|`@Deprecated`\n"
+"|Все элементы API\n"
+"|Данный элемент API deprecated -- т. е. сохранён для обратной совместимости, "
+"запрещён к использованию в новых проектах, и возможно будет удалён в "
+"будущем. \n"
+"|`@SuppressWarnings`\n"
+"|Все, кроме пакетов и аннотаций\n"
+"|Подавляет предупреждения заданного типа от компилятора и линтеров.\n"
+"|`@Generated`\n"
+"|Все элементы API\n"
+"|Помечает код, как автоматически сгенерированный (как следствие, этот код не "
+"следует модифицировать руками).\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:182
+msgid "== Аннотации управляются аннотациями"
+msgstr ""
+
+#: lecture.adoc:187
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Какие элементы кода могут быть аннотированы\n"
+"@Target({ElementType.TYPE, ElementType.METHOD})"
+msgstr ""
+
+#: lecture.adoc:194
+msgid ""
+"//На каком уровне сохраняются эти аннотации\n"
+"@Retention(RetentionPolicy.Source)\n"
+"public @interface BugReport {\n"
+" ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:196
+msgid "== Target"
+msgstr ""
+
+#: lecture.adoc:211
+msgid ""
+"[cols=\"25a,75a\"]\n"
+"|===\n"
+"| *ElementType*     | *Применимость аннотаций*\n"
+"| `ANNOTATION_TYPE` | Интерфейсы аннотаций\n"
+"| `PACKAGE`         | Пакеты\n"
+"| `TYPE`            | Классы (в т. ч. `enums`) и интерфейсы (в т. ч. "
+"`@interface`)\n"
+"| `METHOD`          | Методы\n"
+"| `CONSTRUCTOR`     | Конструкторы\n"
+"| `FIELD`           | Поля\n"
+"| `PARAMETER`       | Параметры методов или конструкторов\n"
+"| `LOCAL_VARIABLE`  | Определения локальных переменных\n"
+"| `TYPE_PARAMETER`  | Типовые параметры\n"
+"| `TYPE_USE`        | Использования типов\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:214
+msgid "== RetentionPolicy"
+msgstr ""
+
+#: lecture.adoc:226
+msgid ""
+"[graphviz,\"retention.png\"]\n"
+"----\n"
+"digraph G {\n"
+"graph [ dpi = 180 ];\n"
+"rankdir=\"LR\";\n"
+"node[shape=box];\n"
+"SOURCE -> CLASS;\n"
+"CLASS -> RUNTIME;\n"
+"CLASS[label=\"CLASS\\n"
+"(по умолчанию)\"]\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:241
+msgid ""
+"[cols=\"25a,50a,25a\"]\n"
+"|===\n"
+"| *Retention Policy* | *Доступность аннотаций* | *API*\n"
+"| `SOURCE` \n"
+"| На уровне исходников для annotation processors. Не попадают в class-файлы "
+"и runtime.\n"
+"| Language Model API\n"
+"| `CLASS` + \n"
+"(по умолчанию)\n"
+"| На уровне исходников и class-файлов. Невидимы в runtime.\n"
+"| Instrumentation API\n"
+"| `RUNTIME`\n"
+"| На уровне исходников, в class-файлах и во время исполнения.\n"
+"| Reflection API\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:249
+msgid ""
+"== Другие мета-аннотации\n"
+"[cols=\"25a,75a\"]\n"
+"|===\n"
+"|`@Documented` | Все аннотации данного типа будут попадать в "
+"JavaDoc-документацию.\n"
+"|`@Inherited`  | Если класс помечен аннотацией данного типа, то все "
+"наследники данного класса также будут помечены аннотацией этого же типа. \n"
+"|`@Repeatable` | Позволяет задать возможность многократной пометки элемента "
+"аннотацией одного и того же типа. \n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:251
+msgid "== Рефлексия (Reflection API)"
+msgstr ""
+
+#: lecture.adoc:256
+msgid ""
+"[source,java]\n"
+"----\n"
+"Employee e = ... //присваиваем Employee\n"
+"Employee m = ... //присваиваем Manager"
+msgstr ""
+
+#: lecture.adoc:260
+msgid ""
+"//Получаем информацию в Runtime\n"
+"Class<? extends Employee> ce = e.getClass();\n"
+"Class<? extends Employee> cm = m.getClass();"
+msgstr ""
+
+#: lecture.adoc:263
+msgid ""
+"System.out.printf(\"%s, %s%n\", ce.getName(), cm.getName());\n"
+"//edu.phystech.hello.Employee, edu.phystech.hello.Manager"
+msgstr ""
+
+#: lecture.adoc:267
+msgid ""
+"System.out.printf(\"%s, %s%n\", ce.getSimpleName(), cm.getSimpleName());\n"
+"//Employee, Manager\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:270
+msgid ""
+"== Класс `Class<T>` параметризован\n"
+"Документация: _\"The actual result type of `getClass()` is `Class<? extends "
+"|X|>`  where `|X|` is the erasure of the static type of the expression on "
+"which `getClass` is called.\"_"
+msgstr ""
+
+#: lecture.adoc:274
+msgid ""
+"[source,java]\n"
+"----\n"
+"Employee e = ...; "
+msgstr ""
+
+#: lecture.adoc:277
+msgid ""
+"//No cast needed!\n"
+"Class<? extends Employee> c = e.getClass();"
+msgstr ""
+
+#: lecture.adoc:281
+msgid ""
+"//No cast needed!\n"
+"Employee newEmployee =\n"
+"  ce.getDeclaredConstructor().newInstance();"
+msgstr ""
+
+#: lecture.adoc:285
+msgid ""
+"//Compile-time error!\n"
+"Class<? extends Number> cn = e.getClass();\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:287
+msgid "== Class literals"
+msgstr ""
+
+#: lecture.adoc:290
+msgid ""
+"* Литералы -- строки в коде, порождающие объекты или значения. Например, `\""
+"foo\"` -- литерал, порождающий объект `String` с содержимым \"foo\".\n"
+"* Литералы классов -- специальные выражения в языке, порождающие объекты с "
+"типом `Class<...>`."
+msgstr ""
+
+#: lecture.adoc:292
+msgid "== Class literals -- примеры"
+msgstr ""
+
+#: lecture.adoc:298
+msgid ""
+"[source,java]\n"
+"----\n"
+"//тут всё понятно\n"
+"Class<String> c1 = String.class;\n"
+"Class<Integer> c2 = Integer.class;"
+msgstr ""
+
+#: lecture.adoc:302
+msgid ""
+"//Да, так можно!! \n"
+"Class<Integer> c3 = int.class;\n"
+"//А ещё double.class, boolean.class и т. д."
+msgstr ""
+
+#: lecture.adoc:305
+msgid ""
+"//При этом c2 и с3 -- существенно РАЗНЫЕ объекты \n"
+"//(например, c3.getConstructors() возвращает пустой массив)."
+msgstr ""
+
+#: lecture.adoc:309
+msgid ""
+"//Тут ничего неожиданного нет, массивами можно параметризовать:\n"
+"Class<int[]> c4 = int[].class;\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:311
+msgid "== NB: странные имена классов-массивов"
+msgstr ""
+
+#: lecture.adoc:326
+msgid ""
+"При чтении логов ошибок можно встретиться с таким:\n"
+"[width=\"50%\"]\n"
+"|===\n"
+"|*Type*  |`.class.getName()`\n"
+"|`byte[]`   |[B\n"
+"|`short[]`  |[S\n"
+"|`int[]`    |[I\n"
+"|`long[]`   |[J\n"
+"|`char[]`   |[C\n"
+"|`double[]` |[D\n"
+"|`float[]`  |[F\n"
+"|`boolean[]`|[Z\n"
+"|`Integer[]`|[Ljava.lang.Integer;\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:334
+msgid ""
+"== Динамический способ получения мета-класса\n"
+"[source,java]\n"
+"----\n"
+"//может быть выброшен  ClassNotFoundException\n"
+"//параметр типа тут никак не может быть известен\n"
+"Class<?> clazz =\n"
+"  Class.forName(\"edu.phystech.hello.Manager\");"
+msgstr ""
+
+#: lecture.adoc:336
+msgid "//Есть две формы: "
+msgstr ""
+
+#: lecture.adoc:340
+msgid ""
+"//загрузчик вызвавшего метода, статическая инициализация\n"
+"static Class<?> forName(String className)\n"
+"                         throws ClassNotFoundException"
+msgstr ""
+
+#: lecture.adoc:345
+msgid ""
+"//кастомный загрузчик, статическая инициализация по запросу\n"
+"static Class<?> forName(String name, boolean initialize,\n"
+"                                   ClassLoader loader)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:347
+msgid "== Загрузка ресурсных файлов"
+msgstr ""
+
+#: lecture.adoc:353
+msgid ""
+"[source,java]\n"
+"----\n"
+"public InputStream getResourceAsStream(String name)\n"
+"public java.net.URL getResource(String name)\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:355
+msgid "image::resource.png[{image-100-width}]"
+msgstr ""
+
+#: lecture.adoc:357
+msgid "== Анализ возможностей класса и взаимодействие с элементами класса"
+msgstr ""
+
+#: lecture.adoc:361
+msgid ""
+"[plantuml, metaclass, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:363
+msgctxt "lecture.adoc:363"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:367
+msgid ""
+"class Class<T> {\n"
+"  Class<? super T> getSuperclass()\n"
+"   Class<?>[] getInterfaces()"
+msgstr ""
+
+#: lecture.adoc:377
+msgid ""
+"  Field[] getDeclaredFields()\n"
+"  Field[] getFields()\n"
+"  Constructor<?>[] getDeclaredConstructors()\n"
+"  Constructor<?>[] getConstructors()\n"
+"  Method[] getDeclaredMethods()\n"
+"  Method[] getMethods()\n"
+"  Class<?>[] getClasses()\n"
+"  Class<?>[] getDeclaredClasses()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:383
+msgid ""
+"abstract class Executable {\n"
+"Class<?>[] getParameterTypes()\n"
+"Class<?>[] getExceptionTypes()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:388
+msgid ""
+"interface Member {\n"
+"  String getName();\n"
+"  int getModifiers();\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:390
+msgid "Member <|. Executable "
+msgstr ""
+
+#: lecture.adoc:394
+msgid ""
+"class Constructor {\n"
+"T newInstance(Object ... initargs)\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:397
+msgid ""
+"class Method {\n"
+"Class<?> getReturnType()"
+msgstr ""
+
+#: lecture.adoc:400
+msgid ""
+"Object invoke(Object obj, Object... args)\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:403
+msgid ""
+"class Field {\n"
+"  Class<?> getType()"
+msgstr ""
+
+#: lecture.adoc:406
+msgid ""
+"  Object get(Object obj)\n"
+"  void set(Object obj, Object value)"
+msgstr ""
+
+#: lecture.adoc:408
+msgctxt "lecture.adoc:408"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:412
+msgid ""
+"Executable <|-- Constructor\n"
+"Executable <|-- Method\n"
+"Member     <|. Field"
+msgstr ""
+
+#: lecture.adoc:417
+msgid ""
+"Class .. Constructor\n"
+"Class .. Method\n"
+"Class .. Field\n"
+"Class .. Class"
+msgstr ""
+
+#: lecture.adoc:420
+msgctxt "lecture.adoc:420"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:422
+msgid "== Получение членов класса"
+msgstr ""
+
+#: lecture.adoc:425
+msgid ""
+"* `getXXX` -- все публичные элементы (поля, конструкторы, методы)\n"
+"* `getDeclaredXXX` -- все элементы, задекларированные в данном классе (без "
+"унаследованных)"
+msgstr ""
+
+#: lecture.adoc:428
+msgid "== Доступ к элементам"
+msgstr ""
+
+#: lecture.adoc:432
+msgid ""
+"[plantuml, accessible, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:434
+msgctxt "lecture.adoc:434"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:440
+msgid ""
+"class AccessibleObject {\n"
+"boolean isAccessible()\n"
+"void setAccessible(boolean flag)\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:443
+msgid ""
+"abstract class Executable {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:445
+msgid "class Field {"
+msgstr ""
+
+#: lecture.adoc:447
+msgctxt "lecture.adoc:447"
+msgid "}"
+msgstr ""
+
+#: lecture.adoc:452
+msgid ""
+"AccessibleObject <|-- Executable\n"
+"Executable <|-- Constructor\n"
+"Executable <|-- Method\n"
+"AccessibleObject     <|-- Field"
+msgstr ""
+
+#: lecture.adoc:456
+msgctxt "lecture.adoc:456"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:459
+msgid ""
+"* По умолчанию доступ определяется уровнями видимости (например, приватные "
+"элементы недоступны)\n"
+"* Можно открыть через `setAccessible(true)`"
+msgstr ""
+
+#: lecture.adoc:462
+msgid "== Анализ аннотаций в runtime"
+msgstr ""
+
+#: lecture.adoc:466
+msgid ""
+"[plantuml, annotated, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:468
+msgctxt "lecture.adoc:468"
+msgid "skinparam dpi 150 "
+msgstr ""
+
+#: lecture.adoc:476
+msgid ""
+"interface AnnotatedElement {\n"
+"boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)\n"
+"<T extends Annotation> T getAnnotation(Class<T> annotationClass)\n"
+"Annotation[] getAnnotations()\n"
+"Annotation[] getDeclaredAnnotations()\n"
+"<T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass)\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:480
+msgid ""
+"abstract class Executable {\n"
+"  {abstract} Annotation[][] getParameterAnnotations()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:484
+msgid ""
+"AnnotatedElement <|.. AccessibleObject\n"
+"AnnotatedElement <|..Class\n"
+"AccessibleObject <|-- Executable"
+msgstr ""
+
+#: lecture.adoc:487
+msgctxt "lecture.adoc:487"
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:489
+msgid "== Рефлексия и Generics"
+msgstr ""
+
+#: lecture.adoc:491
+msgid ""
+"* В runtime по объекту нельзя определить параметры типов (например, отличить "
+"`List<Employee>` от `List<Integer>`)."
+msgstr ""
+
+#: lecture.adoc:493
+msgid ""
+"* Анализируя параметризованнные классы (например, `List<T>`) или методы ("
+"например, `<T extends Comparable<? super T>> T min (T[] a)`), с помощью "
+"рефлексии можно узнать всю информацию про его параметры типов."
+msgstr ""
+
+#: lecture.adoc:495
+msgid "== ReflectionUtils"
+msgstr ""
+
+#: lecture.adoc:499
+msgid ""
+"* Reflection API довольно старое, использует массивы (неудобно в эпоху "
+"Streams & Collections).\n"
+"* Частые задачи (например, получить все -- публичные и приватные, "
+"собственные и унаследованные элементы) не имеют готовых методов.\n"
+"* Можно пользоваться готовыми библиотеками, например, Reflections "
+"(https://github.com/ronmamo/reflections)."
+msgstr ""
+
+#: lecture.adoc:501
+msgid "== Класс с аннотированными полями"
+msgstr ""
+
+#: lecture.adoc:513
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Person {\n"
+"    @Published\n"
+"    private final String firstName;\n"
+"    @Published\n"
+"    private final String lastName;\n"
+"    @Published\n"
+"    private final LocalDate birthDate;\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:515
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:517
+msgid "== JsonSerializer: определение полей, помеченных @Published"
+msgstr ""
+
+#: lecture.adoc:522
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class JsonSerializer<T> {\n"
+"  private final Set<Field> publishedFields;"
+msgstr ""
+
+#: lecture.adoc:530
+msgid ""
+"  public JsonSerializer(Class<T> serializedClass) {\n"
+"    publishedFields = ReflectionUtils\n"
+"       .getAllFields(serializedClass,\n"
+"                f -> f.isAnnotationPresent(Published.class));\n"
+"  publishedFields.forEach(f -> f.setAccessible(true));\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:532
+msgid "== JsonSerializer: сериализация объекта"
+msgstr ""
+
+#: lecture.adoc:552
+msgid ""
+"[source,java]\n"
+"----\n"
+"public JSONObject serialize(T o) {\n"
+"  JSONObject result = new JSONObject();\n"
+"  for (Field f : publishedFields) {\n"
+"    Object fieldValue = null;\n"
+"    try { fieldValue = f.get(o); } \n"
+"      catch (IllegalAccessException e) {\n"
+"        throw new IllegalStateException(e); }\n"
+"      if (fieldValue instanceof LocalDate) {\n"
+"        result.put(f.getName(), \n"
+"    ((LocalDate) fieldValue).format(DateTimeFormatter.ISO_LOCAL_DATE));\n"
+"      } else {\n"
+"        result.put(f.getName(), fieldValue);\n"
+"      }\n"
+"    }\n"
+"  return result;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:554
+msgid "== Пример с Controller"
+msgstr ""
+
+#: lecture.adoc:559
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Controller {\n"
+"    private final Service service;"
+msgstr ""
+
+#: lecture.adoc:574
+msgid ""
+"    @Command(\"foo\")\n"
+"    void doSomething() {\n"
+"        service.foo();\n"
+"    }\n"
+"    @Command(\"bar\")\n"
+"    void bar() {\n"
+"        service.bar();\n"
+"    }\n"
+"    @Command()\n"
+"    void help() {\n"
+"        service.help();\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:576
+msgid "== CommandDispatcher"
+msgstr ""
+
+#: lecture.adoc:585
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class CommandDispatcher {\n"
+"    private final Object controller;\n"
+"    private final Map<String, Method> methodHashMap = \n"
+"                                        new HashMap<>();\n"
+"    private Method defaultMethod;\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:587
+msgid "== CommandDispatcher: инициализация"
+msgstr ""
+
+#: lecture.adoc:608
+msgid ""
+"[source,java]\n"
+"----\n"
+"public CommandDispatcher(Object controller) {\n"
+"  Objects.requireNonNull(controller);\n"
+"  this.controller = controller;\n"
+"  for (Method method : ReflectionUtils\n"
+"           .getAllMethods(controller.getClass())) {\n"
+"    Command command = method.getAnnotation(Command.class);\n"
+"    if (command != null) {\n"
+"       //Извлекаем параметр из аннотации\n"
+"        String commandId = command.value();\n"
+"        if (commandId.isEmpty()) {\n"
+"            defaultMethod = method;\n"
+"        } else {\n"
+"            methodHashMap.put(commandId, method);\n"
+"        }\n"
+"    }\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:610
+msgid "== CommandDispatcher: выполнение команды"
+msgstr ""
+
+#: lecture.adoc:622
+msgid ""
+"[source,java]\n"
+"----\n"
+"public void executeCommand(String command) \n"
+"  throws InvocationTargetException, IllegalAccessException {\n"
+"    Method method = methodHashMap\n"
+"      .getOrDefault(command, defaultMethod);\n"
+"    if (method != null){\n"
+"        method.invoke(controller);\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:625
+msgid "== Наш учебный пример про доклады и спикеров"
+msgstr ""
+
+#: lecture.adoc:636
+msgid ""
+"[plantuml, objects, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 180 \n"
+"object ConnectionPool\n"
+"object JdbcTemplate\n"
+"object ConferenceDao\n"
+"object SpeakerDao\n"
+"object TalkDao\n"
+"object Controller"
+msgstr ""
+
+#: lecture.adoc:646
+msgid ""
+"JdbcTemplate -->ConnectionPool\n"
+"SpeakerDao --> JdbcTemplate\n"
+"TalkDao --> JdbcTemplate\n"
+"ConferenceDao --> JdbcTemplate\n"
+"Controller --> SpeakerDao\n"
+"Controller --> TalkDao\n"
+"Controller --> ConferenceDao\n"
+"@enduml\n"
+"----   "
+msgstr ""
+
+#: lecture.adoc:649
+msgid ""
+"[%notitle]\n"
+"== Wiring"
+msgstr ""
+
+#: lecture.adoc:653
+msgid ""
+"//https://i.pinimg.com/originals/ce/9b/0d/ce9b0d180e893a8c2dedf239919b9721."
+"jpg\n"
+"image::wiring.jpg[]"
+msgstr ""
+
+#: lecture.adoc:656
+msgid "== Реальная «слоистая» архитектура серверного приложения"
+msgstr ""
+
+#: lecture.adoc:663
+msgid ""
+"[plantuml, layers, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 180 \n"
+"object Controller1\n"
+"object Controller2"
+msgstr ""
+
+#: lecture.adoc:667
+msgid ""
+"object Service1\n"
+"object Service2\n"
+"object Service3"
+msgstr ""
+
+#: lecture.adoc:671
+msgid ""
+"object Dao1\n"
+"object Dao2\n"
+"object Dao3"
+msgstr ""
+
+#: lecture.adoc:682
+msgid ""
+"Controller1 --> Service1\n"
+"Controller1 --> Service2\n"
+"Controller2 --> Service2\n"
+"Controller2 --> Service1\n"
+"Controller2 --> Service3\n"
+"note on link\n"
+"  «соединение\n"
+"  проводами»,\n"
+"  aka \"wiring\"\n"
+"end note"
+msgstr ""
+
+#: lecture.adoc:688
+msgid ""
+"Service1 --> Dao1\n"
+"Service2 --> Dao1\n"
+"Service3 --> Dao2\n"
+"Service3 --> Dao3\n"
+"Service1 --> Dao2"
+msgstr ""
+
+#: lecture.adoc:691
+msgid ""
+"@enduml\n"
+"----    "
+msgstr ""
+
+#: lecture.adoc:694
+msgid ""
+"[%notitle]\n"
+"== Coupling & Cohesion"
+msgstr ""
+
+#: lecture.adoc:698
+msgid ""
+"//https://i.redd.it/yb17mu4cdn8z.jpg\n"
+"image::wiring-coupling.jpg[{image-50-width}]"
+msgstr ""
+
+#: lecture.adoc:701
+msgid ""
+"== Попытка №1, наивная. «Пусть объекты сами создают себе то, что им надо»"
+msgstr ""
+
+#: lecture.adoc:709
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class DataSource {\n"
+"  private ConnectionPool pool = new ConnectionPool(....); \n"
+"    //взятые откуда-то параметры подключения к БД ^^^^^^  \n"
+"  ...\n"
+"}                             "
+msgstr ""
+
+#: lecture.adoc:714
+msgid ""
+"public class SpeakerDao {\n"
+"  private DataSource ds = new DataSource(); \n"
+"  ...\n"
+"}                             "
+msgstr ""
+
+#: lecture.adoc:722
+msgid ""
+"public class TalkDao {\n"
+"  private DataSource ds = ??? \n"
+"    //нам нужен один ConnectionPool на всех...\n"
+"    //не получается :-(\n"
+"  ...\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:724
+msgid "== Попытка №2. Выложим ссылку на единичный объект в статическое поле"
+msgstr ""
+
+#: lecture.adoc:736
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class ConnectionPool {\n"
+"  private final static ConnectionPool instance = \n"
+"                                  new ConnectionPool(...);\n"
+"  public static ConnectionPool getInstance() {\n"
+"    return instance;\n"
+"  }\n"
+"  //конструктор сделаем приватным, чтобы ни у кого не было соблазна\n"
+"  //создать объект явно\n"
+"  private ConnectionPool(...){"
+msgstr ""
+
+#: lecture.adoc:740
+msgid ""
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:742
+msgid "== Попытка №2. (продолжение)"
+msgstr ""
+
+#: lecture.adoc:750
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class DataSource {\n"
+"  private final static DataSource instance = ...\n"
+"  public DataSource getInstance() {\n"
+"    return instance;\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:752
+msgid "  private ConnectionPool pool = ConnectionPool.getInstance();"
+msgstr ""
+
+#: lecture.adoc:758
+msgid ""
+"  private DataSource() {\n"
+"    ...\n"
+"  }\n"
+"}                             \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:760
+msgid "== Мы только что изобрели дизайн-паттерн «Одиночка»!"
+msgstr ""
+
+#: lecture.adoc:765
+msgid ""
+"[cols=\"30a,70a\"]\n"
+"|===\n"
+"|image::gof.jpg[]\n"
+"|"
+msgstr ""
+
+#: lecture.adoc:771
+msgid ""
+"* *Erich Gamma et al.*, Design Patterns: Elements of Reusable Object-"
+"Oriented Software\n"
+"* Книга 1994 года\n"
+"* Классическая книга по дизайну ПО...\n"
+"* ...но местами уже устаревшая.\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:773
+msgid "== Singleton Pattern"
+msgstr ""
+
+#: lecture.adoc:778
+msgid ""
+"* Прямое создание невозможно (инксапсулировано в приватном конструкторе).\n"
+"* Доступ к единственному экземпляру только через статический метод "
+"`getInstance()` (или `final`-переменную `INSTANCE`).\n"
+"* Ведёт к проблемам архитектурного плана.\n"
+"* Но сначала отвлечёмся и попробуем правильно «сварить» синглетон."
+msgstr ""
+
+#: lecture.adoc:780
+msgid "== Синглетоноварение: подход №1"
+msgstr ""
+
+#: lecture.adoc:786
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"  //Создание Singleton \"спрятано\"\n"
+"  private static final Singleton instance = new Singleton();"
+msgstr ""
+
+#: lecture.adoc:790
+msgid ""
+"  public static Singleton getInstance() {\n"
+"    return instance;\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:796
+msgid ""
+"  //Лишаем возможности создать экземпляр объекта \"извне\"\n"
+"  private Singleton(){\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:799
+msgid ""
+"[.fragment]\n"
+"\"Тяжёлый\" объект создаётся всегда, даже если `getInstance` не будет вызван?"
+msgstr ""
+
+#: lecture.adoc:801
+msgid "== Подход №2"
+msgstr ""
+
+#: lecture.adoc:806
+msgctxt "lecture.adoc:806"
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"    private static Singleton instance;"
+msgstr ""
+
+#: lecture.adoc:819
+msgid ""
+"    public static Singleton getInstance() {\n"
+"        if (instance == null) {\n"
+"           instance = new Singleton();\n"
+"        }\n"
+"        return instance;\n"
+"    }\n"
+"    private Singleton(){\n"
+"    }\n"
+"}\n"
+"----\n"
+"[.fragment]\n"
+"Что с многопоточным доступом к переменной `instance`?"
+msgstr ""
+
+#: lecture.adoc:821
+msgid "== Подход №3 ?!"
+msgstr ""
+
+#: lecture.adoc:826
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"    private static volatile Singleton instance;"
+msgstr ""
+
+#: lecture.adoc:839
+msgid ""
+"    public static Singleton getInstance() {\n"
+"        if (instance == null) {\n"
+"            instance = new Singleton();\n"
+"        }\n"
+"        return instance;\n"
+"    }\n"
+"    private Singleton(){\n"
+"    }\n"
+"}\n"
+"----\n"
+"[.fragment]\n"
+"Теперь нет гарантии, что экземпляр создаётся только один раз!"
+msgstr ""
+
+#: lecture.adoc:842
+msgid "== Подход №4 ?! ?!"
+msgstr ""
+
+#: lecture.adoc:847
+msgctxt "lecture.adoc:847"
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"    private static Singleton instance;"
+msgstr ""
+
+#: lecture.adoc:860
+msgid ""
+"    public static synchronized Singleton getInstance() {\n"
+"        if (instance == null) {\n"
+"            instance = new Singleton();\n"
+"        }\n"
+"        return instance;\n"
+"    }\n"
+"    private Singleton(){\n"
+"    }\n"
+"}\n"
+"----\n"
+"[.fragment] \n"
+"Все потоки будут выстраиваться в очередь, только чтобы получить доступ к "
+"переменной instance?  "
+msgstr ""
+
+#: lecture.adoc:862
+msgid "== Подход №5 ?! ?! ?!"
+msgstr ""
+
+#: lecture.adoc:882
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"    private static Singleton instance;\n"
+"    private static final Object lock = new Object();\n"
+"    public static Singleton getInstance() {\n"
+"        if (instance == null)\n"
+"            synchronized (lock) {\n"
+"                if (instance == null)\n"
+"                    instance = new Singleton();\n"
+"            }\n"
+"        return instance;\n"
+"    }\n"
+"    private Singleton() {\n"
+"    }\n"
+"}\n"
+"----\n"
+"[.fragment] \n"
+"Программа сломана. Из-за того, что в первом `if`-е чтение поля `instance` не "
+"синхронизировано, возможно чтение частично инициализированного объекта (если "
+"конструктор `Singleton` заинлайнен)."
+msgstr ""
+
+#: lecture.adoc:884
+msgid "== Подход №6 . . ."
+msgstr ""
+
+#: lecture.adoc:904
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"    private static volatile Singleton instance;\n"
+"    private static final Object lock = new Object();\n"
+"    public static Singleton getInstance() {\n"
+"        if (instance == null)\n"
+"            synchronized (lock) {\n"
+"                if (instance == null)\n"
+"                    instance = new Singleton();\n"
+"            }\n"
+"        return instance;\n"
+"    }\n"
+"    private Singleton() {\n"
+"    }\n"
+"}\n"
+"----\n"
+"[.fragment]\n"
+"Ну, почти. Только у нас оверхед, потому что два раза читаем "
+"`volatile`-переменную."
+msgstr ""
+
+#: lecture.adoc:908
+msgid ""
+"== Подход №7. Код из книги \"Effective Java, 3rd edition\"\n"
+"Joshua Bloch: \"On my machine, this method is about 1.4 times as fast as the "
+"obvious version without a local variable\". [EJ, 3rd ed., pp. 334-335]"
+msgstr ""
+
+#: lecture.adoc:926
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"  private static volatile Singleton instance;\n"
+"  private static final Object lock = new Object();\n"
+"  public static Singleton getInstance() {\n"
+"    Singleton result = instance;\n"
+"    if (result == null) {\n"
+"      synchronized (lock) {\n"
+"        if (instance == null)\n"
+"          instance = result = new Singleton();\n"
+"        }\n"
+"     }\n"
+"     return result;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:928
+msgid "== Подход №7. Код из книги \"Effective Java, 3rd edition\""
+msgstr ""
+
+#: lecture.adoc:931
+msgid ""
+"Вы уже видите баг в этом коде? +\n"
+"{nbsp}"
+msgstr ""
+
+#: lecture.adoc:951
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"  private static volatile Singleton instance;\n"
+"  private static final Object lock = new Object();\n"
+"  public static Singleton getInstance() {\n"
+"    Singleton result = instance;\n"
+"    if (result == null) {\n"
+"      synchronized (lock) {\n"
+"        if (instance == null)\n"
+"          instance = result = new Singleton();\n"
+"        }\n"
+"     }\n"
+"     return result;\n"
+"  }\n"
+"}\n"
+"----\n"
+"[.fragment]\n"
+"Если при входе в `synchronized`-блок `instance != null`, на выходе -- `null`."
+msgstr ""
+
+#: lecture.adoc:954
+msgid ""
+"[%notitle]\n"
+"== Как так получилось"
+msgstr ""
+
+#: lecture.adoc:956
+msgid "image::bloch.png[{image-100-width}]"
+msgstr ""
+
+#: lecture.adoc:959
+msgid ""
+"[%notitle]\n"
+"== WTF?"
+msgstr ""
+
+#: lecture.adoc:961
+msgid "image::scream.jpg[canvas, size=cover]"
+msgstr ""
+
+#: lecture.adoc:973
+msgid ""
+"== Единственно Верный Ленивый Потокобезопасный Синглетон \n"
+"[source,java]\n"
+"----\n"
+"public class Singleton {\n"
+"    private static volatile Singleton instance;\n"
+"    private static final Object lock = new Object();\n"
+"    public static Singleton getInstance() {\n"
+"        Singleton result = instance;\n"
+"        if (result != null)\n"
+"            return result;"
+msgstr ""
+
+#: lecture.adoc:983
+msgid ""
+"        synchronized (lock) {\n"
+"            if (instance == null)\n"
+"                instance = new Singleton();\n"
+"            return instance;\n"
+"        }\n"
+"    }\n"
+"    private Singleton() {}\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:986
+msgid ""
+"[.fragment]\n"
+"Или нет?"
+msgstr ""
+
+#: lecture.adoc:988
+msgid "== Подход №8"
+msgstr ""
+
+#: lecture.adoc:996
+msgid ""
+"[source,java]\n"
+"----\n"
+"// Correct lazy initialization in Java\n"
+"public class Singleton {\n"
+"    private static class SingletonHolder {\n"
+"       public static final Singleton instance = new Singleton();\n"
+"    }"
+msgstr ""
+
+#: lecture.adoc:1004
+msgid ""
+"    public static Singleton getInstance() {\n"
+"        return SingletonHolder.instance;\n"
+"    }\n"
+"    private Singleton() {\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
