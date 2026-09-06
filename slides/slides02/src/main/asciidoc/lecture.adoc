@@ -124,31 +124,28 @@ Hello World!
 ----
 
 == Ключевые слова языка (keywords) [JLS26, 3.9]
-[source]
-----
-abstract   continue   for          new         switch
-assert     default    if           package     synchronized
-boolean    do         goto         private     this
-break      double     implements   protected   throw
-byte       else       import       public      throws
-case       enum       instanceof   return      transient
-catch      extends    int          short       try
-char       final      interface    static      void
-class      finally    long         strictfp    volatile
-const      float      native       super       while
-_ (underscore)    
-----
 
-== Null and Boolean Literals 
+[cols="1,1,1,1,1", frame=none, grid=none, stripes=none]
+|===
+| `abstract` | [.c-keyword]*`continue`* | [.c-keyword]*`for`* | `new` | [.c-keyword]*`switch`*
+| `assert` | [.c-keyword]*`default`* | [.c-keyword]*`if`* | `package` | `synchronized`
+| `boolean` | [.c-keyword]*`do`* | [.c-keyword]*`goto`* | `private` | `this`
+| [.c-keyword]*`break`* | [.c-keyword]*`double`* | `implements` | `protected` | `throw`
+| `byte` | [.c-keyword]*`else`* | `import` | `public` | `throws`
+| [.c-keyword]*`case`* | [.c-keyword]*`enum`* | `instanceof` | [.c-keyword]*`return`* | `transient`
+| `catch` | `extends` | [.c-keyword]*`int`* | [.c-keyword]*`short`* | `try`
+| [.c-keyword]*`char`* | `final` | `interface` | [.c-keyword]*`static`* | [.c-keyword]*`void`*
+| `class` | `finally` | [.c-keyword]*`long`* | `strictfp` | [.c-keyword]*`volatile`*
+| [.c-keyword]*`const`* | [.c-keyword]*`float`* | `native` | `super` | [.c-keyword]*`while`*
+| `_` (underscore) 4+| [.c-keyword]*Красным жирным* -- слова из языка C.
+|===
 
-[source]
-----
+== Null and Boolean Literals
 
-
-
-
-             null       true        false
-----
+[cols="1,1,1,1,1", frame=none, grid=none, stripes=none]
+|===
+| | `null` | `true` | `false` |
+|===
 
 == Contextual Keywords
 
@@ -212,7 +209,7 @@ public class FirstSample
 
 == Целочисленные типы
 
-[cols="20a,20a,60a"] 
+[cols="20a,20a,60a"]
 |===
 |Type |Storage |Range
 |`byte` | 1 byte | –128 to 127
@@ -231,7 +228,7 @@ public class FirstSample
 
 == Типы с плавающей запятой
 
-[cols="20a,20a,60a"] 
+[cols="20a,20a,60a"]
 |===
 |Type |Storage |Range
 |`float` | 4 bytes | Approximately ±3.40282347E+38F (6–7 significant
@@ -264,7 +261,7 @@ decimal digits)
 [graphviz, "casting.png"]
 -----
 digraph G {
- graph [ dpi = 200 ]; 
+ graph [ dpi = 200 ];
  rankdir="LR";
   byte -> short;
   short -> int;
@@ -320,23 +317,23 @@ String txt =
 
 [source,text]
 ----
-Some        
-  Nested          
-    Text        
-  Is     
-Here      
+Some
+  Nested
+    Text
+  Is
+Here
 ----
 
 == Text Blocks (Java 13+)
 
 [source,java]
 ----
-    String txt = """      
-      Some        
-        Nested          
-          Text        
-        Is     
-      Here      
+    String txt = """
+      Some
+        Nested
+          Text
+        Is
+      Here
       """;
 ----
 
@@ -345,16 +342,16 @@ Here
 [source,text]
 ----
 //Максимальное число пробелов впереди убрано:
-Some        
-  Nested          
-    Text        
-  Is     
-Here      
+Some
+  Nested
+    Text
+  Is
+Here
 ----
 
 == Escape sequences
 
-[cols="20a,40a,20a"] 
+[cols="20a,40a,20a"]
 |===
 |Escape sequence | Name | Unicode Value
 |`\b`| Backspace |\u0008
@@ -425,7 +422,7 @@ final int a;
 a = 42; // инициализация
 
 ...
-a = 43; // compilation error: 
+a = 43; // compilation error:
   // variable a might already have been initialized
 
 ----
@@ -522,10 +519,10 @@ var reader = new BufferedReader(
 
 == Не перемудрите со сдвигами!!
 
-`5 >> 32 == 5` 
+`5 >> 32 == 5`
 
 * для `int` используются только 5 младших бит второго операнда (0..31),
-* для `long` используются только 6 младших бит второго операнда (0..63)  
+* для `long` используются только 6 младших бит второго операнда (0..63)
 
 == Побитовые операторы
 
@@ -581,7 +578,7 @@ x < y ? x : y
 
 == Операторы в порядке убывания приоритета
 
-[cols="80a,20a"] 
+[cols="80a,20a"]
 |===
 | *Operators* | *Associativity*
 | `[]` `.` `()` (method call) | Left to right
@@ -596,7 +593,7 @@ x < y ? x : y
 
 == {zsp}Операторы в порядке убывания приоритета (продолжение){zsp}
 
-[cols="80a,20a"] 
+[cols="80a,20a"]
 |===
 | *Operators* | *Associativity*
 | `&` | Left to right
@@ -616,7 +613,7 @@ a || (b && c)
 
 == {zsp}Операторы в порядке убывания приоритета (продолжение){zsp}
 
-[cols="80a,20a"] 
+[cols="80a,20a"]
 |===
 | *Operators* | *Associativity*
 | `? :` | Right to left
@@ -629,8 +626,8 @@ a || (b && c)
 a += b += c
 //means
 a += (b += c)
-//That is, the value of b += c 
-// (which is the value of b after the addition) 
+//That is, the value of b += c
+// (which is the value of b after the addition)
 //is added to a.
 ----
 
@@ -662,14 +659,14 @@ if (yourSales >= target)
 [plantuml, if, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 
 start
 
 if (yourSales >= target) then (true)
     :performance = "Satisfactory";
     else (false)
-    
+
 endif
 stop
 
@@ -694,7 +691,7 @@ if (yourSales >= target)
 [plantuml, ifblock, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 
 start
 
@@ -702,7 +699,7 @@ if (yourSales >= target) then (true)
     :performance = "Satisfactory";
     :bonus = 100;
     else (false)
-    
+
 endif
 stop
 
@@ -719,7 +716,7 @@ stop
 ----
 if (yourSales >= target) {
   performance = "Satisfactory";
-  bonus = 100 + 
+  bonus = 100 +
     0.01 * (yourSales - target);
 } else {
   performance = "Unsatisfactory";
@@ -731,13 +728,13 @@ if (yourSales >= target) {
 [plantuml, ifelseblock, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 
 start
 
 if (yourSales >= target) then (true)
     :performance = "Satisfactory";
-    :bonus = 100 + 
+    :bonus = 100 +
     0.01 * (yourSales - target);
 else (false)
     :performance = "Unsatisfactory";
@@ -758,10 +755,10 @@ stop
 ----
 /* Лучше добавить фигурные скобки!!*/
 
-if (x <= 0) 
-  if (x == 0) 
-    sign = 0; 
-  else 
+if (x <= 0)
+  if (x == 0)
+    sign = 0;
+  else
     sign = -1;
 ----
 |
@@ -769,7 +766,7 @@ if (x <= 0)
 [plantuml, sign, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 
 start
 
@@ -777,7 +774,7 @@ if (x <= 0) then (true)
     if (x == 0) then (true)
       :sign = 0;
     else (false)
-    
+
       :sign = -1;
     endif
 endif
@@ -813,7 +810,7 @@ if (sales >= 2 * target) {
 [plantuml, elif, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 
 start
 
@@ -866,7 +863,7 @@ switch (choice)
 [plantuml, swibr, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 
 start
 
@@ -909,16 +906,16 @@ int numLetters = switch(day) {
 [source,java]
 ----
 switch(day) {
- case MONDAY, FRIDAY, SUNDAY -> 
+ case MONDAY, FRIDAY, SUNDAY ->
   numLetters = 6;
  case TUESDAY -> {
   logger.info("Tuesday");
   numLetters = 7;
  }
- case THURSDAY, SATURDAY -> 
+ case THURSDAY, SATURDAY ->
   numLetters = 8;
-  //Need not be exhaustive: 
-  //no WEDNESDAY 
+  //Need not be exhaustive:
+  //no WEDNESDAY
 }
 ----
 |===
@@ -951,7 +948,7 @@ int numLetters = switch(day) {
 [source,java]
 ----
 switch(day) {
-  case MONDAY, FRIDAY, SUNDAY: 
+  case MONDAY, FRIDAY, SUNDAY:
     numLetters = 6;
     break;
   case TUESDAY:
@@ -960,7 +957,7 @@ switch(day) {
     break;
   case THURSDAY:
     logger.info("Thursday");
-  case SATURDAY: 
+  case SATURDAY:
     numLetters = 8;
     break;
   default:
@@ -981,7 +978,7 @@ switch(day) {
 == Декларирование и инициализация массива
 
 * Два варианта:
-** `int[] a` 
+** `int[] a`
 **  `int a[]` -- не делайте так
 
 * Инициализация:
@@ -1053,7 +1050,7 @@ digraph G {
    label="{<p0>9\|<p1>6\|<p2>7\|<p3>12}"]
  arr3 [shape=record, width=2,
    label="{<p0>4\|<p1>15\|<p2>14\|<p3>1}"]
-   
+
  arr:p0->arr0:p0;
  arr:p1->arr1:p0;
  arr:p2->arr2:p0;
@@ -1094,15 +1091,15 @@ digraph G {
  rankdir="LR";
  arr[shape=record,
    label="<p0>\|<p1>\|<p2>\|<p3>"]
- arr0 [shape=record,width=.5, 
+ arr0 [shape=record,width=.5,
    label="{<p0>}"]
- arr1 [shape=record,width=1, 
+ arr1 [shape=record,width=1,
    label="{<p0>\|<p1>}"]
  arr2 [shape=record,width=1.5,
    label="{<p0>\|<p1>\|<p2>}"]
- arr3 [shape=record,width=2, 
+ arr3 [shape=record,width=2,
    label="{<p0>\|<p1>\|<p2>\|<p3>}"]
-   
+
  arr:p0->arr0:p0;
  arr:p1->arr1:p0;
  arr:p2->arr2:p0;
@@ -1121,7 +1118,7 @@ digraph G {
 ----
 while (balance < goal) {
  balance += payment;
- double interest = 
+ double interest =
   balance * interestRate / 100;
  balance += interest;
  years++;
@@ -1134,7 +1131,7 @@ System.out.println(
 [plantuml, while, png]
 ----
 @startuml
-skinparam dpi 170 
+skinparam dpi 170
 
 start
 
@@ -1152,17 +1149,6 @@ stop
 
 |===
 
-== То же, да не то же!
-
-[source, java]
-----
-final boolean flag = false;
-. . .
-while (flag) {
-   . . . //не скомпилируется, unreachable code
-}
-----
-
 ==  `do while`: цикл с постусловием
 
 [cols="50a,50a"]
@@ -1173,7 +1159,7 @@ while (flag) {
 ----
 do {
   balance += payment;
-  double interest = 
+  double interest =
     balance * interestRate / 100;
   balance += interest;
   years++;
@@ -1186,7 +1172,7 @@ do {
 [plantuml, dowhile, png]
 ----
 @startuml
-skinparam dpi 120 
+skinparam dpi 120
 
 start
 
@@ -1279,7 +1265,7 @@ read_data: while (. . .) { // <<<label is here!
   for (. . .) {
     System.out.print("Enter a number >= 0: ");
     n = in.nextInt();
-    if (n < 0) 
+    if (n < 0)
       break read_data;
       // break out of read_data loop
     . . .

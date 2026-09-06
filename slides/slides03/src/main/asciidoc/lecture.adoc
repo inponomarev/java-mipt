@@ -130,29 +130,177 @@ hacker.getName(); //returns "Harry Hacker"
 
 ----
 
-
 == Объект передаётся по ссылке!
 
+[cols="50a,50a"]
+|===
+|
 [source,java]
 ----
 public class Employee {
-    int age = 18;
+  int age = 18;
 
-    public static void main(String[] args) {
-        Employee e = new Employee();
-        int a = 1;
-        foo(e, a);
-        System.out.printf("%d - %d", e.age, a);
-        //prints 42 - 1
-    }
+  public static void main(String[] args) {
+    Employee e = new Employee();
+    int a = 1;
+    foo(e, a);
+    System.out.printf("%d - %d", e.age, a);
+    //prints 42 - 1
+  }
 
-    static void foo(Employee e, int a) {
-        //e passed by reference, a passed by value
-        e.age = 42;
-        a = 5;
-    }
+  static void foo(Employee e, int a) {
+    //e passed by reference, a passed by value
+    e.age = 42;
+    a = 5;
+  }
+}
+
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <!-- foo frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="modify">   <B>foo</B>   </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int a</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">value</TD>
+                      <TD ALIGN="LEFT">5</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="date" BGCOLOR="#f2f2f2">Employee e</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee e</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int a</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">value</TD>
+                      <TD ALIGN="LEFT">1</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">age</TD>
+            <TD ALIGN="LEFT">42</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">...</TD>
+            <TD ALIGN="LEFT">...</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">...</TD>
+            <TD ALIGN="LEFT">...</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  // two references to the same heap object
+  stack:d:e -> heap_date:w;
+  stack:date:e -> heap_date:w;
+  heap_date:name:e -> heap_string:w;
 }
 ----
+|===
+
 
 == Рождение, жизнь и смерть объекта
 
@@ -989,7 +1137,8 @@ enum TrafficLight implements Rule {
 * Иммутабельные объекты (один раз создав, нельзя менять состояние)
 * Компактный синтаксис
 * Наследование запрещено, но можно реализовывать интерфейс
-* Автоматическая поддержка `equals`/`hashCode` (что это, мы узнаем вскоре).
+* Автоматическая поддержка `equals`/`hashCode` (что это, мы узнаем вскоре)
+* Любой `record` может быть `value`-типом (`value record`).
 
 [source,java]
 ----

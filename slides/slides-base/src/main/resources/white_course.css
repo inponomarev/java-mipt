@@ -31,7 +31,7 @@
 @font-face {
 	font-family: "Roboto";
 	src: url(roboto-2014/Roboto-Italic.ttf) format("truetype");
-	font-style: italic; 
+	font-style: italic;
 }
 
 
@@ -86,25 +86,25 @@ body {
 
 .reveal h1 {
   font-family: Roboto-condensed;
-  font-size: 3.5em; 
+  font-size: 3.5em;
   margin-bottom: 10px;
   margin-top: 200px;
   border-bottom: 2px dotted #DDD;
   padding-bottom: 5px;
-  
+
   }
 
 .reveal h2 {
-  font-size: 2.1em; 
+  font-size: 2.1em;
   padding-bottom: 10px;
   border-bottom: 2px dotted #DDD;
   font-family: Roboto-condensed;}
-  
- 
+
+
 .reveal .title h2 {
   padding-bottom: 0;
   border-bottom: none}
-  
+
 
 .reveal h3 {
   font-size: 1.2em; }
@@ -216,7 +216,7 @@ body {
   overflow: auto;
   max-height: 400px;
   word-wrap: normal; }
-  
+
 .reveal code.language-code {
     background: black;
     color: white;
@@ -232,18 +232,18 @@ body {
   font-weight: bold;
   font-size: 0.8em;
   vertical-align: middle; }
-  
+
 .reveal table tfoot td {
   font-weight: bold;
   font-size: 1em;
   vertical-align: middle; }
 
-  
+
 .reveal table th,
 .reveal table td {
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  border-bottom: 1px solid; 
+  border-bottom: 1px solid;
   border-left: double;
 }
 
@@ -259,8 +259,8 @@ body {
 .reveal table th.halign-center,
 .reveal table td.halign-center {
   text-align: center; }
-  
-  
+
+
 .reveal table th[align="right"],
 .reveal table td[align="right"] {
   text-align: right; }
@@ -273,8 +273,8 @@ body {
     border-bottom: 1px solid;  }
 
 .reveal table tfoot tr:last-child td {
-    border-bottom: none;  }	
-	
+    border-bottom: none;  }
+
 .reveal sup {
   vertical-align: super; }
 
@@ -308,12 +308,12 @@ body {
 .reveal .admonitionblock td.icon .fa-exclamation-circle:before {
     content: "\f06a";
     color: #2e409a;
-} 
+}
 
 
 .reveal .title {
   font-weight: bold;
-} 
+}
 
 .reveal .admonitionblock {
   border-top: 1px solid #AAA;
@@ -358,7 +358,7 @@ td.valign-top {
 }
 
 
-  
+
 /*********************************************
  * LINKS
  *********************************************/
@@ -442,8 +442,8 @@ td.valign-top {
   /*font-weight: bold;*/
   color: #AAA
   /*font-style: oblique;*/
-}  
-  
+}
+
 /*********************************************
  * PROGRESS BAR
  *********************************************/
@@ -456,7 +456,7 @@ td.valign-top {
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
 
-  
+
 .reveal .listingblock pre {
   margin: auto
 }
@@ -474,7 +474,7 @@ body {
   background-image: url(pattern.svg);
   background-repeat: repeat;
 }
-  
+
 
 .reveal  .imageblock {
   margin: 2em 0px;
@@ -498,4 +498,11 @@ section.title {
 
 ul.none {
   list-style: none;
+}
+
+
+.c-keyword,
+.c-keyword code {
+  color: #D55E00;
+  font-weight: bold;
 }
