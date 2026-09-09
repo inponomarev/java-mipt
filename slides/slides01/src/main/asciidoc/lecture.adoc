@@ -301,15 +301,17 @@ i = ++i + ++i + ++i;
 |
 [source,c]
 ----
-int array[2];
-printf("%d\n", array[5]);
+
+int array[] = {25, 50, 75, 100};
+printf("%d\n", array[4]);
 ----
 [.fragment]
 Неопределенное поведение (включая чтение чужих данных или segmentation fault).
 |
 [source,java]
 ----
-int[] array = new int[2];
+/*C-compatible array declaration!*/
+int array[] = {25, 50, 75, 100};
 println(array[5]);
 ----
 [.fragment]
