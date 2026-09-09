@@ -979,12 +979,202 @@ switch(day) {
 
 * Два варианта:
 ** `int[] a`
-**  `int a[]` -- не делайте так
+**  `int a[]` -- совместимая с языком C декларация, не делайте так!
 
 * Инициализация:
 ** `int[] a = new int[100];`
 ** `int[] a = {1, 3, 5};`
 ** анонимный массив: `foo(new int[] {2, 4, 6});`
+
+== Массивы объектов -- это массивы ссылок
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+Date[] dates = new Date[3];
+
+dates[0] = new Date(1, 1, 2023);
+dates[1] = new Date(2, 2, 2024);
+dates[2] = dates[1];
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+
+
+    dates_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD><B>Date[]</B></TD>
+          </TR>
+          <TR>
+            <TD>length = 3</TD>
+          </TR>
+          <TR>
+            <TD PORT="d0" ALIGN="LEFT">dates[0]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d1" ALIGN="LEFT">dates[1]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d2" ALIGN="LEFT">dates[2]</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date0 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2023</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date1 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2024</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+
+  // array elements contain references to Date objects
+  dates_array:d0:e -> date0:w;
+  dates_array:d1:e -> date1:w;
+  dates_array:d2:e -> date1:w;
+}
+----
+|===
+
+
+== Flattened arrays для value-типов (Valhalla, Java 28+)
+
+[cols="50a,50a"]
+|===
+|
+
+[source,java]
+----
+LocalDate[] dates =
+  (LocalDate[]) ValueClass
+  .newNullRestrictedNonAtomicArray(
+    LocalDate.class, 3,
+    LocalDate.now());
+
+boolean isFlat =
+  ValueClass.isFlatArray(dates); //true
+----
+
+|
+
+[graphviz,{image-30-width}]
+----
+digraph G {
+graph [dpi=180, rankdir="LR", nodesep=1.0, ranksep=0.8];
+node  [fontname="Helvetica"];
+edge  [fontname="Helvetica"];
+dates [
+shape=plain
+label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+<TR>
+<TD BGCOLOR="#e6e6e6" COLSPAN="3"><B>Date[] dates</B></TD>
+</TR>
+<TR>
+<TD>size</TD>
+<TD COLSPAN="2">3</TD>
+</TR>
+
+        <TR>
+          <TD PORT="v0" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[0]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">9</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">15</TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v1" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[1]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">8</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">16</TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v2" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[2]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">9</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">16</TD>
+        </TR>
+      </TABLE>
+    >
+  ];
+
+}
+----
+|===
 
 == {zsp}Массивы передаются по ссылке{zsp}
 
