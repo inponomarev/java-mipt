@@ -312,7 +312,7 @@ printf("%d\n", array[4]);
 ----
 /*C-compatible array declaration!*/
 int array[] = {25, 50, 75, 100};
-println(array[5]);
+println(array[4]);
 ----
 [.fragment]
 `ArrayIndexOutOfBoundsException`, который можно перехватить и обработать. Цена: проверка при каждом обращении к элементу массива!

@@ -530,8 +530,10 @@ var reader = new BufferedReader(
 
 == Операторы сравнения
 
-* `<` `+<=+` `>` `>=` `instanceof`
-* `==` `!=`
+* `<`, `+<=+`
+* `>`, `>=`
+* `==`, `!=`
+* `instanceof`
 
 == Булевские операторы
 
@@ -644,6 +646,333 @@ for (int i = 0; i < 10; i++, r = Math.random()) {
 }
 ----
 
+== Массивы
+
+* Из любого типа можно построить массив данного типа.
+* Длина массива может быть определена в runtime, но после создания не может быть изменена.
+* Массив аллоцируется в куче и передаётся по ссылке.
+* Массивы проверяют тип данных (`ArrayStoreException`) и границы (`ArrayIndexOutOfBoundsException`) в run-time.
+* Правда жизни: скорее всего, вы не будете использовать массивы в современном коде.
+
+== Декларирование и инициализация массива
+
+* Два варианта:
+** `int[] a`
+**  `int a[]` -- совместимая с языком C декларация, но не делайте так в Java!
+
+* Инициализация:
+** `int[] a = new int[100];`
+** `int[] a = {1, 3, 5};`
+** анонимный массив: `foo(new int[] {2, 4, 6});`
+
+== Массивы объектов -- это массивы ссылок
+
+[cols="60a,40a"]
+|===
+|
+[source,java]
+----
+Date[] dates = new Date[3];
+
+dates[0] = new Date(1, 1, 2023);
+dates[1] = new Date(2, 2, 2024);
+dates[2] = dates[1];
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+
+
+    dates_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD><B>Date[]</B></TD>
+          </TR>
+          <TR>
+            <TD>length = 3</TD>
+          </TR>
+          <TR>
+            <TD PORT="d0" ALIGN="LEFT">dates[0]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d1" ALIGN="LEFT">dates[1]</TD>
+          </TR>
+          <TR>
+            <TD PORT="d2" ALIGN="LEFT">dates[2]</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date0 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">1</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2023</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    date1 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Date</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">day</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">month</TD>
+            <TD ALIGN="LEFT">2</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">year</TD>
+            <TD ALIGN="LEFT">2024</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+
+  // array elements contain references to Date objects
+  dates_array:d0:e -> date0:w;
+  dates_array:d1:e -> date1:w;
+  dates_array:d2:e -> date1:w;
+}
+----
+|===
+
+
+== Flattened arrays для value-типов (Valhalla, Java 28+)
+
+[cols="60a,40a"]
+|===
+|
+
+[source,java]
+----
+LocalDate[] dates =
+  (LocalDate[]) ValueClass
+  .newNullRestrictedNonAtomicArray(
+    LocalDate.class, 3,
+    LocalDate.now());
+
+boolean isFlat =
+  ValueClass.isFlatArray(dates); //true
+----
+
+|
+
+[graphviz,{image-50-width}]
+----
+digraph G {
+graph [dpi=180, rankdir="LR", nodesep=1.0, ranksep=0.8];
+node  [fontname="Helvetica"];
+edge  [fontname="Helvetica"];
+dates [
+shape=plain
+label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+<TR>
+<TD BGCOLOR="#e6e6e6" COLSPAN="3"><B>Date[] dates</B></TD>
+</TR>
+<TR>
+<TD>size</TD>
+<TD COLSPAN="2">3</TD>
+</TR>
+
+        <TR>
+          <TD PORT="v0" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[0]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">9</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">15</TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v1" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[1]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">8</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">16</TD>
+        </TR>
+
+        <TR>
+          <TD PORT="v2" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[2]</TD>
+          <TD ALIGN="LEFT">year</TD>
+          <TD ALIGN="LEFT">2026</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">month</TD>
+          <TD ALIGN="LEFT">9</TD>
+        </TR>
+        <TR>
+          <TD ALIGN="LEFT">day</TD>
+          <TD ALIGN="LEFT">16</TD>
+        </TR>
+      </TABLE>
+    >
+  ];
+
+}
+----
+|===
+
+== {zsp}Массивы передаются по ссылке{zsp}
+
+[source,java]
+----
+int[] luckyNumbers = smallPrimes;
+luckyNumbers[5] = 12; // теперь smallPrimes[5] тоже 12
+
+luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
+//теперь luckyNumbers это отдельный массив
+//и он стал в два раза длиннее
+----
+
+== {zsp}Массивы ковариантны{zsp}
+
+[source,java]
+----
+ String[] a = new String[1];
+ //компилируется. ведь строка это объект,
+ //и потому почему б не считать массив строк массивом объектов?
+ Object[] b = a;
+ //runtime ArrayStoreException
+ b[0] = 5;
+----
+
+(Всё это страшно не совместимо с дженериками и коллекциями, которые пытаются ловить ошибки типов во время компиляции, но об этом речь впереди.)
+
+== «Многомерные» массивы
+
+На самом деле их нет, но есть массивы массивов
+
+[cols="50a,50a"]
+|====
+.^a|
+[source,java]
+----
+int[][] magicSquare =
+{
+ {16, 3, 2, 13},
+ {5, 10, 11, 8},
+ {9, 6, 7, 12},
+ {4, 15, 14, 1}
+};
+
+/* magicSquare[1][2] == ?? */
+----
+^.^a|
+
+[graphviz, "twodim.png"]
+-----
+digraph G {
+ graph [ dpi = 140 ];
+ rankdir="LR";
+ arr[shape=record,
+   label="<p0>\|<p1>\|<p2>\|<p3>"]
+ arr0 [shape=record, width=2,
+   label="{<p0>16\|<p1>3\|<p2>2\|<p3>13}"]
+ arr1 [shape=record, width=2,
+   label="{<p0>5\|<p1>10\|<p2>11\|<p3>8}"]
+ arr2 [shape=record, width=2,
+   label="{<p0>9\|<p1>6\|<p2>7\|<p3>12}"]
+ arr3 [shape=record, width=2,
+   label="{<p0>4\|<p1>15\|<p2>14\|<p3>1}"]
+
+ arr:p0->arr0:p0;
+ arr:p1->arr1:p0;
+ arr:p2->arr2:p0;
+ arr:p3->arr3:p0;
+}
+-----
+
+|====
+
+
+== Треугольные матрицы
+
+[cols="60a,40a"]
+|====
+.^a|
+[source,java]
+----
+double[][] odds = new double[ROWNUM][];
+for (int n = 0; n < ROWNUM; n++)
+  odds[n] = new int[n + 1];
+
+for (int n = 0; n < ROWNUM; n++)
+ for (int k = 0; k <= n; k++){
+   /* compute lotteryOdds*/
+   . . .
+   odds[n][k] = lotteryOdds;
+ }
+----
+
+^.^a|
+[graphviz, "triangle.png"]
+-----
+digraph G {
+ graph [ dpi = 140 ];
+ rankdir="LR";
+ arr[shape=record,
+   label="<p0>\|<p1>\|<p2>\|<p3>"]
+ arr0 [shape=record,width=.5,
+   label="{<p0>}"]
+ arr1 [shape=record,width=1,
+   label="{<p0>\|<p1>}"]
+ arr2 [shape=record,width=1.5,
+   label="{<p0>\|<p1>\|<p2>}"]
+ arr3 [shape=record,width=2,
+   label="{<p0>\|<p1>\|<p2>\|<p3>}"]
+
+ arr:p0->arr0:p0;
+ arr:p1->arr1:p0;
+ arr:p2->arr2:p0;
+ arr:p3->arr3:p0;
+}
+-----
+|====
+
+
 == Конструкция `if`
 [cols="70a,30a"]
 
@@ -748,18 +1077,19 @@ stop
 
 == `else` группируется с ближайшим `if`
 
-[cols="50a,50a"]
+[cols="70a,30a"]
 |===
 .^a|
 [source,java]
 ----
-/* Лучше добавить фигурные скобки!!*/
+/* Форматирование бывает обманчиво:
+лучше добавить фигурные скобки!!*/
 
 if (x <= 0)
   if (x == 0)
     sign = 0;
-  else
-    sign = -1;
+else
+  sign = -1;
 ----
 |
 
@@ -966,337 +1296,6 @@ switch(day) {
 ----
 |===
 
-
-== Массивы
-
-* Из любого типа можно построить массив данного типа.
-* Длина массива может быть определена в runtime, но после создания не может быть изменена.
-* Массив аллоцируется в куче и передаётся по ссылке.
-* Массивы проверяют тип данных (`ArrayStoreException`) и границы (`ArrayIndexOutOfBoundsException`) в run-time.
-* Правда жизни: скорее всего, вы не будете использовать массивы в современном коде.
-
-== Декларирование и инициализация массива
-
-* Два варианта:
-** `int[] a`
-**  `int a[]` -- совместимая с языком C декларация, не делайте так!
-
-* Инициализация:
-** `int[] a = new int[100];`
-** `int[] a = {1, 3, 5};`
-** анонимный массив: `foo(new int[] {2, 4, 6});`
-
-== Массивы объектов -- это массивы ссылок
-
-[cols="50a,50a"]
-|===
-|
-[source,java]
-----
-Date[] dates = new Date[3];
-
-dates[0] = new Date(1, 1, 2023);
-dates[1] = new Date(2, 2, 2024);
-dates[2] = dates[1];
-----
-
-|
-[graphviz]
-----
-digraph G {
-  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
-  node  [fontname="Helvetica"];
-  edge  [fontname="Helvetica"];
-
-
-
-    dates_array [
-      shape=plain
-      label=<
-        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-          <TR>
-            <TD><B>Date[]</B></TD>
-          </TR>
-          <TR>
-            <TD>length = 3</TD>
-          </TR>
-          <TR>
-            <TD PORT="d0" ALIGN="LEFT">dates[0]</TD>
-          </TR>
-          <TR>
-            <TD PORT="d1" ALIGN="LEFT">dates[1]</TD>
-          </TR>
-          <TR>
-            <TD PORT="d2" ALIGN="LEFT">dates[2]</TD>
-          </TR>
-        </TABLE>
-      >
-    ];
-
-    date0 [
-      shape=plain
-      label=<
-        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-          <TR>
-            <TD COLSPAN="2"><B>Date</B></TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">day</TD>
-            <TD ALIGN="LEFT">1</TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">month</TD>
-            <TD ALIGN="LEFT">1</TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">year</TD>
-            <TD ALIGN="LEFT">2023</TD>
-          </TR>
-        </TABLE>
-      >
-    ];
-
-    date1 [
-      shape=plain
-      label=<
-        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-          <TR>
-            <TD COLSPAN="2"><B>Date</B></TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">day</TD>
-            <TD ALIGN="LEFT">2</TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">month</TD>
-            <TD ALIGN="LEFT">2</TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">year</TD>
-            <TD ALIGN="LEFT">2024</TD>
-          </TR>
-        </TABLE>
-      >
-    ];
-
-
-  // array elements contain references to Date objects
-  dates_array:d0:e -> date0:w;
-  dates_array:d1:e -> date1:w;
-  dates_array:d2:e -> date1:w;
-}
-----
-|===
-
-
-== Flattened arrays для value-типов (Valhalla, Java 28+)
-
-[cols="50a,50a"]
-|===
-|
-
-[source,java]
-----
-LocalDate[] dates =
-  (LocalDate[]) ValueClass
-  .newNullRestrictedNonAtomicArray(
-    LocalDate.class, 3,
-    LocalDate.now());
-
-boolean isFlat =
-  ValueClass.isFlatArray(dates); //true
-----
-
-|
-
-[graphviz,{image-30-width}]
-----
-digraph G {
-graph [dpi=180, rankdir="LR", nodesep=1.0, ranksep=0.8];
-node  [fontname="Helvetica"];
-edge  [fontname="Helvetica"];
-dates [
-shape=plain
-label=<
-<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-<TR>
-<TD BGCOLOR="#e6e6e6" COLSPAN="3"><B>Date[] dates</B></TD>
-</TR>
-<TR>
-<TD>size</TD>
-<TD COLSPAN="2">3</TD>
-</TR>
-
-        <TR>
-          <TD PORT="v0" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[0]</TD>
-          <TD ALIGN="LEFT">year</TD>
-          <TD ALIGN="LEFT">2026</TD>
-        </TR>
-        <TR>
-          <TD ALIGN="LEFT">month</TD>
-          <TD ALIGN="LEFT">9</TD>
-        </TR>
-        <TR>
-          <TD ALIGN="LEFT">day</TD>
-          <TD ALIGN="LEFT">15</TD>
-        </TR>
-
-        <TR>
-          <TD PORT="v1" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[1]</TD>
-          <TD ALIGN="LEFT">year</TD>
-          <TD ALIGN="LEFT">2026</TD>
-        </TR>
-        <TR>
-          <TD ALIGN="LEFT">month</TD>
-          <TD ALIGN="LEFT">8</TD>
-        </TR>
-        <TR>
-          <TD ALIGN="LEFT">day</TD>
-          <TD ALIGN="LEFT">16</TD>
-        </TR>
-
-        <TR>
-          <TD PORT="v2" BGCOLOR="#f2f2f2" ROWSPAN="3">dates[2]</TD>
-          <TD ALIGN="LEFT">year</TD>
-          <TD ALIGN="LEFT">2026</TD>
-        </TR>
-        <TR>
-          <TD ALIGN="LEFT">month</TD>
-          <TD ALIGN="LEFT">9</TD>
-        </TR>
-        <TR>
-          <TD ALIGN="LEFT">day</TD>
-          <TD ALIGN="LEFT">16</TD>
-        </TR>
-      </TABLE>
-    >
-  ];
-
-}
-----
-|===
-
-== {zsp}Массивы передаются по ссылке{zsp}
-
-[source,java]
-----
-int[] luckyNumbers = smallPrimes;
-luckyNumbers[5] = 12; // теперь smallPrimes[5] тоже 12
-
-luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
-//теперь luckyNumbers это отдельный массив
-//и он стал в два раза длиннее
-----
-
-
-
-== {zsp}Массивы ковариантны{zsp}
-
-[source,java]
-----
- String[] a = new String[1];
- //компилируется. ведь строка это объект,
- //и потому почему б не считать массив строк массивом объектов?
- Object[] b = a;
- //runtime ArrayStoreException
- b[0] = 5;
-----
-
-(Всё это страшно не совместимо с дженериками и коллекциями, которые пытаются ловить ошибки типов во время компиляции, но об этом речь впереди.)
-
-== «Многомерные» массивы
-
-На самом деле их нет, но есть массивы массивов
-
-[cols="50a,50a"]
-|====
-.^a|
-[source,java]
-----
-int[][] magicSquare =
-{
- {16, 3, 2, 13},
- {5, 10, 11, 8},
- {9, 6, 7, 12},
- {4, 15, 14, 1}
-};
-
-/* magicSquare[1][2] == ?? */
-----
-^.^a|
-
-[graphviz, "twodim.png"]
------
-digraph G {
- graph [ dpi = 140 ];
- rankdir="LR";
- arr[shape=record,
-   label="<p0>\|<p1>\|<p2>\|<p3>"]
- arr0 [shape=record, width=2,
-   label="{<p0>16\|<p1>3\|<p2>2\|<p3>13}"]
- arr1 [shape=record, width=2,
-   label="{<p0>5\|<p1>10\|<p2>11\|<p3>8}"]
- arr2 [shape=record, width=2,
-   label="{<p0>9\|<p1>6\|<p2>7\|<p3>12}"]
- arr3 [shape=record, width=2,
-   label="{<p0>4\|<p1>15\|<p2>14\|<p3>1}"]
-
- arr:p0->arr0:p0;
- arr:p1->arr1:p0;
- arr:p2->arr2:p0;
- arr:p3->arr3:p0;
-}
------
-
-|====
-
-
-
-
-
-== Треугольные матрицы
-
-[cols="50a,50a"]
-|====
-.^a|
-[source,java]
-----
-double[][] odds = new double[ROWNUM][];
-for (int n = 0; n < ROWNUM; n++)
-  odds[n] = new int[n + 1];
-
-for (int n = 0; n < ROWNUM; n++)
- for (int k = 0; k <= n; k++){
-   /* compute lotteryOdds*/
-   . . .
-   odds[n][k] = lotteryOdds;
- }
-----
-
-^.^a|
-[graphviz, "triangle.png"]
------
-digraph G {
- graph [ dpi = 140 ];
- rankdir="LR";
- arr[shape=record,
-   label="<p0>\|<p1>\|<p2>\|<p3>"]
- arr0 [shape=record,width=.5,
-   label="{<p0>}"]
- arr1 [shape=record,width=1,
-   label="{<p0>\|<p1>}"]
- arr2 [shape=record,width=1.5,
-   label="{<p0>\|<p1>\|<p2>}"]
- arr3 [shape=record,width=2,
-   label="{<p0>\|<p1>\|<p2>\|<p3>}"]
-
- arr:p0->arr0:p0;
- arr:p1->arr1:p0;
- arr:p2->arr2:p0;
- arr:p3->arr3:p0;
-}
------
-|====
 
 == Цикл `while`: то же, что и в C
 
