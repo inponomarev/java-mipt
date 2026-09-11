@@ -107,7 +107,7 @@ hacker.getName(); //returns "Harry Hacker"
 * В этом случае примитивные типы получают значение по умолчанию (`0`, `false`), а поля со ссылками -- значение `null`.
 
 * Проинициализировать поле по месту его определения не возбраняется: +
-`int a = 42` или даже `int a = getValue()`. 
+`int a = 42` или даже `int a = getValue()`.
 
 == Поле this
 
@@ -116,7 +116,7 @@ hacker.getName(); //returns "Harry Hacker"
 { ...
 
   int value;
-  
+
   setValue(int value) {
     //поле перекрыто аргументом
     this.value = value;
@@ -124,7 +124,7 @@ hacker.getName(); //returns "Harry Hacker"
 
   registerMe(Registrator r) {
     //нужна ссылка на себя
-    r.register(this); 
+    r.register(this);
   }
 }
 
@@ -310,7 +310,7 @@ new Employee("Bob")
 [graphviz, "life1.png"]
 -----
 digraph G {
- graph [ dpi = 200 ]; 
+ graph [ dpi = 200 ];
  rankdir="LR";
  object[shape="octagon",label="Bob"]
 }
@@ -325,7 +325,7 @@ Employee hacker = new Employee("Bob");
 [graphviz, "life2.png"]
 -----
 digraph G {
- graph [ dpi = 200 ]; 
+ graph [ dpi = 200 ];
  rankdir="LR";
  object[shape="octagon",label="Bob"]
  ref[label="hacker"];
@@ -341,14 +341,14 @@ Employee junior = hacker;
 [graphviz, "life3.png"]
 -----
 digraph G {
- graph [ dpi = 200 ]; 
+ graph [ dpi = 200 ];
  rankdir="LR";
  object[shape="octagon",label="Bob"]
  ref[label="hacker"];
  ref2[label="junior"];
  ref->object;
  ref2->object;
- 
+
 }
 -----
 
@@ -361,7 +361,7 @@ junior = new Employee("Charlie");
 [graphviz, "life4.png"]
 -----
 digraph G {
- graph [ dpi = 200 ]; 
+ graph [ dpi = 200 ];
  rankdir="LR";
  object[shape="octagon",label="Bob", fillcolor="grey",style="filled"]
  object2[shape="octagon",label="Charlie"]
@@ -381,7 +381,7 @@ digraph G {
 [graphviz, "life5.png"]
 -----
 digraph G {
- graph [ dpi = 200 ]; 
+ graph [ dpi = 200 ];
  rankdir="LR";
  object[shape="octagon",label="Bob", fillcolor="red",style="invis"]
  object2[shape="octagon",label="Charlie"]
@@ -407,7 +407,7 @@ digraph G {
 | `protected`     | классу, пакету, и классам-наследникам
 | `public`        | всем
 |===
- 
+
 == Файлы с исходным кодом и классы
 
 * В одном .java файле может быть один публичный класс, названный так же, как и .java-файл (`public class Foo` в файле `Foo.java`).
@@ -418,7 +418,7 @@ digraph G {
 [plantuml, employeemanager, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 class Employee {
   - name
   - salary
@@ -465,7 +465,7 @@ for (Employee e : staff)
 [plantuml, columnclasses, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 Employee <|-- Manager
 Employee <|-- Secretary
 Employee <|-- Programmer
@@ -478,8 +478,8 @@ Manager  <|-- Executive
 [plantuml, employeemanagerex, png]
 ----
 @startuml
-skinparam dpi 200 
-Employee <|- Manager 
+skinparam dpi 200
+Employee <|- Manager
 Manager <|- Executive
 @enduml
 ----
@@ -523,7 +523,7 @@ class Manager extends Employee {
 ----
 class Manager extends Employee {
   private int bonus;
-  @Override 
+  @Override
   public int getTotalPayout() {
     return super.getTotalPayout() + bonus;
   }
@@ -538,18 +538,18 @@ class Manager extends Employee {
 ----
 @startuml
 
-skinparam dpi 200 
+skinparam dpi 200
 
 class Producer {
-    + Object produce() 
+    + Object produce()
 }
- 
+
 Producer <|-- IntegerProducer
 
 class IntegerProducer {
     + Integer produce()
 }
- 
+
 
 Object <|-- Integer
 
@@ -566,7 +566,7 @@ IntegerProducer . Integer
 
 * Ключевое слово `final`:
 ** на уровне класса запрещает наследование класса
-** на уровне метода запрещает наследование метода 
+** на уровне метода запрещает наследование метода
 * Зачем это нужно?
 ** Паттерн "Шаблонный метод"
 ** J. Bloch: 'Design and document for inheritance, or else prohibit it'
@@ -577,8 +577,8 @@ IntegerProducer . Integer
 
 [source,java]
 ----
-public sealed class Pet 
-        permits 
+public sealed class Pet
+        permits
         //никакие другие не могут наследоваться от него
         Cat, Dog, Fish {
 }
@@ -592,7 +592,7 @@ public non-sealed Fish {...}
 
 == Важный пример: `sealed`-интерфейсы и record-ы
 
-Пока не знаем ни что такое interface, ни что такое record, но просто запомним: 
+Пока не знаем ни что такое interface, ни что такое record, но просто запомним:
 
 [source,java]
 ----
@@ -668,7 +668,7 @@ Math.PI // возвращает 3.14...
 [source,java]
 ----
 class Employee {
-  
+
   private static int nextId = 1;
   private int id;
   . . .
@@ -679,7 +679,7 @@ class Employee {
 
 . . .
 Employee.nextId() //имя класса вместо объекта
-  
+
 ----
 
 == psvm
@@ -703,7 +703,7 @@ public class Person {
     public Person() {
        ....
     }
-  
+
     //package-private конструктор с аргументом
     Person(String  name) {
         ....
@@ -726,7 +726,7 @@ public class Person {
 == Переопределение конструкторов при наследовании классов
 
 * До Java25: если у суперкласса нет конструктора без аргументов, первым вызовом должен был быть `super(...)`.
-* После Java25: пишем как угодно, главное в конструкторе субдкласса не брать значения не проинстанцированных полей суперкласса. 
+* После Java25: пишем как угодно, главное в конструкторе субкласса не брать значения не проинстанцированных полей суперкласса.
 
 [source,java]
 ----
@@ -755,7 +755,7 @@ public class Person {
     Person(String  name){
         ...
     }
-    
+
     Person(){
         this("unknown");
     }
@@ -768,7 +768,7 @@ public class Person {
 class Employee {
   private static int nextId;
   private int id;
-  
+
   // static initialization block
   static {
     nextId = ThreadLocalRandom.current().nextInt(10000);
@@ -792,23 +792,23 @@ class Employee {
 
 [source, java]
 ----
-class Outer { 
-   int field = 42; 
-   class Inner { 
-      public void show() { 
+class Outer {
+   int field = 42;
+   class Inner {
+      public void show() {
            //есть доступ к состоянию внешнего класса!
            System.out.println(field);
            //печатает 42
-      } 
-   } 
+      }
+   }
    void initInner(){
      //инициализация вложенного класса внутри
      new Inner();
    }
-} 
+}
 
 //инициализация вложенного класса извне
-Outer.Inner in = new Outer().new Inner(); 
+Outer.Inner in = new Outer().new Inner();
 ----
 
 == Вложенные классы
@@ -818,7 +818,7 @@ Outer.Inner in = new Outer().new Inner();
 [plantuml, inner, png]
 ----
 @startuml
-skinparam dpi 200 
+skinparam dpi 200
 class Outer
 class Inner
 Outer *-- Inner
@@ -829,53 +829,53 @@ Outer *-- Inner
 
 [source, java]
 ----
-class Outer { 
-   int field = 42; 
-   class Inner { 
-      //поле вложенного класса перекрывает поле внешнего класса 
+class Outer {
+   int field = 42;
+   class Inner {
+      //поле вложенного класса перекрывает поле внешнего класса
       int field = 18;
       public void show() {
            System.out.println(field);
            //печатает 18
-      } 
-   } 
-} 
+      }
+   }
+}
 ----
 
 == Вложенные классы
 
 [source, java]
 ----
-class Outer { 
-   int field = 42; 
-   class Inner { 
-      //поле вложенного класса перекрывает поле внешнего класса 
+class Outer {
+   int field = 42;
+   class Inner {
+      //поле вложенного класса перекрывает поле внешнего класса
       int field = 18;
       public void show() {
            System.out.println(Outer.this.field);
            //печатает 42!
-      } 
-   } 
-} 
+      }
+   }
+}
 ----
 
 == Локальные вложенные классы
 
 [source,java]
 ----
-class Outer { 
-   void outerMethod() { 
+class Outer {
+   void outerMethod() {
       //final (или effectively final) тут существенно
-      final int x = 98; 
-      System.out.println("inside outerMethod"); 
-      class Inner { 
-         void innerMethod() { 
-            System.out.println("x = " + x); 
-         } 
-      } 
-      Inner y = new Inner(); 
-      y.innerMethod(); 
-   } 
+      final int x = 98;
+      System.out.println("inside outerMethod");
+      class Inner {
+         void innerMethod() {
+            System.out.println("x = " + x);
+         }
+      }
+      Inner y = new Inner();
+      y.innerMethod();
+   }
 }
 ----
 
@@ -883,17 +883,17 @@ class Outer {
 
 [source,java]
 ----
-class Outer { 
-   void outerMethod() { 
+class Outer {
+   void outerMethod() {
       //они не захватывают внешнее состояние
       record Foo (int a, int b) {};
       enum Bar {A, B};
       interface Baz {};
-      
+
       //NB:
       //static not allowed here!
       static class X {};
-   } 
+   }
 }
 ----
 
@@ -904,15 +904,15 @@ class Outer {
 
 [source,java]
 ----
-class Outer { 
-   private static void outerMethod() { 
-     System.out.println("inside outerMethod"); 
-   } 
-   static class Inner { 
-     public static void main(String[] args) { 
-        System.out.println("inside inner class Method"); 
-        outerMethod(); 
-     } 
+class Outer {
+   private static void outerMethod() {
+     System.out.println("inside outerMethod");
+   }
+   static class Inner {
+     public static void main(String[] args) {
+        System.out.println("inside inner class Method");
+        outerMethod();
+     }
    }
 }
 . . .
@@ -949,11 +949,11 @@ class Flavor1Demo {
 
 [source,java]
 ----
-. . . 
+. . .
 button.onMouseClick(new EventListener(){
   void onClick(Event e) {
      //здесь у нас доступ ко всем внешним полям
-     //и effectively final-переменным 
+     //и effectively final-переменным
   }
 });
 
@@ -965,7 +965,7 @@ button.onMouseClick(new EventListener(){
 [plantuml, abstractsample, png]
 ----
 @startuml
-skinparam dpi 120 
+skinparam dpi 120
 abstract class Person
 
 Person <|-- Student
@@ -1023,11 +1023,11 @@ public interface Prism
 {
    //это --- final-переменная!
    double PI = 3.14;
-   
+
    //это --- публичные абстрактные методы!
    double getArea();
    double getHeight();
-   
+
    //этот метод может вызывать другие и читать final-поля
    default double getVolume() {
       return getArea() * getHeight();
@@ -1072,9 +1072,9 @@ public class Parallelepiped implements Prism {
 
 [source,java]
 ----
-public enum Size 
+public enum Size
   { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
-  
+
 . . .
 
 Size s = Size.MEDIUM;
@@ -1095,10 +1095,10 @@ public enum Size
    SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
    private final String abbreviation;
    private Size(String abbreviation) {
-     this.abbreviation = abbreviation; 
+     this.abbreviation = abbreviation;
    }
-   public String getAbbreviation() { 
-     return abbreviation; 
+   public String getAbbreviation() {
+     return abbreviation;
    }
 }
 
