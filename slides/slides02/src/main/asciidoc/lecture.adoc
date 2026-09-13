@@ -788,7 +788,7 @@ boolean isFlat =
 
 |
 
-[graphviz,{image-50-width}]
+[graphviz,{image-40-width}]
 ----
 digraph G {
 graph [dpi=180, rankdir="LR", nodesep=1.0, ranksep=0.8];

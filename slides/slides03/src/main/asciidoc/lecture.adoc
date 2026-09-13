@@ -72,14 +72,12 @@ class Employee {
   private LocalDate hireDay;
   // constructor
   public Employee(String n, int s, int year, int month, int day) {
-    name = n;
-    salary = s;
+    name = n; salary = s;
     hireDay = LocalDate.of(year, month, day);
   }
   // a method
   public String getName() {
-    return name;
-  }
+    return name; }
   // more methods
   . . .
 }
