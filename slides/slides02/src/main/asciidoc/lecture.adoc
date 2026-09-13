@@ -855,6 +855,10 @@ label=<
 ----
 |===
 
+* `LocalDate[100_000]` before Valhalla: (24 LocalDate object + 4 ref) * 100{nbsp}000 = 2{nbsp}800{nbsp}000{nbsp}bytes, 100{nbsp}000{nbsp}allocations.
+
+* Flattened `LocalDate[100_000]`: (8 flattened LocalDate) *100 000 = 800{nbsp}000{nbsp}bytes, zero{nbsp}allocations.
+
 == {zsp}Массивы передаются по ссылке{zsp}
 
 [source,java]
