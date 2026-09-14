@@ -303,14 +303,93 @@ digraph G {
 == Рождение, жизнь и смерть объекта
 
 [source,java]
-new Employee("Bob")
+-----
+@AllArgsConstructor
+class Employee { int id; String name;}
 
-[graphviz, "life1.png"]
+new Employee(42, "Bob")
+-----
+
+[graphviz,{image-70-width}]
 -----
 digraph G {
- graph [ dpi = 200 ];
- rankdir="LR";
- object[shape="octagon",label="Bob"]
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">id</TD>
+            <TD ALIGN="LEFT">42</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="str"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">coder</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hash</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hashIsZero</TD>
+            <TD ALIGN="LEFT">false</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="val" COLSPAN="2">value</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    heap_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD PORT="array" COLSPAN="2"><B>byte[]</B></TD></TR>
+          <TR><TD>length</TD><TD>3</TD></TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x42 B</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x6F o</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x62 b</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  heap_date:name:e -> heap_string:str:w;
+  heap_string:val:e->heap_array:array:w;
 }
 -----
 
@@ -318,16 +397,128 @@ digraph G {
 == Присвоение ссылки
 
 [source,java]
-Employee hacker = new Employee("Bob");
+Employee hacker = new Employee(42, "Bob");
 
-[graphviz, "life2.png"]
+[graphviz,{image-80-width}]
 -----
 digraph G {
- graph [ dpi = 200 ];
- rankdir="LR";
- object[shape="octagon",label="Bob"]
- ref[label="hacker"];
- ref->object;
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+
+    // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee hacker</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="emp"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">id</TD>
+            <TD ALIGN="LEFT">42</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="str"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">coder</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hash</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hashIsZero</TD>
+            <TD ALIGN="LEFT">false</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="val" COLSPAN="2">value</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    heap_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD PORT="array" COLSPAN="2"><B>byte[]</B></TD></TR>
+          <TR><TD>length</TD><TD>3</TD></TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x42 B</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x6F o</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x62 b</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  stack:d:e -> heap_date:emp:w;
+
+  heap_date:name:e -> heap_string:str:w;
+  heap_string:val:e->heap_array:array:w;
 }
 -----
 
@@ -336,17 +527,136 @@ digraph G {
 [source,java]
 Employee junior = hacker;
 
-[graphviz, "life3.png"]
+[graphviz,{image-80-width}]
 -----
 digraph G {
- graph [ dpi = 200 ];
- rankdir="LR";
- object[shape="octagon",label="Bob"]
- ref[label="hacker"];
- ref2[label="junior"];
- ref->object;
- ref2->object;
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
 
+
+    // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee hacker</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="j" BGCOLOR="#f2f2f2">Employee junior</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="emp"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">id</TD>
+            <TD ALIGN="LEFT">42</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="str"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">coder</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hash</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hashIsZero</TD>
+            <TD ALIGN="LEFT">false</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="val" COLSPAN="2">value</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    heap_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD PORT="array" COLSPAN="2"><B>byte[]</B></TD></TR>
+          <TR><TD>length</TD><TD>3</TD></TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x42 B</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x6F o</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x62 b</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+  }
+
+  stack:d:e -> heap_date:emp:w;
+  stack:j:e -> heap_date:emp:w;
+
+  heap_date:name:e -> heap_string:str:w;
+  heap_string:val:e->heap_array:array:w;
 }
 -----
 
@@ -354,42 +664,379 @@ digraph G {
 
 [source,java]
 hacker = null;
-junior = new Employee("Charlie");
+junior = new Employee(43, "Charlie");
 
-[graphviz, "life4.png"]
+[graphviz,{image-50-width}]
 -----
 digraph G {
- graph [ dpi = 200 ];
- rankdir="LR";
- object[shape="octagon",label="Bob", fillcolor="grey",style="filled"]
- object2[shape="octagon",label="Charlie"]
- ref[label="hacker"];
- ref2[label="junior"];
- ref->null;
- ref2->object2;
- null[shape="circle"];
- ref3[style="invis"];
- ref3->object[style="invis"];
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+
+    // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee hacker</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="j" BGCOLOR="#f2f2f2">Employee junior</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+    //---- BOB -------
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="emp"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">id</TD>
+            <TD ALIGN="LEFT">42</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="str"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">coder</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hash</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hashIsZero</TD>
+            <TD ALIGN="LEFT">false</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="val" COLSPAN="2">value</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    heap_array [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD PORT="array" COLSPAN="2"><B>byte[]</B></TD></TR>
+          <TR><TD>length</TD><TD>3</TD></TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x42 B</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x6F o</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x62 b</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    //-----CHARLIE-----
+    heap_date2 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="emp"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">id</TD>
+            <TD ALIGN="LEFT">43</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string2 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="str"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">coder</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hash</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hashIsZero</TD>
+            <TD ALIGN="LEFT">false</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="val" COLSPAN="2">value</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    heap_array2 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD PORT="array" COLSPAN="2"><B>byte[]</B></TD></TR>
+          <TR><TD>length</TD><TD>7</TD></TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x43 C</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x68 h</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x61 a</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x72 r</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x6C l</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x69 i</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x65 e</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    null[shape=circle];
+  }
+
+
+
+ stack->heap_date[style=invis];
+
+  stack:d:e -> null;
+  stack:j:e -> heap_date2:emp:w;
+
+  heap_date:name:e -> heap_string:str:w;
+  heap_string:val:e->heap_array:array:w;
+
+    heap_date2:name:e -> heap_string2:str:w;
+  heap_string2:val:e->heap_array2:array:w;
 }
 -----
 
 
 == Сборка мусора
 
-[graphviz, "life5.png"]
+[graphviz,{image-80-width}]
 -----
 digraph G {
- graph [ dpi = 200 ];
- rankdir="LR";
- object[shape="octagon",label="Bob", fillcolor="red",style="invis"]
- object2[shape="octagon",label="Charlie"]
- ref[label="hacker"];
- ref2[label="junior"];
- ref->null;
- ref2->object2;
- null[shape="circle"];
- ref3[style="invis"];
- ref3->object[style="invis"];
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+
+    // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee hacker</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="j" BGCOLOR="#f2f2f2">Employee junior</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+
+    //-----CHARLIE-----
+    heap_date2 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="emp"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">id</TD>
+            <TD ALIGN="LEFT">43</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
+
+          </TR>
+        </TABLE>
+      >
+    ];
+
+    heap_string2 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2" PORT="str"><B>String</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">coder</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hash</TD>
+            <TD ALIGN="LEFT">0</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">hashIsZero</TD>
+            <TD ALIGN="LEFT">false</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT" PORT="val" COLSPAN="2">value</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    heap_array2 [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR><TD PORT="array" COLSPAN="2"><B>byte[]</B></TD></TR>
+          <TR><TD>length</TD><TD>7</TD></TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x43 C</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x68 h</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x61 a</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x72 r</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x6C l</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x69 i</TD>
+          </TR>
+          <TR>
+            <TD ALIGN="CENTER" COLSPAN="2">0x65 e</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+    null[shape=circle];
+  }
+
+
+
+ stack->heap_date2[style=invis];
+
+  stack:d:e -> null;
+  stack:j:e -> heap_date2:emp:w;
+
+
+
+    heap_date2:name:e -> heap_string2:str:w;
+  heap_string2:val:e->heap_array2:array:w;
 }
 -----
 
