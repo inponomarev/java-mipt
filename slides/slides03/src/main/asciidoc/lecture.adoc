@@ -128,177 +128,6 @@ hacker.getName(); //returns "Harry Hacker"
 
 ----
 
-== Объект передаётся по ссылке!
-
-[cols="50a,50a"]
-|===
-|
-[source,java]
-----
-public class Employee {
-  int age = 18;
-
-  public static void main(String[] args) {
-    Employee e = new Employee();
-    int a = 1;
-    foo(e, a);
-    System.out.printf("%d - %d", e.age, a);
-    //prints 42 - 1
-  }
-
-  static void foo(Employee e, int a) {
-    //e passed by reference, a passed by value
-    e.age = 42;
-    a = 5;
-  }
-}
-
-----
-
-|
-[graphviz]
-----
-digraph G {
-  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
-  node  [fontname="Helvetica"];
-  edge  [fontname="Helvetica"];
-
-  // ---------------- STACK ----------------
-  stack [
-    shape=plain
-    label=<
-      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-
-        <TR>
-          <TD BORDER="1">Stack</TD>
-        </TR>
-
-        <!-- foo frame -->
-        <TR>
-          <TD>
-            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-              <TR>
-                <TD BGCOLOR="#e6e6e6" PORT="modify">   <B>foo</B>   </TD>
-              </TR>
-
-              <TR>
-                <TD>
-                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-                    <TR>
-                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int a</TD>
-                    </TR>
-                    <TR>
-                      <TD ALIGN="LEFT">value</TD>
-                      <TD ALIGN="LEFT">5</TD>
-                    </TR>
-                  </TABLE>
-                </TD>
-              </TR>
-
-              <TR>
-                <TD>
-                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-                    <TR>
-                      <TD PORT="date" BGCOLOR="#f2f2f2">Employee e</TD>
-                    </TR>
-                  </TABLE>
-                </TD>
-              </TR>
-            </TABLE>
-          </TD>
-        </TR>
-
-        <!-- main frame -->
-        <TR>
-          <TD>
-            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-              <TR>
-                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
-              </TR>
-
-              <TR>
-                <TD>
-                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-                    <TR>
-                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee e</TD>
-                    </TR>
-                  </TABLE>
-                </TD>
-              </TR>
-
-              <TR>
-                <TD>
-                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-                    <TR>
-                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int a</TD>
-                    </TR>
-                    <TR>
-                      <TD ALIGN="LEFT">value</TD>
-                      <TD ALIGN="LEFT">1</TD>
-                    </TR>
-                  </TABLE>
-                </TD>
-              </TR>
-            </TABLE>
-          </TD>
-        </TR>
-
-      </TABLE>
-    >
-  ];
-
-  // ---------------- HEAP ----------------
-  subgraph cluster_heap {
-    label="Heap";
-    color="black";
-
-    heap_date [
-      shape=plain
-      label=<
-        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-          <TR>
-            <TD COLSPAN="2"><B>Employee</B></TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">age</TD>
-            <TD ALIGN="LEFT">42</TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT" PORT="name" COLSPAN="2">name</TD>
-
-          </TR>
-        </TABLE>
-      >
-    ];
-
-    heap_string [
-      shape=plain
-      label=<
-        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
-          <TR>
-            <TD COLSPAN="2"><B>String</B></TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">...</TD>
-            <TD ALIGN="LEFT">...</TD>
-          </TR>
-          <TR>
-            <TD ALIGN="LEFT">...</TD>
-            <TD ALIGN="LEFT">...</TD>
-          </TR>
-        </TABLE>
-      >
-    ];
-  }
-
-  // two references to the same heap object
-  stack:d:e -> heap_date:w;
-  stack:date:e -> heap_date:w;
-  heap_date:name:e -> heap_string:w;
-}
-----
-|===
-
 
 == Рождение, жизнь и смерть объекта
 
@@ -394,7 +223,7 @@ digraph G {
 -----
 
 
-== Присвоение ссылки
+== Присвоение ссылки локальной переменной
 
 [source,java]
 Employee hacker = new Employee(42, "Bob");
@@ -522,7 +351,7 @@ digraph G {
 }
 -----
 
-== Присвоение ссылки
+== Присвоение ссылки локальной переменной
 
 [source,java]
 Employee junior = hacker;
@@ -666,7 +495,7 @@ digraph G {
 hacker = null;
 junior = new Employee(43, "Charlie");
 
-[graphviz,{image-50-width}]
+[graphviz,{image-60-width}]
 -----
 digraph G {
   graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
@@ -865,14 +694,15 @@ digraph G {
         </TABLE>
       >
     ];
-    null[shape=circle];
+    null_heap[style=invis];
   }
 
 
-
+ null[shape=circle];
  stack->heap_date[style=invis];
 
   stack:d:e -> null;
+  null -> null_heap[style=invis];
   stack:j:e -> heap_date2:emp:w;
 
   heap_date:name:e -> heap_string:str:w;
@@ -1023,14 +853,16 @@ digraph G {
         </TABLE>
       >
     ];
-    null[shape=circle];
+    null_heap[style=invis];
   }
 
+  null[shape=circle];
 
-
- stack->heap_date2[style=invis];
+  stack->heap_date2[style=invis];
 
   stack:d:e -> null;
+  null -> null_heap[style=invis];
+  stack:j:e -> heap_date2:emp:w;
   stack:j:e -> heap_date2:emp:w;
 
 
@@ -1039,6 +871,270 @@ digraph G {
   heap_string2:val:e->heap_array2:array:w;
 }
 -----
+
+
+== Передача аргументов: ссылка на объект, значение примитивного типа
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+public class Employee {
+  int age = 18;
+
+  public static void main(String[] args) {
+    Employee e = new Employee();
+    int a = 1;
+    foo(e, a);
+    System.out.printf("%d - %d", e.age, a);
+    //prints 42 - 1
+  }
+
+  static void foo(Employee e, int a) {
+    //e passed by reference, a passed by value
+    e.age = 42;
+    a = 5;
+  }
+}
+
+----
+
+|
+[graphviz]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+  edge  [fontname="Helvetica"];
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <!-- foo frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="modify">   <B>foo</B>   </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int a</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">value</TD>
+                      <TD ALIGN="LEFT">5</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="date" BGCOLOR="#f2f2f2">Employee e</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT="main"><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="d" BGCOLOR="#f2f2f2">Employee e</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">int a</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">value</TD>
+                      <TD ALIGN="LEFT">1</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+
+  // ---------------- HEAP ----------------
+  subgraph cluster_heap {
+    label="Heap";
+    color="black";
+
+    heap_date [
+      shape=plain
+      label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+          <TR>
+            <TD COLSPAN="2"><B>Employee</B></TD>
+          </TR>
+          <TR>
+            <TD ALIGN="LEFT">age</TD>
+            <TD ALIGN="LEFT">42</TD>
+          </TR>
+        </TABLE>
+      >
+    ];
+
+  }
+
+  // two references to the same heap object
+  stack:d:e -> heap_date:w;
+  stack:date:e -> heap_date:w;
+}
+----
+|===
+
+
+== Value-типы (Java 28+ preview): +++<br/>+++неизменяемые значения, копируемые напрямую
+
+[cols="70a,30a"]
+|===
+|
+[source,java]
+----
+private static LocalDate
+    addMonth(LocalDate date) {
+  date = date.plusMonths(1);
+  return date;
+}
+
+public static void main(String... args) {
+  LocalDate date = LocalDate.of(2026, 9, 15);
+  addMonth(date);
+}
+----
+NB: "аллокция на стеке" -- это _умозрительная_ картина. Оптимизатор волен делать что угодно, если семантика позволяет, как для обычных, так и для `value`-объектов: `value` даёт больше возможностей для оптимизации.
+
+|
+[graphviz,{image-60-width}]
+----
+digraph G {
+  graph [dpi=180, rankdir="LR", nodesep=0.6, ranksep=0.8, fontname="Helvetica"];
+  node  [fontname="Helvetica"];
+
+  // ---------------- STACK ----------------
+  stack [
+    shape=plain
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+
+        <TR>
+          <TD BORDER="1">Stack</TD>
+        </TR>
+
+        <!-- modify_months frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT= "modify"><B>addMonth</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD BGCOLOR="#f2f2f2" COLSPAN="2">LocalDate date</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">year</TD>
+                      <TD ALIGN="LEFT">2026</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">month</TD>
+                      <TD ALIGN="LEFT">10</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">day</TD>
+                      <TD ALIGN="LEFT">15</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+
+            </TABLE>
+          </TD>
+        </TR>
+
+        <!-- main frame -->
+        <TR>
+          <TD>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+              <TR>
+                <TD BGCOLOR="#e6e6e6" PORT= "main" ><B>main</B></TD>
+              </TR>
+
+              <TR>
+                <TD>
+                  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+                    <TR>
+                      <TD PORT="val_date" BGCOLOR="#f2f2f2" COLSPAN="2">LocalDate date</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">year</TD>
+                      <TD ALIGN="LEFT">2026</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">month</TD>
+                      <TD ALIGN="LEFT">9</TD>
+                    </TR>
+                    <TR>
+                      <TD ALIGN="LEFT">day</TD>
+                      <TD ALIGN="LEFT">15</TD>
+                    </TR>
+                  </TABLE>
+                </TD>
+              </TR>
+
+
+            </TABLE>
+          </TD>
+        </TR>
+
+      </TABLE>
+    >
+  ];
+}
+----
+|===
 
 
 
@@ -1811,6 +1907,40 @@ Point p1 = new Point(1, 2);
 System.out.println(p1.x());
 System.out.println(p1.distance(new Point(3, 4)));
 ----
+
+== Value-классы (Java28+ preview feature)
+
+* `value`-объект *не имеет identity*: два экземпляра с одинаковым состоянием неразличимы.
+* Все поля экземпляра неявно `final`; JVM может хранить объект без дополнительной косвенности.
+* `value` можно объявить обычный класс или `record`.
+* Конкретный `value`-класс неявно `final`; наследование возможно через `abstract value class`.
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+abstract value class Quantity {
+  int value; //implicitly final
+  Quantity(int value) {
+    this.value = value;
+  }
+}
+----
+|
+[source,java]
+----
+value class Distance //implicitly final
+    extends Quantity {
+  Distance(int value) {
+    super(value);
+  }
+}
+
+value record Point(int x, int y) {}
+----
+|===
+
 
 == Базовые принципы проектирования классов
 
