@@ -19,6 +19,10 @@
         <asciidoctorj.diagram.version>3.2.1</asciidoctorj.diagram.version>
 		<asciidoctorj.diagram.plantuml.version>1.2026.2</asciidoctorj.diagram.plantuml.version>
         <jruby.version>9.4.15.0</jruby.version>
+        <!-- AsciidoctorJ bundles Rouge 3.30.0, whose Java lexer predates `record`,
+             `sealed`, `permits` and `yield`. A newer gem installed into the local
+             gemPath takes precedence over the bundled one. -->
+        <rouge.version>5.1.0</rouge.version>
         <revealjs.version>3.9.2</revealjs.version>
         <!-- Use 'master' as version and remove the 'v' prefixing the download url to use the current snapshot version  -->
         <asciidoctor-revealjs.version>master</asciidoctor-revealjs.version>
@@ -37,6 +41,12 @@
     </developers>
 
     <dependencies>
+        <dependency>
+            <groupId>rubygems</groupId>
+            <artifactId>rouge</artifactId>
+            <version>${rouge.version}</version>
+            <type>gem</type>
+        </dependency>
         <dependency>
             <groupId>rubygems</groupId>
             <artifactId>asciidoctor-revealjs</artifactId>
@@ -166,6 +176,8 @@
                     <requires>
                         <require>asciidoctor-revealjs</require>
                         <require>asciidoctor-diagram</require>
+                        <!-- registers the `github-classic` Rouge theme, see the file for why -->
+                        <require>${basedir}/../slides-base/src/main/ruby/rouge-github-classic.rb</require>
                     </requires>
                     <outputDirectory>${project.slides.directory}</outputDirectory>
                     <backend>revealjs</backend>
@@ -179,7 +191,7 @@
                         <revealjs_theme>black</revealjs_theme>
                         <!--<revealjs_transition>linear</revealjs_transition>-->
                         <project-version>${project.version}</project-version>
-                        <rouge-style>github</rouge-style>
+                        <rouge-style>github-classic</rouge-style>
                         <rouge-css>style</rouge-css>
                         <source-highlighter>rouge</source-highlighter>
                     </attributes>
