@@ -1,0 +1,49 @@
+# frozen_string_literal: true
+
+require_relative 'markdown'
+
+module Rouge
+  module Lexers
+    class APIBlueprint < Markdown
+      title 'API Blueprint'
+      desc 'Markdown based API description language.'
+
+      tag 'apiblueprint'
+      aliases 'apib'
+      filenames '*.apib'
+      mimetypes 'text/vnd.apiblueprint'
+
+      prepend :root do
+        # Metadata
+        rule(/(\S+)(:\s*)(.*)$/) do
+          groups Name::Variable, Punctuation, Literal::String
+        end
+
+        # Resource Group
+        rule(/^(#+)(\s*Group\s+)(.*)$/) do
+          groups Punctuation, Keyword, Generic::Heading
+        end
+
+        # Resource \ Action
+        rule(/^(#+)(.*)(\[.*\])$/) do
+          groups Punctuation, Generic::Heading, Literal::String
+        end
+
+        # Relation
+        rule(/^([\+\-\*])(\s*Relation:)(\s*.*)$/) do
+          groups Punctuation, Keyword, Literal::String
+        end
+
+        # MSON
+        rule(/^(\s+[\+\-\*]\s*)(Attributes|Parameters)(.*)$/) do
+          groups Punctuation, Keyword, Literal::String
+        end
+
+        # Request/Response
+        rule(/^([\+\-\*]\s*)(Request|Response)(\s+\d\d\d)?(.*)$/) do
+          groups Punctuation, Keyword, Literal::Number, Literal::String
+        end
+      end
+    end
+  end
+end
