@@ -30,12 +30,234 @@ ponomarev@corchestra.ru
 
 icon:twitter[size=lg] @inponomarev
 
+
+== Интерфейсы
+
+[source,java]
+----
+//его нельзя инстанцировать!
+public interface Prism
+{
+   //это --- final-переменная!
+   double PI = 3.14;
+
+   //это --- публичные абстрактные методы!
+   double getArea();
+   double getHeight();
+
+   //этот метод может вызывать другие и читать final-поля
+   default double getVolume() {
+      return getArea() * getHeight();
+   }
+}
+----
+
+== Реализация интерфейса
+
+[source,java]
+----
+public class Parallelepiped implements Prism {
+    private double a;
+    private double b;
+    private double h;
+    @Override
+    public double getArea() {
+        return a * b;
+    }
+
+    @Override
+    public double getHeight() {
+        return h;
+    }
+}
+----
+Если какой-то из методов интерфейса не будет переопределён, класс нужно пометить как abstract.
+
+== Чем интерфейсы отличаются от абстрактных классов?
+
+* Нет внутреннего состояния и конструкторов
+* Можно наследоваться (`extends`) только от одного класса, но реализовывать (`implements`) сколько угодно интерфейсов -- _множественное наследование_.
+* Поэтому как абстракция, интерфейс предпочтительнее.
+
+== Специальные виды типов
+
+* Enumeration Classes
+* Records
+* Annotation Interfaces (о них речь пойдёт значительно позже)
+
+== Enumeration Classes (Java 5+)
+
+[source,java]
+----
+public enum Size
+  { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
+
+. . .
+
+Size s = Size.MEDIUM;
+
+for (Size s: Size.values()) . . .
+
+switch (s) {
+  case SMALL: . . .
+  case LARGE: . . .
+}
+----
+
+== Поля, методы и конструкторы для перечислений
+[source,java]
+----
+public enum Size
+{
+   SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
+   private final String abbreviation;
+   private Size(String abbreviation) {
+     this.abbreviation = abbreviation;
+   }
+   public String getAbbreviation() {
+     return abbreviation;
+   }
+}
+
+. . .
+
+Size s = . . .
+s.getAbbreviation(); // вернёт S, M, L или XL
+----
+
+== Enums: интерфейсы и абстрактные методы
+
+[source,java]
+----
+interface Rule { boolean canGo();  }
+enum TrafficLight implements Rule {
+    RED {
+        @Override public boolean canGo() { return false; }
+        @Override int durationSeconds()  { return 55; }
+    },
+    YELLOW {
+        @Override public boolean canGo() { return false; }
+        @Override int durationSeconds()  { return 5; }
+    },
+    GREEN {
+        @Override public boolean canGo() { return true; }
+        @Override int durationSeconds()  { return 45; }
+    };
+    // Abstract method implemented individually by each constant
+    abstract int durationSeconds();
+}
+----
+
+
+== Records (Java 16+)
+
+* Иммутабельные объекты (один раз создав, нельзя менять состояние)
+* Компактный синтаксис
+* Наследование запрещено, но можно реализовывать интерфейс
+* Автоматическая поддержка `equals`/`hashCode` (что это, мы узнаем вскоре)
+* Любой `record` может быть `value`-типом (`value record`).
+
+[source,java]
+----
+//Defines a record with two int fields
+public record Point(int x, int y) { }
+----
+
+== Records
+
+[source,java]
+----
+public record Point(int x, int y) {
+    public double distance(Point other) {
+        int dx = x - other.x;
+        int dy = y - other.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+}
+
+Point p1 = new Point(1, 2);
+//Get value via implicit accessor method
+System.out.println(p1.x());
+System.out.println(p1.distance(new Point(3, 4)));
+----
+
+== Value-типы (Java28+ preview feature)
+
+* `value`-объект *не имеет identity*: два экземпляра с одинаковым состоянием неразличимы.
+* Все поля экземпляра неявно `final`; JVM может хранить объект без дополнительной косвенности.
+* `value` можно объявить обычный класс или `record`.
+* Конкретный `value`-класс неявно `final`; наследование возможно через `abstract value class`.
+
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+abstract value class Quantity {
+  int value; //implicitly final
+  Quantity(int value) {
+    this.value = value;
+  }
+}
+----
+|
+[source,java]
+----
+value class Distance //implicitly final
+    extends Quantity {
+  Distance(int value) {
+    super(value);
+  }
+}
+----
+2+|
+[source,java]
+----
+value record Point(int x, int y) {}
+----
+|===
+
+
+== Базовые принципы проектирования классов
+
+* Минимизируйте область видимости (`private` всё, что только можно)
+
+* Минимизируйте мутабельность (`final` на всём, что только можно)
+
+* Документируйте точки расширения через наследование, или запрещайте  наследование (`final`, `sealed`)
+
+== Оператор равенства `==`
+
+* Для примитивов `==` сравнивает значения.
+* Для обычных объектов `==` сравнивает *identity*: ссылки должны указывать на один объект.
+
+[source,java]
+----
+String a = "Java";
+String b = new String("Java");
+System.out.println(a == b); // false
+----
+
+== Оператор равенства `==`
+
+* *Valhalla (Java 28, preview):* у value-объектов нет identity.
+  Для них `==` проверяет одинаковый класс и одинаковые значения полей.
+
+[source,java]
+----
+var d1 = LocalDate.of(2026, 9, 29);
+var d2 = d1.plusDays(1).minusDays(1);
+System.out.println(d1 == d2); // true
+----
+
+* «Быстрый» оператор `==` может оказаться не таким уж быстрым для больших value-объектов.
+
 == Оператор instanceof
 
 [plantuml, instanceof, png]
 ----
 @startuml
-skinparam dpi 150 
+skinparam dpi 150
 class C1
 class C2
 class C3
@@ -50,7 +272,7 @@ C1 c1; C2 c2; C3 c3; I1 i1;
 
 x instanceof A //  false, если x == null
 c1 instanceof С2 // true или false
-i1 instanceof C2 // true или false 
+i1 instanceof C2 // true или false
 c2 instanceof C1 // всегда возвращает true
 с3 instanceof C2 // не скомпилируется
 ----
@@ -81,7 +303,7 @@ if (p instanceof Student s) {
 }
 
 //Скомпилируется
-if (obj instanceof String s && s.length() > 5) { 
+if (obj instanceof String s && s.length() > 5) {
    . . .
    s.contains(..)
 }
@@ -160,10 +382,10 @@ static String speak(Animal a) {
 sealed interface Animal permits Dog, Cat { }
 
 final class Dog implements Animal {
-    
+
 }
 final class Cat implements Animal {
-    
+
 }
 
 static String speak(Animal a) {
@@ -300,7 +522,7 @@ public class Person {
 public class Point {
   private final int x;
   private final int y;
-  
+
   /*Подождите! Нам нужны:
    * конструктор
    * getX() и getY()
@@ -308,7 +530,7 @@ public class Point {
    * toString
    * 40 строчек кода из ничего!
    */
-   
+
   public double distance(Point other) {
     ...
   }
@@ -336,8 +558,8 @@ public class Point {
 
 [source,java]
 ----
-record Point(int x, int y) { 
-  
+record Point(int x, int y) {
+
 }
 ----
 
@@ -404,7 +626,7 @@ public FileInputStream(String name) throws FileNotFoundException{
 ----
 class MyAnimation {
 . . .
-  public Image loadImage(String s) 
+  public Image loadImage(String s)
     throws FileNotFoundException, EOFException {
     . . .
   }
@@ -465,8 +687,8 @@ try {
 ----
 @startuml
 
-skinparam dpi 180 
- 
+skinparam dpi 180
+
 IOException <|-- FileNotFoundException
 
 IOException <|-- UnknownHostException
@@ -492,8 +714,8 @@ try {
 ----
 @startuml
 
-skinparam dpi 180 
- 
+skinparam dpi 180
+
 IOException <|-- FileNotFoundException
 
 IOException <|-- UnknownHostException
@@ -506,10 +728,10 @@ try {
   //code that might throw exceptions
 } catch (FileNotFoundException | UnknownHostException e) {
   //emergency action for missing files or unknown hosts
-  
-  //e type is the most specific common supertype 
+
+  //e type is the most specific common supertype
   //of the throwable types
-} 
+}
 ----
 
 == Перевыбрасывание исключений (с умной проверкой типов)
@@ -519,7 +741,7 @@ try {
 . . . throws SQLException . . .
 
 try {
-  //доступ к БД -- может выбросить SQLException 
+  //доступ к БД -- может выбросить SQLException
 } catch (Exception e) {
   logger.log(level, message, e);
   //хотя Exception есть тип более широкий,
@@ -552,18 +774,18 @@ try {
 ----
 @startuml
 
-skinparam dpi 200 
+skinparam dpi 200
 
 class Foo {
-    + foo() throws FooException 
+    + foo() throws FooException
 }
- 
+
 Foo <|-- Bar
 
 class Bar {
     + foo() throws BarException
 }
- 
+
 
 FooException <|-- BarException
 
@@ -583,7 +805,7 @@ J.{nbsp}Bloch 'Effective Java', Item 72:
 |===
 |`InvalidArgumentException` | неправильный, ненулевой параметр метода
 |`InvalidStateException`| внутреннее состояние объекта не подходит для запуска метода
-|`NullPointerException`| передан `null` в метод, не ожидающий `null` в качестве параметра 
+|`NullPointerException`| передан `null` в метод, не ожидающий `null` в качестве параметра
 |`IndexOutOfBoundsException`| Индексный параметр выходит за допустимый диапазон
 |===
 
@@ -601,9 +823,9 @@ try {
 
 ----
 
-...*но так делать не надо!* 
+...*но так делать не надо!*
 
-== Если не понятно, что делать с исключением 
+== Если не понятно, что делать с исключением
 
 * Задекларируйте checked exception в методе
 * Оберните с помощью `initCause` или параметра конструктора
@@ -625,8 +847,8 @@ InputStream in = new FileInputStream(. . .);
 try {
   // исключение может возникнуть здесь
   code that might throw exceptions
-  // и даже возврат из метода вызовет блок finally! 
-  if (...) 
+  // и даже возврат из метода вызовет блок finally!
+  if (...)
     return;
 } catch (IOException e) {
   // бывает, исключение возникает во время
@@ -647,7 +869,7 @@ try {
 
 BufferedReader br = new BufferedReader(new FileReader(path));
 
-try {return br.readLine();} 
+try {return br.readLine();}
 
 finally {br.close();}
 ----
@@ -665,8 +887,8 @@ try {
   try {
     byte[] buf = new byte[BUFFER_SIZE];
     int n;
-    while ((n = in.read(buf)) >= 0)out.write(buf, 0, n);} 
-  finally {out.close();}} 
+    while ((n = in.read(buf)) >= 0)out.write(buf, 0, n);}
+  finally {out.close();}}
 finally {in.close();}
 ----
 
@@ -709,18 +931,18 @@ try (Scanner in = new Scanner(
 ----
 @startuml
 
-skinparam dpi 200 
+skinparam dpi 200
 
 interface AutoCloseable {
-    + close() throws Exception 
+    + close() throws Exception
 }
- 
+
 AutoCloseable <|-- Closeable
 
 interface Closeable {
     + close() throws IOException
 }
- 
+
 
 Exception <|-- IOException
 
@@ -742,7 +964,7 @@ try {
 }
 
 //ДЕЛАЙТЕ ТАК!!
-for (Mountain m: range) 
+for (Mountain m: range)
   m.climb();
 ----
 
@@ -847,7 +1069,7 @@ image::stacktracereading.png[]
 * J. Bloch, 'Effective Java': 'By using a standard library, you take advantage of the knowledge of the experts who wrote it and the experience of those who used it before you... Numerous features are added to the libraries in every major release, and it pays to keep abreast of these additions.'
 * Наряду с актуальными, «свежими» классами в библиотеках есть много старых классов, оставленных для обратной совместимости.
 * Вы встретите `Vector`, `Date`, `File`, `StringBuffer`, `Random`, _о которых я не буду рассказывать на лекциях_.
-* Будьте внимательны: использование устаревших классов в существующем коде, в примерах в интернете и т. п. не оправдывает их использование в новом коде. 
+* Будьте внимательны: использование устаревших классов в существующем коде, в примерах в интернете и т. п. не оправдывает их использование в новом коде.
 
 == Отдельный пример из книги Effective Java: ThreadLocalRandom
 
@@ -908,7 +1130,7 @@ greeting = greeting.substring(0, 3) + "p!"; //Help!
 String name1 = "John Doe";
 String name2 = "John Doe";
 /* DO NOT DO THIS!!*/
-String name3 
+String name3
   = new String("John Doe");
 ----
 ^.^a|
@@ -919,14 +1141,14 @@ digraph G {
   node [shape="rectangle"]
   graph [ dpi = 180 ];
   rankdir="LR";
-  
+
       subgraph cluster_s2{
           subgraph cluster_s3 {
             o1[label="John Doe"; style=filled; fillcolor="#ffffcc"]
             label="String Constant Pool"
           }
         o2[label="John Doe"; style=filled; fillcolor="#ffffcc"]
-        
+
         label="Memory Heap"
       }
   name1->o1
@@ -956,9 +1178,9 @@ digraph G {
 [source,java]
 ----
 String name1 = "John Doe";
-String name2 = 
+String name2 =
   new String("John Doe");
-String name3 = 
+String name3 =
   new String("Jane Roe");
 ----
 ^.^a|
@@ -969,16 +1191,16 @@ digraph G {
   node [shape="rectangle"]
   graph [ dpi = 180 ];
   rankdir="LR";
- 
+
       subgraph cluster_s2{
           subgraph cluster_s3 {
             o1[label="John Doe"; style=filled; fillcolor="#ffffcc"]
             label="String Constant Pool"
           }
         o2[label="John Doe"; style=filled; fillcolor="#ffffcc"]
-        
+
         o3[label="Jane Roe"; style=filled; fillcolor="#ffffcc"]
-        
+
         label="Memory Heap"
       }
   name1->o1
@@ -1008,16 +1230,16 @@ digraph G {
   node [shape="rectangle"]
   graph [ dpi = 180 ];
   rankdir="LR";
- 
+
       subgraph cluster_s2{
           subgraph cluster_s3 {
             o1[label="John Doe"; style=filled; fillcolor="#ffffcc"];
             o3[label="Jane Roe"; style=filled; fillcolor="#ffffcc"]
             label="String Constant Pool"
           }
-        
 
-        
+
+
         label="Memory Heap"
       }
   name1->o1
@@ -1101,7 +1323,7 @@ char last = greeting.charAt(4); // last is 'o'
 int[] codePoints = str.codePoints().toArray();
 ----
 
-== Полезные методы 
+== Полезные методы
 
 [source,java]
 ----
@@ -1111,20 +1333,19 @@ char charAt(int index)
 int compareTo(String anotherString)
 boolean equals(Object anObject)
 boolean equalsIgnoreCase(String anotherString)
-boolean startsWith(String prefix) 
+boolean startsWith(String prefix)
 boolean endsWith(String suffix)
 String toLowerCase() / String toUpperCase()
 String trim()
 String join(CharSequence delimiter, CharSequence... elements)
 ----
 
-== Вредные методы 
+== Вредные методы
 
 * `indexOf..` / `lastIndexOf..`
 * `replace..`
-* `split..` 
+* `split..`
 
 В комбинации c `substring` и конкатенацией их используют для извлечения данных / преобразования строк.
 
 _Не делайте так. Это путь к бесконечным багам, бесконечной боли и бесконечному стыду. Используйте конечные автоматы или регулярные выражения._
-    
