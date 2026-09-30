@@ -358,17 +358,17 @@ static String describe(Object o) {
 
 [source,java]
 ----
-sealed interface Animal permits Dog, Cat { String speak(); }
+sealed interface Animal permits Dog, Cat { String vocalize(); }
 
 final class Dog implements Animal {
-    public String speak() { return "woof"; }
+    @Override public String vocalize() { return "woof"; }
 }
 final class Cat implements Animal {
-    public String speak() { return "meow"; }
+    @Override public String vocalize() { return "meow"; }
 }
 
-static String speak(Animal a) {
-    return a.speak();
+static String vocalize(Animal a) {
+    return a.vocalize();
 }
 ----
 
@@ -380,20 +380,19 @@ static String speak(Animal a) {
 [source,java]
 ----
 sealed interface Animal permits Dog, Cat { }
+final class Dog implements Animal {}
+final class Cat implements Animal {}
 
-final class Dog implements Animal {
-
-}
-final class Cat implements Animal {
-
-}
-
-static String speak(Animal a) {
+static String inEnglish(Animal a) {
     return switch (a) {
-        case Dog d -> "woof";
-        case Cat c -> "meow";
-    };
-}
+        case Dog d -> "dog";
+        case Cat c -> "cat";
+    }; }
+static String inRussian(Animal a) {
+    return switch (a) {
+        case Dog d -> "собачка";
+        case Cat c -> "кошечка";
+    }; }
 ----
 
 == Object: the Cosmic Superclass
