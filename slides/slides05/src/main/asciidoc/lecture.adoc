@@ -22,7 +22,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_width: 1600
 :revealjs_height: 900
 :zsp: &#8203;
-	
+
 
 :!figure-caption:
 
@@ -76,13 +76,15 @@ Pattern p = Pattern.compile("(\\$\\{[^}]+\\})");
 Matcher m = p.matcher(line);
 while (m.find()) {
     String repString = replacements.get(m.group(1));
-    if (repString != null)    
+    if (repString != null)
         m.appendReplacement(sb, repString);
 }
 m.appendTail(sb);
 
 System.out.println(sb.toString()); //1xxxx23
 ----
+
+* Для интерполяции строк в реальной практике используют класс `StringSubstitutor` из библиотеки `org.apache.commons:commons-text`.
 
 == Регулярные выражения
 
@@ -277,6 +279,7 @@ case UNQUOTED_BODY -> {
 
 * Математический факт: Каждый ДКА может быть сконвертирован в регулярное выражение, и наоборот.
 * При обработке строк регулярки и ДКА -- наше всё.
+* (Ну а если надо работать с CSV-файлами, для этого есть библиотека `org.apache.commons:commons-csv`.)
 
 == Wrapper Types
 
@@ -308,7 +311,7 @@ case UNQUOTED_BODY -> {
 Integer five1 = Integer.valueOf(5);
 Integer five2 = Integer.valueOf(5);
 /* DO NOT DO THIS!!*/
-Integer five3 
+Integer five3
   = new Integer(5);
 ----
 ^.^a|
@@ -318,24 +321,24 @@ digraph G {
   node [shape="rectangle"]
   graph [ dpi = 140 ];
   rankdir="LR";
-  
+
       subgraph cluster_s2{
           subgraph cluster_s3 {
-            
+
             o1[label="5"; shape="circle"; style=filled; fillcolor="#ffffcc"]
-            
+
             c1[label="3"; shape="circle"; style=filled; fillcolor="#ffffcc"]
             c2[label="7"; shape="circle"; style=filled; fillcolor="#ffffcc"]
             label="Integer Object Pool"
             c3[label="-1"; shape="rectangle"; style=invis; ]
             label="Integer Object Pool"
-            
+
             o1 -> c1 [style="invis"]
             o1 -> c2 [style="invis"]
-            
+
           }
         o2[label="5"; shape="circle"; style=filled; fillcolor="#ffffcc"]
-        
+
         label="Memory Heap"
       }
   five1->o1
@@ -396,13 +399,13 @@ if (a == b) . . . //NO! THIS WILL FAIL!
 * `Double.toString(value)`
 
 
-== Класс `BigInteger` 
+== Класс `BigInteger`
 
 [source,java]
 ----
 BigInteger i = new BigInteger("123456789012345678901234567890");
 BigInteger j = new BigInteger("123456789012345678901234567892");
- 
+
 BigInteger sum = i.add(j);
 BigInteger difference = i.subtract(j);
 BigInteger quotient = i.divide(j);
@@ -414,14 +417,14 @@ BigInteger product = i.multiply(j);
 [source,java]
 ----
 public static BigDecimal calculateTotalAmount(
-      BigDecimal quantity,     BigDecimal unitPrice, 
-      BigDecimal discountRate, BigDecimal taxRate) { 
+      BigDecimal quantity,     BigDecimal unitPrice,
+      BigDecimal discountRate, BigDecimal taxRate) {
     BigDecimal amount = quantity.multiply(unitPrice);
     BigDecimal discount = amount.multiply(discountRate);
     BigDecimal discountedAmount = amount.subtract(discount);
     BigDecimal tax = discountedAmount.multiply(taxRate);
     BigDecimal total = discountedAmount.add(tax);
- 
+
     // round to 2 decimal places using HALF_EVEN
     BigDecimal roundedTotal = total.setScale(2, RoundingMode.HALF_EVEN);
     return roundedTotal;
@@ -451,7 +454,7 @@ image::reader-writer.jpg[]
 ----
 @startuml
 
-skinparam dpi 150 
+skinparam dpi 150
 
 abstract class InputStream {
   + read(): int throws IOException
@@ -509,7 +512,7 @@ Path path = Paths.get("path/to/file.zip");
 try(ZipInputStream zis =  new ZipInputStream(
     Files.newInputStream(path));
     DataInputStream dis = new DataInputStream(zis)) {
-    . . .   
+    . . .
 }
 ----
 
@@ -525,7 +528,7 @@ Path path = Paths.get("path/to/file.txt");
 Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8);
 
 //Вычитка всего содержимого в память
-List<String> strings = 
+List<String> strings =
   Files.readAllLines(path, StandardCharsets.UTF_8);
 ----
 
@@ -550,7 +553,7 @@ Path path = Paths.get("path/to/file.txt");
 List<String> lines = new ArrayList<>();
 lines.add(...)
 
-//Если всё уже готово в памяти 
+//Если всё уже готово в памяти
 Files.write(path, lines, StandardCharsets.UTF_8);
 
 ----
@@ -571,10 +574,10 @@ try (PrintWriter printWriter = new PrintWriter(
 * Более современный `Path` (Java 7+)
 
 == Работа с файловой системой
- 	
+
 [source,java]
 ----
-//Path не обязательно указывает 
+//Path не обязательно указывает
 //на уже существующий файл или каталог!!
 
 Path absolute = Paths.get("/home", "harry");
@@ -620,7 +623,7 @@ Files.size(path)
 Stream<Path> list = Files.list(path);
 
 //метод для обхода дерева папок
-Stream<Path> Files.walk(Path start, 
+Stream<Path> Files.walk(Path start,
    int maxDepth, FileVisitOption... options)
 ----
 
@@ -644,7 +647,7 @@ image::persistenceofmemory.jpg[{image-60-width}]
 == Системные часы
 
 [%step]
-* `long System.currentTimeMillis()` -- количество миллисекунд, прошедшее с наступления полуночи 1 января 1970 года на Гринвичском меридиане _минус число високосных секунд_, с точки зрения системных часов. 
+* `long System.currentTimeMillis()` -- количество миллисекунд, прошедшее с наступления полуночи 1 января 1970 года на Гринвичском меридиане _минус число високосных секунд_, с точки зрения системных часов.
 ** Гранулярность может быть больше  миллисекунды.
 ** «Замирают» при вставке високосной секунды.
 ** Значения могут «скакать» _в обе_ стороны при синхронизации через NTP!
@@ -655,7 +658,7 @@ image::persistenceofmemory.jpg[{image-60-width}]
 
 == Когда что использовать?
 
-* `long System.nanoTime()` -- при замерах периодов времени в переделах одной машины. 
+* `long System.nanoTime()` -- при замерах периодов времени в переделах одной машины.
 ** _Но для замеров производительности программ на Java надо применять JMH._
 * `long System.currentTimeMillis()` -- для генерации штампов времени (с пониманием ограничений).
 
@@ -748,7 +751,7 @@ Duration d = Duration.ofSeconds(3);
 //например:
 i.plus(dd.multipliedBy(10))
  .minus(dd.minus(Duration.ofMillis(1)));
- 
+
 //то же самое можно сделать с LocalDateTime
 ----
 
@@ -793,7 +796,7 @@ ZonedDateTime moscowTime = dateTime.atZone(moscowZone);
 System.out.println(moscowTime);
 //2019-09-30T18:15:52.670+03:00[Europe/Moscow]
 
-ZonedDateTime romeTime = 
+ZonedDateTime romeTime =
   moscowTime.withZoneSameInstant(romeZone);
 System.out.println(romeTime);
 //2019-09-30T17:15:52.670+02:00[Europe/Rome]
