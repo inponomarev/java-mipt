@@ -1,0 +1,78 @@
+<!-- Created by Tagir Valeev (lany@ngs.ru) 
+     License: CC BY 4.0 http://creativecommons.org/licenses/by/4.0/ -->
+<svg version="1.1"
+     width="280" height="270"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <linearGradient id="gray_grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#B0B3B6;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#D0D3D6;stop-opacity:1" />
+  </linearGradient>
+</defs>
+<symbol id="connector">
+  <path d="M95,3 l60,0 l0,20 l-60,0 z" fill="url(#gray_grad)" stroke-width="3" stroke="#333"/>
+</symbol>
+<g id="peek-component" transform="translate(0,20)">
+  <path d="M100,20 q0,20 -20,20 q-20,0 -20,20 l0,120 q0,20 20,20 q20,0 20,20 l50,0 q0,-20 20,-20 l80,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-80,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="clock_yellow"
+        from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="0;clock_blue.end" dur="1000ms" fill="remove"/>
+  </path>
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="clock_green"
+        from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="clock_yellow.end" dur="1000ms" fill="freeze"/>
+  </path>
+  <path d="M118,0 l15,0 l0,20 l-15,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="clock_blue"
+        from="M118,0 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="clock_green.end" dur="1000ms" fill="freeze"/>
+  </path>
+
+  <path d="M61,113 l10,0 l0,5 l2,0 l0,3 l-2,0 l0,5 l-10,0 z" fill="#555" stroke-width="3" stroke="#333"/>
+
+  <path d="M161,113 l10,0 l0,13 l-10,0 z" fill="#555" stroke-width="3" stroke="#333"/>
+
+  <circle cx="210" cy="120" r="38" fill="#F5F5F5" stroke-width="3" stroke="#333"/>
+  <symbol id="tick" viewBox="-40 -40 40 40">
+    <line x1="0" y1="-34" x2="0" y2="-38" stroke-width="3" stroke="#333"/>
+  </symbol>
+
+  <line x1="74" y1="120" x2="160" y2="120" stroke-width="2" stroke="#F33">
+    <set attributeName="x2" attributeType="XML" to="118" id="laser_close" begin="400ms;laser_open.begin+800ms"/>
+    <set attributeName="x2" attributeType="XML" to="160" id="laser_open" begin="laser_close.begin+200ms"/>
+  </line>
+
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(30 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(60 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(90 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(120 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(150 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(180 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(210 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(240 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(270 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(300 210 120)"/>
+  <use xlink:href="#tick" x="130" y="80" width="80" height="80" transform="rotate(330 210 120)"/>
+
+  <path d="M208,120 l3,0 l-3,-30 l-3,30 z" fill="#555" transform="rotate(0 210 120)">
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 210 120" to="30 210 120" id="arr1" dur="200ms" begin="400ms;arr12.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="60 210 120" id="arr2" dur="200ms" begin="arr1.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="90 210 120" id="arr3" dur="200ms" begin="arr2.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="120 210 120" id="arr4" dur="200ms" begin="arr3.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="150 210 120" id="arr5" dur="200ms" begin="arr4.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="180 210 120" id="arr6" dur="200ms" begin="arr5.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="210 210 120" id="arr7" dur="200ms" begin="arr6.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="240 210 120" id="arr8" dur="200ms" begin="arr7.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="270 210 120" id="arr9" dur="200ms" begin="arr8.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="300 210 120" id="arr10" dur="200ms" begin="arr9.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="330 210 120" id="arr11" dur="200ms" begin="arr10.begin+1000ms" fill="freeze"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" to="360 210 120" id="arr12" dur="200ms" begin="arr11.begin+1000ms" fill="freeze"/>
+  </path>
+
+  <use xlink:href="#connector" y="-3"/>
+  <use xlink:href="#connector" y="217"/>
+
+</g>
+</svg>
