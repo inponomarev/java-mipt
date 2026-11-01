@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in {01..14}
+for i in {14..14}
 do
    pushd slides${i}/src/main/asciidoc
    po2txt -t lecture.adoc lecture${i}-en.po lecture-en.adoc
