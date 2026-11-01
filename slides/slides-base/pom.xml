@@ -178,6 +178,8 @@
                         <require>asciidoctor-diagram</require>
                         <!-- registers the `github-classic` Rouge theme, see the file for why -->
                         <require>${basedir}/../slides-base/src/main/ruby/rouge-github-classic.rb</require>
+                        <!-- resolves bare includes (include::x-post.adoc[]) against slides-base/src/main/asciidoc -->
+                        <require>${basedir}/../slides-base/src/main/ruby/shared-includes.rb</require>
                     </requires>
                     <outputDirectory>${project.slides.directory}</outputDirectory>
                     <backend>revealjs</backend>
@@ -194,6 +196,9 @@
                         <rouge-style>github-classic</rouge-style>
                         <rouge-css>style</rouge-css>
                         <source-highlighter>rouge</source-highlighter>
+                        <!-- Shared docinfo files (e.g. docinfo-footer-revealjs.html) live in slides-base.
+                             Opt in per deck with ':docinfo: shared' in lecture.adoc. -->
+                        <docinfodir>${basedir}/../slides-base/src/main/asciidoc</docinfodir>
                     </attributes>
                 </configuration>
                 <executions>
