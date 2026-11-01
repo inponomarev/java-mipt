@@ -33,17 +33,23 @@ icon:twitter[size=lg] @inponomarev
 [%notitle]
 == Эпиграф
 
-image::tagir1.png[]
+:x-post-url: https://x.com/tagir_valeev/status/1217288714075897857
+include::x-post.adoc[]
+//image::tagir1.png[]
 
 [%notitle]
 == Эпиграф
 
-image::tagir2.png[]
+:x-post-url: https://x.com/tagir_valeev/status/1217288776877297664
+include::x-post.adoc[]
+//image::tagir2.png[]
 
 [%notitle]
 == Эпиграф
 
-image::tagir3.png[]
+:x-post-url: https://x.com/tagir_valeev/status/1217288846674669568
+include::x-post.adoc[]
+//image::tagir3.png[]
 
 == Коллекции: Разделение интерфейсов и реализаций
 
