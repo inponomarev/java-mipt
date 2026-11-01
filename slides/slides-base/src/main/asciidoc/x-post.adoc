@@ -3,11 +3,19 @@
 //   :x-post-url: https://x.com/user/status/123
 //   include::x-post.adoc[]
 //
+// Optional size override (default 2.1; posts with a picture usually need ~1.4):
+//
+//   :x-post-url: https://x.com/user/status/123
+//   :x-post-scale: 1.4
+//   include::x-post.adoc[]
+//
+// x-post-scale applies to the next include only and is reset afterwards.
 // Requires ':docinfo: shared' in the deck header so the widgets.js footer script is loaded.
+ifndef::x-post-scale[:x-post-scale: 2.1]
 [subs="attributes"]
 ++++
 <div style="width: 550px; margin: 0 auto;
-            transform: scale(2.1); transform-origin: top center;">
+            transform: scale({x-post-scale}); transform-origin: top center;">
   <blockquote class="twitter-tweet"
               data-width="550"
               data-align="center"
@@ -16,3 +24,4 @@
   </blockquote>
 </div>
 ++++
+:x-post-scale!:
