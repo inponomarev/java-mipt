@@ -342,7 +342,7 @@ Map.of(k1, v1, k2, v2...);
 Map.of(1, 'A', 2, 'B', 3, 'C', 4, 'D'));
 --
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -480,7 +480,7 @@ digraph Java {
 [source,java]
  Map.of("aaa", 1, "abB", 2, "bBa", 3)
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -631,7 +631,7 @@ List<String> list = new ArrayList<>();
 list.add("foo"); list.add("bar"); list.add("baz");
 ----
 
-[graphviz, format=svg]
+[graphviz]
 -----
 digraph Java {
 graph [ dpi = 180 ];
@@ -671,7 +671,7 @@ List<Integer> list = new LinkedList<>();
 list.add(1); list.add(2); list.add(3); list.add(4);
 --
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="LR";
@@ -776,7 +776,7 @@ Deque<Integer> arrayDeque = new ArrayDeque<>(4);
 arrayDeque.add(1); arrayDeque.add(2); arrayDeque.add(3);
 ----
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -818,7 +818,7 @@ digraph Java {
         arrayDeque.poll(); //returns 2
 ----
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -860,7 +860,7 @@ digraph Java {
     arrayDeque.add(4); arrayDeque.add(5); arrayDeque.add(6);
 ----
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -908,7 +908,7 @@ List<Integer> list = IntStream.range(0, 16)
 Collections.shuffle(list);
 --
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -948,7 +948,7 @@ PriorityQueue<Integer> q = new PriorityQueue<>(16);
 q.addAll(list);
 --
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1001,7 +1001,7 @@ digraph Java {
 * Следствие:
 ** stem:[q[0\] = \min(q)]
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1051,7 +1051,7 @@ digraph Java {
 [source,java]
 q.poll();
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1101,7 +1101,7 @@ digraph Java {
 [source,java]
 q.poll();
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1152,7 +1152,7 @@ digraph Java {
 [source,java]
 q.poll();
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1202,7 +1202,7 @@ digraph Java {
 [source,java]
 q.add(1);
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1262,7 +1262,7 @@ digraph Java {
 
 == Его Величество `HashMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1385,7 +1385,7 @@ digraph Java {
 == 6 коллизий
 
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
@@ -1525,12 +1525,12 @@ digraph Java {
 
 == 11 коллизий, Java 8+: одеревенение
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext]
-	graph [ dpi = 55 ];
+	graph [ dpi = 66 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -1810,12 +1810,12 @@ digraph Java {
 
 == `LinkedHashMap`: почти готовый LRU кэш
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 86 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -1951,7 +1951,7 @@ map.put("three", 3); map.put("four", 4);
 --
 
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="LR";
@@ -2079,7 +2079,7 @@ digraph Java {
 map.get("two");
 --
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="LR";
@@ -2218,12 +2218,12 @@ digraph Java {
 [cols="60a,40a"]
 |===
 ^|
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 86 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2356,12 +2356,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2391,12 +2391,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2439,12 +2439,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2499,12 +2499,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2570,12 +2570,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2653,12 +2653,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2748,12 +2748,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2855,12 +2855,12 @@ digraph Java {
 
 == `TreeMap`
 
-[graphviz, format=svg]
+[graphviz]
 --
 digraph Java {
 	rankdir="TB";
 	node[shape=plaintext];
-	graph [ dpi = 72 ];
+	graph [ dpi = 95 ];
 	n1[label=<
 		<table border='0' cellborder='1' cellspacing='0'>
 			<tr>
@@ -2981,7 +2981,7 @@ digraph Java {
 ** три докторских диссертации
 
 == `ConcurrentSkipListMap`: идея
-[graphviz, format=svg]
+[graphviz]
 --
 digraph G {
     rankdir = LR;
