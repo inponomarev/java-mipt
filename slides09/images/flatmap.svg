@@ -1,0 +1,101 @@
+<svg version="1.1"
+     width="280" height="240"
+     xmlns="http://www.w3.org/2000/svg">
+<g id="flatmap-guy">
+  <path d="M100,20 q0,20 -20,20 l-50,0 q-20,0 -20,20 l0,120 q0,20 20,20 l50,0 q20,0 20,20 l50,0 q0,-20 20,-20 l50,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-50,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <!-- rails of the slicer -->
+  <path d="M95,85 l143,0" stroke="#888" stroke-width="3"/>
+  <path d="M95,138 l143,0" stroke="#888" stroke-width="3"/>
+
+  <!-- yellow: a bar of 3 units flies in and is sliced into 3 pieces -->
+  <path d="M118,-30 l15,0 l0,45 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="yellow_fall"
+        from="M118,-30 l15,0 l0,45 l-15,0 z" to="M118,90 l15,0 l0,45 l-15,0 z" begin="0ms;yellow_fall.end+4000ms" dur="500ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="yellow_fall.end+280ms" dur="3720ms"/>
+  </path>
+  <path d="M118,120 l15,0 l0,15 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="yellow_fall.end+280ms" dur="712ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,120 l15,0 l0,15 l-15,0 z;M118,120 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.5899;1"
+        begin="yellow_fall.end+280ms" dur="712ms" fill="freeze"/>
+  </path>
+  <path d="M118,105 l15,0 l0,15 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="yellow_fall.end+280ms" dur="956ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,105 l15,0 l0,15 l-15,0 z;M118,105 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.6485;1"
+        begin="yellow_fall.end+280ms" dur="956ms" fill="freeze"/>
+  </path>
+  <path d="M118,90 l15,0 l0,15 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="yellow_fall.end+280ms" dur="1200ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,90 l15,0 l0,15 l-15,0 z;M118,90 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.6833;1"
+        begin="yellow_fall.end+280ms" dur="1200ms" fill="freeze"/>
+  </path>
+
+  <!-- green: a bar of 2 units flies in and is sliced into 2 pieces -->
+  <path d="M118,-15 l15,0 l0,30 l-15,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="green_fall"
+        from="M118,-15 l15,0 l0,30 l-15,0 z" to="M118,105 l15,0 l0,30 l-15,0 z" begin="1500ms;green_fall.end+4000ms" dur="500ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="green_fall.end+280ms" dur="3720ms"/>
+  </path>
+  <path d="M118,120 l15,0 l0,15 l-15,0 z" fill="green" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="green_fall.end+280ms" dur="712ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,120 l15,0 l0,15 l-15,0 z;M118,120 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.5899;1"
+        begin="green_fall.end+280ms" dur="712ms" fill="freeze"/>
+  </path>
+  <path d="M118,105 l15,0 l0,15 l-15,0 z" fill="green" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="green_fall.end+280ms" dur="956ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,105 l15,0 l0,15 l-15,0 z;M118,105 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.6485;1"
+        begin="green_fall.end+280ms" dur="956ms" fill="freeze"/>
+  </path>
+
+  <!-- blue: a bar of 3 units flies in and is sliced into 3 pieces -->
+  <path d="M118,-30 l15,0 l0,45 l-15,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="blue_fall"
+        from="M118,-30 l15,0 l0,45 l-15,0 z" to="M118,90 l15,0 l0,45 l-15,0 z" begin="3000ms;blue_fall.end+4000ms" dur="500ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="blue_fall.end+280ms" dur="3720ms"/>
+  </path>
+  <path d="M118,120 l15,0 l0,15 l-15,0 z" fill="blue" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="blue_fall.end+280ms" dur="712ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,120 l15,0 l0,15 l-15,0 z;M118,120 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.5899;1"
+        begin="blue_fall.end+280ms" dur="712ms" fill="freeze"/>
+  </path>
+  <path d="M118,105 l15,0 l0,15 l-15,0 z" fill="blue" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="blue_fall.end+280ms" dur="956ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,105 l15,0 l0,15 l-15,0 z;M118,105 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.6485;1"
+        begin="blue_fall.end+280ms" dur="956ms" fill="freeze"/>
+  </path>
+  <path d="M118,90 l15,0 l0,15 l-15,0 z" fill="blue" stroke-width="3" stroke="#963" visibility="hidden">
+    <set attributeName="visibility" to="visible" begin="blue_fall.end+280ms" dur="1200ms"/>
+    <animate attributeType="XML" attributeName="d"
+        values="M118,90 l15,0 l0,15 l-15,0 z;M118,90 l15,0 l0,15 l-15,0 z;M118,220 l15,0 l0,15 l-15,0 z" keyTimes="0;0.6833;1"
+        begin="blue_fall.end+280ms" dur="1200ms" fill="freeze"/>
+  </path>
+
+  <path d="M95,0 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+  <path d="M95,220 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <!-- the slicer: a carriage with two blades slides through the bar and back.
+       The upper blade retracts for the short (2-unit) green bar. -->
+  <g id="slicer">
+    <path d="M225,106 l10,0 l0,11 l-10,0 z" fill="#555" stroke="#222" stroke-width="3"/>
+    <path d="M215,83 l10,0 l0,57 l-10,0 z" fill="#555" stroke="#222" stroke-width="3"/>
+    <path d="M215,102 l-32,3 l32,3 z" fill="#EEE" stroke="#333" stroke-width="2">
+      <animate attributeType="XML" attributeName="d"
+          from="M215,102 l-32,3 l32,3 z" to="M215,102 l-3,3 l3,3 z" begin="green_fall.begin+100ms" dur="200ms" fill="freeze"/>
+      <animate attributeType="XML" attributeName="d"
+          from="M215,102 l-3,3 l3,3 z" to="M215,102 l-32,3 l32,3 z" begin="green_fall.end+900ms" dur="200ms" fill="freeze"/>
+    </path>
+    <path d="M215,117 l-32,3 l32,3 z" fill="#EEE" stroke="#333" stroke-width="2"/>
+    <animateTransform attributeName="transform" type="translate" id="cut_in"
+        from="0 0" to="-110 0" begin="600ms;cut_out.end+800ms" dur="300ms" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" id="cut_out"
+        from="-110 0" to="0 0" begin="cut_in.end+100ms" dur="300ms" fill="freeze"/>
+  </g>
+</g>
+</svg>

@@ -1,0 +1,55 @@
+<svg version="1.1"
+     width="280" height="240"
+     xmlns="http://www.w3.org/2000/svg">
+<g id="map-guy">
+  <path d="M100,20 q0,20 -20,20 l-50,0 q-20,0 -20,20 l0,120 q0,20 20,20 l50,0 q20,0 20,20 l50,0 q0,-20 20,-20 l50,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-50,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <path d="M110,0 l30,0 l0,10 l-30,0 z" fill="yellow" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="yellow_map"
+        from="M110,0 l30,0 l0,10 l-30,0 z" to="M110,88 l30,0 l0,10 l-30,0 z" begin="0;yellow_map_3.end+2000ms" dur="400ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="yellow_map_2"
+        from="M110,88 l30,0 l0,10 l-30,0 z" to="M118,110 l15,0 l0,20 l-15,0 z" begin="yellow_map.end" dur="100ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="yellow_map_3"
+        from="M118,110 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="yellow_map_2.end" dur="500ms" fill="freeze"/>
+  </path>
+
+  <path d="M110,0 l30,0 l0,10 l-30,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="green_map"
+        from="M110,0 l30,0 l0,10 l-30,0 z" to="M110,88 l30,0 l0,10 l-30,0 z" begin="1000ms;green_map_3.end+2000ms" dur="400ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="green_map_2"
+        from="M110,88 l30,0 l0,10 l-30,0 z" to="M118,110 l15,0 l0,20 l-15,0 z" begin="green_map.end" dur="100ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="green_map_3"
+        from="M118,110 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="green_map_2.end" dur="500ms" fill="freeze"/>
+  </path>
+
+  <path d="M110,0 l30,0 l0,10 l-30,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="blue_map"
+        from="M110,0 l30,0 l0,10 l-30,0 z" to="M110,88 l30,0 l0,10 l-30,0 z" begin="2000ms;blue_map_3.end+2000ms" dur="400ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="blue_map_2"
+        from="M110,88 l30,0 l0,10 l-30,0 z" to="M118,110 l15,0 l0,20 l-15,0 z" begin="blue_map.end" dur="100ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="blue_map_3"
+        from="M118,110 l15,0 l0,20 l-15,0 z" to="M118,220 l15,0 l0,20 l-15,0 z" begin="blue_map_2.end" dur="500ms" fill="freeze"/>
+  </path>
+
+  <path d="M95,0 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+  <path d="M95,220 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333">
+  </path>
+
+  <path d="M10,100 l40,0 l0,-20 l20,0 l0,80 l-20,0 l0,-20 l-40,0" fill="blue" stroke="yellow" stroke-width="3">
+    <animate attributeType="XML" attributeName="d" id="left_close"
+        from="M10,100 l40,0 l0,-20 l20,0 l0,80 l-20,0 l0,-20 l-40,0" 
+          to="M10,100 l88,0 l0,-20 l20,0 l0,80 l-20,0 l0,-20 l-88,0" begin="300ms;left_open.end+300ms" dur="200ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="left_open"
+        from="M10,100 l88,0 l0,-20 l20,0 l0,80 l-20,0 l0,-20 l-88,0"
+          to="M10,100 l40,0 l0,-20 l20,0 l0,80 l-20,0 l0,-20 l-40,0" begin="left_close.end" dur="500ms" fill="freeze"/>
+  </path>
+  <path d="M240,100 l-40,0 l0,-20 l-20,0 l0,80 l20,0 l0,-20 l40,0" fill="blue" stroke="yellow" stroke-width="3">
+    <animate attributeType="XML" attributeName="d" id="right_close"
+        from="M240,100 l-40,0 l0,-20 l-20,0 l0,80 l20,0 l0,-20 l40,0"
+          to="M240,100 l-88,0 l0,-20 l-20,0 l0,80 l20,0 l0,-20 l88,0" begin="300ms;left_open.end+300ms" dur="200ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="d" id="right_open"
+        from="M240,100 l-88,0 l0,-20 l-20,0 l0,80 l20,0 l0,-20 l88,0"
+          to="M240,100 l-40,0 l0,-20 l-20,0 l0,80 l20,0 l0,-20 l40,0" begin="left_close.end" dur="500ms" fill="freeze"/>
+  </path>
+</g>
+</svg>
