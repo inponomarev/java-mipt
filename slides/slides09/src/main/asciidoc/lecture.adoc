@@ -75,7 +75,7 @@ image::filter.svg[]
 |[source,java]
 ----
 Stream<SquashedBlock> filteredStream =
-  squashedStream.filter(block ‑> 
+  squashedStream.filter(block ‑>
          block.getColor() != YELLOW);
 ----
 |===
@@ -107,7 +107,7 @@ filteredStream
 ----
 blocks.stream()
       .map(Block::squash)
-      .filter(block ‑> 
+      .filter(block ‑>
          block.getColor() != YELLOW)
       .forEach(System.out::println);
 ----
@@ -138,15 +138,15 @@ for (Transaction transaction : transactions) {
  if (transactionsForCurrency == null) {
   transactionsForCurrency = new ArrayList<>();
     transactionsByCurrencies.put(currency,
-           transactionsForCurrency); 
+           transactionsForCurrency);
  }
  transactionsForCurrency.add(transaction);
 }
 ----
-| 
+|
 [source,java]
 ----
-Map<Currency, 
+Map<Currency,
  List<Transaction>>
  transactionsByCurr =
    transactions
@@ -183,7 +183,7 @@ List<String> names = menu.stream()
 Stream<Foo> stream0 = Stream.empty();
 
 //Перечислением элементов
-Stream<String> stream1 = 
+Stream<String> stream1 =
          Stream.of("gently", "down", "the", "stream");
 //Из массива
 Stream<String> stream2 =
@@ -245,7 +245,7 @@ Stream<Integer> integers =
 == Что будет в этом стриме?
 [source,java]
 ----
-    Stream.iterate(new int[]{0, 1}, 
+    Stream.iterate(new int[]{0, 1},
                    t -> new int[]{t[1], t[0] + t[1]})
     .mapToInt(t -> t[0]);
 ----
@@ -293,7 +293,7 @@ Stream<T> skip(long n)
 Stream<T> dropWhile(Predicate<? super T> predicate)
 ----
 
-== filter 
+== filter
 
 [cols="^40a,60a"]
 |===
@@ -306,14 +306,14 @@ Stream<T> filter(
 ----
 |===
 
-== map 
+== map
 [cols="^40a,60a"]
 |===
 |
 image::map.svg[]
 |[source,java]
 ----
-<R> Stream<R> map(Function<? super T, 
+<R> Stream<R> map(Function<? super T,
                            ? extends R> mapper);
 IntStream mapToInt(
              ToIntFunction<? super T> mapper);
@@ -326,24 +326,31 @@ DoubleStream mapToDouble(
 
 == flatMap
 
-[source,java]
+[cols="^40a,60a"]
+|===
+|
+image::flatmap.svg[]
+|[source,java]
 ----
+/*А также flatMapToDouble, flatMapToInt, flatMapToLong*/
 Path path = ...
 Pattern separator = Pattern.compile("\\s");
-try(Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
-    //НЕ ТО, что нам надо!
-    //Stream<Stream<String>> streamStream = 
-    //                  lines.map(separator::splitAsStream);
-    
-    //ТО, что нам надо!
-    Stream<String> words = lines.flatMap(separator::splitAsStream);
-    words.forEach(System.out::println);
-}
+try(Stream<String> lines = Files.lines(path,
+                             StandardCharsets.UTF_8)) {
+  //НЕ ТО, что нам надо!
+  //Stream<Stream<String>> streamStream =
+  //               lines.map(separator::splitAsStream);
 
-/*А также flatMapToDouble, flatMapToInt, flatMapToLong*/
+  //ТО, что нам надо!
+  Stream<String> words =
+               lines.flatMap(separator::splitAsStream);
+  words.forEach(System.out::println);
+}
 ----
+|===
 
 * `filter` и `map` -- это частные случаи `flatMap`!
+
 
 
 == distinct
@@ -395,7 +402,7 @@ image::peek.svg[]
 |
 
 * Не меняет исходный стрим.
-* Предназначен для «подглядывания» за промежуточным состоянием элементов. 
+* Предназначен для «подглядывания» за промежуточным состоянием элементов.
 * В качестве аргумента часто используется `System.out::println`.
 * При параллельных вычислениях может быть вызван в произвольном порядке в произвольном потоке выполнения.
 
@@ -404,18 +411,23 @@ Stream<T> peek(Consumer<? super T> action);
 
 |===
 
-== Gatherers: Фиксированное окно  
+== Gatherers (Java 22+): Фиксированное окно
 
+[cols="^40a,60a"]
+|===
+|
+image::windowfixed.svg[]
+|
 `flatMap` наоборот
 
 [source,java]
 ----
 Stream<List<Integer>> fixed =
-        
+
         Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
-                
+
                 .gather(Gatherers.windowFixed(3));
-                
+
 println(fixed.toList());
 ----
 
@@ -423,9 +435,16 @@ println(fixed.toList());
 ----
 [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 ----
-
+|===
 
 == Gatherers: Скользящее окно
+
+
+[cols="^40a,60a"]
+|===
+|
+image::windowsliding.svg[]
+|
 
 Отлично подходит для расчёта moving average:
 
@@ -444,7 +463,7 @@ println(sliding.toList());
 ----
 [[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6]]
 ----
-
+|===
 
 == Gatherers: scan
 
@@ -524,7 +543,7 @@ List<Foo> list = myStream.toList();
 ----
 digraph G {
   graph [ dpi = 140 ];
-  
+
   "4"[shape="square"];
   "5"[shape="square"];
   "3"[shape="square"];
@@ -552,9 +571,9 @@ digraph G {
   "s2"[shape="square";label="9"];
   "s3"[shape="square";label="12"];
   "s4"[shape="square";label="21"];
-  
+
   "0"->"4"->"5"->"3"->"9"[style="invis"]
-  
+
   {rank = same; "4"; "5"; "3"; "9";}
   {rank = same; "0"; "p1";}
   {rank = same; "s1"; "p2";}
@@ -562,7 +581,7 @@ digraph G {
   {rank = same; "s3"; "p4";}
 }
 ----
-| 
+|
 
 * Ассоциативная функция + "identity value"
 * Промежуточные результаты -- immutable values
@@ -570,7 +589,7 @@ digraph G {
 
 [source,java]
 ----
-T reduce(T identity, 
+T reduce(T identity,
   BinaryOperator<T> accumulator);
 ----
 |===
@@ -606,9 +625,9 @@ digraph G {
   "p4"->"s4";
   "p5"->"s4"[dir=back];
   "s2"->"p5";
-  
+
   "p5"->"s5";
-  
+
 
   "0"[shape="square"];
   "s1"[shape="square";label="4"];
@@ -616,10 +635,10 @@ digraph G {
   "s3"[shape="square";label="3"];
   "s4"[shape="square";label="12"];
   "s5"[shape="square";label="21"];
-  
-  
+
+
   "0"->"4"->"5"->"3"->"9"[style="invis"]
-  
+
   {rank = same; "4"; "5"; "3"; "9";}
   {rank = same; "0"; "p1"; "p3"}
   {rank = same; "s1"; "p2";}
@@ -641,7 +660,7 @@ digraph G {
   "5"[shape="square"];
   "3"[shape="square"];
   "9"[shape="square"];
-  
+
   "p2"[label="max"; shape="circle"];
   "p3"[label="max"; shape="circle"];
   "p4"[label="max"; shape="circle"];
@@ -660,10 +679,10 @@ digraph G {
   "s2"[shape="square";label="5"];
   "s3"[shape="square";label="5"];
   "s4"[shape="square";label="9"];
-  
-  
+
+
   "4"->"5"->"3"->"9"[style="invis"]
-  
+
   {rank = same; "4"; "5"; "3"; "9";}
   {rank = same; "s1"; "p2";}
   {rank = same; "s2"; "p3";}
@@ -730,7 +749,7 @@ class ToListCollector<T> implements
 //java.util.stream.Collectors
 Collector<T, ?, List<T>> toList() // << use stream.toList() instead!
 Collector<T, ?, Set<T>> toSet()
-Collector<T, ?, C extends Collection<T>> 
+Collector<T, ?, C extends Collection<T>>
   toCollection(Supplier<C> collectionFactory)
 
 //Usage example
@@ -789,7 +808,7 @@ olist[label="{pizza|rice|fruit|french fries}"];
 map:f0->flist;
 map:f1->mlist;
 map:f2->olist;
-    
+
 }
 ----
 [source,java]
@@ -829,7 +848,7 @@ mmap:f2->chicken;
 
 omap:f0->olist1;
 omap:f1->olist2;
-    
+
 }
 ----
 
@@ -857,7 +876,7 @@ olist[label="4"];
 map:f0->flist;
 map:f1->mlist;
 map:f2->olist;
-    
+
 }
 ----
 
@@ -873,7 +892,7 @@ Map<Dish.Type, Long> typesCount =
 [source,java]
 ----
 /*Всё это уже есть в стримах, но нам надо применить это
-к "разветвлённому" стриму.*/ 
+к "разветвлённому" стриму.*/
 
 
 /*"Терминальные"*/
@@ -891,11 +910,11 @@ minBy(Comparator<? super T> comparator)
 /*С возможностью продолжить цепочку*/
 filtering(Predicate<? super T> predicate, downstream)
 mapping(Function<? super T, ? extends U> mapper, downstream)
-flatMapping(Function<? super T, 
+flatMapping(Function<? super T,
   ? extends Stream<? extends U>> mapper, downstream)
 
 /*Адаптор*/
-collectingAndThen(Collector<T,A,R> downstream, 
+collectingAndThen(Collector<T,A,R> downstream,
   Function<R,RR> finisher)
 ----
 
@@ -903,7 +922,7 @@ collectingAndThen(Collector<T,A,R> downstream,
 
 [source,java]
 ----
-Map<Dish.Type, Dish> mostCaloricByType = 
+Map<Dish.Type, Dish> mostCaloricByType =
   menu.stream()
      .collect(Collectors.groupingBy(Dish::getType,
        collectingAndThen( //<-----АДАПТОР
@@ -921,11 +940,26 @@ Map<Dish.Type, Dish> mostCaloricByType =
 
 == Optional: Контейнер, который содержит объект. Или не содержит.
 
-* Цитата из книги Java 8 in Action:
+* Цитата из книги Java 8 in Action: "Tony Hoare, one of the giants of computer science, said in a presentation at QCon London 2009: _I call it my billion-dollar mistake. It was the invention of the null reference in 1965.... I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement._"
 
-* "Tony Hoare, one of the giants of computer science, said in a presentation at QCon London 2009: _I call it my billion-dollar mistake. It was the invention of the null reference in 1965.... I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement._"
+[cols="50a,50a"]
+|===
+|
+[source,java]
+----
+Optional.empty();
+----
+|
+[source,java]
+----
+Optional.of(cat);
+----
+|
+image::empty-box.svg[]
+|
+image::box-with-cat.svg[]
+|===
 
-image::optional.png[{image-40-width}]
 
 == Optional<T> -- как стрим из 0 или 1 элемента
 
@@ -943,7 +977,7 @@ o.orElseGet(()->calcOther());
 o.orElseThrow(()->new IllegalStateException());
 ----
 
-== Optional.map 
+== Optional.map
 [source,java]
 ----
 Optional<Insurance> optInsurance = Optional.ofNullable(insurance);
@@ -1056,7 +1090,7 @@ stream.collect(Collectors.counting())
 
 [.fragment]
 [source,java]
-/*Коллекторы counting(), maxBy(), minBy(), reducing(), mapping(), ... 
+/*Коллекторы counting(), maxBy(), minBy(), reducing(), mapping(), ...
 нужны лишь как вторичные в каскадных операциях groupingBy*/
 stream.count()
 
@@ -1114,7 +1148,7 @@ if(stream.filter(condition).count() > 0)
 [source,java]
 /*В этом примере ещё хуже, чем в предыдущих,
 т. к. обходится весь стрим целиком! А решение то же:*/
-if(stream.anyMatch(condition)) 
+if(stream.anyMatch(condition))
 
 == Как улучшить?!
 
@@ -1128,5 +1162,5 @@ stream.limit(3).count()
 
 == Выводы
 
-* «Декларативный» подход к использованию стримов, «описываем _что_, а не _как_» не отменяет понимания того, _как_ происходит вычисление. 
+* «Декларативный» подход к использованию стримов, «описываем _что_, а не _как_» не отменяет понимания того, _как_ происходит вычисление.
 * Применять стримы надо с умом, а много где их и не надо применять.

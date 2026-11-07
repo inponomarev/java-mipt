@@ -1,0 +1,182 @@
+<svg version="1.1"
+     width="280" height="240"
+     xmlns="http://www.w3.org/2000/svg">
+<g id="sliding-guy">
+  <path d="M100,20 q0,20 -20,20 l-50,0 q-20,0 -20,20 l0,120 q0,20 20,20 l50,0 q20,0 20,20 l50,0 q0,-20 20,-20 l50,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-50,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <!-- the window: holds the 3 most recent cubes -->
+  <path d="M96,86 l23,0 l0,53 l-23,0 z" fill="none" stroke="#333" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- cubes, one every 600 ms; each lives in the window for 3 steps -->
+  <path d="M100,5 l15,0 l0,15 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube0"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="0ms;cube0.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube0.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube0.end+140ms" dur="3110ms"/>
+  </path>
+  <path d="M100,5 l15,0 l0,15 l-15,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube1"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="600ms;cube1.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube1.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube1.end+140ms" dur="3110ms"/>
+  </path>
+  <path d="M100,5 l15,0 l0,15 l-15,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube2"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="1200ms;cube2.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube2.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube2.end+140ms" dur="3110ms"/>
+  </path>
+  <path d="M100,5 l15,0 l0,15 l-15,0 z" fill="red" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube3"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="1800ms;cube3.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube3.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube3.end+140ms" dur="3110ms"/>
+  </path>
+  <path d="M100,5 l15,0 l0,15 l-15,0 z" fill="orange" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube4"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="2400ms;cube4.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube4.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube4.end+140ms" dur="3110ms"/>
+  </path>
+  <path d="M100,5 l15,0 l0,15 l-15,0 z" fill="purple" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube5"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="3000ms;cube5.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube5.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube5.end+140ms" dur="3110ms"/>
+  </path>
+  <path d="M100,90 l15,0 l0,15 l-15,0 z" fill="cyan" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube6"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="3600ms;cube6.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube6.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube6.end+140ms" dur="3110ms"/>
+    <!-- loop start: this cube is already in slot 1 of the window -->
+    <animate attributeType="XML" attributeName="d" values="M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1613;0.2258;0.5484;0.6129;0.9355;1.0000" begin="0ms" dur="1550ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="1550ms" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="1690ms" dur="1910ms"/>
+  </path>
+  <path d="M100,105 l15,0 l0,15 l-15,0 z" fill="magenta" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube7"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="4200ms;cube7.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube7.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube7.end+140ms" dur="3110ms"/>
+    <!-- loop start: this cube is already in slot 2 of the window -->
+    <animate attributeType="XML" attributeName="d" values="M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.2632;0.3684;0.8947;1.0000" begin="0ms" dur="950ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="950ms" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="1090ms" dur="3110ms"/>
+  </path>
+  <path d="M100,120 l15,0 l0,15 l-15,0 z" fill="lime" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube8"
+        values="M100,5 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,90 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,105 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.1628;0.3953;0.4419;0.6744;0.7209;0.9535;1.0000"
+        begin="4800ms;cube8.end+3250ms" dur="2150ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="cube8.end" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="cube8.end+140ms" dur="3110ms"/>
+    <!-- loop start: this cube is already in slot 3 of the window -->
+    <animate attributeType="XML" attributeName="d" values="M100,120 l15,0 l0,15 l-15,0 z;M100,120 l15,0 l0,15 l-15,0 z;M100,135 l15,0 l0,15 l-15,0 z" keyTimes="0.0000;0.7143;1.0000" begin="0ms" dur="350ms" fill="freeze"/>
+    <animate attributeType="XML" attributeName="opacity" from="1" to="0" begin="350ms" dur="150ms"/>
+    <set attributeName="visibility" to="hidden" begin="490ms" dur="4310ms"/>
+  </path>
+
+  <!-- copies of the window, one per step -->
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="yellow"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="lime"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="magenta"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube0.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube0.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="green"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="yellow"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="lime"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube1.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube1.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="blue"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="green"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="yellow"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube2.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube2.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="red"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="blue"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="green"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube3.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube3.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="orange"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="red"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="blue"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube4.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube4.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="purple"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="orange"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="red"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube5.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube5.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="cyan"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="purple"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="orange"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube6.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube6.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="magenta"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="cyan"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="purple"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube7.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube7.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+  <g visibility="hidden">
+    <path d="M135,90 l15,0 l0,15 l-15,0 z" fill="lime"/>
+    <path d="M135,105 l15,0 l0,15 l-15,0 z" fill="magenta"/>
+    <path d="M135,120 l15,0 l0,15 l-15,0 z" fill="cyan"/>
+    <path d="M135,90 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube8.begin+400ms" dur="600ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="-35 0;0 0;0 0;0 130" keyTimes="0;0.2500;0.4167;1"
+        begin="cube8.begin+400ms" dur="600ms" fill="freeze"/>
+  </g>
+
+  <path d="M95,0 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+  <path d="M95,220 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+</g>
+</svg>
