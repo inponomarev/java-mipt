@@ -250,7 +250,7 @@ Stream<Integer> integers =
     .mapToInt(t -> t[0]);
 ----
 
-== Spliterator: самый общий способ создания стрима
+== `Spliterator`: самый общий способ создания стрима
 [source,java]
 ----
 public interface Spliterator<T> {
@@ -293,7 +293,7 @@ Stream<T> skip(long n)
 Stream<T> dropWhile(Predicate<? super T> predicate)
 ----
 
-== filter
+== `filter`
 
 [cols="^40a,60a"]
 |===
@@ -306,7 +306,7 @@ Stream<T> filter(
 ----
 |===
 
-== map
+== `map`
 [cols="^40a,60a"]
 |===
 |
@@ -324,7 +324,7 @@ DoubleStream mapToDouble(
 ----
 |===
 
-== flatMap
+== `flatMap`
 
 [cols="^40a,60a"]
 |===
@@ -352,8 +352,7 @@ try(Stream<String> lines = Files.lines(path,
 * `filter` и `map` -- это частные случаи `flatMap`!
 
 
-
-== distinct
+== `distinct`
 
 [source,java]
 ----
@@ -378,7 +377,7 @@ ThreadLocalRandom.current().ints(1, 10)
 Программа зависнет, когда исчерпаются все значения от 1 до 10. Можно пофиксить, например, указав `limit(9)` после distinct.
 
 
-== sorted
+== `sorted`
 
 [source,java]
 ----
@@ -393,7 +392,7 @@ Stream.of(1, 5, 8, 7, 8, 5, 9, 9)
 //Не имеет смысла для бесконечных стримов
 ----
 
-== peek -- отладочный метод
+== `peek` -- отладочный метод
 
 [cols="^40a,60a"]
 |===
@@ -411,7 +410,7 @@ Stream<T> peek(Consumer<? super T> action);
 
 |===
 
-== Gatherers (Java 22+): Фиксированное окно
+== `Gatherers` (Java 22+): Фиксированное окно
 
 [cols="^40a,60a"]
 |===
@@ -437,7 +436,7 @@ println(fixed.toList());
 ----
 |===
 
-== Gatherers: Скользящее окно
+== `Gatherers`: Скользящее окно
 
 
 [cols="^40a,60a"]
@@ -465,10 +464,9 @@ println(sliding.toList());
 ----
 |===
 
-== Gatherers: scan
+== `Gatherers`: `scan`
 
-Подсчёт накопленного итога
-
+Подсчёт накопленного (нарастающего) итога
 
 [source,java]
 ----
@@ -507,7 +505,7 @@ boolean noneMatch(Predicate<? super T> predicate);
 //КОРОТКИЕ ЗАМЫКАНИЯ!
 ----
 
-== forEach
+== `forEach`
 
 [source,java]
 ----
@@ -517,7 +515,7 @@ void forEach(Consumer<? super T> action);
 * В случае параллельного выполнения нет гарантий последовательности
 * Нет гарантий относительно того, в каком потоке будет выполнена лямбда
 
-== toList (Java16+)
+== `toList` (Java16+)
 
 [source,java]
 ----
@@ -532,9 +530,9 @@ List<Foo> list = myStream.toList();
 
 * Материализует поток в список.
 * Возвращаемый список -- неизменяемый.
-* Доступно с версии 16.
+* Доступно с версии 16 вместо `.collect(Collectors.toList())`.
 
-== reduce (with identity)
+== `reduce` (with identity)
 
 [cols="40a,60a"]
 |===
@@ -648,7 +646,7 @@ digraph G {
 }
 ----
 
-== reduce без identity
+== `reduce` без identity
 [cols="40a,60a"]
 |===
 |
@@ -706,7 +704,7 @@ Optional<T> reduce(
 ** `average`
 ** `summaryStatistics` -- count, sum, min и max «в одном флаконе».
 
-== collect: самый гибкий метод сборки результатов
+== `collect`: самый гибкий метод сборки результатов
 
 * Типовые параметры:
 ** `T` -- тип элементов стрима
@@ -717,7 +715,7 @@ Optional<T> reduce(
 [source,java]
 <R, A> R collect(Collector<? super T, A, R> collector);
 
-== Интерфейс Collector<T, A, R>
+== Интерфейс `Collector<T, A, R>`
 
 * `T` -- тип элементов стрима
 * `A` -- тип аккумулятора, промежуточной структуры данных, в которой всё собирается
@@ -738,7 +736,7 @@ class ToListCollector<T> implements
    Collector<T, List<T>, List<T>>
 ----
 
-== Интерфейс Collector<T, A, R>
+== Интерфейс `Collector<T, A, R>`
 * Сделать собственный коллектор (как и собственный сплитератор) непросто,
 * Но и не нужно: есть много готовых и их можно комбинировать!
 
@@ -918,7 +916,7 @@ collectingAndThen(Collector<T,A,R> downstream,
   Function<R,RR> finisher)
 ----
 
-== Когда может быть нужен collectingAndThen?
+== Когда может быть нужен `collectingAndThen`?
 
 [source,java]
 ----
@@ -929,7 +927,9 @@ Map<Dish.Type, Dish> mostCaloricByType =
          Collectors.maxBy(Comparator
                    .comparingInt(Dish::getCalories),
          //maxBy возвращает Optional
-       Optional::get)));
+         Optional::get)));
+         //без collectingAndThen было бы
+         // Map<Dish.Type, Optional<Dish>>
 ----
 
 == Параллельные стримы
@@ -938,7 +938,7 @@ Map<Dish.Type, Dish> mostCaloricByType =
 * `parallel` можно вызвать в любом месте цепочки вызовов.
 * Пользоваться надо с осторожностью, понимая ограничения и применимость.
 
-== Optional: Контейнер, который содержит объект. Или не содержит.
+== `Optional`: Контейнер, который содержит объект. Или не содержит.
 
 * Цитата из книги Java 8 in Action: "Tony Hoare, one of the giants of computer science, said in a presentation at QCon London 2009: _I call it my billion-dollar mistake. It was the invention of the null reference in 1965.... I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement._"
 
@@ -961,7 +961,7 @@ image::box-with-cat.svg[]
 |===
 
 
-== Optional<T> -- как стрим из 0 или 1 элемента
+== `Optional<T>` -- как стрим из 0 или 1 элемента
 
 [source,java]
 ----
@@ -977,14 +977,14 @@ o.orElseGet(()->calcOther());
 o.orElseThrow(()->new IllegalStateException());
 ----
 
-== Optional.map
+== `Optional.map`
 [source,java]
 ----
 Optional<Insurance> optInsurance = Optional.ofNullable(insurance);
 Optional<String> name = optInsurance.map(Insurance::getName);
 ----
 
-== Optional.flatMap
+== `Optional.flatMap`
 [source,java]
 ----
 Optional<Person> person = ...
@@ -997,7 +997,7 @@ String insuranceName = person.flatMap(Person::getCar)
                              .orElse("Unknown");
 ----
 
-== Optional.filter
+== `Optional.filter`
 
 [source,java]
 ----
@@ -1009,7 +1009,7 @@ String insuranceName = person.filter(p -> p.getAge() >= minAge)
 
 ----
 
-== Правила использования Optional
+== Правила использования `Optional`
 
 «Лобовое» использование `Optional` -- хуже, чем `null`:
 
@@ -1031,7 +1031,7 @@ if (o != null)
 
 |===
 
-== Правила использования Optional
+== Правила использования `Optional`
 
 * Переменная с типом `Optional` никогда не должна быть `null`.
 * Поля с типом `Optional` бесполезны: проверка на «непустоту» этого поля не лучше проверки на `null`, цена -- дополнительный объект.
