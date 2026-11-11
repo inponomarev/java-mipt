@@ -163,11 +163,12 @@ Map<Currency,
 
 [source,java]
 ----
+List<String> names =
 //Создание стрима
-List<String> names = menu.stream()
+  menu.stream()
 
 //Промежуточные операции
-  .filter(d -> d.getCalories() > 300
+  .filter(d -> d.getCalories() > 300)
   .map(Dish::getName)
   .limit(3)
 
