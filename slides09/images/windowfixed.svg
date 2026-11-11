@@ -1,0 +1,100 @@
+<svg version="1.1"
+     width="280" height="240"
+     xmlns="http://www.w3.org/2000/svg">
+<g id="window-guy">
+  <path d="M100,20 q0,20 -20,20 l-50,0 q-20,0 -20,20 l0,120 q0,20 20,20 l50,0 q20,0 20,20 l50,0 q0,-20 20,-20 l50,0 q20,0 20,-20 l0,-120 q0,-20 -20,-20 l-50,0 q-20,0 -20,-20" fill="#CCC" stroke-width="3" stroke="#333"/>
+
+  <!-- cubes, one every 600 ms -->
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="yellow" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube0_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,130 l15,0 l0,15 l-15,0 z" begin="0ms;cube0_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube0_fall.end+1300ms" dur="3700ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="green" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube1_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,115 l15,0 l0,15 l-15,0 z" begin="600ms;cube1_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube1_fall.end+700ms" dur="4300ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="blue" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube2_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,100 l15,0 l0,15 l-15,0 z" begin="1200ms;cube2_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube2_fall.end+100ms" dur="4900ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="red" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube3_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,130 l15,0 l0,15 l-15,0 z" begin="1800ms;cube3_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube3_fall.end+1300ms" dur="3700ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="orange" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube4_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,115 l15,0 l0,15 l-15,0 z" begin="2400ms;cube4_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube4_fall.end+700ms" dur="4300ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="purple" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube5_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,100 l15,0 l0,15 l-15,0 z" begin="3000ms;cube5_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube5_fall.end+100ms" dur="4900ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="cyan" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube6_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,130 l15,0 l0,15 l-15,0 z" begin="3600ms;cube6_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube6_fall.end+1300ms" dur="3700ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="magenta" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube7_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,115 l15,0 l0,15 l-15,0 z" begin="4200ms;cube7_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube7_fall.end+700ms" dur="4300ms"/>
+  </path>
+  <path d="M118,5 l15,0 l0,15 l-15,0 z" fill="lime" stroke-width="3" stroke="#963">
+    <animate attributeType="XML" attributeName="d" id="cube8_fall"
+        from="M118,5 l15,0 l0,15 l-15,0 z" to="M118,100 l15,0 l0,15 l-15,0 z" begin="4800ms;cube8_fall.end+5000ms" dur="400ms" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="cube8_fall.end+100ms" dur="4900ms"/>
+  </path>
+
+  <!-- group 1: the combined block -->
+  <g visibility="hidden">
+    <path d="M118,130 l15,0 l0,15 l-15,0 z" fill="yellow"/>
+    <path d="M118,115 l15,0 l0,15 l-15,0 z" fill="green"/>
+    <path d="M118,100 l15,0 l0,15 l-15,0 z" fill="blue"/>
+    <path d="M118,100 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube2_fall.end+100ms" dur="450ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0;0 0;0 120" keyTimes="0;0.2222;1"
+        begin="cube2_fall.end+100ms" dur="450ms" fill="freeze"/>
+  </g>
+  <!-- group 2: the combined block -->
+  <g visibility="hidden">
+    <path d="M118,130 l15,0 l0,15 l-15,0 z" fill="red"/>
+    <path d="M118,115 l15,0 l0,15 l-15,0 z" fill="orange"/>
+    <path d="M118,100 l15,0 l0,15 l-15,0 z" fill="purple"/>
+    <path d="M118,100 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube5_fall.end+100ms" dur="450ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0;0 0;0 120" keyTimes="0;0.2222;1"
+        begin="cube5_fall.end+100ms" dur="450ms" fill="freeze"/>
+  </g>
+  <!-- group 3: the combined block -->
+  <g visibility="hidden">
+    <path d="M118,130 l15,0 l0,15 l-15,0 z" fill="cyan"/>
+    <path d="M118,115 l15,0 l0,15 l-15,0 z" fill="magenta"/>
+    <path d="M118,100 l15,0 l0,15 l-15,0 z" fill="lime"/>
+    <path d="M118,100 l15,0 l0,45 l-15,0 z" fill="none" stroke-width="3" stroke="#963"/>
+    <set attributeName="visibility" to="visible" begin="cube8_fall.end+100ms" dur="450ms"/>
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0;0 0;0 120" keyTimes="0;0.2222;1"
+        begin="cube8_fall.end+100ms" dur="450ms" fill="freeze"/>
+  </g>
+
+  <!-- the flap: holds the cubes, swings down to release a full group -->
+  <path d="M103,145 l44,0 l0,6 l-44,0 z" fill="#555" stroke="#222" stroke-width="3">
+    <animateTransform attributeName="transform" type="rotate" id="flap_open"
+        from="0 103 148.0" to="90 103 148.0" begin="cube2_fall.end+100ms;cube5_fall.end+100ms;cube8_fall.end+100ms" dur="100ms" fill="freeze"/>
+    <animateTransform attributeName="transform" type="rotate" id="flap_close"
+        from="90 103 148.0" to="0 103 148.0" begin="flap_open.end+150ms" dur="150ms" fill="freeze"/>
+  </path>
+  <circle cx="103" cy="148.0" r="4" fill="#222"/>
+
+  <path d="M95,0 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+  <path d="M95,220 l60,0 l0,20 l-60,0 z" fill="#CCC" stroke-width="3" stroke="#333"/>
+</g>
+</svg>
