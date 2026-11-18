@@ -1,0 +1,1814 @@
+#. extracted from lecture.adoc
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-23 18:34+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.2.5\n"
+
+#: lecture.adoc:26
+msgid ""
+"= Core Java. Лекция 3: Классы. Интерфейсы. Класс Object и его стандартные "
+"методы\n"
+"Иван Пономарёв, КУРС/МФТИ\n"
+":revealjs_theme: black\n"
+":revealjs_customtheme: white_course.css\n"
+":revealjs_slideNumber:\n"
+":revealjs_history:\n"
+":revealjs_progress:\n"
+":encoding: UTF-8\n"
+":lang: ru\n"
+"include::_doc_general_attributes.adoc[]\n"
+":doctype: article\n"
+":toclevels: 3\n"
+":imagesdir: images\n"
+":source-highlighter: highlightjs\n"
+":highlightjsdir: highlight\n"
+":icons: font\n"
+":iconfont-remote!:\n"
+":iconfont-name: font-awesome-4.7.0/css/font-awesome\n"
+":revealjs_mouseWheel: true\n"
+":revealjs_center: false\n"
+":revealjs_transition: none\n"
+":revealjs_width: 1600\n"
+":revealjs_height: 900\n"
+":stem: latexmath\n"
+":zsp: &#8203;"
+msgstr ""
+
+#: lecture.adoc:29
+msgid ":!figure-caption:"
+msgstr ""
+
+#: lecture.adoc:31
+msgid "ponomarev@corchestra.ru"
+msgstr ""
+
+#: lecture.adoc:33
+msgid "icon:twitter[size=lg] @inponomarev"
+msgstr ""
+
+#: lecture.adoc:37
+msgid ""
+"[%notitle]\n"
+"== Три главных слова\n"
+"image::thethreewords.jpg[{image-50-width}]"
+msgstr ""
+
+#: lecture.adoc:39
+msgid "== Всё есть класс"
+msgstr ""
+
+#: lecture.adoc:43
+msgid ""
+"* Любой код -- метод некоторого класса\n"
+"* Любые данные хранятся в полях некоторого класса\n"
+"* Любые типы данных (исключая примитивные, но включая массивы) -- наследники "
+"класса `Object`"
+msgstr ""
+
+#: lecture.adoc:45
+msgid "== Классы помещаются в пакеты"
+msgstr ""
+
+#: lecture.adoc:51
+msgid ""
+"* `edu.phystech.foo`\n"
+"* `edu.phystech.foo.bar`\n"
+"* Каждый .java-файл начинается с объявления пакета: +\n"
+"`package edu.phystech.hello;`\n"
+"* В корне пакета может быть `package-info.java`, не содержащий классы, а "
+"только JavaDoc над ключевым словом `package`."
+msgstr ""
+
+#: lecture.adoc:54
+msgid ""
+"* <Имя пакета>.<имя класса> задаёт полный идентификатор любого класса, "
+"доступного в исходном коде или через библиотеки (например, "
+"`edu.phystech.hello.App`)\n"
+"* Вложенные пакеты -- это _разные_ пакеты с точки зрения Java (package-"
+"private классы одного пакета не будут видны в другом)"
+msgstr ""
+
+#: lecture.adoc:56
+msgid "== Структура класса: переменные, конструкторы и методы"
+msgstr ""
+
+#: lecture.adoc:72
+msgid ""
+"[source, java]\n"
+"----\n"
+"class ClassName\n"
+"{\n"
+"   field1\n"
+"   field2\n"
+"   . . .\n"
+"   constructor1\n"
+"   constructor2\n"
+"   . . .\n"
+"   method1\n"
+"   method2\n"
+"   . . .\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:74
+msgid "== Определяем класс"
+msgstr ""
+
+#: lecture.adoc:97
+msgid ""
+"[source,java]\n"
+"----\n"
+"package org.megacompany.staff;\n"
+"class Employee {\n"
+"  // instance fields\n"
+"  private String name;\n"
+"  private double salary;\n"
+"  private LocalDate hireDay;\n"
+"  // constructor\n"
+"  public Employee(String n, double s, int year, int month, int day) {\n"
+"    name = n;\n"
+"    salary = s;\n"
+"    hireDay = LocalDate.of(year, month, day);\n"
+"  }\n"
+"  // a method\n"
+"  public String getName() {\n"
+"    return name;\n"
+"  }\n"
+"  // more methods\n"
+"  . . .\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:99
+msgid "== Создаём и используем экземпляры класса"
+msgstr ""
+
+#: lecture.adoc:104
+msgid ""
+"[source,java]\n"
+"----\n"
+"//При необходимости, импортируем\n"
+"import org.megacompany.staff.Employee;"
+msgstr ""
+
+#: lecture.adoc:109
+msgid ""
+"//где-то в теле метода\n"
+". . .\n"
+"Employee hacker = new Employee(\"Harry Hacker\", 50000, 1989, 10, 1);\n"
+"Employee tester = new Employee(\"Tommy Tester\", 40000, 1990, 3, 15);"
+msgstr ""
+
+#: lecture.adoc:112
+msgid ""
+"hacker.getName(); //returns \"Harry Hacker\"\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:114
+msgid "== Про инициализацию полей"
+msgstr ""
+
+#: lecture.adoc:116
+msgid ""
+"* В отличие от локальных переменных, поля можно не инициализировать явно."
+msgstr ""
+
+#: lecture.adoc:118
+msgid ""
+"* В этом случае примитивные типы получают значение по умолчанию (`0`, "
+"`false`), а поля со ссылками -- значение `null`."
+msgstr ""
+
+#: lecture.adoc:121
+msgid ""
+"* Проинициализировать поле по месту его определения не возбраняется: +\n"
+"`int a = 42` или даже `int a = getValue()`. "
+msgstr ""
+
+#: lecture.adoc:123
+msgid "== Поле this"
+msgstr ""
+
+#: lecture.adoc:127
+msgid ""
+"[source,java]\n"
+"----\n"
+"{ ..."
+msgstr ""
+
+#: lecture.adoc:129
+msgid "  int value;"
+msgstr ""
+
+#: lecture.adoc:134
+msgid ""
+"  setValue(int value) {\n"
+"    //поле перекрыто аргументом\n"
+"    this.value = value;\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:140
+msgid ""
+"  registerMe(Registrator r) {\n"
+"    //нужна ссылка на себя\n"
+"    r.register(this); \n"
+"  }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:142
+msgctxt "lecture.adoc:142"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:145
+msgid "== Объект передаётся по ссылке!"
+msgstr ""
+
+#: lecture.adoc:150
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Employee {\n"
+"    int age = 18;"
+msgstr ""
+
+#: lecture.adoc:158
+msgid ""
+"    public static void main(String[] args) {\n"
+"        Employee e = new Employee();\n"
+"        int a = 1;\n"
+"        foo(e, a);\n"
+"        System.out.printf(\"%d - %d\", e.age, a);\n"
+"        //prints 42 - 1\n"
+"    }"
+msgstr ""
+
+#: lecture.adoc:166
+msgid ""
+"    static void foo(Employee e, int a) {\n"
+"        //e passed by reference, a passed by value\n"
+"        e.age = 42;\n"
+"        a = 5;\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:168
+msgid "== Рождение, жизнь и смерть объекта"
+msgstr ""
+
+#: lecture.adoc:171
+msgid ""
+"[source,java]\n"
+"new Employee(\"Bob\")"
+msgstr ""
+
+#: lecture.adoc:180
+msgid ""
+"[graphviz, \"life1.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 200 ]; \n"
+" rankdir=\"LR\";\n"
+" object[shape=\"octagon\",label=\"Bob\"]\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:183
+msgctxt "lecture.adoc:183"
+msgid "== Присвоение ссылки"
+msgstr ""
+
+#: lecture.adoc:186
+msgid ""
+"[source,java]\n"
+"Employee hacker = new Employee(\"Bob\");"
+msgstr ""
+
+#: lecture.adoc:197
+msgid ""
+"[graphviz, \"life2.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 200 ]; \n"
+" rankdir=\"LR\";\n"
+" object[shape=\"octagon\",label=\"Bob\"]\n"
+" ref[label=\"hacker\"];\n"
+" ref->object;\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:199
+msgctxt "lecture.adoc:199"
+msgid "== Присвоение ссылки"
+msgstr ""
+
+#: lecture.adoc:202
+msgid ""
+"[source,java]\n"
+"Employee junior = hacker;"
+msgstr ""
+
+#: lecture.adoc:213
+msgid ""
+"[graphviz, \"life3.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 200 ]; \n"
+" rankdir=\"LR\";\n"
+" object[shape=\"octagon\",label=\"Bob\"]\n"
+" ref[label=\"hacker\"];\n"
+" ref2[label=\"junior\"];\n"
+" ref->object;\n"
+" ref2->object;"
+msgstr ""
+
+#: lecture.adoc:216
+msgid ""
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:218
+msgid "== Потеря ссылки"
+msgstr ""
+
+#: lecture.adoc:222
+msgid ""
+"[source,java]\n"
+"hacker = null;\n"
+"junior = new Employee(\"Charlie\");"
+msgstr ""
+
+#: lecture.adoc:239
+msgid ""
+"[graphviz, \"life4.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 200 ]; \n"
+" rankdir=\"LR\";\n"
+" object[shape=\"octagon\",label=\"Bob\", fillcolor=\"grey\",style=\"filled\"]"
+"\n"
+" object2[shape=\"octagon\",label=\"Charlie\"]\n"
+" ref[label=\"hacker\"];\n"
+" ref2[label=\"junior\"];\n"
+" ref->null;\n"
+" ref2->object2;\n"
+" null[shape=\"circle\"];\n"
+" ref3[style=\"invis\"];\n"
+" ref3->object[style=\"invis\"];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:242
+msgid "== Сборка мусора"
+msgstr ""
+
+#: lecture.adoc:259
+msgid ""
+"[graphviz, \"life5.png\"]\n"
+"-----\n"
+"digraph G {\n"
+" graph [ dpi = 200 ]; \n"
+" rankdir=\"LR\";\n"
+" object[shape=\"octagon\",label=\"Bob\", fillcolor=\"red\",style=\"invis\"]\n"
+" object2[shape=\"octagon\",label=\"Charlie\"]\n"
+" ref[label=\"hacker\"];\n"
+" ref2[label=\"junior\"];\n"
+" ref->null;\n"
+" ref2->object2;\n"
+" null[shape=\"circle\"];\n"
+" ref3[style=\"invis\"];\n"
+" ref3->object[style=\"invis\"];\n"
+"}\n"
+"-----"
+msgstr ""
+
+#: lecture.adoc:263
+msgid "== Области видимости"
+msgstr ""
+
+#: lecture.adoc:272
+msgid ""
+"[cols=\"40a,60a\"]\n"
+"|===\n"
+"| *Область видимости* | *Кому доступно*\n"
+"| `private`       | только классу\n"
+"| package-private | только пакету (по умолчанию)\n"
+"| `protected`     | классу, пакету, и классам-наследникам\n"
+"| `public`        | всем\n"
+"|==="
+msgstr ""
+
+#: lecture.adoc:274
+msgid "== Файлы с исходным кодом и классы"
+msgstr ""
+
+#: lecture.adoc:277
+msgid ""
+"* В одном .java файле может быть один публичный класс, названный так же, как "
+"и .java-файл (`public class Foo` в файле `Foo.java`).\n"
+"* Может быть сколько угодно package-private-классов, но это скорее плохая "
+"практика."
+msgstr ""
+
+#: lecture.adoc:279
+msgctxt "lecture.adoc:279"
+msgid "== Наследование"
+msgstr ""
+
+#: lecture.adoc:297
+msgid ""
+"[plantuml, employeemanager, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 200 \n"
+"class Employee {\n"
+"  - name\n"
+"  - salary\n"
+"  + getName()\n"
+"  + getSalary()\n"
+"}\n"
+"class Manager {\n"
+"  - bonus\n"
+"  + setBonus(bonus)\n"
+"}\n"
+"Employee <|- Manager\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:308
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Manager extends Employee {\n"
+"  private double bonus;\n"
+"  . . .\n"
+"  public void setBonus(double bonus) {\n"
+"    this.bonus = bonus;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:310
+msgctxt "lecture.adoc:310"
+msgid "== Наследование"
+msgstr ""
+
+#: lecture.adoc:320
+msgid ""
+"[source,java]\n"
+"----\n"
+"// construct a Manager object\n"
+"Manager boss = new Manager(\"Carl Cracker\", 80000, 1987, 12, 15);\n"
+"boss.setBonus(5000);\n"
+"Employee[] staff = new Employee[3];\n"
+"staff[0] = boss;\n"
+"staff[1] = new Employee(\"Harry Hacker\", 50000, 1989, 10, 1);\n"
+"staff[2] = new Employee(\"Tommy Tester\", 40000, 1990, 3, 15);"
+msgstr ""
+
+#: lecture.adoc:324
+msgid ""
+"for (Employee e : staff)\n"
+"  System.out.println(\"name=\" + e.getName() + \",salary=\" + e.getSalary());"
+"\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:326
+msgid "== {zsp}Наследование: единственный родительский класс{zsp}"
+msgstr ""
+
+#: lecture.adoc:337
+msgid ""
+"[plantuml, columnclasses, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 200 \n"
+"Employee <|-- Manager\n"
+"Employee <|-- Secretary\n"
+"Employee <|-- Programmer\n"
+"Manager  <|-- Executive\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:339
+msgid "== Тип ссылки и тип объекта"
+msgstr ""
+
+#: lecture.adoc:348
+msgid ""
+"[plantuml, employeemanagerex, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 200 \n"
+"Employee <|- Manager \n"
+"Manager <|- Executive\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:358
+msgid ""
+"[source,java]\n"
+"----\n"
+"  Executive ex = new Executive (...);\n"
+"  //для ex доступны члены, объявленные в Manager, Employee и Executive\n"
+"  Manager m = ex;\n"
+"  //для m доступны члены, объявленные в Employee и Manager\n"
+"  Employee e = m;\n"
+"  //для e доступны члены, объявленные только в Employee\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:360
+msgid "== Переопределение (overriding) методов"
+msgstr ""
+
+#: lecture.adoc:372
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Employee {\n"
+"  private int salary;\n"
+"  public int getSalary() {\n"
+"    return salary;\n"
+"  }\n"
+"  public int getTotalPayout(){\n"
+"    return getSalary();\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:381
+msgid ""
+"class Manager extends Employee {\n"
+"  private int bonus;\n"
+"  @Override //не обязательная, но крайне желательная штука\n"
+"  public int getTotalPayout() {\n"
+"    return getSalary() + bonus;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:383
+msgid "== Использование `super`"
+msgstr ""
+
+#: lecture.adoc:394
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Manager extends Employee {\n"
+"  private int bonus;\n"
+"  @Override \n"
+"  public int getTotalPayout() {\n"
+"    return super.getTotalPayout() + bonus;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:396
+msgid ""
+"В отличие от `this`, `super` не указывает ни на какой объект (и его нельзя "
+"никуда передать). Это лишь указание компилитору вызвать метод суперкласса."
+msgstr ""
+
+#: lecture.adoc:398
+msgid "== Ковариантность возвращаемых типов"
+msgstr ""
+
+#: lecture.adoc:402
+msgid ""
+"[plantuml, overriding, png]\n"
+"----\n"
+"@startuml"
+msgstr ""
+
+#: lecture.adoc:404
+msgid "skinparam dpi 200 "
+msgstr ""
+
+#: lecture.adoc:408
+msgid ""
+"class Producer {\n"
+"    + Object produce() \n"
+"}"
+msgstr ""
+
+#: lecture.adoc:410
+msgid "Producer <|-- IntegerProducer"
+msgstr ""
+
+#: lecture.adoc:414
+msgid ""
+"class IntegerProducer {\n"
+"    + Integer produce()\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:417
+msgid "Object <|-- Integer"
+msgstr ""
+
+#: lecture.adoc:420
+msgid ""
+"Producer . Object\n"
+"IntegerProducer . Integer"
+msgstr ""
+
+#: lecture.adoc:423
+msgid ""
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:426
+msgid ""
+"* Возвращаемый тип может быть того же типа или субтипа\n"
+"* Типы аргументов обязаны совпадать"
+msgstr ""
+
+#: lecture.adoc:428
+msgid "== `final`-классы и методы"
+msgstr ""
+
+#: lecture.adoc:435
+msgid ""
+"* Ключевое слово `final`:\n"
+"** на уровне класса запрещает наследование класса\n"
+"** на уровне метода запрещает наследование метода \n"
+"* Зачем это нужно?\n"
+"** Паттерн \"Шаблонный метод\"\n"
+"** J. Bloch: 'Design and document for inheritance, or else prohibit it'"
+msgstr ""
+
+#: lecture.adoc:437
+msgid "== `sealed`-типы (Java 15+)"
+msgstr ""
+
+#: lecture.adoc:439
+msgid "Наследоваться можно, но только тем, кому разрешено:"
+msgstr ""
+
+#: lecture.adoc:447
+msgid ""
+"[source,java]\n"
+"----\n"
+"public sealed class Pet \n"
+"        permits \n"
+"        //никакие другие не могут наследоваться от него\n"
+"        Cat, Dog, Fish {\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:449
+msgid "public final Cat {...}"
+msgstr ""
+
+#: lecture.adoc:451
+msgid "public sealed Dog permits Hound, Terrier, Toy {...}"
+msgstr ""
+
+#: lecture.adoc:454
+msgid ""
+"public non-sealed Fish {...}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:456
+msgid "== Важный пример: `sealed`-интерфейсы и record-ы"
+msgstr ""
+
+#: lecture.adoc:458
+msgid ""
+"Пока не знаем ни что такое interface, ни что такое record, но просто "
+"запомним: "
+msgstr ""
+
+#: lecture.adoc:463
+msgid ""
+"[source,java]\n"
+"----\n"
+"public sealed interface Expr\n"
+"        permits Add, Subtract, Multiply, Divide, Literal {}"
+msgstr ""
+
+#: lecture.adoc:471
+msgid ""
+"//implicitly final!\n"
+"public record Add(Expr left, Expr right) implements Expr {}\n"
+"public record Subtract(Expr left, Expr right) implements Expr {}\n"
+"public record Multiply(Expr left, Expr right) implements Expr {}\n"
+"public record Divide(Expr left, Expr right) implements Expr {}\n"
+"public record Literal(int value) implements Expr {}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:474
+msgid "== Перегрузка (overloading) методов"
+msgstr ""
+
+#: lecture.adoc:490
+msgid ""
+"Сигнатура метода определяется его названием и типами аргументов:\n"
+"[source,java]\n"
+"----\n"
+"//org.junit.jupiter.api.Assertions\n"
+"void assertEquals(short expected, short actual)\n"
+"void assertEquals(short expected, short actual, String message)\n"
+"void assertEquals(short expected, short actual, Supplier<String> "
+"messageSupplier)\n"
+"void assertEquals(byte expected, byte actual)\n"
+"void assertEquals(byte expected, byte actual, String message)\n"
+"void assertEquals(byte expected, byte actual, Supplier<String> "
+"messageSupplier)\n"
+"void assertEquals(int expected, int actual)\n"
+"void assertEquals(int expected, int actual, String message)\n"
+"void assertEquals(int expected, int actual, Supplier<String> messageSupplier)"
+"\n"
+". . .\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:492
+msgid "== Статические поля и методы"
+msgstr ""
+
+#: lecture.adoc:508
+msgid ""
+"Данные, общие для всех экземпляров класса:\n"
+"[source,java]\n"
+"----\n"
+"class Employee {\n"
+"  /*WARNING: данный пример\n"
+"  не работает при многопоточном исполнении*/\n"
+"  private static int nextId = 1;\n"
+"  private int id;\n"
+"  . . .\n"
+"  public void setId() {\n"
+"    id = nextId;\n"
+"    nextId++;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:511
+msgid "== Статические константы"
+msgstr ""
+
+#: lecture.adoc:520
+msgid ""
+"Выделяем память один раз\n"
+"[source,java]\n"
+"----\n"
+"public class Math {\n"
+"   . . .\n"
+"   public static final double PI = 3.14159265358979323846;\n"
+"   . . .\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:523
+msgid ". . ."
+msgstr ""
+
+#: lecture.adoc:526
+msgid ""
+"Math.PI // возвращает 3.14...\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:528
+msgid "== Статические методы"
+msgstr ""
+
+#: lecture.adoc:533
+msgid ""
+"Статическим методам доступны только статические переменные и вызовы других "
+"статических методов\n"
+"[source,java]\n"
+"----\n"
+"class Employee {"
+msgstr ""
+
+#: lecture.adoc:541
+msgid ""
+"  private static int nextId = 1;\n"
+"  private int id;\n"
+"  . . .\n"
+"  public static int getNextId() {\n"
+"    return nextId; // returns static field\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:544
+msgid ""
+". . .\n"
+"Employee.nextId() //имя класса вместо объекта"
+msgstr ""
+
+#: lecture.adoc:546
+msgctxt "lecture.adoc:546"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:548
+msgid "== psvm"
+msgstr ""
+
+#: lecture.adoc:558
+msgid ""
+"Теперь мы понимаем: метод main доступен всем и не требует инстанцирования "
+"объекта:\n"
+"[source,java]\n"
+"----\n"
+"public class App {\n"
+"  public static void main(String... args) {\n"
+"     System.out.println(\"Hello, world!\");\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:560
+msgid "== Конструктор"
+msgstr ""
+
+#: lecture.adoc:568
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Person {\n"
+"    //public-конструктор без аргументов\n"
+"    public Person() {\n"
+"       ....\n"
+"    }"
+msgstr ""
+
+#: lecture.adoc:575
+msgid ""
+"    //package-private конструктор с аргументом\n"
+"    Person(String  name) {\n"
+"        ....\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:577
+msgid "== {zsp}Конструкторы{zsp}"
+msgstr ""
+
+#: lecture.adoc:579
+msgid "* Конструктор _обязан_ быть."
+msgstr ""
+
+#: lecture.adoc:581
+msgid ""
+"* Если мы 1) явно не написали конструктор, 2) родительский класс имеет "
+"конструктор без аргументов -- то неявным образом у класса появляется "
+"публичный конструктор без аргументов по умолчанию."
+msgstr ""
+
+#: lecture.adoc:583
+msgid ""
+"* Если мы явно написали хотя бы один конструктор,  конструктор по умолчанию "
+"_исчезает_."
+msgstr ""
+
+#: lecture.adoc:585
+msgid ""
+"* Если в родительском классе нет конструктора без аргументов, конструктор по "
+"умолчанию _не создаётся_."
+msgstr ""
+
+#: lecture.adoc:587
+msgid "* Конструктор _не обязан быть публичным_."
+msgstr ""
+
+#: lecture.adoc:589
+msgid "== Переопределение конструкторов при наследовании классов"
+msgstr ""
+
+#: lecture.adoc:591
+msgid ""
+"* Если у суперкласса нет конструктора без аргументов, первым вызовом должен "
+"быть `super(...)`. "
+msgstr ""
+
+#: lecture.adoc:599
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Person {\n"
+"    Person(String  name){\n"
+"        ...\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:607
+msgid ""
+"class Employee extends Person{\n"
+"    Employee(String name) {\n"
+"        super(name);\n"
+"        ...\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:609
+msgid "== Перегрузка конструкторов"
+msgstr ""
+
+#: lecture.adoc:611
+msgid "* Вызов `this(...)`"
+msgstr ""
+
+#: lecture.adoc:618
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Person {\n"
+"    Person(String  name){\n"
+"        ...\n"
+"    }"
+msgstr ""
+
+#: lecture.adoc:624
+msgid ""
+"    Person(){\n"
+"        this(\"unknown\");\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:631
+msgid ""
+"== Секции инициализации\n"
+"[source,java]\n"
+"----\n"
+"class Employee {\n"
+"  private static int nextId;\n"
+"  private int id;"
+msgstr ""
+
+#: lecture.adoc:636
+msgid ""
+"  // static initialization block\n"
+"  static {\n"
+"    nextId = ThreadLocalRandom.current().nextInt(10000);\n"
+"  }"
+msgstr ""
+
+#: lecture.adoc:644
+msgid ""
+"  // object initialization block\n"
+"  {\n"
+"    id = nextId;\n"
+"    nextId++;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:646
+msgid "== А как же деструктор?"
+msgstr ""
+
+#: lecture.adoc:650
+msgid ""
+"* А его нет!\n"
+"* Даже не пытайтесь переопределять `finalize`\n"
+"* Почему метод `finalize` оказался плохой идеей"
+msgstr ""
+
+#: lecture.adoc:652
+msgid "== Абстрактные классы и методы"
+msgstr ""
+
+#: lecture.adoc:658
+msgid ""
+"[plantuml, abstractsample, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 120 \n"
+"abstract class Person"
+msgstr ""
+
+#: lecture.adoc:663
+msgid ""
+"Person <|-- Student\n"
+"Person <|-- Employee\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:677
+msgid ""
+"[source,java]\n"
+"----\n"
+"public abstract class Person\n"
+"{\n"
+"  public Person(String name) {\n"
+"    this.name = name;\n"
+"  }\n"
+"  public String getName() {\n"
+"    return name;\n"
+"  }\n"
+"  public abstract String getDescription();\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:694
+msgid ""
+"== Реализация абстрактного класса\n"
+"[source,java]\n"
+"----\n"
+"public class Student extends Person\n"
+"{\n"
+"  private String major;\n"
+"  public Student(String name, String major) {\n"
+"    super(name);\n"
+"    this.major = major;\n"
+"  }\n"
+"  @Override\n"
+"  public String getDescription() {\n"
+"    return \"a student majoring in \" + major;\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:696
+msgid "== Правила"
+msgstr ""
+
+#: lecture.adoc:703
+msgid ""
+"* Класс, в котором хотя бы один из методов не реализован, должен быть "
+"помечен как `abstract`\n"
+"* Нереализованные методы в классе возникают двумя способами:\n"
+"** явно объявлены как `abstract`\n"
+"** унаследованы из абстрактных классов или интерфейсов и не переопределены.\n"
+"* Абстрактные классы нельзя инстанцировать через new.\n"
+"** `new Person(\"John Doe\");` -- ошибка компиляции: 'Person is abstract, "
+"cannot be instantiated'."
+msgstr ""
+
+#: lecture.adoc:706
+msgid "== Интерфейсы"
+msgstr ""
+
+#: lecture.adoc:714
+msgid ""
+"[source,java]\n"
+"----\n"
+"//его нельзя инстацировать!\n"
+"public interface Prism\n"
+"{\n"
+"   //это --- final-переменная!\n"
+"   double PI = 3.14;"
+msgstr ""
+
+#: lecture.adoc:718
+msgid ""
+"   //это --- публичные абстрактные методы!\n"
+"   double getArea();\n"
+"   double getHeight();"
+msgstr ""
+
+#: lecture.adoc:725
+msgid ""
+"   //этот метод может вызывать другие и читать final-поля\n"
+"   default double getVolume() {\n"
+"      return getArea() * getHeight();\n"
+"   }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:727
+msgid "== Реализация интерфейса"
+msgstr ""
+
+#: lecture.adoc:738
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Parallelepiped implements Prism {\n"
+"    private double a;\n"
+"    private double b;\n"
+"    private double h;\n"
+"    @Override\n"
+"    public double getArea() {\n"
+"        return a * b;\n"
+"    }"
+msgstr ""
+
+#: lecture.adoc:746
+msgid ""
+"    @Override\n"
+"    public double getHeight() {\n"
+"        return h;\n"
+"    }\n"
+"}\n"
+"----\n"
+"Если какой-то из методов интерфейса не будет переопределён, класс нужно "
+"пометить как abstract."
+msgstr ""
+
+#: lecture.adoc:748
+msgid "== Чем интерфейсы отличаются от абстрактных классов?"
+msgstr ""
+
+#: lecture.adoc:752
+msgid ""
+"* Нет внутреннего состояния и конструкторов\n"
+"* Можно наследоваться (`extends`) только от одного класса, но реализовывать "
+"(`implements`) сколько угодно интерфейсов -- _множественное наследование_.\n"
+"* Поэтому как абстракция, интерфейс предпочтительнее."
+msgstr ""
+
+#: lecture.adoc:755
+msgid "== Оператор instanceof"
+msgstr ""
+
+#: lecture.adoc:771
+msgid ""
+"[plantuml, instanceof, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 150 \n"
+"class C1\n"
+"class C2\n"
+"class C3\n"
+"interface I1\n"
+"C1 <|-- C2\n"
+"I1 <|.. C2\n"
+"@enduml\n"
+"----\n"
+"[source,java]\n"
+"----\n"
+"C1 c1; C2 c2; C3 c3; I1 i1;"
+msgstr ""
+
+#: lecture.adoc:778
+msgid ""
+"x instanceof A //  false, если x == null\n"
+"c1 instanceof С2 // true или false\n"
+"i1 instanceof C2 // true или false \n"
+"c2 instanceof C1 // всегда возвращает true\n"
+"с3 instanceof C2 // не скомпилируется\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:780
+msgid "== Приведение типов (до Java 14)"
+msgstr ""
+
+#: lecture.adoc:791
+msgid ""
+"[source,java]\n"
+"----\n"
+"Person p = . . .;\n"
+"if (p instanceof Student) {\n"
+"    //если не защитить instanceof, возможен ClassCastException\n"
+"    Student s = (Student) p;\n"
+"    . . .\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:793
+msgid "== Pattern Matching for instanceof (Java 14+, JEP305)"
+msgstr ""
+
+#: lecture.adoc:804
+msgid ""
+"[source,java]\n"
+"----\n"
+"Person p = . . .;\n"
+"if (p instanceof Student s) {\n"
+"   //здесь доступна переменная Student s\n"
+"    . . .\n"
+"} else {\n"
+"   //здесь недоступна переменная Student s\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:810
+msgid ""
+"//Скомпилируется\n"
+"if (obj instanceof String s && s.length() > 5) { \n"
+"   . . .\n"
+"   s.contains(..)\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:814
+msgid ""
+"//НЕ скомпилируется\n"
+"if (obj instanceof String s || s.length() > 5) {...}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:816
+msgid "== Все меньше избыточного кода"
+msgstr ""
+
+#: lecture.adoc:824
+msgid ""
+"[source,java]\n"
+"----\n"
+"//Before Java 10\n"
+"if (obj instanceof Number) {\n"
+"  Number n = (Number) obj;\n"
+"  System.out.println(n.longValue());\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:830
+msgid ""
+"//Java 10+\n"
+"if (obj instanceof Number) {\n"
+"  var n = (Number) obj;\n"
+"  System.out.println(n.longValue());\n"
+"}"
+msgstr ""
+
+#: lecture.adoc:836
+msgid ""
+"//Java 14+\n"
+"if (obj instanceof Number n) {\n"
+"  System.out.println(n.longValue());\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:838
+msgid "== Pattern matching for switch (JEP406, preview feature in Java 17)"
+msgstr ""
+
+#: lecture.adoc:852
+msgid ""
+"[source,java]\n"
+"----\n"
+"public int calculate(Expr expr) {\n"
+"  return switch (expr) {\n"
+"    //Не скомпилируется, если мы забудем что-то из реализаций Expr!\n"
+"    case Literal l -> l.value();\n"
+"    case Divide d -> calculate(d.left()) / calculate(d.right());\n"
+"    case Multiply m -> calculate(m.left()) * calculate(m.right());\n"
+"    case Add a -> calculate(a.left()) + calculate(a.right());\n"
+"    case Subtract s -> calculate(s.left()) - calculate(s.right());\n"
+"  };\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:854
+msgctxt "lecture.adoc:854"
+msgid "== Вложенные классы"
+msgstr ""
+
+#: lecture.adoc:871
+msgid ""
+"[source, java]\n"
+"----\n"
+"class Outer { \n"
+"   int field = 42; \n"
+"   class Inner { \n"
+"      public void show() { \n"
+"           //есть доступ к состоянию внешнего класса!\n"
+"           System.out.println(field);\n"
+"           //печатает 42\n"
+"      } \n"
+"   } \n"
+"   void initInner(){\n"
+"     //инициализация вложенного класса внутри\n"
+"     new Inner();\n"
+"   }\n"
+"} "
+msgstr ""
+
+#: lecture.adoc:875
+msgid ""
+"//инициализация вложенного класса извне\n"
+"Outer.Inner in = new Outer().new Inner(); \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:877
+msgctxt "lecture.adoc:877"
+msgid "== Вложенные классы"
+msgstr ""
+
+#: lecture.adoc:879
+msgid "Каждый экземпляр `Inner` имеет неявную ссылку на `Outer`."
+msgstr ""
+
+#: lecture.adoc:889
+msgid ""
+"[plantuml, inner, png]\n"
+"----\n"
+"@startuml\n"
+"skinparam dpi 200 \n"
+"class Outer\n"
+"class Inner\n"
+"Outer *-- Inner\n"
+"@enduml\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:891
+msgctxt "lecture.adoc:891"
+msgid "== Вложенные классы"
+msgstr ""
+
+#: lecture.adoc:906
+msgid ""
+"[source, java]\n"
+"----\n"
+"class Outer { \n"
+"   int field = 42; \n"
+"   class Inner { \n"
+"      //поле вложенного класса перекрывает поле внешнего класса \n"
+"      int field = 18;\n"
+"      public void show() {\n"
+"           System.out.println(field);\n"
+"           //печатает 18\n"
+"      } \n"
+"   } \n"
+"} \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:908
+msgctxt "lecture.adoc:908"
+msgid "== Вложенные классы"
+msgstr ""
+
+#: lecture.adoc:923
+msgid ""
+"[source, java]\n"
+"----\n"
+"class Outer { \n"
+"   int field = 42; \n"
+"   class Inner { \n"
+"      //поле вложенного класса перекрывает поле внешнего класса \n"
+"      int field = 18;\n"
+"      public void show() {\n"
+"           System.out.println(Outer.this.field);\n"
+"           //печатает 42!\n"
+"      } \n"
+"   } \n"
+"} \n"
+"----"
+msgstr ""
+
+#: lecture.adoc:925
+msgid "== Локальные вложенные классы"
+msgstr ""
+
+#: lecture.adoc:943
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Outer { \n"
+"   void outerMethod() { \n"
+"      //final (или effectively final) тут существенно\n"
+"      final int x = 98; \n"
+"      System.out.println(\"inside outerMethod\"); \n"
+"      class Inner { \n"
+"         void innerMethod() { \n"
+"            System.out.println(\"x = \" + x); \n"
+"         } \n"
+"      } \n"
+"      Inner y = new Inner(); \n"
+"      y.innerMethod(); \n"
+"   } \n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:945
+msgid "== Java 15: локальные record-ы, enum-ы и интерфейсы"
+msgstr ""
+
+#: lecture.adoc:954
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Outer { \n"
+"   void outerMethod() { \n"
+"      //они не захватывают внешнее состояние\n"
+"      record Foo (int a, int b) {};\n"
+"      enum Bar {A, B};\n"
+"      interface Baz {};"
+msgstr ""
+
+#: lecture.adoc:961
+msgid ""
+"      //NB:\n"
+"      //static not allowed here!\n"
+"      static class X {};\n"
+"   } \n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:964
+msgid "== Вложенные статические классы"
+msgstr ""
+
+#: lecture.adoc:966
+msgid "По сути, ничем не отличаются от просто классов:"
+msgstr ""
+
+#: lecture.adoc:984
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Outer { \n"
+"   private static void outerMethod() { \n"
+"     System.out.println(\"inside outerMethod\"); \n"
+"   } \n"
+"   static class Inner { \n"
+"     public static void main(String[] args) { \n"
+"        System.out.println(\"inside inner class Method\"); \n"
+"        outerMethod(); \n"
+"     } \n"
+"   }\n"
+"}\n"
+". . .\n"
+"Outer.Inner x = new Outer.Inner();\n"
+"// в отличие от не статического: new Outer().new Inner();\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:986
+msgid "== Анонимные классы"
+msgstr ""
+
+#: lecture.adoc:1006
+msgid ""
+"[source,java]\n"
+"----\n"
+"class Demo {\n"
+"    void show() {\n"
+"        System.out.println(\"superclass\");\n"
+"    }\n"
+"}\n"
+"class Flavor1Demo {\n"
+"    public static void main(String[] args){\n"
+"        Demo d = new Demo() {\n"
+"            void show() {\n"
+"                super.show();\n"
+"                System.out.println(\"subclass\");\n"
+"            }\n"
+"        };\n"
+"        d.show();\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1008
+msgid "== Использование анонимных классов"
+msgstr ""
+
+#: lecture.adoc:1011
+msgid ""
+"* Чаще всего -- как реализация абстрактных классов и интерфейсов «по месту»\n"
+"* Анонимный класс -- вложенный класс, поэтому до появления лямбд и ссылок на "
+"методы это был единственный способ организовать коллбэк"
+msgstr ""
+
+#: lecture.adoc:1021
+msgid ""
+"[source,java]\n"
+"----\n"
+". . . \n"
+"button.onMouseClick(new EventListener(){\n"
+"  void onClick(Event e) {\n"
+"     //здесь у нас доступ ко всем внешним полям\n"
+"     //и effectively final-переменным \n"
+"  }\n"
+"});"
+msgstr ""
+
+#: lecture.adoc:1023
+msgctxt "lecture.adoc:1023"
+msgid "----"
+msgstr ""
+
+#: lecture.adoc:1025
+msgid "== Object: the Cosmic Superclass"
+msgstr ""
+
+#: lecture.adoc:1031
+msgid ""
+"* Любой класс в Java является наследником `Object`\n"
+"* Писать `class Employee extends Object` не надо\n"
+"* В этом классе определены важные методы\n"
+"** `equals` и `hashCode`\n"
+"** `toString`"
+msgstr ""
+
+#: lecture.adoc:1033
+msgid "== `equals()` и `hashCode()`"
+msgstr ""
+
+#: lecture.adoc:1037
+msgid ""
+"* `boolean equals(Object other)` возвращает `true` т. и т. т., когда "
+"внутреннее состояние совпадает\n"
+"* `int hashCode()` возвращает целое значение, которое обязано совпадать для "
+"объектов с одинаковым внутренним состоянием\n"
+"* Это нужно для хеш-таблиц (и, пожалуй, является __протекшей абстракцией__)"
+msgstr ""
+
+#: lecture.adoc:1039
+msgid "== Формальный контракт `equals`"
+msgstr ""
+
+#: lecture.adoc:1048
+msgid ""
+"1. Рефлексивность: +\n"
+"stem:[\\forall x \\n"
+"e \\mathrm{null} (x.equals(x))]\n"
+"2. Симметричность: +\n"
+"stem:[\\forall x \\n"
+"e \\mathrm{null} \\, \\forall y \\n"
+"e \\mathrm{null} (x.equals(y) \\iff y.equals(x))]\n"
+"3. Транзитивность: +\n"
+"stem:[\\forall x \\n"
+"e \\mathrm{null} \\, \\forall y \\n"
+"e \\mathrm{null} \\, \\forall z \\n"
+"e \\mathrm{null} (x.equals(y) \\& y.equals(z) \\Rightarrow x.equals(z))]\n"
+"4. Консистентность: если сравниваемые объекты не изменялись, повторный вызов "
+"`equals` должен возвращать одно и то же значение.\n"
+"5. stem:[\\forall x \\n"
+"e \\mathrm{null} (x.equals(\\mathrm{null}) = \\mathrm{false})]"
+msgstr ""
+
+#: lecture.adoc:1050
+msgid "== Формальный контракт `hashCode`"
+msgstr ""
+
+#: lecture.adoc:1057
+msgid ""
+"1. Консистентность: если объект не изменялся, повторный вызов `hashCode` "
+"должен возвращать одно и то же значение (но не обязательно одно и то же "
+"между разными запусками приложения)\n"
+"2. Связь с `equals`: +\n"
+"stem:[\\forall x \\forall y (x.equals(y) \\Rightarrow x.hashCode() = "
+"y.hashCode())]\n"
+"3. Хотя +\n"
+"stem:[x.hashCode() = y.hashCode() \\Rightarrow x.equals(y)] +\n"
+"и не обязательно, но желательно для большинства случаев."
+msgstr ""
+
+#: lecture.adoc:1059
+msgid "== Выводы"
+msgstr ""
+
+#: lecture.adoc:1064
+msgid ""
+"1. Переопределять `equals` и `hashCode` нужно только вместе и согласованно, "
+"чтобы выполнить контракт stem:[x.equals(y) \\Rightarrow x.hashCode() = "
+"y.hashCode()]\n"
+"2. Грамотно реализовать `equals` и `hashCode` трудно, но, к счастью, "
+"самостоятельно это делать не нужно.\n"
+"3. Для тестирования есть специальная библиотка "
+"https://jqno.nl/equalsverifier/[EqualsVerifier].\n"
+"4. Для генерации `equals` и `hashCode` можно использовать возможности IDE "
+"или библиотеки https://projectlombok.org/[Lombok]."
+msgstr ""
+
+#: lecture.adoc:1066
+msgctxt "lecture.adoc:1066"
+msgid "== Генерация `equals` и `hashCode`"
+msgstr ""
+
+#: lecture.adoc:1068
+msgid "image::generateequals.png[{image-50-width}]"
+msgstr ""
+
+#: lecture.adoc:1070
+msgctxt "lecture.adoc:1070"
+msgid "== Генерация `equals` и `hashCode`"
+msgstr ""
+
+#: lecture.adoc:1085
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Person {\n"
+"    private String name;\n"
+"    private int age;\n"
+"    @Override\n"
+"    public boolean equals(Object o) {\n"
+"       // никогда, НИКОГДА не пишите это сами\n"
+"        if (this == o) return true;\n"
+"        if (o == null || getClass() != o.getClass()) return false;\n"
+"        Person person = (Person) o;\n"
+"        return age == person.age &&\n"
+"                Objects.equals(name, person.name);\n"
+"    }"
+msgstr ""
+
+#: lecture.adoc:1092
+msgid ""
+"    @Override\n"
+"    public int hashCode() {\n"
+"        return Objects.hash(name, age);\n"
+"    }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1094
+msgctxt "lecture.adoc:1094"
+msgid "== Или, если у нас Lombok"
+msgstr ""
+
+#: lecture.adoc:1098
+msgid ""
+"[source,java]\n"
+"----\n"
+"import lombok.EqualsAndHashCode;"
+msgstr ""
+
+#: lecture.adoc:1105
+msgid ""
+"@EqualsAndHashCode\n"
+"public class Person {\n"
+"    private  int age;\n"
+"    private  String name;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1108
+msgid "== Переопределение toString"
+msgstr ""
+
+#: lecture.adoc:1127
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Person {\n"
+"    private String name;\n"
+"    private int age;\n"
+"    . . .\n"
+"    @Override\n"
+"    public String toString() {\n"
+"        return \"Person{\" +\n"
+"                \"name='\" + name + '\\'' +\n"
+"                \", age=\" + age +\n"
+"                '}';\n"
+"    }\n"
+"}\n"
+". . .\n"
+"Person person = . . .\n"
+"System.out.println(person);\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1129
+msgctxt "lecture.adoc:1129"
+msgid "== Или, если у нас Lombok"
+msgstr ""
+
+#: lecture.adoc:1133
+msgid ""
+"[source,java]\n"
+"----\n"
+"import lombok.ToString;"
+msgstr ""
+
+#: lecture.adoc:1140
+msgid ""
+"@ToString\n"
+"public class Person {\n"
+"    private  int age;\n"
+"    private  String name;\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1142
+msgid "== Полный «обвес» класса"
+msgstr ""
+
+#: lecture.adoc:1148
+msgid ""
+"[source,java]\n"
+"----\n"
+"public class Point {\n"
+"  private final int x;\n"
+"  private final int y;"
+msgstr ""
+
+#: lecture.adoc:1156
+msgid ""
+"  /*Подождите! Нам нужны:\n"
+"   * конструктор\n"
+"   * getX() и getY()\n"
+"   * equals и hashCode\n"
+"   * toString\n"
+"   * 40 строчек кода из ничего!\n"
+"   */"
+msgstr ""
+
+#: lecture.adoc:1162
+msgid ""
+"  public double distance(Point other) {\n"
+"    ...\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1165
+msgctxt "lecture.adoc:1165"
+msgid "== Или, если у нас Lombok"
+msgstr ""
+
+#: lecture.adoc:1169
+msgid ""
+"[source,java]\n"
+"----\n"
+"import lombok.Data;"
+msgstr ""
+
+#: lecture.adoc:1179
+msgid ""
+"@Data\n"
+"public class Point {\n"
+"  private final int x;\n"
+"  private final int y;\n"
+"  public double distance(Point other) {\n"
+"    ...\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1181
+msgid "== Или, если у нас Java 14+"
+msgstr ""
+
+#: lecture.adoc:1190
+msgid ""
+"[source,java]\n"
+"----\n"
+"record Point(int x, int y) { \n"
+"  public double distance(Point other) {\n"
+"    ...\n"
+"  }\n"
+"}\n"
+"----"
+msgstr ""
+
+#: lecture.adoc:1195
+msgid ""
+"* `private final` поля\n"
+"* конструктор\n"
+"* доступ через `x()` и `y()`\n"
+"* `equals`, `hashCode` и `toString`\n"
+"* невозможно наследование от класса и от рекорда, но возможна реализация "
+"интерфейсов"
+msgstr ""
