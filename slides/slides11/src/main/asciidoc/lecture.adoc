@@ -21,6 +21,7 @@ include::_doc_general_attributes.adoc[]
 :revealjs_transition: none
 :revealjs_width: 1600
 :revealjs_height: 900
+:docinfo: shared
 :stem: latexmath
 
 
@@ -1917,6 +1918,239 @@ executor.execute(() -> {
 * *Roman Leventov*: https://github.com/code-review-checklists/java-concurrency[Code Review Checklist: Java Concurrency]
 
 * Порядка 100 пунктов, по которым можно проверить concurrency код на распространённые ошибки
+
+== Синглетон: подход №1
+
+[source,java]
+----
+public class Singleton {
+  //Создание Singleton "спрятано"
+  private static final Singleton instance = new Singleton();
+    
+  public static Singleton getInstance() {
+    return instance;
+  }
+
+  //Лишаем возможности создать экземпляр объекта "извне"
+  private Singleton(){
+  }
+}
+----
+
+[.fragment]
+"Тяжёлый" объект создаётся всегда, даже если `getInstance` не будет вызван?
+
+== Подход №2
+
+[source,java]
+----
+public class Singleton {
+    private static Singleton instance;
+    
+    public static Singleton getInstance() {
+        if (instance == null) {
+           instance = new Singleton();
+        }
+        return instance;
+    }
+    private Singleton(){
+    }
+}
+----
+[.fragment]
+Что с многопоточным доступом к переменной `instance`?
+
+== Подход №3 ?!
+
+[source,java]
+----
+public class Singleton {
+    private static volatile Singleton instance;
+    
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    private Singleton(){
+    }
+}
+----
+[.fragment]
+Теперь нет гарантии, что экземпляр создаётся только один раз!
+
+
+== Подход №4 ?! ?!
+
+[source,java]
+----
+public class Singleton {
+    private static Singleton instance;
+    
+    public static synchronized Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    private Singleton(){
+    }
+}
+----
+[.fragment] 
+Все потоки будут выстраиваться в очередь, только чтобы получить доступ к переменной instance?  
+
+== Подход №5 ?! ?! ?!
+
+[source,java]
+----
+public class Singleton {
+    private static Singleton instance;
+    private static final Object lock = new Object();
+    public static Singleton getInstance() {
+        if (instance == null)
+            synchronized (lock) {
+                if (instance == null)
+                    instance = new Singleton();
+            }
+        return instance;
+    }
+    private Singleton() {
+    }
+}
+----
+[.fragment] 
+Программа сломана. Из-за того, что в первом `if`-е чтение поля `instance` не синхронизировано, возможно чтение частично инициализированного объекта (если конструктор `Singleton` заинлайнен).
+
+== Подход №6 . . .
+
+[source,java]
+----
+public class Singleton {
+    private static volatile Singleton instance;
+    private static final Object lock = new Object();
+    public static Singleton getInstance() {
+        if (instance == null)
+            synchronized (lock) {
+                if (instance == null)
+                    instance = new Singleton();
+            }
+        return instance;
+    }
+    private Singleton() {
+    }
+}
+----
+[.fragment]
+Ну, почти. Только у нас оверхед, потому что два раза читаем `volatile`-переменную.
+
+
+== Подход №7. Код из книги "Effective Java, 3rd edition"
+Joshua Bloch: "On my machine, this method is about 1.4 times as fast as the obvious version without a local variable". [EJ, 3rd ed., pp. 334-335]
+
+[source,java]
+----
+public class Singleton {
+  private static volatile Singleton instance;
+  private static final Object lock = new Object();
+  public static Singleton getInstance() {
+    Singleton result = instance;
+    if (result == null) {
+      synchronized (lock) {
+        if (instance == null)
+          instance = result = new Singleton();
+        }
+     }
+     return result;
+  }
+}
+----
+
+== Подход №7. Код из книги "Effective Java, 3rd edition"
+
+Вы уже видите баг в этом коде? +
+{nbsp}
+
+[source,java]
+----
+public class Singleton {
+  private static volatile Singleton instance;
+  private static final Object lock = new Object();
+  public static Singleton getInstance() {
+    Singleton result = instance;
+    if (result == null) {
+      synchronized (lock) {
+        if (instance == null)
+          instance = result = new Singleton();
+        }
+     }
+     return result;
+  }}
+----
+[.fragment]
+Если при входе в `synchronized`-блок `instance != null`, на выходе -- `null`.
+
+[%notitle]
+== Как так получилось
+
+:x-post-url: https://x.com/HeroWanders/status/964271987358040065
+include::x-post.adoc[]
+
+[%notitle]
+== Блох отвечает
+
+:x-post-url: https://x.com/joshbloch/status/964327677816532992
+include::x-post.adoc[]
+
+
+[%notitle]
+== WTF?
+
+image::scream.jpg[canvas, size=cover]
+
+
+== Единственно Верный Ленивый Потокобезопасный Синглетон 
+[source,java]
+----
+public class Singleton {
+    private static volatile Singleton instance;
+    private static final Object lock = new Object();
+    public static Singleton getInstance() {
+        Singleton result = instance;
+        if (result != null)
+            return result;
+
+        synchronized (lock) {
+            if (instance == null)
+                instance = new Singleton();
+            return instance;
+        }
+    }
+    private Singleton() {}
+}
+----
+
+[.fragment]
+Или нет?
+
+== Подход №8
+
+[source,java]
+----
+// Correct lazy initialization in Java
+public class Singleton {
+    private static class SingletonHolder {
+       public static final Singleton instance = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        return SingletonHolder.instance;
+    }
+    private Singleton() {
+    }
+}
+----
 
 
 
