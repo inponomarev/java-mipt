@@ -272,7 +272,7 @@ digraph Java {
 ----
 @startuml
 
-skinparam dpi 150 
+skinparam dpi 120 
 
 interface BlockingQueue<E> {
   void put(E e) throws InterruptedException;
@@ -291,10 +291,11 @@ BlockingQueue <|.. SynchronousQueue
 @enduml
 ----
 
-* Могут быть ограничены по размеру (capacity constrained).
-* Методы `put()` и `take()` ждут, пока не появится возможность положить или взять элемент.
-* `PriorityBlockingQueue` не лимитируется по capacity.
-* `SynchronousQueue` не имеет capacity вовсе, передаёт элементы обрабатывающим тредам напрямую. 
+* `put(e)` и `take()` при необходимости ждут.
+* `ArrayBlockingQueue` — очередь фиксированной ёмкости.
+* `LinkedBlockingQueue` — ёмкость можно задать, по умолчанию — `Integer.MAX_VALUE`.
+* `PriorityBlockingQueue` — очередь с приоритетами без ограничения ёмкости.
+* `SynchronousQueue` — очередь нулевой ёмкости. Каждый `put(e)` ждёт, пока другой тред примет элемент.
 
 == ConcurrentHashMap
 
@@ -1575,7 +1576,7 @@ image::hydra2.jpg[{image-90-width}]
 
 == Executor Framework
 
-* Тред -- дорогой ресурс, поэтому мы хотим:
+* Платформенный тред -- дорогой ресурс, поэтому мы хотим:
 ** ограничивать количество наших тредов, чтобы не устроить Out of Memory,
 ** переиспользовать имеющиеся треды, подавая им новые задачи после завершения старых,
 ** но если какой-то тред «вылетел» -- автоматически создавать новый.
@@ -1668,6 +1669,7 @@ public class  Executors {
   public static 
     ScheduledExecutorService newScheduledThreadPool(int corePoolSize)
   //запускает виртуальный поток под каждую из задач
+  //(что такое виртуальный поток -- скоро объясним!)
   public static ExecutorService newVirtualThreadPerTaskExecutor()
   ...
 }
@@ -1745,10 +1747,88 @@ if (!service.awaitTermination(10, TimeUnit.SECONDS)){
 * Просто так "проглатывать" `InterruptedException` *ни в коем случае нельзя*!
 * Рекомендуется записывать факт прерывания в лог, для прозрачности отладки.
 
+== Платформенный тред -- дорогой ресурс
+
+* По умолчанию, 1 Мб для стека (определяется параметром JVM `-Xss`).
+* Один тред ОС: создание может завершиться ошибкой со стороны ОС, даже если в Java heap ещё достаточно места.
+* Создание треда ОС стоит времени.
+* И при этом, многие из них находятся в  состоянии `waiting`!
+
+== Java 21, Project Loom: два вида `java.lang.Thread`
+
+[cols="3a,2,2"]
+|===
+| |**Платформенный тред** |**Виртуальный тред**
+|
+
+[source,java]
+----
+Thread
+  .currentThread()
+  .isVirtual() 
+----
+
+| `false` | `true`
+|Кто планирует выполнение? |ОС планирует связанный с ним тред ОС. |JVM выбирает платформенный тред (_carrier_) для выполнения.
+|На время жизни |Занимает один тред ОС. |Может выполняться на разных платформенных тредах по очереди.
+|===
+
+== Ожидание на 20K платформенных тредах
+
+Типичное время выполнения -- 4-5 секунд:
+
+[source,java]
+----
+List<Thread> threads = new ArrayList<>(20_000);
+
+for (int i = 0; i < 20_000; i++) {
+  Thread t = new Thread(() -> {
+    try {
+      Thread.sleep(1_000);  // simulates blocking I/O
+    } catch (InterruptedException ignored) {}
+  });
+  threads.add(t);
+}
+threads.forEach(Thread::start);
+for (Thread t : threads) t.join(); // wait for all
+----
+
+
+== Ожидание на 20K виртуальных тредах
+
+Типичное время выполнения -- 1,5 секунды:
+
+[source,java]
+----
+List<Thread> threads = new ArrayList<>(20_000);
+
+for (int i = 0; i < 20_000; i++) {
+  Thread t = Thread.startVirtualThread(() -> { // JDK 21+
+    try {
+      Thread.sleep(1_000);
+    } catch (InterruptedException ignored) {}
+  });
+  threads.add(t);
+}
+for (Thread t : threads) t.join();
+----
+
+== А что с synchronized?
+
+[source,java]
+----
+synchronized (lock) {
+    return readFromSocket();
+}
+----
+
+* *JDK 21–23.* Если чтение приводит к ожиданию, виртуальный тред удерживает carrier (_pinning_).
+* *JDK 24+* В HotSpot виртуальный тред может освободить carrier, даже удерживая монитор (JEP 491).
+
 == CompletableFuture
 
 * Появились в Java 8, расширяют `Future`.
-* Позволяют явно задать результат (отсюда 'Completable') и собрать цепочку асинхронных вычислений.
+* Позволяют явно задать результат (отсюда 'Completable') и собрать граф асинхронных вычислений.
 * Могут быть использованы так: 
 
 [source,java]
@@ -1792,7 +1872,7 @@ executor.execute(() -> {
 
 == Композиция нескольких CompletableFuture
 
-[cols="20a,20a,60a"]
+[cols="20a,30a,50a"]
 |===
 |*Method*            |*Parameter*            |*Description*
 |`thenCombine`       |ComletableFuture<U>, +
@@ -1804,7 +1884,7 @@ executor.execute(() -> {
 |===
 
 == Композиция нескольких CompletableFuture
-[cols="20a,20a,60a"]
+[cols="20a,30a,50a"]
 |===
 |*Method*            |*Parameter*            |*Description*
 |`applyToEither`     |CompletableFuture<T>, +
@@ -1813,7 +1893,7 @@ executor.execute(() -> {
                       T->void                |Like `applyToEither`, but with `void` result.
 |`runAfterEither`    |CompletableFuture<?>, +
                       Runnable               |Execute the runnable after one or the other completes.
-|`static allOf`      |CompletableFuture<?>...|Complete with `void` result after all given futeres complete.
+|`static allOf`      |CompletableFuture<?>...|Complete with `void` result after all given futures complete.
 |`static anyOf`      |CompletableFuture<?>...|Complete after any of the given futures completes, with the same result cast to `Object`.
 |===
 
@@ -1838,27 +1918,6 @@ executor.execute(() -> {
 
 * Порядка 100 пунктов, по которым можно проверить concurrency код на распространённые ошибки
 
-
-
-== Благодарности 
-
-Эти люди дали свой фидбэк и помогли улучшить материал этой лекции:
-
-icon:twitter[size=lg]@2caco3
-icon:twitter[size=lg]@asm0dey
-icon:twitter[size=lg]@dolzhenko
-icon:twitter[size=lg]@DrEdwardHyde
-
-icon:twitter[size=lg]@dyer_the
-icon:twitter[size=lg]@krems5
-icon:twitter[size=lg]@LordOfBoredom
-
-icon:twitter[size=lg]@miha_x64
-icon:twitter[size=lg]@vaddyacom
-icon:twitter[size=lg]@vdimir
-
-
-(все ошибки и неточности -- мои)
 
 
 == Иногда при чтении кода начинает рябить в глазах...
@@ -1976,6 +2035,7 @@ new CommandDispatcher(new Controller(srv)).executeCommand("foo");
 
 == Синтаксис определения аннотаций
 
+[source]
 ----
 modifiers @interface AnnotationName {
   type elementName();
@@ -2031,6 +2091,7 @@ public @interface BugReport {
 
 == Использование аннотаций
 
+[source]
 ----
 @AnnotationName(elementName1=value1, elementName2=value2,...)
 
