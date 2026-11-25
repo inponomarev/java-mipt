@@ -79,7 +79,7 @@ accumulateAndGet(x, accumulatorBiFunction)
 * Их использование является _предпочтительным_.
 
 
-== CopyOnWriteArrayList и CopyOnWriteArraySet
+== `CopyOnWriteArrayList` и `CopyOnWriteArraySet`
 [source,java]
 ----
 class CopyOnWriteArrayList<E> implements List<E>
@@ -91,21 +91,21 @@ class CopyOnWriteArraySet<E> extends AbstractSet<E>
 * Это дорого, зато все читающие итераторы стабильны.
 * Хороши, когда на одну операцию записи приходится много операций чтения.
 
-== ConcurrentLinkedQueue/Deque
+== `ConcurrentLinkedQueue`/`Deque`
 
 [source,java]
 ----
 ConcurrentLinkedQueue<E> extends AbstractQueue<E> 
-        implements Queue<E>
+                                      implements Queue<E>
 ConcurrentLinkedDeque<E> extends AbstractCollection<E>
-        implements Deque<E>
+                                      implements Deque<E>
 ----
 
 * Основаны на неблокирующем алгоритме (CAS-операции)
 * `poll()` вернёт `null`, если очередь пуста
 * Под капотом -- связные/двусвязные списки
 
-== ConcurrentLinkedQueue/Deque
+== `ConcurrentLinkedQueue`/`Deque`
 
 [graphviz]
 --
@@ -298,7 +298,7 @@ BlockingQueue <|.. SynchronousQueue
 * `PriorityBlockingQueue` — очередь с приоритетами без ограничения ёмкости.
 * `SynchronousQueue` — очередь нулевой ёмкости. Каждый `put(e)` ждёт, пока другой тред примет элемент.
 
-== ConcurrentHashMap
+== `ConcurrentHashMap`
 
 [source,java]
 ----
@@ -313,7 +313,7 @@ class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
 ** `remove(key, value)`
 ** `replace(key, oldValue, newValue)`
 
-== ConcurrentHashMap: Java 7-
+== `ConcurrentHashMap`: Java 7-
 
 [graphviz]
 --
@@ -366,7 +366,7 @@ n1665228262[shape=record, label="null|null"];
 }
 --
 
-== ConcurrentHashMap: Java 8+
+== `ConcurrentHashMap`: Java 8+
 
 [graphviz]
 --
@@ -520,7 +520,7 @@ digraph Java {
 }
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [source,java]
 ----
@@ -531,7 +531,7 @@ class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
 * Не позволяет использовать `null` в качестве ключа или значения.
 * Имеет атомарные методы.
 
-== ConcurrentSkipListMap: идея
+== `ConcurrentSkipListMap`: идея
 [graphviz]
 --
 digraph G {
@@ -564,9 +564,8 @@ digraph G {
 
 
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
-//A
 
 [graphviz]
 --
@@ -614,7 +613,7 @@ digraph Java {
 
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [graphviz]
 --
@@ -673,7 +672,7 @@ digraph Java {
 
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [graphviz]
 --
@@ -771,7 +770,7 @@ digraph Java {
 
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [graphviz]
 --
@@ -889,7 +888,7 @@ digraph Java {
 
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [graphviz]
 --
@@ -1026,7 +1025,7 @@ digraph Java {
 }
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [graphviz]
 --
@@ -1372,7 +1371,7 @@ digraph Java {
 
 --
 
-== ConcurrentSkipListMap
+== `ConcurrentSkipListMap`
 
 [graphviz]
 --
@@ -1571,7 +1570,7 @@ digraph Java {
 
 --
 
-== Часть 4. Executor Framework
+== Часть 4. Executor Framework и кооперативное прерывание
 
 image::hydra2.jpg[{image-90-width}]
 
@@ -1600,7 +1599,7 @@ public interface ExecutorService {
 }
 ----
 
-== Future
+== `Future`
 
 [source,java]
 ----
@@ -1616,7 +1615,7 @@ public interface Future<V> {
 }
 ----
 
-== Task, Executor, Future
+== `Task`, `Executor`, `Future`
 
 [plantuml, taskexecfuture, png]
 ----
@@ -1656,7 +1655,7 @@ deactivate Future
 @enduml
 ----
 
-== Как создать ExecutorService?
+== Как создать `ExecutorService`?
 
 [source,java]
 ----
@@ -1748,6 +1747,10 @@ if (!service.awaitTermination(10, TimeUnit.SECONDS)){
 * Просто так "проглатывать" `InterruptedException` *ни в коем случае нельзя*!
 * Рекомендуется записывать факт прерывания в лог, для прозрачности отладки.
 
+== Часть 5. Виртуальные треды
+
+image::hydra2.jpg[{image-90-width}]
+
 == Платформенный тред -- дорогой ресурс
 
 * По умолчанию, 1 Мб для стека (определяется параметром JVM `-Xss`).
@@ -1776,7 +1779,7 @@ Thread
 
 == Ожидание на 20K платформенных тредах
 
-Типичное время выполнения -- 4-5 секунд:
+5,2 секунды, 20004 стартовавших тредов, 9338 на пике:
 
 [source,java]
 ----
@@ -1797,7 +1800,7 @@ for (Thread t : threads) t.join(); // wait for all
 
 == Ожидание на 20K виртуальных тредах
 
-Типичное время выполнения -- 1,5 секунды:
+1,5 секунды, 17 стартовавших тредов, 12 на пикеы:
 
 [source,java]
 ----
@@ -1814,7 +1817,7 @@ for (int i = 0; i < 20_000; i++) {
 for (Thread t : threads) t.join();
 ----
 
-== А что с synchronized?
+== А что с `synchronized`?
 
 [source,java]
 ----
@@ -1826,7 +1829,12 @@ synchronized (lock) {
 * *JDK 21–23.* Если чтение приводит к ожиданию, виртуальный тред удерживает carrier (_pinning_).
 * *JDK 24+* В HotSpot виртуальный тред может освободить carrier, даже удерживая монитор (JEP 491).
 
-== CompletableFuture
+== Часть 6. `CompletableFuture`
+
+image::hydra2.jpg[{image-90-width}]
+
+
+== `CompletableFuture`
 
 * Появились в Java 8, расширяют `Future`.
 * Позволяют явно задать результат (отсюда 'Completable') и собрать граф асинхронных вычислений.
@@ -1848,7 +1856,7 @@ executor.execute(() -> {
   f.completeExceptionally(t); });
 ----
 
-== Композиция CompletableFuture с действием
+== Композиция `CompletableFuture` с действием
 
 [cols="20a,20a,60a"]
 |===
@@ -1861,7 +1869,7 @@ executor.execute(() -> {
 |===
 
 
-== Композиция CompletableFuture с действием
+== Композиция `CompletableFuture` с действием
 
 [cols="20a,20a,60a"]
 |===
@@ -1871,7 +1879,7 @@ executor.execute(() -> {
 |`thenRun`           |Runnable               |Execute the `Runnable` with void result.
 |===
 
-== Композиция нескольких CompletableFuture
+== Композиция нескольких `CompletableFuture`
 
 [cols="20a,30a,50a"]
 |===
@@ -1884,7 +1892,7 @@ executor.execute(() -> {
                       Runnable               |Execute the runnable after both complete.
 |===
 
-== Композиция нескольких CompletableFuture
+== Композиция нескольких `CompletableFuture`
 [cols="20a,30a,50a"]
 |===
 |*Method*            |*Parameter*            |*Description*
@@ -1901,7 +1909,7 @@ executor.execute(() -> {
 == Если этого показалось мало...
 * Каждый из этих методов имеет вариант с постфиксом `Async` (например, `thenApplyAsync`), позволяющий выполнить дополнительное действие в другом треде заданного Executor-a.
 
-== Мы только прошлись по основам
+== Финал! Мы только прошлись по основам
 
 [cols="30a,70a"]
 |===
