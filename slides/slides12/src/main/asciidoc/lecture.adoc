@@ -85,7 +85,71 @@ public class NaiveController {
 
 == Coupling vs. Cohesion
 
-image::coupling-cohesion.png[{image-70-width}]
+[cols="50a,50a"]
+|===
+^.>|
+[graphviz]
+----
+graph bad_modularization {
+    graph [ dpi = 150 ];
+    graph [layout=fdp, splines=curved, labeljust=l];
+    node [shape=circle, fixedsize=true, width=0.41, height=0.41];
+
+    subgraph cluster_A { label="A"; 1; 2; 3; }
+    subgraph cluster_B { label="B"; 4; 5; 6; 7; }
+    subgraph cluster_C { label="C"; 8; 10; 9; }
+
+    1 -- {3 4 5};
+    3 -- {4 5};
+    4 -- {5 6};
+    5 -- 8;
+    6 -- {9 10};
+    9 -- {2 10};
+    10 -- 8;
+    8 -- {2 7};
+    2 -- 7;
+}
+
+
+----
+
+^.>|
+[graphviz]
+----
+graph good_modularization {
+    graph [ dpi = 150 ];
+    graph [layout=fdp, splines=curved, labeljust=l];
+    node [shape=circle, fixedsize=true, width=0.41, height=0.41];
+
+    subgraph cluster_A { label="A"; 1; 3; 4; 5; }
+    subgraph cluster_B { label="B"; 6; 10; 9; }
+    subgraph cluster_C { label="C"; 8; 7; 2; }
+
+    1 -- {3 4 8 };
+    1 -- 8 [style=invis];
+    3 -- {4 5 10 };
+    4 -- {5 };
+    5 -- 8 [style=invis];
+    6 -- {9 10};
+    9 -- {2 10};
+    8 -- {2 7};
+    2 -- 7;
+}
+----
+
+^.|
+
+Плохая модуляризация: +
+low cohesion, high coupling.
+
+^.|
+
+Хорошая модуляризация: +
+high cohesion, low coupling.
+
+|===
+
+
 
 
 == Вопросы
@@ -454,7 +518,7 @@ public @interface BugReport {
 
 == RetentionPolicy
 
-[graphviz,"retention.png"]
+[graphviz]
 ----
 digraph G {
 graph [ dpi = 180 ];
